@@ -19,53 +19,12 @@
     --math-color:  #e07b54;
     --excel-color: #4caf7d;
     --intro-color: #7b8fe0;
+    --yt-red:      #ff4444;
+    --yt-red-dark: #cc0000;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; }
-
-  /* ── Sticky nav ── */
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,22,40,0.97);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .nav-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.75rem 0;
-    margin-right: 0.5rem;
-    white-space: nowrap;
-  }
-  .nav-btn {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.05em;
-    padding: 0.45rem 1rem;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    background: none;
-    cursor: pointer;
-    transition: background 0.18s, color 0.18s, border-color 0.18s;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .nav-intro { color: var(--intro-color); border-color: rgba(123,143,224,0.25); }
-  .nav-intro:hover { background: rgba(123,143,224,0.12); }
-  .nav-excel { color: var(--excel-color); border-color: rgba(76,175,125,0.25); }
-  .nav-excel:hover { background: rgba(76,175,125,0.12); }
-  .nav-math  { color: var(--math-color);  border-color: rgba(224,123,84,0.25); }
-  .nav-math:hover  { background: rgba(224,123,84,0.12); }
 
   /* ── Top bar ── */
   .topbar {
@@ -78,32 +37,110 @@
   .topbar-left span { color: var(--gold); }
   .topbar-right { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-muted); }
 
+  /* ── Sticky nav ── */
+  .sticky-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,22,40,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .nav-label {
+    font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--text-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.75rem 0; margin-right: 0.5rem; white-space: nowrap;
+  }
+  .nav-btn {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.05em;
+    padding: 0.45rem 1rem; border-radius: 6px; border: 1px solid transparent;
+    background: none; cursor: pointer;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-intro { color: var(--intro-color); border-color: rgba(123,143,224,0.25); }
+  .nav-intro:hover { background: rgba(123,143,224,0.12); }
+  .nav-excel { color: var(--excel-color); border-color: rgba(76,175,125,0.25); }
+  .nav-excel:hover { background: rgba(76,175,125,0.12); }
+  .nav-math  { color: var(--math-color);  border-color: rgba(224,123,84,0.25); }
+  .nav-math:hover  { background: rgba(224,123,84,0.12); }
+
   /* ── Hero ── */
   header {
     background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 60%, #0d1f3c 100%);
     border-bottom: 2px solid var(--gold);
-    padding: 3rem 2rem 2.75rem;
-    text-align: center;
+    padding: 3rem 2rem 2.75rem; text-align: center;
   }
-  .hero-label { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem; }
-  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 2.75rem); color: var(--white); margin-bottom: 0.4rem; line-height: 1.15; }
+  .hero-label {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--gold);
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.75rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.75rem);
+    color: var(--white); margin-bottom: 0.4rem; line-height: 1.15;
+  }
   header h1 span { color: var(--gold); }
   .hero-tagline { font-size: 1rem; color: var(--ice); margin-bottom: 0.4rem; font-weight: 300; }
   .hero-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.75rem; letter-spacing: 0.02em; }
-  .hero-pills { display: flex; justify-content: center; gap: 0.65rem; flex-wrap: wrap; margin-bottom: 2rem; }
-  .pill { font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.3rem 0.85rem; border-radius: 20px; letter-spacing: 0.04em; }
-  .pill-gold  { background: rgba(201,168,76,0.15);  color: var(--gold);         border: 1px solid rgba(201,168,76,0.3); }
-  .pill-ice   { background: rgba(214,228,240,0.1);  color: var(--ice);          border: 1px solid rgba(214,228,240,0.25); }
-  .pill-excel { background: rgba(76,175,125,0.12);  color: var(--excel-color);  border: 1px solid rgba(76,175,125,0.28); }
-  .pill-math  { background: rgba(224,123,84,0.12);  color: var(--math-color);   border: 1px solid rgba(224,123,84,0.28); }
 
-  /* ── How-to card ── */
+  .hero-pills {
+    display: flex; justify-content: center; gap: 0.75rem;
+    flex-wrap: wrap; margin-bottom: 1.5rem;
+  }
+  .pill {
+    font-family: 'DM Mono', monospace; font-size: 0.7rem;
+    padding: 0.35rem 0.9rem; border-radius: 20px; letter-spacing: 0.05em;
+  }
+  .pill-gold  { background: rgba(201,168,76,0.12);  color: var(--gold);        border: 1px solid rgba(201,168,76,0.3); }
+  .pill-ice   { background: rgba(214,228,240,0.08); color: var(--ice);         border: 1px solid rgba(214,228,240,0.2); }
+  .pill-navy  { background: rgba(255,255,255,0.05); color: var(--text-muted);  border: 1px solid rgba(255,255,255,0.1); }
+  .pill-excel { background: rgba(76,175,125,0.1);   color: var(--excel-color); border: 1px solid rgba(76,175,125,0.25); }
+  .pill-math  { background: rgba(224,123,84,0.1);   color: var(--math-color);  border: 1px solid rgba(224,123,84,0.25); }
+
+  /* ── YouTube button ── */
+  .yt-btn-wrap {
+    display: flex; justify-content: center; margin-bottom: 2rem;
+  }
+  .yt-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(255,68,68,0.12);
+    border: 1px solid rgba(255,68,68,0.4);
+    color: #ff6b6b;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    padding: 0.55rem 1.3rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .yt-btn:hover {
+    background: rgba(255,68,68,0.22);
+    border-color: rgba(255,68,68,0.65);
+    color: #ff8888;
+    transform: translateY(-1px);
+  }
+  .yt-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .yt-label-main { font-weight: 500; }
+  .yt-label-sub {
+    font-size: 0.65rem;
+    color: rgba(255,107,107,0.7);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Welcome card ── */
   .welcome-card {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 12px; padding: 1.5rem 2rem; max-width: 760px; margin: 0 auto; text-align: left;
+    background: rgba(214,228,240,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 1.5rem 2rem;
+    max-width: 760px; margin: 0 auto; text-align: left;
   }
   .welcome-card h2 { font-size: 1rem; font-weight: 600; color: var(--gold); margin-bottom: 0.85rem; }
-  .welcome-card p { font-size: 0.87rem; color: var(--ice); line-height: 1.65; margin-bottom: 1rem; }
+  .welcome-card p  { font-size: 0.87rem; color: var(--ice); line-height: 1.65; margin-bottom: 1rem; }
   .how-to-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
   .how-to-item { display: flex; align-items: flex-start; gap: 0.6rem; background: rgba(255,255,255,0.03); border-radius: 8px; padding: 0.75rem; }
   .how-to-icon { font-size: 1.1rem; flex-shrink: 0; }
@@ -115,7 +152,6 @@
 
   /* ── Type section header ── */
   .type-section { margin-bottom: 3.5rem; scroll-margin-top: 60px; }
-
   .type-header {
     display: flex; align-items: center; gap: 1rem;
     padding: 1.1rem 1.5rem; border-radius: 12px 12px 0 0;
@@ -124,7 +160,6 @@
   .th-intro { background: rgba(123,143,224,0.1); border-color: var(--intro-color); }
   .th-excel { background: rgba(76,175,125,0.1);  border-color: var(--excel-color); }
   .th-math  { background: rgba(224,123,84,0.1);  border-color: var(--math-color);  }
-
   .th-icon { font-size: 1.6rem; }
   .th-text { flex: 1; }
   .th-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.2rem; }
@@ -135,86 +170,85 @@
   .th-desc  { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; }
   .th-count { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--text-muted); white-space: nowrap; }
 
-  /* ── Section tabs (Readings / Homework / Activities) ── */
+  /* ── Section tabs ── */
   .section-tabs {
     background: var(--navy-mid);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-top: none;
-    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-top: none; border-radius: 0 0 12px 12px;
     overflow: hidden;
   }
-  .tab-row { display: flex; background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .tab-btn {
-    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.04em;
-    color: var(--text-muted); background: none; border: none;
-    border-bottom: 2px solid transparent;
-    padding: 0.7rem 1.2rem; cursor: pointer;
-    transition: color 0.18s, border-color 0.18s;
+  .tab-row {
+    display: flex; gap: 0; border-bottom: 1px solid rgba(201,168,76,0.1);
   }
-  .tab-btn:hover { color: var(--ice); }
-  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
-  .tab-panel { display: none; }
+  .tab-btn {
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.07em;
+    text-transform: uppercase; padding: 0.75rem 1.25rem;
+    border: none; border-right: 1px solid rgba(201,168,76,0.1);
+    background: transparent; color: var(--text-muted);
+    cursor: pointer; transition: all 0.18s;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn:hover { color: var(--gold); background: rgba(201,168,76,0.05); }
+  .tab-btn.active { background: rgba(201,168,76,0.08); color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+  /* ── Tab panel ── */
+  .tab-panel { display: none; padding: 1.25rem 1.5rem; }
   .tab-panel.active { display: block; }
 
-  /* ── Accordion rows ── */
+  /* ── Accordion ── */
   .accordion-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
   .accordion-item:last-child { border-bottom: none; }
-
   .accordion-trigger {
-    width: 100%; display: flex; align-items: center; gap: 0.85rem;
-    padding: 0.85rem 1.4rem; background: none; border: none;
+    width: 100%; display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.85rem 0.5rem; background: none; border: none;
     cursor: pointer; text-align: left;
-    transition: background 0.18s;
+    transition: background 0.15s;
   }
-  .accordion-trigger:hover { background: rgba(255,255,255,0.03); }
-  .accordion-trigger.open { background: rgba(255,255,255,0.03); }
-
-  .acc-badge { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.07em; padding: 0.18rem 0.5rem; border-radius: 4px; flex-shrink: 0; }
-  .ab-intro { background: rgba(123,143,224,0.12); color: var(--intro-color); border: 1px solid rgba(123,143,224,0.2); }
-  .ab-excel { background: rgba(76,175,125,0.12);  color: var(--excel-color); border: 1px solid rgba(76,175,125,0.2); }
-  .ab-math  { background: rgba(224,123,84,0.12);  color: var(--math-color);  border: 1px solid rgba(224,123,84,0.2); }
-
-  .acc-topic { font-size: 0.88rem; font-weight: 500; color: var(--white); flex: 1; line-height: 1.4; }
-  .acc-chevron { font-size: 0.65rem; color: var(--text-muted); transition: transform 0.22s; flex-shrink: 0; }
+  .accordion-trigger:hover { background: rgba(255,255,255,0.02); border-radius: 6px; }
+  .acc-badge {
+    font-family: 'DM Mono', monospace; font-size: 0.58rem; font-weight: 600;
+    padding: 0.18rem 0.5rem; border-radius: 3px; letter-spacing: 0.06em;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .ab-intro { background: rgba(123,143,224,0.15); color: var(--intro-color); }
+  .ab-excel { background: rgba(76,175,125,0.15);  color: var(--excel-color); }
+  .ab-math  { background: rgba(224,123,84,0.15);  color: var(--math-color);  }
+  .acc-topic { font-size: 0.85rem; color: var(--ice); flex: 1; }
+  .acc-chevron {
+    font-size: 0.6rem; color: var(--text-muted);
+    transition: transform 0.2s; flex-shrink: 0;
+  }
   .accordion-trigger.open .acc-chevron { transform: rotate(90deg); }
-
-  .accordion-body { display: none; padding: 0.15rem 1.4rem 1rem 1.4rem; }
+  .accordion-body { display: none; padding: 0.25rem 0.5rem 1rem 0.5rem; }
   .accordion-body.open { display: block; }
 
   /* ── File rows ── */
   .file-row {
-    display: flex; align-items: center; gap: 0.85rem;
-    padding: 0.65rem 0.9rem; margin-bottom: 0.4rem;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 7px;
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.7rem 0.9rem; border-radius: 8px;
+    margin-bottom: 0.5rem;
   }
-  .file-row:last-child { margin-bottom: 0; }
-  .file-row.fr-math  { border-color: rgba(224,123,84,0.2);  background: rgba(224,123,84,0.04); }
-  .file-row.fr-excel { border-color: rgba(76,175,125,0.2);  background: rgba(76,175,125,0.04); }
-  .file-row.fr-intro { border-color: rgba(123,143,224,0.2); background: rgba(123,143,224,0.04); }
-  .file-row.fr-slides{ border-color: rgba(201,168,76,0.2);  background: rgba(201,168,76,0.04); }
-
+  .fr-intro { background: rgba(123,143,224,0.06); border: 1px solid rgba(123,143,224,0.15); }
+  .fr-excel { background: rgba(76,175,125,0.06);  border: 1px solid rgba(76,175,125,0.15); }
+  .fr-math  { background: rgba(224,123,84,0.06);  border: 1px solid rgba(224,123,84,0.15); }
   .file-icon { font-size: 1.1rem; flex-shrink: 0; }
-  .file-info { flex: 1; min-width: 0; }
-  .file-type { font-family: 'DM Mono', monospace; font-size: 0.57rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.1rem; }
-  .file-name { font-size: 0.84rem; font-weight: 500; color: var(--white); line-height: 1.3; }
+  .file-info { flex: 1; }
+  .file-type { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0.18rem; }
+  .file-name { font-size: 0.83rem; color: var(--ice); }
 
+  /* ── Download buttons ── */
   .dl-btn {
-    font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.04em;
-    padding: 0.38rem 0.8rem; border-radius: 6px; text-decoration: none;
-    white-space: nowrap; flex-shrink: 0; transition: background 0.18s;
+    font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.05em;
+    padding: 0.4rem 0.9rem; border-radius: 6px; border: none;
+    text-decoration: none; white-space: nowrap; flex-shrink: 0;
+    transition: background 0.15s;
   }
-  .dl-math  { background: rgba(224,123,84,0.15);  color: var(--math-color);  border: 1px solid rgba(224,123,84,0.3); }
-  .dl-math:hover  { background: rgba(224,123,84,0.28); }
-  .dl-excel { background: rgba(76,175,125,0.15);  color: var(--excel-color); border: 1px solid rgba(76,175,125,0.3); }
-  .dl-excel:hover { background: rgba(76,175,125,0.28); }
-  .dl-intro { background: rgba(123,143,224,0.15); color: var(--intro-color); border: 1px solid rgba(123,143,224,0.3); }
-  .dl-intro:hover { background: rgba(123,143,224,0.28); }
-  .dl-slides{ background: rgba(201,168,76,0.12);  color: var(--gold);        border: 1px solid rgba(201,168,76,0.3); }
-  .dl-slides:hover{ background: rgba(201,168,76,0.22); }
-  .dl-activity { background: rgba(62,184,168,0.12); color: var(--teal); border: 1px solid rgba(62,184,168,0.3); }
-  .dl-activity:hover { background: rgba(62,184,168,0.22); }
+  .dl-excel { background: rgba(76,175,125,0.2); color: var(--excel-color); }
+  .dl-excel:hover { background: rgba(76,175,125,0.3); }
+  .dl-intro { background: rgba(123,143,224,0.15); color: var(--intro-color); }
+  .dl-intro:hover { background: rgba(123,143,224,0.25); }
+  .dl-math  { background: rgba(224,123,84,0.15); color: var(--math-color); }
+  .dl-math:hover  { background: rgba(224,123,84,0.25); }
   .dl-soon  { background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.08); pointer-events: none; font-style: italic; }
 
   /* ── Empty reading note for Intro ── */
@@ -237,6 +271,7 @@
     .file-row { flex-wrap: wrap; }
     .dl-btn { margin-top: 0.35rem; }
     .sticky-nav { gap: 0.35rem; padding: 0 1rem; }
+    .yt-label-sub { display: none; }
   }
 </style>
 </head>
@@ -248,45 +283,70 @@
   <div class="topbar-right">Fall 2026</div>
 </div>
 
+<!-- Sticky nav -->
+<nav class="sticky-nav">
+  <span class="nav-label">Jump to:</span>
+  <a class="nav-btn nav-intro" href="#intro">📘 Introduction</a>
+  <a class="nav-btn nav-excel" href="#excel">📊 Excel Skills</a>
+  <a class="nav-btn nav-math"  href="#math">📐 Business Math</a>
+</nav>
+
 <!-- Hero -->
 <header>
   <div class="hero-label">BUS123 · School of Business</div>
   <h1>Solving Business Problems <span>with Technology</span></h1>
   <div class="hero-tagline">Everything you need for this course — right here.</div>
   <div class="hero-sub">BUS123 · Fall 2026 · 75-minute class periods</div>
+
   <div class="hero-pills">
     <span class="pill pill-gold">Microsoft Office &amp; Excel</span>
-    <span class="pill pill-ice">Business Math</span>
     <span class="pill pill-excel">Excel Skills</span>
     <span class="pill pill-math">Business Math</span>
+    <span class="pill pill-navy">No textbook required</span>
   </div>
+
+  <!-- YouTube Resources button -->
+  <div class="yt-btn-wrap">
+    <a class="yt-btn"
+       href="https://youtube.com/@bethanyevitts-bus123?si=M4Yq_f3UUbq1TLBd"
+       target="_blank"
+       rel="noopener noreferrer">
+      <span class="yt-icon">▶️</span>
+      <span>
+        <span class="yt-label-main">YouTube How-To Videos</span><br>
+        <span class="yt-label-sub">@bethanyevitts-bus123 · opens in new tab</span>
+      </span>
+    </a>
+  </div>
+
   <div class="welcome-card">
     <h2>👋 How this page works</h2>
-    <p>The course is organized into three sections: <strong style="color:var(--intro-color)">Introduction</strong>, <strong style="color:var(--excel-color)">Excel Skills</strong>, and <strong style="color:var(--math-color)">Business Math</strong>. Use the navigation bar above to jump to any section. Inside each section, select a tab then click a module row to see its files.</p>
+    <p>The course is organized into three sections: <strong style="color:var(--intro-color)">Introduction</strong>, <strong style="color:var(--excel-color)">Excel Skills</strong>, and <strong style="color:var(--math-color)">Business Math</strong>. Use the navigation bar above to jump to any section. Each section has three tabs — here's what you'll find in each one:</p>
     <div class="how-to-grid">
       <div class="how-to-item">
         <span class="how-to-icon">📖</span>
-        <div class="how-to-text"><strong>Readings</strong>Reference sheets to review before class.</div>
+        <div class="how-to-text">
+          <strong>Readings</strong>
+          Notes, guides, and links to help you prepare before class. Read these first!
+        </div>
       </div>
       <div class="how-to-item">
         <span class="how-to-icon">📝</span>
-        <div class="how-to-text"><strong>Homework</strong>Download, complete, and submit to Canvas.</div>
+        <div class="how-to-text">
+          <strong>Homework</strong>
+          Your take-home assignments. Download the file, complete it, and submit to Canvas.
+        </div>
       </div>
       <div class="how-to-item">
         <span class="how-to-icon">⚡</span>
-        <div class="how-to-text"><strong>Activities</strong>Slides and starter files for in-class work.</div>
+        <div class="how-to-text">
+          <strong>Activities</strong>
+          What we'll work on together in class. You can download the starter file in advance.
+        </div>
       </div>
     </div>
   </div>
 </header>
-
-<!-- Sticky nav -->
-<div class="sticky-nav">
-  <span class="nav-label">Jump to →</span>
-  <a class="nav-btn nav-intro" href="#intro">Introduction</a>
-  <a class="nav-btn nav-excel" href="#excel">Excel Skills</a>
-  <a class="nav-btn nav-math"  href="#math">Business Math</a>
-</div>
 
 <main>
 
@@ -295,11 +355,11 @@
   ════════════════════════════════════ -->
   <div class="type-section" id="intro">
     <div class="type-header th-intro">
-      <span class="th-icon">🖥️</span>
+      <span class="th-icon">📘</span>
       <div class="th-text">
         <div class="th-eyebrow ec-intro">Section 1</div>
         <div class="th-title">Introduction</div>
-        <div class="th-desc">Software essentials, course expectations, and technology in everyday business</div>
+        <div class="th-desc">Course overview, technology tools, and getting started with Excel and business software</div>
       </div>
       <span class="th-count">3 topics</span>
     </div>
@@ -313,167 +373,153 @@
 
       <!-- INTRO · READINGS -->
       <div class="tab-panel active" id="intro-readings">
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Essentials of Software Applications for Business – One Drive</span>
+            <span class="acc-badge ab-intro">INTRO 1</span>
+            <span class="acc-topic">Course Overview &amp; Technology Setup</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="empty-note">No reference file for this topic — readings are covered in class.</div>
+            <div class="empty-note">Covered in class — no reading file for this topic.</div>
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Introduction of Course and Expectations</span>
+            <span class="acc-badge ab-intro">INTRO 2</span>
+            <span class="acc-topic">Navigating Microsoft Office</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="empty-note">No reference file for this topic — readings are covered in class.</div>
+            <div class="empty-note">Covered in class — no reading file for this topic.</div>
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Technology in Everyday Life and Business</span>
+            <span class="acc-badge ab-intro">INTRO 3</span>
+            <span class="acc-topic">File Management &amp; Professional Formatting</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="empty-note">No reference file for this topic — readings are covered in class.</div>
+            <div class="empty-note">Covered in class — no reading file for this topic.</div>
           </div>
         </div>
-
-        <div class="panel-tip">📌 Intro modules do not have reference files. All background material is delivered through slides in class.</div>
+        <div class="panel-tip">📌 Intro readings are covered in class — nothing to download for this section.</div>
       </div>
 
       <!-- INTRO · HOMEWORK -->
       <div class="tab-panel" id="intro-homework">
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Essentials of Software Applications for Business – One Drive</span>
+            <span class="acc-badge ab-intro">INTRO 1</span>
+            <span class="acc-topic">Course Overview &amp; Technology Setup</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
             <div class="file-row fr-intro">
               <span class="file-icon">📄</span>
               <div class="file-info">
-                <div class="file-type">Homework · Word Doc</div>
-                <div class="file-name">Intro – Software Essentials Homework</div>
+                <div class="file-type">Homework · Word</div>
+                <div class="file-name">Intro 1 – Course Overview Homework</div>
               </div>
               <!-- ✅ PATH: intro/intro-01-hw-student.docx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Introduction of Course and Expectations</span>
+            <span class="acc-badge ab-intro">INTRO 2</span>
+            <span class="acc-topic">Navigating Microsoft Office</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
             <div class="file-row fr-intro">
               <span class="file-icon">📄</span>
               <div class="file-info">
-                <div class="file-type">Homework · Word Doc</div>
-                <div class="file-name">Intro – Course Expectations Homework</div>
+                <div class="file-type">Homework · Word</div>
+                <div class="file-name">Intro 2 – Microsoft Office Homework</div>
               </div>
               <!-- ✅ PATH: intro/intro-02-hw-student.docx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Technology in Everyday Life and Business</span>
+            <span class="acc-badge ab-intro">INTRO 3</span>
+            <span class="acc-topic">File Management &amp; Professional Formatting</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
             <div class="file-row fr-intro">
               <span class="file-icon">📄</span>
               <div class="file-info">
-                <div class="file-type">Homework · Word Doc</div>
-                <div class="file-name">Intro – Technology in Business Homework</div>
+                <div class="file-type">Homework · Word</div>
+                <div class="file-name">Intro 3 – File Management Homework</div>
               </div>
               <!-- ✅ PATH: intro/intro-03-hw-student.docx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
           </div>
         </div>
-
-        <div class="panel-tip">📌 Download each Word doc, complete it, and submit to the matching Canvas assignment.</div>
       </div>
 
       <!-- INTRO · ACTIVITIES -->
       <div class="tab-panel" id="intro-activities">
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Essentials of Software Applications for Business – One Drive</span>
+            <span class="acc-badge ab-intro">INTRO 1</span>
+            <span class="acc-topic">Course Overview &amp; Technology Setup</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-intro">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
-                <div class="file-name">Intro – Software Essentials Slides</div>
+                <div class="file-type">Activity · Slides</div>
+                <div class="file-name">Intro 1 – Course Overview Slides</div>
               </div>
               <!-- ✅ PATH: intro/intro-01-slides.pptx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
-            <!-- No Excel file — confirmed N -->
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Introduction of Course and Expectations</span>
+            <span class="acc-badge ab-intro">INTRO 2</span>
+            <span class="acc-topic">Navigating Microsoft Office</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-intro">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
-                <div class="file-name">Intro – Course Expectations Slides</div>
+                <div class="file-type">Activity · Slides</div>
+                <div class="file-name">Intro 2 – Microsoft Office Slides</div>
               </div>
               <!-- ✅ PATH: intro/intro-02-slides.pptx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
           </div>
         </div>
-
         <div class="accordion-item">
           <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-intro">INTRO</span>
-            <span class="acc-topic">Technology in Everyday Life and Business</span>
+            <span class="acc-badge ab-intro">INTRO 3</span>
+            <span class="acc-topic">File Management &amp; Professional Formatting</span>
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-intro">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
-                <div class="file-name">Intro – Technology in Business Slides</div>
+                <div class="file-type">Activity · Slides</div>
+                <div class="file-name">Intro 3 – File Management Slides</div>
               </div>
               <!-- ✅ PATH: intro/intro-03-slides.pptx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
             </div>
           </div>
         </div>
-
         <div class="panel-tip">📌 Intro activities are slides only — no Excel starter file for these sessions.</div>
       </div>
     </div>
@@ -580,7 +626,6 @@
           </div>
         </div>
 
-        <div class="panel-tip">📌 Review the reference sheet before each class session — the activity builds directly on it.</div>
       </div>
 
       <!-- EXCEL · HOMEWORK -->
@@ -596,7 +641,7 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Homework · Excel Workbook</div>
+                <div class="file-type">Homework · Excel</div>
                 <div class="file-name">Excel 1 – Creating and Editing Worksheets Homework</div>
               </div>
               <!-- ✅ PATH: excel/excel-01-hw-student.xlsx -->
@@ -615,7 +660,7 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Homework · Excel Workbook</div>
+                <div class="file-type">Homework · Excel</div>
                 <div class="file-name">Excel 2 – Formulas and Functions Homework</div>
               </div>
               <!-- ✅ PATH: excel/excel-02-hw-student.xlsx -->
@@ -634,7 +679,7 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Homework · Excel Workbook</div>
+                <div class="file-type">Homework · Excel</div>
                 <div class="file-name">Excel 3 – Charts and Data Visualization Homework</div>
               </div>
               <!-- ✅ PATH: excel/excel-03-hw-student.xlsx -->
@@ -653,7 +698,7 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Homework · Excel Workbook</div>
+                <div class="file-type">Homework · Excel</div>
                 <div class="file-name">Excel 4 – Getting and Managing Data Homework</div>
               </div>
               <!-- ✅ PATH: excel/excel-04-hw-student.xlsx -->
@@ -662,7 +707,6 @@
           </div>
         </div>
 
-        <div class="panel-tip">📌 Complete all tabs in the workbook and submit the finished .xlsx file to the matching Canvas assignment.</div>
       </div>
 
       <!-- EXCEL · ACTIVITIES -->
@@ -675,10 +719,10 @@
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-excel">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
+                <div class="file-type">Activity · Slides</div>
                 <div class="file-name">Excel 1 – Creating and Editing Worksheets Slides</div>
               </div>
               <!-- ✅ PATH: excel/excel-01-slides.pptx -->
@@ -687,8 +731,8 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Starter File · Excel Workbook</div>
-                <div class="file-name">Excel 1 – Creating and Editing Worksheets Starter</div>
+                <div class="file-type">Activity · Excel Starter</div>
+                <div class="file-name">Excel 1 – Creating and Editing Worksheets Starter File</div>
               </div>
               <!-- ✅ PATH: excel/excel-01-starter.xlsx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
@@ -703,10 +747,10 @@
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-excel">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
+                <div class="file-type">Activity · Slides</div>
                 <div class="file-name">Excel 2 – Formulas and Functions Slides</div>
               </div>
               <!-- ✅ PATH: excel/excel-02-slides.pptx -->
@@ -715,8 +759,8 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Starter File · Excel Workbook</div>
-                <div class="file-name">Excel 2 – Formulas and Functions Starter</div>
+                <div class="file-type">Activity · Excel Starter</div>
+                <div class="file-name">Excel 2 – Formulas and Functions Starter File</div>
               </div>
               <!-- ✅ PATH: excel/excel-02-starter.xlsx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
@@ -731,10 +775,10 @@
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-excel">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
+                <div class="file-type">Activity · Slides</div>
                 <div class="file-name">Excel 3 – Charts and Data Visualization Slides</div>
               </div>
               <!-- ✅ PATH: excel/excel-03-slides.pptx -->
@@ -743,8 +787,8 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Starter File · Excel Workbook</div>
-                <div class="file-name">Excel 3 – Charts and Data Visualization Starter</div>
+                <div class="file-type">Activity · Excel Starter</div>
+                <div class="file-name">Excel 3 – Charts and Data Visualization Starter File</div>
               </div>
               <!-- ✅ PATH: excel/excel-03-starter.xlsx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
@@ -759,10 +803,10 @@
             <span class="acc-chevron">▶</span>
           </button>
           <div class="accordion-body">
-            <div class="file-row fr-slides">
-              <span class="file-icon">🖥️</span>
+            <div class="file-row fr-excel">
+              <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Slides · PowerPoint</div>
+                <div class="file-type">Activity · Slides</div>
                 <div class="file-name">Excel 4 – Getting and Managing Data Slides</div>
               </div>
               <!-- ✅ PATH: excel/excel-04-slides.pptx -->
@@ -771,8 +815,8 @@
             <div class="file-row fr-excel">
               <span class="file-icon">📊</span>
               <div class="file-info">
-                <div class="file-type">Starter File · Excel Workbook</div>
-                <div class="file-name">Excel 4 – Getting and Managing Data Starter</div>
+                <div class="file-type">Activity · Excel Starter</div>
+                <div class="file-name">Excel 4 – Getting and Managing Data Starter File</div>
               </div>
               <!-- ✅ PATH: excel/excel-04-starter.xlsx -->
               <a class="dl-btn dl-soon" href="#">Coming soon</a>
@@ -780,7 +824,6 @@
           </div>
         </div>
 
-        <div class="panel-tip">📌 Download the starter file before class — we'll build it out together during the session.</div>
       </div>
     </div>
   </div>
@@ -810,288 +853,34 @@
       <!-- MATH · READINGS -->
       <div class="tab-panel active" id="math-readings">
 
-        <!-- Helper macro — repeated for each of 12 math modules -->
-        <!-- MATH 1a -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 1</span>
-            <span class="acc-topic">Overview of Basic Mathematical Formulas – Whole Numbers</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 1 – Whole Numbers Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-01a-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Whole Numbers</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 1 – Whole Numbers Reference Sheet</div></div><!-- ✅ PATH: math/math-01a-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 1b -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 1</span>
-            <span class="acc-topic">Overview of Basic Mathematical Formulas – Fractions &amp; Decimals</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 1 – Fractions &amp; Decimals Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-01b-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Fractions &amp; Decimals</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 1 – Fractions &amp; Decimals Reference Sheet</div></div><!-- ✅ PATH: math/math-01b-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 1c -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 1</span>
-            <span class="acc-topic">Overview of Basic Mathematical Formulas – Percents</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 1 – Percents Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-01c-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Percents</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 1 – Percents Reference Sheet</div></div><!-- ✅ PATH: math/math-01c-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 2 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 2</span>
-            <span class="acc-topic">Overview of Basic Mathematical Formulas – Solving for Equations</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 2 – Solving for Equations Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-02-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 2</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Solving for Equations</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 2 – Solving for Equations Reference Sheet</div></div><!-- ✅ PATH: math/math-02-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 3 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 3</span>
-            <span class="acc-topic">Discounts: Trade and Cash</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 3 – Trade and Cash Discounts Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-03-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 3</span><span class="acc-topic">Discounts: Trade and Cash</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 3 – Trade and Cash Discounts Reference Sheet</div></div><!-- ✅ PATH: math/math-03-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 4 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 4</span>
-            <span class="acc-topic">Mark Ups and Markdowns: Perishables and Break-Even Analysis</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 4 – Markup, Markdown &amp; Break-Even Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-04-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 4</span><span class="acc-topic">Markup and Markdown</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 4 – Markup and Markdown Reference Sheet</div></div><!-- ✅ PATH: math/math-04-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 5 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 5</span>
-            <span class="acc-topic">SL Depreciation and Payroll</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 5 – Depreciation and Payroll Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-05-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 5</span><span class="acc-topic">Payroll</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 5 – Payroll Reference Sheet</div></div><!-- ✅ PATH: math/math-05-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 6 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 6</span>
-            <span class="acc-topic">Inventory and Overhead; COGS</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 6 – Inventory, Overhead &amp; COGS Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-06-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 6</span><span class="acc-topic">Simple Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 6 – Simple Interest Reference Sheet</div></div><!-- ✅ PATH: math/math-06-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 7 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 7</span>
-            <span class="acc-topic">Sales, Property and Excise Tax</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 7 – Sales, Property &amp; Excise Tax Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-07-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 7</span><span class="acc-topic">Compound Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 7 – Compound Interest Reference Sheet</div></div><!-- ✅ PATH: math/math-07-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 8 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 8</span>
-            <span class="acc-topic">Simple Interest &amp; the Discounting Process</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 8 – Simple Interest &amp; Discounting Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-08-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 8</span><span class="acc-topic">Present Value and Future Value</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 8 – Present Value and Future Value Reference Sheet</div></div><!-- ✅ PATH: math/math-08-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 9 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 9</span>
-            <span class="acc-topic">Compound Interest and Present Value</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 9 – Compound Interest &amp; Present Value Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-09-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 9</span><span class="acc-topic">Annuities and Sinking Funds</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 9 – Annuities and Sinking Funds Reference Sheet</div></div><!-- ✅ PATH: math/math-09-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 10 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 10</span>
-            <span class="acc-topic">How to Read, Analyze and Interpret Financial and Accounting Reports</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 10 – Financial &amp; Accounting Reports Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-10-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 10</span><span class="acc-topic">Mortgages and Consumer Credit</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 10 – Mortgages and Consumer Credit Reference Sheet</div></div><!-- ✅ PATH: math/math-10-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 11 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 11</span>
-            <span class="acc-topic">Stocks, Bonds and Mutual Funds</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 11 – Stocks, Bonds &amp; Mutual Funds Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-11-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 11</span><span class="acc-topic">Depreciation</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 11 – Depreciation Reference Sheet</div></div><!-- ✅ PATH: math/math-11-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <!-- MATH 12 -->
-        <div class="accordion-item">
-          <button class="accordion-trigger" onclick="toggleAcc(this)">
-            <span class="acc-badge ab-math">MATH 12</span>
-            <span class="acc-topic">Business Statistics</span>
-            <span class="acc-chevron">▶</span>
-          </button>
-          <div class="accordion-body">
-            <div class="file-row fr-math">
-              <span class="file-icon">📐</span>
-              <div class="file-info">
-                <div class="file-type">Math Reference · PDF</div>
-                <div class="file-name">Math 12 – Business Statistics Reference Sheet</div>
-              </div>
-              <!-- ✅ PATH: math/math-12-ref.pdf -->
-              <a class="dl-btn dl-soon" href="#">Coming soon</a>
-            </div>
-          </div>
-        </div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 12</span><span class="acc-topic">Inventory and Overhead</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Math Reference · PDF</div><div class="file-name">Math 12 – Inventory and Overhead Reference Sheet</div></div><!-- ✅ PATH: math/math-12-ref.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="panel-tip">📌 Review the reference sheet before each class — the activity and Excel starter file both build on these formulas.</div>
       </div>
 
       <!-- MATH · HOMEWORK -->
@@ -1107,59 +896,58 @@
 
         <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 3</span><span class="acc-topic">Discounts: Trade and Cash</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 3 – Discounts Homework</div></div><!-- ✅ PATH: math/math-03-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 4</span><span class="acc-topic">Mark Ups and Markdowns: Perishables and Break-Even Analysis</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 4 – Markup, Markdown &amp; Break-Even Homework</div></div><!-- ✅ PATH: math/math-04-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 4</span><span class="acc-topic">Markup and Markdown</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 4 – Markup and Markdown Homework</div></div><!-- ✅ PATH: math/math-04-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 5</span><span class="acc-topic">SL Depreciation and Payroll</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 5 – Depreciation and Payroll Homework</div></div><!-- ✅ PATH: math/math-05-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 5</span><span class="acc-topic">Payroll</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 5 – Payroll Homework</div></div><!-- ✅ PATH: math/math-05-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 6</span><span class="acc-topic">Inventory and Overhead; COGS</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 6 – Inventory, Overhead &amp; COGS Homework</div></div><!-- ✅ PATH: math/math-06-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 6</span><span class="acc-topic">Simple Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 6 – Simple Interest Homework</div></div><!-- ✅ PATH: math/math-06-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 7</span><span class="acc-topic">Sales, Property and Excise Tax</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 7 – Sales, Property &amp; Excise Tax Homework</div></div><!-- ✅ PATH: math/math-07-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 7</span><span class="acc-topic">Compound Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 7 – Compound Interest Homework</div></div><!-- ✅ PATH: math/math-07-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 8</span><span class="acc-topic">Simple Interest &amp; the Discounting Process</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 8 – Simple Interest &amp; Discounting Homework</div></div><!-- ✅ PATH: math/math-08-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 8</span><span class="acc-topic">Present Value and Future Value</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 8 – Present Value and Future Value Homework</div></div><!-- ✅ PATH: math/math-08-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 9</span><span class="acc-topic">Compound Interest and Present Value</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 9 – Compound Interest &amp; Present Value Homework</div></div><!-- ✅ PATH: math/math-09-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 9</span><span class="acc-topic">Annuities and Sinking Funds</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 9 – Annuities and Sinking Funds Homework</div></div><!-- ✅ PATH: math/math-09-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 10</span><span class="acc-topic">How to Read, Analyze and Interpret Financial and Accounting Reports</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 10 – Financial &amp; Accounting Reports Homework</div></div><!-- ✅ PATH: math/math-10-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 10</span><span class="acc-topic">Mortgages and Consumer Credit</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 10 – Mortgages and Consumer Credit Homework</div></div><!-- ✅ PATH: math/math-10-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 11</span><span class="acc-topic">Stocks, Bonds and Mutual Funds</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 11 – Stocks, Bonds &amp; Mutual Funds Homework</div></div><!-- ✅ PATH: math/math-11-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 11</span><span class="acc-topic">Depreciation</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 11 – Depreciation Homework</div></div><!-- ✅ PATH: math/math-11-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 12</span><span class="acc-topic">Business Statistics</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 12 – Business Statistics Homework</div></div><!-- ✅ PATH: math/math-12-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 12</span><span class="acc-topic">Inventory and Overhead</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Homework · PDF</div><div class="file-name">Math 12 – Inventory and Overhead Homework</div></div><!-- ✅ PATH: math/math-12-hw-student.pdf --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="panel-tip">📌 Submit completed homework to the matching Canvas assignment. Do not email it.</div>
       </div>
 
       <!-- MATH · ACTIVITIES -->
       <div class="tab-panel" id="math-activities">
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Whole Numbers</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 1 – Whole Numbers Slides</div></div><!-- ✅ PATH: math/math-01a-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 1 – Whole Numbers Excel Starter</div></div><!-- ✅ PATH: math/math-01a-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Whole Numbers</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 1 – Whole Numbers Slides</div></div><!-- ✅ PATH: math/math-01a-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 1 – Whole Numbers Starter File</div></div><!-- ✅ PATH: math/math-01a-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Fractions &amp; Decimals</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 1 – Fractions &amp; Decimals Slides</div></div><!-- ✅ PATH: math/math-01b-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 1 – Fractions &amp; Decimals Excel Starter</div></div><!-- ✅ PATH: math/math-01b-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Fractions &amp; Decimals</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 1 – Fractions &amp; Decimals Slides</div></div><!-- ✅ PATH: math/math-01b-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 1 – Fractions &amp; Decimals Starter File</div></div><!-- ✅ PATH: math/math-01b-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Percents</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 1 – Percents Slides</div></div><!-- ✅ PATH: math/math-01c-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 1 – Percents Excel Starter</div></div><!-- ✅ PATH: math/math-01c-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 1</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Percents</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 1 – Percents Slides</div></div><!-- ✅ PATH: math/math-01c-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 1 – Percents Starter File</div></div><!-- ✅ PATH: math/math-01c-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 2</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Solving for Equations</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 2 – Solving for Equations Slides</div></div><!-- ✅ PATH: math/math-02-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 2 – Solving for Equations Excel Starter</div></div><!-- ✅ PATH: math/math-02-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 2</span><span class="acc-topic">Overview of Basic Mathematical Formulas – Solving for Equations</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 2 – Solving for Equations Slides</div></div><!-- ✅ PATH: math/math-02-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 2 – Solving for Equations Starter File</div></div><!-- ✅ PATH: math/math-02-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 3</span><span class="acc-topic">Discounts: Trade and Cash</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 3 – Discounts Slides</div></div><!-- ✅ PATH: math/math-03-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 3 – Discounts Excel Starter</div></div><!-- ✅ PATH: math/math-03-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 3</span><span class="acc-topic">Discounts: Trade and Cash</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 3 – Discounts Slides</div></div><!-- ✅ PATH: math/math-03-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 3 – Discounts Starter File</div></div><!-- ✅ PATH: math/math-03-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 4</span><span class="acc-topic">Mark Ups and Markdowns: Perishables and Break-Even Analysis</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 4 – Markup, Markdown &amp; Break-Even Slides</div></div><!-- ✅ PATH: math/math-04-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 4 – Markup &amp; Break-Even Excel Starter</div></div><!-- ✅ PATH: math/math-04-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 4</span><span class="acc-topic">Markup and Markdown</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 4 – Markup and Markdown Slides</div></div><!-- ✅ PATH: math/math-04-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 4 – Markup and Markdown Starter File</div></div><!-- ✅ PATH: math/math-04-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 5</span><span class="acc-topic">SL Depreciation and Payroll</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 5 – Depreciation and Payroll Slides</div></div><!-- ✅ PATH: math/math-05-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 5 – Depreciation &amp; Payroll Excel Starter</div></div><!-- ✅ PATH: math/math-05-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 5</span><span class="acc-topic">Payroll</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 5 – Payroll Slides</div></div><!-- ✅ PATH: math/math-05-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 5 – Payroll Starter File</div></div><!-- ✅ PATH: math/math-05-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 6</span><span class="acc-topic">Inventory and Overhead; COGS</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 6 – Inventory, Overhead &amp; COGS Slides</div></div><!-- ✅ PATH: math/math-06-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 6 – Inventory &amp; COGS Excel Starter</div></div><!-- ✅ PATH: math/math-06-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 6</span><span class="acc-topic">Simple Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 6 – Simple Interest Slides</div></div><!-- ✅ PATH: math/math-06-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 6 – Simple Interest Starter File</div></div><!-- ✅ PATH: math/math-06-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 7</span><span class="acc-topic">Sales, Property and Excise Tax</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 7 – Tax Slides</div></div><!-- ✅ PATH: math/math-07-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 7 – Tax Excel Starter</div></div><!-- ✅ PATH: math/math-07-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 7</span><span class="acc-topic">Compound Interest</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 7 – Compound Interest Slides</div></div><!-- ✅ PATH: math/math-07-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 7 – Compound Interest Starter File</div></div><!-- ✅ PATH: math/math-07-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 8</span><span class="acc-topic">Simple Interest &amp; the Discounting Process</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 8 – Simple Interest Slides</div></div><!-- ✅ PATH: math/math-08-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 8 – Simple Interest Excel Starter</div></div><!-- ✅ PATH: math/math-08-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 8</span><span class="acc-topic">Present Value and Future Value</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 8 – Present Value and Future Value Slides</div></div><!-- ✅ PATH: math/math-08-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 8 – Present Value and Future Value Starter File</div></div><!-- ✅ PATH: math/math-08-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 9</span><span class="acc-topic">Compound Interest and Present Value</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 9 – Compound Interest Slides</div></div><!-- ✅ PATH: math/math-09-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 9 – Compound Interest Excel Starter</div></div><!-- ✅ PATH: math/math-09-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 9</span><span class="acc-topic">Annuities and Sinking Funds</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 9 – Annuities and Sinking Funds Slides</div></div><!-- ✅ PATH: math/math-09-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 9 – Annuities and Sinking Funds Starter File</div></div><!-- ✅ PATH: math/math-09-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 10</span><span class="acc-topic">How to Read, Analyze and Interpret Financial and Accounting Reports</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 10 – Financial Reports Slides</div></div><!-- ✅ PATH: math/math-10-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 10 – Financial Reports Excel Starter</div></div><!-- ✅ PATH: math/math-10-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 10</span><span class="acc-topic">Mortgages and Consumer Credit</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 10 – Mortgages and Consumer Credit Slides</div></div><!-- ✅ PATH: math/math-10-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 10 – Mortgages and Consumer Credit Starter File</div></div><!-- ✅ PATH: math/math-10-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 11</span><span class="acc-topic">Stocks, Bonds and Mutual Funds</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 11 – Stocks, Bonds &amp; Mutual Funds Slides</div></div><!-- ✅ PATH: math/math-11-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 11 – Stocks, Bonds &amp; Mutual Funds Excel Starter</div></div><!-- ✅ PATH: math/math-11-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 11</span><span class="acc-topic">Depreciation</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 11 – Depreciation Slides</div></div><!-- ✅ PATH: math/math-11-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 11 – Depreciation Starter File</div></div><!-- ✅ PATH: math/math-11-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 12</span><span class="acc-topic">Business Statistics</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-slides"><span class="file-icon">🖥️</span><div class="file-info"><div class="file-type">Slides · PowerPoint</div><div class="file-name">Math 12 – Business Statistics Slides</div></div><!-- ✅ PATH: math/math-12-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Starter File · Excel Workbook</div><div class="file-name">Math 12 – Business Statistics Excel Starter</div></div><!-- ✅ PATH: math/math-12-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
+        <div class="accordion-item"><button class="accordion-trigger" onclick="toggleAcc(this)"><span class="acc-badge ab-math">MATH 12</span><span class="acc-topic">Inventory and Overhead</span><span class="acc-chevron">▶</span></button><div class="accordion-body"><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Slides</div><div class="file-name">Math 12 – Inventory and Overhead Slides</div></div><!-- ✅ PATH: math/math-12-slides.pptx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div><div class="file-row fr-math"><span class="file-icon">📐</span><div class="file-info"><div class="file-type">Activity · Excel Starter</div><div class="file-name">Math 12 – Inventory and Overhead Starter File</div></div><!-- ✅ PATH: math/math-12-starter.xlsx --><a class="dl-btn dl-soon" href="#">Coming soon</a></div></div></div>
 
-        <div class="panel-tip">📌 Download both the slides and the Excel starter file before class. We'll work through them together.</div>
+        <div class="panel-tip">📌 Each Business Math activity includes slides and an Excel starter file. We'll work through them together.</div>
       </div>
     </div>
   </div>
@@ -1209,7 +997,6 @@
 </footer>
 
 <script>
-  // ── Tab switching (scoped to parent section-tabs) ──
   function switchTab(btn, panelId) {
     const container = btn.closest('.section-tabs');
     container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1218,7 +1005,6 @@
     document.getElementById(panelId).classList.add('active');
   }
 
-  // ── Accordion toggle ──
   function toggleAcc(trigger) {
     const body = trigger.nextElementSibling;
     const isOpen = trigger.classList.contains('open');

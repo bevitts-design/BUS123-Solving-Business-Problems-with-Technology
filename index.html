@@ -1,145 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUS123 | Business Math & Excel Modules</title>
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #27ae60;
-            --bg: #f4f7f6;
-        }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: var(--bg); 
-            color: var(--primary);
-            margin: 0; padding: 40px 20px;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { margin: 0; color: var(--primary); }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1100px; width: 100%;
-        }
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s, border-color 0.2s;
-            border: 2px solid transparent;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        .card h3 { margin: 15px 0 10px 0; color: var(--accent); }
-        .card p { font-size: 0.9em; color: #666; margin-bottom: 10px; }
-        
-        /* Topic List Styling */
-        .topic-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            font-size: 0.85em;
-            color: #444;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-        }
-        .topic-list li {
-            padding: 4px 0;
-            display: flex;
-            align-items: center;
-        }
-        .topic-list li::before {
-            content: "•";
-            color: var(--accent);
-            font-weight: bold;
-            margin-right: 8px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 | Business Math & Excel Modules</title>
+  <style>
+    :root {
+      --bg:          #2B2D42;
+      --bg-surface:  #343653;
+      --card-bg:     #ffffff;
+      --card-border: #f0d0b8;
+      --orange:      #FF8C42;
+      --red:         #E63946;
+      --amber:       #F4A261;
+      --deep-red:    #C1121F;
+      --light:       #EFF1F3;
+      --text-dark:   #2B2D42;
+      --text-muted:  #666e82;
+      --text-nav:    #9EA3B8;
+    }
 
-        .tag {
-            align-self: flex-start;
-            font-size: 0.7em;
-            background: #eee;
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-    </style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background: var(--bg);
+      padding: 52px 24px 44px;
+      text-align: center;
+    }
+
+    .header-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-nav);
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+
+    .header-sub {
+      font-size: 0.9rem;
+      color: var(--text-nav);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .header-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .rule-line {
+      height: 1px;
+      width: 80px;
+      background: linear-gradient(to right, transparent, var(--orange));
+    }
+
+    .rule-line.right {
+      background: linear-gradient(to left, transparent, var(--orange));
+    }
+
+    .rule-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .grid-wrap {
+      width: 100%;
+      max-width: 1100px;
+      padding: 40px 24px 56px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card-accent {
+      height: 5px;
+      width: 100%;
+    }
+
+    .card-body {
+      padding: 22px 24px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .topic-list {
+      list-style: none;
+      border-top: 1px solid #f0e8e0;
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    .topic-list li {
+      font-size: 0.83rem;
+      color: #555d6e;
+      padding: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topic-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Module 1 — orange */
+    .m1 .card-accent { background: #FF8C42; }
+    .m1 .tag         { background: #FFF0E6; color: #C45F10; }
+    .m1 .topic-dot   { background: #FF8C42; }
+    .m1:hover        { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(255,140,66,0.20); }
+
+    /* Module 2 — red */
+    .m2 .card-accent { background: #E63946; }
+    .m2 .tag         { background: #FEE8E8; color: #A82020; }
+    .m2 .topic-dot   { background: #E63946; }
+    .m2:hover        { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(230,57,70,0.18); }
+
+    /* Module 3 — amber-orange */
+    .m3 .card-accent { background: #F4A261; }
+    .m3 .tag         { background: #FFF4E6; color: #A05A00; }
+    .m3 .topic-dot   { background: #F4A261; }
+    .m3:hover        { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(244,162,97,0.20); }
+
+    /* Module 4 — deep red */
+    .m4 .card-accent { background: #C1121F; }
+    .m4 .tag         { background: #FDECEA; color: #8B0F17; }
+    .m4 .topic-dot   { background: #C1121F; }
+    .m4:hover        { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(193,18,31,0.18); }
+
+    footer {
+      width: 100%;
+      background: var(--bg-surface);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 0.78rem;
+      color: var(--text-nav);
+      letter-spacing: 0.05em;
+      margin-top: auto;
+    }
+
+    footer span { color: var(--orange); margin: 0 6px; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>BUS123: Business Math & Excel</h1>
-        <p>Fall 2026 | Interactive Module Dashboard</p>
-    </header>
-
-    <div class="grid">
-        <a href="module-01/index.html" class="card">
-            <span class="tag">Module 1</span>
-            <h3>Foundations of Business Math and Excel</h3>
-            <p>Mastering the core arithmetic and technological tools for the office.</p>
-            
-            <ul class="topic-list">
-                <li>Office & Business Math</li>
-                <li>Worksheets</li>
-                <li>Whole Numbers</li>
-                <li>Technology</li>
-                <li>Fractions & Decimals</li>
-                <li>Percents</li>
-            </ul>
-        </a>
-
-        <a href="module-02/index.html" class="card">
-            <span class="tag">Module 2</span>
-            <h3>Excel for Business</h3>
-            <p>Exploring formulas & fuctions, collaboration & cloud, and business formula fluency. Using a data sandbox for VLOOKUPs, Pivot Tables, and logical functions.</p>
- 
-<ul class="topic-list">
-                <li>Formulas & functions</li>
-                <li>Collaboration & Cloud</li>
-                <li>Business Formula Fluency</li>
-                
-            </ul>
-
-        </a>
-
-        <a href="module-03/index.html" class="card">
-            <span class="tag">Module 3</span>
-            <h3>Commercial Math & Operations Costing</h3>
-            <p>Discovering business math for specific business functions.</p>
- </a>
-
-        <a href="module-04/index.html" class="card">
-            <span class="tag">Module 4</span>
-            <h3>Finance, Statistics and Data Management</h3>
-            <p>Discovering Business Math & Excel for Finance and Statistics.</p>
-
-<ul class="topic-list">
-                <li>Simple Interest</li>
-                <li>Comounding and Discounting</li>
-                <li>Financial Statements</li>
-		<li>Stocks, Bonds and Mutal Funds</li>
-                <li>Business Statistics</li>
-                <li>Data Management</li>
-
-                
-            </ul>
-
-        </a>
-
-        </a>
+  <header>
+    <div class="header-eyebrow">Endicott College &nbsp;·&nbsp; Fall 2026</div>
+    <h1>BUS123: Business Math &amp; Excel</h1>
+    <p class="header-sub">Interactive Module Dashboard</p>
+    <div class="header-rule">
+      <div class="rule-line"></div>
+      <div class="rule-dot"></div>
+      <div class="rule-line right"></div>
     </div>
+  </header>
+
+  <div class="grid-wrap">
+    <div class="grid">
+
+      <a href="module-01/index.html" class="card m1">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <span class="tag">Module 1</span>
+          <h3>Foundations of Business Math and Excel</h3>
+          <p>Mastering the core arithmetic and technological tools for the office.</p>
+          <ul class="topic-list">
+            <li><span class="topic-dot"></span>Office &amp; Business Math</li>
+            <li><span class="topic-dot"></span>Worksheets</li>
+            <li><span class="topic-dot"></span>Whole Numbers</li>
+            <li><span class="topic-dot"></span>Technology</li>
+            <li><span class="topic-dot"></span>Fractions &amp; Decimals</li>
+            <li><span class="topic-dot"></span>Percents</li>
+          </ul>
+        </div>
+      </a>
+
+      <a href="module-02/index.html" class="card m2">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <span class="tag">Module 2</span>
+          <h3>Excel for Business</h3>
+          <p>Exploring formulas &amp; functions, collaboration &amp; cloud, and business formula fluency. Using a data sandbox for VLOOKUPs, Pivot Tables, and logical functions.</p>
+          <ul class="topic-list">
+            <li><span class="topic-dot"></span>Formulas &amp; Functions</li>
+            <li><span class="topic-dot"></span>Collaboration &amp; Cloud</li>
+            <li><span class="topic-dot"></span>Business Formula Fluency</li>
+          </ul>
+        </div>
+      </a>
+
+      <a href="module-03/index.html" class="card m3">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <span class="tag">Module 3</span>
+          <h3>Commercial Math &amp; Operations Costing</h3>
+          <p>Discovering business math for specific business functions.</p>
+          <ul class="topic-list">
+            <li><span class="topic-dot"></span>Trade Discounts &amp; Markups</li>
+            <li><span class="topic-dot"></span>Invoicing &amp; Payment Terms</li>
+            <li><span class="topic-dot"></span>Payroll Calculations</li>
+            <li><span class="topic-dot"></span>Inventory Costing</li>
+            <li><span class="topic-dot"></span>Break-Even Analysis</li>
+          </ul>
+        </div>
+      </a>
+
+      <a href="module-04/index.html" class="card m4">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <span class="tag">Module 4</span>
+          <h3>Finance, Statistics and Data Management</h3>
+          <p>Discovering Business Math &amp; Excel for Finance and Statistics.</p>
+          <ul class="topic-list">
+            <li><span class="topic-dot"></span>Simple Interest</li>
+            <li><span class="topic-dot"></span>Compounding and Discounting</li>
+            <li><span class="topic-dot"></span>Financial Statements</li>
+            <li><span class="topic-dot"></span>Stocks, Bonds and Mutual Funds</li>
+            <li><span class="topic-dot"></span>Business Statistics</li>
+            <li><span class="topic-dot"></span>Data Management</li>
+          </ul>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    Endicott College <span>·</span> BUS123: Solving Business Problems with Technology <span>·</span> Fall 2026
+  </footer>
 
 </body>
 </html>

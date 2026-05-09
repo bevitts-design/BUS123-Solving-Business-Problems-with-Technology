@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUS123 | Business Math & Excel</title>
+    <title>BUS123 | Business Math & Excel Modules</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -21,9 +21,9 @@
         h1 { margin: 0; color: var(--primary); }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1000px; width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1100px; width: 100%;
         }
         .card {
             background: white;
@@ -34,14 +34,40 @@
             color: inherit;
             transition: transform 0.2s, border-color 0.2s;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
         }
-        .card h3 { margin-top: 0; color: var(--accent); }
-        .card p { font-size: 0.9em; color: #666; }
+        .card h3 { margin: 15px 0 10px 0; color: var(--accent); }
+        .card p { font-size: 0.9em; color: #666; margin-bottom: 10px; }
+        
+        /* Topic List Styling */
+        .topic-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 0.85em;
+            color: #444;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .topic-list li {
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+        }
+        .topic-list li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
         .tag {
+            align-self: flex-start;
             font-size: 0.7em;
             background: #eee;
             padding: 4px 8px;
@@ -55,29 +81,45 @@
 
     <header>
         <h1>BUS123: Business Math & Excel</h1>
-        <p>Spring 2026 | Interactive Lecture Slides</p>
+        <p>Spring 2026 | Interactive Module Dashboard</p>
     </header>
 
     <div class="grid">
-        <a href="week-01/index.html" class="card">
+        <a href="module-01/index.html" class="card">
             <span class="tag">Module 1</span>
-            <h3>Course Intro & Basics</h3>
-            <p>Reviewing fractions, decimals, and the core philosophy of business math.</p>
+            <h3>Foundations of Business Math and Excel</h3>
+            <p>Mastering the core arithmetic and technological tools for the office.</p>
+            
+            <ul class="topic-list">
+                <li>Office & Business Math</li>
+                <li>Worksheets</li>
+                <li>Whole Numbers</li>
+                <li>Technology</li>
+                <li>Fractions & Decimals</li>
+                <li>Percents</li>
+            </ul>
         </a>
 
-        <a href="week-02/index.html" class="card">
+        <a href="module-02/index.html" class="card">
             <span class="tag">Module 2</span>
-            <h3>Compound Interest</h3>
-            <p>Using the Time Value of Money "Time Machine" artifact.</p>
+            <h3>Excel for Business</h3>
+            <p>Exploring formulas & fuctions, collaboration & cloud, and business formula fluency. Using a data sandbox for VLOOKUPs, Pivot Tables, and logical functions.</p>
+ 
+<ul class="topic-list">
+                <li>Formulas & functions</li>
+                <li>Collaboration & Cloud</li>
+                <li>Business Formula Fluency</li>
+                
+            </ul>
+
         </a>
 
-        <a href="week-03/index.html" class="card">
+        <a href="module-03/index.html" class="card">
             <span class="tag">Module 3</span>
-            <h3>Excel Essentials</h3>
-            <p>Practice live formulas in the interactive sandbox.</p>
+            <h3>Commercial Math & Operations Costing</h3>
+            <p>Discovering business math for specific business functions.</p>
         </a>
-
-        </div>
+    </div>
 
 </body>
 </html>

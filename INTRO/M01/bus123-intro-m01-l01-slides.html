@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUS123 · INTRO-M01-L01 · OneDrive & Office 365 Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-navy:      #0C1A2E;
+    --storm-blue:    #1B2E48;
+    --linen:         #DDE8F0;
+    --white:         #FFFFFF;
+    --panel-dark:    #0a1520;
+    --course-accent: #00A878;   /* BUS123 Emerald */
+    --terracotta:    #BE6B4A;
+    --sage:          #7AAB8C;
+    --aged-gold:     #D4A052;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Cormorant Garamond',serif; background:#000; display:flex; align-items:center; justify-content:center; min-height:100vh; overflow:hidden; }
+  .deck { width:100vw; height:100vh; position:relative; }
+  .slide { position:absolute; inset:0; display:none; flex-direction:column; background:var(--ink-navy); overflow:hidden; }
+  .slide.active { display:flex; }
+
+  /* ── GRADIENT BAR — Gold→Terra→Sage→Emerald shimmer ── */
+  .grad-bar { height:5px; background:linear-gradient(90deg,var(--aged-gold) 0%,var(--terracotta) 35%,var(--sage) 65%,var(--course-accent) 100%); flex-shrink:0; }
+  @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+  .slide.active .grad-bar {
+    background:linear-gradient(90deg,var(--aged-gold) 0%,var(--terracotta) 25%,var(--sage) 55%,var(--course-accent) 100%);
+    background-size:200% auto;
+    animation:shimmer 3s linear infinite;
+  }
+
+  /* ── TITLE SLIDE ── */
+  .slide-title { align-items:center; justify-content:center; text-align:center; position:relative; }
+  .title-img {
+    position:absolute; inset:0;
+    background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400&q=80&fit=crop');
+    background-size:cover; background-position:center 30%;
+    opacity:0; animation:imgIn 1.2s ease 0.3s forwards;
+  }
+  .title-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(12,26,46,0.80) 0%,rgba(12,26,46,0.55) 40%,rgba(12,26,46,0.92) 100%); }
+  @keyframes imgIn { from{opacity:0} to{opacity:1} }
+  .title-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:2rem; }
+  .title-eyebrow { font-family:'DM Mono',monospace; font-size:clamp(0.6rem,1vw,0.75rem); color:var(--course-accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; opacity:0; animation:fadeUp 0.6s ease 0.9s forwards; }
+  .title-main { font-family:'Cinzel',serif; font-size:clamp(2rem,4.5vw,3.8rem); font-weight:700; color:var(--white); line-height:1.15; max-width:800px; opacity:0; animation:fadeUp 0.6s ease 1.1s forwards; }
+  .title-main span { color:var(--course-accent); }
+  .title-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(1rem,2vw,1.4rem); color:var(--linen); opacity:0; margin:1rem 0 2.5rem; max-width:640px; animation:fadeUp 0.6s ease 1.3s forwards; }
+  .title-accent-line { width:0; height:2px; background:linear-gradient(90deg,var(--aged-gold),var(--course-accent)); margin:0 auto 1.5rem; animation:lineGrow 0.8s ease 1.5s forwards; }
+  @keyframes lineGrow { from{width:0;opacity:0} to{width:120px;opacity:1} }
+  .title-meta { font-family:'DM Mono',monospace; font-size:clamp(0.55rem,0.9vw,0.7rem); color:var(--linen); opacity:0; letter-spacing:0.12em; animation:fadeUp 0.6s ease 1.7s forwards; }
+
+  /* ── STANDARD SLIDES ── */
+  .slide-header { background:var(--storm-blue); padding:1.4rem 3rem; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; border-bottom:1px solid rgba(0,168,120,0.2); }
+  .slide-header h2 { font-family:'Cinzel',serif; font-size:clamp(1rem,2.2vw,1.55rem); font-weight:600; color:var(--white); }
+  .slide-header h2 span { color:var(--course-accent); }
+  .slide-num { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--course-accent); opacity:0.7; letter-spacing:0.1em; }
+  .slide-body { flex:1; padding:2rem 3rem; display:flex; flex-direction:column; gap:1rem; overflow:hidden; }
+  .slide-body.row { flex-direction:row; gap:2rem; }
+  .slide.active .slide-header { animation:fadeUp 0.35s ease both; }
+  .slide.active .slide-body   { animation:fadeUp 0.35s ease 0.08s both; }
+
+  /* ── SECTION BREAK ── */
+  .slide-section { align-items:center; justify-content:center; text-align:center; position:relative; }
+  .section-img { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; animation:imgIn 1s ease 0.2s forwards; }
+  .section-img::after { content:''; position:absolute; inset:0; background:rgba(12,26,46,0.78); }
+  .section-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; flex:1; padding:2rem; }
+  .section-label { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--course-accent); letter-spacing:0.25em; text-transform:uppercase; }
+  .section-title { font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700; color:var(--white); max-width:700px; line-height:1.2; }
+  .section-title span { color:var(--course-accent); }
+
+  /* ── COMMON MISTAKE ── */
+  .slide-mistake { background:linear-gradient(135deg,#1a0e08 0%,#0e0804 100%); }
+  .slide-mistake .slide-header { background:rgba(190,107,74,0.3); border-bottom-color:rgba(190,107,74,0.4); }
+  .mistake-banner { background:var(--terracotta); border-radius:6px; padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem; }
+  .mistake-icon { font-size:1.8rem; flex-shrink:0; }
+  .mistake-title { font-family:'Cinzel',serif; font-size:1rem; font-weight:700; color:var(--white); letter-spacing:0.05em; }
+
+  /* ── TYPOGRAPHY ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+  .lead { font-size:clamp(1rem,1.8vw,1.25rem); color:var(--linen); line-height:1.6; font-weight:300; }
+  .lead strong { color:var(--course-accent); font-weight:600; font-family:'Cinzel',serif; font-style:normal; }
+
+  /* ── STAGGERED BULLETS ── */
+  ul.bullet-list { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
+  ul.bullet-list li { font-size:clamp(0.85rem,1.5vw,1.05rem); color:var(--linen); line-height:1.5; padding-left:1.4rem; position:relative; opacity:0; transform:translateX(-14px); transition:opacity 0.32s ease, transform 0.32s ease; }
+  ul.bullet-list li.revealed { opacity:1; transform:translateX(0); }
+  ul.bullet-list li::before { content:'▸'; position:absolute; left:0; color:var(--sage); font-size:0.8em; top:0.15em; transition:color 0.3s; }
+  ul.bullet-list li.revealed::before { color:var(--course-accent); }
+  ul.bullet-list li strong { color:var(--course-accent); font-weight:600; }
+
+  /* ── STATS ── */
+  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin:0.3rem 0; }
+  .stat-card { background:var(--storm-blue); border-radius:12px; padding:1.8rem 1.2rem; text-align:center; border:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; }
+  .stat-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--course-accent),var(--sage)); transform:scaleX(0); transform-origin:left; transition:transform 1.1s ease; }
+  .stat-card.counted::after { transform:scaleX(1); }
+  .stat-num { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; color:var(--course-accent); line-height:1; margin-bottom:0.5rem; min-height:1.2em; }
+  .stat-label { font-size:clamp(0.78rem,1.2vw,0.88rem); color:var(--linen); opacity:0.8; line-height:1.45; }
+
+  /* ── PANELS ── */
+  .panel { background:var(--storm-blue); border-radius:8px; padding:1.2rem 1.5rem; border-left:3px solid var(--course-accent); }
+  .panel-gold { border-left-color:var(--aged-gold); }
+  .panel-terra { border-left-color:var(--terracotta); }
+  .panel-label { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--course-accent); margin-bottom:0.5rem; }
+  .panel-gold .panel-label { color:var(--aged-gold); }
+  .panel-terra .panel-label { color:var(--terracotta); }
+  .panel-title { font-family:'Cinzel',serif; font-size:clamp(0.85rem,1.4vw,1rem); color:var(--white); margin-bottom:0.5rem; }
+  .panel p, .panel li { font-size:clamp(0.78rem,1.3vw,0.95rem); color:var(--linen); line-height:1.55; opacity:0.9; }
+  .panel ul { list-style:none; display:flex; flex-direction:column; gap:0.3rem; }
+  .panel ul li { padding-left:1rem; position:relative; }
+  .panel ul li::before { content:'–'; position:absolute; left:0; color:var(--course-accent); opacity:0.7; }
+
+  /* ── STEPS ── */
+  .steps { display:flex; flex-direction:column; gap:0.6rem; }
+  .step { display:flex; align-items:flex-start; gap:1rem; background:rgba(27,46,72,0.6); border-radius:6px; padding:0.75rem 1rem; }
+  .step-num { font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:500; color:var(--course-accent); background:rgba(0,168,120,0.15); border-radius:4px; padding:0.2rem 0.5rem; flex-shrink:0; margin-top:0.1rem; }
+  .step-text { font-size:clamp(0.82rem,1.35vw,0.98rem); color:var(--linen); line-height:1.5; }
+  .step-text strong { color:var(--course-accent); }
+  .step-text code { font-family:'DM Mono',monospace; font-size:0.85em; color:var(--sage); background:rgba(122,171,140,0.12); padding:0.1em 0.3em; border-radius:3px; }
+
+  /* ── LAYOUT HELPERS ── */
+  .col { flex:1; display:flex; flex-direction:column; gap:0.8rem; }
+  .callout { background:rgba(0,168,120,0.08); border:1px solid rgba(0,168,120,0.22); border-radius:8px; padding:1rem 1.4rem; display:flex; gap:0.8rem; align-items:flex-start; }
+  .callout-icon { font-size:1.2rem; flex-shrink:0; margin-top:0.1rem; }
+  .callout p { font-size:clamp(0.8rem,1.3vw,0.95rem); color:var(--linen); line-height:1.5; opacity:0.9; }
+  .callout p strong { color:var(--course-accent); }
+  .folder-tree { font-family:'DM Mono',monospace; font-size:clamp(0.78rem,1.3vw,0.95rem); color:var(--linen); background:var(--panel-dark); border-radius:8px; padding:1.2rem 1.5rem; border:1px solid rgba(0,168,120,0.18); line-height:1.9; }
+  .folder-tree .folder { color:var(--course-accent); }
+  .folder-tree .file  { color:var(--linen); opacity:0.75; }
+  .practice-box { background:rgba(0,168,120,0.07); border:2px solid rgba(0,168,120,0.28); border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1rem; flex:1; justify-content:center; }
+  .practice-label { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--course-accent); }
+  .practice-prompt { font-family:'Cinzel',serif; font-size:clamp(1.1rem,2vw,1.5rem); color:var(--white); line-height:1.4; }
+  .obj-list { display:flex; flex-direction:column; gap:0.8rem; }
+  .obj-item { display:flex; gap:1rem; align-items:flex-start; padding:0.9rem 1.2rem; background:var(--storm-blue); border-radius:8px; border-left:3px solid var(--course-accent); }
+  .obj-tag { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--course-accent); flex-shrink:0; margin-top:0.15rem; min-width:3.5rem; }
+  .obj-text { font-size:clamp(0.85rem,1.4vw,1rem); color:var(--linen); line-height:1.5; }
+  .wrapup-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; flex:1; }
+  .divider { height:1px; background:linear-gradient(90deg,transparent,rgba(0,168,120,0.25),transparent); margin:0.2rem 0; }
+  .badge { display:inline-block; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--course-accent); background:rgba(0,168,120,0.12); border:1px solid rgba(0,168,120,0.25); border-radius:4px; padding:0.2rem 0.5rem; margin-bottom:0.4rem; }
+
+  /* ── NAV ── */
+  .nav { position:fixed; bottom:1.5rem; right:2rem; display:flex; gap:0.6rem; z-index:100; }
+  .nav button { background:rgba(27,46,72,0.9); border:1px solid rgba(0,168,120,0.3); color:var(--course-accent); font-family:'DM Mono',monospace; font-size:0.75rem; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; transition:all 0.15s; letter-spacing:0.05em; }
+  .nav button:hover { background:rgba(0,168,120,0.15); border-color:var(--course-accent); }
+  .nav-counter { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--linen); opacity:0.4; display:flex; align-items:center; padding:0 0.3rem; letter-spacing:0.08em; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 01 — TITLE
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-title active">
+  <div class="grad-bar"></div>
+  <div class="title-img"></div>
+  <div class="title-content">
+    <div class="title-eyebrow">BUS123 · INTRO-M01-L01 · Gerrish School of Business</div>
+    <h1 class="title-main">OneDrive &amp; Office 365<br><span>Your Professional Setup</span></h1>
+    <p class="title-sub">Installing Microsoft 365, connecting Endicott OneDrive, and building your BUS123 folder structure</p>
+    <div class="title-accent-line"></div>
+    <div class="title-meta">Solving Business Problems with Technology &nbsp;·&nbsp; Fall 2026 &nbsp;·&nbsp; Professor Evitts</div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 02 — WARM-UP
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Warm-Up: <span>Where Does Your Work Live?</span></h2>
+    <span class="slide-num">02</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead">Think about the last assignment you turned in. <strong>Where did you save it?</strong></p>
+    <ul class="bullet-list">
+      <li>On your desktop — and then your laptop died or was replaced?</li>
+      <li>In your Downloads folder — buried under 300 other files?</li>
+      <li>Emailed it to yourself — and couldn't find the email?</li>
+      <li>Saved it "somewhere in Google Drive" — but can't access it on a new device?</li>
+      <li>You just retyped it — because finding the original wasn't worth the effort?</li>
+    </ul>
+    <div class="callout" style="margin-top:0.5rem;">
+      <span class="callout-icon">💡</span>
+      <p>In every job you will ever have, <strong>file organization and cloud access are assumed skills</strong>. Employers don't teach them — they expect them on day one. Today we fix that.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 03 — LEARNING OBJECTIVES
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Learning <span>Objectives</span></h2>
+    <span class="slide-num">03</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead" style="margin-bottom:0.5rem;">By the end of this lesson, you will be able to:</p>
+    <div class="obj-list">
+      <div class="obj-item">
+        <span class="obj-tag">I Can</span>
+        <span class="obj-text">Install Microsoft 365 on my personal device using my Endicott credentials</span>
+      </div>
+      <div class="obj-item">
+        <span class="obj-tag">I Can</span>
+        <span class="obj-text">Sign into Endicott OneDrive and confirm cloud sync is active</span>
+      </div>
+      <div class="obj-item">
+        <span class="obj-tag">I Can</span>
+        <span class="obj-text">Create the required BUS123 folder structure in OneDrive</span>
+      </div>
+      <div class="obj-item">
+        <span class="obj-tag">I Can</span>
+        <span class="obj-text">Save, rename, and locate a file inside my OneDrive folder from any device</span>
+      </div>
+      <div class="obj-item">
+        <span class="obj-tag">I Can</span>
+        <span class="obj-text">Explain why OneDrive is preferred over local storage for professional work</span>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 04 — WHAT IS MICROSOFT 365?
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>What Is <span>Microsoft 365?</span></h2>
+    <span class="slide-num">04</span>
+  </div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead">Microsoft 365 is a <strong>suite of professional tools</strong> — not just Word and Excel. Your Endicott account gives you full access, for free.</p>
+      <div class="divider" style="margin:0.5rem 0;"></div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">Word</span>
+          <span class="step-text">Professional documents, reports, memos</span>
+        </div>
+        <div class="step">
+          <span class="step-num">Excel</span>
+          <span class="step-text"><strong>The core tool of this course</strong> — data, models, analysis</span>
+        </div>
+        <div class="step">
+          <span class="step-num">PowerPoint</span>
+          <span class="step-text">Presentations, pitch decks, slide reports</span>
+        </div>
+        <div class="step">
+          <span class="step-num">Teams</span>
+          <span class="step-text">Collaboration, messaging, file sharing</span>
+        </div>
+        <div class="step">
+          <span class="step-num">OneDrive</span>
+          <span class="step-text"><strong>Cloud storage that ties it all together</strong></span>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold">
+        <div class="panel-label">Why It Matters</div>
+        <div class="panel-title">Microsoft 365 is the standard</div>
+        <p>Over 80% of Fortune 500 companies run on Microsoft 365. Learning it now means you arrive at your first job already fluent in the tools your employer uses every day.</p>
+      </div>
+      <div class="callout" style="margin-top:0.8rem;">
+        <span class="callout-icon">🎓</span>
+        <p>Your Endicott email (<code style="font-family:'DM Mono',monospace;color:var(--course-accent);">firstname.lastname@endicott.edu</code>) is your login. <strong>No purchase needed.</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 05 — WHAT IS ONEDRIVE?
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>What Is <span>OneDrive?</span></h2>
+    <span class="slide-num">05</span>
+  </div>
+  <div class="slide-body">
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">TB of storage — free with your Endicott account</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">Devices can sync simultaneously to one account</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% automatic backup — no manual saving required</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="lead" style="margin-top:0.2rem;">OneDrive is <strong>not just a backup</strong>. It is your professional workspace — files are always current, always accessible, always safe.</p>
+    <div class="panel" style="margin-top:0.4rem;">
+      <div class="panel-label">OneDrive vs. Local Storage</div>
+      <p>Local: file lives on one machine. If it breaks, you lose it. OneDrive: file lives in the cloud, synced to all devices. If your laptop breaks, you open any other device and continue working.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 06 — SECTION BREAK: SETUP
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-section">
+  <div class="grad-bar"></div>
+  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&q=80&fit=crop')"></div>
+  <div class="section-content">
+    <div class="section-label">Part One</div>
+    <div class="section-title">Installing <span>Office 365</span></div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 07 — INSTALL MICROSOFT 365
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Installing <span>Microsoft 365</span></h2>
+    <span class="slide-num">07</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead" style="margin-bottom:0.4rem;">Follow these steps on your personal device. This takes about <strong>10 minutes</strong>.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Go to <code>office.com</code> in your browser</span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">Click <strong>Sign In</strong> — use your Endicott email and password</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Click <strong>Install Office</strong> in the top right → select <strong>Office 365 Apps</strong></span>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <span class="step-text">Run the downloaded installer — accept all defaults</span>
+      </div>
+      <div class="step">
+        <span class="step-num">05</span>
+        <span class="step-text">When prompted, sign in again with your Endicott email — this activates your license</span>
+      </div>
+      <div class="step">
+        <span class="step-num">06</span>
+        <span class="step-text">Open Excel — confirm it says <strong>"Licensed to [Your Name]"</strong> under your account</span>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 08 — SECTION BREAK: ONEDRIVE
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-section">
+  <div class="grad-bar"></div>
+  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1400&q=80&fit=crop')"></div>
+  <div class="section-content">
+    <div class="section-label">Part Two</div>
+    <div class="section-title">Connecting <span>Endicott OneDrive</span></div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 09 — CONNECT ONEDRIVE
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Connecting <span>OneDrive</span></h2>
+    <span class="slide-num">09</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead" style="margin-bottom:0.4rem;">OneDrive should install automatically with Office 365. Here is how to confirm it is active and syncing.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Search for <strong>OneDrive</strong> in your Start menu (Windows) or Applications (Mac) — open it</span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">Sign in with your <strong>Endicott email</strong> — not a personal Microsoft account</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Accept the default folder location — click <strong>Next</strong> through all prompts</span>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <span class="step-text">Look for the <strong>blue cloud icon</strong> in your taskbar (Windows) or menu bar (Mac) — this means it's running</span>
+      </div>
+      <div class="step">
+        <span class="step-num">05</span>
+        <span class="step-text">A green checkmark on the icon = <strong>synced</strong>. A spinning icon = syncing in progress. A red X = needs attention.</span>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="callout-icon">⚠️</span>
+      <p>If it asks you to choose between a <strong>personal</strong> and <strong>work/school</strong> account — always choose <strong>Work or School</strong>. Personal accounts do not connect to Endicott storage.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 10 — COMMON MISTAKE
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-mistake">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Common <span>Mistake</span></h2>
+    <span class="slide-num">10</span>
+  </div>
+  <div class="slide-body">
+    <div class="mistake-banner">
+      <span class="mistake-icon">⚠️</span>
+      <span class="mistake-title">SIGNING INTO THE WRONG ONEDRIVE ACCOUNT</span>
+    </div>
+    <p class="lead">Microsoft will try to connect your <strong>personal</strong> Microsoft account (Outlook, Hotmail, Xbox) instead of your Endicott account. They look identical on the login screen.</p>
+    <div class="divider" style="margin:0.6rem 0;"></div>
+    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+      <div class="col">
+        <div class="panel panel-terra">
+          <div class="panel-label">Wrong</div>
+          <div class="panel-title">yourname@gmail.com or @hotmail.com</div>
+          <p>This connects to your personal OneDrive — limited storage, not backed up by Endicott IT, not accessible on lab computers.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel">
+          <div class="panel-label">Correct</div>
+          <div class="panel-title">firstname.lastname@endicott.edu</div>
+          <p>This connects to your Endicott OneDrive — 1TB storage, IT-supported, accessible from any campus machine and at home.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 11 — SECTION BREAK: FOLDER STRUCTURE
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-section">
+  <div class="grad-bar"></div>
+  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1400&q=80&fit=crop')"></div>
+  <div class="section-content">
+    <div class="section-label">Part Three</div>
+    <div class="section-title">Building Your <span>BUS123 Folder Structure</span></div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 12 — FOLDER STRUCTURE
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Your Required <span>Folder Structure</span></h2>
+    <span class="slide-num">12</span>
+  </div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead">Create this folder structure inside your <strong>Endicott OneDrive</strong>. Every file for this course lives here — no exceptions.</p>
+      <div class="folder-tree" style="margin-top:0.5rem;">
+        <span class="folder">📁 OneDrive — Endicott College</span><br>
+        &nbsp;&nbsp;<span class="folder">📁 BUS123</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">📁 Module 01 — Intro</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">📁 Module 02 — Excel Basics</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">📁 Module 03 — Business Math</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">📁 Homework</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="folder">📁 Projects</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold">
+        <div class="panel-label">Naming Rules</div>
+        <div class="panel-title">Be consistent. Always.</div>
+        <ul>
+          <li>Use the exact folder names shown — no abbreviations</li>
+          <li>No spaces in file names — use underscores or hyphens</li>
+          <li>Include your last name in every submitted file</li>
+          <li>Never save to Desktop, Downloads, or Documents</li>
+        </ul>
+      </div>
+      <div class="callout" style="margin-top:0.8rem;">
+        <span class="callout-icon">✅</span>
+        <p>Good filename: <code style="font-family:'DM Mono',monospace;font-size:0.85em;color:var(--course-accent);">Smith_M01_L01_Setup.xlsx</code><br>
+        Bad filename: <code style="font-family:'DM Mono',monospace;font-size:0.85em;color:var(--terracotta);">Untitled(3)Final REAL.xlsx</code></p>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 13 — WHY STRUCTURE MATTERS
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Why Structure <span>Matters</span></h2>
+    <span class="slide-num">13</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead">File organization is not busywork — it is a <strong>professional skill that employers evaluate</strong>.</p>
+    <div class="stats-row" style="margin-top:0.5rem;">
+      <div class="stat-card">
+        <div class="stat-num" data-target="19">0</div>
+        <div class="stat-label">Minutes per day the average worker spends searching for files — IDC Research</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="72">0</div>
+        <div class="stat-label">% of employees say disorganized files hurt their productivity — M-Files Survey</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="1">0</div>
+        <div class="stat-label">Folder structure to master this semester — and it will follow you into your career</div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:0.8rem;">
+      <span class="callout-icon">💼</span>
+      <p>When an employer asks you to share a file in a meeting, <strong>finding it in under 10 seconds</strong> is a visible signal of professionalism. This course builds that habit now.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 14 — SAVING FILES TO ONEDRIVE
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Saving Files <span>Correctly</span></h2>
+    <span class="slide-num">14</span>
+  </div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead" style="margin-bottom:0.5rem;">Two ways to save a file to OneDrive from Excel or Word:</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">Method 1</span>
+          <span class="step-text"><strong>File → Save As → OneDrive — Endicott College</strong> → navigate to your BUS123 folder</span>
+        </div>
+        <div class="step">
+          <span class="step-num">Method 2</span>
+          <span class="step-text">Drag the file directly into your <strong>OneDrive folder</strong> in File Explorer (Windows) or Finder (Mac)</span>
+        </div>
+        <div class="step">
+          <span class="step-num">Verify</span>
+          <span class="step-text">Look for the <strong>green sync checkmark</strong> on the file — this confirms it is saved to the cloud</span>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel">
+        <div class="panel-label">Auto-Save in Excel</div>
+        <div class="panel-title">Turn Auto-Save ON</div>
+        <p>When a file is saved to OneDrive, Excel shows an <strong>Auto-Save toggle</strong> in the top left. Turn it on. Your work saves continuously — no more "did I save that?" moments.</p>
+      </div>
+      <div class="panel panel-terra" style="margin-top:0.8rem;">
+        <div class="panel-label">Never Do This</div>
+        <p>Save to Desktop → work on it → "I'll move it later." Later never comes. Save to OneDrive from the first click.</p>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 15 — ACCESSING FROM ANY DEVICE
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Access From <span>Any Device</span></h2>
+    <span class="slide-num">15</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead">One of OneDrive's most powerful features: your files are accessible <strong>everywhere</strong> — no USB drive, no emailing yourself.</p>
+    <div class="divider" style="margin:0.3rem 0;"></div>
+    <ul class="bullet-list">
+      <li><strong>Personal laptop:</strong> Files sync automatically when OneDrive is running</li>
+      <li><strong>Campus lab computers:</strong> Go to <code style="font-family:'DM Mono',monospace;color:var(--course-accent);">onedrive.live.com</code> → sign in with Endicott email</li>
+      <li><strong>Phone or tablet:</strong> Download the OneDrive app → sign in → view and edit files</li>
+      <li><strong>Any browser, anywhere:</strong> <code style="font-family:'DM Mono',monospace;color:var(--course-accent);">office.com</code> → sign in → full Excel, Word, PowerPoint in browser</li>
+    </ul>
+    <div class="callout" style="margin-top:0.6rem;">
+      <span class="callout-icon">🌐</span>
+      <p>Left your laptop at home the day something is due? <strong>That is no longer an excuse.</strong> Your OneDrive is accessible from any internet-connected device on the planet.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 16 — COMMON MISTAKE 2
+     ═══════════════════════════════════════════════ -->
+<div class="slide slide-mistake">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Common <span>Mistake</span></h2>
+    <span class="slide-num">16</span>
+  </div>
+  <div class="slide-body">
+    <div class="mistake-banner">
+      <span class="mistake-icon">⚠️</span>
+      <span class="mistake-title">CONFUSING "SAVED TO ONEDRIVE" WITH "SYNCED TO ONEDRIVE"</span>
+    </div>
+    <p class="lead">Saving a file to your OneDrive folder is <strong>not instant</strong>. The file still needs to sync to the cloud — this requires an internet connection and a few seconds.</p>
+    <div class="divider" style="margin:0.6rem 0;"></div>
+    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+      <div class="col">
+        <div class="panel panel-terra">
+          <div class="panel-label">Risky Behavior</div>
+          <p>Saving a file at 11:59pm for a midnight deadline, then immediately closing your laptop before the sync checkmark appears. The cloud copy may not have the latest version.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel">
+          <div class="panel-label">Safe Behavior</div>
+          <p>Save early, leave OneDrive open, watch for the <strong>green checkmark</strong> on the file before closing your laptop. Or use Auto-Save — it syncs continuously as you type.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 17 — LOCAL VS CLOUD COMPARISON
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Local vs. <span>Cloud Storage</span></h2>
+    <span class="slide-num">17</span>
+  </div>
+  <div class="slide-body row">
+    <div class="col">
+      <div class="badge">Local Storage (Desktop / USB)</div>
+      <div class="panel panel-terra" style="margin-top:0.4rem;">
+        <ul>
+          <li>Only accessible on that one device</li>
+          <li>Lost if device is stolen, broken, or reset</li>
+          <li>No version history — overwrite = gone</li>
+          <li>Cannot collaborate in real time</li>
+          <li>Must manually back up</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="badge" style="background:rgba(0,168,120,0.12);border-color:rgba(0,168,120,0.3);color:var(--course-accent);">OneDrive (Cloud)</div>
+      <div class="panel" style="margin-top:0.4rem;">
+        <ul>
+          <li>Accessible from any device, anywhere</li>
+          <li>Protected against hardware failure</li>
+          <li>Automatic version history — restore any prior version</li>
+          <li>Real-time co-authoring with classmates</li>
+          <li>Syncs automatically — no manual backup</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 18 — VERSION HISTORY
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Version <span>History</span></h2>
+    <span class="slide-num">18</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead">OneDrive automatically saves <strong>previous versions</strong> of every file. This means you can undo changes made days ago — even after closing the file.</p>
+    <div class="divider" style="margin:0.4rem 0;"></div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Open your file in Excel → click <strong>File → Info → Version History</strong></span>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">A list of every saved version appears — with timestamps and who made changes</span>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Click any version to open it → click <strong>Restore</strong> to go back to that state</span>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:0.6rem;">
+      <span class="callout-icon">🔄</span>
+      <p>"I accidentally deleted all my work" is a solved problem with OneDrive. <strong>Version history goes back 30 days</strong> automatically, no setup required.</p>
+    </div>
+    <div class="panel panel-gold" style="margin-top:0.4rem;">
+      <div class="panel-label">Real-World Skill</div>
+      <p>In a professional setting, version history protects you when a client asks "can we go back to the version from Tuesday?" — with OneDrive, the answer is always yes.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 19 — STUDENT PRACTICE
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Student <span>Practice</span></h2>
+    <span class="slide-num">19</span>
+  </div>
+  <div class="slide-body row">
+    <div class="col" style="flex:1.2;">
+      <div class="practice-box">
+        <div class="practice-label">Your Turn — Do This Now</div>
+        <div class="practice-prompt">Build your BUS123 folder structure in OneDrive and save your first file</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <span class="step-text">Open your OneDrive → create a folder called <code>BUS123</code></span>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <span class="step-text">Inside BUS123, create: <code>Module 01 — Intro</code>, <code>Homework</code>, <code>Projects</code></span>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <span class="step-text">Open Excel → create a new blank workbook</span>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <span class="step-text">Type your name in cell A1 and the date in A2</span>
+        </div>
+        <div class="step">
+          <span class="step-num">05</span>
+          <span class="step-text">Save as <code>Lastname_M01_L01_Setup.xlsx</code> into <code>BUS123 → Module 01 — Intro</code></span>
+        </div>
+        <div class="step">
+          <span class="step-num">06</span>
+          <span class="step-text">Confirm the <strong>green sync checkmark</strong> appears on the file</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 20 — TROUBLESHOOTING
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Quick <span>Troubleshooting</span></h2>
+    <span class="slide-num">20</span>
+  </div>
+  <div class="slide-body">
+    <p class="lead" style="margin-bottom:0.5rem;">Most OneDrive problems fall into three categories:</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">Red ✕</span>
+        <span class="step-text"><strong>Sync error</strong> — right-click the OneDrive icon in taskbar → click the error message for details. Usually a file name issue (special characters or too long).</span>
+      </div>
+      <div class="step">
+        <span class="step-num">Spinning</span>
+        <span class="step-text"><strong>Still syncing</strong> — not a problem. Wait for internet connection or give it a moment. Do not close your laptop yet.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">No Icon</span>
+        <span class="step-text"><strong>OneDrive not running</strong> — search for OneDrive in your apps and open it manually. Set it to <strong>run on startup</strong> to prevent this.</span>
+      </div>
+      <div class="step">
+        <span class="step-num">Wrong Account</span>
+        <span class="step-text">Right-click OneDrive icon → Settings → Account → <strong>Unlink this PC</strong> → re-sign in with your Endicott email.</span>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:0.5rem;">
+      <span class="callout-icon">🛠️</span>
+      <p>Still stuck? Endicott IT Help Desk: <strong>helpdesk@endicott.edu</strong>. They support OneDrive issues for all students.</p>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SLIDE 21 — WRAP-UP + NEXT LESSON
+     ═══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="grad-bar"></div>
+  <div class="slide-header">
+    <h2>Wrap-Up &amp; <span>What's Next</span></h2>
+    <span class="slide-num">21</span>
+  </div>
+  <div class="slide-body">
+    <div class="wrapup-grid">
+      <div style="display:flex;flex-direction:column;gap:0.8rem;">
+        <div class="panel panel-gold">
+          <div class="panel-label">What We Covered Today</div>
+          <ul>
+            <li>What Microsoft 365 is and why it matters professionally</li>
+            <li>How to install Office 365 using your Endicott account</li>
+            <li>How to connect and verify Endicott OneDrive</li>
+            <li>The required BUS123 folder structure</li>
+            <li>How to save, sync, and access files from any device</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.8rem;">
+        <div class="panel">
+          <div class="panel-label">Before Next Class</div>
+          <ul>
+            <li>Complete your BUS123 folder structure in OneDrive</li>
+            <li>Save <code>Lastname_M01_L01_Setup.xlsx</code> with green checkmark confirmed</li>
+            <li>Turn on Auto-Save in Excel</li>
+            <li>Complete the L01 Canvas quiz before next session</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Next Lesson — INTRO-M01-L02</div>
+          <div class="panel-title">Course Introduction &amp; Expectations</div>
+          <p>Case study businesses, grading breakdown, Canvas navigation, and what it means to solve business problems with technology.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grad-bar"></div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<div class="nav">
+  <button id="prev">← Prev</button>
+  <span class="nav-counter" id="counter">1 / 21</span>
+  <button id="next">Next →</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  cur = (n + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+  const bullets = slides[cur].querySelectorAll('.bullet-list li');
+  bullets.forEach(b => b.classList.remove('revealed'));
+}
+
+document.addEventListener('keydown', e => {
+  const bullets = slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');
+  if ((e.key === 'ArrowRight' || e.key === ' ') && bullets.length) {
+    e.preventDefault(); bullets[0].classList.add('revealed');
+  } else if (e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault(); goTo(cur + 1);
+  } else if (e.key === 'ArrowLeft') {
+    goTo(cur - 1);
+  }
+});
+
+document.getElementById('prev').addEventListener('click', () => goTo(cur - 1));
+document.getElementById('next').addEventListener('click', () => {
+  const bullets = slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');
+  if (bullets.length) bullets[0].classList.add('revealed');
+  else goTo(cur + 1);
+});
+
+// Counting stats
+function runCounters(slide) {
+  slide.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    const target = +el.dataset.target, dur = 1200;
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      el.textContent = Math.floor(p * target);
+      if (p < 1) requestAnimationFrame(step);
+      else { el.textContent = target; el.closest('.stat-card')?.classList.add('counted'); }
+    }
+    requestAnimationFrame(step);
+  });
+}
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(m => { if (m.target.classList.contains('active')) runCounters(m.target); });
+});
+slides.forEach(s => observer.observe(s, { attributes:true, attributeFilter:['class'] }));
+runCounters(slides[0]);
+</script>
+</body>
+</html>

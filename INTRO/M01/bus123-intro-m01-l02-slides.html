@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUS123 · Introduction to Course and Expectations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink-navy:    #0C1A2E;
+    --storm-blue:  #1B2E48;
+    --aged-gold:   #D4A052;
+    --terracotta:  #BE6B4A;
+    --sage:        #7AAB8C;
+    --linen:       #DDE8F0;
+    --white:       #FFFFFF;
+    --panel-dark:  #0a1520;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Cormorant Garamond', serif; background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; background: var(--ink-navy); overflow: hidden; }
+  .slide.active { display: flex; }
+  .grad-bar { height: 5px; background: linear-gradient(90deg, var(--aged-gold) 0%, var(--terracotta) 50%, var(--sage) 100%); flex-shrink: 0; }
+  .slide-title { align-items: center; justify-content: center; text-align: center; position: relative; }
+  .slide-title::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(122,171,140,0.08) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 20%, rgba(190,107,74,0.06) 0%, transparent 60%); }
+  .title-eyebrow { font-family: 'DM Mono', monospace; font-size: clamp(0.6rem,1vw,0.75rem); color: var(--sage); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; position: relative; }
+  .title-main { font-family: 'Cinzel', serif; font-size: clamp(2rem,4.5vw,3.8rem); font-weight: 700; color: var(--white); line-height: 1.15; max-width: 820px; position: relative; }
+  .title-main span { color: var(--aged-gold); }
+  .title-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(1rem,2vw,1.4rem); color: var(--linen); opacity: 0.8; margin: 1rem 0 2.5rem; position: relative; max-width: 640px; }
+  .title-meta { font-family: 'DM Mono', monospace; font-size: clamp(0.55rem,0.9vw,0.7rem); color: var(--linen); opacity: 0.5; letter-spacing: 0.12em; position: relative; }
+  .title-accent-line { width: 120px; height: 2px; background: linear-gradient(90deg, var(--aged-gold), var(--sage)); margin: 1.5rem auto; position: relative; }
+  .slide-header { background: var(--storm-blue); padding: 1.4rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid rgba(212,160,82,0.2); }
+  .slide-header h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,2.2vw,1.55rem); font-weight: 600; color: var(--white); }
+  .slide-header h2 span { color: var(--sage); }
+  .slide-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--aged-gold); opacity: 0.7; letter-spacing: 0.1em; }
+  .slide-body { flex: 1; padding: 2rem 3rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; }
+  .slide-body.row { flex-direction: row; gap: 2rem; }
+  .slide-section { align-items: center; justify-content: center; text-align: center; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--sage); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem; }
+  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--white); max-width: 700px; }
+  .section-title span { color: var(--aged-gold); }
+  .slide-mistake { background: linear-gradient(135deg, #2a1008 0%, #1a0a04 100%); }
+  .slide-mistake .slide-header { background: rgba(190,107,74,0.3); border-bottom-color: rgba(190,107,74,0.4); }
+  .mistake-banner { background: var(--terracotta); border-radius: 6px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+  .mistake-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .mistake-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; }
+  .lead { font-size: clamp(1rem,1.8vw,1.25rem); color: var(--linen); line-height: 1.6; font-weight: 300; }
+  .lead strong { color: var(--aged-gold); font-weight: 600; font-family: 'Cinzel', serif; font-style: normal; }
+  ul.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  ul.bullet-list li { font-size: clamp(0.85rem,1.5vw,1.05rem); color: var(--linen); line-height: 1.5; padding-left: 1.4rem; position: relative; }
+  ul.bullet-list li::before { content: '▸'; position: absolute; left: 0; color: var(--sage); font-size: 0.8em; top: 0.15em; }
+  ul.bullet-list li strong { color: var(--aged-gold); font-weight: 600; }
+  .panel { background: var(--storm-blue); border-radius: 8px; padding: 1.2rem 1.5rem; border-left: 3px solid var(--sage); }
+  .panel-gold { border-left-color: var(--aged-gold); }
+  .panel-terra { border-left-color: var(--terracotta); }
+  .panel-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
+  .panel-gold .panel-label { color: var(--aged-gold); }
+  .panel-terra .panel-label { color: var(--terracotta); }
+  .panel-title { font-family: 'Cinzel', serif; font-size: clamp(0.85rem,1.4vw,1rem); color: var(--white); margin-bottom: 0.5rem; }
+  .panel p, .panel li { font-size: clamp(0.78rem,1.3vw,0.95rem); color: var(--linen); line-height: 1.55; opacity: 0.9; }
+  .panel ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+  .panel ul li { padding-left: 1rem; position: relative; }
+  .panel ul li::before { content: '–'; position: absolute; left: 0; color: var(--sage); opacity: 0.7; }
+  .steps { display: flex; flex-direction: column; gap: 0.6rem; }
+  .step { display: flex; align-items: flex-start; gap: 1rem; background: rgba(27,46,72,0.6); border-radius: 6px; padding: 0.75rem 1rem; }
+  .step-num { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; color: var(--aged-gold); background: rgba(212,160,82,0.15); border-radius: 4px; padding: 0.2rem 0.5rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .step-text { font-size: clamp(0.82rem,1.35vw,0.98rem); color: var(--linen); line-height: 1.5; }
+  .step-text strong { color: var(--aged-gold); }
+  .step-text code { font-family: 'DM Mono', monospace; font-size: 0.85em; color: var(--sage); background: rgba(122,171,140,0.12); padding: 0.1em 0.3em; border-radius: 3px; }
+  .col { flex: 1; display: flex; flex-direction: column; gap: 0.8rem; }
+  .callout { background: rgba(122,171,140,0.1); border: 1px solid rgba(122,171,140,0.25); border-radius: 8px; padding: 1rem 1.4rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+  .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .callout p { font-size: clamp(0.8rem,1.3vw,0.95rem); color: var(--linen); line-height: 1.5; opacity: 0.9; }
+  .callout p strong { color: var(--sage); }
+  .obj-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .obj-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.9rem 1.2rem; background: var(--storm-blue); border-radius: 8px; border-left: 3px solid var(--sage); }
+  .obj-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); flex-shrink: 0; margin-top: 0.15rem; min-width: 3.5rem; }
+  .obj-text { font-size: clamp(0.85rem,1.4vw,1rem); color: var(--linen); line-height: 1.5; }
+  .practice-box { background: rgba(122,171,140,0.08); border: 2px solid rgba(122,171,140,0.3); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; justify-content: center; }
+  .practice-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); }
+  .practice-prompt { font-family: 'Cinzel', serif; font-size: clamp(1.1rem,2vw,1.5rem); color: var(--white); line-height: 1.4; }
+  .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex: 1; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,160,82,0.25), transparent); margin: 0.2rem 0; }
+  .nav { position: fixed; bottom: 1.5rem; right: 2rem; display: flex; gap: 0.6rem; z-index: 100; }
+  .nav button { background: rgba(27,46,72,0.9); border: 1px solid rgba(212,160,82,0.3); color: var(--aged-gold); font-family: 'DM Mono', monospace; font-size: 0.75rem; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.15s; letter-spacing: 0.05em; }
+  .nav button:hover { background: rgba(212,160,82,0.15); border-color: var(--aged-gold); }
+  .nav-counter { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--linen); opacity: 0.4; display: flex; align-items: center; padding: 0 0.3rem; letter-spacing: 0.08em; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .slide.active > * { animation: fadeUp 0.4s ease both; }
+  .slide.active > *:nth-child(2) { animation-delay: 0.08s; }
+  .slide.active > *:nth-child(3) { animation-delay: 0.16s; }
+  .slide.active > *:nth-child(4) { animation-delay: 0.24s; }
+
+  /* L02-specific */
+  .biz-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .biz-card { background: var(--storm-blue); border-radius: 10px; padding: 1.4rem 1.2rem; border: 1px solid rgba(255,255,255,0.06); }
+  .biz-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+  .biz-name { font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 600; color: var(--aged-gold); margin-bottom: 0.4rem; }
+  .biz-desc { font-size: 0.8rem; color: var(--linen); opacity: 0.8; line-height: 1.45; }
+  .grade-row { display: flex; align-items: center; gap: 1rem; padding: 0.7rem 1rem; background: rgba(27,46,72,0.6); border-radius: 6px; }
+  .grade-pct { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: var(--aged-gold); font-weight: 500; min-width: 3.5rem; }
+  .grade-bar-bg { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .grade-bar { height: 100%; background: linear-gradient(90deg, var(--sage), var(--aged-gold)); border-radius: 3px; }
+  .grade-label { font-size: clamp(0.8rem,1.3vw,0.95rem); color: var(--linen); min-width: 8rem; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item { display: flex; gap: 1rem; position: relative; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; width: 2.5rem; flex-shrink: 0; }
+  .tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--sage); border: 2px solid var(--ink-navy); flex-shrink: 0; margin-top: 0.2rem; }
+  .tl-line { flex: 1; width: 2px; background: rgba(122,171,140,0.2); min-height: 1.2rem; }
+  .tl-item:last-child .tl-line { display: none; }
+  .tl-content { padding-bottom: 1rem; }
+  .tl-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--aged-gold); margin-bottom: 0.2rem; }
+  .tl-text { font-size: 0.82rem; color: var(--linen); opacity: 0.85; line-height: 1.45; }
+  .intro-card { background: var(--storm-blue); border-radius: 10px; padding: 1.5rem; border: 1px solid rgba(212,160,82,0.15); }
+  .intro-card-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 0.5rem; }
+  .intro-card-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 0.8rem; }
+  .intro-card p { font-size: 0.85rem; color: var(--linen); opacity: 0.85; line-height: 1.55; }
+  .tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 3px; margin-right: 0.3rem; margin-bottom: 0.3rem; }
+  .tag-sage { background: rgba(122,171,140,0.15); color: var(--sage); }
+  .tag-gold { background: rgba(212,160,82,0.15); color: var(--aged-gold); }
+  .tag-terra { background: rgba(190,107,74,0.15); color: var(--terracotta); }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — TITLE -->
+  <div class="slide slide-title active">
+    <div class="grad-bar"></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative;">
+      <div class="title-eyebrow">BUS123 · Gerrish School of Business</div>
+      <h1 class="title-main">Introduction to Course<br><span>&amp; Expectations</span></h1>
+      <p class="title-sub">What this course is, how it works, and who we'll learn from all semester</p>
+      <div class="title-accent-line"></div>
+      <div class="title-meta">Solving Business Problems with Technology &nbsp;·&nbsp; Fall 2026</div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 2 — HOOK -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>A Question to <span>Start Us Off</span></h2>
+      <span class="slide-num">02</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead">Think about the last business problem you saw someone solve — in a job, an internship, a club, or even at home. <strong>What tool did they use?</strong></p>
+      <ul class="bullet-list" style="margin-top:0.5rem;">
+        <li>A spreadsheet to track expenses or inventory?</li>
+        <li>A slide deck to pitch an idea to a group?</li>
+        <li>A written report to document a process or finding?</li>
+        <li>A shared file that multiple people edited at the same time?</li>
+      </ul>
+      <div class="callout" style="margin-top:0.5rem;">
+        <span class="callout-icon">🎯</span>
+        <p>Every one of those scenarios involves <strong>Microsoft 365</strong>. BUS123 is the course that turns you from someone who uses these tools casually into someone who uses them <strong>professionally and confidently</strong>.</p>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 3 — MEET THE INSTRUCTOR -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Meet <span>Your Instructor</span></h2>
+      <span class="slide-num">03</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <div class="intro-card">
+          <div class="intro-card-label">Instructor</div>
+          <div class="intro-card-name">Bethany Evitts</div>
+          <p>Gerrish School of Business, Endicott College</p>
+          <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.3rem;">
+            <span class="tag tag-gold">CFA</span>
+            <span class="tag tag-gold">MBA · Boston College</span>
+            <span class="tag tag-sage">BA · Holy Cross</span>
+            <span class="tag tag-terra">Trading &amp; Portfolio Mgmt</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel">
+          <div class="panel-label">Background</div>
+          <ul>
+            <li>CFA charterholder with experience in trading and portfolio management</li>
+            <li>MBA from Boston College, BA from College of the Holy Cross</li>
+            <li>Teaching finance and business technology at Endicott</li>
+          </ul>
+        </div>
+        <div class="panel panel-gold">
+          <div class="panel-label">Outside the Classroom</div>
+          <ul>
+            <li>Husband Mark, sons Wade and Zach, daughter Sydney</li>
+            <li>Dog: Boots</li>
+            <li>Yes — dogs absolutely belong on a course intro slide</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 4 — LEARNING OBJECTIVES -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Learning <span>Objectives</span></h2>
+      <span class="slide-num">04</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="font-size:clamp(0.85rem,1.4vw,1rem);opacity:0.7;margin-bottom:0.3rem;">By the end of this lesson, you will be able to:</p>
+      <div class="obj-list">
+        <div class="obj-item">
+          <span class="obj-tag">I Can</span>
+          <span class="obj-text">Navigate Microsoft 365's core business applications — PowerPoint, Word, and Excel — and explain how each supports professional workflows.</span>
+        </div>
+        <div class="obj-item">
+          <span class="obj-tag">I Can</span>
+          <span class="obj-text">Explain how BUS123 is structured — module sequence, grading breakdown, and the types of deliverables expected each week.</span>
+        </div>
+        <div class="obj-item">
+          <span class="obj-tag">I Can</span>
+          <span class="obj-text">Identify the three recurring case study businesses we'll use throughout the semester and explain what each one does.</span>
+        </div>
+        <div class="obj-item">
+          <span class="obj-tag">I Can</span>
+          <span class="obj-text">Describe what "solving a business problem with technology" means in practice, with a real-world example.</span>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 5 — WHAT IS THIS COURSE? -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>What Is <span>BUS123?</span></h2>
+      <span class="slide-num">05</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.1rem);">BUS123 is <strong>Solving Business Problems with Technology</strong> — a practical, skill-based course where you learn to use industry-standard software to analyze, communicate, and solve real business challenges.</p>
+        <div class="panel" style="margin-top:0.5rem;">
+          <div class="panel-label">No Textbook. No SIMnet.</div>
+          <p>All materials are built for this course — slide decks, Excel workbooks, math modules, and practice files. Everything lives on Canvas and GitHub. You'll learn by doing, not by reading.</p>
+        </div>
+        <div class="callout">
+          <span class="callout-icon">💼</span>
+          <p>Every exercise in this course is grounded in <strong>real business scenarios</strong>. The formulas you write and the reports you build reflect what professionals actually do at work.</p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel panel-gold">
+          <div class="panel-label">Three Tracks</div>
+          <div class="panel-title">What We Cover</div>
+          <ul>
+            <li><strong>INTRO</strong> — Setup, orientation, Microsoft 365 ecosystem</li>
+            <li><strong>EXCEL</strong> — Worksheets, formulas, functions, charts, data management</li>
+            <li><strong>MATH</strong> — Business math through applied Excel problems: percents, discounts, payroll, markup, inventory, finance, taxes, and more</li>
+          </ul>
+        </div>
+        <div class="panel panel-terra">
+          <div class="panel-label">Class Format</div>
+          <ul>
+            <li>75-minute class periods</li>
+            <li>First half: concepts and worked examples</li>
+            <li>Second half: in-class workshop — you build it yourself</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 6 — SECTION BREAK -->
+  <div class="slide slide-section">
+    <div class="grad-bar"></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+      <div class="section-label">The Businesses We Work With</div>
+      <h2 class="section-title">Meet the <span>Case Studies</span></h2>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--linen);opacity:0.75;max-width:600px;text-align:center;line-height:1.5;">Three businesses. One semester. All the scenarios you'll need to become fluent in applied business math and Excel.</p>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 7 — CASE STUDY BUSINESSES -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Our Three <span>Case Study Businesses</span></h2>
+      <span class="slide-num">07</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="font-size:clamp(0.85rem,1.4vw,1rem);margin-bottom:0.3rem;">Every exercise and homework problem in BUS123 is set inside one of these three businesses. Get to know them — they'll be recurring characters all semester.</p>
+      <div class="biz-grid">
+        <div class="biz-card">
+          <span class="biz-icon">🏄</span>
+          <div class="biz-name">Harbor View Surf Shop</div>
+          <div class="biz-desc">A specialty retail shop selling surfboards, wetsuits, apparel, and accessories. Operates seasonally with significant inventory, payroll, and sales tracking needs. Great for retail math, payroll, and cost analysis problems.</div>
+        </div>
+        <div class="biz-card">
+          <span class="biz-icon">👗</span>
+          <div class="biz-name">Dune Road Apparel</div>
+          <div class="biz-desc">A small clothing brand that designs and sells coastal-inspired apparel. Uses trade and cash discounts, manages invoices, and tracks product markup and markdown. Great for commercial math and discount problems.</div>
+        </div>
+        <div class="biz-card">
+          <span class="biz-icon">🏢</span>
+          <div class="biz-name">Endicott Management Group</div>
+          <div class="biz-desc">A consulting and portfolio management firm — abbreviated EMG. Handles financial analysis, tax planning, investment tracking, and reporting for clients. Great for finance math, TVM, and data analysis problems.</div>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 8 — WHY CASE STUDIES MATTER -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Why <span>Case Studies?</span></h2>
+      <span class="slide-num">08</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.05rem);">Abstract math is easy to forget. Problems with <strong>context and narrative</strong> are much easier to learn — and much more like what you'll face in a real job.</p>
+        <ul class="bullet-list" style="margin-top:0.5rem;">
+          <li>You'll build payroll tables for <strong>Harbor View's employees</strong> — not just "calculate gross pay"</li>
+          <li>You'll apply trade discounts for <strong>Dune Road's wholesale orders</strong> — not just "use this formula"</li>
+          <li>You'll prepare investment summaries for <strong>EMG clients</strong> — not just "compute present value"</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="panel panel-gold">
+          <div class="panel-label">What This Looks Like in Practice</div>
+          <p style="margin-bottom:0.6rem;">Harbor View Surf Shop needs to calculate gross pay for 6 employees. Some are hourly, some are salaried. Two worked overtime last week.</p>
+          <p>Your job: build a payroll table in Excel that calculates gross pay, deductions, and net pay automatically — and formats it so the store owner can read it.</p>
+        </div>
+        <div class="callout">
+          <span class="callout-icon">🎯</span>
+          <p>That is a <strong>real deliverable</strong>. Not a textbook exercise — a professional-quality file that could be handed to an actual employer.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 9 — COURSE STRUCTURE -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Course <span>Structure</span> — How the Semester Flows</h2>
+      <span class="slide-num">09</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--sage);"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Course Introduction</div>
+              <div class="tl-text">Microsoft 365 setup, OneDrive, course orientation, and technology in business.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--aged-gold);"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">EXCEL-M01 through M04 — Excel Fundamentals</div>
+              <div class="tl-text">Worksheets, formulas, functions, charts, and data management. The foundation everything else is built on.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--terracotta);"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">MATH-M01 through M12 — Business Math</div>
+              <div class="tl-text">Applied math through Excel: whole numbers, fractions, percents, discounts, markup, payroll, inventory, finance, taxes, stocks, accounting, and statistics.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot" style="background:var(--linen);"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Final — Applied Business Problem</div>
+              <div class="tl-text">Comprehensive deliverable synthesizing Excel and math skills in a realistic business scenario.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel">
+          <div class="panel-label">Each Week</div>
+          <ul>
+            <li>Pre-reading available on Canvas before class</li>
+            <li>Class: concept introduction + worked examples</li>
+            <li>In-class workshop: you build the Excel file</li>
+            <li>Homework: practice problems due before next class</li>
+          </ul>
+        </div>
+        <div class="panel panel-gold">
+          <div class="panel-label">Key Principle</div>
+          <p>You will never be told which Excel function to use upfront. Part of the skill is reading a business problem and knowing <em>which tool fits</em>. That judgment is what employers are actually hiring for.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 10 — GRADING -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>How You're <span>Graded</span></h2>
+      <span class="slide-num">10</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.5rem;">Grading is under review — your instructor will confirm the final breakdown. The categories below reflect the expected structure.</p>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <div class="grade-row">
+          <span class="grade-label">In-Class Activities</span>
+          <div class="grade-bar-bg"><div class="grade-bar" style="width:35%"></div></div>
+          <span class="grade-pct">~35%</span>
+        </div>
+        <div class="grade-row">
+          <span class="grade-label">Homework</span>
+          <div class="grade-bar-bg"><div class="grade-bar" style="width:30%"></div></div>
+          <span class="grade-pct">~30%</span>
+        </div>
+        <div class="grade-row">
+          <span class="grade-label">Quizzes</span>
+          <div class="grade-bar-bg"><div class="grade-bar" style="width:20%"></div></div>
+          <span class="grade-pct">~20%</span>
+        </div>
+        <div class="grade-row">
+          <span class="grade-label">Final Project</span>
+          <div class="grade-bar-bg"><div class="grade-bar" style="width:15%"></div></div>
+          <span class="grade-pct">~15%</span>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:0.5rem;">
+        <span class="callout-icon">📋</span>
+        <p><strong>Confirm with your instructor</strong> on the exact grading weights. This slide will be updated on Canvas when the final breakdown is set.</p>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 11 — WHAT'S EXPECTED OF YOU -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>What's Expected <span>of You</span></h2>
+      <span class="slide-num">11</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <div class="panel panel-gold">
+          <div class="panel-label">In Every Class</div>
+          <ul>
+            <li>Laptop charged and ready to open Excel</li>
+            <li>Microsoft 365 installed (desktop app, not browser)</li>
+            <li>OneDrive connected and synced</li>
+            <li>Pre-reading completed before arriving</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">File Submissions</div>
+          <ul>
+            <li>Always use the required naming convention</li>
+            <li>Save to Endicott OneDrive before submitting</li>
+            <li>Submit via Canvas — not email, not Teams chat</li>
+            <li>Confirm the file opens correctly before submitting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel panel-terra">
+          <div class="panel-label">Mindset</div>
+          <div class="panel-title">Try First. Ask Second.</div>
+          <p>When you hit a wall in Excel, spend two minutes trying to figure it out before raising your hand. That problem-solving muscle is exactly what employers are looking for. We will always debrief together as a class.</p>
+        </div>
+        <div class="callout">
+          <span class="callout-icon">🤝</span>
+          <p>Office hours and Canvas messaging are always available. <strong>There are no dumb questions in this course</strong> — only questions you didn't ask when you could have.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 12 — COMMON MISTAKE -->
+  <div class="slide slide-mistake">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Common <span style="color:var(--terracotta);">Mistake</span></h2>
+      <span class="slide-num">12</span>
+    </div>
+    <div class="slide-body">
+      <div class="mistake-banner">
+        <span class="mistake-icon">⚠️</span>
+        <div>
+          <div class="mistake-title">Submitting the Wrong File — or a Corrupted One</div>
+        </div>
+      </div>
+      <p class="lead" style="font-size:clamp(0.9rem,1.5vw,1.05rem);">The most common submission error is uploading the wrong version of a file, or a file that won't open because it wasn't saved properly. Instructors cannot grade a file they can't open.</p>
+      <div class="divider" style="margin:0.8rem 0;"></div>
+      <ul class="bullet-list">
+        <li><strong>Always open the submitted file</strong> after uploading to Canvas — download it back and verify it opens correctly and shows your work.</li>
+        <li><strong>Never submit a file that's currently open in Excel</strong> — always save and close before uploading. Some browsers will upload a locked temp version.</li>
+        <li><strong>Check the file name</strong> before submitting. If it doesn't match the required naming convention, rename it before you upload — not after.</li>
+        <li><strong>Sync first:</strong> if the file lives in OneDrive and you're submitting a link, confirm the green checkmark is showing before copying the URL.</li>
+      </ul>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 13 — AI POLICY -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>AI and Technology <span>Policy</span></h2>
+      <span class="slide-num">13</span>
+    </div>
+    <div class="slide-body">
+      <div class="callout" style="margin-bottom:0.5rem;">
+        <span class="callout-icon">🔄</span>
+        <p><strong>Policy is TBD</strong> — your instructor will distribute a formal AI policy document on Canvas. This slide is a placeholder. The content below reflects expected general principles, not the final policy.</p>
+      </div>
+      <ul class="bullet-list">
+        <li><strong>Excel formulas:</strong> You should understand what a formula does, not just paste one in. If you use AI to find a formula, you must be able to explain it in class when called on.</li>
+        <li><strong>Homework:</strong> AI-assisted answers that demonstrate no understanding will not earn credit. Showing your work matters.</li>
+        <li><strong>In-class activities:</strong> These are done in real time during class. No AI use during timed activities.</li>
+        <li><strong>Final project:</strong> Policy will be specified in the project instructions.</li>
+      </ul>
+      <div class="panel panel-gold" style="margin-top:0.5rem;">
+        <div class="panel-label">The Real Standard</div>
+        <p>Technology is a tool. In every job you'll have, employers will expect you to produce correct work — and to understand what you produced. Producing correct work you don't understand is a liability, not an asset.</p>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 14 — CANVAS AND TOOLS -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Canvas and <span>Course Tools</span></h2>
+      <span class="slide-num">14</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <div class="panel">
+          <div class="panel-label">Canvas — Primary Hub</div>
+          <ul>
+            <li>All assignments submitted here</li>
+            <li>Pre-reading and slide decks posted before each class</li>
+            <li>Grades and feedback posted here</li>
+            <li>Announcements come via Canvas notifications — turn them on</li>
+          </ul>
+        </div>
+        <div class="panel panel-gold">
+          <div class="panel-label">GitHub — Course Files</div>
+          <ul>
+            <li>Student workbook files (.xlsx) available for download</li>
+            <li>Slide decks accessible as web pages</li>
+            <li>You never need to create a GitHub account — just download the files</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel panel-terra">
+          <div class="panel-label">Microsoft 365 — Your Toolkit</div>
+          <ul>
+            <li>Excel: primary tool for 80% of this course</li>
+            <li>Word: some written deliverables</li>
+            <li>PowerPoint: final project presentation (TBD)</li>
+            <li>OneDrive: required storage for all files</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <span class="callout-icon">📱</span>
+          <p><strong>Download the Canvas Student app</strong> on your phone. Assignment notifications and grade updates are much more reliable through the app than email.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 15 — GROUP ACTIVITY -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2><span>Group Activity —</span> What Are Business Problems?</h2>
+      <span class="slide-num">15</span>
+    </div>
+    <div class="slide-body">
+      <div class="practice-box">
+        <div class="practice-label">Group Discussion · 10 minutes</div>
+        <div class="practice-prompt">In groups of 3–4, answer these questions and be ready to share one insight with the class.</div>
+        <div class="steps" style="margin-top:0.5rem;">
+          <div class="step">
+            <span class="step-num">1</span>
+            <div class="step-text">Think of a business — a job you've had, a company you know, or one of our three case study businesses. <strong>What is one problem that business faces regularly?</strong> (Sales tracking, payroll, inventory, budgeting, scheduling...)</div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <div class="step-text"><strong>Which Microsoft 365 app would best help solve that problem?</strong> Why that one and not the others?</div>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <div class="step-text"><strong>What would the output look like?</strong> A table? A chart? A written report? A shared file multiple people edit?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 16 — PERSONAL INTRO ACTIVITY -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2><span>Personal Intro Slide —</span> Your Turn</h2>
+      <span class="slide-num">16</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);">Before our next class, you'll create a <strong>personal introduction slide in PowerPoint</strong> and save it to your BUS123 OneDrive folder. This is your first Microsoft 365 deliverable.</p>
+      <div class="steps" style="margin-top:0.3rem;">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div class="step-text">Open PowerPoint from your desktop app (not the browser). Create a <strong>new blank presentation</strong>.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div class="step-text">Your slide should include: <strong>your name</strong>, your <strong>major and year</strong>, one fun fact, and the answer to this prompt: <em>"One business tool I've used before and one I want to learn."</em></div>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div class="step-text">Apply any slide theme — just make it readable. No blank white slides with default text boxes.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div class="step-text">Save as <code>LastName_FirstName_BUS123_Module01_Intro.pptx</code> to your Module-01-Intro folder in OneDrive. Submit the link on Canvas.</div>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 17 — COMMON MISTAKE 2 -->
+  <div class="slide slide-mistake">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Common <span style="color:var(--terracotta);">Mistake</span></h2>
+      <span class="slide-num">17</span>
+    </div>
+    <div class="slide-body">
+      <div class="mistake-banner">
+        <span class="mistake-icon">⚠️</span>
+        <div>
+          <div class="mistake-title">Waiting Until the Night Before to Figure Out the Tech</div>
+        </div>
+      </div>
+      <p class="lead" style="font-size:clamp(0.9rem,1.5vw,1.05rem);">In every semester, some students skip the setup steps in Week 1 planning to do them later — and then hit a crisis at 11 PM before a homework deadline.</p>
+      <div class="divider" style="margin:0.8rem 0;"></div>
+      <ul class="bullet-list">
+        <li><strong>OneDrive not syncing</strong> at midnight before a due date is not an acceptable reason for a late submission. Set it up now, in class, where help is available.</li>
+        <li><strong>Microsoft 365 activation issues</strong> take time to resolve with IT. If you run into a problem, contact Endicott IT support immediately — not the night before the first assignment is due.</li>
+        <li><strong>Technical problems</strong> must be reported before the deadline. "My computer crashed" submitted after the fact is not the same as "I had a problem and I contacted you immediately."</li>
+      </ul>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 18 — CANVAS NAVIGATION -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Navigating <span>Canvas</span> — A Quick Tour</h2>
+      <span class="slide-num">18</span>
+    </div>
+    <div class="slide-body row">
+      <div class="col">
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">📚</span>
+            <div class="step-text"><strong>Modules:</strong> Course content is organized by module. Each module contains slides, workbooks, and assignments. This is where you start every week.</div>
+          </div>
+          <div class="step">
+            <span class="step-num">📝</span>
+            <div class="step-text"><strong>Assignments:</strong> All homework and in-class submissions are here. Set a weekly reminder to check this page.</div>
+          </div>
+          <div class="step">
+            <span class="step-num">📊</span>
+            <div class="step-text"><strong>Grades:</strong> Your current grade, feedback on past assignments, and rubric breakdowns are all here. Check it regularly, not just before finals.</div>
+          </div>
+          <div class="step">
+            <span class="step-num">🔔</span>
+            <div class="step-text"><strong>Notifications:</strong> Go to Account → Notifications and turn on assignment due date reminders and instructor announcements. Do this today.</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel panel-gold">
+          <div class="panel-label">First Things to Do on Canvas</div>
+          <ul>
+            <li>Upload a profile photo (helps your instructor learn your name)</li>
+            <li>Turn on due date and announcement notifications</li>
+            <li>Locate Module 01 and confirm you can see all the files</li>
+            <li>Submit the Module 01 intro slide when complete</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <span class="callout-icon">📱</span>
+          <p><strong>Canvas Student app:</strong> Download it on your phone. Push notifications for new assignments and grade releases are much more reliable than email.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 19 — QUESTIONS -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Any <span>Questions?</span></h2>
+      <span class="slide-num">19</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="margin-bottom:0.8rem;">Before we move to the practice activity, let's clear the deck. Ask anything about:</p>
+      <ul class="bullet-list">
+        <li>How the course is structured or what a module is</li>
+        <li>The three case study businesses</li>
+        <li>How grades are calculated</li>
+        <li>What's expected each week</li>
+        <li>AI policy or academic integrity</li>
+        <li>How to reach your instructor</li>
+        <li>Anything about OneDrive, Microsoft 365, or Canvas setup</li>
+      </ul>
+      <div class="panel panel-gold" style="margin-top:0.5rem;">
+        <div class="panel-label">Office Hours &amp; Contact</div>
+        <p>Details will be posted on Canvas. Your instructor is available via Canvas messaging — include your name and the module you're working on in your message.</p>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+  <!-- SLIDE 20 — WRAP-UP -->
+  <div class="slide">
+    <div class="grad-bar"></div>
+    <div class="slide-header">
+      <h2>Lesson <span>Wrap-Up</span></h2>
+      <span class="slide-num">20</span>
+    </div>
+    <div class="slide-body">
+      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.5rem;">What you should know after today:</p>
+      <div class="wrapup-grid">
+        <div class="panel">
+          <div class="panel-label">✓ Course Structure</div>
+          <p>INTRO → EXCEL → MATH tracks. 75-minute class periods. Pre-reading + lecture + workshop + homework each week.</p>
+        </div>
+        <div class="panel panel-gold">
+          <div class="panel-label">✓ Case Studies</div>
+          <p>Harbor View Surf Shop · Dune Road Apparel · Endicott Management Group. Every problem lives inside one of these three businesses.</p>
+        </div>
+        <div class="panel panel-terra">
+          <div class="panel-label">✓ Expectations</div>
+          <p>Laptop ready. File naming correct. Work submitted via Canvas. Pre-reading done before class. Sync confirmed before submission.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-label">🔜 Coming Next</div>
+          <p><strong>L03 — Technology in Everyday Life and Business:</strong> How technology is shaping business decisions, and why digital fluency is now a baseline professional skill.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grad-bar"></div>
+  </div>
+
+</div>
+
+<nav class="nav">
+  <button onclick="go(-1)">← Prev</button>
+  <span class="nav-counter" id="counter">1 / 20</span>
+  <button onclick="go(1)">Next →</button>
+</nav>
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let cur = 0;
+  function show(n) { slides[cur].classList.remove('active'); cur=(n+slides.length)%slides.length; slides[cur].classList.add('active'); document.getElementById('counter').textContent=(cur+1)+' / '+slides.length; }
+  function go(d) { show(cur+d); }
+  document.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1); if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1); });
+</script>
+</body>
+</html>

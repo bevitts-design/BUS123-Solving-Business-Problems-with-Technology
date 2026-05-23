@@ -104,6 +104,8 @@ ul.bullet-list.dark li strong{color:#DDE8F0;}
 /* COMPANY GRID */
 .company-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;}
 .company-card{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:clamp(0.7rem,1.5vh,1rem) clamp(0.85rem,1.5vw,1.2rem);}
+.company-card-inner{display:flex;align-items:center;gap:0.65rem;margin-bottom:0.3rem;}
+.company-badge{width:clamp(28px,3.5vw,42px);height:clamp(28px,3.5vw,42px);object-fit:contain;flex-shrink:0;}
 .company-name{font-family:'Cinzel',serif;font-size:clamp(0.72rem,1.2vw,0.88rem);color:var(--ink);font-weight:600;margin-bottom:0.3rem;}
 .company-desc{font-family:'Inter',sans-serif;font-size:clamp(0.62rem,1vw,0.75rem);color:var(--muted);line-height:1.45;}
 /* GRADE ROWS */
@@ -239,19 +241,31 @@ ul.bullet-list.dark li strong{color:#DDE8F0;}
     <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.4rem;">Every worksheet, example, and problem in this course uses one of four real-world business scenarios.</p>
     <div class="company-grid">
       <div class="company-card" style="border-left:3px solid var(--sage);">
-        <div class="company-name">🛍️ Tidal Goods Co.</div>
+        <div class="company-card-inner">
+          <img class="company-badge" src="https://bevitts-design.github.io/BUS123/assets/case-study-companies/tidal-goods/tidal-goods-icon-badge.png" alt="Tidal Goods Co.">
+          <div class="company-name">Tidal Goods Co.</div>
+        </div>
         <div class="company-desc">Retail business — inventory management, COGS, markup and markdown pricing. Think boutique retail with real inventory math.</div>
       </div>
       <div class="company-card" style="border-left:3px solid var(--gold);">
-        <div class="company-name">💼 Meridian Advisory Group</div>
+        <div class="company-card-inner">
+          <img class="company-badge" src="https://bevitts-design.github.io/BUS123/assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-icon-badge.png" alt="Meridian Advisory Group">
+          <div class="company-name">Meridian Advisory Group</div>
+        </div>
         <div class="company-desc">Financial services — payroll processing, time value of money, interest calculations, tax math, and loan analysis.</div>
       </div>
       <div class="company-card" style="border-left:3px solid var(--terra);">
-        <div class="company-name">🎪 Anchor &amp; Oak Events</div>
+        <div class="company-card-inner">
+          <img class="company-badge" src="https://bevitts-design.github.io/BUS123/assets/case-study-companies/anchor-oak-events/anchor-oak-events-icon-badge.png" alt="Anchor &amp; Oak Events">
+          <div class="company-name">Anchor &amp; Oak Events</div>
+        </div>
         <div class="company-desc">Event planning company — breakeven analysis, seasonal cash flow, labor cost modeling, and pricing strategy.</div>
       </div>
       <div class="company-card" style="border-left:3px solid var(--muted);">
-        <div class="company-name">🏥 Harborside Medical Center</div>
+        <div class="company-card-inner">
+          <img class="company-badge" src="https://bevitts-design.github.io/BUS123/assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical Center">
+          <div class="company-name">Harborside Medical Center</div>
+        </div>
         <div class="company-desc">Healthcare organization — data analysis, payer mix percentages, complex payroll, and revenue reporting.</div>
       </div>
     </div>

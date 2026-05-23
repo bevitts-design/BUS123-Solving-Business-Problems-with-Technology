@@ -3,819 +3,1036 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUS123 · Technology in Business</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>BUS123 — INTRO-M01-L03 · Technology in Everyday Life and Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink-navy:   #0C1A2E;
-    --storm-blue: #1B2E48;
-    --aged-gold:  #D4A052;
-    --terracotta: #BE6B4A;
-    --sage:       #7AAB8C;
-    --linen:      #DDE8F0;
-    --white:      #FFFFFF;
-    --panel-dark: #0a1520;
-  }
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Cormorant Garamond', serif; background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
-  .deck { width: 100vw; height: 100vh; height: 100dvh; position: relative; }
-  .slide { position: absolute; inset: 0; display: none; flex-direction: column; background: var(--ink-navy); overflow: hidden; }
-  .slide.active { display: flex; }
-  .grad-bar { height: 5px; background: linear-gradient(90deg, var(--aged-gold) 0%, var(--terracotta) 50%, var(--sage) 100%); flex-shrink: 0; }
+:root {
+  --ink-navy:#0C1A2E; --storm-blue:#1B2E48; --aged-gold:#D4A052;
+  --terracotta:#BE6B4A; --sage:#7AAB8C; --linen:#DDE8F0; --accent:#7AAB8C;
+  --gradient:linear-gradient(90deg,#D4A052 0%,#BE6B4A 50%,#7AAB8C 100%);
+  --t-title:clamp(2.4rem,4.5vw,3.6rem); --t-sub:clamp(1.4rem,2.4vw,2rem);
+  --t-section:clamp(1.1rem,1.8vw,1.5rem); --t-body:clamp(0.95rem,1.45vw,1.18rem);
+  --t-caption:clamp(0.7rem,1.0vw,0.85rem);
+  --s8:8px;--s16:16px;--s24:24px;--s32:32px;--s48:48px;
+  --safe:5%; --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:"Cormorant Garamond",serif;background:#000;overflow:hidden;min-height:100vh;}
+#deck{width:100vw;height:100vh;position:relative;}
 
-  /* Title slide */
-  .slide-title { align-items: center; justify-content: center; text-align: center; position: relative; }
-  .slide-title::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 50% 55%, rgba(190,107,74,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 25% 20%, rgba(212,160,82,0.06) 0%, transparent 60%); }
-  .title-eyebrow { font-family: 'DM Mono', monospace; font-size: clamp(0.6rem,1vw,0.75rem); color: var(--sage); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; position: relative; }
-  .title-main { font-family: 'Cinzel', serif; font-size: clamp(2rem,4.5vw,3.8rem); font-weight: 700; color: var(--white); line-height: 1.15; max-width: 820px; position: relative; }
-  .title-main span { color: var(--aged-gold); }
-  .title-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: clamp(1rem,2vw,1.4rem); color: var(--linen); opacity: 0.8; margin: 1rem 0 2.5rem; position: relative; max-width: 640px; }
-  .title-meta { font-family: 'DM Mono', monospace; font-size: clamp(0.55rem,0.9vw,0.7rem); color: var(--linen); opacity: 0.5; letter-spacing: 0.12em; position: relative; }
-  .title-accent-line { width: 120px; height: 2px; background: linear-gradient(90deg, var(--terracotta), var(--aged-gold)); margin: 1.5rem auto; position: relative; }
+/* Slide base — hidden by default */
+.slide{position:absolute;inset:0;display:none;flex-direction:column;background:var(--ink-navy);overflow:hidden;}
+.slide.active{display:flex;}
 
-  /* Standard slide chrome */
-  .slide-header { background: var(--storm-blue); padding: 1.4rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid rgba(212,160,82,0.2); }
-  .slide-header h2 { font-family: 'Cinzel', serif; font-size: clamp(1rem,2.2vw,1.55rem); font-weight: 600; color: var(--white); }
-  .slide-header h2 span { color: var(--sage); }
-  .slide-num { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--aged-gold); opacity: 0.7; letter-spacing: 0.1em; }
-  .slide-body { flex: 1; padding: 2rem 3rem; display: flex; flex-direction: column; gap: 1rem; overflow: hidden; }
-  .slide-body.row { flex-direction: row; gap: 2rem; }
+/* Noise texture */
+.slide::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:0.022;pointer-events:none;z-index:0;}
+.slide>*{position:relative;z-index:1;}
 
-  /* Section break */
-  .slide-section { align-items: center; justify-content: center; text-align: center; }
-  .section-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--sage); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1rem; }
-  .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--white); max-width: 700px; }
-  .section-title span { color: var(--aged-gold); }
+/* Stagger animations */
+@keyframes revealUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes barGrow{from{width:0%;}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(122,171,140,0);}50%{box-shadow:0 0 20px 3px rgba(122,171,140,0.13);}}
+@keyframes gradShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateX(var(--slide-dir,30px));}to{opacity:1;transform:translateX(0);}}
 
-  /* Mistake slide */
-  .slide-mistake { background: linear-gradient(135deg, #2a1008 0%, #1a0a04 100%); }
-  .slide-mistake .slide-header { background: rgba(190,107,74,0.3); border-bottom-color: rgba(190,107,74,0.4); }
-  .mistake-banner { background: var(--terracotta); border-radius: 6px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-  .mistake-icon { font-size: 1.8rem; flex-shrink: 0; }
-  .mistake-title { font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; }
+.slide.active .anim{animation:revealUp 0.5s var(--ease) both;}
+.slide.active .anim-d1{animation-delay:0.08s;}
+.slide.active .anim-d2{animation-delay:0.16s;}
+.slide.active .anim-d3{animation-delay:0.24s;}
+.slide.active .anim-d4{animation-delay:0.32s;}
+.slide.active .anim-d5{animation-delay:0.40s;}
+.slide.active .anim-d6{animation-delay:0.48s;}
 
-  /* Typography */
-  .lead { font-size: clamp(1rem,1.8vw,1.25rem); color: var(--linen); line-height: 1.6; font-weight: 300; }
-  .lead strong { color: var(--aged-gold); font-weight: 600; font-family: 'Cinzel', serif; font-style: normal; }
+/* Transition classes applied by JS during nav */
+.slide.going-out{display:flex;animation:fadeSlideIn 0.4s var(--ease) reverse both;}
+.slide.coming-in{display:flex;animation:fadeSlideIn 0.4s var(--ease) both;}
 
-  /* Bullets */
-  ul.bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
-  ul.bullet-list li { font-size: clamp(0.85rem,1.5vw,1.05rem); color: var(--linen); line-height: 1.5; padding-left: 1.4rem; position: relative; }
-  ul.bullet-list li::before { content: '▸'; position: absolute; left: 0; color: var(--sage); font-size: 0.8em; top: 0.15em; }
-  ul.bullet-list li strong { color: var(--aged-gold); font-weight: 600; }
+/* Gradient bar */
+.grad-bar{height:5px;
+  background:linear-gradient(90deg,#D4A052,#BE6B4A,#7AAB8C,#D4A052);
+  background-size:200% 100%;animation:gradShift 4s ease infinite;flex-shrink:0;}
 
-  /* Panels */
-  .panel { background: var(--storm-blue); border-radius: 8px; padding: 1.2rem 1.5rem; border-left: 3px solid var(--sage); }
-  .panel-gold { border-left-color: var(--aged-gold); }
-  .panel-terra { border-left-color: var(--terracotta); }
-  .panel-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem; }
-  .panel-gold .panel-label { color: var(--aged-gold); }
-  .panel-terra .panel-label { color: var(--terracotta); }
-  .panel-title { font-family: 'Cinzel', serif; font-size: clamp(0.85rem,1.4vw,1rem); color: var(--white); margin-bottom: 0.5rem; }
-  .panel p, .panel li { font-size: clamp(0.78rem,1.3vw,0.95rem); color: var(--linen); line-height: 1.55; opacity: 0.9; }
-  .panel ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-  .panel ul li { padding-left: 1rem; position: relative; }
-  .panel ul li::before { content: '–'; position: absolute; left: 0; color: var(--sage); opacity: 0.7; }
+/* ─── TITLE SLIDE ─── */
+.slide-title{position:relative;}
+.title-bg-img{position:absolute;inset:0;
+  background:url("https://images.unsplash.com/photo-1551434678-e076c223a692?w=1600&q=80&auto=format&fit=crop") center/cover no-repeat;
+  opacity:0.09;z-index:0;}
+.title-bg-overlay{position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(12,26,46,0.35) 0%,rgba(12,26,46,0.96) 80%);z-index:0;}
+.title-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:var(--safe);gap:var(--s16);}
+.title-eyebrow{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--accent);
+  letter-spacing:0.22em;text-transform:uppercase;}
+.title-main{font-family:"Cinzel",serif;font-size:var(--t-title);font-weight:600;color:#fff;
+  line-height:1.1;max-width:820px;}
+.title-main em{color:var(--accent);font-style:normal;}
+.title-rule{width:96px;height:2px;background:linear-gradient(90deg,#D4A052,#BE6B4A,#7AAB8C);
+  background-size:200% 100%;animation:gradShift 3s ease infinite;}
+.title-sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:300;
+  font-size:var(--t-sub);color:var(--linen);opacity:0.8;max-width:600px;line-height:1.45;}
+.title-meta{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--linen);
+  opacity:0.4;letter-spacing:0.14em;}
 
-  .col { flex: 1; display: flex; flex-direction: column; gap: 0.8rem; }
+/* ─── CONTENT SLIDE HEADER ─── */
+.slide-content{border-top:3px solid transparent;border-image:var(--gradient) 1;}
+.slide-header{background:var(--storm-blue);padding:var(--s24) var(--safe);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+  border-bottom:1px solid rgba(122,171,140,0.2);}
+.slide-header h2{font-family:"Cinzel",serif;font-size:var(--t-section);font-weight:600;
+  color:var(--accent);line-height:1.2;}
+.slide-num{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--accent);opacity:0.55;letter-spacing:0.1em;}
 
-  /* Callouts */
-  .callout { background: rgba(122,171,140,0.1); border: 1px solid rgba(122,171,140,0.25); border-radius: 8px; padding: 1rem 1.4rem; display: flex; gap: 0.8rem; align-items: flex-start; }
-  .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .callout p { font-size: clamp(0.8rem,1.3vw,0.95rem); color: var(--linen); line-height: 1.5; opacity: 0.9; }
-  .callout p strong { color: var(--sage); }
-  .callout-terra { background: rgba(190,107,74,0.1); border-color: rgba(190,107,74,0.25); }
-  .callout-terra p strong { color: var(--terracotta); }
+/* ─── SLIDE BODY ─── */
+.slide-body{flex:1;padding:var(--s32) var(--safe);display:flex;flex-direction:column;gap:var(--s16);overflow:hidden;}
+.slide-body.row{flex-direction:row;gap:var(--s32);}
+.col{flex:1;display:flex;flex-direction:column;gap:var(--s16);}
 
-  /* Objectives */
-  .obj-list { display: flex; flex-direction: column; gap: 0.8rem; }
-  .obj-item { display: flex; gap: 1rem; align-items: flex-start; padding: 0.9rem 1.2rem; background: var(--storm-blue); border-radius: 8px; border-left: 3px solid var(--sage); }
-  .obj-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); flex-shrink: 0; margin-top: 0.15rem; min-width: 3.5rem; }
-  .obj-text { font-size: clamp(0.85rem,1.4vw,1rem); color: var(--linen); line-height: 1.5; }
+/* ─── SECTION DIVIDER ─── */
+.slide-section{align-items:center;justify-content:center;text-align:center;padding:var(--safe);position:relative;}
+.sect-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.1;z-index:0;}
+.sect-overlay{position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(12,26,46,0.3) 0%,rgba(12,26,46,0.93) 75%);z-index:0;}
+.sect-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:var(--s24);}
+.sect-label{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--accent);
+  letter-spacing:0.25em;text-transform:uppercase;}
+.sect-title{font-family:"Cinzel",serif;font-size:var(--t-title);font-weight:600;color:#fff;
+  line-height:1.1;max-width:700px;}
+.sect-title em{color:var(--accent);font-style:normal;}
+.sect-sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:300;
+  font-size:var(--t-sub);color:var(--linen);opacity:0.7;max-width:560px;line-height:1.5;}
 
-  /* Practice box */
-  .practice-box { background: rgba(122,171,140,0.08); border: 2px solid rgba(122,171,140,0.3); border-radius: 12px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; justify-content: center; }
-  .practice-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); }
-  .practice-prompt { font-family: 'Cinzel', serif; font-size: clamp(1.1rem,2vw,1.5rem); color: var(--white); line-height: 1.4; }
+/* ─── TYPOGRAPHY ─── */
+.lead{font-size:var(--t-body);color:var(--linen);line-height:1.6;font-weight:300;max-width:72ch;}
+.lead strong{color:var(--accent);font-weight:600;font-family:"Cinzel",serif;font-style:normal;}
+ul.blist{list-style:none;display:flex;flex-direction:column;gap:var(--s8);}
+ul.blist li{font-size:var(--t-body);color:var(--linen);line-height:1.5;
+  padding-left:var(--s24);position:relative;transition:color 0.2s,transform 0.2s;}
+ul.blist li:hover{color:#fff;transform:translateX(4px);}
+ul.blist li::before{content:"▸";position:absolute;left:0;color:var(--accent);
+  font-size:0.75em;top:0.2em;transition:transform 0.2s;}
+ul.blist li:hover::before{transform:scale(1.3);}
+ul.blist li strong{color:var(--aged-gold);font-weight:600;}
 
-  /* Steps */
-  .steps { display: flex; flex-direction: column; gap: 0.6rem; }
-  .step { display: flex; align-items: flex-start; gap: 1rem; background: rgba(27,46,72,0.6); border-radius: 6px; padding: 0.75rem 1rem; }
-  .step-num { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; color: var(--aged-gold); background: rgba(212,160,82,0.15); border-radius: 4px; padding: 0.2rem 0.5rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .step-text { font-size: clamp(0.82rem,1.35vw,0.98rem); color: var(--linen); line-height: 1.5; }
-  .step-text strong { color: var(--aged-gold); }
+/* ─── PANELS ─── */
+.panel{background:var(--storm-blue);border-radius:8px;padding:var(--s16) var(--s24);
+  border-left:3px solid var(--accent);transition:transform 0.25s var(--ease),box-shadow 0.25s;}
+.panel:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(122,171,140,0.15);}
+.panel-gold{border-left-color:var(--aged-gold);}
+.panel-gold:hover{box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(212,160,82,0.15);}
+.panel-terra{border-left-color:var(--terracotta);}
+.panel-terra:hover{box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(190,107,74,0.15);}
+.panel-label{font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s8);}
+.panel-gold .panel-label{color:var(--aged-gold);}
+.panel-terra .panel-label{color:var(--terracotta);}
+.panel-title{font-family:"Cinzel",serif;font-size:var(--t-body);color:#fff;margin-bottom:var(--s8);line-height:1.3;}
+.panel p,.panel li{font-size:var(--t-body);color:var(--linen);line-height:1.5;opacity:0.9;}
+.panel ul{list-style:none;display:flex;flex-direction:column;gap:var(--s8);}
+.panel ul li{padding-left:var(--s16);position:relative;}
+.panel ul li::before{content:"–";position:absolute;left:0;color:var(--accent);opacity:0.7;}
+.panel-gold ul li::before{color:var(--aged-gold);}
+.panel-terra ul li::before{color:var(--terracotta);}
 
-  /* Wrapup grid */
-  .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex: 1; }
+/* ─── CALLOUT ─── */
+.callout{background:rgba(122,171,140,0.08);border:1px solid rgba(122,171,140,0.25);
+  border-radius:8px;padding:var(--s16) var(--s24);display:flex;gap:var(--s16);
+  align-items:flex-start;transition:background 0.25s,border-color 0.25s;}
+.callout:hover{background:rgba(122,171,140,0.13);border-color:rgba(122,171,140,0.4);}
+.callout-icon{font-size:1.25rem;flex-shrink:0;margin-top:2px;}
+.callout p{font-size:var(--t-body);color:var(--linen);line-height:1.5;opacity:0.9;}
+.callout p strong{color:var(--accent);}
+.callout-terra{background:rgba(190,107,74,0.08);border-color:rgba(190,107,74,0.25);}
+.callout-terra:hover{background:rgba(190,107,74,0.13);border-color:rgba(190,107,74,0.4);}
+.callout-terra p strong{color:var(--terracotta);}
 
-  /* Stats */
-  .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
-  .stat-card { background: var(--storm-blue); border-radius: 10px; padding: 1.3rem 1.2rem; text-align: center; border: 1px solid rgba(255,255,255,0.06); }
-  .stat-num { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--aged-gold); line-height: 1; margin-bottom: 0.4rem; }
-  .stat-label { font-size: 0.8rem; color: var(--linen); opacity: 0.8; line-height: 1.4; }
+/* ─── OBJECTIVES ─── */
+.obj-list{display:flex;flex-direction:column;gap:var(--s16);}
+.obj-item{display:flex;gap:var(--s16);align-items:flex-start;padding:var(--s16) var(--s24);
+  background:var(--storm-blue);border-radius:8px;border-left:3px solid var(--accent);
+  transition:transform 0.25s var(--ease),background 0.25s;cursor:default;}
+.obj-item:hover{transform:translateX(6px);background:rgba(27,46,72,0.9);}
+.obj-tag{font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);
+  flex-shrink:0;margin-top:3px;min-width:3.5rem;}
+.obj-text{font-size:var(--t-body);color:var(--linen);line-height:1.5;}
 
-  /* Sectors */
-  .sector-row { display: flex; gap: 0.8rem; align-items: center; padding: 0.6rem 1rem; background: rgba(27,46,72,0.5); border-radius: 6px; }
-  .sector-icon { font-size: 1.4rem; flex-shrink: 0; }
-  .sector-name { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--aged-gold); flex-shrink: 0; min-width: 8rem; }
-  .sector-tools { font-size: 0.8rem; color: var(--linen); opacity: 0.8; line-height: 1.4; }
+/* ─── STAT CARDS ─── */
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s16);}
+.stat-card{background:var(--storm-blue);border-radius:10px;padding:var(--s24);
+  text-align:center;border:1px solid rgba(122,171,140,0.15);
+  animation:pulseGlow 4s ease infinite;
+  transition:transform 0.3s var(--ease),box-shadow 0.3s,border-color 0.3s;}
+.stat-card:nth-child(2){animation-delay:1.3s;}
+.stat-card:nth-child(3){animation-delay:2.6s;}
+.stat-card:hover{transform:translateY(-6px) scale(1.02);
+  box-shadow:0 16px 48px rgba(0,0,0,0.35);border-color:rgba(122,171,140,0.4);}
+.stat-num{font-family:"Cinzel",serif;font-size:var(--t-title);font-weight:600;
+  color:var(--accent);line-height:1;margin-bottom:var(--s8);}
+.stat-label{font-size:var(--t-body);color:var(--linen);opacity:0.8;line-height:1.4;}
 
-  /* Fluency bars */
-  .fluency-bar { display: flex; flex-direction: column; gap: 0.5rem; }
-  .fl-row { display: flex; align-items: center; gap: 0.8rem; }
-  .fl-label { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--linen); min-width: 9rem; }
-  .fl-bar-bg { flex: 1; height: 8px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
-  .fl-bar { height: 100%; border-radius: 4px; }
-  .fl-note { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--linen); opacity: 0.45; min-width: 5rem; text-align: right; }
+/* ─── SECTOR ROWS ─── */
+.sector-row{display:flex;gap:var(--s16);align-items:center;padding:var(--s8) var(--s16);
+  background:rgba(27,46,72,0.5);border-radius:6px;border-left:2px solid transparent;
+  transition:background 0.2s,border-color 0.2s,transform 0.2s;}
+.sector-row:hover{background:rgba(27,46,72,0.85);border-left-color:var(--accent);transform:translateX(4px);}
+.sector-icon{font-size:1.3rem;flex-shrink:0;}
+.sector-name{font-family:"Cinzel",serif;font-size:var(--t-caption);color:var(--aged-gold);flex-shrink:0;min-width:10rem;}
+.sector-tools{font-size:var(--t-caption);color:var(--linen);opacity:0.85;line-height:1.4;}
 
-  /* Navigation */
-  .nav { position: fixed; bottom: 1.5rem; right: 2rem; display: flex; gap: 0.6rem; z-index: 100; }
-  .nav button { background: rgba(27,46,72,0.9); border: 1px solid rgba(212,160,82,0.3); color: var(--aged-gold); font-family: 'DM Mono', monospace; font-size: 0.75rem; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; transition: all 0.15s; letter-spacing: 0.05em; }
-  .nav button:hover { background: rgba(212,160,82,0.15); border-color: var(--aged-gold); }
-  .nav-counter { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--linen); opacity: 0.4; display: flex; align-items: center; padding: 0 0.3rem; letter-spacing: 0.08em; }
+/* ─── FLUENCY BARS ─── */
+.fluency-bar{display:flex;flex-direction:column;gap:var(--s8);}
+.fl-row{display:flex;align-items:center;gap:var(--s16);}
+.fl-label{font-family:"Cinzel",serif;font-size:var(--t-caption);color:var(--linen);min-width:10rem;}
+.fl-bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden;}
+.fl-bar{height:100%;border-radius:4px;animation:barGrow 1.2s var(--ease) both;}
+.fl-row:nth-child(1) .fl-bar{animation-delay:0.10s;}
+.fl-row:nth-child(2) .fl-bar{animation-delay:0.22s;}
+.fl-row:nth-child(3) .fl-bar{animation-delay:0.34s;}
+.fl-row:nth-child(4) .fl-bar{animation-delay:0.46s;}
+.fl-row:nth-child(5) .fl-bar{animation-delay:0.58s;}
+.fl-row:nth-child(6) .fl-bar{animation-delay:0.70s;}
+.fl-note{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--linen);opacity:0.45;min-width:6rem;text-align:right;}
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-  .slide.active > * { animation: fadeUp 0.4s ease both; }
-  .slide.active > *:nth-child(2) { animation-delay: 0.08s; }
-  .slide.active > *:nth-child(3) { animation-delay: 0.16s; }
-  .slide.active > *:nth-child(4) { animation-delay: 0.24s; }
+/* ─── MISTAKE SLIDE ─── */
+.slide-mistake{background:#140904;}
+.slide-mistake .slide-header{background:rgba(190,107,74,0.2);border-bottom-color:rgba(190,107,74,0.35);}
+.slide-mistake .slide-header h2{color:var(--terracotta);}
+.mistake-banner{background:var(--terracotta);border-radius:6px;padding:var(--s16) var(--s24);
+  display:flex;align-items:center;gap:var(--s16);animation:pulseGlow 3s ease infinite;}
+.mistake-icon{font-size:1.6rem;flex-shrink:0;}
+.mistake-title{font-family:"Cinzel",serif;font-size:var(--t-body);font-weight:600;color:#fff;letter-spacing:0.04em;}
 
-  @media (prefers-reduced-motion: reduce) {
-    .slide.active > * { animation: none; }
-  }
+/* ─── STEPS ─── */
+.steps{display:flex;flex-direction:column;gap:var(--s8);}
+.step{display:flex;align-items:flex-start;gap:var(--s16);background:rgba(27,46,72,0.6);
+  border-radius:6px;padding:var(--s16);transition:background 0.2s,transform 0.2s;}
+.step:hover{background:rgba(27,46,72,0.9);transform:translateX(4px);}
+.step-num{font-family:"DM Mono",monospace;font-size:var(--t-caption);font-weight:500;
+  color:var(--aged-gold);background:rgba(212,160,82,0.15);border-radius:4px;
+  padding:2px var(--s8);flex-shrink:0;margin-top:2px;}
+.step-text{font-size:var(--t-body);color:var(--linen);line-height:1.5;}
+.step-text strong{color:var(--aged-gold);}
+
+/* ─── PRACTICE BOX ─── */
+.practice-box{background:rgba(122,171,140,0.07);border:2px solid rgba(122,171,140,0.28);
+  border-radius:12px;padding:var(--s32);display:flex;flex-direction:column;
+  gap:var(--s16);flex:1;justify-content:center;animation:pulseGlow 5s ease infinite;}
+.practice-label{font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);}
+.practice-prompt{font-family:"Cinzel",serif;font-size:var(--t-section);color:#fff;line-height:1.4;}
+
+/* ─── WRAPUP GRID ─── */
+.wrapup-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);flex:1;}
+
+/* ─── HARBORSIDE IMAGE BAND ─── */
+.hosp-band{height:110px;
+  background:url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop") center/cover no-repeat;
+  border-radius:8px;position:relative;overflow:hidden;flex-shrink:0;}
+.hosp-band::after{content:"Harborside Medical Center";position:absolute;bottom:0;left:0;right:0;
+  padding:var(--s8) var(--s16);
+  background:linear-gradient(transparent,rgba(12,26,46,0.92));
+  font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;}
+
+/* ─── RULE ─── */
+.rule{height:1px;background:linear-gradient(90deg,transparent,rgba(122,171,140,0.25),transparent);margin:var(--s8) 0;}
+
+/* ─── SPEAKER NOTES PANEL ─── */
+.speaker-notes{display:none;}
+#notes-panel{display:none;position:fixed;bottom:0;left:0;right:0;
+  background:rgba(6,12,22,0.97);border-top:2px solid var(--accent);
+  padding:var(--s16) var(--s32);z-index:200;max-height:30vh;overflow-y:auto;
+  backdrop-filter:blur(12px);}
+#notes-panel.visible{display:block;}
+.sn-label{font-family:"DM Mono",monospace;font-size:var(--t-caption);color:var(--accent);
+  letter-spacing:0.18em;text-transform:uppercase;margin-bottom:var(--s8);}
+.sn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s16);}
+.sn-block-label{font-family:"DM Mono",monospace;font-size:0.62rem;color:var(--aged-gold);
+  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;opacity:0.7;}
+.sn-block p{font-size:0.79rem;color:var(--linen);line-height:1.5;opacity:0.85;}
+
+/* ─── NAV ─── */
+#controls{position:fixed;bottom:var(--s24);right:var(--s32);
+  display:flex;align-items:center;gap:var(--s8);z-index:300;}
+#controls button{background:rgba(27,46,72,0.92);border:1px solid rgba(122,171,140,0.3);
+  color:var(--accent);font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  padding:var(--s8) var(--s16);border-radius:4px;cursor:pointer;
+  transition:all 0.15s;letter-spacing:0.05em;backdrop-filter:blur(8px);}
+#controls button:hover{background:rgba(122,171,140,0.15);border-color:var(--accent);color:#fff;}
+#counter{font-family:"DM Mono",monospace;font-size:var(--t-caption);
+  color:var(--linen);opacity:0.4;padding:0 var(--s8);letter-spacing:0.08em;}
+#notes-btn{color:var(--linen) !important;opacity:0.5;}
+#notes-btn.on{opacity:1 !important;border-color:var(--accent) !important;color:var(--accent) !important;}
+
+@media print{
+  body{background:#fff;}
+  .slide{position:relative;display:flex !important;page-break-after:always;height:100vh;}
+  #controls,#notes-panel{display:none !important;}
+}
 </style>
 </head>
 <body>
-<div class="deck" id="deck">
+<div id="deck">
 
-  <!-- SLIDE 1 — TITLE -->
-  <div class="slide slide-title active">
-    <div class="grad-bar"></div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;position:relative;">
-      <div class="title-eyebrow">BUS123 · INTRO-M01-L03 · Gerrish School of Business</div>
-      <h1 class="title-main">Technology in <span>Business</span></h1>
-      <p class="title-sub">Why digital fluency is no longer optional — and how it shapes every career path</p>
-      <div class="title-accent-line"></div>
-      <div class="title-meta">Solving Business Problems with Technology &nbsp;·&nbsp; Fall 2026</div>
-    </div>
-    <div class="grad-bar"></div>
+<div class="slide slide-title active" id="s1">
+  <div class="grad-bar"></div>
+  <div class="title-bg-img"></div>
+  <div class="title-bg-overlay"></div>
+  <div class="title-inner">
+    <div class="title-eyebrow anim">BUS123 · INTRO-M01-L03 · Gerrish School of Business</div>
+    <h1 class="title-main anim">Technology in<br><em>Everyday Life</em><br>and Business</h1>
+    <div class="title-rule anim"></div>
+    <p class="title-sub anim">Why digital fluency is no longer optional —<br>and how it shapes every career</p>
+    <div class="title-meta anim">Solving Business Problems with Technology &nbsp;·&nbsp; Fall 2026</div>
   </div>
-
-  <!-- SLIDE 2 — HOOK -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>A Day in <span>Your Life</span> — How Much Tech?</h2>
-      <span class="slide-num">02</span>
+  <div class="grad-bar"></div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 01</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Set the tone: this is a professional development course that uses software as the vehicle — not a software tutorial.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Open with energy. Ask: 'How many apps did you use before you walked in?' Let students call out numbers. Record is usually 8–10.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students expect a narrow software tutorial. Reframe immediately: business thinking powered by technology.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~1 min. Title slides are openers. Get through it and into slide 2 quickly.</p></div>
     </div>
-    <div class="slide-body">
-      <p class="lead">Before your first class of the day, you have probably already used at least <strong>six distinct technologies</strong>. Let's count:</p>
-      <ul class="bullet-list">
-        <li><strong>Alarm app</strong> — cloud-synced, learned your schedule</li>
-        <li><strong>Banking app</strong> — checked your balance or set up a payment</li>
-        <li><strong>Maps / navigation</strong> — routed you based on real-time traffic data</li>
-        <li><strong>Email or messaging</strong> — read a Canvas notification or a text</li>
-        <li><strong>Streaming</strong> — music or podcast on the commute, personalized by algorithm</li>
-        <li><strong>Online order</strong> — placed or tracked, fulfilled by automated logistics software</li>
-      </ul>
-      <div class="callout" style="margin-top:0.3rem;">
-        <span class="callout-icon">💡</span>
-        <p>Every one of those services is built, maintained, and optimized by people who understand both <strong>business needs</strong> and <strong>technology tools</strong>. That intersection is exactly where this course lives.</p>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
   </div>
-
-  <!-- SLIDE 3 — LEARNING OBJECTIVES -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Learning <span>Objectives</span></h2>
-      <span class="slide-num">03</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.85rem,1.4vw,1rem);opacity:0.7;margin-bottom:0.3rem;">By the end of this lesson, you will be able to:</p>
-      <div class="obj-list">
-        <div class="obj-item">
-          <span class="obj-tag">I Can</span>
-          <span class="obj-text">Explain the difference between a passive technology user and a professional operator — and describe what that shift requires.</span>
-        </div>
-        <div class="obj-item">
-          <span class="obj-tag">I Can</span>
-          <span class="obj-text">Identify at least three ways technology shapes business decisions in a given industry, using a real-world example.</span>
-        </div>
-        <div class="obj-item">
-          <span class="obj-tag">I Can</span>
-          <span class="obj-text">Map each BUS123 case study company to the specific technology problems it faces and the Excel tools that solve them.</span>
-        </div>
-        <div class="obj-item">
-          <span class="obj-tag">I Can</span>
-          <span class="obj-text">Connect a specific Microsoft 365 application to a professional workflow in my intended career field.</span>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 4 — THE SCALE OF DIGITAL WORK -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>The Scale of <span>Digital Work</span></h2>
-      <span class="slide-num">04</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.5rem;">Technology isn't just present in business — it is the infrastructure business runs on. A few numbers to frame the picture:</p>
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-num">1.2B</div>
-          <div class="stat-label">People use Microsoft 365 applications globally every month</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">80%</div>
-          <div class="stat-label">Of U.S. job postings require intermediate or advanced spreadsheet skills</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">$22B</div>
-          <div class="stat-label">Estimated annual productivity loss from poor digital literacy in U.S. workplaces</div>
-        </div>
-      </div>
-      <div class="callout" style="margin-top:0.5rem;">
-        <span class="callout-icon">📊</span>
-        <p>These numbers describe a world where <strong>digital fluency is table stakes</strong> — the minimum expected before employers even look at your other qualifications. This course builds that foundation.</p>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 5 — PASSIVE VS PROFESSIONAL USER -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Passive User vs. <span>Professional Operator</span></h2>
-      <span class="slide-num">05</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <div class="panel panel-terra">
-          <div class="panel-label">Passive User</div>
-          <div class="panel-title">Uses technology that others configured</div>
-          <ul>
-            <li>Opens a spreadsheet someone else built</li>
-            <li>Types numbers into cells that already have formulas</li>
-            <li>Saves files wherever they land by default</li>
-            <li>Doesn't know why a formula works — just that it does</li>
-            <li>Calls IT when something breaks</li>
-            <li>Asks: "What does this button do?"</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">Professional Operator</div>
-          <div class="panel-title">Builds and deploys technology to solve problems</div>
-          <ul>
-            <li>Designs the spreadsheet from a blank sheet</li>
-            <li>Writes the formulas — and understands exactly what they calculate</li>
-            <li>Organizes files with a deliberate system others can follow</li>
-            <li>Can explain any calculation to a colleague or client</li>
-            <li>Troubleshoots first, escalates when necessary</li>
-            <li>Asks: "Which tool is right for this problem?"</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <span class="callout-icon">🎯</span>
-          <p>BUS123 moves you from the left column to the right. By the end of the semester, you will be someone who <strong>builds tools</strong>, not just someone who uses them.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 6 — SECTION BREAK: CASE STUDIES -->
-  <div class="slide slide-section">
-    <div class="grad-bar"></div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
-      <div class="section-label">The Four Case Study Companies</div>
-      <h2 class="section-title">Where Does <span>Tech Meet Business?</span></h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--linen);opacity:0.75;max-width:620px;text-align:center;line-height:1.5;">You'll work with these four companies all semester. Every calculation, every model, every analysis is grounded in one of these real business contexts.</p>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 7 — CASE STUDY: TIDAL GOODS CO. -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Case Study: <span>Tidal Goods Co.</span></h2>
-      <span class="slide-num">07</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.05rem);">Tidal Goods Co. is a retail business managing physical inventory across product lines. Retail is where <strong>margin math and inventory decisions</strong> directly determine whether the business makes money.</p>
-        <div class="panel panel-terra">
-          <div class="panel-label">Technology Problems Tidal Goods Faces</div>
-          <ul>
-            <li>What did we pay for this inventory — and what should we sell it for?</li>
-            <li>Which products have the highest and lowest profit margins?</li>
-            <li>How do we calculate a markdown without going below breakeven?</li>
-            <li>What does our cost of goods sold look like this quarter?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">The Excel Answer</div>
-          <ul>
-            <li><strong>COGS tracking</strong> → Excel table with unit cost, quantity, total formulas</li>
-            <li><strong>Markup calculation</strong> → Excel with cost, markup %, selling price columns</li>
-            <li><strong>Markdown analysis</strong> → Excel with conditional logic and breakeven floor</li>
-            <li><strong>Inventory valuation</strong> → Excel SUMIF and pivot-style summaries</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <span class="callout-icon">🛒</span>
-          <p>Every retailer — from a local boutique to a national chain — runs on exactly these calculations. <strong>The formulas are the same.</strong> The stakes scale with the business.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 8 — CASE STUDY: MERIDIAN ADVISORY GROUP -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Case Study: <span>Meridian Advisory Group</span></h2>
-      <span class="slide-num">08</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.05rem);">Meridian Advisory Group is a professional services firm. At this level, technology problems are <strong>high-stakes analytical decisions</strong> — the numbers in the spreadsheet directly affect client wealth and employee livelihoods.</p>
-        <div class="panel">
-          <div class="panel-label">Technology Problems Meridian Faces</div>
-          <ul>
-            <li>What is the correct gross pay for each employee this pay period?</li>
-            <li>What is the present value of a client's future income stream?</li>
-            <li>How much does this client owe in taxes on their investment gains?</li>
-            <li>What monthly payment does this loan structure require?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">The Excel Answer</div>
-          <ul>
-            <li><strong>Payroll</strong> → Excel workbook with gross pay, deductions, overtime logic</li>
-            <li><strong>TVM calculations</strong> → Excel PV, FV, PMT, NPER functions</li>
-            <li><strong>Tax analysis</strong> → Excel with bracket formulas and IF logic</li>
-            <li><strong>Loan modeling</strong> → Excel PMT with rate/term/principal inputs</li>
-            <li><strong>Client reports</strong> → Word with embedded Excel charts and tables</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 9 — CASE STUDY: ANCHOR & OAK EVENTS -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Case Study: <span>Anchor &amp; Oak Events</span></h2>
-      <span class="slide-num">09</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.05rem);">Anchor &amp; Oak Events is a seasonal event management business. Managing the gap between <strong>fixed costs and variable revenue</strong> is the core financial challenge — especially when income is concentrated in certain months.</p>
-        <div class="panel panel-terra">
-          <div class="panel-label">Technology Problems Anchor &amp; Oak Faces</div>
-          <ul>
-            <li>How many events do we need to book to cover our fixed costs?</li>
-            <li>How do we manage payroll costs when staffing fluctuates seasonally?</li>
-            <li>What does cash flow look like in our slow months vs. peak season?</li>
-            <li>Where is our breakeven — and how much margin above it are we operating?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">The Excel Answer</div>
-          <ul>
-            <li><strong>Breakeven analysis</strong> → Excel with fixed costs, variable costs, revenue per event</li>
-            <li><strong>Labor cost modeling</strong> → Excel with headcount, hours, and rate variables</li>
-            <li><strong>Cash flow projection</strong> → Excel with monthly inflows and outflows</li>
-            <li><strong>Scenario modeling</strong> → Excel with input cells and formula-driven outputs</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <span class="callout-icon">🎪</span>
-          <p>Seasonal businesses live and die by their off-season cash reserves. <strong>Knowing your breakeven number</strong> is not optional — it is the difference between surviving the slow months and not.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 10 — CASE STUDY: HARBORSIDE MEDICAL CENTER -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Case Study: <span>Harborside Medical Center</span></h2>
-      <span class="slide-num">10</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1.05rem);">Harborside Medical Center is a healthcare organization with complex payroll, diverse revenue sources, and strict compliance requirements. Here, <strong>data accuracy is a patient safety issue</strong> — not just a business preference.</p>
-        <div class="panel">
-          <div class="panel-label">Technology Problems Harborside Faces</div>
-          <ul>
-            <li>What percentage of revenue comes from each payer type?</li>
-            <li>How do we manage payroll across staff with different role-based rates?</li>
-            <li>How do we identify trends in patient volume and department costs?</li>
-            <li>How do we present complex data clearly to non-finance administrators?</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">The Excel Answer</div>
-          <ul>
-            <li><strong>Payer mix analysis</strong> → Excel with percentage calculations by source</li>
-            <li><strong>Complex payroll</strong> → Excel with role-based rate logic and shift differentials</li>
-            <li><strong>Data analysis</strong> → Excel tables, sorting, filtering, and conditional formatting</li>
-            <li><strong>Reporting</strong> → Excel charts embedded in Word or PowerPoint for leadership</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <span class="callout-icon">🏥</span>
-          <p>Healthcare is one of the largest employers in the U.S. The skills BUS123 builds are directly applicable to <strong>every administrative and analytical role</strong> in the sector.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 11 — SECTION BREAK: FLUENCY -->
-  <div class="slide slide-section">
-    <div class="grad-bar"></div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
-      <div class="section-label">Digital Fluency</div>
-      <h2 class="section-title">Where Do <span>You</span> Want to Land?</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--linen);opacity:0.75;max-width:600px;text-align:center;line-height:1.6;">Employers think about digital skills in layers. Knowing your current level — and your target — is the first step toward getting there.</p>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 12 — DIGITAL FLUENCY SPECTRUM -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>The <span>Digital Fluency</span> Spectrum</h2>
-      <span class="slide-num">12</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.6rem;">Employers think about digital skills in layers. Where do you want to land?</p>
-      <div class="fluency-bar">
-        <div class="fl-row">
-          <span class="fl-label">1 · Basic Literacy</span>
-          <div class="fl-bar-bg"><div class="fl-bar" style="width:100%;background:rgba(190,107,74,0.5);"></div></div>
-          <span class="fl-note">Expected · entry level</span>
-        </div>
-        <div class="fl-row">
-          <span class="fl-label">2 · Functional User</span>
-          <div class="fl-bar-bg"><div class="fl-bar" style="width:75%;background:rgba(212,160,82,0.6);"></div></div>
-          <span class="fl-note">Competitive · most grads</span>
-        </div>
-        <div class="fl-row">
-          <span class="fl-label">3 · Professional Operator</span>
-          <div class="fl-bar-bg"><div class="fl-bar" style="width:50%;background:var(--sage);"></div></div>
-          <span class="fl-note">Target · BUS123 floor</span>
-        </div>
-        <div class="fl-row">
-          <span class="fl-label">4 · Analytical Producer</span>
-          <div class="fl-bar-bg"><div class="fl-bar" style="width:25%;background:rgba(122,171,140,0.9);"></div></div>
-          <span class="fl-note">Differentiating · senior</span>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.5rem;">
-        <div class="panel panel-terra">
-          <div class="panel-label">Most students enter here</div>
-          <p>Levels 1–2. You can use the tools. You cannot yet build with them reliably.</p>
-        </div>
-        <div class="panel panel-gold">
-          <div class="panel-label">BUS123 targets here</div>
-          <p>Level 3 by end of EXCEL track. Level 4 by end of MATH track. That's where early-career roles are won.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 13 — COMMON MISTAKE -->
-  <div class="slide slide-mistake">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Common <span>Mistake</span></h2>
-      <span class="slide-num">13</span>
-    </div>
-    <div class="slide-body">
-      <div class="mistake-banner">
-        <span class="mistake-icon">⚠️</span>
-        <span class="mistake-title">Confusing Familiarity with Fluency</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;flex:1;">
-        <div class="panel panel-terra">
-          <div class="panel-label">What students think</div>
-          <p style="margin-bottom:0.5rem;">"I've used Excel before. I know how to use it."</p>
-          <ul>
-            <li>Opened a spreadsheet someone sent them</li>
-            <li>Typed in a cell</li>
-            <li>Maybe used AutoSum once</li>
-          </ul>
-        </div>
-        <div class="panel panel-gold">
-          <div class="panel-label">What employers mean by Excel</div>
-          <ul>
-            <li>Build a payroll model from scratch</li>
-            <li>Write nested IF formulas with multiple conditions</li>
-            <li>Create a breakeven analysis with scenario inputs</li>
-            <li>Present the results to a non-technical audience</li>
-            <li>Catch and fix your own formula errors before they matter</li>
-          </ul>
-        </div>
-      </div>
-      <div class="callout callout-terra">
-        <span class="callout-icon">🔑</span>
-        <p>The gap between these two descriptions is exactly what BUS123 exists to close. <strong>Familiarity is where you start. Fluency is where you finish.</strong></p>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 14 — HOW TECHNOLOGY SHAPES DECISIONS -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>How Technology <span>Shapes Decisions</span></h2>
-      <span class="slide-num">14</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.9rem,1.5vw,1.05rem);">Technology doesn't just execute decisions — it shapes them. The data you can see and analyze changes what decisions are even possible.</p>
-      <div class="steps" style="margin-top:0.3rem;">
-        <div class="step">
-          <span class="step-num">Before</span>
-          <div class="step-text">A Tidal Goods Co. buyer needs to decide how many units to order. Without a model, the decision is a guess based on last season's memory. One wrong bet overstocks the warehouse or leaves money on the table.</div>
-        </div>
-        <div class="step">
-          <span class="step-num">After</span>
-          <div class="step-text">With a properly built Excel model, the buyer runs ten order scenarios in two minutes — varying quantity, cost, markup, and expected sell-through — and identifies the order that maximizes margin under each scenario.</div>
-        </div>
-        <div class="step">
-          <span class="step-num">Result</span>
-          <div class="step-text"><strong>The analyst who can build the model gets to participate in the decision.</strong> The one who cannot has to wait for someone else's output. BUS123 puts you in the first group.</div>
-        </div>
-      </div>
-      <div class="callout" style="margin-top:0.3rem;">
-        <span class="callout-icon">💡</span>
-        <p>This pattern repeats at Meridian (loan modeling), Anchor &amp; Oak (breakeven scenarios), and Harborside (payer mix shifts). <strong>Same skill. Different context. Every time.</strong></p>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 15 — CAREERS AND TECHNOLOGY FLUENCY -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Your Career and <span>Technology Fluency</span></h2>
-      <span class="slide-num">15</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.5rem;">Here is what the research consistently shows about digital skills and early-career outcomes:</p>
-      <ul class="bullet-list">
-        <li>Job postings requiring advanced spreadsheet skills pay a measurable premium over equivalent roles that don't</li>
-        <li>Graduates who demonstrate technical fluency in interviews move through hiring processes faster — even for non-technical roles</li>
-        <li>The most common feedback from managers about recent graduates is not about work ethic — it's about basic technology literacy gaps</li>
-        <li>Digital skill gaps compound: someone who enters at Level 1 and stays there falls further behind peers who continue building</li>
-      </ul>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:0.3rem;">
-        <div class="panel">
-          <div class="panel-label">Most students enter BUS123</div>
-          <p>Having used Microsoft Office casually — but without being able to build anything reliable from scratch.</p>
-        </div>
-        <div class="panel panel-gold">
-          <div class="panel-label">Most students leave BUS123</div>
-          <p>Able to build a payroll model, analyze a business scenario, and present results clearly. That's a different candidate.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 16 — ACTIVITY: MAP YOUR CAREER -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Activity — <span>Map Your Career to a Tool</span></h2>
-      <span class="slide-num">16</span>
-    </div>
-    <div class="slide-body">
-      <div class="practice-box">
-        <div class="practice-label">Group Activity · 8 minutes</div>
-        <div class="practice-prompt">With a partner, answer the following three questions.</div>
-        <div class="steps" style="margin-top:0.5rem;">
-          <div class="step">
-            <span class="step-num">1</span>
-            <div class="step-text"><strong>Name your intended career field</strong> — or your best guess right now. It doesn't have to be final.</div>
-          </div>
-          <div class="step">
-            <span class="step-num">2</span>
-            <div class="step-text"><strong>Identify one specific technology problem</strong> that role faces regularly. Think about what people in that job actually do each week.</div>
-          </div>
-          <div class="step">
-            <span class="step-num">3</span>
-            <div class="step-text"><strong>Name the Microsoft 365 application</strong> you would use to solve it — and describe what the output would look like in one sentence.</div>
-          </div>
-        </div>
-        <div class="callout" style="margin-top:0.3rem;">
-          <span class="callout-icon">🎯</span>
-          <p>Be prepared to share with the class. The goal is to make the connection between <strong>your actual future</strong> and the tools this course teaches. That connection makes everything else stick.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 17 — WHERE AI FITS IN -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Where <span>AI</span> Fits In — Honestly</h2>
-      <span class="slide-num">17</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);">AI tools — including Microsoft Copilot built directly into Excel — are becoming part of everyday business workflows. That's real. Here's a clear-eyed take:</p>
-        <div class="panel panel-gold">
-          <div class="panel-label">AI is genuinely useful for</div>
-          <ul>
-            <li>Drafting a first version of something</li>
-            <li>Suggesting functions you didn't know existed</li>
-            <li>Summarizing large amounts of text quickly</li>
-            <li>Automating repetitive formatting tasks</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col">
-        <div class="panel panel-terra">
-          <div class="panel-label">AI cannot replace</div>
-          <ul>
-            <li>Knowing whether the answer is correct for your specific situation</li>
-            <li>Catching errors in a formula it didn't write</li>
-            <li>Understanding the business context behind the numbers</li>
-            <li>Taking responsibility for a wrong result</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <span class="callout-icon">🔑</span>
-          <p>AI tools are most valuable to people who <strong>already know how to do the work</strong>. If you can't read a formula and judge whether it's correct, you can't evaluate what AI produces. BUS123 builds that foundation.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 18 — TECHNOLOGY HABITS THAT PAY OFF -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Technology Habits <span>That Pay Off</span></h2>
-      <span class="slide-num">18</span>
-    </div>
-    <div class="slide-body row">
-      <div class="col">
-        <ul class="bullet-list">
-          <li><strong>Name every file correctly, every time</strong> — file naming is not a preference. It is a professional standard that signals care before the content is even opened.</li>
-          <li><strong>Save to the cloud, not the device</strong> — local saves are one hardware failure away from lost work. Cloud saves are versioned and accessible from anywhere.</li>
-          <li><strong>Use formulas, not typed values</strong> — a typed number in a result cell is invisible to anyone who needs to verify the work.</li>
-          <li><strong>Document your formulas</strong> — add a comment or notes cell explaining what a complex formula does. Future-you will thank present-you.</li>
-        </ul>
-      </div>
-      <div class="col">
-        <ul class="bullet-list">
-          <li><strong>Back up before you edit</strong> — make a copy of a working file before making major changes. OneDrive's version history helps, but the habit matters more.</li>
-          <li><strong>Verify before you present</strong> — always open a file on a different device before presenting. What renders fine on your laptop may not work on the conference room screen.</li>
-          <li><strong>Use the desktop app</strong> — browser-based Office tools are convenient but limited. For anything you're submitting, use the full application.</li>
-          <li><strong>Check before you share</strong> — review permissions on shared OneDrive files. Make sure the right people can open it — and only the right people.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 19 — MODULE WRAP-UP -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Course Module <span>Wrap-Up</span></h2>
-      <span class="slide-num">19</span>
-    </div>
-    <div class="slide-body">
-      <p class="lead" style="font-size:clamp(0.88rem,1.4vw,1rem);margin-bottom:0.5rem;">Three lessons. One module. Here's what you've done:</p>
-      <div class="wrapup-grid">
-        <div class="panel">
-          <div class="panel-label">&#10003; L01 — Software Essentials</div>
-          <p>Microsoft 365 installed with Endicott credentials. OneDrive connected and synced. BUS123 folder structure created. First file saved and named correctly.</p>
-        </div>
-        <div class="panel panel-gold">
-          <div class="panel-label">&#10003; L02 — Course Introduction</div>
-          <p>Understand course structure: INTRO → EXCEL → MATH. Know the four case study companies. Understand grading, expectations, and the Canvas homework quiz workflow.</p>
-        </div>
-        <div class="panel panel-terra">
-          <div class="panel-label">&#10003; L03 — Technology in Business</div>
-          <p>Can distinguish passive user from professional operator. Can map each case study company to its technology problems and Excel solutions. Understand where digital fluency sits on the career spectrum.</p>
-        </div>
-        <div class="panel">
-          <div class="panel-label">&#x1F51C; EXCEL-M01 Coming Next</div>
-          <p>Creating and editing worksheets from scratch. Understanding the Excel interface, entering data, basic formatting, and saving properly named files to OneDrive.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 20 — EXIT TICKET -->
-  <div class="slide">
-    <div class="grad-bar"></div>
-    <div class="slide-header">
-      <h2>Before You Leave — <span>Exit Ticket</span></h2>
-      <span class="slide-num">20</span>
-    </div>
-    <div class="slide-body">
-      <div class="practice-box">
-        <div class="practice-label">Exit Ticket · 3 minutes</div>
-        <div class="practice-prompt">Answer this question on a notecard or in the Canvas discussion — whichever your instructor directs.</div>
-        <div class="steps" style="margin-top:0.5rem;">
-          <div class="step">
-            <span class="step-num">Q</span>
-            <div class="step-text" style="font-size:clamp(0.95rem,1.6vw,1.1rem);">
-              <strong>Name one technology problem you'll face in your intended career</strong>, and identify which Microsoft 365 application you would use to solve it. Describe what the output would look like in one sentence.
-            </div>
-          </div>
-        </div>
-        <div class="callout" style="margin-top:0.5rem;">
-          <span class="callout-icon">💡</span>
-          <p>There is no wrong answer here. The goal is to start building the habit of connecting <strong>real business problems</strong> to specific tools — because that's exactly what you'll be doing all semester.</p>
-        </div>
-      </div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
-  <!-- SLIDE 21 — LOOKING AHEAD -->
-  <div class="slide slide-section">
-    <div class="grad-bar"></div>
-    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;">
-      <div class="section-label">Coming Next</div>
-      <h2 class="section-title"><span>EXCEL-M01</span><br>Creating and Editing Worksheets</h2>
-      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.3rem);color:var(--linen);opacity:0.75;max-width:600px;text-align:center;line-height:1.6;">Blank sheet. Blank cell. Your first formula.<br>The semester of building starts here.</p>
-      <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--linen);opacity:0.35;margin-top:0.5rem;letter-spacing:0.12em;">Complete any outstanding homework quizzes before next class</div>
-    </div>
-    <div class="grad-bar"></div>
-  </div>
-
 </div>
 
-<nav class="nav" role="navigation" aria-label="Slide navigation">
-  <button onclick="go(-1)" aria-label="Previous slide">&#8592; Prev</button>
-  <span class="nav-counter" id="counter" aria-live="polite">1 / 21</span>
-  <button onclick="go(1)" aria-label="Next slide">Next &#8594;</button>
+<div class="slide slide-content" id="s2">
+  <div class="slide-header anim"><h2>Before Your First Class Today</h2><span class="slide-num">02</span></div>
+  <div class="slide-body">
+    <p class="lead anim">Before you walked in, you probably used at least <strong>six distinct technologies</strong>. Let's count:</p>
+    <ul class="blist">
+      <li class="anim anim-d1"><strong>Alarm app</strong> — cloud-synced, learned your sleep schedule</li>
+      <li class="anim anim-d2"><strong>Banking app</strong> — checked balance or set up a payment</li>
+      <li class="anim anim-d3"><strong>Maps / navigation</strong> — routed you using real-time traffic data</li>
+      <li class="anim anim-d4"><strong>Email or Canvas</strong> — read a notification before coffee</li>
+      <li class="anim anim-d5"><strong>Streaming</strong> — music or podcast, curated by algorithm</li>
+      <li class="anim anim-d6"><strong>Online order</strong> — placed or tracked, fulfilled by automated logistics</li>
+    </ul>
+    <div class="callout anim">
+      <span class="callout-icon">💡</span>
+      <p>Every service is built by people who understand both <strong>business needs</strong> and <strong>technology tools</strong>. That intersection is exactly where this course lives.</p>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 02</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Technology touched students before they got to campus. Makes the course immediately relevant.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Ask: 'Raise your hand if you checked your phone before getting out of bed.' Then count the apps.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think 'technology' means coding or IT. Reframe: business technology means software tools solving real operational problems.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Hook, not lecture. Get hands up and keep energy light.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s3">
+  <div class="slide-header anim"><h2>Learning Objectives</h2><span class="slide-num">03</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="opacity:0.65;margin-bottom:var(--s8);">By the end of this lesson, you will be able to:</p>
+    <div class="obj-list">
+      <div class="obj-item anim anim-d1"><span class="obj-tag">I Can</span><span class="obj-text">Explain why digital fluency is a baseline professional expectation — and what "professional operator" means versus "casual user."</span></div>
+      <div class="obj-item anim anim-d2"><span class="obj-tag">I Can</span><span class="obj-text">Identify at least three ways technology shapes business decisions, using Harborside Medical Center as a concrete example.</span></div>
+      <div class="obj-item anim anim-d3"><span class="obj-tag">I Can</span><span class="obj-text">Connect a specific Microsoft 365 application to a real workflow in my intended career field.</span></div>
+      <div class="obj-item anim anim-d4"><span class="obj-tag">I Can</span><span class="obj-text">List three professional technology habits that protect data, time, and credibility on the job.</span></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 03</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Preview the whole lesson arc. The exit ticket maps directly to these four statements.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Note that the Harborside objective is specific — employers value people who apply skills to real context, not just recite definitions.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students treat objectives as a checklist to skim. Remind them the exit ticket maps directly to these four statements.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~2 min. Give 30 seconds to scan, then say 'let's go earn these.'</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s4">
+  <div class="slide-header anim"><h2>The Scale of Digital Work</h2><span class="slide-num">04</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="margin-bottom:var(--s16);">Technology isn't just present in business — it <strong>is the infrastructure</strong> business runs on.</p>
+    <div class="stat-grid anim">
+      <div class="stat-card"><div class="stat-num">1.2B</div><div class="stat-label">People use Microsoft 365 apps globally every month</div></div>
+      <div class="stat-card"><div class="stat-num">80%</div><div class="stat-label">Of U.S. job postings require intermediate or advanced spreadsheet skills</div></div>
+      <div class="stat-card"><div class="stat-num">$22B</div><div class="stat-label">Estimated annual productivity loss from poor digital literacy in U.S. workplaces</div></div>
+    </div>
+    <div class="callout anim">
+      <span class="callout-icon">📊</span>
+      <p><strong>Digital fluency is table stakes</strong> — the minimum expected before employers look at your other qualifications.</p>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 04</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>The $22B figure is the one that lands. Companies lose real money on rework caused by employees who can't use their tools.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Ask: 'If 80% of jobs want spreadsheet skills, what happens to candidates who say I'm not a tech person?' Pause for effect.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think these skills only matter in finance. The 80% statistic cuts across all business functions.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Let the numbers breathe — this is the stakes slide.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s5">
+  <div class="slide-header anim"><h2>Passive User vs. Professional Operator</h2><span class="slide-num">05</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <div class="panel panel-terra anim anim-d1">
+        <div class="panel-label">Passive User</div>
+        <div class="panel-title">Uses technology others configured</div>
+        <ul>
+          <li>Opens spreadsheets someone else built</li>
+          <li>Types numbers into pre-made cells</li>
+          <li>Saves files wherever they land by default</li>
+          <li>Doesn't know why a formula works</li>
+          <li>Asks: "What does this button do?"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold anim anim-d2">
+        <div class="panel-label">Professional Operator</div>
+        <div class="panel-title">Builds tools to solve problems</div>
+        <ul>
+          <li>Designs the spreadsheet from a blank sheet</li>
+          <li>Writes formulas and understands every calculation</li>
+          <li>Maintains a file system others can navigate</li>
+          <li>Can explain any output to a client</li>
+          <li>Asks: "Which tool is right for this problem?"</li>
+        </ul>
+      </div>
+      <div class="callout anim anim-d3">
+        <span class="callout-icon">🎯</span>
+        <p>BUS123 moves you from the left column to the right. By semester end, you will be someone who <strong>builds tools</strong>, not just someone who uses them.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 05</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Core mindset shift. Operators think about what the tool can do; users just react to what's in front of them.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>The person who built the spreadsheet has more organizational influence than the person who fills it in.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think 'I know Excel' places them in the right column. Probe: 'Have you built a payroll workbook from scratch someone else relied on?'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~4 min. Worth real discussion. Ask which column they honestly sit in today — frame as a starting point, not judgment.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-section" id="s6">
+  <div class="grad-bar"></div>
+  <div class="sect-bg" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80&auto=format&fit=crop');"></div>
+  <div class="sect-overlay"></div>
+  <div class="sect-inner">
+    <div class="sect-label anim">Technology Across Industries</div>
+    <h2 class="sect-title anim">Where Does<br><em>Tech Meet Business?</em></h2>
+    <p class="sect-sub anim">Every industry. Every role. Every decision.<br>The question is not whether — it's how well.</p>
+  </div>
+  <div class="grad-bar"></div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 06</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Section break — let students reset before the industry walkthrough.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Ask students to guess which industry is most tech-dependent. The answer will almost never be healthcare admin — that's the reveal on slide 8.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>None — transition slide.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~30 sec. Pause, breathe, move on.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s7">
+  <div class="slide-header anim"><h2>Technology Across Sectors</h2><span class="slide-num">07</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="margin-bottom:var(--s16);">Whatever career path you're heading toward, <strong>technology is embedded in the core work</strong>.</p>
+    <div style="display:flex;flex-direction:column;gap:var(--s8);">
+      <div class="sector-row anim anim-d1"><span class="sector-icon">💰</span><span class="sector-name">Finance &amp; Accounting</span><span class="sector-tools">Excel financial models, automated reporting, TVM calculators, budget variance tracking</span></div>
+      <div class="sector-row anim anim-d2"><span class="sector-icon">🛒</span><span class="sector-name">Retail &amp; Operations</span><span class="sector-tools">Inventory tracking, payroll automation, POS analytics, demand forecasting, markdown models</span></div>
+      <div class="sector-row anim anim-d3"><span class="sector-icon">📣</span><span class="sector-name">Marketing</span><span class="sector-tools">Campaign dashboards, customer segmentation, A/B test tracking, budget allocation models</span></div>
+      <div class="sector-row anim anim-d4"><span class="sector-icon">🏥</span><span class="sector-name">Healthcare</span><span class="sector-tools">Patient scheduling, billing and coding, payer mix analysis, compliance reporting, staffing models</span></div>
+      <div class="sector-row anim anim-d5"><span class="sector-icon">🏗️</span><span class="sector-name">Management &amp; Consulting</span><span class="sector-tools">PowerPoint client deliverables, Word SOPs and reports, Excel for data analysis</span></div>
+      <div class="sector-row anim anim-d6"><span class="sector-icon">⚖️</span><span class="sector-name">Law &amp; HR</span><span class="sector-tools">Document management, contract templates, payroll and benefits tables, compliance tracking</span></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 07</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>No matter what students study, their future job requires these tools. This makes it unavoidable.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Ask students to call out their intended major, then point to the relevant row. Personalizing it makes the course feel built for them.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think healthcare and law are non-tech fields. Point to the healthcare row — payer mix and staffing models are daily Excel work.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Quick scan is fine — the next slide goes deeper with Harborside.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s8">
+  <div class="slide-header anim"><h2>Case Study: Harborside Medical Center</h2><span class="slide-num">08</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <div class="hosp-band anim anim-d1"></div>
+      <p class="lead anim anim-d2" style="font-size:var(--t-body);">Harborside is a regional hospital running complex workflows every day — nearly all depend on people who can build and use data tools confidently.</p>
+      <div class="panel anim anim-d3">
+        <div class="panel-label">Technology Problems Harborside Faces</div>
+        <ul>
+          <li>What % of revenue comes from each insurance payer?</li>
+          <li>How do we calculate payroll across 200+ staff and pay grades?</li>
+          <li>Are we over or under budget on departmental supply costs?</li>
+          <li>How do we model staffing for next fiscal quarter?</li>
+          <li>How do we track compliance metrics across departments?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold anim anim-d2">
+        <div class="panel-label">The Microsoft 365 Answer</div>
+        <ul>
+          <li><strong>Payer mix analysis</strong> → Excel with percentage formulas and pivot tables</li>
+          <li><strong>Payroll</strong> → Excel workbook with deduction schedules and net pay formulas</li>
+          <li><strong>Budget tracking</strong> → Excel with running totals and variance columns</li>
+          <li><strong>Staffing models</strong> → Excel tables with IF logic and scenario analysis</li>
+          <li><strong>Compliance reports</strong> → Word documents with embedded Excel data</li>
+        </ul>
+      </div>
+      <div class="callout anim anim-d4">
+        <span class="callout-icon">🏥</span>
+        <p>Healthcare administration is one of the <strong>fastest-growing business sectors</strong>. Every one of these problems is solved daily by people with exactly the skills this course builds.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 08</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Makes the abstract concrete. These are the actual daily problems of healthcare administrators and finance staff.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Payer mix: a hospital serves Medicare, Medicaid, and 15+ private insurers. Understanding revenue by payer drives budget and staffing. That's percentage math in Excel.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>'I'll be in clinical work, not business.' But administrators, practice managers, and department directors do this work every day.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~5 min. Walk through the right panel. Ask a student to guess what 'payer mix' means before revealing the answer.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s9">
+  <div class="slide-header anim"><h2>Harborside: What Is Payer Mix?</h2><span class="slide-num">09</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead anim">Payer mix is the breakdown of where a hospital's revenue comes from — by insurance type. It drives almost <strong>every major business decision</strong> Harborside makes.</p>
+      <div class="panel anim anim-d2">
+        <div class="panel-label">Why It Matters</div>
+        <ul>
+          <li>Medicare and Medicaid reimburse at lower rates than private insurance</li>
+          <li>A 5% payer mix shift can mean millions in annual revenue impact</li>
+          <li>Staffing, supply budgets, and expansion plans all depend on it</li>
+          <li>Finance teams recalculate this every month — in Excel</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold anim anim-d1">
+        <div class="panel-label">Example: Harborside Payer Mix (Simplified)</div>
+        <ul>
+          <li><strong>Private Insurance</strong> — 45% of revenue</li>
+          <li><strong>Medicare</strong> — 32% of revenue</li>
+          <li><strong>Medicaid</strong> — 15% of revenue</li>
+          <li><strong>Self-Pay / Uninsured</strong> — 8% of revenue</li>
+        </ul>
+      </div>
+      <div class="callout anim anim-d3">
+        <span class="callout-icon">📐</span>
+        <p>Calculating payer mix percentages is one of the first real-world applications you'll build in EXCEL-M01. This is <strong>exactly where math meets business</strong>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 09</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Direct preview of MATH-M01 content. Students see the real destination — the math isn't abstract, it runs a hospital's finances.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Ask: 'If Medicare pays 70 cents on every dollar a private insurer pays, and your Medicare share jumps from 32% to 40%, what happens to revenue?' That's the CFO's daily question.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think percentages are 'basic.' Payer mix requires interpreting what percentages mean in context — that interpretive layer makes a professional.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~4 min. Worth spending time here — directly bridges INTRO to MATH module content.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s10">
+  <div class="slide-header anim"><h2>The Digital Fluency Spectrum</h2><span class="slide-num">10</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="margin-bottom:var(--s16);">Employers think about digital skills in layers. <strong>Where do you want to land?</strong></p>
+    <div class="fluency-bar anim">
+      <div class="fl-row"><span class="fl-label">Basic Literacy</span><div class="fl-bar-bg"><div class="fl-bar" style="width:100%;background:rgba(190,107,74,0.5);"></div></div><span class="fl-note">Expected · entry level</span></div>
+      <div class="fl-row"><span class="fl-label">File Management</span><div class="fl-bar-bg"><div class="fl-bar" style="width:88%;background:rgba(190,107,74,0.65);"></div></div><span class="fl-note">Expected · all roles</span></div>
+      <div class="fl-row"><span class="fl-label">Spreadsheet Use</span><div class="fl-bar-bg"><div class="fl-bar" style="width:74%;background:rgba(212,160,82,0.7);"></div></div><span class="fl-note">Expected · most roles</span></div>
+      <div class="fl-row"><span class="fl-label">Formula Building</span><div class="fl-bar-bg"><div class="fl-bar" style="width:58%;background:var(--aged-gold);"></div></div><span class="fl-note">Valued · differentiating</span></div>
+      <div class="fl-row"><span class="fl-label">Data Analysis</span><div class="fl-bar-bg"><div class="fl-bar" style="width:42%;background:rgba(122,171,140,0.75);"></div></div><span class="fl-note">Rare · high value</span></div>
+      <div class="fl-row"><span class="fl-label">Modeling &amp; Automation</span><div class="fl-bar-bg"><div class="fl-bar" style="width:26%;background:var(--accent);"></div></div><span class="fl-note">Very rare · premium pay</span></div>
+    </div>
+    <div class="callout anim">
+      <span class="callout-icon">🎯</span>
+      <p>BUS123 takes you from <strong>Basic Literacy</strong> through <strong>Formula Building</strong> — solidly into the differentiating tier before you graduate.</p>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 10</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>The bars show rarity increases value. Most people cluster at the bottom — being one level higher is a real differentiator.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>At Harborside, the person who builds a staffing model earns more than the person who fills in a model someone else built.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students assume Formula Building is hard. It's about knowing what question you're trying to answer and choosing the right tool.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Ask students to mentally place themselves before showing the callout box.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s11">
+  <div class="slide-header anim"><h2>How Technology Shapes Decisions</h2><span class="slide-num">11</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead anim">Technology doesn't just execute decisions — it <strong>changes which decisions are possible</strong>.</p>
+      <div class="panel panel-terra anim anim-d2">
+        <div class="panel-label">Before the Spreadsheet Era</div>
+        <ul>
+          <li>Pricing set by gut and experience, not data</li>
+          <li>Inventory managed by physical count and guesswork</li>
+          <li>Payroll calculated by hand — slow and error-prone</li>
+          <li>Cash flow projections took weeks to produce</li>
+          <li>Payer mix reviewed quarterly at best</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-gold anim anim-d1">
+        <div class="panel-label">With Modern Tools</div>
+        <ul>
+          <li>Dynamic pricing updated with real market data</li>
+          <li>Inventory tracked automatically, alerts at thresholds</li>
+          <li>Payroll processed in minutes with automatic withholding</li>
+          <li>Cash flow modeled 12 months forward in an afternoon</li>
+          <li>Payer mix recalculated monthly, informing every budget decision</li>
+        </ul>
+      </div>
+      <div class="callout anim anim-d3">
+        <span class="callout-icon">📈</span>
+        <p>The organization that <strong>understands its own data</strong> outcompetes the one that doesn't.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 11</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>The tools we treat as basic are transformative — they moved decision-making from intuition to evidence in a single generation.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Before EHR and Excel integration, hospital administrators counted insurance cards and did month-end math by hand. That was 20 years ago.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think 'data-driven' is a buzzword. It literally means: I have a spreadsheet and I used it.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. The contrast structure does the work — read one column then the other. Let the improvement speak.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content slide-mistake" id="s12">
+  <div class="slide-header anim"><h2>Common Mistake</h2><span class="slide-num">12</span></div>
+  <div class="slide-body">
+    <div class="mistake-banner anim">
+      <span class="mistake-icon">⚠️</span>
+      <div class="mistake-title">Confusing "I've Used It" With "I Know It"</div>
+    </div>
+    <p class="lead anim anim-d2" style="margin-top:var(--s16);">Most students have used Excel, Word, and PowerPoint before. Very few have used them <em>professionally</em> — producing output someone else depends on.</p>
+    <div class="rule anim anim-d2"></div>
+    <ul class="blist">
+      <li class="anim anim-d3"><strong>"I've typed things into Excel"</strong> ≠ building a payroll workbook for six employees with different pay structures that processes correctly every week.</li>
+      <li class="anim anim-d4"><strong>"I've made a slide deck"</strong> ≠ producing a presentation a CFO will show to a hospital board.</li>
+      <li class="anim anim-d5"><strong>"I know how to save files"</strong> ≠ maintaining a consistent, navigable file system a team can use without your help.</li>
+      <li class="anim anim-d6">Be honest about your starting point. The gap between casual familiarity and professional competence is exactly what this course closes.</li>
+    </ul>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 12</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Casual familiarity creates false confidence. Students who 'know Excel' often struggle on the first workbook because they've never started from blank.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>At Harborside, you don't get to say 'I'm not a spreadsheet person.' Either you can build the payer mix report, or you can't.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>This slide can feel like a callout. Frame it as diagnostic: 'I'm not judging where you are. I'm asking you to know where you are.'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~4 min. Pause after each ≠ statement. Then: 'That's not a problem — that's exactly why we're here.'</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s13">
+  <div class="slide-header anim"><h2>Microsoft 365: The Three Core Tools</h2><span class="slide-num">13</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <div class="panel panel-gold anim anim-d1" style="flex:1;">
+        <div class="panel-label">Excel</div>
+        <div class="panel-title">The Calculation Engine</div>
+        <ul>
+          <li>Payroll, financial modeling, budgets</li>
+          <li>Payer mix, percentage analysis, TVM</li>
+          <li>Inventory tracking, data tables, charts</li>
+          <li>The primary tool of this course — 60%+ of our work</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel anim anim-d2">
+        <div class="panel-label">Word</div>
+        <div class="panel-title">The Document Layer</div>
+        <ul>
+          <li>Reports, SOPs, memos, compliance docs</li>
+          <li>Embeds Excel charts and tables for delivery</li>
+          <li>Used when the output is read, not calculated</li>
+        </ul>
+      </div>
+      <div class="panel anim anim-d3" style="margin-top:0;">
+        <div class="panel-label">PowerPoint</div>
+        <div class="panel-title">The Communication Layer</div>
+        <ul>
+          <li>Client presentations, board decks, training</li>
+          <li>Data visualization pulled from Excel</li>
+          <li>Used when the output is shown, not submitted</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 13</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>The three tools are not equal — Excel is primary. Word and PowerPoint support Excel outputs.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>At Harborside: payer mix lives in Excel. The CFO's quarterly report lives in Word. The board presentation lives in PowerPoint. One dataset, three tools, three audiences.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think PowerPoint is hardest. Making a deck look nice is not the same as making one that communicates a financial analysis accurately.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Emphasize Excel dominance and move on.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s14">
+  <div class="slide-header anim"><h2>Where AI Fits In — Honestly</h2><span class="slide-num">14</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <p class="lead anim">AI tools — including Microsoft Copilot built into Excel — are part of real business workflows today. Here's a clear-eyed take:</p>
+      <div class="panel panel-gold anim anim-d2">
+        <div class="panel-label">AI Is Good At</div>
+        <ul>
+          <li>Suggesting formulas for problems you describe clearly</li>
+          <li>Drafting first versions of documents and slide text</li>
+          <li>Summarizing large datasets in plain language</li>
+          <li>Spotting patterns in data you provide</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel panel-terra anim anim-d1">
+        <div class="panel-label">AI Is Not Good At</div>
+        <ul>
+          <li>Knowing your organization's specific context and rules</li>
+          <li>Catching errors in data it wasn't told to verify</li>
+          <li>Making judgment calls about what a number means</li>
+          <li>Building professional credibility — you have to do that</li>
+        </ul>
+      </div>
+      <div class="callout callout-terra anim anim-d3">
+        <span class="callout-icon">⚖️</span>
+        <p><strong>People who use AI most effectively</strong> understand the underlying work well enough to verify what AI produces. That's the professional operator — and what BUS123 builds.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 14</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>AI is not the replacement for this course — it's the reason this course matters more.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Harborside: if Copilot suggests the wrong denominator in a payer mix formula and you can't spot it, you've given the CFO bad data. Real consequence.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Some students think AI means they don't need to learn Excel. Without Excel fluency, you can't quality-check what AI generates. You become a liability.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~4 min. Expect pushback. Acknowledge the debate, then redirect: 'That's why we learn this the right way.'</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-section" id="s15">
+  <div class="grad-bar"></div>
+  <div class="sect-bg" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop');"></div>
+  <div class="sect-overlay"></div>
+  <div class="sect-inner">
+    <div class="sect-label anim">Professional Practice</div>
+    <h2 class="sect-title anim">Technology Habits<br>That <em>Pay Off</em></h2>
+    <p class="sect-sub anim">The skills are the floor.<br>The habits are the ceiling.</p>
+  </div>
+  <div class="grad-bar"></div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 15</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Transition into the practical habits section — shifts from 'why it matters' to 'what to actually do.'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Frame it: two employees with identical Excel skills can have very different reputations based on their habits.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>None — transition slide.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~30 sec. Clean transition.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s16">
+  <div class="slide-header anim"><h2>Technology Habits That Pay Off</h2><span class="slide-num">16</span></div>
+  <div class="slide-body row">
+    <div class="col">
+      <ul class="blist">
+        <li class="anim anim-d1"><strong>Name files so others can find them</strong> — not just you, right now. A well-named file signals organizational competence.</li>
+        <li class="anim anim-d2"><strong>Save as you work</strong> — OneDrive autosave helps, but the habit matters more than the feature.</li>
+        <li class="anim anim-d3"><strong>Never put critical data in one place only</strong> — know where your files physically live, not just which app you used to open them.</li>
+        <li class="anim anim-d4"><strong>Document your formulas</strong> — a comment cell costs 30 seconds and saves hours later.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <ul class="blist">
+        <li class="anim anim-d2"><strong>Back up before you edit</strong> — copy a working file before major changes. Version history helps; the habit protects.</li>
+        <li class="anim anim-d3"><strong>Verify before you present</strong> — open the file on a different device first. What renders on your laptop may break on the conference room screen.</li>
+        <li class="anim anim-d4"><strong>Use the desktop app</strong> — browser Office is limited. Anything you submit should be built in the full app.</li>
+        <li class="anim anim-d5"><strong>Check permissions before sharing</strong> — verify who can open a OneDrive file. Privacy is a professional responsibility.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 16</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Habits are the invisible professional differentiator. Identical technical skills, very different reputations.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>In healthcare, data integrity is a compliance issue. Accidentally sharing payer analysis with the wrong person creates a legal problem.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Ask: 'Who has had a file named final_FINAL_v3_USE THIS ONE.xlsx?' The whole room laughs. Then: 'That's what we're fixing.'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Keep it light — frame as insider tips, not scolding.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s17">
+  <div class="slide-header anim"><h2>Harborside: Connecting the Dots</h2><span class="slide-num">17</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="margin-bottom:var(--s16);">By the end of BUS123, you could walk into Harborside Medical's finance office and <strong>handle these workflows</strong>. Here's the semester arc:</p>
+    <div class="steps">
+      <div class="step anim anim-d1"><span class="step-num">INTRO</span><div class="step-text"><strong>You are here.</strong> Understand the business context. Know the tools. Set up OneDrive. Learn why this work matters.</div></div>
+      <div class="step anim anim-d2"><span class="step-num">EXCEL</span><div class="step-text"><strong>Build the tools.</strong> Create workbooks from scratch. Write formulas. Format for professional output. Manage data tables.</div></div>
+      <div class="step anim anim-d3"><span class="step-num">MATH</span><div class="step-text"><strong>Solve real problems.</strong> Payer mix percentages. Payroll calculations. Markup and margin. TVM analysis. Loan math.</div></div>
+      <div class="step anim anim-d4"><span class="step-num">CAPSTONE</span><div class="step-text"><strong>Put it together.</strong> A complete business analysis project — built from scratch, documented, and presentation-ready.</div></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 17</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Students need to see the whole arc before week three wondering why they're learning to format a cell.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>The MATH step is where Harborside becomes real. Payer mix, payroll complexity, budget variance — all MATH-M01 content.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students think 'capstone' means a test. It's a production-quality deliverable — the kind you'd put in a job application portfolio.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~3 min. Read each step with intention. This is the moment the whole course clicks for some students.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s18">
+  <div class="slide-header anim"><h2>INTRO-M01 Wrap-Up</h2><span class="slide-num">18</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="margin-bottom:var(--s16);">Three lessons. One module. Here's what you've built:</p>
+    <div class="wrapup-grid">
+      <div class="panel anim anim-d1"><div class="panel-label">✓ L01 — Software Essentials</div><p>Microsoft 365 installed. OneDrive connected and synced. BUS123 folder structure created. First file saved and named correctly.</p></div>
+      <div class="panel panel-gold anim anim-d2"><div class="panel-label">✓ L02 — Course Introduction</div><p>Course structure understood: INTRO → EXCEL → MATH. Case study companies known. Grading, expectations, and Canvas workflow clear.</p></div>
+      <div class="panel anim anim-d3" style="border-left-color:var(--accent);"><div class="panel-label" style="color:var(--accent);">✓ L03 — Technology in Business</div><p>Can distinguish passive user from professional operator. Can connect a career field to a specific technology workflow.</p></div>
+      <div class="panel panel-terra anim anim-d4"><div class="panel-label">🔜 EXCEL-M01 Coming Next</div><p>Creating and editing worksheets from scratch. The Excel interface, entering data, basic formatting, saving correctly named files to OneDrive.</p></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 18</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Closing anchor. Students leave knowing what they've accomplished and what's coming.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Frame EXCEL-M01 as the moment hands-on work begins: 'You've understood the context. Next class, you're building.'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students feel like L01–L03 was 'just intro stuff.' The setup and mindset work is exactly what separates students who struggle later from those who don't.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~2 min. Brisk summary — save time for the exit ticket.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s19">
+  <div class="slide-header anim"><h2>Exit Ticket — Before You Leave</h2><span class="slide-num">19</span></div>
+  <div class="slide-body">
+    <div class="practice-box anim">
+      <div class="practice-label">Exit Ticket · 3–4 minutes · Canvas Discussion or Notecard</div>
+      <div class="practice-prompt">Name one technology problem you'll face in your intended career. Identify which Microsoft 365 application you'd use to solve it. Describe the output in one sentence.</div>
+      <div class="steps" style="margin-top:var(--s16);">
+        <div class="step anim anim-d2">
+          <span class="step-num">eg.</span>
+          <div class="step-text">A healthcare administration student: <strong>"Harborside needs to track payer mix monthly. I would use Excel to calculate the percentage of revenue from each insurance type and display it in a summary table."</strong></div>
+        </div>
+      </div>
+      <div class="callout anim anim-d3">
+        <span class="callout-icon">💡</span>
+        <p>There is no wrong answer. The goal is connecting <strong>real problems to specific tools</strong> — that's exactly what you'll do all semester.</p>
+      </div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 19</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Maps directly to objective #2: identify ways tech shapes business decisions. This is the assessment moment.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>The Harborside example gives a scaffold without doing the thinking for them. Encourage their own career field.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students write something too generic: 'I'll use Excel for spreadsheets.' Push toward specificity: what problem, what output, who reads it.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~4 min. Give real quiet time. Don't fill the silence — thinking takes time.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s20">
+  <div class="slide-header anim"><h2>Key Takeaways</h2><span class="slide-num">20</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="opacity:0.6;margin-bottom:var(--s16);">Five things to carry out of this room:</p>
+    <div class="obj-list">
+      <div class="obj-item anim anim-d1"><span class="obj-tag" style="min-width:1.5rem;font-size:1rem;">1</span><span class="obj-text">Digital fluency is a professional baseline — expected in every business function, not just "tech" roles.</span></div>
+      <div class="obj-item anim anim-d2"><span class="obj-tag" style="min-width:1.5rem;font-size:1rem;">2</span><span class="obj-text">The gap between "passive user" and "professional operator" is real — and closeable. BUS123 closes it.</span></div>
+      <div class="obj-item anim anim-d3"><span class="obj-tag" style="min-width:1.5rem;font-size:1rem;">3</span><span class="obj-text">Technology shapes which decisions are even possible — not just how fast you execute them.</span></div>
+      <div class="obj-item anim anim-d4"><span class="obj-tag" style="min-width:1.5rem;font-size:1rem;">4</span><span class="obj-text">AI tools amplify professional skill — they don't replace the need for it. You must verify what AI produces.</span></div>
+      <div class="obj-item anim anim-d5"><span class="obj-tag" style="min-width:1.5rem;font-size:1rem;">5</span><span class="obj-text">Professional habits — naming files, documenting formulas, verifying before sharing — are invisible differentiators that build real credibility.</span></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 20</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Five sentences that should echo after students leave. Read each one slowly.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Connect #3 to Harborside: before Excel, payer mix was a quarterly guess. Technology changed what was knowable.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>Students treat takeaways as the 'relax now' slide. Ask one student to read one aloud. Ends on engagement.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~2 min. Brief and punchy. Five statements, done.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" id="s21">
+  <div class="slide-header anim"><h2>Discussion Questions</h2><span class="slide-num">21</span></div>
+  <div class="slide-body">
+    <p class="lead anim" style="opacity:0.6;margin-bottom:var(--s16);">If time allows — or save for Canvas discussion board:</p>
+    <div class="steps">
+      <div class="step anim anim-d1"><span class="step-num">Q1</span><div class="step-text">Harborside tracks payer mix monthly using Excel. <strong>What business decision would change if payer mix data was only available once a year?</strong> Why does data frequency matter?</div></div>
+      <div class="step anim anim-d2"><span class="step-num">Q2</span><div class="step-text">A new hire says: <strong>"AI can build the payer mix model for me — why do I need to learn how to build it myself?"</strong> How would you respond?</div></div>
+      <div class="step anim anim-d3"><span class="step-num">Q3</span><div class="step-text"><strong>Where do you currently sit on the Digital Fluency Spectrum?</strong> What specific skill would move you up one level — and what would be your first step?</div></div>
+    </div>
+  </div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 21</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Q1 = conceptual (data frequency). Q2 = applied (set up by slide 14). Q3 = personal reflection.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>Q1 answer: annual payer mix means staffing decisions are based on last year's reality. A mid-year shift goes unnoticed until Q4 — too late.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>For Q2, push back: 'If the formula is wrong, who's responsible?' The person who submitted it — not the AI.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>Use as time allows. Q3 works well as Canvas post. Q2 can generate real debate — 3–4 min if the energy is there.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-section" id="s22">
+  <div class="grad-bar"></div>
+  <div class="sect-bg" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80&auto=format&fit=crop');"></div>
+  <div class="sect-overlay"></div>
+  <div class="sect-inner">
+    <div class="sect-label anim">Coming Next</div>
+    <h2 class="sect-title anim"><em>EXCEL-M01</em><br>Creating &amp; Editing Worksheets</h2>
+    <p class="sect-sub anim">Blank sheet. Blank cell. Your first formula.<br>The semester of building starts here.</p>
+    <div style="font-family:'DM Mono',monospace;font-size:var(--t-caption);color:var(--linen);opacity:0.3;letter-spacing:0.12em;" class="anim anim-d4">Complete any outstanding assignments before next class · Check Canvas for updates</div>
+  </div>
+  <div class="grad-bar"></div>
+  <div class="speaker-notes">
+    <div class="sn-label">Speaker Notes — Slide 22</div>
+    <div class="sn-grid">
+      <div class="sn-block"><div class="sn-block-label">Key Point</div><p>Close with momentum — EXCEL-M01 is the exciting start of hands-on work, not just 'next lesson.'</p></div>
+      <div class="sn-block"><div class="sn-block-label">Real-World Hook</div><p>'Next class you're building. No more theory. Blank sheet, your first formula.' Leave them wanting to come back.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Common Misconception</div><p>None — closing slide.</p></div>
+      <div class="sn-block"><div class="sn-block-label">Timing</div><p>~1 min. End clean. Let the image and the line do the work.</p></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<div id="notes-panel"></div>
+
+<nav id="controls">
+  <button id="prev-btn">← Prev</button>
+  <span id="counter">1 / 22</span>
+  <button id="next-btn">Next →</button>
+  <button id="notes-btn">Notes</button>
 </nav>
 
 <script>
-  const slides = document.querySelectorAll('.slide');
-  let cur = 0;
-  function show(n) {
-    slides[cur].classList.remove('active');
-    cur = (n + slides.length) % slides.length;
-    slides[cur].classList.add('active');
-    document.getElementById('counter').textContent = (cur + 1) + ' / ' + slides.length;
+  const slides     = Array.from(document.querySelectorAll('.slide'));
+  const counter    = document.getElementById('counter');
+  const notesPanel = document.getElementById('notes-panel');
+  const notesBtn   = document.getElementById('notes-btn');
+  let cur          = 0;
+  let notesOn      = false;
+  let busy         = false;
+
+  function resetAnims(slide) {
+    slide.querySelectorAll('.anim').forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetHeight;
+      el.style.animation = '';
+    });
   }
-  function go(d) { show(cur + d); }
+
+  function go(dir) {
+    if (busy) return;
+    const next = (cur + dir + slides.length) % slides.length;
+    if (next === cur) return;
+    busy = true;
+
+    const outSlide = slides[cur];
+    const inSlide  = slides[next];
+
+    resetAnims(inSlide);
+
+    // Outgoing: slide out
+    outSlide.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+    outSlide.style.opacity    = '0';
+    outSlide.style.transform  = dir > 0 ? 'translateX(-32px)' : 'translateX(32px)';
+
+    // Incoming: prep off-screen, then animate in
+    inSlide.style.transition  = 'none';
+    inSlide.style.opacity     = '0';
+    inSlide.style.transform   = dir > 0 ? 'translateX(32px)' : 'translateX(-32px)';
+    inSlide.style.display     = 'flex';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        inSlide.style.transition = 'opacity 0.42s ease, transform 0.42s ease';
+        inSlide.style.opacity    = '1';
+        inSlide.style.transform  = 'translateX(0)';
+      });
+    });
+
+    setTimeout(() => {
+      outSlide.style.transition = '';
+      outSlide.style.opacity    = '';
+      outSlide.style.transform  = '';
+      outSlide.style.display    = 'none';
+      outSlide.classList.remove('active');
+
+      inSlide.style.transition  = '';
+      inSlide.style.opacity     = '';
+      inSlide.style.transform   = '';
+      inSlide.classList.add('active');
+
+      cur  = next;
+      busy = false;
+      counter.textContent = (cur + 1) + ' / ' + slides.length;
+      updateNotes();
+    }, 430);
+  }
+
+  function updateNotes() {
+    if (!notesOn) { notesPanel.classList.remove('visible'); return; }
+    const sn = slides[cur].querySelector('.speaker-notes');
+    if (sn) {
+      notesPanel.innerHTML = sn.innerHTML;
+      notesPanel.classList.add('visible');
+    } else {
+      notesPanel.classList.remove('visible');
+    }
+  }
+
+  function toggleNotes() {
+    notesOn = !notesOn;
+    notesBtn.classList.toggle('on', notesOn);
+    updateNotes();
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', () => go(-1));
+  document.getElementById('next-btn').addEventListener('click', () => go(1));
+  notesBtn.addEventListener('click', toggleNotes);
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   go(-1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  go(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    go(-1);
+    if (e.key === 'n' || e.key === 'N')                   toggleNotes();
   });
-  // Touch / swipe support
-  let touchStartX = 0;
-  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-  document.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].screenX - touchStartX;
-    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-  }, { passive: true });
 </script>
 </body>
 </html>

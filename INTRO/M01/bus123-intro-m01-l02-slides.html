@@ -6,141 +6,156 @@
 <title>BUS123 · INTRO-M01-L02 · Course Introduction & Expectations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink-navy:      #0C1A2E;
-    --storm-blue:    #1B2E48;
-    --linen:         #DDE8F0;
-    --white:         #FFFFFF;
-    --panel-dark:    #0a1520;
-    --course-accent: #00A878;
-    --terracotta:    #BE6B4A;
-    --sage:          #7AAB8C;
-    --aged-gold:     #D4A052;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Cormorant Garamond',serif; background:#000; display:flex; align-items:center; justify-content:center; min-height:100vh; overflow:hidden; }
-  .deck { width:100vw; height:100vh; position:relative; }
-  .slide { position:absolute; inset:0; display:none; flex-direction:column; background:var(--ink-navy); overflow:hidden; }
-  .slide.active { display:flex; }
-  .grad-bar { height:5px; background:linear-gradient(90deg,var(--aged-gold) 0%,var(--terracotta) 35%,var(--sage) 65%,var(--course-accent) 100%); flex-shrink:0; }
-  @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
-  .slide.active .grad-bar { background:linear-gradient(90deg,var(--aged-gold),var(--terracotta),var(--sage),var(--course-accent)); background-size:200% auto; animation:shimmer 3s linear infinite; }
-  .slide-title { align-items:center; justify-content:center; text-align:center; position:relative; }
-  .title-img { position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1400&q=80&fit=crop'); background-size:cover; background-position:center 30%; opacity:0; animation:imgIn 1.2s ease 0.3s forwards; }
-  .title-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom,rgba(12,26,46,0.82) 0%,rgba(12,26,46,0.55) 40%,rgba(12,26,46,0.92) 100%); }
-  @keyframes imgIn { from{opacity:0} to{opacity:1} }
-  .title-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1; padding:2rem; }
-  .title-eyebrow { font-family:'DM Mono',monospace; font-size:clamp(0.6rem,1vw,0.75rem); color:var(--course-accent); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; opacity:0; animation:fadeUp 0.6s ease 0.9s forwards; }
-  .title-main { font-family:'Cinzel',serif; font-size:clamp(2rem,4.5vw,3.8rem); font-weight:700; color:var(--white); line-height:1.15; max-width:800px; opacity:0; animation:fadeUp 0.6s ease 1.1s forwards; }
-  .title-main span { color:var(--course-accent); }
-  .title-sub { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; font-size:clamp(1rem,2vw,1.4rem); color:var(--linen); opacity:0; margin:1rem 0 2.5rem; max-width:640px; animation:fadeUp 0.6s ease 1.3s forwards; }
-  .title-accent-line { width:0; height:2px; background:linear-gradient(90deg,var(--aged-gold),var(--course-accent)); margin:0 auto 1.5rem; animation:lineGrow 0.8s ease 1.5s forwards; }
-  @keyframes lineGrow { from{width:0;opacity:0} to{width:120px;opacity:1} }
-  .title-meta { font-family:'DM Mono',monospace; font-size:clamp(0.55rem,0.9vw,0.7rem); color:var(--linen); opacity:0; letter-spacing:0.12em; animation:fadeUp 0.6s ease 1.7s forwards; }
-  .slide-header { background:var(--storm-blue); padding:1.4rem 3rem; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; border-bottom:1px solid rgba(0,168,120,0.2); }
-  .slide-header h2 { font-family:'Cinzel',serif; font-size:clamp(1rem,2.2vw,1.55rem); font-weight:600; color:var(--white); }
-  .slide-header h2 span { color:var(--course-accent); }
-  .slide-num { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--course-accent); opacity:0.7; letter-spacing:0.1em; }
-  .slide-body { flex:1; padding:2rem 3rem; display:flex; flex-direction:column; gap:1rem; overflow:hidden; }
-  .slide-body.row { flex-direction:row; gap:2rem; }
-  .slide.active .slide-header { animation:fadeUp 0.35s ease both; }
-  .slide.active .slide-body { animation:fadeUp 0.35s ease 0.08s both; }
-  .slide-section { align-items:center; justify-content:center; text-align:center; position:relative; }
-  .section-img { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; animation:imgIn 1s ease 0.2s forwards; }
-  .section-img::after { content:''; position:absolute; inset:0; background:rgba(12,26,46,0.78); }
-  .section-content { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; flex:1; padding:2rem; }
-  .section-label { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--course-accent); letter-spacing:0.25em; text-transform:uppercase; }
-  .section-title { font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700; color:var(--white); max-width:700px; line-height:1.2; }
-  .section-title span { color:var(--course-accent); }
-  .slide-mistake { background:linear-gradient(135deg,#1a0e08 0%,#0e0804 100%); }
-  .slide-mistake .slide-header { background:rgba(190,107,74,0.3); border-bottom-color:rgba(190,107,74,0.4); }
-  .mistake-banner { background:var(--terracotta); border-radius:6px; padding:1rem 1.5rem; display:flex; align-items:center; gap:1rem; margin-bottom:0.5rem; }
-  .mistake-icon { font-size:1.8rem; flex-shrink:0; }
-  .mistake-title { font-family:'Cinzel',serif; font-size:1rem; font-weight:700; color:var(--white); letter-spacing:0.05em; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-  .lead { font-size:clamp(1rem,1.8vw,1.25rem); color:var(--linen); line-height:1.6; font-weight:300; }
-  .lead strong { color:var(--course-accent); font-weight:600; font-family:'Cinzel',serif; font-style:normal; }
-  ul.bullet-list { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
-  ul.bullet-list li { font-size:clamp(0.85rem,1.5vw,1.05rem); color:var(--linen); line-height:1.5; padding-left:1.4rem; position:relative; opacity:0; transform:translateX(-14px); transition:opacity 0.32s ease,transform 0.32s ease; }
-  ul.bullet-list li.revealed { opacity:1; transform:translateX(0); }
-  ul.bullet-list li::before { content:'▸'; position:absolute; left:0; color:var(--sage); font-size:0.8em; top:0.15em; transition:color 0.3s; }
-  ul.bullet-list li.revealed::before { color:var(--course-accent); }
-  ul.bullet-list li strong { color:var(--course-accent); font-weight:600; }
-  .stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin:0.3rem 0; }
-  .stat-card { background:var(--storm-blue); border-radius:12px; padding:1.8rem 1.2rem; text-align:center; border:1px solid rgba(255,255,255,0.06); position:relative; overflow:hidden; }
-  .stat-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--course-accent),var(--sage)); transform:scaleX(0); transform-origin:left; transition:transform 1.1s ease; }
-  .stat-card.counted::after { transform:scaleX(1); }
-  .stat-num { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:700; color:var(--course-accent); line-height:1; margin-bottom:0.5rem; min-height:1.2em; }
-  .stat-label { font-size:clamp(0.78rem,1.2vw,0.88rem); color:var(--linen); opacity:0.8; line-height:1.45; }
-  .panel { background:var(--storm-blue); border-radius:8px; padding:1.2rem 1.5rem; border-left:3px solid var(--course-accent); }
-  .panel-gold { border-left-color:var(--aged-gold); }
-  .panel-terra { border-left-color:var(--terracotta); }
-  .panel-label { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--course-accent); margin-bottom:0.5rem; }
-  .panel-gold .panel-label { color:var(--aged-gold); }
-  .panel-terra .panel-label { color:var(--terracotta); }
-  .panel-title { font-family:'Cinzel',serif; font-size:clamp(0.85rem,1.4vw,1rem); color:var(--white); margin-bottom:0.5rem; }
-  .panel p,.panel li { font-size:clamp(0.78rem,1.3vw,0.95rem); color:var(--linen); line-height:1.55; opacity:0.9; }
-  .panel ul { list-style:none; display:flex; flex-direction:column; gap:0.3rem; }
-  .panel ul li { padding-left:1rem; position:relative; }
-  .panel ul li::before { content:'–'; position:absolute; left:0; color:var(--course-accent); opacity:0.7; }
-  .steps { display:flex; flex-direction:column; gap:0.6rem; }
-  .step { display:flex; align-items:flex-start; gap:1rem; background:rgba(27,46,72,0.6); border-radius:6px; padding:0.75rem 1rem; }
-  .step-num { font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:500; color:var(--course-accent); background:rgba(0,168,120,0.15); border-radius:4px; padding:0.2rem 0.5rem; flex-shrink:0; margin-top:0.1rem; }
-  .step-text { font-size:clamp(0.82rem,1.35vw,0.98rem); color:var(--linen); line-height:1.5; }
-  .step-text strong { color:var(--course-accent); }
-  .col { flex:1; display:flex; flex-direction:column; gap:0.8rem; }
-  .callout { background:rgba(0,168,120,0.08); border:1px solid rgba(0,168,120,0.22); border-radius:8px; padding:1rem 1.4rem; display:flex; gap:0.8rem; align-items:flex-start; }
-  .callout-icon { font-size:1.2rem; flex-shrink:0; margin-top:0.1rem; }
-  .callout p { font-size:clamp(0.8rem,1.3vw,0.95rem); color:var(--linen); line-height:1.5; opacity:0.9; }
-  .callout p strong { color:var(--course-accent); }
-  .folder-tree { font-family:'DM Mono',monospace; font-size:clamp(0.78rem,1.3vw,0.95rem); color:var(--linen); background:var(--panel-dark); border-radius:8px; padding:1.2rem 1.5rem; border:1px solid rgba(0,168,120,0.18); line-height:1.9; }
-  .folder-tree .accent { color:var(--course-accent); }
-  .practice-box { background:rgba(0,168,120,0.07); border:2px solid rgba(0,168,120,0.28); border-radius:12px; padding:2rem; display:flex; flex-direction:column; gap:1rem; flex:1; justify-content:center; }
-  .practice-label { font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--course-accent); }
-  .practice-prompt { font-family:'Cinzel',serif; font-size:clamp(1.1rem,2vw,1.5rem); color:var(--white); line-height:1.4; }
-  .obj-list { display:flex; flex-direction:column; gap:0.8rem; }
-  .obj-item { display:flex; gap:1rem; align-items:flex-start; padding:0.9rem 1.2rem; background:var(--storm-blue); border-radius:8px; border-left:3px solid var(--course-accent); }
-  .obj-tag { font-family:'DM Mono',monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--course-accent); flex-shrink:0; margin-top:0.15rem; min-width:3.5rem; }
-  .obj-text { font-size:clamp(0.85rem,1.4vw,1rem); color:var(--linen); line-height:1.5; }
-  .wrapup-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; flex:1; }
-  .divider { height:1px; background:linear-gradient(90deg,transparent,rgba(0,168,120,0.25),transparent); margin:0.2rem 0; }
-  .badge { display:inline-block; font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--course-accent); background:rgba(0,168,120,0.12); border:1px solid rgba(0,168,120,0.25); border-radius:4px; padding:0.2rem 0.5rem; margin-bottom:0.4rem; }
-  .company-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
-  .company-card { background:var(--storm-blue); border-radius:8px; padding:1rem 1.2rem; border:1px solid rgba(255,255,255,0.06); }
-  .company-name { font-family:'Cinzel',serif; font-size:clamp(0.82rem,1.3vw,0.95rem); color:var(--course-accent); font-weight:600; margin-bottom:0.3rem; }
-  .company-desc { font-size:clamp(0.75rem,1.2vw,0.88rem); color:var(--linen); line-height:1.45; opacity:0.85; }
-  .grade-row { display:flex; align-items:center; gap:1rem; background:rgba(27,46,72,0.6); border-radius:6px; padding:0.6rem 1rem; }
-  .grade-pct { font-family:'Cinzel',serif; font-size:1.3rem; font-weight:700; color:var(--course-accent); min-width:3.5rem; }
-  .grade-bar-wrap { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
-  .grade-bar { height:100%; background:linear-gradient(90deg,var(--course-accent),var(--sage)); border-radius:3px; transition:width 1s ease; }
-  .grade-label { font-size:clamp(0.8rem,1.3vw,0.95rem); color:var(--linen); min-width:10rem; }
-  .nav { position:fixed; bottom:1.5rem; right:2rem; display:flex; gap:0.6rem; z-index:100; }
-  .nav button { background:rgba(27,46,72,0.9); border:1px solid rgba(0,168,120,0.3); color:var(--course-accent); font-family:'DM Mono',monospace; font-size:0.75rem; padding:0.5rem 1rem; border-radius:4px; cursor:pointer; transition:all 0.15s; letter-spacing:0.05em; }
-  .nav button:hover { background:rgba(0,168,120,0.15); border-color:var(--course-accent); }
-  .nav-counter { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--linen); opacity:0.4; display:flex; align-items:center; padding:0 0.3rem; letter-spacing:0.08em; }
+:root{--ink:#0A2540;--surface:#F6F9FC;--white:#FFFFFF;--gold:#D4A052;--terra:#BE6B4A;--sage:#7AAB8C;--slate:#425466;--muted:#8898AA;--border:#E3E8EF;--linen:#DDE8F0;--gradient:linear-gradient(90deg,#D4A052,#BE6B4A,#7AAB8C);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;overflow:hidden;}
+.deck{width:100vw;height:100vh;position:relative;}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;overflow:hidden;}
+.slide.active{display:flex;}
+.grad-bar{height:4px;background:var(--gradient);flex-shrink:0;}
+/* TITLE */
+.slide-title{background:var(--ink);align-items:center;justify-content:center;text-align:center;position:relative;}
+.title-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:5%;}
+.title-eyebrow{font-family:'DM Mono',monospace;font-size:clamp(0.55rem,0.9vw,0.7rem);color:var(--sage);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.5s ease 0.4s forwards;}
+.title-main{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3.4rem);font-weight:700;color:#FFF;line-height:1.15;max-width:780px;opacity:0;animation:fadeUp 0.5s ease 0.6s forwards;}
+.title-main span{color:var(--gold);}
+.title-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(0.9rem,1.8vw,1.3rem);color:var(--linen);margin:1rem 0 2rem;opacity:0;animation:fadeUp 0.5s ease 0.8s forwards;max-width:640px;}
+.title-accent-line{width:0;height:2px;background:var(--gradient);margin:0 auto 1.5rem;animation:lineGrow 0.8s ease 1s forwards;}
+@keyframes lineGrow{from{width:0;opacity:0}to{width:120px;opacity:1}}
+.title-meta{font-family:'DM Mono',monospace;font-size:clamp(0.5rem,0.8vw,0.65rem);color:var(--linen);opacity:0;letter-spacing:0.12em;animation:fadeUp 0.5s ease 1.2s forwards;}
+.meta-pills{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;margin-top:0.8rem;opacity:0;animation:fadeUp 0.5s ease 1.3s forwards;}
+.pill{font-family:'DM Mono',monospace;font-size:clamp(0.5rem,0.75vw,0.62rem);padding:0.35em 0.85em;border-radius:100px;border:0.5px solid rgba(212,160,82,0.35);color:var(--gold);background:rgba(212,160,82,0.07);}
+/* CONTENT */
+.slide-content{background:var(--surface);}
+.slide-header{background:var(--ink);padding:clamp(0.8rem,1.8vh,1.3rem) clamp(1.5rem,3vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.slide-header h2{font-family:'Cinzel',serif;font-size:clamp(0.85rem,1.8vw,1.3rem);font-weight:600;color:#FFF;}
+.slide-header h2 span{color:var(--sage);}
+.slide-num{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--gold);letter-spacing:0.12em;background:rgba(212,160,82,0.12);padding:0.2em 0.55em;border-radius:3px;border:0.5px solid rgba(212,160,82,0.25);}
+.slide-body{flex:1;padding:clamp(0.9rem,2.2vh,1.8rem) clamp(1.5rem,3vw,3rem);display:flex;flex-direction:column;gap:clamp(0.55rem,1.1vh,0.9rem);overflow:hidden;}
+.slide-body.row{flex-direction:row;gap:clamp(1rem,2vw,2rem);}
+/* SECTION */
+.slide-section{background:var(--ink);align-items:center;justify-content:center;text-align:center;}
+.section-label{font-family:'DM Mono',monospace;font-size:clamp(0.55rem,0.85vw,0.68rem);color:var(--sage);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:0.8rem;}
+.section-title{font-family:'Cinzel',serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;color:#FFF;max-width:700px;line-height:1.2;}
+.section-title span{color:var(--gold);}
+.section-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(0.85rem,1.6vw,1.2rem);color:var(--linen);opacity:0.75;max-width:550px;line-height:1.6;margin-top:1rem;}
+/* MISTAKE */
+.slide-mistake{background:#1a0e08;}
+.slide-mistake .slide-header{background:rgba(190,107,74,0.25);border-bottom:1px solid rgba(190,107,74,0.35);}
+.slide-mistake .slide-header h2 span{color:var(--terra);}
+.mistake-banner{background:var(--terra);border-radius:6px;padding:clamp(0.65rem,1.4vh,1rem) clamp(0.9rem,1.8vw,1.4rem);display:flex;align-items:center;gap:1rem;}
+.mistake-icon{font-size:1.5rem;flex-shrink:0;}
+.mistake-title{font-family:'Cinzel',serif;font-size:clamp(0.78rem,1.35vw,0.98rem);font-weight:700;color:#FFF;}
+/* CARDS */
+.card{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:clamp(0.75rem,1.6vh,1.1rem) clamp(0.9rem,1.8vw,1.4rem);border-left:3px solid var(--sage);}
+.card-gold{border-left-color:var(--gold);}
+.card-terra{border-left-color:var(--terra);}
+.card-label{font-family:'DM Mono',monospace;font-size:clamp(0.48rem,0.75vw,0.58rem);letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.35rem;}
+.card-gold .card-label{color:var(--gold);}
+.card-terra .card-label{color:var(--terra);}
+.card-title{font-family:'Cinzel',serif;font-size:clamp(0.72rem,1.25vw,0.92rem);color:var(--ink);margin-bottom:0.35rem;}
+.card p,.card li{font-family:'Inter',sans-serif;font-size:clamp(0.65rem,1.1vw,0.82rem);color:var(--slate);line-height:1.55;}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:0.22rem;}
+.card ul li{padding-left:1rem;position:relative;}
+.card ul li::before{content:'–';position:absolute;left:0;color:var(--sage);opacity:0.6;}
+.card-gold ul li::before{color:var(--gold);}
+.card-terra ul li::before{color:var(--terra);}
+/* DARK PANEL for formula display */
+.dark-panel{background:var(--ink);border-radius:8px;padding:clamp(0.65rem,1.4vh,1rem) clamp(0.9rem,1.8vw,1.3rem);border-left:3px solid var(--sage);}
+.dark-panel.gold{border-left-color:var(--gold);}
+.dark-panel-label{font-family:'DM Mono',monospace;font-size:clamp(0.48rem,0.75vw,0.58rem);letter-spacing:0.18em;text-transform:uppercase;color:var(--sage);margin-bottom:0.4rem;}
+.dark-panel.gold .dark-panel-label{color:var(--gold);}
+.dark-panel p{font-family:'DM Mono',monospace;font-size:clamp(0.62rem,1.05vw,0.82rem);color:var(--gold);line-height:1.65;}
+/* TEXT */
+.lead{font-family:'Inter',sans-serif;font-size:clamp(0.8rem,1.45vw,1.02rem);color:var(--slate);line-height:1.65;}
+.lead strong{color:var(--ink);font-weight:600;}
+/* BULLETS */
+ul.bullet-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+ul.bullet-list li{font-family:'Inter',sans-serif;font-size:clamp(0.7rem,1.2vw,0.9rem);color:var(--slate);line-height:1.5;padding-left:1.3rem;position:relative;opacity:0;transform:translateX(-10px);transition:opacity 0.3s ease,transform 0.3s ease;}
+ul.bullet-list li.revealed{opacity:1;transform:translateX(0);}
+ul.bullet-list li::before{content:'▸';position:absolute;left:0;color:var(--sage);font-size:0.75em;top:0.2em;}
+ul.bullet-list li strong{color:var(--ink);font-weight:600;}
+/* mistake slide bullets */
+ul.bullet-list.dark li{color:var(--linen);}
+ul.bullet-list.dark li strong{color:#DDE8F0;}
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:0.45rem;}
+.step{display:flex;align-items:flex-start;gap:0.85rem;background:var(--white);border:0.5px solid var(--border);border-radius:7px;padding:clamp(0.55rem,1.1vh,0.75rem) clamp(0.75rem,1.4vw,1rem);}
+.step-num{font-family:'DM Mono',monospace;font-size:0.68rem;font-weight:500;color:var(--gold);background:rgba(212,160,82,0.1);border:0.5px solid rgba(212,160,82,0.25);border-radius:4px;padding:0.2rem 0.45rem;flex-shrink:0;margin-top:0.05rem;white-space:nowrap;}
+.step-text{font-family:'Inter',sans-serif;font-size:clamp(0.68rem,1.15vw,0.85rem);color:var(--slate);line-height:1.5;}
+.step-text strong{color:var(--ink);font-weight:600;}
+.step-text code{font-family:'DM Mono',monospace;font-size:0.85em;color:var(--sage);background:rgba(122,171,140,0.1);padding:0.1em 0.3em;border-radius:3px;border:0.5px solid rgba(122,171,140,0.2);}
+/* OBJ */
+.obj-list{display:flex;flex-direction:column;gap:0.55rem;}
+.obj-item{display:flex;gap:0.85rem;align-items:flex-start;padding:clamp(0.55rem,1.1vh,0.8rem) clamp(0.85rem,1.5vw,1.1rem);background:var(--white);border:0.5px solid var(--border);border-radius:8px;border-left:3px solid var(--sage);}
+.obj-tag{font-family:'DM Mono',monospace;font-size:clamp(0.48rem,0.72vw,0.58rem);letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);flex-shrink:0;margin-top:0.18rem;min-width:3rem;font-weight:500;}
+.obj-text{font-family:'Inter',sans-serif;font-size:clamp(0.7rem,1.18vw,0.86rem);color:var(--slate);line-height:1.5;}
+/* CALLOUT */
+.callout{background:rgba(122,171,140,0.06);border:0.5px solid rgba(122,171,140,0.25);border-radius:8px;padding:clamp(0.55rem,1.1vh,0.85rem) clamp(0.85rem,1.5vw,1.2rem);display:flex;gap:0.75rem;align-items:flex-start;}
+.callout-icon{font-size:1.05rem;flex-shrink:0;margin-top:0.05rem;}
+.callout p{font-family:'Inter',sans-serif;font-size:clamp(0.65rem,1.05vw,0.8rem);color:var(--slate);line-height:1.5;}
+.callout p strong{color:var(--ink);font-weight:600;}
+/* PRACTICE */
+.practice-box{background:rgba(122,171,140,0.05);border:1.5px solid rgba(122,171,140,0.25);border-radius:12px;padding:clamp(1rem,2.4vh,1.8rem) clamp(1.2rem,2.4vw,1.9rem);display:flex;flex-direction:column;gap:0.75rem;flex:1;justify-content:center;}
+.practice-label{font-family:'DM Mono',monospace;font-size:clamp(0.48rem,0.75vw,0.6rem);letter-spacing:0.22em;text-transform:uppercase;color:var(--sage);}
+.practice-prompt{font-family:'Cinzel',serif;font-size:clamp(0.88rem,1.65vw,1.25rem);color:var(--ink);line-height:1.4;}
+/* COMPANY GRID */
+.company-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;}
+.company-card{background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:clamp(0.7rem,1.5vh,1rem) clamp(0.85rem,1.5vw,1.2rem);}
+.company-name{font-family:'Cinzel',serif;font-size:clamp(0.72rem,1.2vw,0.88rem);color:var(--ink);font-weight:600;margin-bottom:0.3rem;}
+.company-desc{font-family:'Inter',sans-serif;font-size:clamp(0.62rem,1vw,0.75rem);color:var(--muted);line-height:1.45;}
+/* GRADE ROWS */
+.grade-row{display:flex;align-items:center;gap:1rem;background:var(--white);border:0.5px solid var(--border);border-radius:6px;padding:clamp(0.45rem,1vh,0.65rem) clamp(0.75rem,1.4vw,1rem);}
+.grade-pct{font-family:'Cinzel',serif;font-size:clamp(1rem,2vw,1.4rem);font-weight:700;color:var(--gold);min-width:3.2rem;}
+.grade-bar-wrap{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.grade-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--sage));border-radius:3px;}
+.grade-label{font-family:'Inter',sans-serif;font-size:clamp(0.68rem,1.12vw,0.84rem);color:var(--slate);min-width:10rem;}
+/* BADGE */
+.badge{display:inline-block;font-family:'DM Mono',monospace;font-size:clamp(0.48rem,0.75vw,0.6rem);letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);background:rgba(122,171,140,0.08);border:0.5px solid rgba(122,171,140,0.25);border-radius:4px;padding:0.22rem 0.55rem;margin-bottom:0.4rem;}
+/* FOLDER TREE */
+.folder-tree{font-family:'DM Mono',monospace;font-size:clamp(0.62rem,1.05vw,0.8rem);color:var(--muted);background:var(--ink);border-radius:8px;padding:clamp(0.75rem,1.5vh,1.1rem) clamp(0.9rem,1.7vw,1.4rem);border:0.5px solid rgba(212,160,82,0.2);line-height:1.95;}
+.folder-tree .accent{color:var(--gold);}
+/* WRAPUP */
+.wrapup-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;flex:1;}
+.col{flex:1;display:flex;flex-direction:column;gap:0.65rem;}
+.divider{height:0.5px;background:linear-gradient(90deg,transparent,rgba(212,160,82,0.2),transparent);margin:0.2rem 0;}
+/* NAV */
+.nav{position:fixed;bottom:1.5rem;right:2rem;display:flex;gap:0.6rem;z-index:100;align-items:center;}
+.nav button{background:rgba(10,37,64,0.88);border:0.5px solid rgba(212,160,82,0.35);color:var(--gold);font-family:'DM Mono',monospace;font-size:0.68rem;padding:0.42rem 0.85rem;border-radius:4px;cursor:pointer;transition:all 0.15s;letter-spacing:0.05em;}
+.nav button:hover{background:rgba(212,160,82,0.15);border-color:var(--gold);}
+.nav-counter{font-family:'DM Mono',monospace;font-size:0.58rem;color:var(--muted);padding:0 0.3rem;letter-spacing:0.08em;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.slide-content.active .slide-header{animation:fadeUp 0.3s ease both;}
+.slide-content.active .slide-body{animation:fadeUp 0.3s ease 0.07s both;}
+.slide-section.active>*{animation:fadeUp 0.35s ease both;}
+.slide-mistake.active .slide-header{animation:fadeUp 0.3s ease both;}
+.slide-mistake.active .slide-body{animation:fadeUp 0.3s ease 0.07s both;}
 </style>
 </head>
 <body>
 <div class="deck" id="deck">
 
-<!-- SLIDE 01 — TITLE -->
+<!-- 01 TITLE -->
 <div class="slide slide-title active">
   <div class="grad-bar"></div>
-  <div class="title-img"></div>
   <div class="title-content">
-    <div class="title-eyebrow">BUS123 · INTRO-M01-L02 · Gerrish School of Business</div>
-    <h1 class="title-main">Course Introduction<br><span>&amp; Expectations</span></h1>
+    <div class="title-eyebrow">BUS123 · INTRO-M01 · L02 · Gerrish School of Business</div>
+    <h1 class="title-main">Course Introduction<br>&amp; <span>Expectations</span></h1>
     <p class="title-sub">What this course is, how it works, and how to succeed from day one</p>
     <div class="title-accent-line"></div>
-    <div class="title-meta">Solving Business Problems with Technology &nbsp;·&nbsp; Fall 2026 &nbsp;·&nbsp; Professor Evitts</div>
+    <div class="meta-pills">
+      <span class="pill">Fall 2026</span>
+      <span class="pill">75 min</span>
+      <span class="pill">Professor Evitts</span>
+    </div>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 02 — WARM-UP -->
-<div class="slide">
+<!-- 02 WARM-UP -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Warm-Up: <span>What Is a Business Problem?</span></h2><span class="slide-num">02</span></div>
   <div class="slide-body">
@@ -160,12 +175,12 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 03 — LEARNING OBJECTIVES -->
-<div class="slide">
+<!-- 03 OBJECTIVES -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Learning <span>Objectives</span></h2><span class="slide-num">03</span></div>
   <div class="slide-body">
-    <p class="lead" style="margin-bottom:0.5rem;">By the end of this lesson, you will be able to:</p>
+    <p class="lead" style="opacity:0.7;font-size:clamp(0.75rem,1.25vw,0.9rem);margin-bottom:0.2rem;">By the end of this lesson, you will be able to:</p>
     <div class="obj-list">
       <div class="obj-item"><span class="obj-tag">I Can</span><span class="obj-text">Describe the purpose and structure of BUS123 in my own words</span></div>
       <div class="obj-item"><span class="obj-tag">I Can</span><span class="obj-text">Identify the four case study businesses and describe what each one does</span></div>
@@ -177,27 +192,27 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 04 — WHAT IS THIS COURSE? -->
-<div class="slide">
+<!-- 04 WHAT IS THIS COURSE -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>What Is <span>This Course?</span></h2><span class="slide-num">04</span></div>
   <div class="slide-body row">
     <div class="col">
       <p class="lead">BUS123 is a <strong>hands-on, tool-based course</strong>. Every class period you will be building something — a spreadsheet, a model, a calculation — using real business scenarios.</p>
-      <div class="divider"></div>
+      <div class="divider" style="margin:0.5rem 0;"></div>
       <div class="steps">
-        <div class="step"><span class="step-num">Track 1</span><span class="step-text"><strong>Introduction</strong> — Office 365, OneDrive, digital fluency</span></div>
-        <div class="step"><span class="step-num">Track 2</span><span class="step-text"><strong>Excel Skills</strong> — formulas, functions, data, charts</span></div>
-        <div class="step"><span class="step-num">Track 3</span><span class="step-text"><strong>Business Math</strong> — payroll, discounts, markup, interest, taxes</span></div>
+        <div class="step"><span class="step-num">Track 1</span><div class="step-text"><strong>Introduction</strong> — Office 365, OneDrive, digital fluency</div></div>
+        <div class="step"><span class="step-num">Track 2</span><div class="step-text"><strong>Excel Skills</strong> — formulas, functions, data, charts</div></div>
+        <div class="step"><span class="step-num">Track 3</span><div class="step-text"><strong>Business Math</strong> — payroll, discounts, markup, interest, taxes</div></div>
       </div>
     </div>
     <div class="col">
-      <div class="panel panel-gold">
-        <div class="panel-label">No Textbook</div>
-        <div class="panel-title">All materials built from scratch</div>
+      <div class="card card-gold">
+        <div class="card-label">No Textbook</div>
+        <div class="card-title">All materials built from scratch</div>
         <p>There is no textbook for this course. Every pre-reading, activity, and workbook is created specifically for BUS123. All files are on GitHub and Canvas — free, always accessible.</p>
       </div>
-      <div class="callout" style="margin-top:0.8rem;">
+      <div class="callout">
         <span class="callout-icon">🎯</span>
         <p>The goal is simple: <strong>leave this course able to open Excel and solve any business math problem</strong> your employer puts in front of you.</p>
       </div>
@@ -206,42 +221,41 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 05 — SECTION BREAK: CASE STUDY COMPANIES -->
+<!-- 05 SECTION: CASE STUDY COMPANIES -->
 <div class="slide slide-section">
   <div class="grad-bar"></div>
-  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=80&fit=crop')"></div>
-  <div class="section-content">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:5%;">
     <div class="section-label">Part One</div>
-    <div class="section-title">Meet the <span>Case Study Companies</span></div>
+    <h2 class="section-title">Meet the <span>Case Study Companies</span></h2>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 06 — CASE STUDY COMPANIES -->
-<div class="slide">
+<!-- 06 CASE STUDY COMPANIES -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Our <span>Case Study Companies</span></h2><span class="slide-num">06</span></div>
   <div class="slide-body">
-    <p class="lead" style="margin-bottom:0.5rem;">Every worksheet, example, and problem in this course uses one of four real-world business scenarios.</p>
+    <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.4rem;">Every worksheet, example, and problem in this course uses one of four real-world business scenarios.</p>
     <div class="company-grid">
-      <div class="company-card">
+      <div class="company-card" style="border-left:3px solid var(--sage);">
         <div class="company-name">🛍️ Tidal Goods Co.</div>
         <div class="company-desc">Retail business — inventory management, COGS, markup and markdown pricing. Think boutique retail with real inventory math.</div>
       </div>
-      <div class="company-card">
+      <div class="company-card" style="border-left:3px solid var(--gold);">
         <div class="company-name">💼 Meridian Advisory Group</div>
         <div class="company-desc">Financial services — payroll processing, time value of money, interest calculations, tax math, and loan analysis.</div>
       </div>
-      <div class="company-card">
+      <div class="company-card" style="border-left:3px solid var(--terra);">
         <div class="company-name">🎪 Anchor &amp; Oak Events</div>
         <div class="company-desc">Event planning company — breakeven analysis, seasonal cash flow, labor cost modeling, and pricing strategy.</div>
       </div>
-      <div class="company-card">
+      <div class="company-card" style="border-left:3px solid var(--muted);">
         <div class="company-name">🏥 Harborside Medical Center</div>
         <div class="company-desc">Healthcare organization — data analysis, payer mix percentages, complex payroll, and revenue reporting.</div>
       </div>
     </div>
-    <div class="callout" style="margin-top:0.5rem;">
+    <div class="callout" style="margin-top:0.4rem;">
       <span class="callout-icon">🔄</span>
       <p>Each module rotates between companies based on the topic. <strong>Your instructor selects which company appears in each activity</strong> — you will see all four across the semester.</p>
     </div>
@@ -249,60 +263,59 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 07 — WHY CASE STUDIES? -->
-<div class="slide">
+<!-- 07 WHY CASE STUDIES -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Why <span>Case Studies?</span></h2><span class="slide-num">07</span></div>
   <div class="slide-body">
     <p class="lead">Abstract math is hard to care about. <strong>Real business scenarios make the math matter.</strong></p>
-    <div class="divider"></div>
+    <div class="divider" style="margin:0.3rem 0;"></div>
     <ul class="bullet-list">
       <li>When you calculate payroll for <strong>Meridian Advisory Group</strong>, you are doing exactly what a payroll manager does every two weeks</li>
       <li>When you build a breakeven model for <strong>Anchor &amp; Oak Events</strong>, you are making the same calculation a business owner makes before signing a lease</li>
       <li>When you analyze inventory for <strong>Tidal Goods Co.</strong>, you are doing what a retail buyer does every quarter</li>
       <li>When you interpret payer mix data for <strong>Harborside Medical Center</strong>, you are doing what a healthcare CFO reviews every month</li>
     </ul>
-    <div class="panel" style="margin-top:0.3rem;">
-      <div class="panel-label">The Point</div>
+    <div class="card card-gold" style="margin-top:0.3rem;">
+      <div class="card-label">The Point</div>
       <p>Every number you calculate in this course has a real-world analog. You are not doing homework — you are practicing skills that professionals use in actual jobs.</p>
     </div>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 08 — SECTION BREAK: CANVAS -->
+<!-- 08 SECTION: CANVAS -->
 <div class="slide slide-section">
   <div class="grad-bar"></div>
-  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80&fit=crop')"></div>
-  <div class="section-content">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:5%;">
     <div class="section-label">Part Two</div>
-    <div class="section-title">Navigating <span>Canvas</span></div>
+    <h2 class="section-title">Navigating <span>Canvas</span></h2>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 09 — CANVAS NAVIGATION -->
-<div class="slide">
+<!-- 09 CANVAS NAVIGATION -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Navigating <span>Canvas</span></h2><span class="slide-num">09</span></div>
   <div class="slide-body row">
     <div class="col">
-      <p class="lead" style="margin-bottom:0.5rem;">Canvas is your course hub. Know these five sections cold.</p>
+      <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.3rem;">Canvas is your course hub. Know these five sections cold.</p>
       <div class="steps">
-        <div class="step"><span class="step-num">Home</span><span class="step-text">Course announcements, quick links, and current week's focus</span></div>
-        <div class="step"><span class="step-num">Modules</span><span class="step-text">All lessons organized by module — <strong>start every class here</strong></span></div>
-        <div class="step"><span class="step-num">Assignments</span><span class="step-text">All graded work with due dates — homework, quizzes, projects</span></div>
-        <div class="step"><span class="step-num">Grades</span><span class="step-text">Your running grade — updated within 48 hours of submission</span></div>
-        <div class="step"><span class="step-num">Files</span><span class="step-text">Download starter workbooks and course materials here</span></div>
+        <div class="step"><span class="step-num">Home</span><div class="step-text">Course announcements, quick links, and current week's focus</div></div>
+        <div class="step"><span class="step-num">Modules</span><div class="step-text">All lessons organized by module — <strong>start every class here</strong></div></div>
+        <div class="step"><span class="step-num">Assignments</span><div class="step-text">All graded work with due dates — homework, quizzes, projects</div></div>
+        <div class="step"><span class="step-num">Grades</span><div class="step-text">Your running grade — updated within 48 hours of submission</div></div>
+        <div class="step"><span class="step-num">Files</span><div class="step-text">Download starter workbooks and course materials here</div></div>
       </div>
     </div>
     <div class="col">
-      <div class="panel panel-gold">
-        <div class="panel-label">Notifications</div>
-        <div class="panel-title">Set them up now</div>
+      <div class="card card-gold">
+        <div class="card-label">Notifications</div>
+        <div class="card-title">Set them up now</div>
         <p>Go to Account → Notifications → turn on email alerts for Announcements and Grading. Announcements contain important updates — missing them is not an excuse for missing work.</p>
       </div>
-      <div class="callout" style="margin-top:0.8rem;">
+      <div class="callout" style="margin-top:0.5rem;">
         <span class="callout-icon">📱</span>
         <p>Download the <strong>Canvas Student app</strong> — it gives you push notifications for grades and announcements instantly.</p>
       </div>
@@ -311,56 +324,56 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 10 — SUBMITTING WORK ON CANVAS -->
-<div class="slide">
+<!-- 10 SUBMITTING WORK -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Submitting <span>Work on Canvas</span></h2><span class="slide-num">10</span></div>
   <div class="slide-body">
-    <p class="lead" style="margin-bottom:0.4rem;">There are two types of submissions in this course:</p>
-    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0; margin-bottom:0.5rem;">
+    <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.3rem;">There are two types of submissions in this course:</p>
+    <div class="slide-body row" style="padding:0;gap:1rem;flex:0;margin-bottom:0.4rem;">
       <div class="col">
-        <div class="panel">
-          <div class="panel-label">Track 1 — Canvas Quiz</div>
-          <div class="panel-title">Math &amp; Concept Questions</div>
-          <p>Multiple choice and fill-in-the-blank questions completed directly in Canvas. Graded automatically. Submit before the deadline — no late attempts.</p>
+        <div class="card">
+          <div class="card-label">Track 1 — Canvas Quiz</div>
+          <div class="card-title">Math &amp; Concept Questions</div>
+          <p>Multiple choice and fill-in-the-blank completed directly in Canvas. Graded automatically. Submit before the deadline — no late attempts.</p>
         </div>
       </div>
       <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">Track 2 — Excel File Upload</div>
-          <div class="panel-title">Workbook Submissions</div>
-          <p>Save your completed .xlsx file to OneDrive, then upload it to the Canvas assignment. File must be named correctly to be accepted — include your last name.</p>
+        <div class="card card-gold">
+          <div class="card-label">Track 2 — Excel File Upload</div>
+          <div class="card-title">Workbook Submissions</div>
+          <p>Save your completed .xlsx file to OneDrive, then upload to the Canvas assignment. File must be named correctly to be accepted.</p>
         </div>
       </div>
     </div>
     <div class="steps">
-      <div class="step"><span class="step-num">Step 1</span><span class="step-text">Complete work in Excel → save to <code style="font-family:'DM Mono',monospace;color:var(--course-accent)">BUS123 → Homework</code> in OneDrive</span></div>
-      <div class="step"><span class="step-num">Step 2</span><span class="step-text">Rename file: <code style="font-family:'DM Mono',monospace;color:var(--course-accent)">Lastname_M01_L02_Activity.xlsx</code></span></div>
-      <div class="step"><span class="step-num">Step 3</span><span class="step-text">Canvas → Assignment → Submit Assignment → upload file → Submit</span></div>
+      <div class="step"><span class="step-num">Step 1</span><div class="step-text">Complete work in Excel → save to <code>BUS123 → Homework</code> in OneDrive</div></div>
+      <div class="step"><span class="step-num">Step 2</span><div class="step-text">Rename file: <code>Lastname_M01_L02_Activity.xlsx</code></div></div>
+      <div class="step"><span class="step-num">Step 3</span><div class="step-text">Canvas → Assignment → Submit Assignment → upload file → Submit</div></div>
     </div>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 11 — COMMON MISTAKE: LATE SUBMISSIONS -->
+<!-- 11 COMMON MISTAKE: WRONG FILE -->
 <div class="slide slide-mistake">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Common <span>Mistake</span></h2><span class="slide-num">11</span></div>
   <div class="slide-body">
-    <div class="mistake-banner"><span class="mistake-icon">⚠️</span><span class="mistake-title">SUBMITTING THE WRONG FILE OR VERSION</span></div>
-    <p class="lead">Canvas records your submission timestamp and file name. Uploading the wrong version — or uploading a blank file — counts as your submission.</p>
+    <div class="mistake-banner"><span class="mistake-icon">⚠️</span><div><div class="mistake-title">Submitting the Wrong File or Version</div></div></div>
+    <p class="lead" style="color:var(--linen);font-size:clamp(0.78rem,1.35vw,1rem);">Canvas records your submission timestamp and file name. Uploading the wrong version — or uploading a blank file — counts as your submission.</p>
     <div class="divider" style="margin:0.6rem 0;"></div>
-    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+    <div class="slide-body row" style="padding:0;gap:1rem;flex:0;">
       <div class="col">
-        <div class="panel panel-terra">
-          <div class="panel-label">Common Error</div>
-          <p>Uploading a blank starter file, an old version from a previous assignment, or a file named "Untitled" — then asking for a re-submission opportunity.</p>
+        <div class="card card-terra" style="background:rgba(190,107,74,0.08);">
+          <div class="card-label">Common Error</div>
+          <p style="color:var(--linen);">Uploading a blank starter file, an old version from a previous assignment, or a file named "Untitled" — then asking for a re-submission opportunity.</p>
         </div>
       </div>
       <div class="col">
-        <div class="panel">
-          <div class="panel-label">Best Practice</div>
-          <p>Open your submitted file after uploading to confirm it is the correct version with all your work completed. Takes 30 seconds and prevents every submission error.</p>
+        <div class="card" style="background:rgba(122,171,140,0.08);">
+          <div class="card-label">Best Practice</div>
+          <p style="color:var(--linen);">Open your submitted file after uploading to confirm it is the correct version with all your work completed. Takes 30 seconds and prevents every submission error.</p>
         </div>
       </div>
     </div>
@@ -368,30 +381,29 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 12 — SECTION BREAK: GRADING -->
+<!-- 12 SECTION: GRADING -->
 <div class="slide slide-section">
   <div class="grad-bar"></div>
-  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1400&q=80&fit=crop')"></div>
-  <div class="section-content">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:5%;">
     <div class="section-label">Part Three</div>
-    <div class="section-title">How <span>Grading Works</span></div>
+    <h2 class="section-title">How <span>Grading Works</span></h2>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 13 — GRADING BREAKDOWN -->
-<div class="slide">
+<!-- 13 GRADING BREAKDOWN -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Grading <span>Breakdown</span></h2><span class="slide-num">13</span></div>
   <div class="slide-body">
-    <p class="lead" style="margin-bottom:0.5rem;">Your grade is built from <strong>consistent daily effort</strong> — not one or two high-stakes tests.</p>
-    <div style="display:flex; flex-direction:column; gap:0.5rem; margin-top:0.3rem;">
+    <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.3rem;">Your grade is built from <strong>consistent daily effort</strong> — not one or two high-stakes tests.</p>
+    <div style="display:flex;flex-direction:column;gap:0.45rem;margin-top:0.2rem;">
       <div class="grade-row"><span class="grade-pct">35%</span><div class="grade-bar-wrap"><div class="grade-bar" style="width:35%"></div></div><span class="grade-label">In-Class Activities</span></div>
       <div class="grade-row"><span class="grade-pct">25%</span><div class="grade-bar-wrap"><div class="grade-bar" style="width:25%"></div></div><span class="grade-label">Homework Assignments</span></div>
       <div class="grade-row"><span class="grade-pct">20%</span><div class="grade-bar-wrap"><div class="grade-bar" style="width:20%"></div></div><span class="grade-label">Canvas Quizzes</span></div>
       <div class="grade-row"><span class="grade-pct">20%</span><div class="grade-bar-wrap"><div class="grade-bar" style="width:20%"></div></div><span class="grade-label">Projects</span></div>
     </div>
-    <div class="callout" style="margin-top:0.6rem;">
+    <div class="callout" style="margin-top:0.5rem;">
       <span class="callout-icon">📊</span>
       <p>Students who show up, engage in activities, and submit homework consistently <strong>rarely finish below a B</strong>. Grades in this course are a direct reflection of participation.</p>
     </div>
@@ -399,8 +411,8 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 14 — STANDARDS-BASED LEARNING -->
-<div class="slide">
+<!-- 14 STANDARDS-BASED LEARNING -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Standards-Based <span>Learning</span></h2><span class="slide-num">14</span></div>
   <div class="slide-body row">
@@ -408,19 +420,19 @@
       <p class="lead">This course uses a <strong>4-point proficiency scale</strong> rather than traditional percentage scoring.</p>
       <div class="divider" style="margin:0.4rem 0;"></div>
       <div class="steps">
-        <div class="step"><span class="step-num">4</span><span class="step-text"><strong>Exceeds</strong> — demonstrates mastery beyond expectations, applies concepts in new contexts</span></div>
-        <div class="step"><span class="step-num">3</span><span class="step-text"><strong>Meets</strong> — grade-level expectation, concepts applied correctly</span></div>
-        <div class="step"><span class="step-num">2</span><span class="step-text"><strong>Approaching</strong> — partial understanding, some errors present</span></div>
-        <div class="step"><span class="step-num">1</span><span class="step-text"><strong>Beginning</strong> — limited understanding, significant gaps remain</span></div>
+        <div class="step"><span class="step-num">4</span><div class="step-text"><strong>Exceeds</strong> — demonstrates mastery beyond expectations, applies concepts in new contexts</div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-text"><strong>Meets</strong> — grade-level expectation, concepts applied correctly</div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-text"><strong>Approaching</strong> — partial understanding, some errors present</div></div>
+        <div class="step"><span class="step-num">1</span><div class="step-text"><strong>Beginning</strong> — limited understanding, significant gaps remain</div></div>
       </div>
     </div>
     <div class="col">
-      <div class="panel panel-gold">
-        <div class="panel-label">The Goal</div>
-        <div class="panel-title">Level 3 = success</div>
+      <div class="card card-gold">
+        <div class="card-label">The Goal</div>
+        <div class="card-title">Level 3 = success</div>
         <p>A score of 3 (Meets) means you have mastered the standard at the level expected. Level 4 requires you to apply skills in unfamiliar contexts — that's the challenge tab in your workbooks.</p>
       </div>
-      <div class="callout" style="margin-top:0.8rem;">
+      <div class="callout" style="margin-top:0.5rem;">
         <span class="callout-icon">📋</span>
         <p>There are <strong>20 standards</strong> across 7 skill strands this semester — Technology, Excel, Math, Merchandising, Operating Costs, Finance, and Data Analysis.</p>
       </div>
@@ -429,31 +441,31 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 15 — WORKBOOK STRUCTURE -->
-<div class="slide">
+<!-- 15 WORKBOOK STRUCTURE -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Your <span>Workbook Structure</span></h2><span class="slide-num">15</span></div>
   <div class="slide-body">
-    <p class="lead" style="margin-bottom:0.4rem;">Every Excel workbook in this course follows the same tab structure.</p>
+    <p class="lead" style="font-size:clamp(0.76rem,1.3vw,0.95rem);margin-bottom:0.3rem;">Every Excel workbook in this course follows the same tab structure.</p>
     <div class="folder-tree">
       <span class="accent">Tab 1: START HERE</span> &nbsp;—&nbsp; instructions, learning objectives, how to use the workbook<br>
       <span class="accent">Tab 2: Main Activity</span> &nbsp;—&nbsp; primary exercise (yellow cells = your input)<br>
       <span class="accent">Tab 3: Challenge</span> &nbsp;&nbsp;&nbsp;—&nbsp; Level 4 stretch exercise (optional but encouraged)<br>
       <span class="accent">Tab 4: Formula Reference Card</span> &nbsp;—&nbsp; every formula from this lesson
     </div>
-    <div class="divider" style="margin:0.5rem 0;"></div>
-    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+    <div class="divider" style="margin:0.4rem 0;"></div>
+    <div class="slide-body row" style="padding:0;gap:1rem;flex:0;">
       <div class="col">
-        <div class="panel">
-          <div class="panel-label">Yellow Cells</div>
-          <div class="panel-title">Your input goes here — always</div>
+        <div class="card">
+          <div class="card-label">Yellow Cells</div>
+          <div class="card-title">Your input goes here — always</div>
           <p>Yellow-filled cells are where you type your answers. Never type in cells that are not yellow unless instructed.</p>
         </div>
       </div>
       <div class="col">
-        <div class="panel panel-gold">
-          <div class="panel-label">Formula First Rule</div>
-          <div class="panel-title">Figure out the function yourself</div>
+        <div class="card card-gold">
+          <div class="card-label">Formula First Rule</div>
+          <div class="card-title">Figure out the function yourself</div>
           <p>Workbooks never tell you which Excel function to use. Read the context, use the Formula Reference Card, and choose the right tool — like a real analyst would.</p>
         </div>
       </div>
@@ -462,19 +474,18 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 16 — SECTION BREAK: EXPECTATIONS -->
+<!-- 16 SECTION: EXPECTATIONS -->
 <div class="slide slide-section">
   <div class="grad-bar"></div>
-  <div class="section-img" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1400&q=80&fit=crop')"></div>
-  <div class="section-content">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:5%;">
     <div class="section-label">Part Four</div>
-    <div class="section-title">Expectations &amp; <span>Professional Standards</span></div>
+    <h2 class="section-title">Expectations &amp; <span>Professional Standards</span></h2>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 17 — EXPECTATIONS -->
-<div class="slide">
+<!-- 17 EXPECTATIONS -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Course <span>Expectations</span></h2><span class="slide-num">17</span></div>
   <div class="slide-body row">
@@ -489,7 +500,7 @@
       </ul>
     </div>
     <div class="col">
-      <div class="badge" style="background:rgba(0,168,120,0.12);border-color:rgba(0,168,120,0.3);">In-Class Standards</div>
+      <div class="badge">In-Class Standards</div>
       <ul class="bullet-list" style="margin-top:0.4rem;">
         <li>Laptop open and Excel ready within the first 3 minutes</li>
         <li>Questions are encouraged — confusion is expected and normal</li>
@@ -502,17 +513,17 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 18 — AI POLICY -->
-<div class="slide">
+<!-- 18 AI POLICY -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>AI Tools &amp; <span>Academic Integrity</span></h2><span class="slide-num">18</span></div>
   <div class="slide-body">
     <p class="lead">AI tools like ChatGPT and Claude are <strong>part of the modern business toolkit</strong>. This course takes a practical approach.</p>
     <div class="divider" style="margin:0.3rem 0;"></div>
-    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+    <div class="slide-body row" style="padding:0;gap:1rem;flex:0;">
       <div class="col">
-        <div class="panel">
-          <div class="panel-label">Permitted</div>
+        <div class="card">
+          <div class="card-label">Permitted</div>
           <ul>
             <li>Using AI to understand a concept you're stuck on</li>
             <li>Asking AI to explain an Excel error message</li>
@@ -522,8 +533,8 @@
         </div>
       </div>
       <div class="col">
-        <div class="panel panel-terra">
-          <div class="panel-label">Not Permitted</div>
+        <div class="card card-terra">
+          <div class="card-label">Not Permitted</div>
           <ul>
             <li>Having AI complete your Excel workbook for you</li>
             <li>Submitting AI-generated answers as your own calculations</li>
@@ -533,7 +544,7 @@
         </div>
       </div>
     </div>
-    <div class="callout" style="margin-top:0.5rem;">
+    <div class="callout" style="margin-top:0.4rem;">
       <span class="callout-icon">🧠</span>
       <p>The test is simple: <strong>can you explain what you submitted?</strong> If a professor asks you to walk through your work and you cannot — that is an academic integrity issue.</p>
     </div>
@@ -541,25 +552,25 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 19 — COMMON MISTAKE: FORMULA VS ANSWER -->
+<!-- 19 COMMON MISTAKE: FORMULA VS ANSWER -->
 <div class="slide slide-mistake">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Common <span>Mistake</span></h2><span class="slide-num">19</span></div>
   <div class="slide-body">
-    <div class="mistake-banner"><span class="mistake-icon">⚠️</span><span class="mistake-title">TYPING THE ANSWER INSTEAD OF BUILDING THE FORMULA</span></div>
-    <p class="lead">A yellow cell that says <strong>$1,247.50</strong> might look correct. But if you typed that number instead of writing a formula, your workbook is broken.</p>
+    <div class="mistake-banner"><span class="mistake-icon">⚠️</span><div><div class="mistake-title">Typing the Answer Instead of Building the Formula</div></div></div>
+    <p class="lead" style="color:var(--linen);font-size:clamp(0.78rem,1.35vw,1rem);">A yellow cell that says <strong style="color:#DDE8F0;">$1,247.50</strong> might look correct. But if you typed that number instead of writing a formula, your workbook is broken.</p>
     <div class="divider" style="margin:0.6rem 0;"></div>
-    <div class="slide-body row" style="padding:0; gap:1.5rem; flex:0;">
+    <div class="slide-body row" style="padding:0;gap:1rem;flex:0;">
       <div class="col">
-        <div class="panel panel-terra">
-          <div class="panel-label">Wrong Approach</div>
-          <p>Calculate the answer on paper or in your head → type the final number into the cell. This looks right but earns no credit for formula construction.</p>
+        <div class="card card-terra" style="background:rgba(190,107,74,0.08);">
+          <div class="card-label">Wrong Approach</div>
+          <p style="color:var(--linen);">Calculate the answer on paper or in your head → type the final number into the cell. This looks right but earns no credit for formula construction.</p>
         </div>
       </div>
       <div class="col">
-        <div class="panel">
-          <div class="panel-label">Correct Approach</div>
-          <p>Type = in the cell → build the formula using cell references and functions → Excel calculates the answer. If input values change, your answer updates automatically.</p>
+        <div class="card" style="background:rgba(122,171,140,0.08);">
+          <div class="card-label">Correct Approach</div>
+          <p style="color:var(--linen);">Type = in the cell → build the formula using cell references and functions → Excel calculates the answer. If input values change, your answer updates automatically.</p>
         </div>
       </div>
     </div>
@@ -567,8 +578,8 @@
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 20 — STUDENT PRACTICE -->
-<div class="slide">
+<!-- 20 PRACTICE -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Student <span>Practice</span></h2><span class="slide-num">20</span></div>
   <div class="slide-body row">
@@ -580,26 +591,26 @@
     </div>
     <div class="col">
       <div class="steps">
-        <div class="step"><span class="step-num">01</span><span class="step-text">Open Canvas → go to BUS123 → click <strong>Modules</strong></span></div>
-        <div class="step"><span class="step-num">02</span><span class="step-text">Find <strong>INTRO-M01</strong> → locate the L01 and L02 materials</span></div>
-        <div class="step"><span class="step-num">03</span><span class="step-text">Go to <strong>Assignments</strong> → find the next due assignment and note the deadline</span></div>
-        <div class="step"><span class="step-num">04</span><span class="step-text">Go to <strong>Account → Notifications</strong> → confirm email alerts are enabled</span></div>
-        <div class="step"><span class="step-num">05</span><span class="step-text">Return to Modules → download the <strong>L02 starter workbook</strong> to your BUS123 OneDrive folder</span></div>
+        <div class="step"><span class="step-num">01</span><div class="step-text">Open Canvas → go to BUS123 → click <strong>Modules</strong></div></div>
+        <div class="step"><span class="step-num">02</span><div class="step-text">Find <strong>INTRO-M01</strong> → locate the L01 and L02 materials</div></div>
+        <div class="step"><span class="step-num">03</span><div class="step-text">Go to <strong>Assignments</strong> → find the next due assignment and note the deadline</div></div>
+        <div class="step"><span class="step-num">04</span><div class="step-text">Go to <strong>Account → Notifications</strong> → confirm email alerts are enabled</div></div>
+        <div class="step"><span class="step-num">05</span><div class="step-text">Return to Modules → download the <strong>L02 starter workbook</strong> to your BUS123 OneDrive folder</div></div>
       </div>
     </div>
   </div>
   <div class="grad-bar"></div>
 </div>
 
-<!-- SLIDE 21 — WRAP-UP -->
-<div class="slide">
+<!-- 21 WRAP-UP -->
+<div class="slide slide-content">
   <div class="grad-bar"></div>
   <div class="slide-header"><h2>Wrap-Up &amp; <span>What's Next</span></h2><span class="slide-num">21</span></div>
   <div class="slide-body">
     <div class="wrapup-grid">
-      <div style="display:flex;flex-direction:column;gap:0.8rem;">
-        <div class="panel panel-gold">
-          <div class="panel-label">What We Covered Today</div>
+      <div style="display:flex;flex-direction:column;gap:0.65rem;">
+        <div class="card card-gold">
+          <div class="card-label">What We Covered Today</div>
           <ul>
             <li>Course structure — three learning tracks</li>
             <li>Four case study companies and their industries</li>
@@ -610,9 +621,9 @@
           </ul>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:0.8rem;">
-        <div class="panel">
-          <div class="panel-label">Before Next Class</div>
+      <div style="display:flex;flex-direction:column;gap:0.65rem;">
+        <div class="card">
+          <div class="card-label">Before Next Class</div>
           <ul>
             <li>Complete the L02 Canvas quiz before next session</li>
             <li>Confirm Canvas notifications are enabled</li>
@@ -620,9 +631,9 @@
             <li>Review the Formula Reference Card in your L01 workbook</li>
           </ul>
         </div>
-        <div class="panel">
-          <div class="panel-label">Next Lesson — INTRO-M01-L03</div>
-          <div class="panel-title">Technology in Business</div>
+        <div class="card">
+          <div class="card-label">Next Lesson — INTRO-M01-L03</div>
+          <div class="card-title">Technology in Business</div>
           <p>How technology is reshaping every industry, and where Excel and data skills fit in the modern professional's toolkit.</p>
         </div>
       </div>
@@ -631,44 +642,24 @@
   <div class="grad-bar"></div>
 </div>
 
-</div>
-<div class="nav">
+</div><!-- /deck -->
+<nav class="nav">
   <button id="prev">← Prev</button>
   <span class="nav-counter" id="counter">1 / 21</span>
   <button id="next">Next →</button>
-</div>
+</nav>
 <script>
-const slides = document.querySelectorAll('.slide');
-let cur = 0;
-function goTo(n) {
-  slides[cur].classList.remove('active');
-  cur = (n + slides.length) % slides.length;
-  slides[cur].classList.add('active');
-  document.getElementById('counter').textContent = (cur+1)+' / '+slides.length;
-  slides[cur].querySelectorAll('.bullet-list li').forEach(b=>b.classList.remove('revealed'));
-}
-document.addEventListener('keydown', e => {
-  const bullets = slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');
-  if ((e.key==='ArrowRight'||e.key===' ')&&bullets.length){e.preventDefault();bullets[0].classList.add('revealed');}
+const slides=document.querySelectorAll('.slide');
+let cur=0;
+function goTo(n){slides[cur].classList.remove('active');cur=(n+slides.length)%slides.length;slides[cur].classList.add('active');document.getElementById('counter').textContent=(cur+1)+' / '+slides.length;slides[cur].querySelectorAll('.bullet-list li').forEach(b=>b.classList.remove('revealed'));}
+document.addEventListener('keydown',e=>{
+  const bullets=slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');
+  if((e.key==='ArrowRight'||e.key===' ')&&bullets.length){e.preventDefault();bullets[0].classList.add('revealed');}
   else if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();goTo(cur+1);}
   else if(e.key==='ArrowLeft'){goTo(cur-1);}
 });
 document.getElementById('prev').addEventListener('click',()=>goTo(cur-1));
-document.getElementById('next').addEventListener('click',()=>{
-  const b=slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');
-  if(b.length)b[0].classList.add('revealed'); else goTo(cur+1);
-});
-function runCounters(s){
-  s.querySelectorAll('.stat-num[data-target]').forEach(el=>{
-    const t=+el.dataset.target,d=1200;let st=null;
-    function step(ts){if(!st)st=ts;const p=Math.min((ts-st)/d,1);el.textContent=Math.floor(p*t);
-    if(p<1)requestAnimationFrame(step);else{el.textContent=t;el.closest('.stat-card')?.classList.add('counted');}}
-    requestAnimationFrame(step);
-  });
-}
-const obs=new MutationObserver(m=>m.forEach(x=>{if(x.target.classList.contains('active'))runCounters(x.target);}));
-slides.forEach(s=>obs.observe(s,{attributes:true,attributeFilter:['class']}));
-runCounters(slides[0]);
+document.getElementById('next').addEventListener('click',()=>{const b=slides[cur].querySelectorAll('.bullet-list li:not(.revealed)');if(b.length)b[0].classList.add('revealed');else goTo(cur+1);});
 </script>
 </body>
 </html>

@@ -1,5 +1,1138 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUS123 · EXCEL-M01-L01 · Creating and Editing Worksheets</title>
-<style>:root{--ink:#0C1A2E;--storm:#1B2E48;--gold:#D4A052;--terra:#BE6B4A;--sage:#7AAB8C;--linen:#DDE8F0;--white:#fff;--cell:#ffffff;--alt:#f7f8fa;--cream:#fffbf0;--navy:#0a3d6b;--green:#1a6b3c}
-*{box-sizing:border-box;margin:0;padding:0}body{background:#050910;color:var(--linen);font-family:Georgia,serif;overflow:hidden}.deck{width:100vw;height:100vh;position:relative}.slide{position:absolute;inset:0;display:none;flex-direction:column;background:var(--ink)}.slide.active{display:flex}.bar{height:6px;background:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));flex:none}.title{justify-content:center;padding:7vw}.title h1{font-size:clamp(2.4rem,5vw,4.8rem);color:var(--white);font-family:Georgia,serif;line-height:1.05;max-width:1050px}.title p{font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;margin-top:1rem;max-width:900px}.eyebrow{font-family:monospace;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem}.header{display:flex;justify-content:space-between;align-items:center;background:var(--storm);padding:1.2rem 2.6rem;border-bottom:1px solid rgba(212,160,82,.35)}.header h2{font-size:clamp(1.4rem,2.8vw,2.2rem);color:var(--white)}.header span{font-family:monospace;color:var(--gold)}.body{flex:1;padding:3rem;display:flex;align-items:center;gap:2rem}.body p,.body li{font-size:clamp(1.35rem,2.7vw,2.25rem);line-height:1.35;max-width:1050px}.body ul{display:grid;gap:1rem;list-style-position:inside}.formula{background:#07101d;border-left:5px solid var(--gold);border-radius:8px;padding:2rem;width:100%;font-size:clamp(1.5rem,2.8vw,2.5rem)}code{font-family:"DM Mono","Courier New",monospace;color:var(--sage)}.mistake{background:#24120d}.mistake .header{background:rgba(190,107,74,.34)}.sheet{width:min(1000px,92vw);border-collapse:collapse;background:var(--cell);color:#111827;font-family:Arial,sans-serif;font-size:clamp(.85rem,1.4vw,1.1rem);box-shadow:0 18px 44px rgba(0,0,0,.26)}.sheet th{background:#1a1a2e;color:#fff;border:2px solid #c9a084;padding:.75rem;text-align:left}.sheet td{padding:.7rem;border:1px solid #d5dae3}.sheet tr:nth-child(even) td{background:var(--alt)}.sheet .result td{background:var(--cream);border-left:5px solid #c9a084;color:var(--green);font-weight:700}.sheet .input{color:var(--navy);font-weight:700}.controls{position:fixed;right:1.5rem;bottom:1.2rem;display:flex;gap:.5rem;z-index:10}button{font-family:monospace;color:var(--gold);background:rgba(27,46,72,.92);border:1px solid rgba(212,160,82,.45);border-radius:5px;padding:.45rem .8rem;cursor:pointer}#counter{font-family:monospace;color:var(--linen);padding:.45rem}@media(max-width:760px){.body{padding:1.4rem;align-items:flex-start}.header{padding:1rem}.sheet{font-size:.78rem}.sheet td,.sheet th{padding:.45rem}.controls{right:.7rem;bottom:.7rem}}</style></head><body><main class="deck"><section class='slide title active'><div class='bar'></div><div class='eyebrow'>BUS123 · EXCEL-M01-L01 · Gerrish School of Business</div><h1>Creating and Editing Worksheets</h1><p>Building a clean workbook from raw business information</p><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Warm-Up</h2><span>02</span></div><div class='body'><p>What information would a manager need before deciding what to reorder?</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Current Business Context</h2><span>03</span></div><div class='body'><p>Tidal Goods Co. receives a messy list of products, quantities, and costs. The first business problem is turning that raw information into a usable worksheet.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Learning Objectives</h2><span>04</span></div><div class='body'><ul><li>I can enter labels and values into a worksheet.</li><li>I can edit cell contents without damaging the structure.</li><li>I can use basic formulas to check totals.</li><li>I can save a workbook that someone else can understand.</li></ul></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Why Worksheets Matter</h2><span>05</span></div><div class='body'><p>A worksheet is a workspace for decisions. Before Excel can calculate anything useful, the data has to be placed in predictable cells.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Cells, Rows, and Columns</h2><span>06</span></div><div class='body'><p>Columns hold fields, rows hold records, and cells hold one specific piece of information.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Labels Before Values</h2><span>07</span></div><div class='body'><p>Labels make numbers meaningful. A value like 18 only becomes useful when the worksheet shows whether it is units, dollars, days, or percent.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Editing With Care</h2><span>08</span></div><div class='body'><p>Editing means changing the right cell, preserving labels, and keeping related data in the same row.</p></div><div class='bar'></div></section><section class='slide mistake'><div class='bar'></div><div class='header'><h2>Common Mistake</h2><span>09</span></div><div class='body'><p>Do not type several pieces of information into one cell just because it looks tidy on screen. Excel needs separate values to calculate correctly.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Worked Example</h2><span>10</span></div><div class='body'><p>Tidal Goods Co. starts with four products: tote bags, travel mugs, desk trays, and notebooks.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Build The First Table</h2><span>11</span></div><div class='body'><table class="sheet"><thead><tr><th>Product</th><th>Category</th><th>Units</th><th>Unit Cost</th></tr></thead><tbody><tr><td>Canvas Tote</td><td>Accessories</td><td>24</td><td>$8.50</td></tr><tr><td>Travel Mug</td><td>Drinkware</td><td>36</td><td>$6.25</td></tr><tr><td>Desk Tray</td><td>Office</td><td>18</td><td>$11.00</td></tr><tr><td>Notebook Set</td><td>Paper Goods</td><td>30</td><td>$4.75</td></tr></tbody></table></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Add A Formula Column</h2><span>12</span></div><div class='body'><p>Once labels and values are stable, add a calculated column for total cost.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Excel Syntax</h2><span>13</span></div><div class='body'><div class="formula"><code>=C5*D5</code></div></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Manual Check</h2><span>14</span></div><div class='body'><p>Manual check: 24 units times $8.50 equals $204.00.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Copying The Pattern</h2><span>15</span></div><div class='body'><p>After the first formula works, copy it down the column so each row uses the same logic.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Excel Syntax</h2><span>16</span></div><div class='body'><div class="formula"><code>=SUM(E5:E8)</code></div></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Manual Check</h2><span>17</span></div><div class='body'><p>Manual check: add each product total to confirm the worksheet total is reasonable.</p></div><div class='bar'></div></section><section class='slide mistake'><div class='bar'></div><div class='header'><h2>Common Mistake</h2><span>18</span></div><div class='body'><p>Do not replace a formula with a typed answer. The workbook should update when the inputs change.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Student Practice</h2><span>19</span></div><div class='body'><p>Open the starter workbook and complete the yellow cells by building a clean product worksheet.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Challenge</h2><span>20</span></div><div class='body'><p>Use the Challenge tab to add one new product and extend the same formula pattern.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Wrap-Up</h2><span>21</span></div><div class='body'><p>Today is about building the worksheet foundation: clean labels, accurate values, careful edits, and simple formula checks.</p></div><div class='bar'></div></section></main><nav class="controls"><button id="prev">Prev</button><span id="counter">1 / 21</span><button id="next">Next</button></nav><script>const slides=[...document.querySelectorAll('.slide')];let i=0;const counter=document.getElementById('counter');function show(n){slides[i].classList.remove('active');i=Math.max(0,Math.min(slides.length-1,n));slides[i].classList.add('active');counter.textContent=`${i+1} / ${slides.length}`;}document.getElementById('prev').onclick=()=>show(i-1);document.getElementById('next').onclick=()=>show(i+1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1);});</script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BUS123 · EXCEL M01 · L01 — Navigating Excel, Formatting & Cell References</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome everyone — today is the first day we actually open Excel. By the end of this 75 minutes you'll be navigating the interface confidently, formatting data so it's readable, and writing formulas that know when to move with you and when to stay put. Let's get started.",
+    "Here's how the class breaks down. Part 1 we get oriented — the Excel screen, the key zones, what lives where. Part 2 is formatting — how to make data actually readable. Part 3 is the most important skill of the day: relative vs. absolute references. That concept will follow you through every single Excel lesson this semester.",
+    "Three things you'll walk out able to do. Navigate the interface — the ribbon, the formula bar, cell addresses — no more getting lost on screen. Apply formatting that makes your data tell a story. And write references correctly — knowing when to lock a cell and when to let it move.",
+    "Before Excel existed, this was the job. Accountants and analysts ran every number by hand on paper ledgers. One mistake meant re-doing the whole sheet. Excel automated the recalculation — but only if your references are right. Today you're learning to use this tool the way professionals do.",
+    "Part 1. The Excel screen. Before we type anything, let's get oriented.",
+    "Every Excel workbook has the same anatomy. The Quick Access Toolbar in the top-left for your most-used commands. The Ribbon across the top — organized into tabs like Home, Insert, Formulas. The Name Box shows you which cell is selected. The Formula Bar shows what's actually inside that cell — data or formula. And the Sheet Tabs at the bottom — one workbook can hold many sheets.",
+    "Every cell has an address — a column letter plus a row number. A1, B3, C10. When you click a cell, the Name Box tells you where you are. When you type a formula, the Formula Bar shows exactly what's in the cell. Get comfortable glancing at these two boxes — they'll save you from a lot of confusion later.",
+    "Tidal Goods Co. has a product catalog — hundreds of rows of data. Without navigation shortcuts, scrolling through it would take forever. Ctrl+End jumps to the last used cell. Ctrl+Home jumps back to A1. Ctrl+Arrow jumps to the edge of a data range. These three shortcuts will save you ten minutes every single time you open a large file.",
+    "Part 2. Formatting. Making your data readable isn't cosmetic — it's communication.",
+    "Formatting tells your reader what kind of data they're looking at. Number format — is this a dollar amount? A percentage? A date? Alignment — left for text, right for numbers, always. Bold headers so the eye knows where data starts. Borders to separate sections. None of this changes the underlying number. All of it changes whether someone can read your work at a glance.",
+    "Tidal Goods Co. sells inventory at different price points. Here's a raw data table — all the same font, no alignment, no currency signs. Same table, formatted: currency format on prices, bold headers, alternating row shading. The numbers are identical. The second version is actually usable. That's the whole point of formatting.",
+    "Here's a mistake every beginner makes. They type 14.99 and it shows as 14.99. They type 0.15 for a 15% discount and it shows as 0.15. A reader doesn't know if that's 15% or 15 cents or 0.15 of something. Number format is not decoration. It's part of the data. Always apply it before sharing any file.",
+    "Part 3. Cell references. This is the concept that separates people who use Excel from people who understand it.",
+    "A relative reference — like A1 — moves when you copy the formula. That's usually what you want. Copy a SUM formula from column B to column C, and it automatically updates to sum column C. Excel is doing the math for you. A dollar sign locks part of the reference. Dollar-A-Dollar-1 locks both the column and the row. The formula will always point back to that exact cell, no matter where you copy it.",
+    "Tidal Goods Co. has a markup rate — say 40% — stored in cell B1. Every product price needs to be multiplied by that same 40%. If we use a relative reference for B1, the formula works on the first row. Copy it down — and Excel moves the reference to B2, B3, B4 — wrong cells every time. Lock B1 with dollar signs, and every copy still points to the 40% rate. That's the power of absolute reference.",
+    "Here's the syntax. Both references shown side by side in a formula. The product cost in column B uses a relative reference — it moves down with each row. The markup rate in dollar-B-dollar-1 is absolute — it always points to row 1. Copy this formula to 500 rows and it works perfectly on every single one. This is how every professional price model in Excel is built.",
+    "F4 is your shortcut. Type a cell address in a formula, then press F4. First press: locks both column and row — dollar-A-dollar-1. Press again: locks row only — A-dollar-1. Press again: locks column only — dollar-A-1. Press again: back to relative — A1. You cycle through all four modes without typing a single dollar sign. Professional analysts use this constantly.",
+    "Discussion. Two questions — think about these with your neighbor for two minutes before we debrief. First: when would you want to use a relative reference — and when would you want to lock it? Second: Tidal Goods needs to apply a 40% markup to 200 products. How would you set that up so you only have to enter the markup rate once?",
+    "Three things to take with you. One — the Name Box and Formula Bar are your two most important navigation tools; always glance at them. Two — formatting is communication, not decoration; apply number format before sharing any file. Three — absolute references lock with dollar signs; press F4 to cycle through modes without typing.",
+    "Next lesson we go deeper into Excel functions — SUM, AVERAGE, MAX, MIN, and COUNT. You'll apply them to Tidal Goods inventory data and see how the functions behave differently when your references are relative vs. absolute. Make sure you've got Excel open and your BUS123 folder ready on OneDrive.",
+    "That's our hour and fifteen. Questions before we go? I'm here for a few minutes after class, and office hours are posted on Canvas. Great work today — you just did the hardest conceptual lift of the whole Excel track."
+  ]
+  </script>
+
+  <style>
+    :root {
+      --ink:       #0E1116;
+      --paper:     #FAF8F3;
+      --paper-2:   #F2EEE5;
+      --white:     #FFFFFF;
+      --text:      #1A1F2C;
+      --text-soft: #4A5567;
+      --muted:     #7A8290;
+      --border:    #E5E1D6;
+
+      --sage:  #4A7C5E;
+      --gold:  #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+
+      --accent: var(--sage);
+
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+      --scale: 1;
+      --type-display:  calc(112px * var(--scale));
+      --type-title:    calc(72px  * var(--scale));
+      --type-subtitle: calc(44px  * var(--scale));
+      --type-lead:     calc(34px  * var(--scale));
+      --type-body:     calc(28px  * var(--scale));
+      --type-small:    calc(24px  * var(--scale));
+      --type-eyebrow:  calc(24px  * var(--scale));
+      --type-mono:     calc(24px  * var(--scale));
+      --type-stat:     calc(180px * var(--scale));
+
+      --pad-x:      128px;
+      --pad-top:    104px;
+      --pad-bottom: 96px;
+      --gap-title:  56px;
+      --gap-item:   32px;
+
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans:  'Geist', system-ui, sans-serif;
+      --font-mono:  'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      font-family: var(--font-sans);
+      overflow: hidden;
+    }
+
+    deck-stage:not(:defined) { visibility: hidden; }
+
+    /* ── Slide base ── */
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      flex-direction: column;
+      /* position/display controlled by JS */
+    }
+    .slide.dark  { background: var(--ink); color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text); }
+
+    /* ── Gradient bar ── */
+    .grad-bar {
+      height: 8px;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    /* ── Header row (eyebrow + title + rule) ── */
+    .header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: var(--pad-top) var(--pad-x) 0;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .slide.dark .eyebrow { color: var(--gold); }
+    .slide-title {
+      font-family: var(--font-serif);
+      font-size: var(--type-title);
+      line-height: 1.1;
+      color: inherit;
+    }
+    .slide.cream .slide-title { color: var(--text); }
+    .slide.dark  .slide-title { color: var(--white); }
+    .title-rule {
+      height: 1px;
+      background: var(--border);
+      margin-top: 8px;
+    }
+    .slide.dark .title-rule { background: rgba(255,255,255,0.15); }
+
+    /* ── Body area ── */
+    .body {
+      flex: 1;
+      padding: var(--gap-title) var(--pad-x) var(--pad-bottom);
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-item);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+    }
+    .slide.dark .card {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .slide.dark .card-label { color: var(--gold); }
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: var(--type-lead);
+      margin-bottom: 10px;
+    }
+    .card-body {
+      font-size: var(--type-body);
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+    .slide.dark .card-body { color: rgba(255,255,255,0.7); }
+
+    /* ── Numbered statements ── */
+    .numbered-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .numbered {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .n {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      line-height: 1;
+      min-width: 56px;
+    }
+    .slide.dark .n { color: var(--gold); }
+    .n-body {
+      font-size: var(--type-body);
+      line-height: 1.5;
+      padding-top: 6px;
+    }
+
+    /* ── Pill grid ── */
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pill {
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 14px 28px;
+      font-size: var(--type-small);
+      font-weight: 500;
+    }
+    .slide.dark .pill {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+
+    /* ── Dark panel (Excel syntax) ── */
+    .dark-panel {
+      background: var(--ink);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      border-radius: 10px;
+      padding: 28px 36px;
+      line-height: 1.6;
+    }
+    .dark-panel .comment { color: var(--muted); }
+    .dark-panel .formula { color: #7DD3FC; }
+    .dark-panel .result  { color: #86EFAC; }
+
+    /* ── Two-col layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      flex: 1;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      flex: 1;
+    }
+
+    /* ── Common mistake callout ── */
+    .mistake-banner {
+      background: var(--terra);
+      border-radius: 14px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .mistake-icon {
+      font-size: 56px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .mistake-content {}
+    .mistake-heading {
+      font-family: var(--font-sans);
+      font-size: var(--type-lead);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .mistake-body {
+      font-size: var(--type-body);
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    /* ── Image slot placeholder ── */
+    .img-slot {
+      background: var(--paper-2);
+      border: 2px dashed var(--border);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      text-align: center;
+      padding: 24px;
+    }
+    .slide.dark .img-slot {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── Excel table replica ── */
+    .xl-table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+    }
+    .xl-wrap {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+    }
+    .xl-formulabar {
+      background: #f1f5f9;
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      color: #0a3d6b;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .xl-table th {
+      background: #1a1a2e;
+      color: var(--gold);
+      padding: 10px 16px;
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid #c9a84c;
+    }
+    .xl-table td {
+      padding: 10px 16px;
+      border: 1px solid #e2e8f0;
+      color: #0a3d6b;
+      background: #ffffff;
+    }
+    .xl-table tr:nth-child(even) td { background: #f7f8fa; }
+    .xl-table td.formula { color: #1a6b3c; }
+    .xl-table tr.result-row td {
+      background: #fffbf0;
+      border-left: 3px solid #c9a84c;
+      font-weight: 600;
+      color: #1a6b3c;
+    }
+    .xl-table td.rownum {
+      background: #1a1a2e;
+      color: var(--gold);
+      text-align: center;
+      border: 1px solid #c9a84c;
+      font-weight: 500;
+    }
+
+    /* ── Section break ── */
+    .section-break-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--pad-x) var(--pad-bottom);
+    }
+    .section-part {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .section-title-large {
+      font-family: var(--font-serif);
+      font-size: calc(88px * var(--scale));
+      color: var(--white);
+      line-height: 1.05;
+    }
+    .section-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: rgba(255,255,255,0.5);
+      margin-top: 20px;
+    }
+
+    /* ── Title slide ── */
+    .title-slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--pad-x) var(--pad-bottom);
+    }
+    .title-course-tag {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+    .title-main {
+      font-family: var(--font-serif);
+      font-size: calc(96px * var(--scale));
+      color: var(--white);
+      line-height: 1.0;
+      max-width: 1300px;
+      margin-bottom: 32px;
+    }
+    .title-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 64px;
+    }
+    .title-meta {
+      font-family: var(--font-sans);
+      font-size: var(--type-small);
+      color: rgba(255,255,255,0.4);
+      display: flex;
+      gap: 48px;
+    }
+
+    /* ── Discussion slide ── */
+    .discussion-q {
+      font-family: var(--font-serif);
+      font-size: var(--type-lead);
+      line-height: 1.4;
+      padding: 40px 48px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .discussion-q .q-num {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* ── Close slide ── */
+    .close-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      text-align: center;
+    }
+    .close-big {
+      font-family: var(--font-serif);
+      font-size: calc(120px * var(--scale));
+      color: var(--white);
+    }
+    .close-sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: rgba(255,255,255,0.5);
+    }
+    .close-detail {
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      color: rgba(255,255,255,0.3);
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- ── 01 · TITLE ── -->
+  <section class="slide dark" data-label="01 Title">
+    <div class="grad-bar"></div>
+    <div class="title-slide-content">
+      <div class="title-course-tag">BUS 123 · Excel M01 · L01</div>
+      <div class="title-main">Navigating Excel,<br>Formatting &amp; Cell References</div>
+      <div class="title-sub">The foundation every spreadsheet professional needs</div>
+      <div class="title-meta">
+        <span>Gerrish School of Business · Endicott College</span>
+        <span>Fall 2026</span>
+        <span>75 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 · AGENDA ── -->
+  <section class="slide cream" data-label="02 Agenda">
+    <div class="header-row">
+      <div class="eyebrow">Today's Agenda</div>
+      <h2 class="slide-title">Three Parts, One Toolkit</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="numbered-list">
+        <div class="numbered">
+          <div class="n">01</div>
+          <div class="n-body"><strong>The Excel Screen</strong> — interface anatomy, navigation shortcuts, the Name Box &amp; Formula Bar</div>
+        </div>
+        <div class="numbered">
+          <div class="n">02</div>
+          <div class="n-body"><strong>Formatting Essentials</strong> — number format, alignment, borders, and why formatting is communication</div>
+        </div>
+        <div class="numbered">
+          <div class="n">03</div>
+          <div class="n-body"><strong>Cell References</strong> — relative vs. absolute, dollar-sign syntax, the F4 shortcut</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 · LEARNING OBJECTIVES ── -->
+  <section class="slide cream" data-label="03 Learning Objectives">
+    <div class="header-row">
+      <div class="eyebrow">Learning Objectives</div>
+      <h2 class="slide-title">I Can…</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="numbered-list">
+        <div class="numbered">
+          <div class="n">01</div>
+          <div class="n-body">Navigate the Excel interface and identify key screen elements — the Ribbon, Name Box, Formula Bar, and Sheet Tabs</div>
+        </div>
+        <div class="numbered">
+          <div class="n">02</div>
+          <div class="n-body">Apply number formatting, alignment, and borders to make data readable and professional</div>
+        </div>
+        <div class="numbered">
+          <div class="n">03</div>
+          <div class="n-body">Write formulas using relative and absolute cell references correctly — and use F4 to switch between them</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 04 · BRIDGE ── -->
+  <section class="slide cream" data-label="04 Bridge">
+    <div class="header-row">
+      <div class="eyebrow">Before Spreadsheets</div>
+      <h2 class="slide-title">The Ledger Era</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body" style="flex-direction: row; gap: 64px; align-items: center;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+        <div class="card">
+          <div class="card-title">One mistake. Start over.</div>
+          <div class="card-body">Paper ledgers required accountants to recalculate every affected number by hand when a single entry changed. A single-formula update in Excel does in a second what took hours.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Excel automated the logic — but only if the references are right.</div>
+          <div class="card-body">That's the core lesson today. Excel is extraordinarily powerful — and brittle when references are wrong. You're learning to use it the way professionals do.</div>
+        </div>
+      </div>
+      <div class="img-slot" style="flex: 1; height: 560px;">
+        Drop image: vintage accounting ledger book, overhead shot
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 05 · SECTION BREAK 1 ── -->
+  <section class="slide dark" data-label="05 Part 1 Break">
+    <div class="grad-bar"></div>
+    <div class="section-break-content">
+      <div class="section-part">Part 1 of 3</div>
+      <div class="section-title-large">The Excel Screen</div>
+      <div class="section-sub">Interface anatomy · navigation shortcuts · the Name Box &amp; Formula Bar</div>
+    </div>
+  </section>
+
+  <!-- ── 06 · EXCEL ANATOMY ── -->
+  <section class="slide cream" data-label="06 Excel Anatomy">
+    <div class="header-row">
+      <div class="eyebrow">The Excel Interface</div>
+      <h2 class="slide-title">Five Zones to Know</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="pill-grid">
+        <div class="pill">📌 Quick Access Toolbar — top-left, most-used commands</div>
+        <div class="pill">🎛️ Ribbon — Home · Insert · Formulas · Data tabs</div>
+        <div class="pill">📦 Name Box — shows the selected cell address</div>
+        <div class="pill">📝 Formula Bar — shows what's inside the active cell</div>
+        <div class="pill">📄 Sheet Tabs — multiple sheets in one workbook</div>
+      </div>
+      <div class="img-slot" style="flex: 1; height: 440px;">
+        Drop image: Excel 365 interface screenshot with callout labels on each zone
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 07 · NAME BOX & FORMULA BAR ── -->
+  <section class="slide cream" data-label="07 Name Box Formula Bar">
+    <div class="header-row">
+      <div class="eyebrow">Your Two Most Important Boxes</div>
+      <h2 class="slide-title">Name Box + Formula Bar</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="two-col" style="align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card">
+            <div class="card-label">Name Box</div>
+            <div class="card-title">Tells you where you are</div>
+            <div class="card-body">Shows the address of the selected cell — A1, B3, C10. Click it to jump directly to any cell by typing an address.</div>
+          </div>
+          <div class="card">
+            <div class="card-label">Formula Bar</div>
+            <div class="card-title">Tells you what's really there</div>
+            <div class="card-body">The cell might display $14.99, but the formula bar shows whether that's a typed value or a formula. Always check here before editing.</div>
+          </div>
+        </div>
+        <div class="dark-panel" style="height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+          <div><span class="comment">// Cell C3 selected</span></div>
+          <div><span class="formula">Name Box:   C3</span></div>
+          <div><span class="formula">Formula Bar: =B3*$B$1</span></div>
+          <div style="margin-top: 16px;"><span class="comment">// Cell displays: 20.99</span></div>
+          <div style="margin-top: 16px;"><span class="result">The cell shows the result.</span></div>
+          <div><span class="result">The bar shows the formula.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 08 · NAVIGATION SHORTCUTS ── -->
+  <section class="slide cream" data-label="08 Navigation Shortcuts">
+    <div class="header-row">
+      <div class="eyebrow">Tidal Goods Co. — 500-Row Catalog</div>
+      <h2 class="slide-title">Navigate Large Files Like a Pro</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="three-col">
+        <div class="card">
+          <div class="card-label">Ctrl + End</div>
+          <div class="card-title">Jump to Last Cell</div>
+          <div class="card-body">Jumps to the last used cell in the worksheet — the bottom-right corner of your data. Instant orientation in any file.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Ctrl + Home</div>
+          <div class="card-title">Jump to A1</div>
+          <div class="card-body">Returns you to the beginning. Standard first move when opening a file you didn't build yourself.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Ctrl + Arrow</div>
+          <div class="card-title">Jump to Data Edge</div>
+          <div class="card-body">Ctrl+Down jumps to the last filled cell in a column. Ctrl+Right across a row. Skips over empty cells and stops at the boundary.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 09 · SECTION BREAK 2 ── -->
+  <section class="slide dark" data-label="09 Part 2 Break">
+    <div class="grad-bar"></div>
+    <div class="section-break-content">
+      <div class="section-part">Part 2 of 3</div>
+      <div class="section-title-large">Formatting Essentials</div>
+      <div class="section-sub">Number format · alignment · borders · formatting as communication</div>
+    </div>
+  </section>
+
+  <!-- ── 10 · WHAT FORMATTING DOES ── -->
+  <section class="slide cream" data-label="10 What Formatting Does">
+    <div class="header-row">
+      <div class="eyebrow">Formatting Is Communication</div>
+      <h2 class="slide-title">Four Things Formatting Tells Your Reader</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="numbered-list">
+        <div class="numbered">
+          <div class="n">01</div>
+          <div class="n-body"><strong>Data type:</strong> Is this a dollar amount? A percentage? A date? Number format makes it unambiguous.</div>
+        </div>
+        <div class="numbered">
+          <div class="n">02</div>
+          <div class="n-body"><strong>Structure:</strong> Bold headers, borders, and shading show where data begins and how it's organized.</div>
+        </div>
+        <div class="numbered">
+          <div class="n">03</div>
+          <div class="n-body"><strong>Alignment:</strong> Numbers align right. Text aligns left. This is a professional convention — not optional.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11 · TIDAL GOODS BEFORE/AFTER ── -->
+  <section class="slide cream" data-label="11 Tidal Goods Formatting">
+    <div class="header-row">
+      <div class="eyebrow">Tidal Goods Co. — Product Pricing Table</div>
+      <h2 class="slide-title">Before vs. After Formatting</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="two-col">
+        <!-- Before -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-mono); font-size: var(--type-small); color: var(--terra); font-weight: 600;">❌ Before — raw data</div>
+          <div class="xl-wrap">
+            <table class="xl-table">
+              <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+              <tr><td class="rownum">1</td><td>Product</td><td>Cost</td><td>Price</td></tr>
+              <tr><td class="rownum">2</td><td>Board Shorts</td><td>14.99</td><td>20.99</td></tr>
+              <tr><td class="rownum">3</td><td>Rash Guard</td><td>22.5</td><td>31.5</td></tr>
+              <tr><td class="rownum">4</td><td>Sun Hat</td><td>8.75</td><td>12.25</td></tr>
+              <tr><td class="rownum">5</td><td>Tote Bag</td><td>6.0</td><td>8.4</td></tr>
+            </table>
+          </div>
+          <div style="font-size: var(--type-small); color: var(--muted);">Numbers look like text. No currency. Hard to scan.</div>
+        </div>
+        <!-- After -->
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: var(--font-mono); font-size: var(--type-small); color: var(--sage); font-weight: 600;">✓ After — formatted</div>
+          <div class="xl-wrap">
+            <table class="xl-table">
+              <tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+              <tr><td class="rownum">1</td><td><strong>Product</strong></td><td style="text-align:right;"><strong>Cost</strong></td><td style="text-align:right;"><strong>Price</strong></td></tr>
+              <tr><td class="rownum">2</td><td>Board Shorts</td><td style="text-align:right;">$14.99</td><td style="text-align:right;">$20.99</td></tr>
+              <tr><td class="rownum">3</td><td>Rash Guard</td><td style="text-align:right;">$22.50</td><td style="text-align:right;">$31.50</td></tr>
+              <tr><td class="rownum">4</td><td>Sun Hat</td><td style="text-align:right;">$8.75</td><td style="text-align:right;">$12.25</td></tr>
+              <tr><td class="rownum">5</td><td>Tote Bag</td><td style="text-align:right;">$6.00</td><td style="text-align:right;">$8.40</td></tr>
+            </table>
+          </div>
+          <div style="font-size: var(--type-small); color: var(--muted);">Currency format · bold headers · right-aligned numbers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 12 · COMMON MISTAKE: NUMBER FORMAT ── -->
+  <section class="slide cream" data-label="12 Common Mistake">
+    <div class="header-row">
+      <div class="eyebrow">Common Mistake</div>
+      <h2 class="slide-title">Skipping Number Format</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body" style="justify-content: center;">
+      <div class="mistake-banner">
+        <div class="mistake-icon">⚠️</div>
+        <div class="mistake-content">
+          <div class="mistake-heading">0.15 is not the same as 15%</div>
+          <div class="mistake-body">You type 0.15 for a 15% discount rate. The cell shows 0.15. A reader doesn't know if that's 15 cents, 0.15 of something, or 15%. Number format is not decoration — it's part of the data. Always apply it before sharing any file. Home tab → Number group → choose Currency, Percentage, or Number.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 13 · SECTION BREAK 3 ── -->
+  <section class="slide dark" data-label="13 Part 3 Break">
+    <div class="grad-bar"></div>
+    <div class="section-break-content">
+      <div class="section-part">Part 3 of 3</div>
+      <div class="section-title-large">Cell References</div>
+      <div class="section-sub">Relative · Absolute · the F4 shortcut · when to use each</div>
+    </div>
+  </section>
+
+  <!-- ── 14 · RELATIVE VS ABSOLUTE CONCEPT ── -->
+  <section class="slide cream" data-label="14 Relative vs Absolute">
+    <div class="header-row">
+      <div class="eyebrow">The Core Concept</div>
+      <h2 class="slide-title">Two Kinds of Cell References</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="two-col">
+        <div class="card">
+          <div class="card-label">Relative — A1</div>
+          <div class="card-title">Moves when you copy</div>
+          <div class="card-body">A relative reference updates automatically when you copy or fill the formula to new cells. Copy a formula from row 2 to row 3 — every relative reference shifts down one row. This is usually what you want for row-by-row calculations.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Absolute — $A$1</div>
+          <div class="card-title">Stays put when you copy</div>
+          <div class="card-body">Dollar signs lock the reference. $A$1 always points to cell A1 — no matter where you copy the formula. Use this for rates, tax percentages, markup %, or any single shared value that every formula needs to reference.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 15 · TIDAL GOODS MARKUP EXAMPLE ── -->
+  <section class="slide cream" data-label="15 Tidal Goods Markup">
+    <div class="header-row">
+      <div class="eyebrow">Tidal Goods Co. — Markup Rate</div>
+      <h2 class="slide-title">One Rate. Five Hundred Products.</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="two-col" style="align-items: start;">
+        <div class="xl-wrap" style="flex: 1;">
+          <div class="xl-formulabar">fx &nbsp;&nbsp; =B3*(1+$B$1)</div>
+          <table class="xl-table">
+            <tr><th></th><th>A</th><th>B</th></tr>
+            <tr><td class="rownum">1</td><td>Markup Rate</td><td style="text-align:right; font-weight:700; color:#9C4A2B;">40%</td></tr>
+            <tr><td class="rownum">2</td><td><strong>Product</strong></td><td style="text-align:right;"><strong>Cost</strong></td></tr>
+            <tr><td class="rownum">3</td><td>Board Shorts</td><td style="text-align:right;">$14.99</td></tr>
+            <tr><td class="rownum">4</td><td>Rash Guard</td><td style="text-align:right;">$22.50</td></tr>
+            <tr><td class="rownum">5</td><td>Sun Hat</td><td style="text-align:right;">$8.75</td></tr>
+            <tr class="result-row"><td class="rownum">—</td><td>C3 formula</td><td class="formula">=B3*(1+$B$1)</td></tr>
+          </table>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 24px; flex: 1;">
+          <div class="card">
+            <div class="card-label">Why Absolute?</div>
+            <div class="card-title">$B$1 never moves</div>
+            <div class="card-body">If we used B1 (relative), copying the formula to row 4 would shift the reference to B2 — not the markup rate. $B$1 locks it. Copy to 500 rows: every formula still reads the 40% in B1.</div>
+          </div>
+          <div class="card">
+            <div class="card-label">Why Relative for B3?</div>
+            <div class="card-title">Cost moves down with each row</div>
+            <div class="card-body">B3 is the cost for row 3. When we copy down, we want it to become B4, B5, B6 — each product's own cost. Relative reference does exactly that.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 16 · SYNTAX SLIDE ── -->
+  <section class="slide dark" data-label="16 Reference Syntax">
+    <div class="header-row">
+      <div class="eyebrow">Formula Syntax</div>
+      <h2 class="slide-title">Reference Types Side by Side</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="dark-panel" style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 28px; font-size: calc(28px * var(--scale));">
+        <div><span class="comment">// Relative — moves when copied</span></div>
+        <div><span class="formula">=B3 * (1 + B1)      </span><span class="comment">← B1 shifts to B2, B3... when copied down</span></div>
+        <div style="margin-top: 16px;"><span class="comment">// Absolute — locked in place</span></div>
+        <div><span class="formula">=B3 * (1 + $B$1)    </span><span class="comment">← $B$1 always reads the rate in B1</span></div>
+        <div style="margin-top: 16px;"><span class="comment">// Mixed — column locked, row relative</span></div>
+        <div><span class="formula">=B3 * (1 + $B1)     </span><span class="comment">← column B is locked; row can shift</span></div>
+        <div style="margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px;">
+          <span class="result">Press F4 after typing a cell address → cycles through all four modes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 17 · F4 SHORTCUT ── -->
+  <section class="slide cream" data-label="17 F4 Shortcut">
+    <div class="header-row">
+      <div class="eyebrow">The Analyst's Shortcut</div>
+      <h2 class="slide-title">F4 Cycles Through Reference Modes</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="numbered-list">
+        <div class="numbered">
+          <div class="n">1×</div>
+          <div class="n-body"><strong>$A$1</strong> — both column and row locked. The most common absolute reference. Use for a single shared value (rate, tax, markup %).</div>
+        </div>
+        <div class="numbered">
+          <div class="n">2×</div>
+          <div class="n-body"><strong>A$1</strong> — row locked, column free. Useful when building lookup tables that stretch across columns.</div>
+        </div>
+        <div class="numbered">
+          <div class="n">3×</div>
+          <div class="n-body"><strong>$A1</strong> — column locked, row free. Useful when building tables that extend down rows.</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top: 8px;">
+        <div class="card-label">Back to start</div>
+        <div class="card-body"><strong>4× → A1</strong> — relative again. One more press and you're back where you started. Professional analysts use F4 constantly — never type dollar signs by hand.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 18 · DISCUSSION ── -->
+  <section class="slide dark" data-label="18 Discussion">
+    <div class="grad-bar"></div>
+    <div class="header-row">
+      <div class="eyebrow">Discussion — 2 minutes</div>
+      <h2 class="slide-title">Think, Then Share</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body" style="gap: 32px;">
+      <div class="discussion-q">
+        <span class="q-num">Q1</span>
+        When would you use a relative reference — and when would you need to lock it absolute? Give an example from a business you know.
+      </div>
+      <div class="discussion-q">
+        <span class="q-num">Q2</span>
+        Tidal Goods Co. needs to apply a 40% markup to 200 products. How would you set up the spreadsheet so you only need to enter the markup rate once?
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 19 · KEY TAKEAWAYS ── -->
+  <section class="slide cream" data-label="19 Key Takeaways">
+    <div class="header-row">
+      <div class="eyebrow">Key Takeaways</div>
+      <h2 class="slide-title">Three Things to Take With You</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body">
+      <div class="numbered-list">
+        <div class="numbered">
+          <div class="n">01</div>
+          <div class="n-body">The <strong>Name Box</strong> tells you where you are. The <strong>Formula Bar</strong> tells you what's really in a cell. Check these two boxes before you do anything else.</div>
+        </div>
+        <div class="numbered">
+          <div class="n">02</div>
+          <div class="n-body"><strong>Formatting is communication, not decoration.</strong> Apply number format before sharing any file — 0.15 and 15% are not the same thing to your reader.</div>
+        </div>
+        <div class="numbered">
+          <div class="n">03</div>
+          <div class="n-body"><strong>Dollar signs lock.</strong> Use $B$1 when every formula needs to reference the same cell. Press F4 to cycle — never type dollar signs by hand.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 20 · UP NEXT ── -->
+  <section class="slide cream" data-label="20 Up Next">
+    <div class="header-row">
+      <div class="eyebrow">Next Lesson — Excel M01 · L02</div>
+      <h2 class="slide-title">Essential Functions: SUM, AVERAGE, MAX, MIN, COUNT</h2>
+      <div class="title-rule"></div>
+    </div>
+    <div class="body" style="flex-direction: row; gap: 64px; align-items: center;">
+      <div class="img-slot" style="flex: 1; height: 520px;">
+        Drop image: spreadsheet with SUM and AVERAGE functions applied to inventory data
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+        <div class="card">
+          <div class="card-label">What's Coming</div>
+          <div class="card-title">Functions that do the math for you</div>
+          <div class="card-body">You'll apply SUM, AVERAGE, MAX, MIN, and COUNT to a Tidal Goods inventory dataset. Your references from today will matter — functions behave differently with relative vs. absolute.</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Before Next Class</div>
+          <div class="card-body">Make sure Excel is installed and your BUS123 folder is set up in OneDrive. You'll need both ready to go when we open class.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 21 · CLOSE ── -->
+  <section class="slide dark" data-label="21 Close">
+    <div class="grad-bar"></div>
+    <div class="close-content">
+      <div class="close-big">Questions?</div>
+      <div class="close-sub">Office hours &amp; contact posted on Canvas</div>
+      <div class="close-detail">BUS 123 · Excel M01 · L01 · Gerrish School of Business · Fall 2026</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+
+<script>
+// ── deck-stage: no Shadow DOM, direct DOM management ─────────────────────
+(function(){
+  if(customElements.get('deck-stage')) return;
+
+  class DeckStage extends HTMLElement {
+    connectedCallback(){
+      if(this._ready) return;
+      this._ready = true;
+
+      const W = parseInt(this.getAttribute('width') || 1920);
+      const H = parseInt(this.getAttribute('height') || 1080);
+
+      // Wrap all .slide children in a scaling stage div
+      this._slides = [...this.querySelectorAll('.slide')];
+      this._idx = 0;
+      this._notes = [];
+      try {
+        const el = document.getElementById('speaker-notes');
+        if(el) this._notes = JSON.parse(el.textContent);
+      } catch(e){}
+
+      // Stage wrapper
+      const stage = document.createElement('div');
+      stage.id = '_deck_stage_inner';
+      stage.style.cssText = `
+        position:absolute;
+        transform-origin:top left;
+        width:${W}px; height:${H}px;
+      `;
+      // Move all slides into stage — set all styles fresh (no += to avoid conflicts)
+      this._slides.forEach(s => {
+        s.style.position = 'absolute';
+        s.style.top = '0';
+        s.style.left = '0';
+        s.style.width = W + 'px';
+        s.style.height = H + 'px';
+        s.style.display = 'none';
+        s.style.flexDirection = 'column';
+        stage.appendChild(s);
+      });
+      this.appendChild(stage);
+      this._stageEl = stage;
+
+      // Host styling
+      this.style.cssText = `
+        display:block; position:fixed; top:0; left:0;
+        width:100vw; height:100vh; overflow:hidden; background:#111;
+      `;
+
+      // Counter
+      const counter = document.createElement('div');
+      counter.id = '_deck_counter';
+      counter.style.cssText = `
+        position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+        background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;
+        padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;
+        letter-spacing:.05em;
+      `;
+      document.body.appendChild(counter);
+      this._counter = counter;
+
+      // Nav buttons
+      const navStyle = `
+        position:fixed; bottom:20px; z-index:9999;
+        background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);
+        color:#fff; font:600 18px/1 monospace; width:44px; height:44px;
+        border-radius:50%; cursor:pointer; display:flex; align-items:center;
+        justify-content:center; user-select:none;
+        transition: background 0.15s;
+      `;
+      const prev = document.createElement('button');
+      prev.innerHTML = '&#8592;';
+      prev.style.cssText = navStyle + ' right:80px;';
+      prev.onclick = () => this._go(this._idx - 1);
+      document.body.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.innerHTML = '&#8594;';
+      next.style.cssText = navStyle + ' right:24px;';
+      next.onclick = () => this._go(this._idx + 1);
+      document.body.appendChild(next);
+
+      // Notes box
+      const notes = document.createElement('div');
+      notes.id = '_deck_notes';
+      notes.style.cssText = `
+        position:fixed; bottom:70px; left:50%; transform:translateX(-50%);
+        max-width:860px; width:90%; background:rgba(10,10,20,0.9); color:#e2e8f0;
+        font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px;
+        display:none; z-index:9998;
+      `;
+      document.body.appendChild(notes);
+      this._notesEl = notes;
+
+      // Keyboard nav
+      document.addEventListener('keydown', e => {
+        if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){
+          e.preventDefault(); this._go(this._idx+1);
+        }
+        if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){
+          e.preventDefault(); this._go(this._idx-1);
+        }
+        if(e.key==='Home'){ e.preventDefault(); this._go(0); }
+        if(e.key==='End'){ e.preventDefault(); this._go(this._slides.length-1); }
+        if(e.key==='n'||e.key==='N') this._toggleNotes();
+      });
+
+      // Click zones: left third = prev, right third = next
+      this.addEventListener('click', e => {
+        const x = e.clientX / window.innerWidth;
+        if(x < 0.33) this._go(this._idx - 1);
+        else if(x > 0.67) this._go(this._idx + 1);
+      });
+
+      this._scale();
+      this._go(0);
+      window.addEventListener('resize', () => this._scale());
+    }
+
+    _scale(){
+      const W = parseInt(this.getAttribute('width') || 1920);
+      const H = parseInt(this.getAttribute('height') || 1080);
+      const s = Math.min(window.innerWidth / W, window.innerHeight / H);
+      const scaledW = W * s;
+      const scaledH = H * s;
+      const offsetX = (window.innerWidth  - scaledW) / 2;
+      const offsetY = (window.innerHeight - scaledH) / 2;
+      this._stageEl.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${s})`;
+    }
+
+    _go(n){
+      n = Math.max(0, Math.min(n, this._slides.length - 1));
+      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
+      this._idx = n;
+      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'flex';
+      this._counter.textContent = (n+1) + ' / ' + this._slides.length;
+      this._updateNotes();
+    }
+
+    _updateNotes(){
+      if(this._notesEl.style.display === 'block' && this._notes[this._idx]){
+        this._notesEl.textContent = this._notes[this._idx];
+      }
+    }
+
+    _toggleNotes(){
+      this._notesEl.style.display = this._notesEl.style.display === 'block' ? 'none' : 'block';
+      this._updateNotes();
+    }
+  }
+
+  customElements.define('deck-stage', DeckStage);
+})();
+</script>
+
+<script>
+// ── image-slot web component ──────────────────────────────────────────────
+(function(){
+  if(customElements.get('image-slot')) return;
+  class ImageSlot extends HTMLElement {
+    connectedCallback(){
+      if(this._init) return; this._init=true;
+      const ph=this.getAttribute('placeholder')||'Drop image here';
+      const r=this.getAttribute('radius')||'12';
+      this.style.display='flex';
+      this.style.alignItems='center';
+      this.style.justifyContent='center';
+      this.style.borderRadius=r+'px';
+      this.style.border='2px dashed rgba(255,255,255,0.2)';
+      this.style.background='rgba(255,255,255,0.04)';
+      this.style.color='rgba(255,255,255,0.3)';
+      this.style.fontFamily='JetBrains Mono, monospace';
+      this.style.fontSize='16px';
+      this.style.textAlign='center';
+      this.style.padding='16px';
+      this.style.cursor='pointer';
+      this.textContent=ph;
+      this.addEventListener('click',()=>{ const i=document.createElement('input'); i.type='file'; i.accept='image/*'; i.onchange=e=>{ const f=e.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=ev=>{ this.style.background=`url(${ev.target.result}) center/cover no-repeat`; this.style.border='none'; this.textContent=''; }; r.readAsDataURL(f); }; i.click(); });
+    }
+  }
+  customElements.define('image-slot',ImageSlot);
+})();
+</script>
+
+
+</body>
+</html>

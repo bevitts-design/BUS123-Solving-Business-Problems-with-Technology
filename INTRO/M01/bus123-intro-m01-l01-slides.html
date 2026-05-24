@@ -139,38 +139,8 @@
     }
     #notes-toggle:hover { color: rgba(255,255,255,0.7); }
 
-    /* ── Tweaks ── */
-    #tweaks {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      background: rgba(14,17,22,0.92);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      z-index: 300;
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-    }
-    #tweaks label { display: flex; align-items: center; gap: 10px; }
-    #tweaks input[type=range] { width: 100px; accent-color: var(--sage); }
-    #tweaks select {
-      background: #0E1116; color: #fff;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px; padding: 4px 10px;
-      font-family: "Geist", sans-serif; font-size: 13px;
-    }
-    #scale-val { color: #fff; min-width: 36px; }
-    #tweaks-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
-    }
+    /* ── Image slots ── */
+    image-slot { display: block; width: 100%; height: 100%; }
 
     /* ══════════════ SLIDE COMPONENTS ══════════════ */
 
@@ -574,9 +544,7 @@
           <h2 style="margin-bottom:32px;">Every business runs on shared files.</h2>
           <p class="lead">The question isn't whether you'll use these tools. It's whether you'll use them well.</p>
         </div>
-        <div class="img-slot" style="height:100%;border-radius:18px;">
-          <img src="assets/img/team_laptops.png" alt="Professional team collaborating on laptops" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
-        </div>
+        <image-slot id="hook-team" shape="rounded" radius="18" placeholder="Drop a photo: professional team collaborating on laptops"></image-slot>
       </div>
     </section>
 
@@ -595,14 +563,14 @@
         <span class="eyebrow">Your instructor</span>
         <div class="rule"></div>
       </div>
-      <h2 style="margin-bottom:40px;">Prof. Bethany Evitts, CFA</h2>
+      <h2 style="margin-bottom:40px;">Prof. Bethany Evitts, MBA CFA</h2>
       <div class="profile-grid">
-        <div class="profile-img-slot"><img src="assets/img/bethany-headshot.jpg" alt="Bethany Evitts" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;"></div>
+        <image-slot id="instructor-headshot" shape="rounded" radius="18" placeholder="Drop a photo: Prof. Evitts headshot"></image-slot>
         <div class="profile-details">
           <div class="profile-item"><span class="profile-item-label">Credentials</span><span class="profile-item-value">CFA · MBA, Boston College · BA, Holy Cross</span></div>
           <div class="profile-item"><span class="profile-item-label">Background</span><span class="profile-item-value">Trading &amp; portfolio management — lived inside spreadsheets professionally.</span></div>
           <div class="profile-item"><span class="profile-item-label">Why this course</span><span class="profile-item-value">Tool fluency is what actually gets used on the job. Let's build yours.</span></div>
-          <div class="profile-item"><span class="profile-item-label">Outside of work</span><span class="profile-item-value">Mark, Wade, Zach, Sydney — and Boots, who has opinions about alarm clocks.</span></div>
+          <div class="profile-item"><span class="profile-item-label">OUTSIDE OF WORK -MY FAMILY</span><span class="profile-item-value">Mark, Wade and Zach. Our dogs Sydney &amp; Boots, who has opinions about fireworks.</span></div>
         </div>
       </div>
     </section>
@@ -694,9 +662,7 @@
             <span class="pill">Real-time collaboration</span>
           </div>
         </div>
-        <div class="img-slot" style="height:100%;border-radius:18px;">
-          <img src="assets/img/onedrive_sync.png" alt="OneDrive sync icon and cloud storage diagram" style="width: 100%; height: 100%; object-fit: contain;">
-        </div>
+        <image-slot id="onedrive-diagram" shape="rounded" radius="18" fit="contain" placeholder="Drop an image: OneDrive sync icon or cloud diagram"></image-slot>
       </div>
     </section>
 
@@ -709,7 +675,7 @@
       <h2 style="margin-bottom:48px;">Connect OneDrive to your laptop.</h2>
       <div class="steps">
         <div class="step"><span class="step-num">01</span><span class="step-text">Open the <strong>OneDrive desktop app</strong> — not the browser version.</span></div>
-        <div class="step"><span class="step-num">02</span><span class="step-text">Sign in with your <strong>Endicott email address</strong> (yourname@endicott.edu).</span></div>
+        <div class="step"><span class="step-num">02</span><span class="step-text">Sign in with your <strong>Endicott email address</strong> (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c1503191e020d01092c090208050f03181842090819">[email&#160;protected]</a>).</span></div>
         <div class="step"><span class="step-num">03</span><span class="step-text">Confirm the <strong>cloud sync icon</strong> appears in your system tray or menu bar.</span></div>
         <div class="step"><span class="step-num">04</span><span class="step-text">Raise your hand if the sync icon is missing — we'll fix it before moving on.</span></div>
       </div>
@@ -865,9 +831,7 @@
           <p class="lead" style="margin-bottom:40px;">We'll tour the interface, understand how spreadsheets are structured, and start entering and formatting real data.</p>
           <p style="font-size:var(--type-body);color:var(--text-soft);">Make sure your BUS123 OneDrive folder is set up and syncing before you arrive.</p>
         </div>
-        <div class="img-slot" style="height:100%;border-radius:18px;">
-          <img src="assets/img/excel_laptop.png" alt="Excel spreadsheet open on laptop" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
-        </div>
+        <image-slot id="excel-laptop" shape="rounded" radius="18" placeholder="Drop a photo: Excel open on a laptop"></image-slot>
       </div>
     </section>
 
@@ -877,7 +841,7 @@
         <p class="close-main">Questions?</p>
         <div class="office-hours">
           <div class="oh-item"><strong>Office Hours</strong>Posted on Canvas — check the course home page.</div>
-          <div class="oh-item"><strong>Email</strong>bevitts@endicott.edu · I respond within 24 hours on weekdays.</div>
+          <div class="oh-item"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e5c5b48574a4a4d7e5b505a575d514a4a105b5a4b">[email&#160;protected]</a> · I respond within 24 hours on weekdays.</div>
           <div class="oh-item"><strong>Before next class</strong>OneDrive setup must be complete. Come to office hours if you're stuck.</div>
         </div>
       </div>
@@ -898,24 +862,7 @@
 <button id="notes-toggle">Notes</button>
 <div id="notes-bar"></div>
 
-<!-- Tweaks -->
-<div id="tweaks">
-  <span id="tweaks-label">Tweaks</span>
-  <label>
-    Type scale
-    <input type="range" id="scale-slider" min="0.8" max="1.25" step="0.05" value="1.0">
-    <span id="scale-val">1.00×</span>
-  </label>
-  <label>
-    Accent
-    <select id="accent-select">
-      <option value="sage">Sage — BUS123</option>
-      <option value="gold">Gold — BUS331</option>
-      <option value="terra">Terra — BUS311</option>
-      <option value="steel">Steel — BUS210</option>
-    </select>
-  </label>
-</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="image-slot.js"></script>
 
 <script>
   const notes = [
@@ -987,19 +934,6 @@
   window.addEventListener('resize', scaleStage);
   scaleStage();
 
-  // Tweaks
-  const scaleSlider = document.getElementById('scale-slider');
-  const scaleVal    = document.getElementById('scale-val');
-  scaleSlider.addEventListener('input', () => {
-    const v = parseFloat(scaleSlider.value);
-    document.documentElement.style.setProperty('--scale', v);
-    scaleVal.textContent = v.toFixed(2) + '×';
-  });
-
-  const accentMap = { sage: '#4A7C5E', gold: '#B8843D', terra: '#9C4A2B', steel: '#355773' };
-  document.getElementById('accent-select').addEventListener('change', e => {
-    document.documentElement.style.setProperty('--accent', `var(--${e.target.value})`);
-  });
 </script>
 </body>
 </html>

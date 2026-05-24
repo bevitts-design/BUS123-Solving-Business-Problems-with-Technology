@@ -1,1176 +1,552 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUS123 · Solving Business Problems with Technology</title>
-
-<!-- Rule #6: Modular type scale via Google Fonts -->
+<meta charset="UTF-8" />
+<title>BUS123 · Design System Makeover</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Sohne+Kraftig&display=swap" rel="stylesheet">
-<!-- Stripe uses a custom "Sohne" — we'll use the closest available stack -->
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════
-   STRIPE-DOMINANT BRAND DNA
-   Primary:   #0A2540  (Stripe midnight navy)
-   Secondary: #425466  (Stripe slate)
-   Surface:   #F6F9FC  (Stripe cloud white)
-   Panel:     #FFFFFF
-   Accent:    #00A878  (Stripe purple — ONE accent, Rule #13)
-   Text:      #0A2540
-   Muted:     #8898AA
-   Border:    #E3E8EF
-   ═══════════════════════════════════════════════════════ */
-
-:root {
-  /* Stripe brand tokens */
-  --midnight:   #0A2540;
-  --slate:      #425466;
-  --muted:      #8898AA;
-  --surface:    #F6F9FC;
-  --panel:      #FFFFFF;
-  --accent:     #00A878;   /* ONE accent — Rule #13 */
-  --accent-dim: rgba(0,168,120,0.08);
-  --accent-mid: rgba(0,168,120,0.18);
-  --border:     #E3E8EF;
-  --border-dark:#C8D6E5;
-
-  /* Rule #6: Modular scale — ratio 1.333 (perfect fourth) */
-  /* Base: 16px → 21.3 → 28.4 → 37.9 → 50.5 → 67.3px */
-  --text-xs:    0.694rem;   /* ~11px — captions */
-  --text-sm:    0.833rem;   /* ~13px — labels */
-  --text-base:  1rem;       /* 16px — body (Rule #8: slides body ≥24; web body ≥16 ok) */
-  --text-md:    1.2rem;     /* ~19px */
-  --text-lg:    1.44rem;    /* ~23px */
-  --text-xl:    1.728rem;   /* ~28px */
-  --text-2xl:   2.074rem;   /* ~33px */
-  --text-3xl:   2.488rem;   /* ~40px */
-  --text-hero:  clamp(2.8rem, 6vw, 4rem); /* ~45–64px */
-
-  /* Rule #15: 8pt grid — all spacing from this set */
-  --sp-1:  8px;
-  --sp-2:  16px;
-  --sp-3:  24px;
-  --sp-4:  32px;
-  --sp-6:  48px;
-  --sp-8:  64px;
-  --sp-12: 96px;
-  --sp-16: 128px;
-
-  /* Rule #16: 12-column grid */
-  --grid-cols: 12;
-  --grid-gap:  32px;   /* 4 × 8pt */
-  --max-w:     1152px; /* 12 cols × 64px + 11 gaps × 32px = 768+352 = 1120 → 1152 */
-  --safe:      5%;     /* Rule #5 */
-
-  /* Rule #9: Line heights */
-  --lh-display: 1.1;
-  --lh-heading: 1.2;
-  --lh-body:    1.5;
-}
-
-/* ── RESET ─────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  background: var(--surface);
-  color: var(--midnight);
-  /* Stripe uses Inter — we match with a clean sans stack */
-  font-family: -apple-system, 'Inter', 'SF Pro Text', BlinkMacSystemFont, sans-serif;
-  font-weight: 400;
-  line-height: var(--lh-body);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── RULE #5: Safe-zone wrapper ─────────────────────── */
-.container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--sp-4);   /* 32px sides */
-}
-
-/* ── RULE #16: 12-col grid utility ─────────────────── */
-.grid-12 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--grid-gap);
-}
-.col-5  { grid-column: span 5; }
-.col-6  { grid-column: span 6; }
-.col-7  { grid-column: span 7; }
-.col-8  { grid-column: span 8; }
-.col-12 { grid-column: span 12; }
-
-/* ══════════════════════════════════════════════════════
-   NAV
-   ══════════════════════════════════════════════════════ */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--sp-4);
-}
-
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 56px;  /* 7 × 8pt */
-}
-
-.nav-brand {
-  display: flex; align-items: center; gap: var(--sp-2);
-  text-decoration: none;
-}
-
-.nav-logo {
-  width: 32px; height: 32px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-
-.nav-logo svg { width: 18px; height: 18px; }
-
-.nav-course {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--midnight);
-  letter-spacing: -0.01em;
-}
-
-.nav-subtitle {
-  font-size: var(--text-xs);
-  color: var(--muted);
-  margin-top: 1px;
-}
-
-.nav-links {
-  display: flex; gap: var(--sp-3); align-items: center;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--slate);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.nav-links a:hover { color: var(--accent); }
-
-.nav-cta {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--panel);
-  background: var(--accent);
-  padding: var(--sp-1) var(--sp-2);  /* 8px 16px */
-  border-radius: 6px;
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
-.nav-cta:hover { opacity: 0.88; }
-
-/* ══════════════════════════════════════════════════════
-   HERO — Rule #19: F-pattern, top-left hierarchy
-   Rule #4: ≥60% whitespace on hero
-   Rule #20: Presenter mode (sparse, decisive)
-   ══════════════════════════════════════════════════════ */
-.hero {
-  padding-top: var(--sp-16);   /* 128px */
-  padding-bottom: var(--sp-16);
-  padding-left: var(--sp-4);
-  padding-right: var(--sp-4);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Stripe's signature gradient mesh — background atmosphere */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle at 60% 40%,
-    rgba(0,168,120,0.12) 0%,
-    rgba(0,168,120,0.04) 50%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -100px; left: -100px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle,
-    rgba(10,37,64,0.06) 0%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.hero-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  position: relative; z-index: 1;
-}
-
-/* Rule #19: Eyebrow left-aligned, first element in F-scan */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--sp-3);  /* 24px */
-  opacity: 0;
-  animation: revealUp 0.6s 0.1s ease forwards;
-}
-
-.eyebrow-dot {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* Rule #8: title ≥48px; Rule #7: ≤4 type sizes */
-.hero-title {
-  font-size: var(--text-hero);
-  font-weight: 700;
-  line-height: var(--lh-display);
-  letter-spacing: -0.03em;
-  color: var(--midnight);
-  max-width: 720px;         /* Rule #10: visual rhythm; hero can be longer */
-  margin-bottom: var(--sp-3);
-  opacity: 0;
-  animation: revealUp 0.6s 0.2s ease forwards;
-}
-
-/* Rule #13: accent used once — underline word, not decoration */
-.hero-title mark {
-  background: none;
-  color: var(--accent);
-  -webkit-text-fill-color: var(--accent);
-}
-
-.hero-desc {
-  font-size: var(--text-md);
-  font-weight: 400;
-  line-height: var(--lh-body);
-  color: var(--slate);
-  max-width: 560px;
-  margin-bottom: var(--sp-6);  /* 48px */
-  opacity: 0;
-  animation: revealUp 0.6s 0.3s ease forwards;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  opacity: 0;
-  animation: revealUp 0.6s 0.4s ease forwards;
-}
-
-.btn-primary {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--panel);
-  background: var(--accent);
-  padding: 14px var(--sp-4);   /* ~1.75× 8pt vertical */
-  border-radius: 8px;
-  text-decoration: none;
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 4px 16px rgba(0,168,120,0.28);
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,168,120,0.36);
-}
-
-.btn-ghost {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--slate);
-  text-decoration: none;
-  display: flex; align-items: center; gap: var(--sp-1);
-  transition: color 0.15s;
-}
-.btn-ghost:hover { color: var(--accent); }
-.btn-ghost svg { transition: transform 0.15s; }
-.btn-ghost:hover svg { transform: translateX(3px); }
-
-/* Hero stats row — Rule #3: ≤7 chunks, these are 3 */
-.hero-stats {
-  display: flex;
-  gap: var(--sp-6);  /* 48px */
-  margin-top: var(--sp-12);  /* 96px — Rule #17: unrelated ≥48px from actions */
-  padding-top: var(--sp-6);
-  border-top: 1px solid var(--border);
-  opacity: 0;
-  animation: revealUp 0.6s 0.55s ease forwards;
-}
-
-.stat {
-  display: flex; flex-direction: column; gap: 4px;
-}
-
-.stat-value {
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--midnight);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ══════════════════════════════════════════════════════
-   DIVIDER — Stripe's thin rule
-   ══════════════════════════════════════════════════════ */
-.section-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-
-/* ══════════════════════════════════════════════════════
-   SECTION LABEL — Rule #19: F-pattern top positioning
-   ══════════════════════════════════════════════════════ */
-.section-wrap {
-  padding: var(--sp-12) var(--sp-4);  /* 96px top/bottom */
-}
-
-.section-head {
-  margin-bottom: var(--sp-8);  /* 64px — Rule #17: unrelated ≥48px */
-}
-
-.label-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--sp-2);  /* 16px — Rule #17: related ≤16px */
-}
-
-.section-h2 {
-  font-size: var(--text-3xl);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: var(--lh-heading);
-  color: var(--midnight);
-  margin-bottom: var(--sp-2);
-}
-
-.section-sub {
-  font-size: var(--text-md);
-  color: var(--slate);
-  line-height: var(--lh-body);
-  max-width: 540px;
-}
-
-/* ══════════════════════════════════════════════════════
-   TRACKS — Rule #12: 60-30-10
-   60% surface (white panel bg)
-   30% midnight text + border
-   10% accent — only on active/lead element
-   ══════════════════════════════════════════════════════ */
-.tracks-section {
-  background: var(--panel);
-}
-
-.tracks-grid {
-  /* Rule #16: 3 tracks = 3 × 4 cols on 12-col grid */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-4);   /* 32px */
-}
-
-.track-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: var(--sp-4);  /* 32px */
-  position: relative;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  cursor: default;
-}
-
-.track-card:hover {
-  border-color: var(--border-dark);
-  box-shadow: 0 8px 32px rgba(10,37,64,0.08);
-  transform: translateY(-2px);
-}
-
-/* Rule #13: ONE accent — only on the lead track */
-.track-card.lead {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-}
-
-.track-card.lead:hover {
-  box-shadow: 0 8px 32px rgba(0,168,120,0.14);
-}
-
-.track-num {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: var(--sp-2);  /* 16px */
-}
-
-.track-card.lead .track-num { color: var(--accent); }
-
-.track-icon {
-  width: 40px; height: 40px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: var(--sp-3);  /* 24px */
-  font-size: 18px;
-}
-
-.track-card.lead .track-icon {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.track-name {
-  font-size: var(--text-xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--midnight);
-  margin-bottom: var(--sp-1);  /* 8px — Rule #17: related */
-  line-height: var(--lh-heading);
-}
-
-.track-desc {
-  font-size: var(--text-base);
-  color: var(--slate);
-  line-height: var(--lh-body);
-}
-
-.track-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--muted);
-  margin-top: var(--sp-3);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.track-card.lead .track-count { color: var(--accent); }
-
-/* ══════════════════════════════════════════════════════
-   MODULES — alternating surface / panel
-   ══════════════════════════════════════════════════════ */
-.modules-section {
-  background: var(--surface);
-}
-
-.module-block {
-  margin-bottom: var(--sp-12);  /* 96px between modules */
-}
-.module-block:last-child { margin-bottom: 0; }
-
-.module-header {
-  display: flex;
-  align-items: baseline;
-  gap: var(--sp-2);             /* 16px — Rule #17: related */
-  margin-bottom: var(--sp-4);  /* 32px */
-  padding-bottom: var(--sp-2);
-  border-bottom: 1px solid var(--border);
-}
-
-.module-badge {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);         /* Rule #13: accent used once per section */
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-mid);
-  border-radius: 4px;
-  padding: 3px 8px;
-  white-space: nowrap;
-}
-
-.module-title {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--midnight);
-}
-
-.lessons-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2);  /* 16px */
-}
-
-.lesson-card {
-  display: block;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: var(--sp-3) var(--sp-3);   /* 24px */
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-}
-
-.lesson-card:not(.disabled):hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(0,168,120,0.10);
-  transform: translateY(-1px);
-}
-
-/* Stripe's left-border accent line on hover */
-.lesson-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.2s ease;
-  border-radius: 0 0 0 8px;
-}
-
-.lesson-card:not(.disabled):hover::before { transform: scaleY(1); }
-
-.lesson-code {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: var(--sp-1);   /* 8px — Rule #17: related */
-  font-family: 'SF Mono', 'Fira Code', monospace;
-}
-
-.lesson-title {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--midnight);
-  line-height: 1.35;
-  margin-bottom: var(--sp-1);
-}
-
-.lesson-topic {
-  font-size: var(--text-sm);
-  color: var(--slate);
-  line-height: var(--lh-body);
-  margin-bottom: var(--sp-2);   /* 16px */
-}
-
-.lesson-cta {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  text-transform: uppercase;
-}
-
-.lesson-actions {
-  display: flex;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
-  margin-top: var(--sp-2);
-}
-
-.lesson-link {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.lesson-link:hover { text-decoration: underline; }
-
-/* Disabled / coming soon */
-.lesson-card.disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.lesson-card.disabled::before { display: none; }
-
-.coming-badge {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--muted);
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  letter-spacing: 0.06em;
-}
-
-/* ══════════════════════════════════════════════════════
-   RESOURCES — Stripe's clean card strip
-   ══════════════════════════════════════════════════════ */
-.resources-section {
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2);   /* 16px */
-}
-
-.resource-card {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);           /* 16px — Rule #17: related */
-  padding: var(--sp-3);       /* 24px */
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.resource-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(0,168,120,0.08);
-}
-
-.resource-icon-wrap {
-  width: 40px; height: 40px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.resource-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 2px;
-}
-
-.resource-name {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--midnight);
-}
-
-/* ══════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════ */
-footer {
-  background: var(--midnight);
-  padding: var(--sp-8) var(--sp-4);  /* 64px */
-}
-
-.footer-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--sp-4);
-}
-
-.footer-brand {
-  display: flex; align-items: center; gap: var(--sp-2);
-  margin-bottom: var(--sp-2);
-}
-
-.footer-logo {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-.footer-name {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-}
-
-.footer-meta {
-  font-size: var(--text-xs);
-  color: rgba(255,255,255,0.3);
-  line-height: 2;
-  letter-spacing: 0.04em;
-}
-
-.footer-right {
-  text-align: right;
-}
-
-.footer-right .footer-meta { text-align: right; }
-
-/* ══════════════════════════════════════════════════════
-   ANIMATIONS — Rule #15: 8pt; prefers-reduced-motion
-   ══════════════════════════════════════════════════════ */
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.fade-section {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.fade-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
+  :root {
+    --ink:      #0E1116;
+    --paper:    #FAF8F3;
+    --paper-2:  #F2EEE5;
+    --white:    #FFFFFF;
+    --text:     #1A1F2C;
+    --text-soft:#4A5567;
+    --muted:    #7A8290;
+    --border:   #E5E1D6;
+    --sage:  #4A7C5E;
+    --gold:  #B8843D;
+    --terra: #9C4A2B;
+    --steel: #355773;
+    --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+    --font-display: "Instrument Serif", Georgia, serif;
+    --font-sans:    "Geist", system-ui, sans-serif;
+    --font-mono:    "JetBrains Mono", ui-monospace, monospace;
   }
-  .fade-section { opacity: 1; transform: none; }
-}
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--text); font-family: var(--font-sans); }
 
-/* ══════════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  .tracks-grid   { grid-template-columns: 1fr; }
-  .lessons-grid  { grid-template-columns: 1fr 1fr; }
-  .resources-grid { grid-template-columns: 1fr 1fr; }
-  .hero-stats    { gap: var(--sp-4); }
-  .footer-inner  { flex-direction: column; }
-  .footer-right  { text-align: left; }
-  .footer-right .footer-meta { text-align: left; }
-  .nav-links { display: none; }
-}
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 80px 56px 120px; }
 
-@media (max-width: 600px) {
-  .lessons-grid  { grid-template-columns: 1fr; }
-  .resources-grid { grid-template-columns: 1fr; }
-  .hero-stats    { flex-direction: column; gap: var(--sp-3); }
-}
+  /* HERO */
+  .hero { position: relative; padding-top: 24px; }
+  .hero .gbar { height: 6px; background: var(--gradient); margin-bottom: 80px; }
+  .hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin: 0 0 24px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(56px, 7vw, 104px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 32px;
+    max-width: 16ch;
+  }
+  .hero .sub {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(24px, 2.4vw, 34px);
+    line-height: 1.3;
+    color: var(--text-soft);
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  .section { padding: 100px 0 32px; border-top: 1px solid var(--border); margin-top: 80px; }
+  .section:first-of-type { border-top: 0; margin-top: 0; }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin: 0 0 16px;
+  }
+  .section h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    margin: 0 0 24px;
+  }
+  .section .lead {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-soft);
+    max-width: 65ch;
+    margin: 0 0 56px;
+  }
+
+  /* Quick links */
+  .qlinks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .qlink {
+    display: block;
+    padding: 32px 32px 36px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+  .qlink:hover { transform: translateY(-2px); border-color: var(--sage); }
+  .qlink .tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin: 0 0 16px;
+  }
+  .qlink h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .qlink p { margin: 0; color: var(--text-soft); font-size: 16px; line-height: 1.5; }
+  .qlink .arrow { display:inline-block; margin-top: 18px; font-family: var(--font-mono); font-size: 14px; color: var(--sage); }
+
+  /* Palette comparison */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 8px;
+  }
+  .palette {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .palette.recommended { box-shadow: 0 0 0 2px var(--sage); }
+  .palette-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .palette-header .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    padding: 4px 10px;
+    border: 1px solid var(--sage);
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .palette-header h3 {
+    font-family: var(--font-display);
+    font-size: 36px;
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+  .palette-header p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .swatches { padding: 28px 36px 36px; }
+  .swatch-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 calc(50% - 6px);
+    min-width: 140px;
+  }
+  .swatch .chip {
+    height: 72px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .swatch .name {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+  }
+  .swatch .hex {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* Preview mini-slide */
+  .preview {
+    margin-top: 36px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 40px;
+    font-size: 14px;
+  }
+  .preview .gbar { height: 4px; background: var(--gradient); margin: -36px -40px 32px; }
+  .preview .eb { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 12px; }
+  .preview h4 { font-family: var(--font-display); font-size: 26px; margin: 0 0 8px; font-weight: 400; line-height: 1.1; }
+  .preview p { font-size: 12px; line-height: 1.45; margin: 0; }
+
+  /* Type stack */
+  .type-stack {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px 48px;
+    margin-top: 32px;
+    align-items: baseline;
+  }
+  .type-stack .role {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 14px;
+  }
+  .type-stack .demo h4 { margin: 0; font-weight: 400; }
+  .type-stack .demo .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* Sizing scale grid */
+  .scale-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px 40px;
+    align-items: baseline;
+    margin-top: 24px;
+  }
+  .scale-grid .lbl {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .scale-grid .val {
+    font-family: var(--font-display);
+    line-height: 1;
+  }
+
+  /* Diff blocks */
+  .diff {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .diff-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 30px;
+  }
+  .diff-card.was { border-top: 4px solid var(--terra); }
+  .diff-card.now { border-top: 4px solid var(--sage); }
+  .diff-card .tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 12px;
+  }
+  .diff-card.was .tag { color: var(--terra); }
+  .diff-card.now .tag { color: var(--sage); }
+  .diff-card h4 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    margin: 0 0 14px;
+    font-weight: 400;
+  }
+  .diff-card ul { margin: 0; padding-left: 18px; color: var(--text-soft); font-size: 15px; line-height: 1.55; }
+  .diff-card li { margin-bottom: 6px; }
+
+  /* Footer */
+  footer {
+    margin-top: 120px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .qlinks, .palette-grid, .diff { grid-template-columns: 1fr; }
+    .type-stack { grid-template-columns: 1fr; }
+    .wrap { padding: 56px 28px 80px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════ NAV ════════════════════ -->
-<nav>
-  <div class="nav-inner">
-    <a class="nav-brand" href="#">
-      <div class="nav-logo">
-        <!-- Rule #21 analog: course mark every page -->
-        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
-          <rect x="10" y="2" width="6" height="6" rx="1" fill="white" opacity="0.6"/>
-          <rect x="2" y="10" width="6" height="6" rx="1" fill="white" opacity="0.6"/>
-          <rect x="10" y="10" width="6" height="6" rx="1" fill="white" opacity="0.3"/>
-        </svg>
-      </div>
-      <div>
-        <div class="nav-course">BUS123</div>
-        <div class="nav-subtitle">Solving Business Problems with Technology</div>
-      </div>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#tracks">Tracks</a></li>
-      <li><a href="#lessons">Lessons</a></li>
-    </ul>
-    <a class="nav-cta" href="#">Open Canvas</a>
-  </div>
-</nav>
+<div class="wrap">
 
-<!-- ════════════════════ HERO ════════════════════ -->
-<!-- Rule #19: Everything starts top-left -->
-<!-- Rule #4: ≥60% whitespace on hero -->
-<!-- Rule #20: Presenter mode — sparse, decisive -->
-<section class="hero">
-  <div class="hero-inner">
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="gbar"></div>
+    <p class="eyebrow">Design System · v2 · May 2026</p>
+    <h1>BUS123 makeover.</h1>
+    <p class="sub">A reconciled palette, a cleaner type stack, sparser slide layouts, and an updated builder skill — so the next deck looks like one piece of work.</p>
+  </header>
 
-    <p class="eyebrow">
-      <span class="eyebrow-dot"></span>
-      Endicott College · Gerrish School of Business · Fall 2026
-    </p>
-
-    <!-- Rule #8: hero title ≥48px via clamp -->
-    <h1 class="hero-title">
-      Turn data into<br><mark>business decisions</mark>.
-    </h1>
-
-    <!-- Rule #10: line length ≤60 chars -->
-    <p class="hero-desc">
-      Master Excel. Build financial models.<br>
-      One semester. Skills that last a career.
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn-primary" href="#lessons">Start Learning</a>
-      <a class="btn-ghost" href="#">
-        View syllabus
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
-            stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+  <!-- ============ QUICK LINKS ============ -->
+  <section class="section" style="margin-top: 56px; padding-top: 56px; border-top: 0;">
+    <p class="section-num">↳ Start here</p>
+    <div class="qlinks">
+      <a class="qlink" href="INTRO/M01/bus123-intro-m01-l03-slides.html">
+        <p class="tag">L03 · redesigned</p>
+        <h3>BUS123 · M01 · L03<br/>Technology in everyday life and business</h3>
+        <p>20 slides, real content, new system. Image-led, sparse, 1920×1080, with speaker notes and Tweaks panel.</p>
+        <span class="arrow">Open deck →</span>
+      </a>
+      <a class="qlink" href="#palettes">
+        <p class="tag">Locked</p>
+        <h3>Palette ·<br/>Refined Hybrid</h3>
+        <p>Reconciled May 2026. Ink, paper, four course accents — one set of tokens shared everywhere.</p>
+        <span class="arrow">See palette ↓</span>
+      </a>
+      <a class="qlink" href="SKILL.md">
+        <p class="tag">Skill</p>
+        <h3>Revised<br/>SKILL.md</h3>
+        <p>The new builder skill — incorporates fixed sizing, image-first layouts, tweaks, deck-stage.</p>
+        <span class="arrow">Read skill →</span>
       </a>
     </div>
+  </section>
 
-    <!-- Rule #3: 3 chunks — ideal -->
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Learning Tracks</span>
+  <!-- ============ WHAT CHANGED ============ -->
+  <section class="section">
+    <p class="section-num">01 · What changed</p>
+    <h2>The crowding was structural. Here's the fix.</h2>
+    <p class="lead">You said the slides felt cramped, the text felt small, and the cards stacked too densely — but also that there was a lot of blank space. Both at once is a sign the system was working against you, not for you. These four moves resolve it.</p>
+
+    <div class="diff">
+      <div class="diff-card was">
+        <p class="tag">Before</p>
+        <h4>Clamp-based sizing</h4>
+        <ul>
+          <li>Body type bottomed out around 14px on small viewports</li>
+          <li>Padding and gaps scaled too, so density got tighter on smaller screens</li>
+          <li>No fixed "authored" target — every layout was a guess</li>
+        </ul>
       </div>
-      <div class="stat">
-        <span class="stat-value">75</span>
-        <span class="stat-label">Min Class Period</span>
+      <div class="diff-card now">
+        <p class="tag">After</p>
+        <h4>Fixed 1920×1080 + scaled stage</h4>
+        <ul>
+          <li>Author at one size; <code style="font-family:var(--font-mono);font-size:13px;">deck-stage.js</code> letterbox-scales to any viewport</li>
+          <li>Body 28px minimum, titles 72px — always projectable</li>
+          <li>One Tweaks slider rescales the whole deck for back-of-room or laptop</li>
+        </ul>
       </div>
-      <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Credits</span>
+      <div class="diff-card was">
+        <p class="tag">Before</p>
+        <h4>Four-font stack</h4>
+        <ul>
+          <li>Cinzel + Cormorant Garamond + DM Mono + Inter</li>
+          <li>Cinzel is all-caps display — unreadable at small sizes</li>
+          <li>Two serifs competing for the display role</li>
+        </ul>
+      </div>
+      <div class="diff-card now">
+        <p class="tag">After</p>
+        <h4>Three-font stack</h4>
+        <ul>
+          <li><strong>Instrument Serif</strong> for display — warm, modern, reads down to 30px</li>
+          <li><strong>Geist</strong> for body/UI — geometric, clean, excellent at slide sizes</li>
+          <li><strong>JetBrains Mono</strong> for formulas, Excel, eyebrows</li>
+        </ul>
+      </div>
+      <div class="diff-card was">
+        <p class="tag">Before</p>
+        <h4>Dense card layouts</h4>
+        <ul>
+          <li>Up to 7 chunks per slide, often 5+ accent-stripe cards</li>
+          <li>Header bars, gradient bars, slide numbers, badges — all stacking</li>
+          <li>No room for images, diagrams, or motion</li>
+        </ul>
+      </div>
+      <div class="diff-card now">
+        <p class="tag">After</p>
+        <h4>Image-led, 3-chunk max</h4>
+        <ul>
+          <li>Every content template offers an <code style="font-family:var(--font-mono);font-size:13px;">&lt;image-slot&gt;</code> placeholder</li>
+          <li>Motion-graphic placeholders for animated diagrams</li>
+          <li>Cards lose the left-stripe; bullets become numbered statements</li>
+        </ul>
+      </div>
+      <div class="diff-card was">
+        <p class="tag">Before</p>
+        <h4>Hand-rolled navigation</h4>
+        <ul>
+          <li>Per-deck keyboard JS, slide counter, staggered reveals</li>
+          <li>No print path, no thumbnail rail, no speaker-notes contract</li>
+          <li>Every deck reimplements the same boilerplate</li>
+        </ul>
+      </div>
+      <div class="diff-card now">
+        <p class="tag">After</p>
+        <h4><code style="font-family:var(--font-mono);font-size:18px;">&lt;deck-stage&gt;</code> component</h4>
+        <ul>
+          <li>Keyboard nav, tap regions, slide counter, thumbnail rail — all free</li>
+          <li>Speaker-notes JSON wired up automatically</li>
+          <li>Print-to-PDF: Ctrl/Cmd-P, one slide per page</li>
+        </ul>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- ============ PALETTE (LOCKED) ============ -->
+  <section class="section" id="palettes">
+    <p class="section-num">02 · Palette · locked</p>
+    <h2>Refined Hybrid — locked May 2026.</h2>
+    <p class="lead">One palette across the landing page and every deck. Course accent rotates among the four — sage for BUS123, gold for BUS331, terra for BUS311, steel for BUS210 — but ink, paper, and the gradient bar stay constant.</p>
 
-<hr class="section-divider">
-
-<!-- ════════════════════ TRACKS ════════════════════ -->
-<section class="tracks-section section-wrap fade-section" id="tracks">
-  <div class="container">
-
-    <div class="section-head">
-      <p class="label-tag">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-          <circle cx="6" cy="6" r="6"/>
-        </svg>
-        Course Architecture
-      </p>
-      <!-- Rule #8: section h2 ≥28px, we use text-3xl ~40px -->
-      <h2 class="section-h2">Three tracks. One semester.</h2>
-      <p class="section-sub">Each track builds a distinct skill set. Together they make you dangerous in any business role.</p>
-    </div>
-
-    <!-- Rule #16: 3 × 4-col on 12-col grid -->
-    <div class="tracks-grid">
-
-      <!-- Track 01 — INTRO — no accent (not lead) -->
-      <div class="track-card">
-        <p class="track-num">Track 01</p>
-        <div class="track-icon">🎓</div>
-        <h3 class="track-name">Introduction</h3>
-        <p class="track-desc">Office 365 setup, OneDrive, course orientation, and digital fluency for business professionals.</p>
-        <p class="track-count">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M6 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-          3 Lessons
-        </p>
-      </div>
-
-      <!-- Track 02 — EXCEL — LEAD with accent -->
-      <div class="track-card lead">
-        <p class="track-num">Track 02</p>
-        <div class="track-icon">
-          <!-- White icon on accent bg -->
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
-            <rect x="11" y="3" width="6" height="2" rx="0.5" fill="white" opacity="0.7"/>
-            <rect x="11" y="7" width="6" height="2" rx="0.5" fill="white" opacity="0.5"/>
-            <rect x="3" y="11" width="14" height="2" rx="0.5" fill="white" opacity="0.7"/>
-            <rect x="3" y="15" width="10" height="2" rx="0.5" fill="white" opacity="0.5"/>
-          </svg>
+    <div class="palette-grid" style="grid-template-columns: 1.2fr 1fr;">
+      <div class="palette recommended">
+        <div class="palette-header">
+          <span class="badge">★ Locked</span>
+          <h3>Refined Hybrid</h3>
+          <p>Near-black ink, warm cream paper, deep sage. Replaces the original index's vibrant teal (#00A878) and the old deck's muted sage (#7AAB8C) with one shared accent (#4A7C5E) that reads correctly on both light cards and dark backgrounds.</p>
         </div>
-        <h3 class="track-name">Excel Skills</h3>
-        <p class="track-desc">Formulas, functions, charts, data management, and professional spreadsheet models from scratch.</p>
-        <p class="track-count">4 Modules · Core Track</p>
-      </div>
-
-      <!-- Track 03 — MATH — no accent -->
-      <div class="track-card">
-        <p class="track-num">Track 03</p>
-        <div class="track-icon">📐</div>
-        <h3 class="track-name">Business Math</h3>
-        <p class="track-desc">Payroll, discounts, markup, breakeven, inventory, interest, taxes — the quantitative foundation.</p>
-        <p class="track-count">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M6 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-          14 Sub-topics
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ════════════════════ MODULES ════════════════════ -->
-<section class="modules-section section-wrap fade-section" id="lessons">
-  <div class="container">
-
-    <div class="section-head">
-      <p class="label-tag">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
-        All Lessons
-      </p>
-      <h2 class="section-h2">Your complete course map.</h2>
-      <p class="section-sub">Every lesson, every module — start with what's live, return as more unlock.</p>
-    </div>
-
-    <!-- ── INTRO TRACK ── -->
-    <div class="module-block fade-section">
-      <div class="module-header">
-        <span class="module-badge">INTRO · M01</span>
-        <span class="module-title">Getting Started with Business Technology</span>
-      </div>
-      <div class="lessons-grid">
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l01-slides.html">
-          <div class="lesson-code">INTRO-M01-L01</div>
-          <div class="lesson-title">OneDrive Setup & Office 365</div>
-          <div class="lesson-topic">Installing Microsoft 365, connecting Endicott OneDrive, building your BUS123 folder structure</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </a>
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l02-slides.html">
-          <div class="lesson-code">INTRO-M01-L02</div>
-          <div class="lesson-title">Course Introduction & Expectations</div>
-          <div class="lesson-topic">Case study businesses, grading, Canvas navigation, and what it means to be a business problem solver</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </a>
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l03-slides.html">
-          <div class="lesson-code">INTRO-M01-L03</div>
-          <div class="lesson-title">Technology in Business</div>
-          <div class="lesson-topic">Digital fluency, tech by industry, how AI and tools shape the modern professional's workflow</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- ── EXCEL TRACK ── -->
-    <div class="module-block fade-section">
-      <div class="module-header">
-        <span class="module-badge">EXCEL · M01</span>
-        <span class="module-title">Formulas, Functions & Data Basics</span>
-      </div>
-      <div class="lessons-grid">
-
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M01-L01</div>
-          <div class="lesson-title">Creating and Editing Worksheets</div>
-          <div class="lesson-topic">Creating a clean product worksheet for Tidal Goods Co. with labels, values, edits, and checks</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+        <div class="swatches">
+          <div class="swatch-row">
+            <div class="swatch"><div class="chip" style="background:#0E1116"></div><span class="name">Ink</span><span class="hex">#0E1116</span></div>
+            <div class="swatch"><div class="chip" style="background:#FAF8F3"></div><span class="name">Paper</span><span class="hex">#FAF8F3</span></div>
+            <div class="swatch"><div class="chip" style="background:#1A1F2C"></div><span class="name">Text</span><span class="hex">#1A1F2C</span></div>
+            <div class="swatch"><div class="chip" style="background:#E5E1D6"></div><span class="name">Border</span><span class="hex">#E5E1D6</span></div>
+            <div class="swatch"><div class="chip" style="background:#4A7C5E"></div><span class="name">Sage · 123</span><span class="hex">#4A7C5E</span></div>
+            <div class="swatch"><div class="chip" style="background:#B8843D"></div><span class="name">Gold · 331</span><span class="hex">#B8843D</span></div>
+            <div class="swatch"><div class="chip" style="background:#9C4A2B"></div><span class="name">Terra · 311</span><span class="hex">#9C4A2B</span></div>
+            <div class="swatch"><div class="chip" style="background:#355773"></div><span class="name">Steel · 210</span><span class="hex">#355773</span></div>
+          </div>
+          <div class="preview" style="background:#FAF8F3; color:#1A1F2C;">
+            <div class="gbar"></div>
+            <p class="eb" style="color:#4A7C5E;">BUS 123 · M01 · L03</p>
+            <h4>Stakeholders &amp; value creation.</h4>
+            <p style="color:#4A5567;">Who a business is for, and how it generates worth for everyone on the list.</p>
           </div>
         </div>
+      </div>
 
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M01-L02</div>
-          <div class="lesson-title">Formatting and Organizing Worksheets</div>
-          <div class="lesson-topic">Formatting worksheet data, assigning categories, and preparing a manager-ready view</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l02-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l02-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+      <div style="background: var(--paper-2); border-radius: 18px; padding: 40px 44px; display:flex; flex-direction:column; justify-content:center;">
+        <p style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px;">Reconciliation · what changed</p>
+        <p style="font-family: var(--font-display); font-size: 32px; line-height: 1.2; margin: 0 0 24px;">One green, four courses, zero hex-codes outside the token block.</p>
+        <div style="display:flex; flex-direction:column; gap: 18px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:36px; height:36px; border-radius:8px; background:#00A878;"></div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size:13px; color: var(--muted);">Old index</div>
+              <div style="font-family: var(--font-mono); font-size:14px;">#00A878 · too vibrant for dark slides</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:36px; height:36px; border-radius:8px; background:#7AAB8C;"></div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size:13px; color: var(--muted);">Old deck</div>
+              <div style="font-family: var(--font-mono); font-size:14px;">#7AAB8C · too muted for light cards</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:36px; height:36px; border-radius:8px; background:#4A7C5E; box-shadow: 0 0 0 2px rgba(74,124,94,0.25);"></div>
+            <div>
+              <div style="font-family: var(--font-mono); font-size:13px; color: var(--sage);">Locked</div>
+              <div style="font-family: var(--font-mono); font-size:14px;"><strong>#4A7C5E</strong> · works on both</div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">EXCEL-M01-L03</div>
-          <div class="lesson-title">Cell References & VLOOKUP</div>
-          <div class="lesson-topic">Relative vs. absolute references, named ranges, and looking up data across tables</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
+  <!-- ============ TYPE ============ -->
+  <section class="section">
+    <p class="section-num">03 · Typography</p>
+    <h2>Three faces. Each with one clear job.</h2>
+    <p class="lead">Loaded from Google Fonts in a single request. Cinzel and Cormorant Garamond are gone — Instrument Serif covers both display roles, and Geist replaces Inter with a sharper modern sans.</p>
 
+    <div class="type-stack">
+      <div class="role">Display · titles · stats</div>
+      <div class="demo">
+        <h4 style="font-family: var(--font-display); font-size: 72px; line-height: 1.05;">Stakeholders &amp; value creation.</h4>
+        <p class="meta">Instrument Serif · 400 · 72px / 1.05</p>
+      </div>
+
+      <div class="role">Display · italic subtitle</div>
+      <div class="demo">
+        <h4 style="font-family: var(--font-display); font-style: italic; font-size: 44px; line-height: 1.2; color: var(--text-soft);">Who a business is for, and how it makes worth.</h4>
+        <p class="meta">Instrument Serif Italic · 400 · 44px / 1.2</p>
+      </div>
+
+      <div class="role">Body · UI · lists</div>
+      <div class="demo">
+        <h4 style="font-family: var(--font-sans); font-size: 28px; line-height: 1.5; font-weight: 400;">Workers want higher wages. Shareholders want higher profits. Managers navigate.</h4>
+        <p class="meta">Geist · 400 · 28px / 1.5</p>
+      </div>
+
+      <div class="role">Mono · eyebrows · formulas · Excel</div>
+      <div class="demo">
+        <h4 style="font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.02em;">=PMT(rate, nper, pv)</h4>
+        <p class="meta">JetBrains Mono · 500 · 24px / 0.02em</p>
       </div>
     </div>
 
-    <div class="module-block fade-section">
-      <div class="module-header">
-        <span class="module-badge">EXCEL · M03</span>
-        <span class="module-title">Pricing, Markup, Margin & Markdown</span>
-      </div>
-      <div class="lessons-grid">
-
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M03-L01</div>
-          <div class="lesson-title">Markup, Margin, and Markdown</div>
-          <div class="lesson-topic">Retail pricing decisions for Tidal Goods Co. using Excel formulas and feedback checks</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M03/bus123-excel-m03-l01-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M03/bus123-excel-m03-l01-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
+    <h3 style="font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 80px 0 8px;">Type scale (1920×1080, scale = 1.0)</h3>
+    <p style="color: var(--text-soft); font-size: 16px; margin: 0 0 16px;">Every size below the line is rejected by the deck builder.</p>
+    <div class="scale-grid">
+      <div class="lbl">--type-display · 112px</div>
+      <div class="val" style="font-family:var(--font-display); font-size: 64px;">Display</div>
+      <div class="lbl">--type-title · 72px</div>
+      <div class="val" style="font-family:var(--font-display); font-size: 52px;">Title</div>
+      <div class="lbl">--type-subtitle · 44px</div>
+      <div class="val" style="font-family:var(--font-display); font-style: italic; font-size: 36px;">Subtitle</div>
+      <div class="lbl">--type-lead · 34px</div>
+      <div class="val" style="font-family:var(--font-sans); font-size: 28px;">Lead paragraph</div>
+      <div class="lbl">--type-body · 28px</div>
+      <div class="val" style="font-family:var(--font-sans); font-size: 22px;">Body text</div>
+      <div class="lbl">--type-small · 22px (min)</div>
+      <div class="val" style="font-family:var(--font-sans); font-size: 18px;">Small / caption</div>
     </div>
+  </section>
 
-    <!-- ── MATH TRACK ── -->
-    <div class="module-block fade-section">
-      <div class="module-header">
-        <span class="module-badge">MATH · M01</span>
-        <span class="module-title">Payroll & Discounts</span>
-      </div>
-      <div class="lessons-grid">
+  <!-- ============ NEXT ============ -->
+  <section class="section">
+    <p class="section-num">04 · Next</p>
+    <h2>Refined Hybrid is locked. The next deck inherits it automatically.</h2>
+    <p class="lead">Ask Claude for any future BUS deck and it'll pull from the same six tokens (<code style="font-family:var(--font-mono); font-size: 17px;">--ink · --paper · --sage · --gold · --terra · --steel</code>), the same three fonts, and the same <code style="font-family:var(--font-mono); font-size: 17px;">&lt;deck-stage&gt;</code> scaffold. The v2 SKILL.md enforces it.</p>
+  </section>
 
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">MATH-M01-L01</div>
-          <div class="lesson-title">Payroll Fundamentals</div>
-          <div class="lesson-topic">Gross pay, deductions, net pay — Harbor View Surf Shop payroll case</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
+  <footer>
+    <span>BUS123 · Design system v2 · May 2026</span>
+    <span>Prof. Evitts · Endicott College</span>
+  </footer>
+</div>
 
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">MATH-M01-L02</div>
-          <div class="lesson-title">Trade & Cash Discounts</div>
-          <div class="lesson-topic">Single & chain discounts, cash discount terms, net price calculations</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
-
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════ FOOTER ════════════════════ -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <svg viewBox="0 0 18 18" width="14" height="14" fill="none">
-            <rect x="2" y="2" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
-            <rect x="10" y="2" width="6" height="6" rx="1" fill="white" opacity="0.6"/>
-            <rect x="2" y="10" width="6" height="6" rx="1" fill="white" opacity="0.6"/>
-            <rect x="10" y="10" width="6" height="6" rx="1" fill="white" opacity="0.3"/>
-          </svg>
-        </div>
-        <span class="footer-name">BUS123</span>
-      </div>
-      <p class="footer-meta">
-        Solving Business Problems with Technology<br>
-        Gerrish School of Business · Endicott College
-      </p>
-    </div>
-    <div class="footer-right">
-      <p class="footer-meta">
-        Fall 2026<br>
-        Instructor: Professor Evitts<br>
-        3 Credits
-      </p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Scroll-reveal — Rule #15 timing in 8pt multiples (600ms = ~75 × 8ms)
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.fade-section').forEach(el => io.observe(el));
-</script>
 </body>
 </html>

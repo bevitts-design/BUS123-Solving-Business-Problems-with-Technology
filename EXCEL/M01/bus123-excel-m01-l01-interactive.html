@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 Excel First Steps Interactive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116;
+      --paper: #FAF8F3;
+      --paper-2: #F2EEE5;
+      --white: #FFFFFF;
+      --text: #1A1F2C;
+      --text-soft: #4A5567;
+      --muted: #7A8290;
+      --border: #E5E1D6;
+      --sage: #4A7C5E;
+      --gold: #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+      --accent: var(--sage);
+      --formula: #1A6B3C;
+      --input: #0A3D6B;
+      --cell-border: #E2E8F0;
+      --cell-alt: #F7F8FA;
+      --cell-head: #1A1A2E;
+      --result-row: #FFFBF0;
+      --gradient: linear-gradient(90deg, #B8843D 0%, #9C4A2B 50%, #4A7C5E 100%);
+      --font-serif: "Instrument Serif", Georgia, serif;
+      --font-sans: "Geist", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--paper);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid rgba(74, 124, 94, 0.4);
+      outline-offset: 3px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .top-bar {
+      min-height: 84px;
+      background: var(--ink);
+      color: var(--white);
+      border-top: 8px solid transparent;
+      border-image: var(--gradient) 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 32px;
+    }
+
+    .brand-kicker {
+      margin: 0 0 4px;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 52px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .top-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 16px;
+      text-align: right;
+    }
+
+    .reset-btn {
+      min-height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      padding: 8px 14px;
+      font-weight: 600;
+    }
+
+    .reset-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: minmax(240px, 300px) minmax(520px, 1fr) minmax(260px, 340px);
+      gap: 24px;
+      width: min(1500px, calc(100vw - 48px));
+      margin: 24px auto;
+      align-items: start;
+    }
+
+    .panel,
+    .workbench {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .panel-title {
+      margin: 0 0 8px;
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .panel-sub {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+
+    .progress-wrap {
+      margin-top: 18px;
+    }
+
+    .progress-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: var(--text-soft);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .progress-track {
+      height: 10px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--paper-2);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width 220ms ease;
+    }
+
+    .missions {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .mission-btn {
+      width: 100%;
+      min-height: 76px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--text);
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .mission-btn:hover {
+      border-color: rgba(74, 124, 94, 0.45);
+    }
+
+    .mission-btn.active {
+      border-color: var(--accent);
+      background: rgba(74, 124, 94, 0.08);
+    }
+
+    .mission-btn.complete {
+      border-color: rgba(74, 124, 94, 0.3);
+      background: #F3F8F4;
+    }
+
+    .mission-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .complete .mission-num {
+      background: var(--accent);
+    }
+
+    .mission-name {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .mission-desc {
+      display: block;
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+
+    .workbench {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .workbench-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .workbench-title {
+      min-width: 0;
+    }
+
+    .case-label {
+      margin: 0 0 4px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .workbench-title h2 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .tool-btn {
+      min-width: 42px;
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--paper);
+      color: var(--text);
+      padding: 8px 10px;
+      font-weight: 700;
+    }
+
+    .tool-btn:hover,
+    .tool-btn.active {
+      border-color: var(--accent);
+      background: rgba(74, 124, 94, 0.1);
+      color: var(--ink);
+    }
+
+    .tool-btn.mono {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .formula-strip {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 10px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--paper-2);
+    }
+
+    .name-box,
+    .formula-box {
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .name-box {
+      justify-content: center;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    .formula-box label {
+      margin-right: 10px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    .formula-input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      outline: 0;
+    }
+
+    .sheet-wrap {
+      overflow: auto;
+      padding: 20px;
+      background: var(--paper);
+    }
+
+    .sheet {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      min-width: 720px;
+      background: var(--white);
+      color: var(--text);
+    }
+
+    .sheet th,
+    .sheet td {
+      border: 1px solid var(--cell-border);
+    }
+
+    .sheet th {
+      height: 34px;
+      background: var(--cell-head);
+      color: var(--white);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .corner {
+      width: 44px;
+    }
+
+    .row-head {
+      width: 44px;
+      background: #F1F5F9;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .cell {
+      height: 46px;
+      min-width: 112px;
+      background: var(--white);
+      padding: 0;
+      position: relative;
+    }
+
+    tr:nth-child(even) .cell {
+      background: var(--cell-alt);
+    }
+
+    .cell.result-cell {
+      background: var(--result-row);
+    }
+
+    .cell-inner {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 16px;
+      outline: 0;
+    }
+
+    .cell-inner.formula-text {
+      color: var(--formula);
+      font-family: var(--font-mono);
+    }
+
+    .cell-inner.currency,
+    .cell-inner.percent,
+    .cell-inner.number {
+      color: var(--input);
+    }
+
+    .cell-inner.bold {
+      font-weight: 700;
+    }
+
+    .cell-inner.align-left {
+      text-align: left;
+    }
+
+    .cell-inner.align-right {
+      text-align: right;
+    }
+
+    .cell-inner.align-center {
+      text-align: center;
+    }
+
+    .cell.active::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border: 3px solid var(--accent);
+      pointer-events: none;
+    }
+
+    .cell.hint-cell::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border: 2px dashed rgba(184, 132, 61, 0.7);
+      pointer-events: none;
+    }
+
+    .feedback-card {
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 16px;
+    }
+
+    .feedback-status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border-radius: 999px;
+      background: rgba(74, 124, 94, 0.12);
+      color: var(--accent);
+      padding: 5px 10px;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .feedback-status.warn {
+      background: rgba(156, 74, 43, 0.1);
+      color: var(--terra);
+    }
+
+    .feedback-card h3 {
+      margin: 14px 0 8px;
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.12;
+    }
+
+    .feedback-copy {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 16px;
+    }
+
+    .feedback-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      min-height: 42px;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+
+    .primary-btn {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .primary-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .secondary-btn {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+    }
+
+    .excel-readout {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .readout-row {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 12px;
+    }
+
+    .readout-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .readout-value {
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(120%);
+      max-width: min(520px, calc(100vw - 32px));
+      border: 1px solid rgba(74, 124, 94, 0.32);
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--white);
+      padding: 12px 16px;
+      box-shadow: 0 18px 44px rgba(14, 17, 22, 0.22);
+      opacity: 0;
+      transition: transform 180ms ease, opacity 180ms ease;
+      z-index: 20;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1180px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .missions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-meta {
+        width: 100%;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 720px) {
+      h1 {
+        font-size: 40px;
+      }
+
+      .top-bar {
+        padding: 16px;
+      }
+
+      .app-shell {
+        width: calc(100vw - 24px);
+        margin: 12px auto;
+        gap: 12px;
+      }
+
+      .panel,
+      .workbench-head,
+      .formula-strip,
+      .sheet-wrap {
+        padding: 14px;
+      }
+
+      .missions {
+        grid-template-columns: 1fr;
+      }
+
+      .workbench-head {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .toolbar {
+        justify-content: flex-start;
+      }
+
+      .formula-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .top-meta {
+        align-items: stretch;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-bar">
+    <div>
+      <p class="brand-kicker">BUS123 · Excel M01 · L01</p>
+      <h1>Excel First Steps</h1>
+    </div>
+    <div class="top-meta">
+      <span>Practice before the starter workbook</span>
+      <button class="reset-btn" id="resetProgress" type="button">Reset practice</button>
+    </div>
+  </header>
+
+  <main class="app-shell" aria-label="Interactive Excel practice">
+    <aside class="panel" aria-labelledby="missionTitle">
+      <h2 class="panel-title" id="missionTitle">Your Missions</h2>
+      <p class="panel-sub">Work through five small moves that make Excel feel less mysterious.</p>
+
+      <div class="progress-wrap" aria-label="Progress">
+        <div class="progress-line">
+          <span id="progressText">0 of 5 done</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="missions" id="missionsList"></div>
+    </aside>
+
+    <section class="workbench" aria-labelledby="workbenchTitle">
+      <div class="workbench-head">
+        <div class="workbench-title">
+          <p class="case-label">Tidal Goods Co.</p>
+          <h2 id="workbenchTitle">Mini Product Worksheet</h2>
+        </div>
+        <div class="toolbar" aria-label="Formatting tools">
+          <button class="tool-btn" id="boldBtn" type="button" title="Bold selected cell">B</button>
+          <button class="tool-btn mono" id="currencyBtn" type="button" title="Format selected cell as currency">$</button>
+          <button class="tool-btn mono" id="percentBtn" type="button" title="Format selected cell as percent">%</button>
+          <button class="tool-btn mono" id="leftBtn" type="button" title="Align selected cell left">Left</button>
+          <button class="tool-btn mono" id="centerBtn" type="button" title="Align selected cell center">Center</button>
+          <button class="tool-btn mono" id="rightBtn" type="button" title="Align selected cell right">Right</button>
+          <button class="tool-btn mono" id="headerBtn" type="button" title="Format A2 through D2 as headers">Header row</button>
+        </div>
+      </div>
+
+      <div class="formula-strip" aria-label="Name box and formula bar">
+        <div class="name-box" id="nameBox" aria-label="Name Box">A1</div>
+        <div class="formula-box">
+          <label for="formulaInput">fx</label>
+          <input class="formula-input" id="formulaInput" aria-label="Formula Bar" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="sheet-wrap">
+        <table class="sheet" id="sheet" aria-label="Mini spreadsheet">
+          <thead id="sheetHead"></thead>
+          <tbody id="sheetBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="panel" aria-labelledby="feedbackTitle">
+      <h2 class="panel-title" id="feedbackTitle">Feedback</h2>
+      <p class="panel-sub">Excel rewards checking what is selected and what is really inside the cell.</p>
+
+      <div class="feedback-card">
+        <span class="feedback-status" id="feedbackStatus">Ready</span>
+        <h3 id="activeMissionName">Select a mission</h3>
+        <p class="feedback-copy" id="activeMissionPrompt">Start with Mission 1. The worksheet is waiting for you.</p>
+
+        <div class="feedback-actions">
+          <button class="primary-btn" id="checkBtn" type="button">Check my work</button>
+          <button class="secondary-btn" id="hintBtn" type="button">Show a hint</button>
+          <button class="secondary-btn" id="formulaCheckedBtn" type="button">I checked the formula bar</button>
+        </div>
+      </div>
+
+      <div class="excel-readout" aria-label="Excel readout">
+        <div class="readout-row">
+          <span class="readout-label">Selected cell</span>
+          <span class="readout-value" id="selectedReadout">A1</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Cell displays</span>
+          <span class="readout-value" id="displayReadout">(blank)</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Formula bar shows</span>
+          <span class="readout-value" id="formulaReadout">(blank)</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "bus123-excel-first-steps-v1";
+    const columns = ["A", "B", "C", "D", "E"];
+    const rows = [1, 2, 3, 4, 5, 6];
+    const RESULT_CELL = "D3";
+    const INSPECT_MISSION_ID = "inspect-formula";
+
+    const missions = [
+      {
+        id: "select-c3",
+        name: "Find a cell",
+        short: "Select C3 and read the Name Box.",
+        prompt: "Click cell C3. The Name Box should confirm exactly where you are.",
+        hint: "Column letters run across the top. Row numbers run down the left. C3 is where column C meets row 3.",
+        success: "Good. The Name Box is your map: it tells you which cell is active.",
+        check: () => state.activeCell === "C3"
+      },
+      {
+        id: "enter-table",
+        name: "Enter labels and values",
+        short: "Build the first row of a product table.",
+        prompt: "Enter Product, Units, Unit Cost, and Total Cost in row 2. Then enter Canvas Tote, 24, and 8.5 in row 3.",
+        hint: "Use A2:D2 for labels. Use A3 for the product name, B3 for units, and C3 for unit cost.",
+        success: "Nice. Labels describe the worksheet; values give Excel something to calculate.",
+        check: () => cellText("A2") === "product" && cellText("B2") === "units" && cellText("C2") === "unit cost" && cellText("D2") === "total cost" && cellText("A3") === "canvas tote" && nearlyEqual(numberValue("B3"), 24) && nearlyEqual(numberValue("C3"), 8.5)
+      },
+      {
+        id: "format-table",
+        name: "Make it readable",
+        short: "Apply header, currency, and alignment formatting.",
+        prompt: "Use Header row, format C3 as currency, and right-align the numeric cells in B3 and C3.",
+        hint: "Select a cell, then use the toolbar. The Header row button formats A2:D2 in one move.",
+        success: "Exactly. Formatting is communication, not decoration.",
+        check: () => ["A2", "B2", "C2", "D2"].every(address => cells[address].bold) && cells.C3.format === "currency" && cells.B3.align === "right" && cells.C3.align === "right"
+      },
+      {
+        id: "write-formula",
+        name: "Write a formula",
+        short: "Calculate total cost with a formula.",
+        prompt: "Select D3 and type =B3*C3 in the formula bar or directly in the cell.",
+        hint: "Start with the equals sign. Excel reads =B3*C3 as units times unit cost.",
+        success: "That is the move: let Excel calculate the answer so the worksheet can update later.",
+        check: () => isProductFormula(RESULT_CELL, "B3", "C3") && nearlyEqual(numberValue(RESULT_CELL), 204)
+      },
+      {
+        id: "inspect-formula",
+        name: "Inspect the formula bar",
+        short: "Compare what the cell displays with what it stores.",
+        prompt: "Select D3. Notice the cell displays the result, while the formula bar shows =B3*C3. Then click the check button below.",
+        hint: "The grid shows the calculated answer. The formula bar shows the underlying formula.",
+        success: "Perfect. This habit will save you from editing the wrong thing later.",
+        check: () => state.activeCell === RESULT_CELL && isProductFormula(RESULT_CELL, "B3", "C3") && state.formulaBarChecked
+      }
+    ];
+
+    let cells = {};
+    let state = {
+      activeCell: "A1",
+      activeMission: 0,
+      completed: [],
+      formulaBarChecked: false
+    };
+
+    function defaultCells() {
+      const next = {};
+      rows.forEach(row => {
+        columns.forEach(col => {
+          next[col + row] = {
+            value: "",
+            formula: "",
+            format: "general",
+            bold: false,
+            align: "left",
+            locked: false
+          };
+        });
+      });
+      return next;
+    }
+
+    function loadState() {
+      cells = defaultCells();
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && saved.cells && saved.state) {
+          cells = { ...cells, ...saved.cells };
+          state = { ...state, ...saved.state };
+        }
+      } catch (error) {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ cells, state }));
+    }
+
+    function addressParts(address) {
+      const match = address.match(/^([A-E])([1-6])$/);
+      return match ? { col: match[1], row: Number(match[2]) } : null;
+    }
+
+    function cellText(address) {
+      return String(cells[address]?.value || cells[address]?.formula || "").trim().toLowerCase();
+    }
+
+    function normalizedFormula(address) {
+      return String(cells[address]?.formula || "").trim().toUpperCase().replace(/\s+/g, "");
+    }
+
+    function nearlyEqual(actual, expected, tolerance = 0.001) {
+      return Number.isFinite(actual) && Math.abs(actual - expected) < tolerance;
+    }
+
+    function isProductFormula(address, firstCell, secondCell) {
+      const formula = normalizedFormula(address);
+      return formula === "=" + firstCell + "*" + secondCell || formula === "=" + secondCell + "*" + firstCell;
+    }
+
+    function numberValue(address) {
+      const cell = cells[address];
+      if (!cell) return NaN;
+      if (cell.formula) return evaluateFormula(cell.formula);
+      const parsed = parseFloat(String(cell.value).replace(/[$,%]/g, ""));
+      return Number.isFinite(parsed) ? parsed : NaN;
+    }
+
+    function evaluateFormula(formula) {
+      const clean = String(formula).trim().toUpperCase().replace(/\s+/g, "");
+      const multiply = clean.match(/^=([A-E][1-6])\*([A-E][1-6])$/);
+      if (multiply) {
+        return numberValue(multiply[1]) * numberValue(multiply[2]);
+      }
+      const sum = clean.match(/^=SUM\(([A-E][1-6]):([A-E][1-6])\)$/);
+      if (sum) {
+        const start = addressParts(sum[1]);
+        const end = addressParts(sum[2]);
+        if (!start || !end || start.col !== end.col) return NaN;
+        let total = 0;
+        for (let row = start.row; row <= end.row; row += 1) {
+          total += numberValue(start.col + row);
+        }
+        return total;
+      }
+      return NaN;
+    }
+
+    function displayValue(address) {
+      const cell = cells[address];
+      if (!cell) return "";
+      let raw = cell.formula ? evaluateFormula(cell.formula) : cell.value;
+      if (raw === "" || raw === null || typeof raw === "undefined") return "";
+      if (typeof raw === "number" && !Number.isFinite(raw)) return "#VALUE!";
+      if (cell.format === "currency" && raw !== "") {
+        const num = Number(raw);
+        return Number.isFinite(num) ? "$" + num.toFixed(2) : raw;
+      }
+      if (cell.format === "percent" && raw !== "") {
+        const num = Number(raw);
+        return Number.isFinite(num) ? (num * 100).toFixed(0) + "%" : raw;
+      }
+      return String(raw);
+    }
+
+    function rawCellEntry(address) {
+      const cell = cells[address];
+      if (!cell) return "";
+      return cell.formula || cell.value || "";
+    }
+
+    function isInspectMissionActive() {
+      return activeMission().id === INSPECT_MISSION_ID;
+    }
+
+    function focusCellInput(address, shouldSelect = true) {
+      requestAnimationFrame(() => {
+        const input = document.querySelector(".cell-inner[data-address=\"" + address + "\"]");
+        if (!input) return;
+        input.focus();
+        if (shouldSelect) input.select();
+      });
+    }
+
+    function selectCell(address, focusTarget = null) {
+      if (!cells[address]) return;
+      state.activeCell = address;
+      if (isInspectMissionActive() && address !== RESULT_CELL) {
+        state.formulaBarChecked = false;
+      }
+      render();
+      if (focusTarget === "formula") {
+        document.getElementById("formulaInput").focus();
+      } else if (focusTarget === "cell") {
+        focusCellInput(address);
+      }
+      saveState();
+    }
+
+    function updateActiveCell(entry, options = {}) {
+      const { renderAfter = true } = options;
+      const cell = cells[state.activeCell];
+      if (!cell || cell.locked) {
+        showToast("That cell is locked for this practice view.");
+        if (renderAfter) render();
+        return;
+      }
+      if (String(entry).trim().startsWith("=")) {
+        cell.formula = String(entry).trim();
+        cell.value = "";
+      } else {
+        cell.value = entry;
+        cell.formula = "";
+      }
+      state.formulaBarChecked = false;
+      saveState();
+      checkSilently();
+      if (renderAfter) render();
+    }
+
+    function applyFormat(type) {
+      if (type === "header") {
+        ["A2", "B2", "C2", "D2"].forEach(address => {
+          cells[address].bold = true;
+          cells[address].align = "center";
+        });
+        showToast("Header formatting applied to A2:D2.");
+      } else {
+        const cell = cells[state.activeCell];
+        if (!cell || cell.locked) return;
+        if (type === "bold") cell.bold = !cell.bold;
+        if (type === "currency") cell.format = cell.format === "currency" ? "general" : "currency";
+        if (type === "percent") cell.format = cell.format === "percent" ? "general" : "percent";
+        if (type === "left") cell.align = "left";
+        if (type === "center") cell.align = "center";
+        if (type === "right") cell.align = "right";
+      }
+      saveState();
+      checkSilently();
+      render();
+    }
+
+    function activeMission() {
+      return missions[state.activeMission] || missions[0];
+    }
+
+    function isComplete(index) {
+      return state.completed.includes(missions[index].id);
+    }
+
+    function markComplete(index, announce = true) {
+      const mission = missions[index];
+      if (!state.completed.includes(mission.id)) {
+        state.completed.push(mission.id);
+      }
+      if (index < missions.length - 1) {
+        state.activeMission = index + 1;
+      }
+      if (announce) showToast(mission.success);
+      saveState();
+    }
+
+    function checkCurrentMission() {
+      const index = state.activeMission;
+      const mission = missions[index];
+      if (mission.check()) {
+        markComplete(index);
+      } else {
+        showToast(mission.hint);
+      }
+      render();
+    }
+
+    function checkSilently() {
+      const mission = missions[state.activeMission];
+      if (mission && mission.check()) {
+        markComplete(state.activeMission, false);
+      }
+    }
+
+    function showHint() {
+      showToast(activeMission().hint);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timeout);
+      showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 3800);
+    }
+
+    function renderSheet() {
+      const head = document.getElementById("sheetHead");
+      const body = document.getElementById("sheetBody");
+      head.innerHTML = "<tr><th class=\"corner\"></th>" + columns.map(col => "<th scope=\"col\">" + col + "</th>").join("") + "</tr>";
+      body.innerHTML = rows.map(row => {
+        const cellsHtml = columns.map(col => {
+          const address = col + row;
+          const cell = cells[address];
+          const classes = [
+            "cell-inner",
+            cell.formula ? "formula-text" : "",
+            cell.format,
+            cell.bold ? "bold" : "",
+            "align-" + cell.align
+          ].filter(Boolean).join(" ");
+          const cellClasses = [
+            "cell",
+            address === state.activeCell ? "active" : "",
+            address === RESULT_CELL ? "result-cell" : "",
+            missionHintAddress(address) ? "hint-cell" : ""
+          ].filter(Boolean).join(" ");
+          return "<td class=\"" + cellClasses + "\" data-address=\"" + address + "\"><input class=\"" + classes + "\" data-address=\"" + address + "\" aria-label=\"Cell " + address + "\" value=\"" + escapeHtml(displayValue(address)) + "\"></td>";
+        }).join("");
+        return "<tr><th scope=\"row\" class=\"row-head\">" + row + "</th>" + cellsHtml + "</tr>";
+      }).join("");
+    }
+
+    function missionHintAddress(address) {
+      const mission = activeMission().id;
+      if (mission === "select-c3") return address === "C3";
+      if (mission === "enter-table") return ["A2", "B2", "C2", "D2", "A3", "B3", "C3"].includes(address);
+      if (mission === "format-table") return ["A2", "B2", "C2", "D2", "B3", "C3"].includes(address);
+      if (mission === "write-formula" || mission === INSPECT_MISSION_ID) return address === RESULT_CELL;
+      return false;
+    }
+
+    function renderMissions() {
+      const list = document.getElementById("missionsList");
+      list.innerHTML = missions.map((mission, index) => {
+        const classes = [
+          "mission-btn",
+          index === state.activeMission ? "active" : "",
+          isComplete(index) ? "complete" : ""
+        ].filter(Boolean).join(" ");
+        const complete = isComplete(index);
+        const number = complete ? "OK" : String(index + 1);
+        const current = index === state.activeMission ? " aria-current=\"step\"" : "";
+        const completedText = complete ? " <span class=\"sr-only\">complete</span>" : "";
+        return "<button class=\"" + classes + "\" type=\"button\" data-mission=\"" + index + "\"" + current + "><span class=\"mission-num\">" + number + "</span><span><span class=\"mission-name\">" + escapeHtml(mission.name) + completedText + "</span><span class=\"mission-desc\">" + escapeHtml(mission.short) + "</span></span></button>";
+      }).join("");
+    }
+
+    function renderFeedback() {
+      const mission = activeMission();
+      const complete = mission.check();
+      const completedCount = state.completed.length;
+      const percent = Math.round((completedCount / missions.length) * 100);
+      document.getElementById("progressText").textContent = completedCount + " of " + missions.length + " done";
+      document.getElementById("progressPercent").textContent = percent + "%";
+      document.getElementById("progressFill").style.width = percent + "%";
+      document.getElementById("activeMissionName").textContent = mission.name;
+      document.getElementById("activeMissionPrompt").textContent = isComplete(state.activeMission) ? mission.success : mission.prompt;
+
+      const status = document.getElementById("feedbackStatus");
+      status.textContent = complete ? "✓ Looks right" : "! Keep going";
+      status.classList.toggle("warn", !complete);
+
+      const activeAddress = state.activeCell;
+      document.getElementById("nameBox").textContent = activeAddress;
+      document.getElementById("selectedReadout").textContent = activeAddress;
+      document.getElementById("displayReadout").textContent = displayValue(activeAddress) || "(blank)";
+      document.getElementById("formulaReadout").textContent = rawCellEntry(activeAddress) || "(blank)";
+      document.getElementById("formulaInput").value = rawCellEntry(activeAddress);
+      const formulaCheckedBtn = document.getElementById("formulaCheckedBtn");
+      formulaCheckedBtn.hidden = !isInspectMissionActive();
+      formulaCheckedBtn.disabled = !isInspectMissionActive() || state.activeCell !== RESULT_CELL;
+    }
+
+    function renderToolbar() {
+      const cell = cells[state.activeCell];
+      document.getElementById("boldBtn").classList.toggle("active", Boolean(cell?.bold));
+      document.getElementById("currencyBtn").classList.toggle("active", cell?.format === "currency");
+      document.getElementById("percentBtn").classList.toggle("active", cell?.format === "percent");
+      document.getElementById("leftBtn").classList.toggle("active", cell?.align === "left");
+      document.getElementById("centerBtn").classList.toggle("active", cell?.align === "center");
+      document.getElementById("rightBtn").classList.toggle("active", cell?.align === "right");
+    }
+
+    function render() {
+      renderSheet();
+      renderMissions();
+      renderFeedback();
+      renderToolbar();
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function moveActiveCell(key, focusAfterMove = false) {
+      const parts = addressParts(state.activeCell);
+      if (!parts) return;
+      let colIndex = columns.indexOf(parts.col);
+      let rowIndex = rows.indexOf(parts.row);
+      if (key === "ArrowRight" || key === "Tab") colIndex += 1;
+      if (key === "ArrowLeft") colIndex -= 1;
+      if (key === "ArrowDown" || key === "Enter") rowIndex += 1;
+      if (key === "ArrowUp") rowIndex -= 1;
+      colIndex = Math.max(0, Math.min(columns.length - 1, colIndex));
+      rowIndex = Math.max(0, Math.min(rows.length - 1, rowIndex));
+      selectCell(columns[colIndex] + rows[rowIndex], focusAfterMove ? "cell" : null);
+    }
+
+    document.addEventListener("click", event => {
+      const cellTarget = event.target.closest("[data-address]");
+      if (cellTarget) {
+        if (event.target.matches("input")) {
+          selectCell(cellTarget.dataset.address, "cell");
+        } else {
+          selectCell(cellTarget.dataset.address);
+        }
+      }
+
+      const missionTarget = event.target.closest("[data-mission]");
+      if (missionTarget) {
+        state.activeMission = Number(missionTarget.dataset.mission);
+        render();
+        saveState();
+      }
+    });
+
+    document.addEventListener("focusin", event => {
+      if (event.target.matches(".cell-inner")) {
+        const address = event.target.dataset.address;
+        if (state.activeCell !== address) {
+          selectCell(address, "cell");
+          return;
+        }
+        event.target.value = rawCellEntry(address);
+        event.target.select();
+      }
+    });
+
+    document.addEventListener("change", event => {
+      if (event.target.matches(".cell-inner")) {
+        updateActiveCell(event.target.value);
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.target.matches(".cell-inner") && ["Enter", "Tab"].includes(event.key)) {
+        event.preventDefault();
+        updateActiveCell(event.target.value, { renderAfter: false });
+        moveActiveCell(event.key, true);
+      } else if (event.target.matches(".cell-inner") && event.key.startsWith("Arrow")) {
+        event.preventDefault();
+        updateActiveCell(event.target.value, { renderAfter: false });
+        moveActiveCell(event.key, true);
+      }
+    });
+
+    document.getElementById("formulaInput").addEventListener("change", event => {
+      updateActiveCell(event.target.value);
+    });
+
+    document.getElementById("formulaInput").addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        updateActiveCell(event.target.value);
+      }
+    });
+
+    document.getElementById("boldBtn").addEventListener("click", () => applyFormat("bold"));
+    document.getElementById("currencyBtn").addEventListener("click", () => applyFormat("currency"));
+    document.getElementById("percentBtn").addEventListener("click", () => applyFormat("percent"));
+    document.getElementById("leftBtn").addEventListener("click", () => applyFormat("left"));
+    document.getElementById("centerBtn").addEventListener("click", () => applyFormat("center"));
+    document.getElementById("rightBtn").addEventListener("click", () => applyFormat("right"));
+    document.getElementById("headerBtn").addEventListener("click", () => applyFormat("header"));
+    document.getElementById("hintBtn").addEventListener("click", showHint);
+    document.getElementById("checkBtn").addEventListener("click", checkCurrentMission);
+    document.getElementById("formulaCheckedBtn").addEventListener("click", () => {
+      state.formulaBarChecked = true;
+      checkCurrentMission();
+    });
+    document.getElementById("resetProgress").addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
+      cells = defaultCells();
+      state = {
+        activeCell: "A1",
+        activeMission: 0,
+        completed: [],
+        formulaBarChecked: false
+      };
+      render();
+      showToast("Practice reset. Start fresh with Mission 1.");
+    });
+
+    loadState();
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BUS123 · M01 · L01 — Course Introduction &amp; Expectations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome to BUS123. Today is the day we map out what this course looks like — what you'll do, how you'll be graded, who our recurring client companies are, and where everything lives in Canvas. This is the operating manual for the semester.",
+    "Here's the roadmap for today. We'll move through four parts: where we're going, how you'll be graded, who our case study businesses are, and what Canvas looks like. Keep this slide in mind — we'll follow this order.",
+    "Three things I want you to be able to say by the end of class today. Read them out loud with me.",
+    "Before we touch Excel, we need the map. Business technology work gets easier when you know the workflow, the standards, and the names of the client companies you'll see again and again.",
+    "Part 1 — where this course takes you over the next fifteen weeks.",
+    "Think of BUS123 as three progressively harder zones. The first few weeks are fundamentals — file management, Excel basics, formulas. Then we get into real business math — unit pricing, payroll, markup. By the end we're doing time value of money and breakeven analysis. You'll be surprised how fast it builds.",
+    "These are the four modules. Each one builds on the last. Notice we're always working inside a real business context — you won't just be doing abstract math. Every problem belongs to one of the companies we'll meet in a minute.",
+    "I want you to understand the learning standard for every lesson. We use a four-level scale. Level 3 is the target — that's the main tab in every workbook. Level 4 is the challenge tab. You don't have to hit Level 4 to get full credit, but it's there if you want to push yourself.",
+    "Part 2 — exactly how your grade is calculated.",
+    "Here's the breakdown. Notice the shape: workbooks are the biggest chunk. That means workshop time matters. Quizzes and homework reinforce the lessons, and the capstone pulls everything together near the end.",
+    "Let me be direct about late work. I accept late submissions with a deduction. Submitting something late is always better than not submitting at all. If something happens in your life, come talk to me before the deadline — that's when I can actually help you.",
+    "Part 3 — meet your case study businesses.",
+    "These are our four recurring clients. Don't memorize every detail today; just start recognizing the names and industries. We'll use the separate company profile resource when a project needs deeper context.",
+    "The company profile resource is where the richer client information lives: your role, problems you'll solve, vocabulary, and business context. Today's goal is orientation, not a full profile lecture.",
+    "Quick activity. Pick one client and make a first guess: what business question would they ask you to answer in Excel? Then match that question to one output: a table, chart, workbook, or short presentation.",
+    "One important habit: when a case assignment starts, open the client profile first. It gives you context so the spreadsheet feels like a business decision, not random math.",
+    "Part 4 — Canvas and where everything lives.",
+    "This is your Canvas homepage. The left rail is how you navigate. Modules is where you'll find all the weekly materials — pre-readings, workbooks, assignments. Grades shows your running total. Announcements is where I post updates between class sessions.",
+    "Now you try it. Open Canvas and find three things: the Modules page, the current module, and the next pre-reading. If you can find those without help, you can navigate the course.",
+    "One common mistake I see every semester: submitting the wrong file. Always check two things before you hit submit — the file name should match the assignment name, and open the file and confirm it's the right one. Submitting a blank template or last week's homework is not recoverable after the deadline.",
+    "Two questions. Take two minutes with the person next to you, then we'll share out.",
+    "Three things to walk out knowing today. The grade breakdown, where to find everything on Canvas, and the names of the four case study businesses. If you can say all three, you're set.",
+    "Next class we set up OneDrive — that's your file management system for the whole semester. Read the L02 pre-reading on Canvas before you arrive. It walks through the setup steps and takes about ten minutes.",
+    "That's it for today. Questions? Office hours are posted on Canvas — I'm also available by email. See you next class."
+  ]
+  </script>
+
+  <style>
+    :root {
+      --ink:       #0E1116;
+      --paper:     #FAF8F3;
+      --paper-2:   #F2EEE5;
+      --white:     #FFFFFF;
+      --text:      #1A1F2C;
+      --text-soft: #4A5567;
+      --muted:     #7A8290;
+      --border:    #E5E1D6;
+
+      --sage:  #4A7C5E;
+      --gold:  #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+      --accent: var(--sage);
+
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Geist', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --scale: 1;
+      --type-display:  calc(112px * var(--scale));
+      --type-title:    calc(72px  * var(--scale));
+      --type-subtitle: calc(44px  * var(--scale));
+      --type-lead:     calc(34px  * var(--scale));
+      --type-body:     calc(28px  * var(--scale));
+      --type-small:    calc(24px  * var(--scale));
+      --type-eyebrow:  calc(24px  * var(--scale));
+      --type-mono:     calc(24px  * var(--scale));
+      --type-stat:     calc(220px * var(--scale));
+
+      --pad-x:      128px;
+      --pad-top:    104px;
+      --pad-bottom: 96px;
+      --gap-title:  56px;
+      --gap-item:   32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    deck-stage:not(:defined) { visibility: hidden; }
+
+    body {
+      background: #111;
+      font-family: var(--font-body);
+      overflow: hidden;
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .slide.dark  { background: var(--ink);   color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text);  }
+
+    /* Gradient bar */
+    .grad-bar {
+      height: 8px;
+      background: var(--gradient);
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Header row */
+    .header-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: var(--pad-top) var(--pad-x) 0;
+      flex-shrink: 0;
+    }
+    .header-row .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .header-row .slide-num {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--muted);
+    }
+    .slide.dark .header-row .slide-num { color: rgba(255,255,255,0.3); }
+
+    /* Rule under title */
+    .title-rule {
+      height: 1px;
+      background: var(--border);
+      margin: 24px var(--pad-x) 0;
+      flex-shrink: 0;
+    }
+    .slide.dark .title-rule { background: rgba(255,255,255,0.12); }
+
+    /* Slide title */
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: var(--type-title);
+      font-weight: 400;
+      line-height: 1.1;
+      padding: 0 var(--pad-x);
+      margin-top: 32px;
+      flex-shrink: 0;
+    }
+    .slide.dark .slide-title { color: var(--white); }
+    .slide.cream .slide-title { color: var(--text); }
+
+    /* Body area */
+    .body {
+      flex: 1;
+      padding: var(--gap-title) var(--pad-x) var(--pad-bottom);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: var(--gap-item);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+      color: var(--text);
+    }
+    .slide.dark .card {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--white);
+    }
+    .card-grid {
+      display: grid;
+      gap: 24px;
+    }
+    .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .card-grid.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+    /* Card label */
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .card-heading {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .card-body {
+      font-size: var(--type-body);
+      line-height: 1.5;
+      color: var(--text-soft);
+    }
+    .slide.dark .card-body { color: rgba(255,255,255,0.6); }
+
+    /* Numbered statements */
+    .numbered {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .numbered .n {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 64px;
+    }
+    .numbered .n-body {
+      font-size: var(--type-body);
+      line-height: 1.55;
+      padding-top: 6px;
+    }
+    .slide.dark .numbered .n-body { color: rgba(255,255,255,0.88); }
+
+    /* Pills */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .pill {
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      font-weight: 500;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 12px 28px;
+      color: var(--text);
+    }
+    .slide.dark .pill {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      color: var(--white);
+    }
+    .pill.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* Common mistake callout */
+    .mistake-banner {
+      background: var(--terra);
+      border-radius: 14px;
+      padding: 36px 48px;
+      color: var(--white);
+    }
+    .mistake-banner .mistake-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      letter-spacing: 0.08em;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+    .mistake-banner .mistake-heading {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+    .mistake-banner .mistake-body {
+      font-size: var(--type-body);
+      line-height: 1.55;
+      opacity: 0.9;
+    }
+
+    /* Two-col layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      flex: 1;
+    }
+
+    /* Lead text */
+    .lead {
+      font-size: var(--type-lead);
+      line-height: 1.45;
+    }
+    .slide.dark .lead { color: rgba(255,255,255,0.88); }
+
+    /* Big stat */
+    .big-stat {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-stat);
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    /* Company badge */
+    .company-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(74,124,94,0.12);
+      border: 1px solid rgba(74,124,94,0.3);
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--accent);
+    }
+    .slide.dark .company-badge {
+      background: rgba(74,124,94,0.18);
+      border-color: rgba(74,124,94,0.4);
+    }
+
+    /* Grade bar */
+    .grade-bar {
+      display: flex;
+      height: 64px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .grade-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      font-weight: 600;
+      color: var(--white);
+      flex-direction: column;
+      gap: 2px;
+    }
+    .grade-segment .seg-label { font-size: 18px; font-weight: 400; opacity: 0.85; }
+
+    .grade-focus {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .grade-meter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+      box-shadow: 0 18px 42px rgba(14,17,22,0.06);
+    }
+    .grade-row {
+      display: grid;
+      grid-template-columns: 210px 1fr 86px;
+      gap: 24px;
+      align-items: center;
+    }
+    .grade-name {
+      font-family: var(--font-display);
+      font-size: 34px;
+      line-height: 1.05;
+    }
+    .grade-track {
+      height: 42px;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .grade-fill {
+      height: 100%;
+      width: var(--w);
+      background: var(--c);
+      border-radius: inherit;
+    }
+    .grade-pct {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      color: var(--text-soft);
+      text-align: right;
+    }
+    .grade-callout {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 18px;
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .grade-callout .big {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 118px;
+      line-height: 0.9;
+      color: var(--gold);
+    }
+    .grade-callout p {
+      font-size: var(--type-body);
+      line-height: 1.45;
+      color: rgba(250,248,243,0.76);
+    }
+
+    .media-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--paper-2);
+      box-shadow: 0 18px 44px rgba(14,17,22,0.08);
+    }
+    .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .media-frame.contain img {
+      object-fit: contain;
+      padding: 44px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(242,238,229,0.8));
+    }
+
+    .deadline-visual {
+      height: 480px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(184,132,61,0.12), rgba(74,124,94,0.1)),
+        var(--white);
+      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(14,17,22,0.06);
+    }
+    .calendar-page {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+    .calendar-page .month {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+    .calendar-page .day {
+      font-family: var(--font-display);
+      font-size: 150px;
+      line-height: 0.85;
+    }
+    .deadline-list {
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+    .deadline-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 18px;
+      align-items: baseline;
+      font-size: 26px;
+      line-height: 1.25;
+    }
+    .deadline-item span:first-child {
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+
+    .client-roster {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      flex: 1;
+      min-height: 0;
+    }
+    .client-card {
+      --brand: var(--sage);
+      --brand-soft: rgba(74,124,94,0.12);
+      background: var(--white);
+      border: 1px solid color-mix(in srgb, var(--brand) 38%, var(--border));
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 40px rgba(14,17,22,0.06);
+    }
+    .client-card img {
+      height: 170px;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      background: var(--brand-soft);
+    }
+    .client-card-content {
+      padding: 24px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .client-card .tag {
+      width: fit-content;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .client-card .name {
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 1.05;
+    }
+    .client-card .role {
+      font-size: 22px;
+      line-height: 1.35;
+      color: var(--text-soft);
+    }
+    .client-card .skills {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .resource-card {
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      gap: 48px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .resource-screen {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 26px;
+      box-shadow: 0 18px 42px rgba(14,17,22,0.08);
+    }
+    .resource-screen .screen-title {
+      font-family: var(--font-display);
+      font-size: 58px;
+      line-height: 1;
+    }
+    .resource-screen .screen-link {
+      font-family: var(--font-mono);
+      font-size: 22px;
+      color: var(--gold);
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    .profile-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .profile-mini-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .canvas-hunt {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 48px;
+      align-items: stretch;
+      flex: 1;
+    }
+    .hunt-timer {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 18px;
+      padding: 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+    .hunt-timer .time {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 160px;
+      line-height: 0.9;
+      color: var(--gold);
+    }
+    .hunt-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 24px;
+    }
+    .hunt-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px 30px;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 22px;
+      align-items: baseline;
+      font-size: 27px;
+      line-height: 1.35;
+    }
+    .hunt-item .check {
+      font-family: var(--font-mono);
+      color: var(--accent);
+    }
+
+    /* Section break center content */
+    .center-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 var(--pad-x) var(--pad-bottom);
+      gap: 32px;
+      text-align: center;
+    }
+
+    /* Image slot handled by JS component */
+
+    /* Discussion questions */
+    .discussion-q {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      line-height: 1.3;
+      color: var(--text);
+      padding: 40px 48px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    /* Canvas nav visual */
+    .canvas-nav {
+      background: #e66000;
+      border-radius: 10px;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 240px;
+      flex-shrink: 0;
+    }
+    .canvas-nav-item {
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      padding: 10px 14px;
+      border-radius: 6px;
+      cursor: default;
+    }
+    .canvas-nav-item.active {
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080" no-rail>
+
+    <!-- 01 TITLE -->
+    <section class="slide dark" data-label="01 Title">
+      <div class="grad-bar"></div>
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 var(--pad-x);">
+        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--accent); margin-bottom:32px; letter-spacing:0.06em;">BUS123 · INTRO MODULE · LESSON 01</div>
+        <h1 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.05; max-width:1300px;">Course Introduction<br><em>&amp; Expectations</em></h1>
+        <div style="margin-top:48px; font-family:var(--font-body); font-size:var(--type-lead); color:rgba(255,255,255,0.55);">Gerrish School of Business · Endicott College · Fall 2026</div>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+    <!-- 02 AGENDA -->
+    <section class="slide cream" data-label="02 Agenda">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">02</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Today's Agenda</h2>
+      <div class="body">
+        <div style="display:flex; flex-direction:column; gap:24px; max-width:1100px;">
+          <div class="numbered">
+            <div class="n">01</div>
+            <div class="n-body">Where this course takes you — the full semester roadmap</div>
+          </div>
+          <div class="numbered">
+            <div class="n">02</div>
+            <div class="n-body">How you'll be graded — the breakdown and what matters most</div>
+          </div>
+          <div class="numbered">
+            <div class="n">03</div>
+            <div class="n-body">Meet the case study businesses — your companies for the semester</div>
+          </div>
+          <div class="numbered">
+            <div class="n">04</div>
+            <div class="n-body">Canvas navigation — where everything lives and how to use it</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 LEARNING OBJECTIVES -->
+    <section class="slide cream" data-label="03 Learning Objectives">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">03</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">I Can …</h2>
+      <div class="body">
+        <div style="display:flex; flex-direction:column; gap:24px; max-width:1200px;">
+          <div class="numbered">
+            <div class="n">01</div>
+            <div class="n-body">Describe the structure of the course and how the four modules build on each other</div>
+          </div>
+          <div class="numbered">
+            <div class="n">02</div>
+            <div class="n-body">Identify how my grade is calculated and where to find assignments on Canvas</div>
+          </div>
+          <div class="numbered">
+            <div class="n">03</div>
+            <div class="n-body">Name the four case study businesses and describe the type of problems each one represents</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 COURSE MAP -->
+    <section class="slide cream" data-label="04 Course Map">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">04</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Today Builds the Operating Manual</h2>
+      <div class="body">
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <p class="lead" style="margin-bottom:40px;">Before we build anything in Excel, you need the map: what counts, where work lives, and who the semester's client companies are.</p>
+            <p class="lead" style="color:var(--text-soft);">Today is about reducing mystery. The tools come next; the expectations start now.</p>
+          </div>
+          <div class="media-frame" style="width:100%; height:520px;">
+            <img src="assets/team_laptops.png" alt="Students collaborating around laptops">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 SECTION BREAK — PART 1 -->
+    <section class="slide dark" data-label="05 Part 1">
+      <div class="grad-bar"></div>
+      <div class="center-content">
+        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--accent); letter-spacing:0.1em;">PART 1 OF 4</div>
+        <h2 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.0;">The Semester<br><em>Roadmap</em></h2>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+    <!-- 06 THREE ZONES -->
+    <section class="slide cream" data-label="06 Three Zones">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">06</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Three Progressively Harder Zones</h2>
+      <div class="body">
+        <div class="card-grid cols-2" style="max-width:1500px; flex:1; align-content:start;">
+          <div class="card">
+            <span class="card-label">Weeks 1–4</span>
+            <div class="card-heading">Foundations</div>
+            <div class="card-body">File management, Excel basics, formulas, and the OneDrive workflow. Every tool you'll use for the rest of the semester starts here.</div>
+          </div>
+          <div class="card">
+            <span class="card-label">Weeks 5–10</span>
+            <div class="card-heading">Business Math</div>
+            <div class="card-body">Unit pricing, payroll, markup and markdown, COGS, and operating costs. Real numbers from real businesses.</div>
+          </div>
+          <div class="card" style="grid-column: 1 / -1;">
+            <span class="card-label">Weeks 11–15</span>
+            <div class="card-heading">Financial Reasoning</div>
+            <div class="card-body">Time value of money, loan amortization, breakeven analysis, and the capstone project — putting everything together.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 FOUR MODULES -->
+    <section class="slide cream" data-label="07 Four Modules">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">07</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Four Modules, One Progression</h2>
+      <div class="body">
+        <div class="card-grid cols-4" style="flex:1; align-content:start;">
+          <div class="card" style="border-top:4px solid var(--sage);">
+            <span class="card-label">INTRO</span>
+            <div class="card-heading">Getting Started</div>
+            <div class="card-body" style="font-size:var(--type-small);">OneDrive setup, Excel orientation, file organization</div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--gold);">
+            <span class="card-label" style="color:var(--gold);">EXCEL</span>
+            <div class="card-heading">Excel Skills</div>
+            <div class="card-body" style="font-size:var(--type-small);">Functions, formulas, formatting, and data tools</div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--terra);">
+            <span class="card-label" style="color:var(--terra);">MATH</span>
+            <div class="card-heading">Business Math</div>
+            <div class="card-body" style="font-size:var(--type-small);">Pricing, payroll, markup, TVM, and breakeven</div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--steel);">
+            <span class="card-label" style="color:var(--steel);">CAPSTONE</span>
+            <div class="card-heading">Final Project</div>
+            <div class="card-body" style="font-size:var(--type-small);">Apply all four modules to a complete business scenario</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 PROFICIENCY SCALE -->
+    <section class="slide cream" data-label="08 Proficiency Scale">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">08</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">How Learning is Measured</h2>
+      <div class="body">
+        <div class="card-grid cols-4" style="align-content:start;">
+          <div class="card" style="opacity:0.6;">
+            <span class="card-label">Level 1</span>
+            <div class="card-heading">Beginning</div>
+            <div class="card-body" style="font-size:var(--type-small);">Not yet applying the concept — needs more practice</div>
+          </div>
+          <div class="card" style="opacity:0.8;">
+            <span class="card-label">Level 2</span>
+            <div class="card-heading">Approaching</div>
+            <div class="card-body" style="font-size:var(--type-small);">Getting there — some errors, inconsistent application</div>
+          </div>
+          <div class="card" style="border:2px solid var(--accent);">
+            <span class="card-label">Level 3 ← Target</span>
+            <div class="card-heading">Meets Standard</div>
+            <div class="card-body" style="font-size:var(--type-small);">Full credit — this is the main workbook tab</div>
+          </div>
+          <div class="card" style="border:2px solid var(--gold);">
+            <span class="card-label" style="color:var(--gold);">Level 4</span>
+            <div class="card-heading">Exceeds</div>
+            <div class="card-body" style="font-size:var(--type-small);">Challenge tab — optional but encouraged</div>
+          </div>
+        </div>
+        <p class="lead" style="margin-top:16px; color:var(--text-soft); font-size:var(--type-body);">Every workbook you open this semester has a main tab (Level 3) and a challenge tab (Level 4). You always have a path to push further.</p>
+      </div>
+    </section>
+
+    <!-- 09 SECTION BREAK — PART 2 -->
+    <section class="slide dark" data-label="09 Part 2">
+      <div class="grad-bar"></div>
+      <div class="center-content">
+        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--accent); letter-spacing:0.1em;">PART 2 OF 4</div>
+        <h2 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.0;">How You're<br><em>Graded</em></h2>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+    <!-- 10 GRADE BREAKDOWN -->
+    <section class="slide cream" data-label="10 Grade Breakdown">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">10</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">What Matters Most in Your Grade</h2>
+      <div class="body">
+        <div class="grade-focus">
+          <div class="grade-meter" aria-label="Grade breakdown: workbooks 40%, quizzes 25%, homework 20%, capstone 15%">
+            <div class="grade-row">
+              <div class="grade-name">Workbooks</div>
+              <div class="grade-track"><div class="grade-fill" style="--w:100%; --c:var(--sage);"></div></div>
+              <div class="grade-pct">40%</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-name">Quizzes</div>
+              <div class="grade-track"><div class="grade-fill" style="--w:62.5%; --c:var(--gold);"></div></div>
+              <div class="grade-pct">25%</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-name">Homework</div>
+              <div class="grade-track"><div class="grade-fill" style="--w:50%; --c:var(--terra);"></div></div>
+              <div class="grade-pct">20%</div>
+            </div>
+            <div class="grade-row">
+              <div class="grade-name">Capstone</div>
+              <div class="grade-track"><div class="grade-fill" style="--w:37.5%; --c:var(--steel);"></div></div>
+              <div class="grade-pct">15%</div>
+            </div>
+          </div>
+          <div class="grade-callout">
+            <div class="big">40%</div>
+            <p><strong>Workshop work is the anchor.</strong> The best way to protect your grade is to show up, build the workbook during class, and submit the right file before you leave.</p>
+            <p>Quizzes and homework matter, but they reinforce the workbooks. The capstone is where the semester comes together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 LATE WORK -->
+    <section class="slide cream" data-label="11 Late Work">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">11</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Late Work Policy</h2>
+      <div class="body">
+        <div class="two-col" style="align-items:center;">
+          <div style="display:flex; flex-direction:column; gap:32px;">
+            <div class="numbered">
+              <div class="n">01</div>
+              <div class="n-body">Late submissions accepted with a point deduction. Submitting late is always better than not submitting.</div>
+            </div>
+            <div class="numbered">
+              <div class="n">02</div>
+              <div class="n-body">Come talk to me <em>before</em> a deadline if something comes up. That's when I can actually help.</div>
+            </div>
+            <div class="numbered">
+              <div class="n">03</div>
+              <div class="n-body">Canvas closes submissions automatically — reach out before that happens.</div>
+            </div>
+          </div>
+          <div class="deadline-visual">
+            <div class="calendar-page">
+              <div class="month">DEADLINE</div>
+              <div class="day">!</div>
+            </div>
+            <div class="deadline-list">
+              <div class="deadline-item"><span>01</span><div>Submit late rather than disappearing.</div></div>
+              <div class="deadline-item"><span>02</span><div>Ask for help before the deadline.</div></div>
+              <div class="deadline-item"><span>03</span><div>Canvas closes automatically.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 SECTION BREAK — PART 3 -->
+    <section class="slide dark" data-label="12 Part 3">
+      <div class="grad-bar"></div>
+      <div class="center-content">
+        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--accent); letter-spacing:0.1em;">PART 3 OF 4</div>
+        <h2 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.0;">Meet the<br><em>Companies</em></h2>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+    <!-- 13 CLIENT ROSTER -->
+    <section class="slide cream" data-label="13 Client Roster">
+      <div class="header-row"><span class="eyebrow">BUS123 · CLIENTS</span><span class="slide-num">13</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Four Clients, Four Kinds of Business Problems</h2>
+      <div class="body">
+        <div class="client-roster">
+          <div class="client-card" style="--brand:var(--sage); --brand-soft:rgba(74,124,94,0.12);">
+            <img src="../../assets/case-study-companies/tidal-goods/tidal-goods-wide-simple.png" alt="Tidal Goods Co. visual">
+            <div class="client-card-content">
+              <div class="tag">Retail</div>
+              <div class="name">Tidal Goods Co.</div>
+              <div class="role">Inventory and pricing decisions for a coastal goods retailer.</div>
+              <div class="skills">Inventory · COGS · Markup</div>
+            </div>
+          </div>
+          <div class="client-card" style="--brand:var(--gold); --brand-soft:rgba(184,132,61,0.14);">
+            <img src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-wide-simple.png" alt="Meridian Advisory Group visual">
+            <div class="client-card-content">
+              <div class="tag">Finance</div>
+              <div class="name">Meridian Advisory</div>
+              <div class="role">Client and payroll decisions where formula accuracy matters.</div>
+              <div class="skills">Payroll · Loans · TVM</div>
+            </div>
+          </div>
+          <div class="client-card" style="--brand:var(--terra); --brand-soft:rgba(156,74,43,0.13);">
+            <img src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-wide-simple.png" alt="Anchor and Oak Events visual">
+            <div class="client-card-content">
+              <div class="tag">Events</div>
+              <div class="name">Anchor &amp; Oak</div>
+              <div class="role">Seasonal revenue, labor planning, and event pricing.</div>
+              <div class="skills">Breakeven · Cash flow · Labor</div>
+            </div>
+          </div>
+          <div class="client-card" style="--brand:var(--steel); --brand-soft:rgba(53,87,115,0.13);">
+            <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-wide-simple.png" alt="Harborside Medical Center visual">
+            <div class="client-card-content">
+              <div class="tag">Healthcare</div>
+              <div class="name">Harborside Medical</div>
+              <div class="role">Data-heavy reporting for payer mix, payroll, and budgets.</div>
+              <div class="skills">Payer mix · Payroll · Variance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 CLIENT RESOURCE -->
+    <section class="slide cream" data-label="14 Client Resources">
+      <div class="header-row"><span class="eyebrow">BUS123 · RESOURCES</span><span class="slide-num">14</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">The Detailed Client Profiles Live in One Resource</h2>
+      <div class="body">
+        <div class="resource-card">
+          <div class="resource-screen">
+            <div class="screen-title">Company Profiles</div>
+            <div class="screen-link">INTRO/M01/bus123-intro-m01-company-profiles.html</div>
+            <p class="card-body" style="color:rgba(250,248,243,0.76);">Use this whenever a workbook asks you to act as an analyst, owner, coordinator, or manager for one of the clients.</p>
+            <div class="profile-mini-grid">
+              <img src="../../assets/case-study-companies/tidal-goods/tidal-goods-icon-badge.png" alt="Tidal Goods icon">
+              <img src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-icon-badge.png" alt="Meridian icon">
+              <img src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-icon-badge.png" alt="Anchor and Oak icon">
+              <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside icon">
+            </div>
+          </div>
+          <div class="stack" style="display:flex; flex-direction:column; gap:24px;">
+            <div class="card">
+              <span class="card-label">What it gives you</span>
+              <div class="card-body">Your role, the business context, the problems you will solve, and the vocabulary that makes each case feel real.</div>
+            </div>
+            <div class="card">
+              <span class="card-label">When to open it</span>
+              <div class="card-body">At the start of a case assignment, before you begin formulas. Context first, spreadsheet second.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 CLIENT MATCH ACTIVITY -->
+    <section class="slide cream" data-label="15 Client Match Activity">
+      <div class="header-row"><span class="eyebrow">BUS123 · ACTIVITY</span><span class="slide-num">15</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Client Match: What Would They Ask You?</h2>
+      <div class="body">
+        <div class="card-grid cols-2" style="flex:1; align-content:center;">
+          <div class="card">
+            <span class="card-label">2 minutes · individual</span>
+            <div class="card-heading">Pick one client.</div>
+            <div class="card-body">Write one business question they might ask you to answer with Excel.</div>
+          </div>
+          <div class="card">
+            <span class="card-label" style="color:var(--gold);">2 minutes · partner</span>
+            <div class="card-heading">Name the output.</div>
+            <div class="card-body">Would your answer become a table, chart, workbook, report, or slide? Explain why.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 CLIENT HABIT -->
+    <section class="slide cream" data-label="16 Client Habit">
+      <div class="header-row"><span class="eyebrow">BUS123 · HABIT</span><span class="slide-num">16</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Context First. Spreadsheet Second.</h2>
+      <div class="body">
+        <div class="two-col" style="align-items:center;">
+          <div class="stack" style="display:flex; flex-direction:column; gap:28px;">
+            <div class="numbered"><div class="n">01</div><div class="n-body">Open the client profile.</div></div>
+            <div class="numbered"><div class="n">02</div><div class="n-body">Find your role and the business problem.</div></div>
+            <div class="numbered"><div class="n">03</div><div class="n-body">Then build the workbook that answers the decision.</div></div>
+          </div>
+          <div class="media-frame contain" style="height:500px;">
+            <img src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-icon-badge.png" alt="Client profile icon">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17 SECTION BREAK — PART 4 -->
+    <section class="slide dark" data-label="17 Part 4">
+      <div class="grad-bar"></div>
+      <div class="center-content">
+        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--accent); letter-spacing:0.1em;">PART 4 OF 4</div>
+        <h2 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.0;">Canvas<br><em>Navigation</em></h2>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+    <!-- 18 CANVAS OVERVIEW -->
+    <section class="slide cream" data-label="18 Canvas Overview">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">18</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Your Canvas Homepage</h2>
+      <div class="body">
+        <div class="two-col" style="align-items:flex-start; gap:64px;">
+          <div style="display:flex; flex-direction:column; gap:32px; justify-content:center; flex:1;">
+            <div class="numbered">
+              <div class="n">01</div>
+              <div class="n-body"><strong>Modules</strong> — all weekly materials: pre-readings, workbooks, assignments</div>
+            </div>
+            <div class="numbered">
+              <div class="n">02</div>
+              <div class="n-body"><strong>Grades</strong> — your running grade total, updated after every submission</div>
+            </div>
+            <div class="numbered">
+              <div class="n">03</div>
+              <div class="n-body"><strong>Announcements</strong> — check here between class sessions for updates</div>
+            </div>
+          </div>
+          <div class="canvas-nav" style="margin-top:24px;">
+            <div style="font-family:var(--font-body); font-size:20px; font-weight:700; color:white; margin-bottom:8px;">BUS 123</div>
+            <div class="canvas-nav-item active">📚 Modules</div>
+            <div class="canvas-nav-item">📊 Grades</div>
+            <div class="canvas-nav-item">📢 Announcements</div>
+            <div class="canvas-nav-item">📅 Calendar</div>
+            <div class="canvas-nav-item">✉️ Inbox</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 19 CANVAS SCAVENGER HUNT -->
+    <section class="slide cream" data-label="19 Canvas Scavenger Hunt">
+      <div class="header-row"><span class="eyebrow">BUS123 · ACTIVITY</span><span class="slide-num">19</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Canvas Scavenger Hunt</h2>
+      <div class="body">
+        <div class="canvas-hunt">
+          <div class="hunt-timer">
+            <div style="font-family:var(--font-mono); color:var(--gold); letter-spacing:0.12em;">ON YOUR DEVICE</div>
+            <div class="time">4:00</div>
+            <p class="card-body" style="color:rgba(250,248,243,0.76);">Find these without asking your neighbor first. Then help someone near you.</p>
+          </div>
+          <div class="hunt-list">
+            <div class="hunt-item"><span class="check">01</span><div>Open the BUS123 Canvas course and find <strong>Modules</strong>.</div></div>
+            <div class="hunt-item"><span class="check">02</span><div>Find the current INTRO module and the next pre-reading.</div></div>
+            <div class="hunt-item"><span class="check">03</span><div>Find <strong>Grades</strong> and confirm where feedback will appear.</div></div>
+            <div class="hunt-item"><span class="check">04</span><div>Find <strong>Announcements</strong> and check the most recent post.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 20 COMMON MISTAKE -->
+    <section class="slide cream" data-label="20 Common Mistake">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">20</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Every Semester, Same Mistake</h2>
+      <div class="body" style="justify-content:center;">
+        <div class="mistake-banner" style="max-width:1400px;">
+          <div class="mistake-label">⚠ COMMON MISTAKE</div>
+          <div class="mistake-heading">Submitting the Wrong File</div>
+          <div class="mistake-body">Uploading a blank starter template or last week's homework is not recoverable after the deadline. Before hitting submit, check two things: (1) the file name matches the assignment, and (2) open the file and confirm you're looking at your work.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21 DISCUSSION -->
+    <section class="slide cream" data-label="21 Discussion">
+      <div class="header-row"><span class="eyebrow">BUS123 · DISCUSS</span><span class="slide-num">21</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Two Minutes with a Partner</h2>
+      <div class="body" style="gap:32px; justify-content:center;">
+        <div class="discussion-q">Which of the four case study businesses is most relevant to your career interests — and why?</div>
+        <div class="discussion-q">What's one thing about the grading breakdown that surprised you?</div>
+      </div>
+    </section>
+
+    <!-- 22 KEY TAKEAWAYS -->
+    <section class="slide cream" data-label="22 Key Takeaways">
+      <div class="header-row"><span class="eyebrow">BUS123</span><span class="slide-num">22</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Three Things to Walk Out Knowing</h2>
+      <div class="body">
+        <div style="display:flex; flex-direction:column; gap:32px; max-width:1200px;">
+          <div class="numbered">
+            <div class="n">01</div>
+            <div class="n-body">The grade breakdown — workbooks 40%, quizzes 25%, homework 20%, capstone 15%</div>
+          </div>
+          <div class="numbered">
+            <div class="n">02</div>
+            <div class="n-body">Where everything lives — the Modules tab on Canvas, same structure every week</div>
+          </div>
+          <div class="numbered">
+            <div class="n">03</div>
+            <div class="n-body">Four companies — Tidal Goods, Meridian Advisory, Anchor &amp; Oak Events, Harborside Medical</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 23 UP NEXT -->
+    <section class="slide cream" data-label="23 Up Next">
+      <div class="header-row"><span class="eyebrow">BUS123 · COMING UP</span><span class="slide-num">23</span></div>
+      <div class="title-rule"></div>
+      <h2 class="slide-title">Next Lesson: OneDrive Setup</h2>
+      <div class="body">
+        <div class="two-col" style="align-items:center;">
+          <div style="display:flex; flex-direction:column; gap:32px;">
+            <p class="lead">We set up your file management system for the entire semester — OneDrive connected to your Endicott account, with a BUS123 folder structure ready to go.</p>
+            <div class="card" style="background:var(--paper-2);">
+              <span class="card-label">DO BEFORE NEXT CLASS</span>
+              <div class="card-body">Read the L02 pre-reading on Canvas. It walks you through the setup steps — about 10 minutes. If you run into issues, note where you got stuck.</div>
+            </div>
+          </div>
+          <image-slot id="slide-22-img"
+                      src="assets/onedrive_sync.png"
+                      fit="contain"
+                      placeholder="OneDrive setup visual"
+                      style="width:100%; height:480px; border-radius:18px;"
+                      radius="18"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24 CLOSE -->
+    <section class="slide dark" data-label="24 Questions">
+      <div class="grad-bar"></div>
+      <div class="center-content">
+        <h2 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.0;"><em>Questions?</em></h2>
+        <div style="font-family:var(--font-body); font-size:var(--type-lead); color:rgba(255,255,255,0.55); margin-top:16px;">Office hours posted on Canvas · bevitts@endicott.edu</div>
+      </div>
+      <div class="grad-bar"></div>
+    </section>
+
+  </deck-stage>
+
+  <script src="../../deck-stage.js"></script>
+  <script src="../../image-slot.js"></script>
+</body>
+</html>

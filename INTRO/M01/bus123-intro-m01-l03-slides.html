@@ -201,20 +201,152 @@
     color: var(--muted); font-family: var(--font-mono); font-size: 24px;
   }
 
-  .motion-slot {
+  .brand-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 56px;
+    flex: 1; min-height: 0;
+  }
+  .brand-tile {
+    --brand: var(--sage);
+    --brand-soft: rgba(74,124,94,0.1);
+    position: relative; overflow: hidden; min-height: 620px;
+    border: 1px solid color-mix(in srgb, var(--brand) 38%, var(--border));
+    border-radius: 14px; background: var(--white);
+    display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(14,17,22,0.06);
+  }
+  .brand-tile::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 270px;
     background:
-      repeating-linear-gradient(135deg, rgba(74,124,94,0.06) 0 18px, transparent 18px 36px),
+      radial-gradient(circle at 24% 18%, rgba(255,255,255,0.8), transparent 34%),
+      linear-gradient(135deg, var(--brand-soft), rgba(255,255,255,0.82));
+  }
+  .brand-hero {
+    position: relative; height: 230px; display: grid; place-items: center; padding: 34px;
+  }
+  .brand-hero img {
+    width: 150px; height: 150px; object-fit: contain;
+    filter: drop-shadow(0 14px 18px rgba(14,17,22,0.14));
+  }
+  .brand-content {
+    position: relative; display: flex; flex-direction: column; gap: 18px;
+    padding: 28px 28px 30px; flex: 1;
+  }
+  .brand-label {
+    width: fit-content; margin: 0; padding: 9px 13px; border-radius: 999px;
+    background: var(--brand-soft); color: var(--brand);
+    font-family: var(--font-mono); font-size: 19px; letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .brand-name {
+    margin: 0; font-family: var(--font-display); font-size: 34px; line-height: 1.04; color: var(--text);
+  }
+  .brand-work {
+    margin: 0; color: var(--text-soft); font-size: 23px; line-height: 1.35;
+  }
+  .brand-chips {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto;
+  }
+  .brand-chip {
+    border: 1px solid color-mix(in srgb, var(--brand) 40%, var(--border));
+    color: var(--text-soft); border-radius: 999px; padding: 8px 12px;
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.02em;
+    background: rgba(255,255,255,0.68);
+  }
+
+  .fluency-motion {
+    position: relative; margin-top: 48px; flex: 1; min-height: 0; overflow: hidden;
+    border: 1px solid var(--border); border-radius: 18px; background:
+      linear-gradient(180deg, rgba(255,255,255,0.75), rgba(242,238,229,0.92)),
       var(--paper-2);
-    border: 1px dashed var(--sage); border-radius: 18px; color: var(--text-soft);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    padding: 42px 48px 42px 54px;
   }
-  .motion-slot .label {
-    font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--sage);
+  .fluency-motion::before {
+    content: ""; position: absolute; inset: 38px 42px;
+    background-image:
+      linear-gradient(rgba(122,130,144,0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(122,130,144,0.1) 1px, transparent 1px);
+    background-size: 100% 82px, 116px 100%;
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   }
-  .motion-slot .desc {
-    font-family: var(--font-sans); font-size: 26px; color: var(--text-soft);
-    text-align: center; max-width: 60ch;
+  .fluency-track {
+    position: relative; display: grid; grid-template-rows: repeat(6, 1fr); gap: 16px; height: 100%;
+  }
+  .tier {
+    --w: 50%;
+    --delay: 0s;
+    position: relative; display: grid; grid-template-columns: 360px 1fr 160px; align-items: center; gap: 26px;
+    transform: translateX(-32px); opacity: 0;
+    animation: tierIn 720ms cubic-bezier(.18,.82,.22,1) forwards;
+    animation-delay: var(--delay);
+  }
+  .tier-label {
+    margin: 0; font-family: var(--font-display); font-size: 34px; line-height: 1.05;
+    color: var(--text);
+  }
+  .tier-sub {
+    display: block; margin-top: 5px; font-family: var(--font-mono); font-size: 15px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  .tier-bar-wrap {
+    position: relative; height: 56px; border-radius: 999px;
+    background: rgba(255,255,255,0.7); border: 1px solid rgba(212,207,192,0.9);
+    overflow: hidden;
+  }
+  .tier-bar {
+    position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit;
+    background: linear-gradient(90deg, var(--sage), #77A889);
+    box-shadow: 0 0 24px rgba(74,124,94,0.28);
+    transform-origin: left center; transform: scaleX(0);
+    animation: barGrow 760ms cubic-bezier(.2,.85,.18,1) forwards;
+    animation-delay: calc(var(--delay) + 180ms);
+  }
+  .tier-bar::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.8s ease-in-out infinite;
+    animation-delay: calc(var(--delay) + 860ms);
+  }
+  .tier-muted .tier-bar {
+    background: linear-gradient(90deg, #9DA4AF, #C0C5CC);
+    box-shadow: none;
+  }
+  .tier-tag {
+    margin: 0; justify-self: start; min-width: 136px; text-align: center;
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage); border: 1px solid rgba(74,124,94,0.28); background: rgba(74,124,94,0.08);
+    border-radius: 999px; padding: 10px 12px;
+  }
+  .tier-muted .tier-tag {
+    color: var(--muted); border-color: rgba(122,130,144,0.28); background: rgba(122,130,144,0.08);
+  }
+  .bus-range {
+    position: absolute; right: 184px; top: 264px; bottom: 48px; width: 34px;
+    border: 5px solid var(--sage); border-left: 0; border-radius: 0 24px 24px 0;
+    opacity: 0; animation: rangePop 620ms ease-out 1.45s forwards;
+  }
+  .bus-range span {
+    position: absolute; right: 52px; top: 50%; transform: translate(0, -50%);
+    white-space: nowrap; font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--sage); background: var(--paper); padding: 12px 14px;
+    border-radius: 999px; border: 1px solid rgba(74,124,94,0.22);
+  }
+  @keyframes tierIn {
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes barGrow {
+    to { transform: scaleX(1); }
+  }
+  @keyframes shimmer {
+    0%, 38% { transform: translateX(-100%); }
+    70%, 100% { transform: translateX(120%); }
+  }
+  @keyframes rangePop {
+    from { transform: scaleY(0.72); opacity: 0; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tier, .tier-bar, .tier-bar::after, .bus-range { animation: none; opacity: 1; transform: none; }
+    .tier-bar { transform: scaleX(1); }
   }
 
   .stat-num {
@@ -381,37 +513,65 @@
       <p class="eyebrow">Case study companies</p>
     </div>
     <hr class="rule" />
-    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 56px; flex:1; min-height: 0;">
-      <div class="stack" style="gap: 20px;">
-        <image-slot id="cs-tidal" placeholder="Drop logo: Tidal Goods Co." style="width:100%; height:160px; border-radius:12px;" radius="12"></image-slot>
-        <div class="card" style="padding: 24px 26px;">
-          <p class="card-label">Retail</p>
-          <p class="card-title" style="font-size: 28px;">Tidal Goods Co.</p>
-          <p class="card-body" style="font-size: 24px;">Inventory, markup, COGS, margin analysis.</p>
+    <div class="brand-grid">
+      <div class="brand-tile" style="--brand: var(--sage); --brand-soft: rgba(74,124,94,0.12);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/tidal-goods/tidal-goods-icon-badge.png" alt="Tidal Goods Co. logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Retail</p>
+          <p class="brand-name">Tidal Goods Co.</p>
+          <p class="brand-work">Inventory, markup, COGS, and margin analysis.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Inventory</span>
+            <span class="brand-chip">COGS</span>
+            <span class="brand-chip">Margins</span>
+          </div>
         </div>
       </div>
-      <div class="stack" style="gap: 20px;">
-        <image-slot id="cs-meridian" placeholder="Drop logo: Meridian Advisory" style="width:100%; height:160px; border-radius:12px;" radius="12"></image-slot>
-        <div class="card" style="padding: 24px 26px;">
-          <p class="card-label" style="color: var(--gold);">Financial advisory</p>
-          <p class="card-title" style="font-size: 28px;">Meridian Advisory</p>
-          <p class="card-body" style="font-size: 24px;">TVM, taxes, payroll, loan amortization.</p>
+      <div class="brand-tile" style="--brand: var(--gold); --brand-soft: rgba(184,132,61,0.14);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-icon-badge.png" alt="Meridian Advisory Group logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Advisory</p>
+          <p class="brand-name">Meridian Advisory</p>
+          <p class="brand-work">TVM, taxes, payroll, and loan amortization.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">TVM</span>
+            <span class="brand-chip">Loans</span>
+            <span class="brand-chip">Payroll</span>
+          </div>
         </div>
       </div>
-      <div class="stack" style="gap: 20px;">
-        <image-slot id="cs-anchor" placeholder="Drop logo: Anchor &amp; Oak Events" style="width:100%; height:160px; border-radius:12px;" radius="12"></image-slot>
-        <div class="card" style="padding: 24px 26px;">
-          <p class="card-label" style="color: var(--terra);">Event planning</p>
-          <p class="card-title" style="font-size: 28px;">Anchor &amp; Oak</p>
-          <p class="card-body" style="font-size: 24px;">Breakeven, cash flow, scenario pricing.</p>
+      <div class="brand-tile" style="--brand: var(--terra); --brand-soft: rgba(156,74,43,0.13);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-icon-badge.png" alt="Anchor and Oak Events logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Events</p>
+          <p class="brand-name">Anchor &amp; Oak</p>
+          <p class="brand-work">Breakeven, cash flow, and scenario pricing.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Breakeven</span>
+            <span class="brand-chip">Cash flow</span>
+            <span class="brand-chip">Pricing</span>
+          </div>
         </div>
       </div>
-      <div class="stack" style="gap: 20px;">
-        <image-slot id="cs-harbor" placeholder="Drop logo: Harborside Medical" style="width:100%; height:160px; border-radius:12px;" radius="12"></image-slot>
-        <div class="card" style="padding: 24px 26px;">
-          <p class="card-label" style="color: var(--steel);">Healthcare</p>
-          <p class="card-title" style="font-size: 28px;">Harborside Medical</p>
-          <p class="card-body" style="font-size: 24px;">Payer mix, payroll, budget variance.</p>
+      <div class="brand-tile" style="--brand: var(--steel); --brand-soft: rgba(53,87,115,0.13);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical Center logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Healthcare</p>
+          <p class="brand-name">Harborside Medical</p>
+          <p class="brand-work">Payer mix, payroll, and budget variance.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Payer mix</span>
+            <span class="brand-chip">Payroll</span>
+            <span class="brand-chip">Variance</span>
+          </div>
         </div>
       </div>
     </div>
@@ -439,9 +599,40 @@
       <p class="eyebrow">Digital fluency spectrum</p>
     </div>
     <hr class="rule" />
-    <div class="motion-slot" style="margin-top: 56px; flex:1;">
-      <p class="label">◐ Motion graphic placeholder</p>
-      <p class="desc">Stacked bar chart: six tiers from "Basic Literacy" → "Modeling &amp; Automation." Bars decrease left-to-right; tiers 1–4 highlight in sage to mark BUS123's range; the top two tiers stay muted with "premium pay" tag.</p>
+    <div class="fluency-motion" aria-label="Animated digital fluency spectrum from basic literacy through modeling and automation">
+      <div class="fluency-track">
+        <div class="tier tier-muted" style="--w: 48%; --delay: 0ms;">
+          <p class="tier-label">Modeling &amp; automation<span class="tier-sub">Rare skill</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">Premium pay</p>
+        </div>
+        <div class="tier tier-muted" style="--w: 58%; --delay: 120ms;">
+          <p class="tier-label">Data analysis<span class="tier-sub">Advanced</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">Next layer</p>
+        </div>
+        <div class="tier" style="--w: 72%; --delay: 240ms;">
+          <p class="tier-label">Formula building<span class="tier-sub">Differentiator</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 82%; --delay: 360ms;">
+          <p class="tier-label">Spreadsheet use<span class="tier-sub">Most business roles</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 91%; --delay: 480ms;">
+          <p class="tier-label">File management<span class="tier-sub">Expected</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 98%; --delay: 600ms;">
+          <p class="tier-label">Basic literacy<span class="tier-sub">Every job</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+      </div>
+      <div class="bus-range"><span>Course range</span></div>
     </div>
   </section>
 
@@ -535,8 +726,7 @@
     <span class="slide-num">15</span>
     <div class="header-row">
       <h2 class="title">Where AI fits — honestly.</h2>
-      <p class="eyebrow">
-</p>
+      <p class="eyebrow">AI fluency</p>
     </div>
     <hr class="rule" />
     <div class="two-col" style="margin-top: 56px;">

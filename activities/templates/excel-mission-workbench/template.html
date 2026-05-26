@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 Excel Mission Workbench Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/bus123-activity.css">
+  <link rel="stylesheet" href="./template.css">
+</head>
+<body>
+  <header class="bus123-top-bar">
+    <div>
+      <p class="bus123-kicker" id="activityKicker">BUS123</p>
+      <h1 class="bus123-title" id="activityTitle">Activity</h1>
+    </div>
+    <div class="bus123-top-meta">
+      <span id="activitySubtitle">Practice activity</span>
+      <button class="bus123-reset-btn" id="resetProgress" type="button">Reset practice</button>
+    </div>
+  </header>
+
+  <main class="activity-shell" aria-label="Interactive Excel practice">
+    <aside class="bus123-panel" aria-labelledby="missionTitle">
+      <h2 class="bus123-panel-title" id="missionTitle">Your Missions</h2>
+      <p class="bus123-panel-sub" id="missionIntro"></p>
+
+      <div class="progress-wrap" aria-label="Progress">
+        <div class="progress-line">
+          <span id="progressText">0 done</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="missions" id="missionsList"></div>
+    </aside>
+
+    <section class="workbench" aria-labelledby="workbenchTitle">
+      <div class="workbench-head">
+        <div class="workbench-title">
+          <p class="case-label" id="caseLabel"></p>
+          <h2 id="workbenchTitle"></h2>
+        </div>
+        <div class="toolbar" aria-label="Formatting tools">
+          <button class="tool-btn" id="boldBtn" type="button" title="Bold selected cell">B</button>
+          <button class="tool-btn mono" id="currencyBtn" type="button" title="Format selected cell as currency">$</button>
+          <button class="tool-btn mono" id="percentBtn" type="button" title="Format selected cell as percent">%</button>
+          <button class="tool-btn mono" id="leftBtn" type="button" title="Align selected cell left">Left</button>
+          <button class="tool-btn mono" id="centerBtn" type="button" title="Align selected cell center">Center</button>
+          <button class="tool-btn mono" id="rightBtn" type="button" title="Align selected cell right">Right</button>
+          <button class="tool-btn mono" id="headerBtn" type="button" title="Format the header row">Header row</button>
+        </div>
+      </div>
+
+      <div class="formula-strip" aria-label="Name box and formula bar">
+        <div class="name-box" id="nameBox" aria-label="Name Box">A1</div>
+        <div class="formula-box">
+          <label for="formulaInput">fx</label>
+          <input class="formula-input" id="formulaInput" aria-label="Formula Bar" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="sheet-wrap">
+        <table class="sheet" id="sheet" aria-label="Mini spreadsheet">
+          <thead id="sheetHead"></thead>
+          <tbody id="sheetBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="bus123-panel" aria-labelledby="feedbackTitle">
+      <h2 class="bus123-panel-title" id="feedbackTitle">Feedback</h2>
+      <p class="bus123-panel-sub" id="feedbackIntro"></p>
+
+      <div class="feedback-card">
+        <span class="feedback-status" id="feedbackStatus">Ready</span>
+        <h3 id="activeMissionName">Select a mission</h3>
+        <p class="feedback-copy" id="activeMissionPrompt"></p>
+
+        <div class="feedback-actions">
+          <button class="bus123-primary-btn" id="checkBtn" type="button">Check my work</button>
+          <button class="bus123-secondary-btn" id="hintBtn" type="button">Show a hint</button>
+          <button class="bus123-secondary-btn" id="formulaCheckedBtn" type="button">I checked the formula bar</button>
+        </div>
+      </div>
+
+      <div class="excel-readout" aria-label="Excel readout">
+        <div class="readout-row">
+          <span class="readout-label">Selected cell</span>
+          <span class="readout-value" id="selectedReadout">A1</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Cell displays</span>
+          <span class="readout-value" id="displayReadout">(blank)</span>
+        </div>
+        <div class="readout-row">
+          <span class="readout-label">Formula bar shows</span>
+          <span class="readout-value" id="formulaReadout">(blank)</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="bus123-toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    window.BUS123_ACTIVITY = {
+      storageKey: "bus123-template-demo-v1",
+      inspectMissionId: "inspect-formula",
+      meta: {
+        pageTitle: "BUS123 Excel Mission Workbench Template",
+        kicker: "BUS123 · Template",
+        title: "Excel Mission Workbench",
+        subtitle: "Reusable practice template",
+        missionIntro: "Work through small Excel moves with immediate feedback.",
+        company: "Sample Company",
+        workbenchTitle: "Mini Product Worksheet",
+        feedbackIntro: "Use the worksheet, formula bar, and tools to complete each mission."
+      },
+      sheet: {
+        columns: ["A", "B", "C", "D", "E"],
+        rows: [1, 2, 3, 4, 5, 6],
+        activeCell: "A1",
+        resultCells: ["D3"],
+        defaultHeaderCells: ["A2", "B2", "C2", "D2"],
+        initialCells: {}
+      },
+      missions: [
+        {
+          id: "select-c3",
+          name: "Find a cell",
+          short: "Select C3 and read the Name Box.",
+          prompt: "Click cell C3. The Name Box should confirm exactly where you are.",
+          hint: "Column letters run across the top. Row numbers run down the left. C3 is where column C meets row 3.",
+          success: "Good. The Name Box is your map: it tells you which cell is active.",
+          hintCells: ["C3"],
+          checks: [
+            { type: "activeCell", address: "C3" }
+          ]
+        },
+        {
+          id: "enter-table",
+          name: "Enter labels and values",
+          short: "Build the first row of a product table.",
+          prompt: "Enter Product, Units, Unit Cost, and Total Cost in row 2. Then enter Canvas Tote, 24, and 8.5 in row 3.",
+          hint: "Use A2:D2 for labels. Use A3 for the product name, B3 for units, and C3 for unit cost.",
+          success: "Nice. Labels describe the worksheet; values give Excel something to calculate.",
+          hintCells: ["A2", "B2", "C2", "D2", "A3", "B3", "C3"],
+          checks: [
+            { type: "cellText", address: "A2", equals: "Product" },
+            { type: "cellText", address: "B2", equals: "Units" },
+            { type: "cellText", address: "C2", equals: "Unit Cost" },
+            { type: "cellText", address: "D2", equals: "Total Cost" },
+            { type: "cellText", address: "A3", equals: "Canvas Tote" },
+            { type: "cellNumber", address: "B3", equals: 24 },
+            { type: "cellNumber", address: "C3", equals: 8.5 }
+          ]
+        },
+        {
+          id: "format-table",
+          name: "Make it readable",
+          short: "Apply header, currency, and alignment formatting.",
+          prompt: "Use Header row, format C3 as currency, and right-align the numeric cells in B3 and C3.",
+          hint: "Select a cell, then use the toolbar. The Header row button formats A2:D2 in one move.",
+          success: "Exactly. Formatting is communication, not decoration.",
+          hintCells: ["A2", "B2", "C2", "D2", "B3", "C3"],
+          headerCells: ["A2", "B2", "C2", "D2"],
+          checks: [
+            { type: "headerFormatted", addresses: ["A2", "B2", "C2", "D2"], align: "center" },
+            { type: "cellFormat", address: "C3", equals: "currency" },
+            { type: "cellAlign", address: "B3", equals: "right" },
+            { type: "cellAlign", address: "C3", equals: "right" }
+          ]
+        },
+        {
+          id: "write-formula",
+          name: "Write a formula",
+          short: "Calculate total cost with a formula.",
+          prompt: "Select D3 and type =B3*C3 in the formula bar or directly in the cell.",
+          hint: "Start with the equals sign. Excel reads =B3*C3 as units times unit cost.",
+          success: "That is the move: let Excel calculate the answer so the worksheet can update later.",
+          hintCells: ["D3"],
+          checks: [
+            { type: "productFormula", address: "D3", first: "B3", second: "C3" },
+            { type: "cellNumber", address: "D3", equals: 204 }
+          ]
+        },
+        {
+          id: "inspect-formula",
+          name: "Inspect the formula bar",
+          short: "Compare what the cell displays with what it stores.",
+          prompt: "Select D3. Notice the cell displays the result, while the formula bar shows =B3*C3. Then click the check button below.",
+          hint: "The grid shows the calculated answer. The formula bar shows the underlying formula.",
+          success: "Perfect. This habit will save you from editing the wrong thing later.",
+          hintCells: ["D3"],
+          checks: [
+            { type: "activeCell", address: "D3" },
+            { type: "productFormula", address: "D3", first: "B3", second: "C3" },
+            { type: "formulaBarChecked" }
+          ]
+        }
+      ]
+    };
+  </script>
+  <script src="./template.js"></script>
+</body>
+</html>

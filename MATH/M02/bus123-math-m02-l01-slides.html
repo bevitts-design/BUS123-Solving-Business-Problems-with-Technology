@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BUS123 · M02 · L01 — Solving Equations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome to Math Module 2. Today we're building the most important skill in this course — solving for unknowns. Every financial formula you'll use this semester is just an equation waiting to be rearranged. Once you understand that, the math stops being scary.",
+    "Here's what we're covering today. Four types of equation solving, all grounded in real decisions that a business like Anchor and Oak Events would actually face. The thread connecting them all: isolate the variable.",
+    "By the end of class you should be able to do these four things on your own without looking at notes. We'll test all four in the workbook.",
+    "Think about the last module — we built formulas. Revenue equals price times quantity. Cost equals rate times hours. Those formulas gave us outputs. Today we flip the question: what if I know the output and need to find the input? That's solving an equation.",
+    "Part 1: One-Step Equations. These are the simplest version — one operation stands between you and the answer. Undo it.",
+    "One-step equations use inverse operations. Addition undone by subtraction. Multiplication undone by division. The rule is always the same: whatever was done to the variable, do the opposite to both sides.",
+    "Anchor and Oak budgeted $4,200 for floral arrangements across several events. After booking three weddings they have $1,650 remaining. How much did the three weddings cost? x + 1650 = 4200. Subtract 1650 from both sides. x = 2550. The weddings cost $2,550.",
+    "One more. Anchor and Oak charges a per-person catering rate. A 60-person event bill came to $4,080. What is the per-person rate? 60x = 4080. Divide both sides by 60. x = 68. The rate is $68 per person.",
+    "Part 2: Two-Step Equations. Two operations to undo instead of one. The order matters — always undo addition and subtraction first, then multiplication and division.",
+    "Why reverse order? Think of it like putting on shoes and socks. You put socks on before shoes, so you take shoes off before socks. In an equation, multiplication was applied last during building, so we undo it last during solving.",
+    "Anchor and Oak pays their event coordinators a base weekly pay plus an hourly overtime rate. One coordinator earned $1,240 in a week with $120 base pay and 8 overtime hours. What is the hourly overtime rate? 8x + 120 = 1240. Subtract 120 first: 8x = 1120. Divide by 8: x = 140. The overtime rate is $140 per hour.",
+    "Part 3: Variables on Both Sides. When the unknown appears on both sides of the equal sign, your first job is to collect all the variable terms on one side. Then solve as a two-step.",
+    "Anchor and Oak is comparing two vendors for tent rentals. Vendor A charges $500 flat plus $25 per guest. Vendor B charges $200 flat plus $40 per guest. At how many guests do the costs break even? 500 + 25g = 200 + 40g. Subtract 25g from both sides: 500 = 200 + 15g. Subtract 200: 300 = 15g. Divide: g = 20. At exactly 20 guests, both vendors cost the same.",
+    "Common Mistake: students often subtract the variable from the wrong side, creating a negative coefficient. Always move the smaller variable term so your coefficient stays positive. It reduces arithmetic errors.",
+    "Part 4: Literal Equations and Formula Rearrangement. This is the highest-value skill in the course. A literal equation has multiple variables — like Profit = Revenue minus Cost. Solving for a specific variable means treating every other letter as if it were a number.",
+    "The standard formula for break-even revenue is: Revenue = Variable Cost + Fixed Cost + Profit. If we set Profit to zero: R = VC + FC. We can solve for any piece. If we know target revenue and variable costs, solve for the maximum allowable fixed cost: FC = R minus VC.",
+    "Anchor and Oak is planning a corporate gala. They project $18,500 in revenue. Variable costs (catering, staffing, linens) run $11,200. How much fixed cost (venue, equipment, permits) can they absorb and still break even? FC = R minus VC. FC = 18500 minus 11200. FC = 7300. They can spend up to $7,300 on fixed costs.",
+    "Three questions. Take two minutes and write your setup — the equation — before solving. Question 1: Anchor and Oak charged $3,600 for an event. Labor was $95 per hour and the event ran 24 hours. What was the non-labor revenue? Question 2: Two photographers quote different pricing structures. At what number of hours do they charge the same? Question 3: The profit formula is P = R minus C. If P = $4,200 and C = $11,800, solve for R.",
+    "Three things to remember. One: equations are balanced scales — whatever you do to one side, do to both. Two: collect variable terms before solving. Three: literal equations are just formula rearrangements — treat other variables like numbers.",
+    "Next lesson we move to percent equations and proportions — pricing markup, discount, and sales tax. All grounded in the same equation-solving logic you built today.",
+    "Questions? Office hours are posted on Canvas. Bring the workbook to next class — we'll use it."
+  ]
+  </script>
+
+  <style>
+    :root {
+      --ink:       #0E1116;
+      --paper:     #FAF8F3;
+      --paper-2:   #F2EEE5;
+      --white:     #FFFFFF;
+      --text:      #1A1F2C;
+      --text-soft: #4A5567;
+      --muted:     #7A8290;
+      --border:    #E5E1D6;
+
+      --sage:  #4A7C5E;
+      --gold:  #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+
+      --accent: var(--sage);
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Geist', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --scale: 1;
+      --type-display:  calc(112px * var(--scale));
+      --type-title:    calc(72px  * var(--scale));
+      --type-subtitle: calc(44px  * var(--scale));
+      --type-lead:     calc(34px  * var(--scale));
+      --type-body:     calc(28px  * var(--scale));
+      --type-small:    calc(24px  * var(--scale));
+      --type-eyebrow:  calc(24px  * var(--scale));
+      --type-mono:     calc(24px  * var(--scale));
+      --type-stat:     calc(220px * var(--scale));
+
+      --pad-x:      128px;
+      --pad-top:    104px;
+      --pad-bottom: 96px;
+      --gap-title:  56px;
+      --gap-item:   32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #111; }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      flex-direction: column;
+      font-family: var(--font-body);
+    }
+    .slide.dark  { background: var(--ink);   color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text);  }
+
+    /* ── Gradient bar ── */
+    .grad-bar {
+      width: 100%; height: 8px;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    /* ── Header row ── */
+    .header-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: var(--pad-top) var(--pad-x) 0;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .slide.dark .eyebrow { color: var(--gold); }
+    .rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      align-self: center;
+    }
+    .slide.dark .rule { background: rgba(255,255,255,0.15); }
+
+    /* ── Slide title ── */
+    h2.slide-title {
+      font-family: var(--font-display);
+      font-size: var(--type-title);
+      font-weight: 400;
+      line-height: 1.1;
+      padding: var(--gap-title) var(--pad-x) 0;
+    }
+    .slide.dark h2.slide-title { color: var(--white); }
+    .slide.cream h2.slide-title { color: var(--text); }
+
+    /* ── Body area ── */
+    .body-area {
+      flex: 1;
+      padding: var(--gap-item) var(--pad-x) var(--pad-bottom);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--gap-item);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+      color: var(--text);
+    }
+    .slide.dark .card {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+    .card-body {
+      font-size: var(--type-body);
+      line-height: 1.5;
+      color: var(--text-soft);
+    }
+    .slide.dark .card-body { color: rgba(255,255,255,0.7); }
+
+    /* ── Numbered statements ── */
+    .numbered {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .n {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 56px;
+    }
+    .slide.dark .n { color: var(--gold); }
+    .n-body {
+      font-size: var(--type-body);
+      line-height: 1.5;
+      padding-top: 8px;
+    }
+
+    /* ── Equation panel (light, for cream slides) ── */
+    .eq-panel {
+      background: #F4F0E8;
+      border: 1.5px solid #D8D0C0;
+      border-left: 5px solid var(--sage);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      border-radius: 0 10px 10px 0;
+      padding: 28px 36px;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .eq-panel .comment {
+      color: #2A4A7F;
+      font-size: calc(var(--type-mono) * 0.88);
+    }
+    .eq-panel .eq-step {
+      color: #2A4A7F;
+      font-size: calc(var(--type-mono) * 0.88);
+    }
+    .eq-panel .result {
+      color: #2A6B42;
+      font-weight: 500;
+    }
+    /* Keep dark-panel for use on dark slides if needed */
+    .dark-panel {
+      background: var(--ink);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      border-radius: 10px;
+      padding: 24px 32px;
+      line-height: 1.7;
+    }
+    .dark-panel .comment {
+      color: rgba(255,255,255,0.45);
+      font-size: calc(var(--type-mono) * 0.9);
+    }
+    .dark-panel .result {
+      color: #7DD3A0;
+    }
+
+    /* ── Terracotta mistake callout ── */
+    .mistake-panel {
+      background: var(--terra);
+      border-radius: 14px;
+      padding: 40px 48px;
+      color: var(--white);
+    }
+    .mistake-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-bottom: 16px;
+    }
+    .mistake-heading {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+    .mistake-body {
+      font-size: var(--type-body);
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+
+    /* ── Two-column layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+    }
+
+    /* ── Section break ── */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      padding: var(--pad-top) var(--pad-x) 0;
+    }
+    .section-number {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-stat);
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      right: var(--pad-x);
+      bottom: -24px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .section-title-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--pad-x);
+      position: relative;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: calc(var(--type-title) * 1.2);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--white);
+    }
+    .section-sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: rgba(255,255,255,0.55);
+      margin-top: 16px;
+    }
+
+    /* ── Title slide ── */
+    .title-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--pad-x);
+      gap: 24px;
+    }
+    .title-eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .title-main {
+      font-family: var(--font-display);
+      font-size: var(--type-display);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--white);
+    }
+    .title-sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── Big equation display ── */
+    .eq-display {
+      font-family: var(--font-mono);
+      font-size: calc(var(--type-mono) * 1.6);
+      color: var(--gold);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 28px 40px;
+      line-height: 1.7;
+    }
+    .slide.cream .eq-display {
+      background: var(--ink);
+      color: var(--gold);
+      border-color: transparent;
+    }
+    .eq-step {
+      color: rgba(255,255,255,0.5);
+      font-size: var(--type-mono);
+    }
+    .eq-result {
+      color: #7DD3A0;
+    }
+
+    /* ── Sage accent text ── */
+    .accent { color: var(--accent); }
+    .slide.dark .accent { color: var(--gold); }
+
+    /* ── Lead paragraph ── */
+    .lead {
+      font-size: var(--type-lead);
+      line-height: 1.45;
+      color: var(--text-soft);
+    }
+    .slide.dark .lead { color: rgba(255,255,255,0.7); }
+
+    /* ── Image slot placeholder ── */
+    image-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 2px dashed rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.3);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* ── Pill tags ── */
+    .pill {
+      display: inline-block;
+      background: rgba(74,124,94,0.15);
+      border: 1px solid rgba(74,124,94,0.35);
+      color: var(--sage);
+      border-radius: 100px;
+      padding: 8px 24px;
+      font-size: var(--type-small);
+      font-family: var(--font-mono);
+    }
+    .slide.dark .pill {
+      background: rgba(184,132,61,0.15);
+      border-color: rgba(184,132,61,0.35);
+      color: var(--gold);
+    }
+
+    /* ── Practice prompt ── */
+    .practice-block {
+      background: rgba(74,124,94,0.1);
+      border: 1px solid rgba(74,124,94,0.3);
+      border-radius: 14px;
+      padding: 36px 40px;
+      color: var(--text);
+    }
+    .practice-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--sage);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .practice-q {
+      font-size: var(--type-body);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    /* ── Energy layer: missions, activities, visuals, reveals ── */
+    .mission-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 48px;
+      margin-top: 24px;
+      padding: 28px 36px;
+      border: 1px solid rgba(184,132,61,0.35);
+      border-radius: 14px;
+      background: rgba(184,132,61,0.10);
+      max-width: 1180px;
+    }
+    .mission-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .mission-copy {
+      font-size: var(--type-body);
+      line-height: 1.35;
+      color: rgba(255,255,255,0.78);
+    }
+    .mission-badge {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--white);
+      white-space: nowrap;
+    }
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin-bottom: 18px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      border: 1px solid rgba(74,124,94,0.35);
+      background: rgba(74,124,94,0.12);
+      color: var(--sage);
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .slide.dark .level-badge {
+      border-color: rgba(184,132,61,0.35);
+      background: rgba(184,132,61,0.12);
+      color: var(--gold);
+    }
+    .activity-card {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 32px 36px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .activity-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .activity-prompt {
+      font-family: var(--font-display);
+      font-size: var(--type-subtitle);
+      line-height: 1.12;
+      margin-bottom: 22px;
+    }
+    .choice-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .choice-chip {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 10px 22px;
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      color: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.06);
+    }
+    .timer-chip {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 10px 20px;
+      border-radius: 100px;
+      background: rgba(184,132,61,0.16);
+      border: 1px solid rgba(184,132,61,0.35);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .scene-card {
+      min-height: 420px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.88), rgba(242,238,229,0.92)),
+        radial-gradient(circle at 20% 18%, rgba(184,132,61,0.18), transparent 34%),
+        radial-gradient(circle at 84% 75%, rgba(74,124,94,0.20), transparent 32%);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--text);
+      overflow: hidden;
+      position: relative;
+    }
+    .scene-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 36px solid rgba(74,124,94,0.12);
+    }
+    .scene-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .scene-title {
+      font-family: var(--font-display);
+      font-size: var(--type-subtitle);
+      line-height: 1.12;
+      max-width: 620px;
+      position: relative;
+      z-index: 1;
+    }
+    .scene-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .scene-stat {
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(229,225,214,0.95);
+      border-radius: 12px;
+      padding: 20px 22px;
+    }
+    .scene-stat span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .scene-stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      font-weight: 400;
+      color: var(--text);
+    }
+    .vendor-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 26px;
+    }
+    .vendor-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 26px;
+    }
+    .vendor-card .vendor-name {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      margin-bottom: 10px;
+    }
+    .vendor-card .vendor-price {
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      color: var(--sage);
+    }
+    .sprint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .sprint-card {
+      min-height: 470px;
+      background: rgba(74,124,94,0.10);
+      border: 1px solid rgba(74,124,94,0.32);
+      border-radius: 14px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .sprint-round {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--sage);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .sprint-title {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      line-height: 1.1;
+    }
+    .sprint-q {
+      font-size: var(--type-body);
+      line-height: 1.45;
+      color: var(--text-soft);
+    }
+    .reveal-step {
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(2px);
+      transition: opacity 320ms ease, transform 320ms ease, filter 320ms ease;
+    }
+    .reveal-step.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    .focus-op {
+      color: var(--gold);
+      background: rgba(184,132,61,0.14);
+      border-radius: 8px;
+      padding: 2px 8px;
+      margin: 0 2px;
+    }
+    .eq-panel .reveal-step {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- ── 01 TITLE ── -->
+  <section class="slide dark" data-label="01 Title">
+    <div class="grad-bar"></div>
+    <div class="title-content">
+      <div class="title-eyebrow">BUS123 · Math Track · M02 · L01</div>
+      <div class="title-main">Solving<br>Equations</div>
+      <div class="title-sub">From one-step arithmetic to literal formula rearrangement</div>
+      <div class="mission-strip">
+        <div>
+          <div class="mission-label">Today's Mission</div>
+          <div class="mission-copy">Help Anchor &amp; Oak uncover the missing number behind each business decision.</div>
+        </div>
+        <div class="mission-badge">4 Levels</div>
+      </div>
+    </div>
+    <div style="padding: 0 var(--pad-x) var(--pad-bottom); font-family: var(--font-mono); font-size: var(--type-small); color: rgba(255,255,255,0.35);">
+      Anchor &amp; Oak Events &nbsp;·&nbsp; Fall 2026
+    </div>
+  </section>
+
+  <!-- ── 02 AGENDA ── -->
+  <section class="slide cream" data-label="02 Agenda">
+    <div class="header-row"><span class="eyebrow">Today's Plan</span><div class="rule"></div></div>
+    <h2 class="slide-title">Four Levels of Equation Solving</h2>
+    <div class="body-area" style="justify-content:flex-start; gap:24px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body"><strong>Level 1: One-Step Equations</strong> — Single inverse operation</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body"><strong>Level 2: Two-Step Equations</strong> — Reverse order of operations</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body"><strong>Level 3: Variables on Both Sides</strong> — Collect, then solve</div></div>
+      <div class="numbered"><div class="n">04</div><div class="n-body"><strong>Level 4: Literal Equations</strong> — Rearrange formulas for any variable</div></div>
+    </div>
+  </section>
+
+  <!-- ── 03 LEARNING OBJECTIVES ── -->
+  <section class="slide cream" data-label="03 Objectives">
+    <div class="header-row"><span class="eyebrow">I Can…</span><div class="rule"></div></div>
+    <h2 class="slide-title">Learning Objectives</h2>
+    <div class="body-area" style="justify-content:flex-start; gap:28px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body">Solve one-step and two-step equations using inverse operations</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body">Collect variable terms and solve equations with variables on both sides</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body">Rearrange a multi-variable formula to isolate any target variable</div></div>
+      <div class="numbered"><div class="n">04</div><div class="n-body">Apply equation-solving to real business cost and revenue scenarios</div></div>
+    </div>
+  </section>
+
+  <!-- ── 04 RECAP / BRIDGE ── -->
+  <section class="slide cream" data-label="04 Bridge">
+    <div class="header-row"><span class="eyebrow">Connection to Prior Work</span><div class="rule"></div></div>
+    <h2 class="slide-title">Formulas Give Outputs — Today We Find Inputs</h2>
+    <div class="body-area" style="flex-direction:row; align-items:center; gap:64px;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
+        <p class="lead">Last module: <em>Revenue = Price × Quantity</em><br>We plugged in numbers and got a result.</p>
+        <p class="lead">Today: what if we know the result and need to find one of the inputs?</p>
+        <p class="lead">That's solving an equation — and it's the engine behind every financial formula in this course.</p>
+      </div>
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Ticket Goal Board</div>
+            <div class="scene-title">Anchor &amp; Oak knows the target revenue. Students find the missing input.</div>
+          </div>
+          <div class="scene-grid">
+            <div class="scene-stat"><span>Revenue goal</span><strong>$50,000</strong></div>
+            <div class="scene-stat"><span>Ticket price</span><strong>$25</strong></div>
+          </div>
+          <div class="eq-panel">
+            <span class="comment">// Known: revenue and price</span><br>
+            50000 = 25 × Q<br>
+            <span class="eq-step reveal-step">÷ 25 both sides</span>
+            <span class="result reveal-step">Q = 2,000 tickets</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 05 SECTION BREAK — PART 1 ── -->
+  <section class="slide dark" data-label="05 Part 1 Break">
+    <div class="grad-bar"></div>
+    <div class="section-label">Part 1 of 4</div>
+    <div class="section-title-wrap">
+      <div class="level-badge">Level 1 · Warm-Up</div>
+      <div class="section-title">One-Step<br>Equations</div>
+      <div class="section-sub">One operation. One inverse. Done.</div>
+      <div class="section-number">01</div>
+    </div>
+  </section>
+
+  <!-- ── 06 ONE-STEP CONCEPT ── -->
+  <section class="slide cream" data-label="06 One-Step Concept">
+    <div class="header-row"><span class="eyebrow">One-Step Equations</span><div class="rule"></div></div>
+    <h2 class="slide-title">Undo the Operation — On Both Sides</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:32px;">
+        <div class="level-badge">Level 1 · Choose the inverse</div>
+        <div class="activity-card">
+          <div class="activity-label">Cold Call / Poll</div>
+          <div class="activity-prompt">Which operation do we undo?</div>
+          <div class="choice-row">
+            <span class="choice-chip">Add</span>
+            <span class="choice-chip">Subtract</span>
+            <span class="choice-chip">Multiply</span>
+            <span class="choice-chip">Divide</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Inverse Pair Cheat Sheet</div>
+          <div class="card-body">Addition ↔ subtraction<br>Multiplication ↔ division</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          <span class="comment">// The Golden Rule</span><br><br>
+          Whatever you do<br>
+          to one side of =<br>
+          you <span class="focus-op">must</span> do to the other.<br><br>
+          <span class="comment">// Equations are balanced scales.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 07 ONE-STEP EXAMPLE 1 ── -->
+  <section class="slide cream" data-label="07 One-Step Ex 1">
+    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
+    <h2 class="slide-title">Budget Remaining After Bookings</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Floral Budget Snapshot</div>
+            <div class="scene-title">Three wedding bookings used part of the floral budget.</div>
+          </div>
+          <div class="scene-grid">
+            <div class="scene-stat"><span>Original budget</span><strong>$4,200</strong></div>
+            <div class="scene-stat"><span>Still available</span><strong>$1,650</strong></div>
+          </div>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <span class="pill">Addition equation</span>
+            <span class="pill">Subtract to isolate</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          x + 1650 = 4200<br><br>
+          <span class="eq-step reveal-step"><span class="focus-op">− 1650</span> from both sides</span>
+          <span class="reveal-step">x = 4200 − 1650</span>
+          <span class="result reveal-step">x = $2,550</span>
+          <span class="comment reveal-step">// weddings cost $2,550 total</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 08 ONE-STEP EXAMPLE 2 ── -->
+  <section class="slide cream" data-label="08 One-Step Ex 2">
+    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
+    <h2 class="slide-title">Finding the Per-Person Catering Rate</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Catering Invoice</div>
+            <div class="scene-title">The total is known. The per-person rate is hidden.</div>
+          </div>
+          <div class="scene-grid">
+            <div class="scene-stat"><span>Guests served</span><strong>60</strong></div>
+            <div class="scene-stat"><span>Total bill</span><strong>$4,080</strong></div>
+          </div>
+          <div class="timer-chip">60-second solo check</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          60x = 4080<br><br>
+          <span class="eq-step reveal-step"><span class="focus-op">÷ 60</span> on both sides</span>
+          <span class="reveal-step">x = 4080 ÷ 60</span>
+          <span class="result reveal-step">x = $68 per person</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 09 SECTION BREAK — PART 2 ── -->
+  <section class="slide dark" data-label="09 Part 2 Break">
+    <div class="grad-bar"></div>
+    <div class="section-label">Part 2 of 4</div>
+    <div class="section-title-wrap">
+      <div class="level-badge">Level 2 · Combo Move</div>
+      <div class="section-title">Two-Step<br>Equations</div>
+      <div class="section-sub">Reverse the order. Undo addition first.</div>
+      <div class="section-number">02</div>
+    </div>
+  </section>
+
+  <!-- ── 10 TWO-STEP CONCEPT ── -->
+  <section class="slide cream" data-label="10 Two-Step Concept">
+    <div class="header-row"><span class="eyebrow">Two-Step Equations</span><div class="rule"></div></div>
+    <h2 class="slide-title">Reverse the Order of Operations</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:32px;">
+        <div class="level-badge">Level 2 · Reverse order</div>
+        <p class="lead">Standard form: &nbsp;<em>ax + b = c</em></p>
+        <div class="numbered"><div class="n">01</div><div class="n-body">Undo addition or subtraction (move b to the right side)</div></div>
+        <div class="numbered"><div class="n">02</div><div class="n-body">Undo multiplication or division (divide by a)</div></div>
+        <p style="font-size: var(--type-small); color: var(--text-soft); font-style: italic;">Tip: like removing shoes before socks — reverse the order it was built.</p>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          <span class="comment">// General form</span><br>
+          ax + b = c<br><br>
+          <span class="eq-step reveal-step">Step 1: <span class="focus-op">− b</span> both sides → ax = c − b</span>
+          <span class="eq-step reveal-step">Step 2: <span class="focus-op">÷ a</span> both sides → x = (c − b) / a</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11 TWO-STEP EXAMPLE ── -->
+  <section class="slide cream" data-label="11 Two-Step Ex">
+    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
+    <h2 class="slide-title">Calculating the Overtime Hourly Rate</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Payroll Puzzle</div>
+            <div class="scene-title">Partner solve: write the setup before the algebra appears.</div>
+          </div>
+          <div class="scene-grid">
+            <div class="scene-stat"><span>Total pay</span><strong>$1,240</strong></div>
+            <div class="scene-stat"><span>Base pay</span><strong>$120</strong></div>
+            <div class="scene-stat"><span>Overtime hours</span><strong>8</strong></div>
+            <div class="scene-stat"><span>Unknown</span><strong>Rate</strong></div>
+          </div>
+          <div class="timer-chip">Partner solve · 90 seconds</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          8x + 120 = 1240<br><br>
+          <span class="eq-step reveal-step">Step 1: <span class="focus-op">− 120</span> both sides</span>
+          <span class="reveal-step">8x = 1120</span>
+          <span class="eq-step reveal-step">Step 2: <span class="focus-op">÷ 8</span> both sides</span>
+          <span class="reveal-step">x = 1120 ÷ 8</span>
+          <span class="result reveal-step">x = $140 / hour</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 12 SECTION BREAK — PART 3 ── -->
+  <section class="slide dark" data-label="12 Part 3 Break">
+    <div class="grad-bar"></div>
+    <div class="section-label">Part 3 of 4</div>
+    <div class="section-title-wrap">
+      <div class="level-badge">Level 3 · Matchup</div>
+      <div class="section-title">Variables on<br>Both Sides</div>
+      <div class="section-sub">Collect. Combine. Solve.</div>
+      <div class="section-number">03</div>
+    </div>
+  </section>
+
+  <!-- ── 13 BOTH SIDES CONCEPT ── -->
+  <section class="slide cream" data-label="13 Both Sides Concept">
+    <div class="header-row"><span class="eyebrow">Variables on Both Sides</span><div class="rule"></div></div>
+    <h2 class="slide-title">Move Variable Terms to One Side First</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
+        <div class="level-badge">Level 3 · Bring variables together</div>
+        <p class="lead">When x (or any variable) appears on both sides, collect all variable terms on one side before solving.</p>
+        <div class="numbered"><div class="n">01</div><div class="n-body">Subtract the smaller variable term from both sides (keeps coefficient positive)</div></div>
+        <div class="numbered"><div class="n">02</div><div class="n-body">Now it's a two-step equation — proceed as before</div></div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          <span class="comment">// Example form</span><br>
+          3x + 10 = x + 50<br><br>
+          <span class="eq-step reveal-step"><span class="focus-op">− x</span> both sides</span>
+          <span class="reveal-step">2x + 10 = 50</span>
+          <span class="eq-step reveal-step"><span class="focus-op">− 10</span> both sides</span>
+          <span class="reveal-step">2x = 40</span>
+          <span class="result reveal-step">x = 20</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 14 BOTH SIDES EXAMPLE ── -->
+  <section class="slide cream" data-label="14 Both Sides Ex">
+    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
+    <h2 class="slide-title">Break-Even Guest Count Between Two Vendors</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Vendor Showdown</div>
+            <div class="scene-title">Vote first: which vendor wins for a larger guest count?</div>
+          </div>
+          <div class="vendor-board">
+            <div class="vendor-card">
+              <div class="vendor-name">Vendor A</div>
+              <div class="vendor-price">$500 + $25/guest</div>
+            </div>
+            <div class="vendor-card">
+              <div class="vendor-name">Vendor B</div>
+              <div class="vendor-price">$200 + $40/guest</div>
+            </div>
+          </div>
+          <div class="choice-row">
+            <span class="choice-chip" style="color:var(--sage); border-color:rgba(74,124,94,0.35);">A</span>
+            <span class="choice-chip" style="color:var(--sage); border-color:rgba(74,124,94,0.35);">B</span>
+            <span class="choice-chip" style="color:var(--sage); border-color:rgba(74,124,94,0.35);">Depends</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          500 + 25g = 200 + 40g<br><br>
+          <span class="eq-step reveal-step"><span class="focus-op">− 25g</span> both sides</span>
+          <span class="reveal-step">500 = 200 + 15g</span>
+          <span class="eq-step reveal-step"><span class="focus-op">− 200</span> both sides</span>
+          <span class="reveal-step">300 = 15g</span>
+          <span class="eq-step reveal-step"><span class="focus-op">÷ 15</span> both sides</span>
+          <span class="result reveal-step">g = 20 guests</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 15 COMMON MISTAKE ── -->
+  <section class="slide cream" data-label="15 Common Mistake">
+    <div class="header-row"><span class="eyebrow">Watch Out</span><div class="rule"></div></div>
+    <h2 class="slide-title">Moving Variables to the Wrong Side</h2>
+    <div class="body-area" style="justify-content:center;">
+      <div class="mistake-panel">
+        <div class="mistake-label">Spot the Sign Error · 45 seconds</div>
+        <div class="mistake-heading">Where does this solution get harder than it needs to be?</div>
+        <div class="mistake-body">
+          Given: &nbsp; 500 + 25g = 200 + 40g<br><br>
+          <strong>Messy path:</strong> &nbsp; − 40g both sides → &nbsp; 500 − 15g = 200 &nbsp; → &nbsp; −15g = −300 &nbsp; → &nbsp; g = 20 ✓<br><br>
+          <span class="reveal-step"><strong>Cleaner move:</strong> &nbsp; subtract the <em>smaller</em> variable term so the coefficient stays positive.</span>
+          <span class="reveal-step">Fewer negative signs means fewer arithmetic traps.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 16 SECTION BREAK — PART 4 ── -->
+  <section class="slide dark" data-label="16 Part 4 Break">
+    <div class="grad-bar"></div>
+    <div class="section-label">Part 4 of 4</div>
+    <div class="section-title-wrap">
+      <div class="level-badge">Level 4 · Formula Boss</div>
+      <div class="section-title">Literal<br>Equations</div>
+      <div class="section-sub">Rearrange any formula. Isolate any variable.</div>
+      <div class="section-number">04</div>
+    </div>
+  </section>
+
+  <!-- ── 17 LITERAL CONCEPT ── -->
+  <section class="slide cream" data-label="17 Literal Concept">
+    <div class="header-row"><span class="eyebrow">Literal Equations</span><div class="rule"></div></div>
+    <h2 class="slide-title">Treat Other Variables Like Numbers</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:32px;">
+        <div class="level-badge">Level 4 · Rearrange the formula</div>
+        <p class="lead">A <strong>literal equation</strong> has multiple variables. Solving for one means treating all others as constants — same rules apply.</p>
+        <div class="card">
+          <div class="card-title">Profit Formula</div>
+          <div class="card-body">P = R − C &nbsp;→&nbsp; solve for R: &nbsp;R = P + C<br>Same formula, different variable isolated.</div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          <span class="comment">// Solve Revenue = VC + FC for FC</span><br><br>
+          R = VC + FC<br><br>
+          <span class="eq-step reveal-step"><span class="focus-op">− VC</span> both sides</span>
+          <span class="result reveal-step">FC = R − VC</span>
+          <span class="comment reveal-step">// FC is now isolated</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 18 LITERAL EXAMPLE ── -->
+  <section class="slide cream" data-label="18 Literal Ex">
+    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
+    <h2 class="slide-title">Maximum Allowable Fixed Cost for Break-Even</h2>
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+      <div style="flex:1;">
+        <div class="scene-card">
+          <div>
+            <div class="scene-label">Gala Break-Even Board</div>
+            <div class="scene-title">Find the fixed-cost ceiling before the venue contract gets signed.</div>
+          </div>
+          <div class="scene-grid">
+            <div class="scene-stat"><span>Projected revenue</span><strong>$18,500</strong></div>
+            <div class="scene-stat"><span>Variable costs</span><strong>$11,200</strong></div>
+          </div>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <span class="pill">Break-even: P = 0</span>
+            <span class="pill">Literal equation</span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div class="eq-panel">
+          <span class="comment">// R = VC + FC, set P = 0</span><br>
+          FC = R − VC<br><br>
+          <span class="reveal-step">FC = 18,500 − 11,200</span>
+          <span class="result reveal-step">FC = $7,300</span>
+          <span class="comment reveal-step">// max fixed cost to break even</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 19 STUDENT PRACTICE ── -->
+  <section class="slide cream" data-label="19 Practice">
+    <div class="header-row"><span class="eyebrow">Your Turn</span><div class="rule"></div></div>
+    <h2 class="slide-title">Boss Level: Equation Sprint</h2>
+    <div class="body-area" style="justify-content:flex-start; gap:28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="level-badge">Final Check · Setup first</div>
+        <div class="timer-chip">3 rounds · 2 minutes each</div>
+      </div>
+      <div class="sprint-grid">
+        <div class="sprint-card">
+          <div class="sprint-round">Round 1</div>
+          <div class="sprint-title">Non-Labor Revenue</div>
+          <div class="sprint-q">Anchor &amp; Oak charged $3,600 for an event. Labor ran $95/hour for 24 hours. What was the non-labor portion of revenue?</div>
+          <span class="pill">One-step</span>
+        </div>
+        <div class="sprint-card">
+          <div class="sprint-round">Round 2</div>
+          <div class="sprint-title">Photographer Break-Even</div>
+          <div class="sprint-q">Photographer A: $300 flat + $75/hour. Photographer B: $150 flat + $100/hour. At how many hours do they charge the same?</div>
+          <span class="pill">Both sides</span>
+        </div>
+        <div class="sprint-card">
+          <div class="sprint-round">Round 3</div>
+          <div class="sprint-title">Solve for Revenue</div>
+          <div class="sprint-q">Using P = R − C, if P = $4,200 and C = $11,800, solve for R.</div>
+          <span class="pill">Literal equation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 20 KEY TAKEAWAYS ── -->
+  <section class="slide cream" data-label="20 Takeaways">
+    <div class="header-row"><span class="eyebrow">Key Takeaways</span><div class="rule"></div></div>
+    <h2 class="slide-title">Three Rules That Cover Everything</h2>
+    <div class="body-area" style="justify-content:center; gap:40px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body"><strong>Equations are balanced scales.</strong> Every operation applied to one side must be applied to both. No exceptions.</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body"><strong>Collect before you solve.</strong> When the variable appears on both sides, move all variable terms to one side first — then it's a two-step.</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body"><strong>Literal equations are just formula rearrangements.</strong> Treat every other letter as a number and apply the same inverse operation rules.</div></div>
+    </div>
+  </section>
+
+  <!-- ── 21 UP NEXT ── -->
+  <section class="slide dark" data-label="21 Up Next">
+    <div class="grad-bar"></div>
+    <div class="title-content">
+      <div class="title-eyebrow">Next Lesson · M02 · L02</div>
+      <div class="title-main" style="font-size: calc(var(--type-title) * 1.1);">Percent<br>Equations</div>
+      <div class="title-sub">Markup, markdown, discount, and sales tax — equation solving applied to pricing decisions</div>
+    </div>
+    <div style="padding: 0 var(--pad-x) var(--pad-bottom); font-family: var(--font-mono); font-size: var(--type-small); color: rgba(255,255,255,0.35);">
+      Bring your workbook to next class
+    </div>
+  </section>
+
+  <!-- ── 22 CLOSE ── -->
+  <section class="slide dark" data-label="22 Close">
+    <div class="grad-bar"></div>
+    <div class="title-content" style="align-items:center; text-align:center;">
+      <div class="title-eyebrow">BUS123 · M02 · L01</div>
+      <div class="title-main" style="font-size: calc(var(--type-display) * 0.8);">Questions?</div>
+      <div class="title-sub">Office hours posted on Canvas &nbsp;·&nbsp; workbook due before next class</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script>
+(function(){
+  if(customElements.get('deck-stage')) return;
+  class DeckStage extends HTMLElement {
+    connectedCallback(){
+      if(this._ready) return; this._ready = true;
+      const W = parseInt(this.getAttribute('width') || 1920);
+      const H = parseInt(this.getAttribute('height') || 1080);
+      this._slides = [...this.querySelectorAll('.slide')];
+      this._idx = 0;
+      this._notes = [];
+      try { const el = document.getElementById('speaker-notes');
+            if(el) this._notes = JSON.parse(el.textContent); } catch(e){}
+
+      const stage = document.createElement('div');
+      stage.style.cssText = 'position:absolute; transform-origin:top left;'
+                          + 'width:'+W+'px; height:'+H+'px;';
+      this._slides.forEach(s => {
+        s.style.position    = 'absolute';
+        s.style.top         = '0'; s.style.left = '0';
+        s.style.width       = W+'px'; s.style.height = H+'px';
+        s.style.display     = 'none';
+        s.style.flexDirection = 'column';
+        stage.appendChild(s);
+      });
+      this.appendChild(stage);
+      this._stage = stage;
+
+      this.style.cssText = 'display:block; position:fixed; top:0; left:0;'
+                         + 'width:100vw; height:100vh; overflow:hidden; background:#111;';
+
+      const ctr = document.createElement('div');
+      ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%);'
+        + 'background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;'
+        + 'padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
+      document.body.appendChild(ctr); this._ctr = ctr;
+
+      const btnStyle = 'position:fixed; bottom:20px; z-index:9999;'
+        + 'background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);'
+        + 'color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px;'
+        + 'border-radius:50%; cursor:pointer;';
+      const prev = document.createElement('button');
+      prev.innerHTML = '&#8592;'; prev.style.cssText = btnStyle + 'right:80px;';
+      prev.onclick = () => this._back();
+      document.body.appendChild(prev);
+      const next = document.createElement('button');
+      next.innerHTML = '&#8594;'; next.style.cssText = btnStyle + 'right:24px;';
+      next.onclick = () => this._forward();
+      document.body.appendChild(next);
+
+      const notes = document.createElement('div');
+      notes.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%);'
+        + 'max-width:860px; width:90%; background:rgba(10,10,20,0.9); color:#e2e8f0;'
+        + 'font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px;'
+        + 'display:none; z-index:9998;';
+      document.body.appendChild(notes); this._notes_el = notes;
+
+      document.addEventListener('keydown', e => {
+        if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._forward(); }
+        if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key))         { e.preventDefault(); this._back(); }
+        if(e.key==='Home'){ e.preventDefault(); this._go(0); }
+        if(e.key==='End') { e.preventDefault(); this._go(this._slides.length-1); }
+        if(e.key==='n'||e.key==='N') this._toggleNotes();
+      });
+
+      this.addEventListener('click', e => {
+        const x = e.clientX / window.innerWidth;
+        if(x < 0.33) this._back();
+        else if(x > 0.67) this._forward();
+      });
+
+      this._scale(); this._go(0);
+      window.addEventListener('resize', () => this._scale());
+    }
+    _scale(){
+      const W = parseInt(this.getAttribute('width')||1920);
+      const H = parseInt(this.getAttribute('height')||1080);
+      const s = Math.min(window.innerWidth/W, window.innerHeight/H);
+      const ox = (window.innerWidth  - W*s) / 2;
+      const oy = (window.innerHeight - H*s) / 2;
+      this._stage.style.transform = `translate(${ox}px,${oy}px) scale(${s})`;
+    }
+    _go(n){
+      n = Math.max(0, Math.min(n, this._slides.length-1));
+      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
+      this._idx = n;
+      if(this._slides[this._idx]) {
+        this._slides[this._idx].style.display = 'flex';
+        this._setRevealState(this._slides[this._idx], 0);
+      }
+      this._updateCounter();
+      if(this._notes_el.style.display==='block' && this._notes[n])
+        this._notes_el.textContent = this._notes[n];
+    }
+    _forward(){
+      if(this._revealNext()) return;
+      this._go(this._idx + 1);
+    }
+    _back(){
+      if(this._hideReveal()) return;
+      this._go(this._idx - 1);
+    }
+    _currentReveals(){
+      const slide = this._slides[this._idx];
+      return slide ? [...slide.querySelectorAll('.reveal-step')] : [];
+    }
+    _setRevealState(slide, count){
+      const reveals = [...slide.querySelectorAll('.reveal-step')];
+      slide.dataset.revealed = String(count);
+      reveals.forEach((el, i) => el.classList.toggle('is-visible', i < count));
+    }
+    _revealNext(){
+      const slide = this._slides[this._idx];
+      const reveals = this._currentReveals();
+      const shown = parseInt(slide?.dataset.revealed || '0');
+      if(shown >= reveals.length) return false;
+      this._setRevealState(slide, shown + 1);
+      this._updateCounter();
+      return true;
+    }
+    _hideReveal(){
+      const slide = this._slides[this._idx];
+      const shown = parseInt(slide?.dataset.revealed || '0');
+      if(shown <= 0) return false;
+      this._setRevealState(slide, shown - 1);
+      this._updateCounter();
+      return true;
+    }
+    _updateCounter(){
+      const reveals = this._currentReveals();
+      const shown = parseInt(this._slides[this._idx]?.dataset.revealed || '0');
+      const stepText = reveals.length ? ` · ${shown}/${reveals.length}` : '';
+      this._ctr.textContent = (this._idx+1)+' / '+this._slides.length + stepText;
+    }
+    _toggleNotes(){
+      this._notes_el.style.display = this._notes_el.style.display==='block'?'none':'block';
+      if(this._notes_el.style.display==='block' && this._notes[this._idx])
+        this._notes_el.textContent = this._notes[this._idx];
+    }
+  }
+  customElements.define('deck-stage', DeckStage);
+})();
+</script>
+
+<script>
+(function(){
+  if(customElements.get('image-slot')) return;
+  class ImageSlot extends HTMLElement {
+    connectedCallback(){
+      if(this._init) return; this._init = true;
+      const ph = this.getAttribute('placeholder') || 'Drop image here';
+      Object.assign(this.style, {
+        display:'flex', alignItems:'center', justifyContent:'center',
+        borderRadius:'12px', border:'2px dashed rgba(255,255,255,0.2)',
+        background:'rgba(255,255,255,0.04)', color:'rgba(255,255,255,0.3)',
+        fontFamily:'JetBrains Mono, monospace', fontSize:'16px',
+        textAlign:'center', padding:'16px', cursor:'pointer'
+      });
+      this.textContent = ph;
+      this.addEventListener('click', () => {
+        const inp = document.createElement('input');
+        inp.type = 'file'; inp.accept = 'image/*';
+        inp.onchange = e => {
+          const f = e.target.files[0]; if(!f) return;
+          const r = new FileReader();
+          r.onload = ev => {
+            this.style.background = `url(${ev.target.result}) center/cover no-repeat`;
+            this.style.border = 'none'; this.textContent = '';
+          };
+          r.readAsDataURL(f);
+        };
+        inp.click();
+      });
+    }
+  }
+  customElements.define('image-slot', ImageSlot);
+})();
+</script>
+</body>
+</html>

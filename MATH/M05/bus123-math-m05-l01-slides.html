@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BUS123 · MATH M05 · L01 — Payroll and Depreciation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/json" id="speaker-notes">
+  [
+    "Today is about two business math systems that quietly decide whether a healthcare practice understands its own costs: payroll and depreciation. Harborside Medical is our case, so every calculation should feel like something a clinic manager would actually care about.",
+    "Here is our route. We start with how people are paid, then model overtime and payroll mix, then shift to medical equipment and straight-line depreciation.",
+    "By the end, students should be able to calculate pay across several employee types, explain why overtime changes payroll fast, build a straight-line depreciation schedule, and connect both topics to operating decisions.",
+    "Last module was about price and break-even. This module asks a different question: after revenue comes in, what costs keep recurring every week, every month, and every year?",
+    "Part one is the vocabulary of pay. The math is not hard by itself, but the business risk comes from mixing the wrong pay type with the wrong job.",
+    "A medical practice rarely uses one pay style. Hourly staff cover variable patient flow. Salaried managers stabilize leadership. Commission can support outreach. Contract or per-visit pay can handle flexible coverage.",
+    "Pay periods change cash timing, not annual salary. A 52,000 dollar employee costs the same annually, but the paycheck looks different weekly, biweekly, semimonthly, and monthly.",
+    "Overtime is where payroll stops feeling linear. The first 40 hours are regular pay; overtime hours add a premium. In Excel, separating regular hours from overtime hours makes the model easier to audit.",
+    "Healthcare scheduling is a balancing act. One nurse working 52 hours may look cheaper than hiring another person, until overtime, burnout, and coverage risk show up.",
+    "Part two moves from one paycheck to the full payroll register. Students should see gross pay as the starting point, not the amount the employee takes home or the total employer cost.",
+    "A payroll register is a control document. It separates gross pay, deductions, net pay, and employer taxes so the firm can explain every dollar.",
+    "Different pay types create different incentives. Piecework can reward volume, commissions reward revenue, salary supports consistency, and hourly pay gives scheduling flexibility.",
+    "Use this as a worked example before the interactive lab. Ask students which lever they think will move weekly payroll the most: headcount, overtime hours, or hourly rate.",
+    "The interactive activity is where students test assumptions instead of just watching the math. They can change employees, hours, overtime, rates, and pay mix for Harborside Medical.",
+    "Part three changes the time horizon. Payroll is short-cycle cash flow. Depreciation spreads the cost of long-lived assets across the periods that benefit from the asset.",
+    "Depreciation is not a pile of cash leaving the bank each year. It is an accounting allocation that helps the income statement recognize that equipment wears out or becomes obsolete.",
+    "Straight-line depreciation is useful because it is predictable, transparent, and easy to explain. When use is steady, the same expense each year can support cleaner budgets.",
+    "This example uses a diagnostic ultrasound unit. The depreciable cost is cost minus residual value. Divide that amount by useful life to get annual depreciation.",
+    "The schedule is the story: cost stays fixed, depreciation expense repeats, accumulated depreciation rises, and book value falls until residual value.",
+    "Bring the class back to management. If payroll is rising and equipment is aging, Harborside needs decisions, not just calculations.",
+    "Close by connecting the two systems. Payroll tells us the cost of people this period. Depreciation tells us the cost of assets over time. Together they make operations visible."
+  ]
+  </script>
+  <style>
+    :root {
+      --ink: #0E1116; --paper: #FAF8F3; --paper-2: #F2EEE5; --white: #FFFFFF;
+      --text: #1A1F2C; --text-soft: #4A5567; --muted: #7A8290; --border: #E5E1D6;
+      --sage: #4A7C5E; --gold: #B8843D; --terra: #9C4A2B; --steel: #355773;
+      --accent: var(--sage);
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+      --font-display: 'Instrument Serif', serif; --font-body: 'Geist', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+      --scale: 1; --type-display: calc(112px * var(--scale)); --type-title: calc(72px * var(--scale));
+      --type-subtitle: calc(44px * var(--scale)); --type-lead: calc(34px * var(--scale));
+      --type-body: calc(28px * var(--scale)); --type-small: calc(24px * var(--scale)); --type-eyebrow: calc(24px * var(--scale));
+      --type-mono: calc(24px * var(--scale)); --type-stat: calc(220px * var(--scale));
+      --pad-x: 128px; --pad-top: 104px; --pad-bottom: 96px; --gap-title: 56px; --gap-item: 32px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #111; overflow: hidden; }
+    .slide { width: 1920px; height: 1080px; overflow: hidden; flex-direction: column; font-family: var(--font-body); }
+    .slide.dark { background: var(--ink); color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text); }
+    .gradient-bar { height: 6px; width: 100%; background: var(--gradient); flex: 0 0 auto; }
+    .slide-pad { height: 100%; padding: var(--pad-top) var(--pad-x) var(--pad-bottom); }
+    .dark .slide-pad { height: calc(100% - 6px); }
+    .eyebrow { margin: 0 0 24px; color: var(--accent); font: 500 var(--type-eyebrow)/1 var(--font-mono); letter-spacing: 2px; text-transform: uppercase; }
+    h1 { margin: 0 0 var(--gap-title); font: 400 var(--type-title)/1.04 var(--font-display); letter-spacing: 0; }
+    .dark h1 { font-size: var(--type-display); max-width: 1340px; }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(560px, .98fr); gap: 64px; align-items: center; }
+    .copy { min-width: 0; }
+    .lead { font-size: var(--type-lead); line-height: 1.32; color: var(--text-soft); }
+    .dark .lead { color: rgba(255,255,255,.72); }
+    .dense-text { font-size: var(--type-body); line-height: 1.45; color: inherit; }
+    .formula { display: inline-block; margin-top: 28px; padding: 24px 32px; border-radius: 10px; background: var(--ink); color: var(--gold); font: 500 var(--type-mono)/1.35 var(--font-mono); }
+    .visual { min-height: 530px; display: flex; align-items: center; justify-content: center; }
+    image-slot { width: 100%; height: 560px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+    .flow { width: 100%; display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 18px; align-items: center; }
+    .node { min-height: 180px; padding: 28px; border: 1px solid var(--border); border-radius: 14px; background: var(--white); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .dark .node { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .node strong { font: 400 62px/1 var(--font-display); }
+    .node span { margin-top: 10px; color: var(--text-soft); font-size: var(--type-small); line-height: 1.2; }
+    .dark .node span { color: rgba(255,255,255,.68); }
+    .arrow { color: var(--gold); font-size: 58px; }
+    .tile-grid { width: 100%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .tile { min-height: 220px; border: 1px solid var(--border); border-radius: 14px; background: var(--white); padding: 32px; }
+    .tile h3 { margin: 0 0 16px; font: 400 var(--type-subtitle)/1 var(--font-display); }
+    .tile p { margin: 0; font-size: var(--type-small); line-height: 1.35; color: var(--text-soft); }
+    .tile strong { display: block; margin-top: 18px; color: var(--sage); font: 500 var(--type-mono)/1 var(--font-mono); }
+    .pay-cycle { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .cycle { border: 1px solid var(--border); border-radius: 14px; background: var(--white); padding: 28px 22px; min-height: 300px; text-align: center; }
+    .cycle b { display: block; font: 400 70px/.9 var(--font-display); color: var(--sage); }
+    .cycle span { display: block; margin-top: 16px; font-size: var(--type-small); color: var(--text-soft); }
+    .cycle em { display: block; margin-top: 22px; font: normal 500 var(--type-mono)/1 var(--font-mono); color: var(--steel); }
+    .gauge { width: 520px; height: 520px; border-radius: 50%; background: conic-gradient(var(--sage) 0 70%, var(--gold) 70% 86%, var(--terra) 86% 100%); display: grid; place-items: center; position: relative; }
+    .gauge::after { content: ""; position: absolute; width: 342px; height: 342px; border-radius: 50%; background: var(--paper); }
+    .gauge strong { position: relative; z-index: 1; max-width: 300px; text-align: center; font: 400 74px/.96 var(--font-display); }
+    .role-board { width: 100%; display: grid; gap: 18px; }
+    .role { display: grid; grid-template-columns: 230px 1fr 130px; gap: 22px; align-items: center; padding: 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--white); font-size: var(--type-small); }
+    .bar-track { height: 36px; border-radius: 8px; background: var(--paper-2); overflow: hidden; }
+    .bar { height: 100%; border-radius: 8px; background: var(--sage); }
+    .role:nth-child(2) .bar { background: var(--gold); }
+    .role:nth-child(3) .bar { background: var(--steel); }
+    .role:nth-child(4) .bar { background: var(--terra); }
+    .register { width: 100%; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); }
+    .reg-row { display: grid; grid-template-columns: 1.15fr repeat(3, 1fr); }
+    .reg-row > div { padding: 24px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-size: var(--type-small); }
+    .reg-row:last-child > div { border-bottom: 0; }
+    .reg-head > div { background: var(--ink); color: var(--white); font-weight: 600; }
+    .reg-row b { color: var(--sage); }
+    .stat-card { width: 100%; min-height: 500px; border-radius: 14px; background: var(--ink); color: var(--white); display: grid; place-items: center; text-align: center; padding: 46px; }
+    .stat-card span { color: var(--gold); font: 500 var(--type-mono)/1 var(--font-mono); text-transform: uppercase; letter-spacing: 2px; }
+    .stat-card strong { display: block; margin: 18px 0; font: 400 170px/.86 var(--font-display); }
+    .stat-card p { margin: 0; max-width: 720px; color: rgba(255,255,255,.72); font-size: var(--type-lead); line-height: 1.2; }
+    .depr-chart { width: 100%; height: 520px; border: 1px solid var(--border); border-radius: 14px; background: linear-gradient(to top, rgba(229,225,214,.86) 1px, transparent 1px) 0 0 / 100% 25%, var(--white); position: relative; overflow: hidden; }
+    .depr-line { position: absolute; left: 92px; right: 92px; top: 116px; height: 8px; background: var(--sage); transform: rotate(18deg); transform-origin: left center; border-radius: 99px; }
+    .axis-x { position: absolute; left: 90px; right: 90px; bottom: 88px; border-bottom: 4px solid var(--ink); }
+    .axis-y { position: absolute; left: 90px; top: 72px; bottom: 88px; border-left: 4px solid var(--ink); }
+    .chart-label { position: absolute; font: 500 var(--type-small)/1.2 var(--font-mono); color: var(--text-soft); }
+    .chart-label.top { left: 130px; top: 70px; color: var(--sage); }
+    .chart-label.bottom { right: 118px; bottom: 118px; color: var(--terra); }
+    .schedule { width: 100%; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); }
+    .sch-row { display: grid; grid-template-columns: .75fr repeat(4, 1fr); }
+    .sch-row > div { padding: 20px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-size: var(--type-small); }
+    .sch-row:last-child > div { border-bottom: 0; }
+    .sch-head > div { background: var(--steel); color: var(--white); font-weight: 600; }
+    .decision { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .decision div { min-height: 300px; border-radius: 14px; background: var(--white); border: 1px solid var(--border); padding: 36px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: var(--type-lead); line-height: 1.25; }
+    .activity-card { width: 100%; padding: 44px; border-radius: 14px; background: var(--ink); color: var(--white); }
+    .activity-card h3 { margin: 0 0 24px; font: 400 64px/1 var(--font-display); }
+    .activity-card p { margin: 0 0 28px; color: rgba(255,255,255,.72); font-size: var(--type-body); line-height: 1.35; }
+    .activity-card a { display: inline-block; padding: 16px 20px; border-radius: 8px; color: var(--ink); background: var(--gold); font-size: var(--type-small); font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080" no-rail>
+    <section class="slide dark" data-label="01 Title">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad">
+        <div class="eyebrow">BUS123 · MATH M05 · L01</div>
+        <h1>Payroll and Depreciation</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="lead">How Harborside Medical manages people costs and equipment costs.</div></div>
+          <div class="visual"><image-slot src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-wide-simple.png" alt="Harborside Medical brand visual"></image-slot></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="02 Agenda">
+      <div class="slide-pad">
+        <div class="eyebrow">Today’s Map</div>
+        <h1>Three Systems Managers Need</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">1. Pay types and pay cycles<br>2. Overtime and payroll mix<br>3. Straight-line depreciation</div></div>
+          <div class="visual"><div class="flow"><div class="node"><strong>01</strong><span>Pay design</span></div><div class="arrow">→</div><div class="node"><strong>02</strong><span>Payroll model</span></div><div class="arrow">→</div><div class="node"><strong>03</strong><span>Asset cost</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="03 Objectives">
+      <div class="slide-pad">
+        <div class="eyebrow">Learning Objectives</div>
+        <h1>I Can Statements</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">I can calculate gross pay for hourly, salary, overtime, and commission employees.<br>I can explain how headcount and overtime change total payroll.<br>I can build a straight-line depreciation schedule.<br>I can connect payroll and depreciation to operating decisions.</div></div>
+          <div class="visual"><div class="tile-grid"><div class="tile"><h3>People</h3><p>Recurring labor costs by shift, role, and pay type.</p><strong>weekly control</strong></div><div class="tile"><h3>Assets</h3><p>Equipment costs spread across useful life.</p><strong>long-run control</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="04 Bridge">
+      <div class="slide-pad">
+        <div class="eyebrow">Bridge</div>
+        <h1>Break-Even Asked: “How Much Revenue?”</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Payroll asks: what do people cost this period?<br>Depreciation asks: what do assets cost over time?</div></div>
+          <div class="visual"><div class="stat-card"><span>Operating math</span><strong>2</strong><p>short-cycle payroll + long-cycle asset cost</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-label="05 Part 1">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad">
+        <div class="eyebrow">Part 1 of 3</div>
+        <h1>Payroll Starts With Pay Design</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="lead">The same clinic can need several pay systems at once.</div></div>
+          <div class="visual"><div class="flow"><div class="node"><strong>Role</strong><span>What work?</span></div><div class="arrow">+</div><div class="node"><strong>Pay</strong><span>What incentive?</span></div><div class="arrow">=</div><div class="node"><strong>Cost</strong><span>What control?</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="06 Pay Types">
+      <div class="slide-pad">
+        <div class="eyebrow">Harborside Medical</div>
+        <h1>One Firm, Multiple Payrolls</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Hourly: clinical coverage and front desk shifts.<br>Salary: managers and billing leadership.<br>Commission: referral outreach or service growth.<br>Contract / per visit: flexible specialist coverage.</div></div>
+          <div class="visual"><div class="tile-grid"><div class="tile"><h3>Hourly</h3><p>Best when hours flex with patient volume.</p><strong>hours × rate</strong></div><div class="tile"><h3>Salary</h3><p>Best when responsibility is ongoing.</p><strong>annual ÷ periods</strong></div><div class="tile"><h3>Commission</h3><p>Best when revenue growth is measurable.</p><strong>sales × rate</strong></div><div class="tile"><h3>Per Visit</h3><p>Best when work is task-based.</p><strong>units × rate</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="07 Pay Cycles">
+      <div class="slide-pad">
+        <div class="eyebrow">Payroll Cycles</div>
+        <h1>Same Salary, Different Paycheck</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">A $52,000 salary can be paid weekly, biweekly, semimonthly, or monthly.<br><span class="formula">$52,000 ÷ pay periods</span></div></div>
+          <div class="visual"><div class="pay-cycle"><div class="cycle"><b>52</b><span>weekly</span><em>$1,000.00</em></div><div class="cycle"><b>26</b><span>biweekly</span><em>$2,000.00</em></div><div class="cycle"><b>24</b><span>semimonthly</span><em>$2,166.67</em></div><div class="cycle"><b>12</b><span>monthly</span><em>$4,333.33</em></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="08 Overtime">
+      <div class="slide-pad">
+        <div class="eyebrow">Hourly Pay</div>
+        <h1>Overtime Adds a Premium</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Regular pay = regular hours × rate<br>Overtime pay = overtime hours × rate × 1.5<br><span class="formula">=MIN(Hours,40)*Rate + MAX(Hours-40,0)*Rate*1.5</span></div></div>
+          <div class="visual"><div class="gauge"><strong>40 hours is the hinge</strong></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="09 Scheduling">
+      <div class="slide-pad">
+        <div class="eyebrow">Scheduling Decision</div>
+        <h1>One Person at 52 Hours or Two People at 26?</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Overtime can solve a short staffing problem.<br>It can also hide a headcount problem.</div></div>
+          <div class="visual"><div class="decision"><div>High overtime: fast coverage, higher marginal cost.</div><div>More staff: lower overtime, more fixed scheduling complexity.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-label="10 Part 2">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad">
+        <div class="eyebrow">Part 2 of 3</div>
+        <h1>From Paychecks to Payroll Management</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="lead">Gross pay is only the first number managers need.</div></div>
+          <div class="visual"><div class="flow"><div class="node"><strong>Gross</strong><span>earned</span></div><div class="arrow">−</div><div class="node"><strong>Deductions</strong><span>withheld</span></div><div class="arrow">=</div><div class="node"><strong>Net</strong><span>paid</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="11 Register">
+      <div class="slide-pad">
+        <div class="eyebrow">Payroll Register</div>
+        <h1>The Control Sheet</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">A payroll register helps Harborside explain who earned what, what was withheld, and what the employer still owes.</div></div>
+          <div class="visual"><div class="register"><div class="reg-row reg-head"><div>Employee group</div><div>Gross pay</div><div>Deductions</div><div>Net pay</div></div><div class="reg-row"><div>Nurses</div><div><b>$18,920</b></div><div>$4,162</div><div>$14,758</div></div><div class="reg-row"><div>Medical assistants</div><div><b>$8,184</b></div><div>$1,801</div><div>$6,383</div></div><div class="reg-row"><div>Front desk</div><div><b>$4,560</b></div><div>$1,003</div><div>$3,557</div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="12 Incentives">
+      <div class="slide-pad">
+        <div class="eyebrow">Pay Type Incentives</div>
+        <h1>Every Pay Formula Nudges Behavior</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Piece rate rewards volume.<br>Differential pay rewards higher production bands.<br>Commission rewards sales or referrals.<br>Salary plus commission blends stability and growth.</div></div>
+          <div class="visual"><div class="role-board"><div class="role"><span>Piece rate</span><div class="bar-track"><div class="bar" style="width: 62%"></div></div><strong>units</strong></div><div class="role"><span>Differential</span><div class="bar-track"><div class="bar" style="width: 78%"></div></div><strong>tiers</strong></div><div class="role"><span>Commission</span><div class="bar-track"><div class="bar" style="width: 70%"></div></div><strong>sales</strong></div><div class="role"><span>Salary + commission</span><div class="bar-track"><div class="bar" style="width: 88%"></div></div><strong>blend</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="13 Worked Payroll">
+      <div class="slide-pad">
+        <div class="eyebrow">Worked Example</div>
+        <h1>Nurse Coverage Week</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Nurse team: 8 employees<br>Average hours: 43<br>Hourly rate: $44<br><span class="formula">Regular: 8 × 40 × $44 = $14,080<br>Overtime: 8 × 3 × $44 × 1.5 = $1,584</span></div></div>
+          <div class="visual"><div class="stat-card"><span>Weekly gross</span><strong>$15,664</strong><p>Overtime premium turns three extra hours into a visible cost.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="14 Activity">
+      <div class="slide-pad">
+        <div class="eyebrow">Interactive Practice</div>
+        <h1>Harborside Payroll Console</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Change employee counts, hours, overtime, and pay assumptions.<br>Watch weekly, monthly, and annual payroll update instantly.</div></div>
+          <div class="visual"><div class="activity-card"><h3>Payroll Management System</h3><p>Students test staffing choices before they explain the business impact.</p><a href="bus123-math-m05-l01-interactive.html">Open activity</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-label="15 Part 3">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad">
+        <div class="eyebrow">Part 3 of 3</div>
+        <h1>Depreciation Spreads Asset Cost Over Time</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="lead">Payroll is this week. Equipment is years of service.</div></div>
+          <div class="visual"><div class="flow"><div class="node"><strong>Cost</strong><span>purchase</span></div><div class="arrow">→</div><div class="node"><strong>Use</strong><span>service life</span></div><div class="arrow">→</div><div class="node"><strong>Expense</strong><span>recognized</span></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="16 Concept">
+      <div class="slide-pad">
+        <div class="eyebrow">Depreciation</div>
+        <h1>Not Cash Leaving Today</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Depreciation estimates the asset cost used up in each accounting period.<br>Book value = cost − accumulated depreciation.</div></div>
+          <div class="visual"><div class="tile-grid"><div class="tile"><h3>Asset cost</h3><p>Purchase price plus ready-for-use costs.</p><strong>capitalized</strong></div><div class="tile"><h3>Residual value</h3><p>Expected value at the end of useful life.</p><strong>not depreciated</strong></div><div class="tile"><h3>Useful life</h3><p>How long the firm expects service.</p><strong>time horizon</strong></div><div class="tile"><h3>Book value</h3><p>Undepreciated cost remaining.</p><strong>cost - accumulated</strong></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="17 Benefits">
+      <div class="slide-pad">
+        <div class="eyebrow">Straight-Line Method</div>
+        <h1>Why Managers Like It</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Predictable expense each year.<br>Easy to explain and audit.<br>Useful when an asset provides steady service.<br>Simple schedule for budgets and forecasts.</div></div>
+          <div class="visual"><div class="depr-chart"><div class="axis-y"></div><div class="axis-x"></div><div class="depr-line"></div><div class="chart-label top">cost starts high</div><div class="chart-label bottom">book value falls evenly</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="18 Formula">
+      <div class="slide-pad">
+        <div class="eyebrow">Worked Example</div>
+        <h1>Ultrasound Unit</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Cost: $84,000<br>Residual value: $12,000<br>Useful life: 6 years<br><span class="formula">($84,000 - $12,000) ÷ 6 = $12,000 per year</span></div></div>
+          <div class="visual"><div class="stat-card"><span>Annual depreciation</span><strong>$12K</strong><p>The same expense repeats while the equipment provides steady service.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="19 Schedule">
+      <div class="slide-pad">
+        <div class="eyebrow">Depreciation Schedule</div>
+        <h1>The Pattern Should Be Boring</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">Cost stays the same.<br>Depreciation expense repeats.<br>Accumulated depreciation rises.<br>Book value falls to residual value.</div></div>
+          <div class="visual"><div class="schedule"><div class="sch-row sch-head"><div>Year</div><div>Cost</div><div>Expense</div><div>Accumulated</div><div>Book value</div></div><div class="sch-row"><div>1</div><div>$84,000</div><div>$12,000</div><div>$12,000</div><div>$72,000</div></div><div class="sch-row"><div>3</div><div>$84,000</div><div>$12,000</div><div>$36,000</div><div>$48,000</div></div><div class="sch-row"><div>6</div><div>$84,000</div><div>$12,000</div><div>$72,000</div><div>$12,000</div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="20 Discussion">
+      <div class="slide-pad">
+        <div class="eyebrow">Discussion</div>
+        <h1>Management Questions</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="dense-text">If overtime keeps rising, should Harborside hire or reschedule?<br>If equipment book value is falling, when should replacement planning start?</div></div>
+          <div class="visual"><div class="decision"><div>Payroll decision: people, coverage, service quality.</div><div>Depreciation decision: assets, capacity, replacement timing.</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide dark" data-label="21 Close">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad">
+        <div class="eyebrow">Key Takeaways</div>
+        <h1>Make Operating Costs Visible</h1>
+        <div class="content-grid">
+          <div class="copy"><div class="lead">1. Pay type shapes incentives.<br>2. Overtime changes payroll quickly.<br>3. Straight-line depreciation makes asset cost predictable.</div></div>
+          <div class="visual"><image-slot src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical icon badge"></image-slot></div>
+        </div>
+      </div>
+    </section>
+  </deck-stage>
+
+  <script>
+  (function(){
+    if(customElements.get('deck-stage')) return;
+    class DeckStage extends HTMLElement {
+      connectedCallback(){
+        if(this._ready) return; this._ready = true;
+        const W = parseInt(this.getAttribute('width') || 1920, 10);
+        const H = parseInt(this.getAttribute('height') || 1080, 10);
+        this._slides = [...this.querySelectorAll('.slide')];
+        this._idx = 0; this._notes = [];
+        try { const el = document.getElementById('speaker-notes'); if(el) this._notes = JSON.parse(el.textContent); } catch(e) {}
+        const stage = document.createElement('div');
+        stage.style.cssText = 'position:absolute; transform-origin:top left; width:'+W+'px; height:'+H+'px;';
+        this._slides.forEach(s => {
+          s.style.position = 'absolute'; s.style.top = '0'; s.style.left = '0';
+          s.style.width = W+'px'; s.style.height = H+'px'; s.style.display = 'none'; s.style.flexDirection = 'column';
+          stage.appendChild(s);
+        });
+        this.appendChild(stage); this._stage = stage;
+        this.style.cssText = 'display:block; position:fixed; top:0; left:0; width:100vw; height:100vh; overflow:hidden; background:#111;';
+        const ctr = document.createElement('div');
+        ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,.6); color:#fff; font:500 14px/1 monospace; padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
+        document.body.appendChild(ctr); this._ctr = ctr;
+        const btnStyle = 'position:fixed; bottom:20px; z-index:9999; background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.2); color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px; border-radius:50%; cursor:pointer;';
+        const prev = document.createElement('button'); prev.innerHTML = '&#8592;'; prev.style.cssText = btnStyle + 'right:80px;'; prev.onclick = () => this._go(this._idx - 1); document.body.appendChild(prev);
+        const next = document.createElement('button'); next.innerHTML = '&#8594;'; next.style.cssText = btnStyle + 'right:24px;'; next.onclick = () => this._go(this._idx + 1); document.body.appendChild(next);
+        const notes = document.createElement('div');
+        notes.style.cssText = 'position:fixed; bottom:74px; left:50%; transform:translateX(-50%); max-width:920px; width:90%; background:rgba(10,10,20,.92); color:#e2e8f0; font:400 15px/1.55 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
+        document.body.appendChild(notes); this._notes_el = notes;
+        document.addEventListener('keydown', e => {
+          if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._go(this._idx+1); }
+          if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){ e.preventDefault(); this._go(this._idx-1); }
+          if(e.key === 'Home'){ e.preventDefault(); this._go(0); }
+          if(e.key === 'End'){ e.preventDefault(); this._go(this._slides.length-1); }
+          if(e.key === 'n' || e.key === 'N') this._toggleNotes();
+        });
+        this.addEventListener('click', e => {
+          if(e.target.closest('a,button,input,select,textarea,label')) return;
+          const x = e.clientX / window.innerWidth;
+          if(x < .33) this._go(this._idx - 1);
+          else if(x > .67) this._go(this._idx + 1);
+        });
+        this._scale(); this._go(0); window.addEventListener('resize', () => this._scale());
+      }
+      _scale(){
+        const W = parseInt(this.getAttribute('width') || 1920, 10);
+        const H = parseInt(this.getAttribute('height') || 1080, 10);
+        const s = Math.min(window.innerWidth / W, window.innerHeight / H);
+        const ox = (window.innerWidth - W * s) / 2;
+        const oy = (window.innerHeight - H * s) / 2;
+        this._stage.style.transform = `translate(${ox}px, ${oy}px) scale(${s})`;
+      }
+      _go(n){
+        n = Math.max(0, Math.min(n, this._slides.length - 1));
+        if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
+        this._idx = n; this._slides[this._idx].style.display = 'flex';
+        this._ctr.textContent = (n + 1) + ' / ' + this._slides.length;
+        if(this._notes_el.style.display === 'block') this._notes_el.textContent = this._notes[n] || '';
+      }
+      _toggleNotes(){
+        this._notes_el.style.display = this._notes_el.style.display === 'block' ? 'none' : 'block';
+        if(this._notes_el.style.display === 'block') this._notes_el.textContent = this._notes[this._idx] || '';
+      }
+    }
+    customElements.define('deck-stage', DeckStage);
+  })();
+
+  (function(){
+    if(customElements.get('image-slot')) return;
+    class ImageSlot extends HTMLElement {
+      connectedCallback(){
+        if(this._init) return; this._init = true;
+        const src = this.getAttribute('src');
+        const ph = this.getAttribute('placeholder') || 'Drop image here';
+        Object.assign(this.style, {
+          display:'flex', alignItems:'center', justifyContent:'center', background:'var(--paper-2)', color:'var(--muted)',
+          fontFamily:'JetBrains Mono, monospace', fontSize:'24px', textAlign:'center', padding:'16px', cursor:'pointer'
+        });
+        if(src){ this.style.background = `url("${src}") center/contain no-repeat var(--paper-2)`; this.textContent = ''; }
+        else { this.textContent = ph; }
+        this.addEventListener('click', () => {
+          const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'image/*';
+          inp.onchange = e => {
+            const f = e.target.files[0]; if(!f) return;
+            const r = new FileReader();
+            r.onload = ev => { this.style.background = `url("${ev.target.result}") center/cover no-repeat`; this.style.border = 'none'; this.textContent = ''; };
+            r.readAsDataURL(f);
+          };
+          inp.click();
+        });
+      }
+    }
+    customElements.define('image-slot', ImageSlot);
+  })();
+  </script>
+</body>
+</html>

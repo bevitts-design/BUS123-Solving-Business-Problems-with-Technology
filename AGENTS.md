@@ -56,3 +56,5 @@ Whenever lesson titles, lesson numbers, sequence, file paths, or student-facing 
 Do not touch `.git/`, generated dependency folders, or unrelated course modules unless the user explicitly asks. Do not edit binary PDFs or workbooks directly unless the task is specifically to revise that deliverable; when possible, regenerate from the appropriate source workflow instead.
 
 For delivery, create or modify the requested files and summarize the changed paths. Do not commit, push, or open a pull request unless the user explicitly asks for that workflow.
+
+For BUS123 student-facing materials, avoid “content-only” first passes. Whenever the lesson involves business decisions, percentages, Excel modeling, or scenario analysis, include at least one interactive or decision-based element and use varied instructional graphics throughout the deck. Repeated generic cards or diagrams should be treated as placeholders and replaced before delivery.

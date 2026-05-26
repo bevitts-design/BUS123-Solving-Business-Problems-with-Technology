@@ -3,7 +3,7 @@
     "code": "BUS123",
     "title": "Solving Business Problems with Technology",
     "term": "Fall 2026",
-    "currentLessonId": "math-m04-l01"
+    "currentLessonId": "math-m05-l01"
   },
   "tracks": [
     { "id": "intro", "label": "Intro", "folder": "INTRO" },
@@ -73,16 +73,14 @@
     {
       "id": "excel-m01-l02",
       "track": "excel",
-      "module": "M01",
-      "lesson": "L02",
+      "module": "M02",
+      "lesson": "L01",
       "title": "Formulas and Functions",
       "status": "Live",
       "caseStudy": "Tidal Goods Co.",
       "skillFocus": ["Formulas", "Cell references"],
       "materials": [
-        { "type": "Slides", "path": "EXCEL/M01/bus123-excel-m01-l02-slides.html" },
-        { "type": "Reading", "path": "EXCEL/M01/bus123-excel-m01-l02-pre-reading.pdf" },
-        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx" }
+        { "type": "Slides", "path": "EXCEL/M02/bus123-excel-m02-l01-slides.html" }
       ]
     },
     {
@@ -149,7 +147,7 @@
       "module": "M04",
       "lesson": "L01",
       "title": "Markups, Markdowns, and Break-Even",
-      "status": "Current",
+      "status": "Live",
       "caseStudy": "Anchor & Oak Events",
       "skillFocus": ["Markup", "Markdown", "Perishables", "Break-even"],
       "materials": [
@@ -157,6 +155,20 @@
         { "type": "Reading", "path": "MATH/M04/bus123-math-m04-l01-prereading.pdf" },
         { "type": "Starter Workbook", "path": "MATH/M04/bus123-math-m04-l01-starter.xlsx" },
         { "type": "Interactive Practice", "path": "MATH/M04/bus123-math-m04-l01-interactive.html" }
+      ]
+    },
+    {
+      "id": "math-m05-l01",
+      "track": "math",
+      "module": "M05",
+      "lesson": "L01",
+      "title": "Payroll and Depreciation",
+      "status": "Current",
+      "caseStudy": "Harborside Medical Center",
+      "skillFocus": ["Payroll cycles", "Overtime", "Payroll mix", "Straight-line depreciation"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M05/bus123-math-m05-l01-slides.html" },
+        { "type": "Interactive Practice", "path": "MATH/M05/bus123-math-m05-l01-interactive.html" }
       ]
     }
   ]

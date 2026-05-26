@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M05 · Harborside Payroll Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116; --paper: #FAF8F3; --paper-2: #F2EEE5; --white: #FFFFFF;
+      --text: #1A1F2C; --text-soft: #4A5567; --muted: #7A8290; --border: #E5E1D6;
+      --sage: #4A7C5E; --gold: #B8843D; --terra: #9C4A2B; --steel: #355773;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--text); font-family: "Geist", sans-serif; line-height: 1.45; }
+    .top { background: var(--ink); color: var(--white); padding: 30px 24px; }
+    .shell { max-width: 1240px; margin: 0 auto; }
+    .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
+    .brand img { width: 86px; height: 86px; object-fit: contain; border-radius: 12px; background: rgba(255,255,255,.08); }
+    .eyebrow { font: 600 13px/1 "JetBrains Mono", monospace; color: var(--gold); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+    h1, h2, h3 { margin: 0; font-family: "Instrument Serif", serif; font-weight: 400; line-height: 1.05; letter-spacing: 0; }
+    h1 { font-size: 54px; }
+    h2 { font-size: 36px; margin-bottom: 14px; }
+    h3 { font-size: 28px; }
+    .top p { max-width: 780px; margin: 12px 0 0; color: rgba(255,255,255,.72); font-size: 18px; }
+    .period { border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 12px; display: grid; gap: 8px; min-width: 220px; }
+    .period label { color: rgba(255,255,255,.72); font: 600 12px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+    select { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--white); color: var(--text); font: 600 15px/1 "Geist", sans-serif; }
+    main { padding: 28px 24px 52px; }
+    .dashboard { display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); gap: 20px; align-items: start; }
+    .panel { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
+    .controls { display: grid; gap: 18px; }
+    .control { display: grid; gap: 8px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .control:last-child { border-bottom: 0; padding-bottom: 0; }
+    .control-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; font-weight: 700; }
+    output { font-family: "JetBrains Mono", monospace; color: var(--sage); font-weight: 600; white-space: nowrap; }
+    input[type="range"] { width: 100%; accent-color: var(--sage); }
+    .hint { margin: 0; color: var(--text-soft); font-size: 14px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .metric { min-height: 132px; background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .metric small { display: block; color: var(--muted); font: 600 11px/1.2 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+    .metric strong { display: block; font-family: "Instrument Serif", serif; font-size: 44px; font-weight: 400; line-height: .95; }
+    .metric span { display: block; margin-top: 10px; color: var(--text-soft); font-size: 14px; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 18px; }
+    .chart { height: 380px; border: 1px solid var(--border); border-radius: 8px; background: linear-gradient(to top, rgba(229,225,214,.9) 1px, transparent 1px) 0 0 / 100% 25%, var(--white); position: relative; overflow: hidden; padding: 22px; }
+    .bars { height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: end; }
+    .bar-wrap { display: grid; gap: 10px; align-items: end; height: 100%; }
+    .bar { min-height: 8px; border-radius: 8px 8px 0 0; background: var(--sage); display: flex; align-items: start; justify-content: center; padding-top: 10px; color: var(--white); font: 700 13px/1 "JetBrains Mono", monospace; }
+    .bar-wrap:nth-child(2) .bar { background: var(--gold); }
+    .bar-wrap:nth-child(3) .bar { background: var(--steel); }
+    .bar-wrap:nth-child(4) .bar { background: var(--terra); }
+    .bar-label { min-height: 38px; text-align: center; color: var(--text-soft); font-size: 13px; font-weight: 650; }
+    .mix { display: grid; gap: 12px; }
+    .mix-row { display: grid; grid-template-columns: 110px 1fr 72px; gap: 10px; align-items: center; font-size: 14px; }
+    .track { height: 18px; border-radius: 99px; background: var(--paper-2); overflow: hidden; }
+    .fill { height: 100%; border-radius: 99px; background: var(--sage); }
+    .mix-row:nth-child(2) .fill { background: var(--gold); }
+    .mix-row:nth-child(3) .fill { background: var(--steel); }
+    .mix-row:nth-child(4) .fill { background: var(--terra); }
+    .table { margin-top: 18px; border: 1px solid var(--border); border-radius: 8px; overflow: auto; background: var(--white); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 13px 14px; border-bottom: 1px solid var(--border); text-align: right; font-size: 14px; }
+    th:first-child, td:first-child { text-align: left; }
+    th { background: var(--ink); color: var(--white); font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    .callout { margin-top: 18px; border-radius: 8px; background: var(--ink); color: var(--white); padding: 18px; display: grid; gap: 8px; }
+    .callout strong { color: var(--gold); font: 600 13px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .callout p { margin: 0; color: rgba(255,255,255,.78); }
+    .question { margin-top: 18px; border-left: 6px solid var(--gold); background: var(--paper-2); padding: 16px 18px; border-radius: 8px; color: var(--text-soft); }
+    @media (max-width: 980px) {
+      .brand-row, .dashboard, .workspace { grid-template-columns: 1fr; display: grid; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      h1 { font-size: 42px; }
+    }
+    @media (max-width: 620px) {
+      .metrics { grid-template-columns: 1fr; }
+      .brand { align-items: flex-start; }
+      .brand img { width: 64px; height: 64px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell brand-row">
+      <div class="brand">
+        <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical">
+        <div>
+          <div class="eyebrow">BUS123 · MATH M05 · Harborside Medical</div>
+          <h1>Payroll Management System</h1>
+          <p>Adjust staffing, hours, overtime, and pay mix to see how payroll changes across a healthcare practice.</p>
+        </div>
+      </div>
+      <div class="period">
+        <label for="period">View payroll as</label>
+        <select id="period">
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly estimate</option>
+          <option value="annual">Annual estimate</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="dashboard">
+      <div class="panel">
+        <h2>Assumptions</h2>
+        <div class="controls">
+          <div class="control"><div class="control-row"><label for="nurses">Nurses</label><output id="nursesOut"></output></div><input id="nurses" type="range" min="4" max="18" value="9" step="1"><p class="hint">Hourly employees with overtime eligibility.</p></div>
+          <div class="control"><div class="control-row"><label for="nurseHours">Average nurse hours</label><output id="nurseHoursOut"></output></div><input id="nurseHours" type="range" min="32" max="56" value="43" step="1"></div>
+          <div class="control"><div class="control-row"><label for="nurseRate">Nurse hourly rate</label><output id="nurseRateOut"></output></div><input id="nurseRate" type="range" min="32" max="58" value="44" step="1"></div>
+          <div class="control"><div class="control-row"><label for="assistants">Medical assistants</label><output id="assistantsOut"></output></div><input id="assistants" type="range" min="3" max="16" value="7" step="1"></div>
+          <div class="control"><div class="control-row"><label for="assistantHours">Assistant hours</label><output id="assistantHoursOut"></output></div><input id="assistantHours" type="range" min="28" max="50" value="38" step="1"></div>
+          <div class="control"><div class="control-row"><label for="frontDesk">Front desk employees</label><output id="frontDeskOut"></output></div><input id="frontDesk" type="range" min="2" max="10" value="4" step="1"></div>
+          <div class="control"><div class="control-row"><label for="managers">Salaried managers</label><output id="managersOut"></output></div><input id="managers" type="range" min="1" max="6" value="3" step="1"><p class="hint">Annual salary is converted to a weekly payroll cost.</p></div>
+          <div class="control"><div class="control-row"><label for="outreach">Outreach reps</label><output id="outreachOut"></output></div><input id="outreach" type="range" min="0" max="6" value="2" step="1"><p class="hint">Salary plus commission for new patient programs.</p></div>
+          <div class="control"><div class="control-row"><label for="sales">Weekly outreach sales</label><output id="salesOut"></output></div><input id="sales" type="range" min="10000" max="90000" value="36000" step="1000"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="metrics">
+          <div class="metric"><small>Total payroll</small><strong id="totalPayroll">$0</strong><span id="periodLabel">weekly gross payroll</span></div>
+          <div class="metric"><small>Overtime cost</small><strong id="otCost">$0</strong><span>included in hourly payroll</span></div>
+          <div class="metric"><small>Employees</small><strong id="employeeCount">0</strong><span>across all pay types</span></div>
+          <div class="metric"><small>Avg. cost / employee</small><strong id="avgCost">$0</strong><span id="avgLabel">per week</span></div>
+        </div>
+
+        <div class="workspace">
+          <div class="panel">
+            <h2>Payroll by Employee Type</h2>
+            <div class="chart" aria-label="Payroll bar chart">
+              <div class="bars">
+                <div class="bar-wrap"><div id="barNurses" class="bar"></div><div class="bar-label">Nurses</div></div>
+                <div class="bar-wrap"><div id="barAssistants" class="bar"></div><div class="bar-label">Medical assistants</div></div>
+                <div class="bar-wrap"><div id="barFront" class="bar"></div><div class="bar-label">Front desk</div></div>
+                <div class="bar-wrap"><div id="barOther" class="bar"></div><div class="bar-label">Salary + commission</div></div>
+              </div>
+            </div>
+            <div class="table">
+              <table>
+                <thead><tr><th>Group</th><th>Employees</th><th>Regular pay</th><th>Overtime / commission</th><th>Total gross</th></tr></thead>
+                <tbody id="payRows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h2>Payroll Mix</h2>
+            <div class="mix">
+              <div class="mix-row"><span>Nurses</span><div class="track"><div id="mixNurses" class="fill"></div></div><b id="mixNursesPct">0%</b></div>
+              <div class="mix-row"><span>Assistants</span><div class="track"><div id="mixAssistants" class="fill"></div></div><b id="mixAssistantsPct">0%</b></div>
+              <div class="mix-row"><span>Front desk</span><div class="track"><div id="mixFront" class="fill"></div></div><b id="mixFrontPct">0%</b></div>
+              <div class="mix-row"><span>Other</span><div class="track"><div id="mixOther" class="fill"></div></div><b id="mixOtherPct">0%</b></div>
+            </div>
+            <div class="callout">
+              <strong>Manager readout</strong>
+              <p id="readout">Adjust assumptions to see what is driving payroll.</p>
+            </div>
+            <div class="question">
+              <strong>Student prompt:</strong> Which change is more effective: reducing average overtime by 2 hours, or hiring one more employee in the highest-overtime group?
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const els = {
+      period: document.getElementById('period'),
+      nurses: document.getElementById('nurses'),
+      nurseHours: document.getElementById('nurseHours'),
+      nurseRate: document.getElementById('nurseRate'),
+      assistants: document.getElementById('assistants'),
+      assistantHours: document.getElementById('assistantHours'),
+      frontDesk: document.getElementById('frontDesk'),
+      managers: document.getElementById('managers'),
+      outreach: document.getElementById('outreach'),
+      sales: document.getElementById('sales')
+    };
+    const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    const num = (id) => Number(els[id].value);
+    const scaleForPeriod = () => els.period.value === 'weekly' ? 1 : els.period.value === 'monthly' ? 52 / 12 : 52;
+    const periodWord = () => els.period.value === 'weekly' ? 'per week' : els.period.value === 'monthly' ? 'per month' : 'per year';
+    function hourlyGroup(count, hours, rate) {
+      const regularHours = Math.min(hours, 40) * count;
+      const overtimeHours = Math.max(hours - 40, 0) * count;
+      const regular = regularHours * rate;
+      const overtime = overtimeHours * rate * 1.5;
+      return { count, regular, overtime, total: regular + overtime };
+    }
+    function calculate() {
+      const nurses = hourlyGroup(num('nurses'), num('nurseHours'), num('nurseRate'));
+      const assistants = hourlyGroup(num('assistants'), num('assistantHours'), 27);
+      const front = hourlyGroup(num('frontDesk'), 37, 24);
+      const managers = { count: num('managers'), regular: num('managers') * 76000 / 52, overtime: 0 };
+      managers.total = managers.regular;
+      const outreachBase = num('outreach') * 46000 / 52;
+      const outreachCommission = num('sales') * 0.035;
+      const outreach = { count: num('outreach'), regular: outreachBase, overtime: outreachCommission, total: outreachBase + outreachCommission };
+      const other = { count: managers.count + outreach.count, regular: managers.regular + outreach.regular, overtime: outreach.overtime, total: managers.total + outreach.total };
+      const groups = { nurses, assistants, front, other };
+      const weeklyTotal = Object.values(groups).reduce((sum, group) => sum + group.total, 0);
+      const otTotal = nurses.overtime + assistants.overtime + front.overtime;
+      const employees = nurses.count + assistants.count + front.count + other.count;
+      const scale = scaleForPeriod();
+      document.getElementById('totalPayroll').textContent = money.format(weeklyTotal * scale);
+      document.getElementById('otCost').textContent = money.format(otTotal * scale);
+      document.getElementById('employeeCount').textContent = employees;
+      document.getElementById('avgCost').textContent = money.format((weeklyTotal * scale) / employees);
+      document.getElementById('periodLabel').textContent = els.period.value + ' gross payroll';
+      document.getElementById('avgLabel').textContent = periodWord();
+      const max = Math.max(...Object.values(groups).map(g => g.total));
+      [['barNurses', nurses], ['barAssistants', assistants], ['barFront', front], ['barOther', other]].forEach(([id, group]) => {
+        const bar = document.getElementById(id);
+        bar.style.height = Math.max(8, group.total / max * 300) + 'px';
+        bar.textContent = money.format(group.total);
+      });
+      const rows = [
+        ['Nurses', nurses], ['Medical assistants', assistants], ['Front desk', front],
+        ['Managers + outreach', other]
+      ];
+      document.getElementById('payRows').innerHTML = rows.map(([label, group]) => `<tr><td>${label}</td><td>${group.count}</td><td>${money.format(group.regular * scale)}</td><td>${money.format(group.overtime * scale)}</td><td><strong>${money.format(group.total * scale)}</strong></td></tr>`).join('');
+      [['mixNurses', 'mixNursesPct', nurses], ['mixAssistants', 'mixAssistantsPct', assistants], ['mixFront', 'mixFrontPct', front], ['mixOther', 'mixOtherPct', other]].forEach(([fillId, pctId, group]) => {
+        const pct = weeklyTotal ? Math.round(group.total / weeklyTotal * 100) : 0;
+        document.getElementById(fillId).style.width = pct + '%';
+        document.getElementById(pctId).textContent = pct + '%';
+      });
+      const overtimeShare = weeklyTotal ? Math.round(otTotal / weeklyTotal * 100) : 0;
+      const largest = rows.reduce((best, row) => row[1].total > best[1].total ? row : best, rows[0])[0];
+      document.getElementById('readout').textContent = `${largest} are the largest payroll driver. Overtime is ${overtimeShare}% of weekly gross payroll before deductions and employer taxes.`;
+      document.getElementById('nursesOut').textContent = num('nurses');
+      document.getElementById('nurseHoursOut').textContent = num('nurseHours') + ' hrs';
+      document.getElementById('nurseRateOut').textContent = money.format(num('nurseRate')) + '/hr';
+      document.getElementById('assistantsOut').textContent = num('assistants');
+      document.getElementById('assistantHoursOut').textContent = num('assistantHours') + ' hrs';
+      document.getElementById('frontDeskOut').textContent = num('frontDesk');
+      document.getElementById('managersOut').textContent = num('managers');
+      document.getElementById('outreachOut').textContent = num('outreach');
+      document.getElementById('salesOut').textContent = money.format(num('sales'));
+    }
+    Object.values(els).forEach(el => el.addEventListener('input', calculate));
+    calculate();
+  </script>
+</body>
+</html>

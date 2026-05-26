@@ -1,1 +1,23 @@
+<main class="activity-shell">
+  <header class="activity-header">
+    <p class="eyebrow" id="activityMeta"></p>
+    <h1 id="activityTitle"></h1>
+    <p id="activityPrompt"></p>
+  </header>
 
+  <section class="activity-layout">
+    <div class="worksheet-preview" id="worksheetPreview"></div>
+
+    <form class="choice-panel" id="activityForm">
+      <fieldset>
+        <legend>What issues do you see?</legend>
+        <div id="choiceList"></div>
+      </fieldset>
+
+      <button type="submit">Check My Work</button>
+      <button type="button" id="resetButton">Reset</button>
+    </form>
+  </section>
+
+  <section class="feedback-panel" id="feedbackPanel" aria-live="polite"></section>
+</main>

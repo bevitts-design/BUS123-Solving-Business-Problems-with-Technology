@@ -30,6 +30,29 @@ Expected public-facing lesson materials may include:
 - Student-facing interactive HTML activities
 - Reusable or lesson-specific visual assets
 
+## Public Course Map
+
+Treat `index.html` as the student-facing public course map, not just a decorative homepage. Its primary jobs are to help students know what to do next, find the right materials quickly, and trust that lesson titles, sequence, file paths, and links are accurate.
+
+When revising the course map, prefer a static, data-driven setup over hand-maintaining all lesson cards directly in `index.html`. A recommended structure is:
+
+- `course-map.json` for track, module, lesson, status, case-study company, skill focus, and student-facing material links
+- `scripts/build-index.mjs` or a similar lightweight build script to regenerate `index.html`
+- Separate cacheable assets such as `assets/index.css` and `assets/index.js` when the page becomes large enough to benefit from them
+
+The generated page should remain plain static HTML/CSS/JavaScript that works on GitHub Pages. Do not introduce a frontend framework, bundler, package install, or client-side rendering layer unless Bethany explicitly asks or there is a strong, documented reason.
+
+Prioritize student learning and navigation over visual novelty. A strong course map should include or support:
+
+- A clear "Current" or "Next Up" area near the top for the active lesson and the materials students need next
+- Browsing by week, module, and track
+- Material-type labels such as Slides, Reading, Starter Workbook, Interactive Practice, Homework, and Canvas
+- Search or filtering by lesson title, skill, track, module, material type, or case-study company when the lesson list grows
+- Clear release states such as Live, Coming Soon, In Progress, Canvas Only, or Not Released
+- No dead placeholder links; if Canvas, syllabus, or other external links are unknown, label them as unavailable rather than pointing to `#`
+
+Whenever lesson titles, lesson numbers, sequence, file paths, or student-facing links change, update the course-map source data and regenerate `index.html` before delivery. Verify that all public links in the generated index resolve to files that should be student-facing. Do not surface instructor-only materials, answer keys, solution files, private lesson plans, grading notes, Canvas QTI ZIP files, or retired case-study company names in the public course map.
+
 Do not touch `.git/`, generated dependency folders, or unrelated course modules unless the user explicitly asks. Do not edit binary PDFs or workbooks directly unless the task is specifically to revise that deliverable; when possible, regenerate from the appropriate source workflow instead.
 
 For delivery, create or modify the requested files and summarize the changed paths. Do not commit, push, or open a pull request unless the user explicitly asks for that workflow.

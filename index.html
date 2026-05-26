@@ -1,1570 +1,194 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUS123 · Solving Business Problems with Technology</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<style>
-/* ═══════════════════════════════════════════════════════
-   REFINED HYBRID — BUS123 BRAND
-   Primary:   #0E1116  (Ink — near-black)
-   Secondary: #4A5567  (Text-soft slate)
-   Surface:   #FAF8F3  (Warm cream paper)
-   Panel:     #FFFFFF
-   Accent:    #4A7C5E  (Sage — BUS123)
-   Text:      #0E1116
-   Muted:     #7A8290
-   Border:    #E5E1D6
-   ═══════════════════════════════════════════════════════ */
-
-:root {
-  --ink:        #0E1116;
-  --text-soft:  #4A5567;
-  --muted:      #7A8290;
-  --surface:    #FAF8F3;
-  --panel:      #FFFFFF;
-  --accent:     #4A7C5E;
-  --accent-dim: rgba(74,124,94,0.10);
-  --accent-mid: rgba(74,124,94,0.22);
-  --border:     #E5E1D6;
-  --border-dark:#D4CFC0;
-
-  --text-xs:    0.694rem;
-  --text-sm:    0.833rem;
-  --text-base:  1rem;
-  --text-md:    1.2rem;
-  --text-lg:    1.44rem;
-  --text-xl:    1.728rem;
-  --text-2xl:   2.074rem;
-  --text-3xl:   2.488rem;
-  --text-hero:  clamp(2.8rem, 6vw, 4rem);
-
-  --sp-1:  8px;
-  --sp-2:  16px;
-  --sp-3:  24px;
-  --sp-4:  32px;
-  --sp-6:  48px;
-  --sp-8:  64px;
-  --sp-12: 96px;
-  --sp-16: 128px;
-
-  --grid-cols: 12;
-  --grid-gap:  32px;
-  --max-w:     1152px;
-  --safe:      5%;
-
-  --lh-display: 1.1;
-  --lh-heading: 1.2;
-  --lh-body:    1.5;
-
-  --nav-h: 56px;
-  --subnav-h: 48px;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-
-body {
-  background: var(--surface);
-  color: var(--ink);
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  font-weight: 400;
-  line-height: var(--lh-body);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-.container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 var(--sp-4);
-}
-
-.grid-12 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--grid-gap);
-}
-.col-5  { grid-column: span 5; }
-.col-6  { grid-column: span 6; }
-.col-7  { grid-column: span 7; }
-.col-8  { grid-column: span 8; }
-.col-12 { grid-column: span 12; }
-
-/* ══════════════════════════════════════════════════════
-   NAV — improvement #3: expanded links, #4: hamburger
-   ══════════════════════════════════════════════════════ */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--sp-4);
-}
-
-.nav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--nav-h);
-}
-
-.nav-brand {
-  display: flex; align-items: center; gap: var(--sp-2);
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.nav-logo {
-  width: 32px; height: 32px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-
-.nav-logo svg { width: 18px; height: 18px; }
-
-.nav-course {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.nav-subtitle {
-  font-size: var(--text-xs);
-  color: var(--muted);
-  margin-top: 1px;
-}
-
-.nav-links {
-  display: flex; gap: var(--sp-3); align-items: center;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--text-soft);
-  text-decoration: none;
-  transition: color 0.15s;
-  white-space: nowrap;
-}
-
-.nav-links a:hover,
-.nav-links a.active { color: var(--accent); }
-
-/* track pills in the nav */
-.nav-links .nav-track-pill {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 99px;
-  padding: 3px 10px;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-}
-.nav-links .nav-track-pill:hover,
-.nav-links .nav-track-pill.active {
-  color: var(--accent);
-  border-color: var(--accent-mid);
-  background: var(--accent-dim);
-}
-
-.nav-divider {
-  width: 1px; height: 18px;
-  background: var(--border);
-  flex-shrink: 0;
-}
-
-.nav-cta {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--panel);
-  background: var(--accent);
-  padding: var(--sp-1) var(--sp-2);
-  border-radius: 6px;
-  text-decoration: none;
-  transition: opacity 0.15s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.nav-cta:hover { opacity: 0.88; }
-
-/* ── Hamburger — improvement #4 ── */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 6px;
-  border-radius: 6px;
-  transition: background 0.15s;
-  flex-shrink: 0;
-}
-.nav-hamburger:hover { background: var(--surface); }
-
-.nav-hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform 0.22s ease, opacity 0.22s ease;
-  transform-origin: center;
-}
-
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* Mobile nav drawer */
-.nav-mobile-drawer {
-  display: none;
-  position: absolute;
-  top: var(--nav-h);
-  left: 0; right: 0;
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  padding: var(--sp-3) var(--sp-4) var(--sp-4);
-  flex-direction: column;
-  gap: 0;
-  box-shadow: 0 8px 24px rgba(14,17,22,0.08);
-  z-index: 99;
-}
-
-.nav-mobile-drawer.open { display: flex; }
-
-.drawer-section-label {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: var(--sp-2) 0 var(--sp-1);
-  border-top: 1px solid var(--border);
-  margin-top: var(--sp-2);
-}
-.drawer-section-label:first-child { border-top: none; margin-top: 0; }
-
-.drawer-link {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--text-soft);
-  text-decoration: none;
-  padding: 10px 0;
-  display: block;
-  border-bottom: 1px solid var(--border);
-  transition: color 0.15s;
-}
-.drawer-link:last-of-type { border-bottom: none; }
-.drawer-link:hover { color: var(--accent); }
-
-.drawer-cta {
-  display: block;
-  margin-top: var(--sp-3);
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--panel);
-  background: var(--accent);
-  padding: 12px var(--sp-3);
-  border-radius: 8px;
-  text-decoration: none;
-  text-align: center;
-}
-
-/* ══════════════════════════════════════════════════════
-   LESSONS SUB-NAV — improvements #1 + #2
-   Sticky below main nav; contains track filter tabs
-   ══════════════════════════════════════════════════════ */
-.lessons-subnav {
-  position: sticky;
-  top: var(--nav-h);
-  z-index: 90;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 var(--sp-4);
-
-  /* hidden until user enters lessons section */
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.lessons-subnav.visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.subnav-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-4);
-  height: var(--subnav-h);
-}
-
-.subnav-label {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.subnav-divider {
-  width: 1px;
-  height: 18px;
-  background: var(--border);
-  flex-shrink: 0;
-}
-
-.filter-tabs {
-  display: flex;
-  gap: var(--sp-1);
-  align-items: center;
-}
-
-.filter-btn {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 99px;
-  padding: 5px 14px;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
-  white-space: nowrap;
-  font-family: inherit;
-}
-
-.filter-btn:hover {
-  color: var(--accent);
-  border-color: var(--accent-mid);
-  background: var(--accent-dim);
-}
-
-.filter-btn.active {
-  color: var(--accent);
-  border-color: var(--accent-mid);
-  background: var(--accent-dim);
-}
-
-.subnav-track-indicator {
-  margin-left: auto;
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: opacity 0.2s;
-}
-
-.subnav-track-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-/* ══════════════════════════════════════════════════════
-   HERO
-   ══════════════════════════════════════════════════════ */
-.hero {
-  padding-top: var(--sp-16);
-  padding-bottom: var(--sp-16);
-  padding-left: var(--sp-4);
-  padding-right: var(--sp-4);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -200px; right: -200px;
-  width: 800px; height: 800px;
-  background: radial-gradient(circle at 60% 40%,
-    rgba(74,124,94,0.12) 0%,
-    rgba(74,124,94,0.04) 50%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -100px; left: -100px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle,
-    rgba(14,17,22,0.06) 0%,
-    transparent 70%);
-  pointer-events: none;
-}
-
-.hero-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  position: relative; z-index: 1;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--sp-3);
-  opacity: 0;
-  animation: revealUp 0.6s 0.1s ease forwards;
-}
-
-.eyebrow-dot {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.hero-title {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: var(--text-hero);
-  font-weight: 400;
-  line-height: var(--lh-display);
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  max-width: 720px;
-  margin-bottom: var(--sp-3);
-  opacity: 0;
-  animation: revealUp 0.6s 0.2s ease forwards;
-}
-
-.hero-title mark {
-  background: none;
-  color: var(--accent);
-  -webkit-text-fill-color: var(--accent);
-}
-
-.hero-desc {
-  font-size: var(--text-md);
-  font-weight: 400;
-  line-height: var(--lh-body);
-  color: var(--text-soft);
-  max-width: 560px;
-  margin-bottom: var(--sp-6);
-  opacity: 0;
-  animation: revealUp 0.6s 0.3s ease forwards;
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  opacity: 0;
-  animation: revealUp 0.6s 0.4s ease forwards;
-}
-
-.btn-primary {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--panel);
-  background: var(--accent);
-  padding: 14px var(--sp-4);
-  border-radius: 8px;
-  text-decoration: none;
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 4px 16px rgba(74,124,94,0.28);
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(74,124,94,0.36);
-}
-
-.btn-ghost {
-  font-size: var(--text-base);
-  font-weight: 500;
-  color: var(--text-soft);
-  text-decoration: none;
-  display: flex; align-items: center; gap: var(--sp-1);
-  transition: color 0.15s;
-}
-.btn-ghost:hover { color: var(--accent); }
-.btn-ghost svg { transition: transform 0.15s; }
-.btn-ghost:hover svg { transform: translateX(3px); }
-
-.hero-stats {
-  display: flex;
-  gap: var(--sp-6);
-  margin-top: var(--sp-12);
-  padding-top: var(--sp-6);
-  border-top: 1px solid var(--border);
-  opacity: 0;
-  animation: revealUp 0.6s 0.55s ease forwards;
-}
-
-.stat {
-  display: flex; flex-direction: column; gap: 4px;
-}
-
-.stat-value {
-  font-size: var(--text-2xl);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.stat-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ══════════════════════════════════════════════════════
-   DIVIDER
-   ══════════════════════════════════════════════════════ */
-.section-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-
-/* ══════════════════════════════════════════════════════
-   SECTION LABELS
-   ══════════════════════════════════════════════════════ */
-.section-wrap {
-  padding: var(--sp-12) var(--sp-4);
-}
-
-.section-head {
-  margin-bottom: var(--sp-8);
-}
-
-.label-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--sp-2);
-}
-
-.section-h2 {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: var(--text-3xl);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: var(--lh-heading);
-  color: var(--ink);
-  margin-bottom: var(--sp-2);
-}
-
-.section-sub {
-  font-size: var(--text-md);
-  color: var(--text-soft);
-  line-height: var(--lh-body);
-  max-width: 540px;
-}
-
-/* ══════════════════════════════════════════════════════
-   TRACKS
-   ══════════════════════════════════════════════════════ */
-.tracks-section {
-  background: var(--panel);
-}
-
-.tracks-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-4);
-}
-
-.track-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: var(--sp-4);
-  position: relative;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  cursor: default;
-}
-
-.track-card:hover {
-  border-color: var(--border-dark);
-  box-shadow: 0 8px 32px rgba(14,17,22,0.08);
-  transform: translateY(-2px);
-}
-
-.track-card.lead {
-  border-color: var(--accent);
-  background: var(--accent-dim);
-}
-
-.track-card.lead:hover {
-  box-shadow: 0 8px 32px rgba(74,124,94,0.14);
-}
-
-.track-num {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: var(--sp-2);
-}
-
-.track-card.lead .track-num { color: var(--accent); }
-
-.track-icon {
-  width: 40px; height: 40px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: var(--sp-3);
-  font-size: 18px;
-}
-
-.track-card.lead .track-icon {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.track-name {
-  font-size: var(--text-xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: var(--sp-1);
-  line-height: var(--lh-heading);
-}
-
-.track-desc {
-  font-size: var(--text-base);
-  color: var(--text-soft);
-  line-height: var(--lh-body);
-}
-
-.track-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--muted);
-  margin-top: var(--sp-3);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.track-card.lead .track-count { color: var(--accent); }
-
-/* Track cards as nav targets — clicking jumps to lessons filter */
-.track-card[data-jump] { cursor: pointer; }
-
-/* ══════════════════════════════════════════════════════
-   MODULES
-   ══════════════════════════════════════════════════════ */
-.modules-section {
-  background: var(--surface);
-}
-
-.module-block {
-  margin-bottom: var(--sp-12);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.module-block:last-child { margin-bottom: 0; }
-
-/* Hidden state for track filtering */
-.module-block.filter-hidden {
-  display: none;
-}
-
-.module-header {
-  display: flex;
-  align-items: baseline;
-  gap: var(--sp-2);
-  margin-bottom: var(--sp-4);
-  padding-bottom: var(--sp-2);
-  border-bottom: 1px solid var(--border);
-}
-
-.module-badge {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-mid);
-  border-radius: 4px;
-  padding: 3px 8px;
-  white-space: nowrap;
-}
-
-.module-title {
-  font-size: var(--text-lg);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-
-.lessons-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2);
-}
-
-.lesson-card {
-  display: block;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: var(--sp-3) var(--sp-3);
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
-}
-
-.lesson-card:not(.disabled):hover {
-  border-color: var(--accent);
-  box-shadow: 0 4px 16px rgba(74,124,94,0.10);
-  transform: translateY(-1px);
-}
-
-.lesson-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.2s ease;
-  border-radius: 0 0 0 8px;
-}
-
-.lesson-card:not(.disabled):hover::before { transform: scaleY(1); }
-
-.lesson-code {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: var(--sp-1);
-  font-family: 'JetBrains Mono', 'SF Mono', monospace;
-}
-
-.lesson-title {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: var(--sp-1);
-}
-
-.lesson-topic {
-  font-size: var(--text-sm);
-  color: var(--text-soft);
-  line-height: var(--lh-body);
-  margin-bottom: var(--sp-2);
-}
-
-.lesson-cta {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  text-transform: uppercase;
-}
-
-.lesson-actions {
-  display: flex;
-  gap: var(--sp-2);
-  flex-wrap: wrap;
-  margin-top: var(--sp-2);
-}
-
-.lesson-link {
-  font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.lesson-link:hover { text-decoration: underline; }
-
-.lesson-card.disabled {
-  opacity: 0.45;
-  cursor: default;
-}
-
-.lesson-card.disabled::before { display: none; }
-
-.coming-badge {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--muted);
-  font-family: 'JetBrains Mono', 'SF Mono', monospace;
-  letter-spacing: 0.06em;
-}
-
-/* ══════════════════════════════════════════════════════
-   RESOURCES
-   ══════════════════════════════════════════════════════ */
-.resources-section {
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-2);
-}
-
-.resource-card {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: var(--sp-3);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.resource-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(74,124,94,0.08);
-}
-
-.resource-icon-wrap {
-  width: 40px; height: 40px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.resource-label {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 2px;
-}
-
-.resource-name {
-  font-size: var(--text-base);
-  font-weight: 600;
-  color: var(--ink);
-}
-
-/* ══════════════════════════════════════════════════════
-   FOOTER
-   ══════════════════════════════════════════════════════ */
-footer {
-  background: var(--ink);
-  padding: var(--sp-8) var(--sp-4);
-}
-
-.footer-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--sp-4);
-}
-
-.footer-brand {
-  display: flex; align-items: center; gap: var(--sp-2);
-  margin-bottom: var(--sp-2);
-}
-
-.footer-logo {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-.footer-name {
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-}
-
-.footer-meta {
-  font-size: var(--text-xs);
-  color: rgba(255,255,255,0.3);
-  line-height: 2;
-  letter-spacing: 0.04em;
-}
-
-.footer-right { text-align: right; }
-.footer-right .footer-meta { text-align: right; }
-
-/* ══════════════════════════════════════════════════════
-   ANIMATIONS
-   ══════════════════════════════════════════════════════ */
-@keyframes revealUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.fade-section {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.fade-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  .fade-section { opacity: 1; transform: none; }
-}
-
-/* ══════════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  .tracks-grid    { grid-template-columns: 1fr; }
-  .lessons-grid   { grid-template-columns: 1fr 1fr; }
-  .resources-grid { grid-template-columns: 1fr 1fr; }
-  .hero-stats     { gap: var(--sp-4); }
-  .footer-inner   { flex-direction: column; }
-  .footer-right   { text-align: left; }
-  .footer-right .footer-meta { text-align: left; }
-
-  /* Hide desktop links, show hamburger */
-  .nav-links      { display: none !important; }
-  .nav-hamburger  { display: flex; }
-
-  /* Sub-nav: stack label + tabs */
-  .subnav-inner   { gap: var(--sp-2); flex-wrap: wrap; height: auto; padding: 8px 0; }
-  .subnav-label   { display: none; }
-  .subnav-divider { display: none; }
-  .subnav-track-indicator { display: none; }
-  .lessons-subnav { padding: 0 var(--sp-3); }
-}
-
-@media (max-width: 600px) {
-  .lessons-grid   { grid-template-columns: 1fr; }
-  .resources-grid { grid-template-columns: 1fr; }
-  .hero-stats     { flex-direction: column; gap: var(--sp-3); }
-  .filter-tabs    { gap: 4px; }
-  .filter-btn     { padding: 5px 10px; }
-}
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 · Solving Business Problems with Technology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/index.css">
 </head>
 <body>
-
-<!-- ════════════════════ NAV ════════════════════ -->
-<!-- Improvement #3: expanded track links | Improvement #4: hamburger -->
-<nav id="main-nav">
-  <div class="nav-inner">
-    <a class="nav-brand" href="#">
-      <div class="nav-logo">
-        <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="6" height="6" rx="1" fill="white" opacity="0.9"></rect>
-          <rect x="10" y="2" width="6" height="6" rx="1" fill="white" opacity="0.6"></rect>
-          <rect x="2" y="10" width="6" height="6" rx="1" fill="white" opacity="0.6"></rect>
-          <rect x="10" y="10" width="6" height="6" rx="1" fill="white" opacity="0.3"></rect>
-        </svg>
-      </div>
-      <div>
-        <div class="nav-course">BUS123</div>
-        <div class="nav-subtitle">Solving Business Problems with Technology</div>
-      </div>
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="#tracks">Tracks</a></li>
-      <li><a href="#lessons">All Lessons</a></li>
-      <li><div class="nav-divider"></div></li>
-      <li><a href="#lesson-intro" class="nav-track-pill" data-track-nav="intro">Intro</a></li>
-      <li><a href="#lesson-excel" class="nav-track-pill" data-track-nav="excel">Excel</a></li>
-      <li><a href="#lesson-math"  class="nav-track-pill" data-track-nav="math">Math</a></li>
-    </ul>
-
-    <!-- Improvement #4: hamburger button -->
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <a class="nav-cta" href="#">Open Canvas</a>
-  </div>
-
-  <!-- Mobile drawer -->
-  <div class="nav-mobile-drawer" id="nav-drawer" role="navigation">
-    <span class="drawer-section-label">Pages</span>
-    <a class="drawer-link" href="#tracks">Tracks</a>
-    <a class="drawer-link" href="#lessons">All Lessons</a>
-    <span class="drawer-section-label">Jump to Track</span>
-    <a class="drawer-link" href="#lesson-intro">Introduction</a>
-    <a class="drawer-link" href="#lesson-excel">Excel Skills</a>
-    <a class="drawer-link" href="#lesson-math">Business Math</a>
-    <a class="drawer-cta" href="#">Open Canvas</a>
-  </div>
-</nav>
-
-<!-- ════════════════════ HERO ════════════════════ -->
-<section class="hero">
-  <div class="hero-inner">
-
-    <p class="eyebrow">
-      <span class="eyebrow-dot"></span>
-      Endicott College · Gerrish School of Business · Fall 2026
-    </p>
-
-    <h1 class="hero-title">
-      Turn data into<br><mark>business decisions</mark>.
-    </h1>
-
-    <p class="hero-desc">
-      Master Excel. Build financial models.<br>
-      One semester. Skills that last a career.
-    </p>
-
-    <div class="hero-actions">
-      <a class="btn-primary" href="#lessons">Start Learning</a>
-      <a class="btn-ghost" href="#">
-        View syllabus
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>BUS123</strong><span>Solving Business Problems with Technology</span></span>
       </a>
+      <nav class="nav" aria-label="Course sections">
+        <a href="#intro">Intro</a><a href="#excel">Excel</a><a href="#math">Business Math</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Learning Tracks</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">75</span>
-        <span class="stat-label">Min Class Period</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Credits</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ════════════════════ TRACKS ════════════════════ -->
-<section class="tracks-section section-wrap fade-section" id="tracks">
-  <div class="container">
-
-    <div class="section-head">
-      <p class="label-tag">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-          <circle cx="6" cy="6" r="6"></circle>
-        </svg>
-        Course Architecture
-      </p>
-      <h2 class="section-h2">Three tracks. One semester.</h2>
-      <p class="section-sub">Each track builds a distinct skill set. Together they make you dangerous in any business role.</p>
-    </div>
-
-    <div class="tracks-grid">
-
-      <!-- Clicking a track card jumps to its lessons and filters -->
-      <div class="track-card" data-jump="intro" tabindex="0" role="button" aria-label="Jump to Introduction lessons">
-        <p class="track-num">Track 01</p>
-        <div class="track-icon">🎓</div>
-        <h3 class="track-name">Introduction</h3>
-        <p class="track-desc">Course orientation, Canvas navigation, Office 365 setup, OneDrive, and digital fluency for business professionals.</p>
-        <p class="track-count">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"></circle>
-            <path d="M6 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
-          </svg>
-          3 Lessons
-        </p>
-      </div>
-
-      <div class="track-card lead" data-jump="excel" tabindex="0" role="button" aria-label="Jump to Excel lessons">
-        <p class="track-num">Track 02</p>
-        <div class="track-icon">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="6" height="6" rx="1" fill="white" opacity="0.9"></rect>
-            <rect x="11" y="3" width="6" height="2" rx="0.5" fill="white" opacity="0.7"></rect>
-            <rect x="11" y="7" width="6" height="2" rx="0.5" fill="white" opacity="0.5"></rect>
-            <rect x="3" y="11" width="14" height="2" rx="0.5" fill="white" opacity="0.7"></rect>
-            <rect x="3" y="15" width="10" height="2" rx="0.5" fill="white" opacity="0.5"></rect>
-          </svg>
-        </div>
-        <h3 class="track-name">Excel Skills</h3>
-        <p class="track-desc">Formulas, functions, charts, data management, and professional spreadsheet models from scratch.</p>
-        <p class="track-count">4 Modules · Core Track</p>
-      </div>
-
-      <div class="track-card" data-jump="math" tabindex="0" role="button" aria-label="Jump to Business Math lessons">
-        <p class="track-num">Track 03</p>
-        <div class="track-icon">📐</div>
-        <h3 class="track-name">Business Math</h3>
-        <p class="track-desc">Payroll, discounts, markup, breakeven, inventory, interest, taxes — the quantitative foundation.</p>
-        <p class="track-count">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"></circle>
-            <path d="M6 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path>
-          </svg>
-          14 Sub-topics
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="section-divider">
-
-<!-- ════════════════════ LESSONS SUB-NAV ════════════════════ -->
-<!-- Improvement #1: track filter tabs | Improvement #2: sticky sub-nav -->
-<div class="lessons-subnav" id="lessons-subnav" role="navigation" aria-label="Lessons filter">
-  <div class="subnav-inner">
-    <span class="subnav-label">Filter by track</span>
-    <div class="subnav-divider"></div>
-    <div class="filter-tabs" role="group" aria-label="Track filter">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="intro">Intro</button>
-      <button class="filter-btn" data-filter="excel">Excel</button>
-      <button class="filter-btn" data-filter="math">Math</button>
-    </div>
-    <div class="subnav-track-indicator" id="subnav-indicator" aria-live="polite">
-      <span class="subnav-track-dot"></span>
-      <span id="subnav-indicator-text">All Lessons</span>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════ MODULES ════════════════════ -->
-<section class="modules-section section-wrap fade-section" id="lessons">
-  <div class="container">
-
-    <div class="section-head">
-      <p class="label-tag">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"></circle></svg>
-        All Lessons
-      </p>
-      <h2 class="section-h2">Your complete course map.</h2>
-      <p class="section-sub">Every lesson, every module — start with what's live, return as more unlock.</p>
-    </div>
-
-    <!-- ── INTRO TRACK ── -->
-    <div class="module-block fade-section" data-track="intro" id="lesson-intro">
-      <div class="module-header">
-        <span class="module-badge">INTRO · M01</span>
-        <span class="module-title">Getting Started with Business Technology</span>
-      </div>
-      <div class="lessons-grid">
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l02-slides.html">
-          <div class="lesson-code">INTRO-M01-L01</div>
-          <div class="lesson-title">Course Introduction &amp; Expectations</div>
-          <div class="lesson-topic">Case study clients, grading, Canvas navigation, and how the semester is structured</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </span>
-        </a>
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l01-slides.html">
-          <div class="lesson-code">INTRO-M01-L02</div>
-          <div class="lesson-title">OneDrive Setup &amp; Office 365</div>
-          <div class="lesson-topic">Installing Microsoft 365, connecting Endicott OneDrive, and building your BUS123 folder structure</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </span>
-        </a>
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-l03-slides.html">
-          <div class="lesson-code">INTRO-M01-L03</div>
-          <div class="lesson-title">Technology in Business</div>
-          <div class="lesson-topic">Digital fluency, tech by industry, how AI and tools shape the modern professional's workflow</div>
-          <span class="lesson-cta">
-            Open lesson
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </span>
-        </a>
-
-        <a class="lesson-card" href="INTRO/M01/bus123-intro-m01-company-profiles.html">
-          <div class="lesson-code">INTRO-M01 Resource</div>
-          <div class="lesson-title">Case Study Company Profiles</div>
-          <div class="lesson-topic">Meet the four businesses that appear throughout the semester and preview the kinds of problems you will solve for each one</div>
-          <span class="lesson-cta">
-            Open resource
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </span>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- ── EXCEL TRACK M01 ── -->
-    <div class="module-block fade-section" data-track="excel" id="lesson-excel">
-      <div class="module-header">
-        <span class="module-badge">EXCEL · M01</span>
-        <span class="module-title">Formulas, Functions &amp; Data Basics</span>
-      </div>
-      <div class="lessons-grid">
-
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M01-L01</div>
-          <div class="lesson-title">Creating and Editing Worksheets</div>
-          <div class="lesson-topic">Creating a clean product worksheet for Tidal Goods Co. with labels, values, edits, and checks</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf">
-              Reading
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l01-interactive.html">
-              Interactive practice
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">Fall 2026</div>
+        <h1>Find the right BUS123 materials quickly.</h1>
+        <p>This course map is the student-facing source for live lesson slides, readings, workbooks, and practice materials.</p>
+        <div class="current">
+          <div>
+            <div class="meta">Current · math M04 L01</div>
+            <h2>Markups, Markdowns, and Break-Even</h2>
+            <p>Anchor &amp; Oak Events · Markup · Markdown · Perishables · Break-even</p>
           </div>
+          <div class="materials"><a href="MATH/M04/bus123-math-m04-l01-slides.html">Slides</a><a href="MATH/M04/bus123-math-m04-l01-prereading.pdf">Reading</a><a href="MATH/M04/bus123-math-m04-l01-starter.xlsx">Starter Workbook</a><a href="MATH/M04/bus123-math-m04-l01-interactive.html">Interactive Practice</a></div>
         </div>
-
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M01-L02</div>
-          <div class="lesson-title">Formatting and Organizing Worksheets</div>
-          <div class="lesson-topic">Formatting worksheet data, assigning categories, and preparing a manager-ready view</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l02-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M01/bus123-excel-m01-l02-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">EXCEL-M01-L03</div>
-          <div class="lesson-title">Cell References &amp; VLOOKUP</div>
-          <div class="lesson-topic">Relative vs. absolute references, named ranges, and looking up data across tables</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
-
       </div>
+    </section>
+
+    <section class="shell controls" aria-label="Search and filter">
+      <input class="search" type="search" placeholder="Search by title, skill, track, module, material, or case company" data-search>
+      <div class="filters">
+        <button class="active" type="button" data-filter="all">All</button>
+        <button type="button" data-filter="intro">Intro</button><button type="button" data-filter="excel">Excel</button><button type="button" data-filter="math">Business Math</button>
+      </div>
+    </section>
+
+    <div class="shell">
+      <section id="intro" class="track-section">
+    <div class="track-heading">
+      <h2>Intro</h2>
+      <span>3 lessons</span>
     </div>
-
-    <!-- ── EXCEL TRACK M03 ── -->
-    <div class="module-block fade-section" data-track="excel">
-      <div class="module-header">
-        <span class="module-badge">EXCEL · M03</span>
-        <span class="module-title">Pricing, Markup, Margin &amp; Markdown</span>
+    <div class="lesson-grid"><article class="lesson" data-lesson data-track="intro" data-search="course introduction intro m01 l01 live course setup digital workflow slides reading">
+    <div class="lesson-header">
+      <div>
+        <div class="code">intro · M01 · L01</div>
+        <h3>Course Introduction</h3>
       </div>
-      <div class="lessons-grid">
-
-        <div class="lesson-card">
-          <div class="lesson-code">EXCEL-M03-L01</div>
-          <div class="lesson-title">Markup, Margin, and Markdown</div>
-          <div class="lesson-topic">Retail pricing decisions for Tidal Goods Co. using Excel formulas and feedback checks</div>
-          <div class="lesson-actions">
-            <a class="lesson-link" href="EXCEL/M03/bus123-excel-m03-l01-slides.html">
-              Slides
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a class="lesson-link" href="EXCEL/M03/bus123-excel-m03-l01-starter.xlsx">
-              Starter workbook
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-      </div>
+      <span class="status live">Live</span>
     </div>
-
-    <!-- ── MATH TRACK ── -->
-    <div class="module-block fade-section" data-track="math" id="lesson-math">
-      <div class="module-header">
-        <span class="module-badge">MATH · M01</span>
-        <span class="module-title">Payroll &amp; Discounts</span>
+    <p>General course foundation</p>
+    <div class="skills">Course setup · Digital workflow</div>
+    <div class="materials"><a href="INTRO/M01/bus123-intro-m01-l01-slides.html">Slides</a><a href="INTRO/M01/bus123-intro-m01-l01-prereading.pdf">Reading</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="intro" data-search="technology orientation intro m01 l02 live onedrive microsoft office slides reading">
+    <div class="lesson-header">
+      <div>
+        <div class="code">intro · M01 · L02</div>
+        <h3>Technology Orientation</h3>
       </div>
-      <div class="lessons-grid">
-
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">MATH-M01-L01</div>
-          <div class="lesson-title">Payroll Fundamentals</div>
-          <div class="lesson-topic">Gross pay, deductions, net pay — Harbor View Surf Shop payroll case</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
-
-        <a class="lesson-card disabled" href="#">
-          <div class="lesson-code">MATH-M01-L02</div>
-          <div class="lesson-title">Trade &amp; Cash Discounts</div>
-          <div class="lesson-topic">Single &amp; chain discounts, cash discount terms, net price calculations</div>
-          <span class="coming-badge">Coming soon</span>
-        </a>
-
+      <span class="status live">Live</span>
+    </div>
+    <p>General course foundation</p>
+    <div class="skills">OneDrive · Microsoft Office</div>
+    <div class="materials"><a href="INTRO/M01/bus123-intro-m01-l02-slides.html">Slides</a><a href="INTRO/M01/bus123-intro-m01-l02-prereading.pdf">Reading</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="intro" data-search="case study companies intro m01 l03 live course case companies business context case study navigation slides reading company profiles">
+    <div class="lesson-header">
+      <div>
+        <div class="code">intro · M01 · L03</div>
+        <h3>Case Study Companies</h3>
       </div>
+      <span class="status live">Live</span>
     </div>
-
-  </div>
-</section>
-
-<!-- ════════════════════ FOOTER ════════════════════ -->
-<footer>
-  <div class="footer-inner">
-    <div>
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <svg viewBox="0 0 18 18" width="14" height="14" fill="none">
-            <rect x="2" y="2" width="6" height="6" rx="1" fill="white" opacity="0.9"></rect>
-            <rect x="10" y="2" width="6" height="6" rx="1" fill="white" opacity="0.6"></rect>
-            <rect x="2" y="10" width="6" height="6" rx="1" fill="white" opacity="0.6"></rect>
-            <rect x="10" y="10" width="6" height="6" rx="1" fill="white" opacity="0.3"></rect>
-          </svg>
-        </div>
-        <span class="footer-name">BUS123</span>
+    <p>Course case companies</p>
+    <div class="skills">Business context · Case study navigation</div>
+    <div class="materials"><a href="INTRO/M01/bus123-intro-m01-l03-slides.html">Slides</a><a href="INTRO/M01/bus123-intro-m01-l03-prereading.pdf">Reading</a><a href="INTRO/M01/bus123-intro-m01-company-profiles.html">Company Profiles</a></div>
+  </article></div>
+  </section>
+<section id="excel" class="track-section">
+    <div class="track-heading">
+      <h2>Excel</h2>
+      <span>3 lessons</span>
+    </div>
+    <div class="lesson-grid"><article class="lesson" data-lesson data-track="excel" data-search="creating and editing worksheets excel m01 l01 live tidal goods co. workbook setup worksheet editing slides reading starter workbook interactive practice">
+    <div class="lesson-header">
+      <div>
+        <div class="code">excel · M01 · L01</div>
+        <h3>Creating and Editing Worksheets</h3>
       </div>
-      <p class="footer-meta">
-        Solving Business Problems with Technology<br>
-        Gerrish School of Business · Endicott College
-      </p>
+      <span class="status live">Live</span>
     </div>
-    <div class="footer-right">
-      <p class="footer-meta">
-        Fall 2026<br>
-        Instructor: Professor Evitts<br>
-        3 Credits
-      </p>
+    <p>Tidal Goods Co.</p>
+    <div class="skills">Workbook setup · Worksheet editing</div>
+    <div class="materials"><a href="EXCEL/M01/bus123-excel-m01-l01-slides.html">Slides</a><a href="EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf">Reading</a><a href="EXCEL/M01/bus123-excel-m01-l01-starter.xlsx">Starter Workbook</a><a href="EXCEL/M01/bus123-excel-m01-l01-interactive.html">Interactive Practice</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="excel" data-search="formulas and functions excel m01 l02 live tidal goods co. formulas cell references slides reading starter workbook">
+    <div class="lesson-header">
+      <div>
+        <div class="code">excel · M01 · L02</div>
+        <h3>Formulas and Functions</h3>
+      </div>
+      <span class="status live">Live</span>
     </div>
-  </div>
-</footer>
-
-<script>
-// ── Scroll-reveal ────────────────────────────────────────────────
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.fade-section').forEach(el => revealObserver.observe(el));
-
-// ── Improvement #4: Hamburger menu ──────────────────────────────
-const hamburger = document.getElementById('nav-hamburger');
-const drawer    = document.getElementById('nav-drawer');
-
-hamburger.addEventListener('click', () => {
-  const isOpen = drawer.classList.toggle('open');
-  hamburger.classList.toggle('open', isOpen);
-  hamburger.setAttribute('aria-expanded', isOpen);
-});
-
-// Close drawer when a drawer link is clicked
-drawer.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    drawer.classList.remove('open');
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// ── Improvement #2: Sticky sub-nav reveal ───────────────────────
-const lessonsSection = document.getElementById('lessons');
-const subnav         = document.getElementById('lessons-subnav');
-
-const subnavObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    subnav.classList.toggle('visible', e.isIntersecting);
-  });
-}, {
-  rootMargin: '-56px 0px 0px 0px',  // offset by nav height
-  threshold: 0
-});
-
-subnavObserver.observe(lessonsSection);
-
-// ── Improvement #1: Track filter tabs ───────────────────────────
-const filterBtns    = document.querySelectorAll('.filter-btn');
-const moduleBlocks  = document.querySelectorAll('.module-block');
-const indicatorText = document.getElementById('subnav-indicator-text');
-
-const trackLabels = {
-  all:   'All Lessons',
-  intro: 'Introduction',
-  excel: 'Excel Skills',
-  math:  'Business Math'
-};
-
-function applyFilter(filter) {
-  filterBtns.forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.filter === filter);
-  });
-
-  moduleBlocks.forEach(block => {
-    if (filter === 'all' || block.dataset.track === filter) {
-      block.classList.remove('filter-hidden');
-    } else {
-      block.classList.add('filter-hidden');
-    }
-  });
-
-  if (indicatorText) {
-    indicatorText.textContent = trackLabels[filter] || 'All Lessons';
-  }
-}
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
-});
-
-// ── Track cards jump + auto-filter ──────────────────────────────
-document.querySelectorAll('.track-card[data-jump]').forEach(card => {
-  const jumpTarget = card.dataset.jump;
-
-  function activateJump() {
-    applyFilter(jumpTarget);
-    const target = document.getElementById('lesson-' + jumpTarget) || lessonsSection;
-    const offset = 56 + 48 + 16; // nav + subnav + breathing room
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }
-
-  card.addEventListener('click', activateJump);
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateJump(); }
-  });
-});
-
-// ── Nav track pills jump + filter ────────────────────────────────
-document.querySelectorAll('[data-track-nav]').forEach(pill => {
-  pill.addEventListener('click', e => {
-    e.preventDefault();
-    applyFilter(pill.dataset.trackNav);
-    const target = document.getElementById('lesson-' + pill.dataset.trackNav) || lessonsSection;
-    const offset = 56 + 48 + 16;
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
-  });
-});
-
-// ── Scroll-spy: highlight active nav section ─────────────────────
-const navSections = [
-  { id: 'tracks',  links: document.querySelectorAll('a[href="#tracks"]') },
-  { id: 'lessons', links: document.querySelectorAll('a[href="#lessons"]') },
-];
-
-const spyObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    const match = navSections.find(s => s.id === e.target.id);
-    if (match) match.links.forEach(l => l.classList.toggle('active', e.isIntersecting));
-  });
-}, { rootMargin: '-20% 0px -70% 0px' });
-
-navSections.forEach(s => {
-  const el = document.getElementById(s.id);
-  if (el) spyObserver.observe(el);
-});
-</script>
-
-</body></html>
+    <p>Tidal Goods Co.</p>
+    <div class="skills">Formulas · Cell references</div>
+    <div class="materials"><a href="EXCEL/M01/bus123-excel-m01-l02-slides.html">Slides</a><a href="EXCEL/M01/bus123-excel-m01-l02-pre-reading.pdf">Reading</a><a href="EXCEL/M01/bus123-excel-m01-l02-starter.xlsx">Starter Workbook</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="excel" data-search="charts and data visualization excel m03 l01 live tidal goods co. charts data visualization slides starter workbook">
+    <div class="lesson-header">
+      <div>
+        <div class="code">excel · M03 · L01</div>
+        <h3>Charts and Data Visualization</h3>
+      </div>
+      <span class="status live">Live</span>
+    </div>
+    <p>Tidal Goods Co.</p>
+    <div class="skills">Charts · Data visualization</div>
+    <div class="materials"><a href="EXCEL/M03/bus123-excel-m03-l01-slides.html">Slides</a><a href="EXCEL/M03/bus123-excel-m03-l01-starter.xlsx">Starter Workbook</a></div>
+  </article></div>
+  </section>
+<section id="math" class="track-section">
+    <div class="track-heading">
+      <h2>Business Math</h2>
+      <span>4 lessons</span>
+    </div>
+    <div class="lesson-grid"><article class="lesson" data-lesson data-track="math" data-search="basic math: whole numbers, fractions, and percents math m01 l01 live tidal goods co. percents fractions excel arithmetic slides reading starter workbook">
+    <div class="lesson-header">
+      <div>
+        <div class="code">math · M01 · L01</div>
+        <h3>Basic Math: Whole Numbers, Fractions, and Percents</h3>
+      </div>
+      <span class="status live">Live</span>
+    </div>
+    <p>Tidal Goods Co.</p>
+    <div class="skills">Percents · Fractions · Excel arithmetic</div>
+    <div class="materials"><a href="MATH/M01/bus123-math-m01-l01-slides.html">Slides</a><a href="MATH/M01/bus123-math-m01-l01-prereading.pdf">Reading</a><a href="MATH/M01/bus123-math-m01-l01-starter.xlsx">Starter Workbook</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="math" data-search="solving equations math m02 l01 live meridian advisory group equations algebra in excel slides reading starter workbook">
+    <div class="lesson-header">
+      <div>
+        <div class="code">math · M02 · L01</div>
+        <h3>Solving Equations</h3>
+      </div>
+      <span class="status live">Live</span>
+    </div>
+    <p>Meridian Advisory Group</p>
+    <div class="skills">Equations · Algebra in Excel</div>
+    <div class="materials"><a href="MATH/M02/bus123-math-m02-l01-slides.html">Slides</a><a href="MATH/M02/bus123-math-m02-l01-prereading.pdf">Reading</a><a href="MATH/M02/bus123-math-m02-l01-starter.xlsx">Starter Workbook</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="math" data-search="discounts: trade and cash math m03 l01 live tidal goods co. trade discounts cash discounts payment terms slides reading">
+    <div class="lesson-header">
+      <div>
+        <div class="code">math · M03 · L01</div>
+        <h3>Discounts: Trade and Cash</h3>
+      </div>
+      <span class="status live">Live</span>
+    </div>
+    <p>Tidal Goods Co.</p>
+    <div class="skills">Trade discounts · Cash discounts · Payment terms</div>
+    <div class="materials"><a href="MATH/M03/bus123-math-m03-l01-slides.html">Slides</a><a href="MATH/M03/bus123-math-m03-l01-pre-reading.pdf">Reading</a></div>
+  </article>
+<article class="lesson" data-lesson data-track="math" data-search="markups, markdowns, and break-even math m04 l01 current anchor &amp; oak events markup markdown perishables break-even slides reading starter workbook interactive practice">
+    <div class="lesson-header">
+      <div>
+        <div class="code">math · M04 · L01</div>
+        <h3>Markups, Markdowns, and Break-Even</h3>
+      </div>
+      <span class="status current">Current</span>
+    </div>
+    <p>Anchor &amp; Oak Events</p>
+    <div class="skills">Markup · Markdown · Perishables · Break-even</div>
+    <div class="materials"><a href="MATH/M04/bus123-math-m04-l01-slides.html">Slides</a><a href="MATH/M04/bus123-math-m04-l01-prereading.pdf">Reading</a><a href="MATH/M04/bus123-math-m04-l01-starter.xlsx">Starter Workbook</a><a href="MATH/M04/bus123-math-m04-l01-interactive.html">Interactive Practice</a></div>
+  </article></div>
+  </section>
+      <p class="empty" data-empty hidden>No matching lessons found.</p>
+    </div>
+  </main>
+  <script src="assets/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M04 · Pricing Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116;
+      --paper: #FAF8F3;
+      --paper-2: #F2EEE5;
+      --white: #FFFFFF;
+      --text: #1A1F2C;
+      --text-soft: #4A5567;
+      --muted: #7A8290;
+      --border: #E5E1D6;
+      --sage: #4A7C5E;
+      --gold: #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: "Geist", sans-serif;
+      line-height: 1.45;
+    }
+
+    .top {
+      background: var(--ink);
+      color: var(--white);
+      padding: 28px 24px;
+    }
+
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    h1 { font-size: 54px; }
+    h2 { font-size: 34px; margin-bottom: 14px; }
+    h3 { font-size: 28px; }
+
+    .top p {
+      max-width: 760px;
+      color: rgba(255,255,255,.72);
+      font-size: 18px;
+      margin: 14px 0 0;
+    }
+
+    main {
+      padding: 28px 24px 48px;
+    }
+
+    .lab {
+      display: grid;
+      grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .controls {
+      display: grid;
+      gap: 18px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-weight: 650;
+      color: var(--text);
+    }
+
+    label span {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    output {
+      font-family: "JetBrains Mono", monospace;
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--sage);
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 124px;
+    }
+
+    .metric small {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .metric strong {
+      font-family: "Instrument Serif", serif;
+      font-size: 46px;
+      font-weight: 400;
+      line-height: .95;
+    }
+
+    .chart {
+      height: 360px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background:
+        linear-gradient(to top, rgba(229,225,214,.8) 1px, transparent 1px) 0 0 / 100% 25%,
+        linear-gradient(to right, rgba(229,225,214,.8) 1px, transparent 1px) 0 0 / 20% 100%,
+        var(--white);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .chart svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--text-soft);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 99px;
+      display: inline-block;
+    }
+
+    .swatch.revenue { background: var(--sage); }
+    .swatch.cost { background: var(--terra); }
+    .swatch.be { background: var(--gold); }
+
+    .callout {
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--white);
+      padding: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .callout strong {
+      color: var(--gold);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .callout p {
+      margin: 0;
+      color: rgba(255,255,255,.76);
+    }
+
+    .work {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .work ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--text-soft);
+    }
+
+    .formula {
+      font-family: "JetBrains Mono", monospace;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      color: var(--text);
+      overflow-x: auto;
+    }
+
+    @media (max-width: 860px) {
+      .lab, .work { grid-template-columns: 1fr; }
+      .results { grid-template-columns: 1fr; }
+      h1 { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <div class="eyebrow">BUS123 · MATH M04 · Anchor & Oak Events</div>
+      <h1>Pricing Lab</h1>
+      <p>Move the assumptions and watch the break-even point change. The goal is to see why price decisions are not just arithmetic - they are risk decisions.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="lab" aria-label="Interactive pricing model">
+      <div class="panel controls">
+        <h2>Assumptions</h2>
+        <label>
+          <span>Ticket price <output id="priceOut">$48</output></span>
+          <input id="price" type="range" min="35" max="65" step="1" value="48">
+        </label>
+        <label>
+          <span>Variable cost per guest <output id="variableOut">$27</output></span>
+          <input id="variable" type="range" min="16" max="40" step="1" value="27">
+        </label>
+        <label>
+          <span>Fixed event cost <output id="fixedOut">$3,600</output></span>
+          <input id="fixed" type="range" min="1200" max="7200" step="100" value="3600">
+        </label>
+        <label>
+          <span>Produced tasting boxes <output id="producedOut">120</output></span>
+          <input id="produced" type="range" min="60" max="220" step="5" value="120">
+        </label>
+        <label>
+          <span>Expected waste <output id="wasteOut">15%</output></span>
+          <input id="waste" type="range" min="0" max="35" step="1" value="15">
+        </label>
+        <label>
+          <span>Markup on box cost <output id="markupOut">45%</output></span>
+          <input id="markup" type="range" min="10" max="90" step="5" value="45">
+        </label>
+      </div>
+
+      <div class="panel">
+        <div class="results">
+          <div class="metric"><small>Contribution</small><strong id="contribution">$21</strong></div>
+          <div class="metric"><small>Break-even guests</small><strong id="breakEven">172</strong></div>
+          <div class="metric"><small>Box price after waste</small><strong id="boxPrice">$30.71</strong></div>
+        </div>
+
+        <div class="chart" aria-label="Break-even chart">
+          <svg viewBox="0 0 720 360" role="img" aria-labelledby="chartTitle">
+            <title id="chartTitle">Revenue and cost lines with break-even point</title>
+            <line x1="56" y1="310" x2="674" y2="310" stroke="#0E1116" stroke-width="3"/>
+            <line x1="56" y1="32" x2="56" y2="310" stroke="#0E1116" stroke-width="3"/>
+            <line id="costLine" x1="56" y1="240" x2="650" y2="120" stroke="#9C4A2B" stroke-width="5" stroke-linecap="round"/>
+            <line id="revenueLine" x1="56" y1="310" x2="650" y2="72" stroke="#4A7C5E" stroke-width="5" stroke-linecap="round"/>
+            <circle id="breakDot" cx="360" cy="170" r="11" fill="#B8843D" stroke="#0E1116" stroke-width="4"/>
+            <text id="breakLabel" x="382" y="168" fill="#1A1F2C" font-family="JetBrains Mono" font-size="16">172 guests</text>
+            <text x="586" y="338" fill="#4A5567" font-family="JetBrains Mono" font-size="14">Guests</text>
+            <text x="18" y="44" fill="#4A5567" font-family="JetBrains Mono" font-size="14">Dollars</text>
+          </svg>
+        </div>
+
+        <div class="legend">
+          <span><i class="swatch revenue"></i> Revenue</span>
+          <span><i class="swatch cost"></i> Total cost</span>
+          <span><i class="swatch be"></i> Break-even</span>
+        </div>
+
+        <div class="callout">
+          <strong id="statusLabel">Decision read</strong>
+          <p id="decisionText"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="work">
+      <div class="panel">
+        <h2>Before Excel</h2>
+        <ul>
+          <li>Find one change that lowers break-even guests below 150.</li>
+          <li>Find one change that pushes break-even guests above 200.</li>
+          <li>Decide which assumption feels most realistic to change.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Excel Patterns</h2>
+        <div class="formula">=ROUNDUP(FixedCost / (TicketPrice - VariableCost), 0)</div>
+        <div class="formula">=ProducedBoxes * BoxCost * (1 + MarkupRate) / SellableBoxes</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const dollar = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const dollar2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const inputs = ["price", "variable", "fixed", "produced", "waste", "markup"].reduce((map, id) => {
+      map[id] = document.getElementById(id);
+      return map;
+    }, {});
+
+    function update() {
+      const price = Number(inputs.price.value);
+      const variable = Number(inputs.variable.value);
+      const fixed = Number(inputs.fixed.value);
+      const produced = Number(inputs.produced.value);
+      const waste = Number(inputs.waste.value) / 100;
+      const markup = Number(inputs.markup.value) / 100;
+      const boxCost = 18;
+      const contribution = price - variable;
+      const breakEven = contribution > 0 ? Math.ceil(fixed / contribution) : Infinity;
+      const sellableBoxes = produced * (1 - waste);
+      const targetRevenue = produced * boxCost * (1 + markup);
+      const boxPrice = sellableBoxes > 0 ? targetRevenue / sellableBoxes : 0;
+
+      priceOut.textContent = dollar.format(price);
+      variableOut.textContent = dollar.format(variable);
+      fixedOut.textContent = dollar.format(fixed);
+      producedOut.textContent = produced;
+      wasteOut.textContent = `${Math.round(waste * 100)}%`;
+      markupOut.textContent = `${Math.round(markup * 100)}%`;
+
+      document.getElementById("contribution").textContent = dollar.format(contribution);
+      document.getElementById("breakEven").textContent = Number.isFinite(breakEven) ? breakEven : "N/A";
+      document.getElementById("boxPrice").textContent = dollar2.format(boxPrice);
+
+      const maxGuests = 260;
+      const x = Math.min(650, 56 + (Math.min(breakEven, maxGuests) / maxGuests) * 594);
+      const y = Math.max(56, 310 - (Math.min(breakEven, maxGuests) / maxGuests) * 238);
+      document.getElementById("breakDot").setAttribute("cx", x);
+      document.getElementById("breakDot").setAttribute("cy", y);
+      document.getElementById("breakLabel").setAttribute("x", Math.min(x + 22, 560));
+      document.getElementById("breakLabel").setAttribute("y", y - 8);
+      document.getElementById("breakLabel").textContent = Number.isFinite(breakEven) ? `${breakEven} guests` : "No margin";
+
+      const decisionText = document.getElementById("decisionText");
+      const statusLabel = document.getElementById("statusLabel");
+      if (!Number.isFinite(breakEven)) {
+        statusLabel.textContent = "Warning";
+        decisionText.textContent = "Variable cost is at or above ticket price, so each guest loses money before fixed costs are even considered.";
+      } else if (breakEven <= 150) {
+        statusLabel.textContent = "Lower risk";
+        decisionText.textContent = "This model gives Anchor & Oak more room. The event can break even with a smaller audience.";
+      } else if (breakEven <= 190) {
+        statusLabel.textContent = "Middle zone";
+        decisionText.textContent = "This event can work, but attendance matters. A small price or cost change can shift the risk.";
+      } else {
+        statusLabel.textContent = "Higher risk";
+        decisionText.textContent = "The event needs a large audience to break even. Revisit price, variable cost, or fixed cost.";
+      }
+    }
+
+    Object.values(inputs).forEach((input) => input.addEventListener("input", update));
+    update();
+  </script>
+</body>
+</html>

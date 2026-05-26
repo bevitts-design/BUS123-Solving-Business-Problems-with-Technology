@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BUS123 · M03 · L01 — Discounts: Trade and Cash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome everyone. Today we're diving into discounts — specifically trade discounts and cash discounts. These are two of the most common pricing tools in business, and understanding how they work is essential whether you're on the buying side or the selling side.",
+    "Here's what we're covering today: first, we'll unpack trade discounts and how businesses use them to set prices for different buyers. Then we'll look at chain discounts — multiple discounts stacked together. Finally, we'll cover cash discounts and payment terms like 2/10 net 30. By the end, you'll be able to calculate all of these in Excel.",
+    "By the end of class today, you should be able to do all four of these things. We'll practice each one with real examples from Tidal Goods Co., a surf and outdoor retail company.",
+    "Last class we worked with percentages — converting between decimals and percents, calculating percentage change, and finding amounts from percentages. All of that is the foundation for what we're doing today. Discounts are just percentages applied to prices.",
+    "Part 1. Let's start with trade discounts. These are the bread and butter of wholesale pricing.",
+    "So what is a trade discount? When a manufacturer or wholesaler publishes a list price, they don't expect every buyer to pay that full amount. Different buyers get different discounts based on the volume they order, their role in the supply chain, or their relationship with the seller. A retailer might get 30% off list. A large chain might get 40%. The price after the discount is called the net price.",
+    "Here's the key relationship. The net price equals the list price times the complement of the discount rate. The complement is just 1 minus the discount rate. If the discount is 25%, the complement is 0.75 — meaning the buyer pays 75% of the list price. This is the single most important formula today.",
+    "Let's see this in action at Tidal Goods Co. They're ordering wetsuits from a supplier. The list price is $189.99 per wetsuit, and Tidal Goods gets a 30% trade discount because they're a retail partner. In Excel, the formula would look like this. The net price comes out to $132.99 per unit. That 30% discount saved them $57.00 on each wetsuit.",
+    "Common mistake alert. Students often calculate the discount amount and then forget to subtract it. Or they multiply by the discount rate instead of the complement. If you multiply $189.99 by 0.30, you get the discount amount — $57.00. That's not the net price! The net price is what you actually pay. Always multiply by the complement.",
+    "Part 2. Now let's look at what happens when you stack multiple discounts together — chain discounts.",
+    "Chain discounts are when a supplier offers multiple successive discounts. Maybe 25% off list, then an additional 10% off, then another 5% off. Each discount applies to the result of the previous one — not to the original list price. This is where students sometimes get tripped up.",
+    "To find the net price with chain discounts, you multiply the list price by the complement of each discount. So if you have discounts of 25%, 10%, and 5%, you multiply by 0.75, then 0.90, then 0.95. You can do this in one formula. The key thing to understand: a chain of 25/10/5 is NOT the same as a single 40% discount.",
+    "Here's a Tidal Goods example. They're ordering surfboard fins with a list price of $64.00 per set. The supplier offers a 20/10/5 chain discount. Watch what happens — we multiply by 0.80, then 0.90, then 0.95 to get $43.78. If we had just taken a single 35% discount, we'd get $41.60. The chain discount actually results in a smaller total discount than simply adding the individual rates.",
+    "Why? Because each subsequent discount is applied to a smaller base. The 10% isn't taken off the original $64 — it's taken off $51.20, which is already reduced. And the 5% is taken off $46.08, which is even smaller. Each discount compounds on the reduced price.",
+    "Part 3. Now let's shift from trade discounts to cash discounts. These are about when you pay, not what you pay.",
+    "Cash discounts are incentives for paying invoices early. You'll see them written in shorthand like 2/10 net 30. This means: take 2% off the invoice if you pay within 10 days, otherwise the full amount is due in 30 days. The first number is the discount percentage. The second is the discount period in days. The last is the total credit period.",
+    "Let's put this in context. Tidal Goods receives an invoice for $4,200.00 from their wetsuit supplier. The terms are 2/10 net 30. If Tidal Goods pays within 10 days, they get 2% off. In Excel, the discounted payment is $4,116.00. That's an $84 savings just for paying 20 days early. Doesn't sound like much? We'll see why it really adds up.",
+    "Here's a question to think about: what's the annualized cost of NOT taking the cash discount? You're essentially paying $84 to use $4,116 for an extra 20 days. That works out to roughly 37% annually. So not taking cash discounts is like borrowing money at 37% interest. Almost always a bad deal.",
+    "Let's open the workbook and practice. You'll work through trade discounts, chain discounts, and cash discounts using Tidal Goods inventory data. Yellow cells are where you enter your work. Check the FormulaReferenceCard tab if you need a quick refresher on any formula.",
+    "Let's review what we covered. One: trade discounts convert list prices to net prices using the complement. Two: chain discounts multiply complements sequentially — never add the rates. Three: cash discounts reward early payment and have a surprisingly high annualized cost when skipped. Next class, we'll build on this with markup and markdown calculations.",
+    "Questions? My office hours are posted on Canvas. Feel free to email me or stop by."
+  ]
+  </script>
+
+  <style>
+    :root {
+      --ink:       #0E1116;
+      --paper:     #FAF8F3;
+      --paper-2:   #F2EEE5;
+      --white:     #FFFFFF;
+      --text:      #1A1F2C;
+      --text-soft: #4A5567;
+      --muted:     #7A8290;
+      --border:    #E5E1D6;
+      --sage:      #4A7C5E;
+      --gold:      #B8843D;
+      --terra:     #9C4A2B;
+      --steel:     #355773;
+      --accent:    var(--sage);
+      --gradient:  linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+      --font-display: 'Instrument Serif', serif;
+      --font-body:    'Geist', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --scale: 1;
+      --type-display:  calc(112px * var(--scale));
+      --type-title:    calc(72px  * var(--scale));
+      --type-subtitle: calc(44px  * var(--scale));
+      --type-lead:     calc(34px  * var(--scale));
+      --type-body:     calc(28px  * var(--scale));
+      --type-small:    calc(24px  * var(--scale));
+      --type-eyebrow:  calc(24px  * var(--scale));
+      --type-mono:     calc(24px  * var(--scale));
+      --type-stat:     calc(220px * var(--scale));
+
+      --pad-x:      128px;
+      --pad-top:     104px;
+      --pad-bottom:  96px;
+      --gap-title:   56px;
+      --gap-item:    32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #111; overflow: hidden; }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      flex-direction: column;
+    }
+    .slide.dark  { background: var(--ink);   color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text);  }
+
+    .gradient-bar {
+      height: 6px;
+      background: var(--gradient);
+      width: 100%;
+    }
+
+    .slide-pad {
+      padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .dark .eyebrow { color: var(--sage); }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: var(--type-display);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: var(--type-title);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: var(--gap-title);
+    }
+    .cream h2 { color: var(--text); }
+    .cream h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      margin-top: 16px;
+    }
+
+    .subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .dark .subtitle { color: rgba(255,255,255,0.5); }
+
+    p, li {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      line-height: 1.6;
+    }
+
+    .lead {
+      font-family: var(--font-body);
+      font-size: var(--type-lead);
+      line-height: 1.5;
+      color: var(--text-soft);
+    }
+    .dark .lead { color: rgba(255,255,255,0.7); }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+    }
+
+    .numbered {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: var(--gap-item);
+    }
+    .numbered .n {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      flex-shrink: 0;
+      width: 56px;
+    }
+    .numbered .n-body {
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      line-height: 1.5;
+    }
+    .dark .numbered .n { color: var(--sage); }
+    .dark .numbered .n-body { color: rgba(255,255,255,0.85); }
+
+    .dark-panel {
+      background: var(--ink);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      border-radius: 10px;
+      padding: 24px 32px;
+      line-height: 1.7;
+    }
+    .cream .dark-panel { border: 1px solid var(--border); }
+
+    .dark-panel .fn { color: #8BC6A0; }
+    .dark-panel .comment { color: var(--muted); }
+    .dark-panel .result { color: #E2E8F0; }
+
+    .section-number {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: calc(180px * var(--scale));
+      color: rgba(255,255,255,0.08);
+      position: absolute;
+      right: var(--pad-x);
+      bottom: var(--pad-bottom);
+    }
+
+    .mistake-panel {
+      background: rgba(156, 74, 43, 0.12);
+      border: 2px solid var(--terra);
+      border-radius: 14px;
+      padding: 40px 48px;
+    }
+    .mistake-panel .mistake-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      font-weight: 500;
+      color: var(--terra);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .mistake-panel h3 {
+      font-family: var(--font-display);
+      font-size: var(--type-subtitle);
+      font-weight: 400;
+      color: var(--terra);
+      margin-bottom: 20px;
+    }
+    .mistake-panel p {
+      font-size: var(--type-body);
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      font-weight: 500;
+      background: rgba(74, 124, 94, 0.1);
+      color: var(--accent);
+      padding: 10px 24px;
+      border-radius: 100px;
+      border: 1px solid rgba(74, 124, 94, 0.2);
+    }
+
+    /* Excel worksheet demo */
+    .excel-demo {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #c9a84c;
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+    }
+    .excel-demo .formula-bar {
+      background: #f1f5f9;
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: calc(22px * var(--scale));
+      color: var(--text);
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .excel-demo .formula-bar .cell-ref {
+      font-weight: 500;
+      color: var(--text);
+      background: var(--white);
+      padding: 4px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+    }
+    .excel-demo table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+    .excel-demo th {
+      background: #1a1a2e;
+      color: var(--white);
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: calc(22px * var(--scale));
+      text-align: left;
+    }
+    .excel-demo td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: var(--type-small);
+    }
+    .excel-demo tr:nth-child(even) td { background: #f7f8fa; }
+    .excel-demo .row-num {
+      color: var(--gold);
+      font-weight: 600;
+      width: 48px;
+      text-align: center;
+      border-right: 1px solid #e2e8f0;
+    }
+    .excel-demo .input-val { color: #0a3d6b; font-weight: 500; }
+    .excel-demo .formula-val { color: #1a6b3c; font-family: var(--font-mono); font-size: calc(21px * var(--scale)); }
+    .excel-demo .result-row td {
+      background: #fffbf0 !important;
+      border-left: 3px solid var(--gold);
+      font-weight: 600;
+    }
+
+    .two-col {
+      display: flex;
+      gap: 48px;
+      flex: 1;
+    }
+    .two-col > * { flex: 1; }
+
+    .stat-big {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: calc(96px * var(--scale));
+      color: var(--accent);
+      line-height: 1;
+    }
+    .dark .stat-big { color: var(--sage); }
+  </style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080" no-rail>
+
+    <!-- SLIDE 1 · Title -->
+    <section class="slide dark" data-label="01 Title">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="eyebrow">BUS123 · MATH M03 · L01</div>
+        <h1>Discounts: Trade<br>and Cash</h1>
+        <div class="subtitle">Solving Business Problems with Technology</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 · Agenda -->
+    <section class="slide cream" data-label="02 Agenda">
+      <div class="slide-pad">
+        <h2>Today's Agenda</h2>
+        <div style="display:flex; flex-direction:column; gap:var(--gap-item); margin-top:16px;">
+          <div class="numbered"><div class="n">01</div><div class="n-body">Trade Discounts — list price, net price, and the complement</div></div>
+          <div class="numbered"><div class="n">02</div><div class="n-body">Chain Discounts — stacking multiple discounts</div></div>
+          <div class="numbered"><div class="n">03</div><div class="n-body">Cash Discounts — payment terms and early-pay incentives</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 · Learning Objectives -->
+    <section class="slide cream" data-label="03 Learning Objectives">
+      <div class="slide-pad">
+        <div class="eyebrow">Learning Objectives</div>
+        <h2>I Can…</h2>
+        <div style="display:flex; flex-direction:column; gap:var(--gap-item);">
+          <div class="numbered"><div class="n">01</div><div class="n-body">Calculate a net price from a list price and a single trade discount</div></div>
+          <div class="numbered"><div class="n">02</div><div class="n-body">Apply chain discounts to find the final net price</div></div>
+          <div class="numbered"><div class="n">03</div><div class="n-body">Interpret cash discount terms (e.g., 2/10 net 30) and calculate the discounted payment</div></div>
+          <div class="numbered"><div class="n">04</div><div class="n-body">Use Excel formulas to compute trade, chain, and cash discounts</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 · Recap / Bridge -->
+    <section class="slide cream" data-label="04 Recap">
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <div class="eyebrow">Previously</div>
+            <h2 style="margin-bottom:24px;">Percentages Are the Foundation</h2>
+            <p class="lead">Last class we converted between decimals and percents, found percentage change, and calculated amounts from percentages. Today we put those skills to work on real pricing problems.</p>
+          </div>
+          <image-slot id="slide-4-img" placeholder="Drop image: percentage chart or calculator" style="width:100%; height:480px; border-radius:18px;"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5 · Section Break 1 -->
+    <section class="slide dark" data-label="05 Part 1">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="eyebrow">Part 1 of 3</div>
+        <h1 style="font-size:var(--type-title);">Trade Discounts</h1>
+        <div class="subtitle">From list price to net price</div>
+      </div>
+      <div class="section-number">1</div>
+    </section>
+
+    <!-- SLIDE 6 · What Is a Trade Discount -->
+    <section class="slide cream" data-label="06 What Is a Trade Discount">
+      <div class="slide-pad">
+        <h2>What Is a Trade Discount?</h2>
+        <div class="two-col">
+          <div>
+            <p class="lead" style="margin-bottom:32px;">A reduction from the list price offered to buyers in the supply chain — retailers, wholesalers, or preferred accounts.</p>
+            <div class="pill-row">
+              <div class="pill">Volume-based</div>
+              <div class="pill">Role-based</div>
+              <div class="pill">Relationship-based</div>
+            </div>
+          </div>
+          <div class="card">
+            <p style="font-size:var(--type-body); margin-bottom:20px;"><strong>Key terms</strong></p>
+            <p style="margin-bottom:12px;"><strong style="color:var(--accent);">List Price</strong> — the published catalog price</p>
+            <p style="margin-bottom:12px;"><strong style="color:var(--accent);">Discount Rate</strong> — the percentage off list</p>
+            <p><strong style="color:var(--accent);">Net Price</strong> — what the buyer actually pays</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7 · The Core Formula -->
+    <section class="slide cream" data-label="07 Core Formula">
+      <div class="slide-pad">
+        <h2>The Core Formula</h2>
+        <div style="margin-bottom:40px;">
+          <div class="dark-panel" style="font-size:calc(32px * var(--scale)); text-align:center; padding:36px;">
+            <span class="fn">=</span> List_Price <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> Discount_Rate<span class="fn">)</span>
+          </div>
+        </div>
+        <div class="card" style="max-width:1200px;">
+          <p style="font-size:var(--type-body); margin-bottom:16px;"><strong>The complement</strong> is (1 − discount rate). It represents the portion of list price the buyer pays.</p>
+          <p style="font-size:var(--type-body);">A 25% discount → complement of 0.75 → buyer pays 75% of list price.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8 · Worked Example: Tidal Goods Wetsuits -->
+    <section class="slide cream" data-label="08 Worked Example Trade">
+      <div class="slide-pad">
+        <div class="eyebrow">Tidal Goods Co.</div>
+        <h2>Trade Discount: Wetsuits</h2>
+        <div style="margin-bottom:32px;">
+          <div class="dark-panel">
+            <span class="fn">=</span> 189.99 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.30<span class="fn">)</span> <span class="comment">→ Net Price</span><br>
+            <span class="fn">=</span> 189.99 <span class="fn">*</span> 0.70<br>
+            <span class="result">= $132.99</span>
+          </div>
+        </div>
+        <div class="excel-demo">
+          <div class="formula-bar"><span class="cell-ref">C2</span> =B2*(1-C1)</div>
+          <table>
+            <tr><th style="width:48px;"></th><th>A</th><th>B</th><th>C</th></tr>
+            <tr><td class="row-num">1</td><td>Item</td><td class="input-val">List Price</td><td class="input-val">Discount Rate: 30%</td></tr>
+            <tr class="result-row"><td class="row-num">2</td><td>Wetsuit</td><td class="input-val">$189.99</td><td class="formula-val">$132.99</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9 · Common Mistake -->
+    <section class="slide cream" data-label="09 Common Mistake">
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="mistake-panel">
+          <div class="mistake-label">⚠ Common Mistake</div>
+          <h3>Multiplying by the Discount Rate Instead of the Complement</h3>
+          <p style="margin-bottom:20px;"><strong style="color:var(--terra);">Wrong:</strong> $189.99 × 0.30 = $57.00 — this is the discount <em>amount</em>, not the net price.</p>
+          <p><strong style="color:var(--sage);">Right:</strong> $189.99 × (1 − 0.30) = $189.99 × 0.70 = <strong>$132.99</strong> — this is the net price.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10 · Section Break 2 -->
+    <section class="slide dark" data-label="10 Part 2">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="eyebrow">Part 2 of 3</div>
+        <h1 style="font-size:var(--type-title);">Chain Discounts</h1>
+        <div class="subtitle">Stacking multiple discounts</div>
+      </div>
+      <div class="section-number">2</div>
+    </section>
+
+    <!-- SLIDE 11 · What Are Chain Discounts -->
+    <section class="slide cream" data-label="11 What Are Chain Discounts">
+      <div class="slide-pad">
+        <h2>What Are Chain Discounts?</h2>
+        <p class="lead" style="margin-bottom:40px;">Multiple successive discounts applied one after another. Each discount is applied to the result of the previous discount — not to the original list price.</p>
+        <div class="card">
+          <p style="font-size:var(--type-body);"><strong>Example notation:</strong> &ensp;"20/10/5" means a 20% discount, then 10%, then 5% — applied in sequence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12 · Chain Discount Formula -->
+    <section class="slide cream" data-label="12 Chain Formula">
+      <div class="slide-pad">
+        <h2>Chain Discount Formula</h2>
+        <div style="margin-bottom:40px;">
+          <div class="dark-panel" style="font-size:calc(30px * var(--scale)); text-align:center; padding:36px;">
+            <span class="fn">=</span> List_Price <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d1<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d2<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d3<span class="fn">)</span>
+          </div>
+        </div>
+        <div class="card">
+          <p style="font-size:var(--type-body);">Multiply the complements together. For 20/10/5: &ensp;0.80 × 0.90 × 0.95 = 0.684</p>
+          <p style="font-size:var(--type-body); margin-top:12px;">This means the buyer pays 68.4% of list — <strong>not</strong> 65% (which is what you'd get by adding 20+10+5).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13 · Worked Example: Tidal Goods Fins -->
+    <section class="slide cream" data-label="13 Worked Example Chain">
+      <div class="slide-pad">
+        <div class="eyebrow">Tidal Goods Co.</div>
+        <h2>Chain Discount: Surfboard Fins</h2>
+        <div style="margin-bottom:32px;">
+          <div class="dark-panel">
+            <span class="fn">=</span> 64.00 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.20<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.10<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.05<span class="fn">)</span><br>
+            <span class="fn">=</span> 64.00 <span class="fn">*</span> 0.80 <span class="fn">*</span> 0.90 <span class="fn">*</span> 0.95<br>
+            <span class="result">= $43.78</span>
+          </div>
+        </div>
+        <div class="excel-demo">
+          <div class="formula-bar"><span class="cell-ref">E2</span> =B2*(1-C2)*(1-D2)*(1-E1)</div>
+          <table>
+            <tr><th style="width:48px;"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
+            <tr><td class="row-num">1</td><td>Item</td><td>List Price</td><td>d1</td><td>d2</td><td class="input-val">d3: 5%</td></tr>
+            <tr class="result-row"><td class="row-num">2</td><td>Fin Set</td><td class="input-val">$64.00</td><td class="input-val">20%</td><td class="input-val">10%</td><td class="formula-val">$43.78</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14 · Why Chain ≠ Sum -->
+    <section class="slide cream" data-label="14 Chain vs Sum">
+      <div class="slide-pad">
+        <h2>Why Adding Rates Doesn't Work</h2>
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <p class="lead" style="margin-bottom:32px;">Each subsequent discount applies to an already-reduced price, not the original list price.</p>
+            <div class="card">
+              <p style="font-size:var(--type-body); margin-bottom:12px;"><strong style="color:var(--terra);">Adding rates:</strong> 20+10+5 = 35% → $64 × 0.65 = $41.60</p>
+              <p style="font-size:var(--type-body);"><strong style="color:var(--sage);">Chain method:</strong> 0.80 × 0.90 × 0.95 = 0.684 → $64 × 0.684 = <strong>$43.78</strong></p>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <div class="stat-big">$2.18</div>
+            <p class="lead" style="margin-top:16px;">difference per unit</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15 · Section Break 3 -->
+    <section class="slide dark" data-label="15 Part 3">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="eyebrow">Part 3 of 3</div>
+        <h1 style="font-size:var(--type-title);">Cash Discounts</h1>
+        <div class="subtitle">Payment terms and early-pay incentives</div>
+      </div>
+      <div class="section-number">3</div>
+    </section>
+
+    <!-- SLIDE 16 · Reading Payment Terms -->
+    <section class="slide cream" data-label="16 Payment Terms">
+      <div class="slide-pad">
+        <h2>Reading Payment Terms</h2>
+        <div style="text-align:center; margin-bottom:40px;">
+          <div class="dark-panel" style="display:inline-block; font-size:calc(48px * var(--scale)); padding:32px 64px;">
+            2/10 <span style="color:var(--muted);">net</span> 30
+          </div>
+        </div>
+        <div style="display:flex; gap:32px; justify-content:center;">
+          <div class="card" style="text-align:center; flex:0 1 400px;">
+            <p style="font-size:var(--type-lead); color:var(--accent); font-weight:600; margin-bottom:8px;">2%</p>
+            <p style="font-size:var(--type-body);">Discount rate</p>
+          </div>
+          <div class="card" style="text-align:center; flex:0 1 400px;">
+            <p style="font-size:var(--type-lead); color:var(--accent); font-weight:600; margin-bottom:8px;">10 days</p>
+            <p style="font-size:var(--type-body);">Discount window</p>
+          </div>
+          <div class="card" style="text-align:center; flex:0 1 400px;">
+            <p style="font-size:var(--type-lead); color:var(--accent); font-weight:600; margin-bottom:8px;">30 days</p>
+            <p style="font-size:var(--type-body);">Full payment due</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17 · Cash Discount Worked Example -->
+    <section class="slide cream" data-label="17 Cash Discount Example">
+      <div class="slide-pad">
+        <div class="eyebrow">Tidal Goods Co.</div>
+        <h2>Cash Discount Calculation</h2>
+        <div style="margin-bottom:32px;">
+          <div class="dark-panel">
+            <span class="comment">Invoice: $4,200.00 · Terms: 2/10 net 30</span><br>
+            <span class="fn">=</span> 4200 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.02<span class="fn">)</span> <span class="comment">→ Pay within 10 days</span><br>
+            <span class="fn">=</span> 4200 <span class="fn">*</span> 0.98<br>
+            <span class="result">= $4,116.00</span> <span class="comment">→ savings of $84.00</span>
+          </div>
+        </div>
+        <div class="excel-demo">
+          <div class="formula-bar"><span class="cell-ref">C3</span> =B3*(1-C1)</div>
+          <table>
+            <tr><th style="width:48px;"></th><th>A</th><th>B</th><th>C</th></tr>
+            <tr><td class="row-num">1</td><td>Terms</td><td>Invoice Amount</td><td class="input-val">Cash Disc: 2%</td></tr>
+            <tr><td class="row-num">2</td><td>Disc Window</td><td class="input-val">10 days</td><td>Full Due: 30 days</td></tr>
+            <tr class="result-row"><td class="row-num">3</td><td>2/10 net 30</td><td class="input-val">$4,200.00</td><td class="formula-val">$4,116.00</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18 · Annualized Cost -->
+    <section class="slide dark" data-label="18 Annualized Cost">
+      <div class="slide-pad" style="justify-content:center; align-items:center; text-align:center;">
+        <div class="eyebrow">Think About It</div>
+        <div class="stat-big" style="font-size:calc(160px * var(--scale)); margin-bottom:24px;">~37%</div>
+        <p class="lead" style="max-width:1200px; margin:0 auto;">The annualized cost of <em>not</em> taking a 2/10 net 30 cash discount. Skipping early payment is like borrowing at 37% interest.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 19 · Discussion -->
+    <section class="slide cream" data-label="19 Discussion">
+      <div class="slide-pad" style="justify-content:center;">
+        <h2>Discussion</h2>
+        <div style="display:flex; flex-direction:column; gap:48px;">
+          <div class="card">
+            <p style="font-size:var(--type-lead);">A supplier offers Tidal Goods terms of "20/10" or "28" on the same list price. Which should they choose — and why?</p>
+          </div>
+          <div class="card">
+            <p style="font-size:var(--type-lead);">Under what circumstances might a business skip a cash discount even though the annualized cost is high?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20 · Practice -->
+    <section class="slide cream" data-label="20 Practice">
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="eyebrow">Hands-On</div>
+        <h2>Open the Workbook</h2>
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <p class="lead" style="margin-bottom:32px;">Work through trade discounts, chain discounts, and cash discounts using Tidal Goods inventory data.</p>
+            <div class="numbered"><div class="n">01</div><div class="n-body">Yellow cells = your input</div></div>
+            <div class="numbered"><div class="n">02</div><div class="n-body">Check your answers against the green/red feedback</div></div>
+            <div class="numbered"><div class="n">03</div><div class="n-body">Use the FormulaReferenceCard tab if you get stuck</div></div>
+          </div>
+          <image-slot id="slide-20-img" placeholder="Drop image: screenshot of workbook" style="width:100%; height:400px; border-radius:18px;"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21 · Key Takeaways -->
+    <section class="slide cream" data-label="21 Key Takeaways">
+      <div class="slide-pad">
+        <h2>Key Takeaways</h2>
+        <div style="display:flex; flex-direction:column; gap:var(--gap-item); margin-top:16px;">
+          <div class="numbered"><div class="n">01</div><div class="n-body">Trade discounts use the <strong>complement</strong> (1 − rate) to convert list price → net price</div></div>
+          <div class="numbered"><div class="n">02</div><div class="n-body">Chain discounts multiply complements <strong>sequentially</strong> — never add the rates together</div></div>
+          <div class="numbered"><div class="n">03</div><div class="n-body">Cash discounts reward early payment — skipping them has a <strong>high annualized cost</strong></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22 · Up Next -->
+    <section class="slide cream" data-label="22 Up Next">
+      <div class="slide-pad" style="justify-content:center;">
+        <div class="two-col" style="align-items:center;">
+          <div>
+            <div class="eyebrow">Up Next</div>
+            <h2 style="margin-bottom:24px;">Markup &amp; Markdown</h2>
+            <p class="lead">How businesses set selling prices above cost and adjust them downward when needed.</p>
+          </div>
+          <image-slot id="slide-22-img" placeholder="Drop image: price tags or retail display" style="width:100%; height:480px; border-radius:18px;"></image-slot>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23 · Close -->
+    <section class="slide dark" data-label="23 Close">
+      <div class="gradient-bar"></div>
+      <div class="slide-pad" style="justify-content:center; align-items:center; text-align:center;">
+        <h1 style="font-size:var(--type-title); margin-bottom:24px;">Questions?</h1>
+        <p class="lead">Office hours and contact info on Canvas</p>
+      </div>
+    </section>
+
+  </deck-stage>
+
+  <script>
+  /* deck-stage — NO Shadow DOM, direct DOM management */
+  (function(){
+    if(customElements.get('deck-stage')) return;
+    class DeckStage extends HTMLElement {
+      connectedCallback(){
+        if(this._ready) return; this._ready = true;
+        const W = parseInt(this.getAttribute('width') || 1920);
+        const H = parseInt(this.getAttribute('height') || 1080);
+        this._slides = [...this.querySelectorAll('.slide')];
+        this._idx = 0;
+        this._notes = [];
+        try { const el = document.getElementById('speaker-notes');
+              if(el) this._notes = JSON.parse(el.textContent); } catch(e){}
+
+        const stage = document.createElement('div');
+        stage.style.cssText = 'position:absolute; transform-origin:top left;'
+                            + 'width:'+W+'px; height:'+H+'px;';
+        this._slides.forEach(s => {
+          s.style.position    = 'absolute';
+          s.style.top         = '0'; s.style.left = '0';
+          s.style.width       = W+'px'; s.style.height = H+'px';
+          s.style.display     = 'none';
+          s.style.flexDirection = 'column';
+          stage.appendChild(s);
+        });
+        this.appendChild(stage);
+        this._stage = stage;
+
+        this.style.cssText = 'display:block; position:fixed; top:0; left:0;'
+                           + 'width:100vw; height:100vh; overflow:hidden; background:#111;';
+
+        const ctr = document.createElement('div');
+        ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%);'
+          + 'background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;'
+          + 'padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
+        document.body.appendChild(ctr); this._ctr = ctr;
+
+        const btnStyle = 'position:fixed; bottom:20px; z-index:9999;'
+          + 'background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);'
+          + 'color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px;'
+          + 'border-radius:50%; cursor:pointer;';
+        const prev = document.createElement('button');
+        prev.innerHTML = '&#8592;'; prev.style.cssText = btnStyle + 'right:80px;';
+        prev.onclick = () => this._go(this._idx - 1);
+        document.body.appendChild(prev);
+        const next = document.createElement('button');
+        next.innerHTML = '&#8594;'; next.style.cssText = btnStyle + 'right:24px;';
+        next.onclick = () => this._go(this._idx + 1);
+        document.body.appendChild(next);
+
+        const notes = document.createElement('div');
+        notes.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%);'
+          + 'max-width:860px; width:90%; background:rgba(10,10,20,0.9); color:#e2e8f0;'
+          + 'font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px;'
+          + 'display:none; z-index:9998;';
+        document.body.appendChild(notes); this._notes_el = notes;
+
+        document.addEventListener('keydown', e => {
+          if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._go(this._idx+1); }
+          if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key))         { e.preventDefault(); this._go(this._idx-1); }
+          if(e.key==='Home'){ e.preventDefault(); this._go(0); }
+          if(e.key==='End') { e.preventDefault(); this._go(this._slides.length-1); }
+          if(e.key==='n'||e.key==='N') this._toggleNotes();
+        });
+
+        this.addEventListener('click', e => {
+          const x = e.clientX / window.innerWidth;
+          if(x < 0.33) this._go(this._idx-1);
+          else if(x > 0.67) this._go(this._idx+1);
+        });
+
+        this._scale(); this._go(0);
+        window.addEventListener('resize', () => this._scale());
+      }
+      _scale(){
+        const W = parseInt(this.getAttribute('width')||1920);
+        const H = parseInt(this.getAttribute('height')||1080);
+        const s = Math.min(window.innerWidth/W, window.innerHeight/H);
+        const ox = (window.innerWidth  - W*s) / 2;
+        const oy = (window.innerHeight - H*s) / 2;
+        this._stage.style.transform = `translate(${ox}px,${oy}px) scale(${s})`;
+      }
+      _go(n){
+        n = Math.max(0, Math.min(n, this._slides.length-1));
+        if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
+        this._idx = n;
+        if(this._slides[this._idx]) this._slides[this._idx].style.display = 'flex';
+        this._ctr.textContent = (n+1)+' / '+this._slides.length;
+        if(this._notes_el.style.display==='block' && this._notes[n])
+          this._notes_el.textContent = this._notes[n];
+      }
+      _toggleNotes(){
+        this._notes_el.style.display = this._notes_el.style.display==='block'?'none':'block';
+        if(this._notes_el.style.display==='block' && this._notes[this._idx])
+          this._notes_el.textContent = this._notes[this._idx];
+      }
+    }
+    customElements.define('deck-stage', DeckStage);
+  })();
+  </script>
+
+  <script>
+  /* image-slot — click to replace placeholder with a local image file */
+  (function(){
+    if(customElements.get('image-slot')) return;
+    class ImageSlot extends HTMLElement {
+      connectedCallback(){
+        if(this._init) return; this._init = true;
+        const ph = this.getAttribute('placeholder') || 'Drop image here';
+        Object.assign(this.style, {
+          display:'flex', alignItems:'center', justifyContent:'center',
+          borderRadius:'12px', border:'2px dashed rgba(0,0,0,0.12)',
+          background:'rgba(0,0,0,0.03)', color:'rgba(0,0,0,0.3)',
+          fontFamily:'JetBrains Mono, monospace', fontSize:'16px',
+          textAlign:'center', padding:'16px', cursor:'pointer'
+        });
+        this.textContent = ph;
+        this.addEventListener('click', () => {
+          const inp = document.createElement('input');
+          inp.type = 'file'; inp.accept = 'image/*';
+          inp.onchange = e => {
+            const f = e.target.files[0]; if(!f) return;
+            const r = new FileReader();
+            r.onload = ev => {
+              this.style.background = `url(${ev.target.result}) center/cover no-repeat`;
+              this.style.border = 'none'; this.textContent = '';
+            };
+            r.readAsDataURL(f);
+          };
+          inp.click();
+        });
+      }
+    }
+    customElements.define('image-slot', ImageSlot);
+  })();
+  </script>
+</body>
+</html>

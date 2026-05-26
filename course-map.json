@@ -1,0 +1,163 @@
+{
+  "course": {
+    "code": "BUS123",
+    "title": "Solving Business Problems with Technology",
+    "term": "Fall 2026",
+    "currentLessonId": "math-m04-l01"
+  },
+  "tracks": [
+    { "id": "intro", "label": "Intro", "folder": "INTRO" },
+    { "id": "excel", "label": "Excel", "folder": "EXCEL" },
+    { "id": "math", "label": "Business Math", "folder": "MATH" }
+  ],
+  "lessons": [
+    {
+      "id": "intro-m01-l01",
+      "track": "intro",
+      "module": "M01",
+      "lesson": "L01",
+      "title": "Course Introduction",
+      "status": "Live",
+      "caseStudy": null,
+      "skillFocus": ["Course setup", "Digital workflow"],
+      "materials": [
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" },
+        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l01-prereading.pdf" }
+      ]
+    },
+    {
+      "id": "intro-m01-l02",
+      "track": "intro",
+      "module": "M01",
+      "lesson": "L02",
+      "title": "Technology Orientation",
+      "status": "Live",
+      "caseStudy": null,
+      "skillFocus": ["OneDrive", "Microsoft Office"],
+      "materials": [
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l02-slides.html" },
+        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l02-prereading.pdf" }
+      ]
+    },
+    {
+      "id": "intro-m01-l03",
+      "track": "intro",
+      "module": "M01",
+      "lesson": "L03",
+      "title": "Case Study Companies",
+      "status": "Live",
+      "caseStudy": "Course case companies",
+      "skillFocus": ["Business context", "Case study navigation"],
+      "materials": [
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l03-slides.html" },
+        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l03-prereading.pdf" },
+        { "type": "Company Profiles", "path": "INTRO/M01/bus123-intro-m01-company-profiles.html" }
+      ]
+    },
+    {
+      "id": "excel-m01-l01",
+      "track": "excel",
+      "module": "M01",
+      "lesson": "L01",
+      "title": "Creating and Editing Worksheets",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Workbook setup", "Worksheet editing"],
+      "materials": [
+        { "type": "Slides", "path": "EXCEL/M01/bus123-excel-m01-l01-slides.html" },
+        { "type": "Reading", "path": "EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf" },
+        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l01-starter.xlsx" },
+        { "type": "Interactive Practice", "path": "EXCEL/M01/bus123-excel-m01-l01-interactive.html" }
+      ]
+    },
+    {
+      "id": "excel-m01-l02",
+      "track": "excel",
+      "module": "M01",
+      "lesson": "L02",
+      "title": "Formulas and Functions",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Formulas", "Cell references"],
+      "materials": [
+        { "type": "Slides", "path": "EXCEL/M01/bus123-excel-m01-l02-slides.html" },
+        { "type": "Reading", "path": "EXCEL/M01/bus123-excel-m01-l02-pre-reading.pdf" },
+        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "excel-m03-l01",
+      "track": "excel",
+      "module": "M03",
+      "lesson": "L01",
+      "title": "Charts and Data Visualization",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Charts", "Data visualization"],
+      "materials": [
+        { "type": "Slides", "path": "EXCEL/M03/bus123-excel-m03-l01-slides.html" },
+        { "type": "Starter Workbook", "path": "EXCEL/M03/bus123-excel-m03-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m01-l01",
+      "track": "math",
+      "module": "M01",
+      "lesson": "L01",
+      "title": "Basic Math: Whole Numbers, Fractions, and Percents",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Percents", "Fractions", "Excel arithmetic"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M01/bus123-math-m01-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M01/bus123-math-m01-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M01/bus123-math-m01-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m02-l01",
+      "track": "math",
+      "module": "M02",
+      "lesson": "L01",
+      "title": "Solving Equations",
+      "status": "Live",
+      "caseStudy": "Meridian Advisory Group",
+      "skillFocus": ["Equations", "Algebra in Excel"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M02/bus123-math-m02-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M02/bus123-math-m02-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M02/bus123-math-m02-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m03-l01",
+      "track": "math",
+      "module": "M03",
+      "lesson": "L01",
+      "title": "Discounts: Trade and Cash",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Trade discounts", "Cash discounts", "Payment terms"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M03/bus123-math-m03-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M03/bus123-math-m03-l01-pre-reading.pdf" }
+      ]
+    },
+    {
+      "id": "math-m04-l01",
+      "track": "math",
+      "module": "M04",
+      "lesson": "L01",
+      "title": "Markups, Markdowns, and Break-Even",
+      "status": "Current",
+      "caseStudy": "Anchor & Oak Events",
+      "skillFocus": ["Markup", "Markdown", "Perishables", "Break-even"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M04/bus123-math-m04-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M04/bus123-math-m04-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M04/bus123-math-m04-l01-starter.xlsx" },
+        { "type": "Interactive Practice", "path": "MATH/M04/bus123-math-m04-l01-interactive.html" }
+      ]
+    }
+  ]
+}

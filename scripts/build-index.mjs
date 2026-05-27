@@ -73,6 +73,7 @@ const html = `<!DOCTYPE html>
       </a>
       <nav class="nav" aria-label="Course sections">
         ${data.tracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
+        ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Canvas</a>` : ""}
       </nav>
     </div>
   </header>

@@ -168,6 +168,7 @@
       "skillFocus": ["Payroll cycles", "Overtime", "Payroll mix", "Straight-line depreciation"],
       "materials": [
         { "type": "Slides", "path": "MATH/M05/bus123-math-m05-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M05/bus123-math-m05-l01-prereading.pdf" },
         { "type": "Interactive Practice", "path": "MATH/M05/bus123-math-m05-l01-interactive.html" }
       ]
     }

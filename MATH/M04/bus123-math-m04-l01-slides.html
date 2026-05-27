@@ -240,6 +240,117 @@
       color: var(--text-soft);
       max-width: 250px;
     }
+    .retail-terms-slide {
+      background: var(--paper);
+      color: var(--text);
+    }
+    .retail-terms-slide .slide-pad {
+      padding-top: 76px;
+      padding-bottom: 70px;
+    }
+    .retail-terms-slide h1 {
+      margin-bottom: 34px;
+      font-size: 70px;
+    }
+    .retail-terms-list {
+      display: grid;
+      gap: 17px;
+    }
+    .retail-term-row {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 26px;
+      align-items: center;
+      min-height: 128px;
+      padding: 22px 30px;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .retail-term-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      background: var(--sage);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .retail-term-row p {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.32;
+      color: var(--text);
+    }
+    .retail-term-row strong {
+      font-weight: 700;
+    }
+    .be-terms-slide {
+      background: var(--paper);
+      color: var(--text);
+    }
+    .be-terms-slide .terms-header {
+      position: relative;
+      background: var(--ink);
+      color: var(--white);
+      padding: 62px var(--pad-x) 54px;
+      flex: 0 0 auto;
+    }
+    .be-terms-slide .terms-header .gradient-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .be-terms-slide .eyebrow {
+      margin: 0 0 18px;
+    }
+    .be-terms-slide h1 {
+      margin: 0;
+      color: var(--white);
+      font-size: 70px;
+    }
+    .terms-list {
+      display: grid;
+      gap: 18px;
+      padding: 42px var(--pad-x) 0;
+    }
+    .term-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 28px;
+      align-items: start;
+      min-height: 108px;
+      padding: 24px 30px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .term-row:nth-child(even) {
+      background: var(--paper-2);
+    }
+    .term-label {
+      color: var(--sage);
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .term-row p {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.32;
+      color: var(--text);
+    }
+    .term-row strong {
+      font-weight: 700;
+    }
     .sensitivity {
       width: 100%;
       display: grid;
@@ -393,7 +504,36 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="06 Bases">
+        <section class="slide retail-terms-slide" data-label="06 Terminology">
+          <div class="slide-pad">
+            <div class="eyebrow">BUS 123 &middot; M04 &middot; L01</div>
+            <h1>Terminology</h1>
+            <div class="retail-terms-list">
+              <div class="retail-term-row">
+                <div class="retail-term-icon">SP</div>
+                <p><strong>Selling price.</strong> The price retailers charge consumers.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">C</div>
+                <p><strong>Cost.</strong> The price retailers pay to a manufacturer or supplier to bring the goods into the store.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">GP</div>
+                <p><strong>Markup, margin, or gross profit.</strong> The difference between the cost of bringing the goods into the store and the selling price of the goods.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">OE</div>
+                <p><strong>Operating expenses or overhead.</strong> The regular expenses of doing business, such as rent, wages, utilities, insurance, and advertising.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">NI</div>
+                <p><strong>Net profit or net income.</strong> The profit remaining after subtracting the cost of bringing the goods into the store and the operating expenses from the sale of the goods, including any returns or adjustments.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="07 Bases">
           
           <div class="slide-pad">
             <div class="eyebrow">Markup</div>
@@ -408,7 +548,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="07 Formula">
+        <section class="slide cream" data-label="08 Formula">
           
           <div class="slide-pad">
             <div class="eyebrow">Excel First</div>
@@ -423,7 +563,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="08 Mistake">
+        <section class="slide cream" data-label="09 Mistake">
           
           <div class="slide-pad">
             <div class="eyebrow">Common Mistake</div>
@@ -438,7 +578,7 @@
           </div>
         </section>
         
-        <section class="slide dark" data-label="09 Part 2">
+        <section class="slide dark" data-label="10 Part 2">
           <div class="gradient-bar"></div>
           <div class="slide-pad">
             <div class="eyebrow">Part 2 of 3</div>
@@ -453,7 +593,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="10 Context">
+        <section class="slide cream" data-label="11 Context">
           
           <div class="slide-pad">
             <div class="eyebrow">Anchor &amp; Oak Events</div>
@@ -468,7 +608,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="11 Markdown">
+        <section class="slide cream" data-label="12 Markdown">
           
           <div class="slide-pad">
             <div class="eyebrow">Markdown</div>
@@ -483,7 +623,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="12 Spoilage">
+        <section class="slide cream" data-label="13 Spoilage">
           
           <div class="slide-pad">
             <div class="eyebrow">Perishables</div>
@@ -498,7 +638,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="13 Worked">
+        <section class="slide cream" data-label="14 Worked">
           
           <div class="slide-pad">
             <div class="eyebrow">Worked Example</div>
@@ -513,7 +653,7 @@
           </div>
         </section>
         
-        <section class="slide dark" data-label="14 Part 3">
+        <section class="slide dark" data-label="15 Part 3">
           <div class="gradient-bar"></div>
           <div class="slide-pad">
             <div class="eyebrow">Part 3 of 3</div>
@@ -528,7 +668,37 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="15 Equation">
+        <section class="slide be-terms-slide" data-label="16 Break-Even Terms">
+          <div class="terms-header">
+            <div class="gradient-bar"></div>
+            <div class="eyebrow">BUS123 · Break-Even</div>
+            <h1>Break-Even Analysis Terms</h1>
+          </div>
+          <div class="terms-list">
+            <div class="term-row">
+              <div class="term-label">FC</div>
+              <p><strong>Fixed costs (FC).</strong> Costs that do not change with increases or decreases in sales; they include payments for insurance, a business license, rent, a lease, utilities, labor, and so on.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">VC</div>
+              <p><strong>Variable costs (VC).</strong> Costs that do change in response to changes in the volume of sales; they include payments for material, some labor, and so on.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">S</div>
+              <p><strong>Selling price (S).</strong> In this unit we focus on manufacturers and suppliers who produce goods to sell in units.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">CM</div>
+              <p><strong>Contribution margin (CM).</strong> The difference between selling price (S) and variable costs (VC). This difference goes first to pay off total fixed costs (FC); when they are covered, profits or losses start to accumulate.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">BE</div>
+              <p><strong>Breakeven point (BE).</strong> The point at which the seller has covered all expenses and costs of a unit and has not made any profit or suffered any loss. Every unit sold after the break-even point changes profit.</p>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="17 Equation">
           
           <div class="slide-pad">
             <div class="eyebrow">Break-Even</div>
@@ -543,7 +713,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="16 Excel BE">
+        <section class="slide cream" data-label="18 Excel BE">
           
           <div class="slide-pad">
             <div class="eyebrow">Excel First</div>
@@ -558,7 +728,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="17 Stat">
+        <section class="slide cream" data-label="19 Stat">
           
           <div class="slide-pad">
             <div class="eyebrow">Pricing Sensitivity</div>
@@ -573,7 +743,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="18 Discuss">
+        <section class="slide cream" data-label="20 Discuss">
           
           <div class="slide-pad">
             <div class="eyebrow">Decision Check</div>
@@ -588,7 +758,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="19 Takeaways">
+        <section class="slide cream" data-label="21 Takeaways">
           
           <div class="slide-pad">
             <div class="eyebrow">Key Takeaways</div>
@@ -603,7 +773,7 @@
           </div>
         </section>
         
-        <section class="slide cream" data-label="20 Next">
+        <section class="slide cream" data-label="22 Next">
           
           <div class="slide-pad">
             <div class="eyebrow">Next Lesson</div>
@@ -618,7 +788,7 @@
           </div>
         </section>
         
-        <section class="slide dark" data-label="21 Close">
+        <section class="slide dark" data-label="23 Close">
           <div class="gradient-bar"></div>
           <div class="slide-pad">
             <div class="eyebrow">Questions?</div>

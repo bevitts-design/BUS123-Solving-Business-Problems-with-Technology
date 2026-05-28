@@ -4,7 +4,7 @@
     "title": "Solving Business Problems with Technology",
     "term": "Fall 2026",
     "canvasUrl": "https://endicott.instructure.com/courses/58218",
-    "currentLessonId": "math-m05-l01"
+    "currentLessonId": "math-m06-l01"
   },
   "tracks": [
     { "id": "intro", "label": "Intro", "folder": "INTRO" },
@@ -164,13 +164,42 @@
       "module": "M05",
       "lesson": "L01",
       "title": "Payroll and Depreciation",
-      "status": "Current",
+      "status": "Live",
       "caseStudy": "Harborside Medical Center",
       "skillFocus": ["Payroll cycles", "Overtime", "Payroll mix", "Straight-line depreciation"],
       "materials": [
         { "type": "Slides", "path": "MATH/M05/bus123-math-m05-l01-slides.html" },
         { "type": "Reading", "path": "MATH/M05/bus123-math-m05-l01-prereading.pdf" },
         { "type": "Interactive Practice", "path": "MATH/M05/bus123-math-m05-l01-interactive.html" }
+      ]
+    },
+    {
+      "id": "math-m06-l01",
+      "track": "math",
+      "module": "M06",
+      "lesson": "L01",
+      "title": "Inventory, Overhead, and COGS",
+      "status": "Current",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": ["Inventory valuation", "COGS", "Gross margin", "Overhead allocation"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M06/bus123-math-m06-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M06/bus123-math-m06-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M06/bus123-math-m06-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m07-l01",
+      "track": "math",
+      "module": "M07",
+      "lesson": "L01",
+      "title": "Sales, Excise, and Property Taxes",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co. · Meridian Advisory Group",
+      "skillFocus": ["Sales tax", "Excise tax", "Property tax", "Tax rate rounding"],
+      "materials": [
+        { "type": "Reading", "path": "MATH/M07/bus123-math-m07-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx" }
       ]
     }
   ]

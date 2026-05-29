@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BUS123 · MATH-M08 · L01 — Simple Interest &amp; Discounting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome everyone. Today we start one of the most important ideas in all of finance — the time value of money. The core claim is simple: a dollar today is worth more than a dollar tomorrow. By the end of class you'll be able to prove that mathematically and use Excel to do it fast.",
+    "Here's how we'll move through today. Part 1 is the concept — why does time affect value? Part 2 is the math — simple interest and future value. Part 3 is where it gets powerful — discounting, which runs the math in reverse. We'll use Meridian Advisory Group as our client throughout.",
+    "Three things I want you to walk out able to do. First: explain TVM in plain language — not just define it, but explain it. Second: calculate simple interest and future value by hand and in Excel. Third: discount a future cash flow back to today's dollars. These three skills appear in every finance course you'll ever take.",
+    "Cast your mind back to MATH-M07 where we worked with percentages and rates. Today we're putting those to work. A rate isn't just a label anymore — it's the engine that moves money through time. That bridge from rate to time is what TVM is all about.",
+    "Part 1. Why does time affect value? Think about it from your own experience first.",
+    "Here's the scenario. A client walks into Meridian Advisory Group and asks: should I take $10,000 today, or $10,500 in one year? Most students say 'take the future money, it's more.' But that's the wrong instinct. The question isn't which number is bigger. The question is: what can $10,000 do in the next year if you have it now? If it earns even 6%, it grows to $10,600 — more than the $10,500 offer. That's TVM in action.",
+    "Three forces work against future money. Inflation erodes purchasing power — $10,500 next year buys less than $10,500 today. Opportunity cost means money sitting idle isn't growing. And risk — future promises can fail. All three forces push in the same direction: money in hand today is worth more.",
+    "The total return an investor requires has three parts. The real interest rate compensates for waiting. The inflation rate preserves purchasing power. The risk premium compensates for uncertainty. Add them together and you get the rate we use in our calculations. At Meridian, advisors call this the client's 'required return.' We'll use it as our interest rate in every formula today.",
+    "Part 2. Simple interest. This is the foundation — and it's literally one formula.",
+    "Simple interest formula: I equals P times R times T. I is the interest earned. P is the principal — the original amount. R is the annual rate. T is the time in years. One thing to watch: T must be in years. If the loan is six months, T is 0.5. If it's 90 days, T is 90 divided by 365. That's the most common student mistake — plugging in days instead of years.",
+    "Common Mistake — the T trap. A client takes a 90-day short-term note at 8% on $5,000. Students often write T equals 90. Wrong. T equals 90 divided by 365, which is 0.247. The correct interest is $5,000 times 0.08 times 0.247 equals $98.63. If you use T equals 90, you get $36,000 of interest — on a $5,000 loan. Always check your T.",
+    "Future Value pulls the principal and interest together. FV equals P times the quantity 1 plus R times T. The parenthetical is key — you're scaling up the original dollar amount. In Excel the formula is equals P times open-paren 1 plus R times T close-paren. There's no dedicated Excel function for simple interest future value — you build it directly from the formula. For compound interest we'll use FV() — but that's next module.",
+    "Meridian Advisory Group worked example. A client invests $8,000 in a short-term note at 5.5% simple interest for 9 months. What does the client receive at maturity? Step 1: T equals 9 divided by 12 equals 0.75 years. Step 2: Interest equals 8000 times 0.055 times 0.75 equals $330. Step 3: FV equals 8000 plus 330 equals $8,330. In Excel: equals 8000 times open-paren 1 plus 0.055 times 0.75 close-paren. Confirm: $8,330. Walk through this step by step — don't skip straight to the Excel cell.",
+    "Part 3. Discounting — running the math backward.",
+    "Discounting answers a different question. Instead of 'what will this grow to?' we ask 'what is a future amount worth right now?' This is present value. If someone promises you $10,000 in two years and you require a 6% return, you don't value that promise at $10,000. You ask: what do I need to invest today at 6% to end up with $10,000? That amount is the present value.",
+    "Present Value formula: PV equals FV divided by the quantity 1 plus R times T. We literally rearrange the future value formula — divide instead of multiply. The denominator is called the discount factor. The higher the rate, the bigger the denominator, the smaller the PV. Higher risk means lower value today. In Excel: equals FV divided by open-paren 1 plus R times T close-paren.",
+    "Meridian real-world example. A corporate client is owed $25,000 in 18 months. They need cash now and want to know what it's worth today at a 7% discount rate. T equals 18 divided by 12 equals 1.5 years. PV equals 25,000 divided by open-paren 1 plus 0.07 times 1.5 close-paren equals 25,000 divided by 1.105 equals $22,624. In Excel: equals 25000 divided by open-paren 1 plus 0.07 times 1.5 close-paren. That $2,376 gap is the cost of waiting — and the reason TVM exists.",
+    "The Excel worksheet replica is what you're building in today's activity. Each row is one future cash flow. Column B holds the FV. Column C holds the rate. Column D holds the time in years. Column E holds your PV formula. You'll write the formula once and copy it down. That's discounted cash flow analysis — the foundation of every valuation model in finance.",
+    "Two discussion questions. First: Meridian has a client who is comparing two options — receive $15,000 today or $17,500 in three years. The client's required return is 8%. Which is the better deal financially, and how do you know? Second: Why does a higher discount rate always produce a lower present value? What is the economic intuition behind that relationship?",
+    "Three takeaways from today. One: the time value of money means a dollar today is always worth more than a dollar tomorrow — inflation, opportunity cost, and risk all explain why. Two: simple interest and future value let you move money forward in time with one formula. Three: discounting reverses that process — it tells you what a future amount is worth right now, using PV equals FV divided by 1 plus RT.",
+    "Next lesson we move from simple interest to compound interest — where interest earns interest. That's where the math gets exponential and where Excel's FV() and PV() functions really earn their place. Preview: your activity today sets up the logic you'll need for compounding.",
+    "Questions? Office hours are posted on Canvas. If the discounting formula clicked for you today, you're already ahead of most first-year finance students. See you next class."
+  ]
+  </script>
+
+  <style>
+    :root {
+      --ink:       #0E1116;
+      --paper:     #FAF8F3;
+      --paper-2:   #F2EEE5;
+      --white:     #FFFFFF;
+      --text:      #1A1F2C;
+      --text-soft: #4A5567;
+      --muted:     #7A8290;
+      --border:    #E5E1D6;
+
+      --sage:  #4A7C5E;
+      --gold:  #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+
+      --accent: var(--sage);
+
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body:    'Geist', system-ui, sans-serif;
+      --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+      --scale: 1;
+      --type-display:  calc(112px * var(--scale));
+      --type-title:    calc(72px  * var(--scale));
+      --type-subtitle: calc(44px  * var(--scale));
+      --type-lead:     calc(34px  * var(--scale));
+      --type-body:     calc(28px  * var(--scale));
+      --type-small:    calc(24px  * var(--scale));
+      --type-eyebrow:  calc(24px  * var(--scale));
+      --type-mono:     calc(24px  * var(--scale));
+      --type-stat:     calc(180px * var(--scale));
+
+      --pad-x:      128px;
+      --pad-top:    104px;
+      --pad-bottom: 96px;
+      --gap-title:  56px;
+      --gap-item:   32px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      font-family: var(--font-body);
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .slide.dark  { background: var(--ink);   color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text);  }
+
+    /* Gradient bar */
+    .grad-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--gradient);
+      flex-shrink: 0;
+    }
+
+    /* Header row */
+    .header-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .eyebrow-dark {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .rule { flex: 1; height: 1px; background: var(--border); align-self: center; }
+    .rule-dark { flex: 1; height: 1px; background: rgba(255,255,255,0.15); align-self: center; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: var(--type-title);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: var(--gap-title);
+    }
+    h2.dark { color: var(--white); }
+
+    /* Cards */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+    }
+    .card-title {
+      font-family: var(--font-body);
+      font-size: var(--type-small);
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .card-body {
+      font-size: var(--type-body);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Numbered statements */
+    .numbered {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      margin-bottom: var(--gap-item);
+    }
+    .n {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      min-width: 56px;
+      line-height: 1;
+    }
+    .n-dark { color: var(--gold); }
+    .n-body {
+      font-size: var(--type-body);
+      line-height: 1.55;
+    }
+    .n-body strong { font-weight: 600; }
+
+    /* Dark panel (Excel syntax) */
+    .dark-panel {
+      background: var(--ink);
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: var(--type-mono);
+      border-radius: 10px;
+      padding: 28px 36px;
+      line-height: 1.7;
+    }
+    .dark-panel .comment {
+      color: rgba(255,255,255,0.35);
+    }
+    .dark-panel .func {
+      color: #7FBBF0;
+    }
+
+    /* Common mistake panel */
+    .mistake-panel {
+      background: #2A0E0A;
+      border: 2px solid var(--terra);
+      border-radius: 14px;
+      padding: 40px 48px;
+    }
+    .mistake-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--terra);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .mistake-title {
+      font-family: var(--font-display);
+      font-size: var(--type-subtitle);
+      color: #F4A58A;
+      margin-bottom: 24px;
+    }
+    .mistake-body {
+      font-size: var(--type-body);
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
+    .mistake-body strong { color: #F4A58A; }
+
+    /* Excel worksheet replica */
+    .excel-sheet {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #c9a84c;
+      font-family: var(--font-mono);
+      font-size: 22px;
+    }
+    .excel-formula-bar {
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 8px 16px;
+      font-size: 20px;
+      color: #4A5567;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .excel-formula-bar .cell-ref {
+      color: #1a6b3c;
+      font-weight: 500;
+      min-width: 40px;
+    }
+    .excel-header-row {
+      background: #1a1a2e;
+      color: #c9a84c;
+      display: grid;
+      border-bottom: 2px solid #c9a84c;
+    }
+    .excel-header-row div {
+      padding: 10px 14px;
+      text-align: center;
+      border-right: 1px solid #2a2a4e;
+    }
+    .excel-row {
+      display: grid;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .excel-row:nth-child(even) { background: #f7f8fa; }
+    .excel-row div {
+      padding: 10px 14px;
+      border-right: 1px solid #e2e8f0;
+      color: #0a3d6b;
+    }
+    .excel-row div.formula { color: #1a6b3c; font-weight: 500; }
+    .excel-row div.result-row {
+      background: #fffbf0;
+      border-left: 4px solid #c9a84c;
+      color: #1a6b3c;
+      font-weight: 600;
+    }
+    .excel-row div.row-num {
+      background: #1a1a2e;
+      color: #c9a84c;
+      text-align: center;
+      border-right: 2px solid #c9a84c;
+    }
+
+    /* Section break layout */
+    .section-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 var(--pad-x);
+    }
+    .section-part {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: calc(88px * var(--scale));
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    /* Stat slide */
+    .stat-number {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-stat);
+      color: var(--gold);
+      line-height: 0.9;
+    }
+    .stat-label {
+      font-family: var(--font-body);
+      font-size: var(--type-lead);
+      color: rgba(255,255,255,0.7);
+      margin-top: 24px;
+    }
+
+    /* Two-col layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    /* Slide padding helper */
+    .slide-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    }
+
+    /* Agenda numbered */
+    .agenda-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .agenda-item:last-child { border-bottom: none; }
+    .agenda-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--accent);
+      min-width: 64px;
+    }
+    .agenda-text {
+      font-size: var(--type-lead);
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .agenda-sub {
+      font-size: var(--type-small);
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    /* Formula display on cream */
+    .formula-display {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 32px 40px;
+      margin-bottom: var(--gap-item);
+    }
+    .formula-display .formula-line {
+      font-family: var(--font-mono);
+      font-size: calc(32px * var(--scale));
+      color: var(--gold);
+      line-height: 1.6;
+    }
+    .formula-display .formula-comment {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Highlight text */
+    .accent-text { color: var(--accent); font-weight: 600; }
+    .gold-text   { color: var(--gold); }
+    .terra-text  { color: var(--terra); }
+
+    /* Discussion */
+    .discussion-q {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 56px;
+    }
+    .q-label {
+      font-family: var(--font-mono);
+      font-size: var(--type-eyebrow);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+    .q-text {
+      font-family: var(--font-display);
+      font-size: var(--type-lead);
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    /* Takeaways */
+    .takeaway {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 32px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .takeaway:last-child { border-bottom: none; }
+    .takeaway-num {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: var(--type-subtitle);
+      color: var(--gold);
+      min-width: 64px;
+    }
+    .takeaway-text {
+      font-size: var(--type-body);
+      color: rgba(255,255,255,0.9);
+      line-height: 1.55;
+    }
+    .takeaway-text strong { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- ══ 01 TITLE ══════════════════════════════════════════════════════ -->
+  <section class="slide dark" data-label="01 Title">
+    <div class="grad-bar"></div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 var(--pad-x);">
+      <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:40px;">
+        BUS123 · MATH-M08 · L01
+      </div>
+      <h1 style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; line-height:1.05; color:var(--white); margin-bottom:32px;">
+        Simple Interest<br>&amp; Discounting
+      </h1>
+      <div style="font-family:var(--font-display); font-style:italic; font-size:var(--type-subtitle); color:rgba(255,255,255,0.55);">
+        Time Value of Money, Part I
+      </div>
+    </div>
+    <div style="padding:0 var(--pad-x) 64px; display:flex; gap:48px; align-items:center;">
+      <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:rgba(255,255,255,0.35);">Meridian Advisory Group</div>
+      <div style="height:1px; flex:1; background:rgba(255,255,255,0.1);"></div>
+      <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:rgba(255,255,255,0.35);">Fall 2026</div>
+    </div>
+  </section>
+
+  <!-- ══ 02 AGENDA ═════════════════════════════════════════════════════ -->
+  <section class="slide cream" data-label="02 Agenda">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Today's Plan</span>
+        <div class="rule"></div>
+      </div>
+      <h2>Three Parts · 75 Minutes</h2>
+      <div>
+        <div class="agenda-item">
+          <div class="agenda-num">01</div>
+          <div>
+            <div class="agenda-text">Why Time Affects Value</div>
+            <div class="agenda-sub">The economic logic behind TVM · inflation, opportunity cost, risk</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">02</div>
+          <div>
+            <div class="agenda-text">Simple Interest &amp; Future Value</div>
+            <div class="agenda-sub">The I = PRT formula · moving money forward · Excel setup</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">03</div>
+          <div>
+            <div class="agenda-text">Discounting &amp; Present Value</div>
+            <div class="agenda-sub">Running the math backward · Meridian client case · DCF activity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 LEARNING OBJECTIVES ════════════════════════════════════════ -->
+  <section class="slide cream" data-label="03 Objectives">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Learning Objectives</span>
+        <div class="rule"></div>
+      </div>
+      <h2>I Can…</h2>
+      <div>
+        <div class="numbered">
+          <div class="n">01</div>
+          <div class="n-body">Explain why a dollar today is worth more than a dollar in the future — in plain language, not just as a definition</div>
+        </div>
+        <div class="numbered">
+          <div class="n">02</div>
+          <div class="n-body">Calculate <strong>simple interest</strong> and <strong>future value</strong> using I&nbsp;= PRT and build the formula in Excel</div>
+        </div>
+        <div class="numbered">
+          <div class="n">03</div>
+          <div class="n-body"><strong>Discount</strong> a future cash flow back to present value — by hand and in a spreadsheet model</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 RECAP / BRIDGE ─────────────────────────────────────────── -->
+  <section class="slide cream" data-label="04 Recap">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Connecting to MATH-M07</span>
+        <div class="rule"></div>
+      </div>
+      <div class="two-col" style="flex:1; align-items:center;">
+        <div>
+          <h2 style="font-size:calc(60px * var(--scale)); margin-bottom:40px;">Rates were labels.<br>Now they're engines.</h2>
+          <div style="font-size:var(--type-body); color:var(--text-soft); line-height:1.6;">
+            In M07 we calculated percentages and rates. Today a rate does something: it moves money through time. The same 6% that describes a price markup also tells us how fast an investment grows.
+          </div>
+        </div>
+        <div>
+          <image-slot id="recap-img"
+            placeholder="Drop image: clock face over stacked dollar bills"
+            style="width:100%; height:480px; border-radius:18px;"
+            radius="18"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 SECTION BREAK 1 ════════════════════════════════════════════ -->
+  <section class="slide dark" data-label="05 Part 1">
+    <div class="grad-bar"></div>
+    <div class="section-content">
+      <div class="section-part">Part 1 of 3</div>
+      <div class="section-title">Why Does Time<br>Affect Value?</div>
+    </div>
+  </section>
+
+  <!-- ══ 06 THE MERIDIAN SCENARIO ─────────────────────────────────────── -->
+  <section class="slide cream" data-label="06 Meridian Scenario">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Meridian Advisory Group · Client Intake</span>
+        <div class="rule"></div>
+      </div>
+      <h2>$10,000 Today or $10,500 in One Year?</h2>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">The Client's Instinct</div>
+          <div class="card-body">Take the future money — $10,500 is a bigger number than $10,000.</div>
+        </div>
+        <div class="card" style="border-color: var(--accent);">
+          <div class="card-title">The Advisor's Question</div>
+          <div class="card-body">What can $10,000 earn <em>right now</em>? At 6%, it grows to <strong>$10,600</strong> in one year — more than the offer. The instinct is wrong.</div>
+        </div>
+      </div>
+      <div style="margin-top:40px; font-size:var(--type-body); color:var(--text-soft); line-height:1.6;">
+        The question is never which number is bigger. The question is what the money can do in the meantime.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 07 THREE FORCES ──────────────────────────────────────────────── -->
+  <section class="slide cream" data-label="07 Three Forces">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Why Future Money Is Worth Less</span>
+        <div class="rule"></div>
+      </div>
+      <h2>Three Forces Work Against Future Cash</h2>
+      <div class="three-col" style="flex:1; align-items:start;">
+        <div class="card">
+          <div class="card-title">Inflation</div>
+          <div class="card-body">$10,500 next year buys less than $10,500 today. Purchasing power erodes over time.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Opportunity Cost</div>
+          <div class="card-body">Money sitting idle isn't growing. Every dollar waiting is a dollar not earning.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Risk</div>
+          <div class="card-body">Future promises can fail. The further out the payment, the greater the uncertainty.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 08 REQUIRED RETURN ───────────────────────────────────────────── -->
+  <section class="slide dark" data-label="08 Required Return">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow-dark">The Interest Rate, Unpacked</span>
+        <div class="rule-dark"></div>
+      </div>
+      <h2 class="dark" style="margin-bottom:48px;">The Rate We Use Has Three Parts</h2>
+      <div class="dark-panel" style="margin-bottom:48px;">
+        <div class="formula-line">Total Return  =  Inflation Rate  +  Real Interest Rate  +  Risk Premium</div>
+      </div>
+      <div class="three-col">
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display); font-style:italic; font-size:var(--type-subtitle); color:var(--gold); margin-bottom:12px;">Inflation</div>
+          <div style="font-size:var(--type-small); color:rgba(255,255,255,0.65);">Preserves purchasing power over time</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display); font-style:italic; font-size:var(--type-subtitle); color:var(--gold); margin-bottom:12px;">Real Rate</div>
+          <div style="font-size:var(--type-small); color:rgba(255,255,255,0.65);">Compensates for waiting — deferring consumption</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:var(--font-display); font-style:italic; font-size:var(--type-subtitle); color:var(--gold); margin-bottom:12px;">Risk Premium</div>
+          <div style="font-size:var(--type-small); color:rgba(255,255,255,0.65);">Compensates for uncertainty of future returns</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 09 SECTION BREAK 2 ════════════════════════════════════════════ -->
+  <section class="slide dark" data-label="09 Part 2">
+    <div class="grad-bar"></div>
+    <div class="section-content">
+      <div class="section-part">Part 2 of 3</div>
+      <div class="section-title">Simple Interest<br>&amp; Future Value</div>
+    </div>
+  </section>
+
+  <!-- ══ 10 SIMPLE INTEREST FORMULA ──────────────────────────────────── -->
+  <section class="slide cream" data-label="10 Simple Interest">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">The Foundation Formula</span>
+        <div class="rule"></div>
+      </div>
+      <h2>I = P × R × T</h2>
+      <div class="three-col" style="margin-bottom:40px;">
+        <div class="card">
+          <div class="card-title">P · Principal</div>
+          <div class="card-body">The original amount invested or borrowed</div>
+        </div>
+        <div class="card">
+          <div class="card-title">R · Annual Rate</div>
+          <div class="card-body">The interest rate as a decimal (6% = 0.06)</div>
+        </div>
+        <div class="card">
+          <div class="card-title">T · Time in Years</div>
+          <div class="card-body">Must be in years — convert months and days first</div>
+        </div>
+      </div>
+      <div class="formula-display">
+        <div class="formula-line">I  =  P × R × T</div>
+        <div class="formula-comment" style="margin-top:8px;">// T in years · if 6 months → T = 0.5 · if 90 days → T = 90/365</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 11 COMMON MISTAKE ────────────────────────────────────────────── -->
+  <section class="slide dark" data-label="11 Common Mistake">
+    <div class="slide-inner">
+      <div class="mistake-panel" style="flex:1;">
+        <div class="mistake-label">⚠ Common Mistake</div>
+        <div class="mistake-title">The T Trap — Using Days Instead of Years</div>
+        <div class="mistake-body" style="margin-bottom:36px;">
+          A client takes a 90-day note at 8% on $5,000. Students write T = 90 and get:
+        </div>
+        <div class="two-col" style="gap:32px;">
+          <div style="background:rgba(156,74,43,0.25); border:1px solid var(--terra); border-radius:10px; padding:28px 32px;">
+            <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--terra); margin-bottom:12px;">✗ WRONG — T = 90</div>
+            <div style="font-family:var(--font-mono); font-size:var(--type-small); color:rgba(255,255,255,0.7); line-height:1.7;">
+              I = 5,000 × 0.08 × 90<br>I = $36,000 ← impossible
+            </div>
+          </div>
+          <div style="background:rgba(74,124,94,0.2); border:1px solid var(--sage); border-radius:10px; padding:28px 32px;">
+            <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">✓ CORRECT — T = 90/365</div>
+            <div style="font-family:var(--font-mono); font-size:var(--type-small); color:rgba(255,255,255,0.7); line-height:1.7;">
+              I = 5,000 × 0.08 × (90/365)<br>I = $98.63 ← makes sense
+            </div>
+          </div>
+        </div>
+        <div class="mistake-body" style="margin-top:32px;">Always check: does your answer make sense for the size of the loan?</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 12 FUTURE VALUE FORMULA ─────────────────────────────────────── -->
+  <section class="slide cream" data-label="12 Future Value">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Moving Money Forward in Time</span>
+        <div class="rule"></div>
+      </div>
+      <h2>FV = P × (1 + R × T)</h2>
+      <div style="margin-bottom:32px;">
+        <div class="formula-display">
+          <div class="formula-line">=B2*(1+C2*D2)</div>
+          <div class="formula-comment" style="margin-top:6px;">// B2 = Principal · C2 = Rate · D2 = Time (years)</div>
+          <div class="formula-comment">// No built-in FV function for simple interest — build it directly</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">What it means</div>
+          <div class="card-body">You're scaling up the principal by the total growth. The (1 + RT) term is the growth factor.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Compound interest (preview)</div>
+          <div class="card-body">Next module uses Excel's =FV() function where interest earns interest. Today's formula is the foundation.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 13 MERIDIAN WORKED EXAMPLE FV ───────────────────────────────── -->
+  <section class="slide cream" data-label="13 FV Worked Example">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Meridian Advisory Group · Client Case</span>
+        <div class="rule"></div>
+      </div>
+      <h2>Short-Term Note — What Does the Client Receive?</h2>
+      <div class="two-col" style="flex:1; gap:48px;">
+        <div>
+          <div class="card" style="margin-bottom:32px;">
+            <div class="card-title">Given</div>
+            <div class="card-body" style="font-family:var(--font-mono); line-height:1.8;">
+              P = $8,000 · R = 5.5% · Term = 9 months
+            </div>
+          </div>
+          <div class="numbered">
+            <div class="n">1</div>
+            <div class="n-body">T = 9 ÷ 12 = <strong>0.75 years</strong></div>
+          </div>
+          <div class="numbered">
+            <div class="n">2</div>
+            <div class="n-body">I = 8,000 × 0.055 × 0.75 = <strong>$330</strong></div>
+          </div>
+          <div class="numbered">
+            <div class="n">3</div>
+            <div class="n-body">FV = 8,000 + 330 = <strong>$8,330</strong></div>
+          </div>
+        </div>
+        <div>
+          <div class="formula-display" style="margin-bottom:24px;">
+            <div class="formula-line">=8000*(1+0.055*0.75)</div>
+            <div class="formula-comment" style="margin-top:6px;">// Result: $8,330.00</div>
+          </div>
+          <div style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6; padding:0 8px;">
+            Always show the manual steps first. The Excel formula is a confirmation — not a shortcut past the thinking.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 14 SECTION BREAK 3 ════════════════════════════════════════════ -->
+  <section class="slide dark" data-label="14 Part 3">
+    <div class="grad-bar"></div>
+    <div class="section-content">
+      <div class="section-part">Part 3 of 3</div>
+      <div class="section-title">Discounting &amp;<br>Present Value</div>
+    </div>
+  </section>
+
+  <!-- ══ 15 WHAT IS DISCOUNTING ──────────────────────────────────────── -->
+  <section class="slide cream" data-label="15 Discounting">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Running the Math Backward</span>
+        <div class="rule"></div>
+      </div>
+      <div class="two-col" style="flex:1; align-items:center;">
+        <div>
+          <h2 style="font-size:calc(60px * var(--scale)); margin-bottom:40px;">What is a future<br>amount worth <em>today?</em></h2>
+          <div style="font-size:var(--type-body); color:var(--text-soft); line-height:1.6;">
+            Future value asks: what will this grow to? <br><br>
+            Present value asks: what do I need <em>today</em> to end up with that future amount?<br><br>
+            Same formula, different direction.
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <div class="card" style="text-align:center;">
+            <div class="card-title">Future Value Direction →</div>
+            <div class="card-body" style="font-family:var(--font-mono);">PV × (1 + R×T) = FV</div>
+          </div>
+          <div style="text-align:center; font-size:var(--type-lead); color:var(--accent);">↕ same equation</div>
+          <div class="card" style="text-align:center; border-color:var(--accent);">
+            <div class="card-title">Present Value Direction ←</div>
+            <div class="card-body" style="font-family:var(--font-mono);">PV = FV ÷ (1 + R×T)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 16 PV FORMULA + EXCEL ───────────────────────────────────────── -->
+  <section class="slide cream" data-label="16 PV Formula">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Present Value · Formula &amp; Excel</span>
+        <div class="rule"></div>
+      </div>
+      <h2>PV = FV ÷ (1 + R × T)</h2>
+      <div style="margin-bottom:32px;">
+        <div class="formula-display">
+          <div class="formula-line">=E2/(1+C2*D2)</div>
+          <div class="formula-comment" style="margin-top:6px;">// E2 = Future Value · C2 = Rate · D2 = Time (years)</div>
+          <div class="formula-comment">// (1 + R×T) is called the discount factor — it shrinks the future value back to today</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title">The Discount Factor</div>
+          <div class="card-body">The higher the rate, the bigger (1 + RT), the smaller the PV. Higher risk → lower value today.</div>
+        </div>
+        <div class="card">
+          <div class="card-title">The Economic Meaning</div>
+          <div class="card-body">PV is what you'd rationally pay today for a future promise. It's the fair price of waiting.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 17 MERIDIAN DISCOUNTING CASE ────────────────────────────────── -->
+  <section class="slide cream" data-label="17 PV Worked Example">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Meridian Advisory Group · Corporate Client</span>
+        <div class="rule"></div>
+      </div>
+      <h2>A Receivable Due in 18 Months</h2>
+      <div class="two-col" style="flex:1; gap:48px;">
+        <div>
+          <div class="card" style="margin-bottom:32px;">
+            <div class="card-title">Given</div>
+            <div class="card-body" style="font-family:var(--font-mono); line-height:1.8;">
+              FV = $25,000 · Discount Rate = 7% · Term = 18 months
+            </div>
+          </div>
+          <div class="numbered">
+            <div class="n">1</div>
+            <div class="n-body">T = 18 ÷ 12 = <strong>1.5 years</strong></div>
+          </div>
+          <div class="numbered">
+            <div class="n">2</div>
+            <div class="n-body">Discount Factor = 1 + (0.07 × 1.5) = <strong>1.105</strong></div>
+          </div>
+          <div class="numbered">
+            <div class="n">3</div>
+            <div class="n-body">PV = 25,000 ÷ 1.105 = <strong>$22,624</strong></div>
+          </div>
+        </div>
+        <div>
+          <div class="formula-display" style="margin-bottom:24px;">
+            <div class="formula-line">=25000/(1+0.07*1.5)</div>
+            <div class="formula-comment" style="margin-top:6px;">// Result: $22,624.43</div>
+          </div>
+          <div class="card" style="border-color:var(--terra);">
+            <div class="card-title" style="color:var(--terra);">The Gap</div>
+            <div class="card-body">$25,000 − $22,624 = <strong>$2,376</strong> — that's the cost of waiting 18 months at 7%. This is why TVM exists.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 18 EXCEL ACTIVITY PREVIEW ────────────────────────────────────── -->
+  <section class="slide cream" data-label="18 Excel Activity">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Today's Excel Activity · Discounted Cash Flow</span>
+        <div class="rule"></div>
+      </div>
+      <h2>Meridian — Valuing a Stream of Future Payments</h2>
+      <div class="excel-sheet" style="margin-top:8px;">
+        <div class="excel-formula-bar">
+          <span class="cell-ref">E5</span>
+          <span style="color:#4A5567;">|</span>
+          <span style="color:#1a6b3c; font-family:var(--font-mono);">=B5/(1+C5*D5)</span>
+        </div>
+        <div class="excel-header-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div></div>
+          <div>B · Future Value ($)</div>
+          <div>C · Discount Rate</div>
+          <div>D · Years</div>
+          <div>E · Present Value ($)</div>
+        </div>
+        <div class="excel-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div class="row-num">4</div>
+          <div style="color:#4A5567; font-weight:600;">Payment 1</div>
+          <div style="color:#4A5567; font-weight:600;">Rate</div>
+          <div style="color:#4A5567; font-weight:600;">Time (yrs)</div>
+          <div style="color:#4A5567; font-weight:600;">PV Formula</div>
+        </div>
+        <div class="excel-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div class="row-num">5</div>
+          <div>$12,000</div>
+          <div>6.0%</div>
+          <div>1.0</div>
+          <div class="formula">=B5/(1+C5*D5)</div>
+        </div>
+        <div class="excel-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div class="row-num">6</div>
+          <div>$15,500</div>
+          <div>6.0%</div>
+          <div>2.0</div>
+          <div class="formula">=B6/(1+C6*D6)</div>
+        </div>
+        <div class="excel-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div class="row-num">7</div>
+          <div>$18,000</div>
+          <div>6.0%</div>
+          <div>3.0</div>
+          <div class="formula">=B7/(1+C7*D7)</div>
+        </div>
+        <div class="excel-row" style="grid-template-columns:56px 1fr 1fr 1fr 1fr;">
+          <div class="row-num">8</div>
+          <div style="font-weight:600;">TOTAL PV</div>
+          <div></div>
+          <div></div>
+          <div class="result-row">=SUM(E5:E7)</div>
+        </div>
+      </div>
+      <div style="margin-top:24px; font-size:var(--type-small); color:var(--text-soft);">
+        You'll write the formula once in E5 and copy it down. That's a discounted cash flow model.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 19 DISCUSSION ─────────────────────────────────────────────────── -->
+  <section class="slide cream" data-label="19 Discussion">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow">Discussion</span>
+        <div class="rule"></div>
+      </div>
+      <h2>Two Questions · Think First, Then Share</h2>
+      <div style="display:flex; flex-direction:column; gap:32px; flex:1; justify-content:center;">
+        <div class="discussion-q">
+          <div class="q-label">Question 1</div>
+          <div class="q-text">A Meridian client can receive $15,000 today or $17,500 in three years. Their required return is 8%. Which is the better deal — and how do you prove it?</div>
+        </div>
+        <div class="discussion-q">
+          <div class="q-label">Question 2</div>
+          <div class="q-text">Why does a higher discount rate always produce a lower present value? What is the economic logic behind that relationship?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 20 KEY TAKEAWAYS ───────────────────────────────────────────────── -->
+  <section class="slide dark" data-label="20 Takeaways">
+    <div class="slide-inner">
+      <div class="header-row">
+        <span class="eyebrow-dark">Key Takeaways</span>
+        <div class="rule-dark"></div>
+      </div>
+      <h2 class="dark">Three Things That Last</h2>
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+        <div class="takeaway">
+          <div class="takeaway-num">01</div>
+          <div class="takeaway-text"><strong>Time erodes value.</strong> Inflation, opportunity cost, and risk all pull future money below its face value. That's why we discount.</div>
+        </div>
+        <div class="takeaway">
+          <div class="takeaway-num">02</div>
+          <div class="takeaway-text"><strong>I = PRT and FV = P(1 + RT)</strong> move money forward in time. T must always be in years. Never plug in days.</div>
+        </div>
+        <div class="takeaway">
+          <div class="takeaway-num">03</div>
+          <div class="takeaway-text"><strong>PV = FV ÷ (1 + RT)</strong> runs the math backward. It tells you the fair price of a future promise — the foundation of every valuation model.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 21 UP NEXT ─────────────────────────────────────────────────────── -->
+  <section class="slide cream" data-label="21 Up Next">
+    <div class="slide-inner" style="flex-direction:row; gap:80px; align-items:center;">
+      <div style="flex:1;">
+        <div class="header-row">
+          <span class="eyebrow">Coming Up · MATH-M08 L02</span>
+          <div class="rule"></div>
+        </div>
+        <h2 style="font-size:calc(64px * var(--scale)); margin-bottom:32px;">Compound Interest —<br>Where It Gets Exponential</h2>
+        <div style="font-size:var(--type-body); color:var(--text-soft); line-height:1.7;">
+          Today's formula grows linearly. Compound interest grows exponentially — interest earning interest. We'll introduce Excel's <span style="font-family:var(--font-mono); color:var(--accent);">=FV()</span> and <span style="font-family:var(--font-mono); color:var(--accent);">=PV()</span> functions and see why the gap between simple and compound widens dramatically over time.
+        </div>
+      </div>
+      <div style="flex:0 0 580px;">
+        <image-slot id="next-img"
+          placeholder="Drop image: exponential growth curve chart"
+          style="width:100%; height:480px; border-radius:18px;"
+          radius="18"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 22 CLOSE / Q&A ─────────────────────────────────────────────────── -->
+  <section class="slide dark" data-label="22 Questions">
+    <div class="grad-bar"></div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 var(--pad-x);">
+      <div style="font-family:var(--font-display); font-size:var(--type-display); font-weight:400; color:var(--white); margin-bottom:48px;">
+        Questions?
+      </div>
+      <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:rgba(255,255,255,0.4); letter-spacing:0.08em;">
+        Office hours · Canvas · bevitts@endicott.edu
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script>
+(function(){
+  if(customElements.get('deck-stage')) return;
+  class DeckStage extends HTMLElement {
+    connectedCallback(){
+      if(this._ready) return; this._ready = true;
+      const W = parseInt(this.getAttribute('width') || 1920);
+      const H = parseInt(this.getAttribute('height') || 1080);
+      this._slides = [...this.querySelectorAll('.slide')];
+      this._idx = 0;
+      this._notes = [];
+      try {
+        const el = document.getElementById('speaker-notes');
+        if(el) this._notes = JSON.parse(el.textContent);
+      } catch(e){}
+
+      const stage = document.createElement('div');
+      stage.style.cssText = 'position:absolute; transform-origin:top left;'
+                          + 'width:'+W+'px; height:'+H+'px;';
+      this._slides.forEach(s => {
+        s.style.position    = 'absolute';
+        s.style.top         = '0';
+        s.style.left        = '0';
+        s.style.width       = W+'px';
+        s.style.height      = H+'px';
+        s.style.display     = 'none';
+        s.style.flexDirection = 'column';
+        stage.appendChild(s);
+      });
+      this.appendChild(stage);
+      this._stage = stage;
+
+      this.style.cssText = 'display:block; position:fixed; top:0; left:0;'
+                         + 'width:100vw; height:100vh; overflow:hidden; background:#111;';
+
+      const ctr = document.createElement('div');
+      ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%);'
+        + 'background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;'
+        + 'padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
+      document.body.appendChild(ctr);
+      this._ctr = ctr;
+
+      const btnStyle = 'position:fixed; bottom:20px; z-index:9999;'
+        + 'background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);'
+        + 'color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px;'
+        + 'border-radius:50%; cursor:pointer;';
+      const prev = document.createElement('button');
+      prev.innerHTML = '&#8592;'; prev.style.cssText = btnStyle + 'right:80px;';
+      prev.onclick = () => this._go(this._idx - 1);
+      document.body.appendChild(prev);
+      const next = document.createElement('button');
+      next.innerHTML = '&#8594;'; next.style.cssText = btnStyle + 'right:24px;';
+      next.onclick = () => this._go(this._idx + 1);
+      document.body.appendChild(next);
+
+      const notes = document.createElement('div');
+      notes.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%);'
+        + 'max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0;'
+        + 'font:400 13px/1.6 sans-serif; padding:16px 20px; border-radius:10px;'
+        + 'display:none; z-index:9998; border:1px solid rgba(255,255,255,0.1);';
+      document.body.appendChild(notes);
+      this._notes_el = notes;
+
+      document.addEventListener('keydown', e => {
+        if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._go(this._idx+1); }
+        if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key))         { e.preventDefault(); this._go(this._idx-1); }
+        if(e.key==='Home'){ e.preventDefault(); this._go(0); }
+        if(e.key==='End') { e.preventDefault(); this._go(this._slides.length-1); }
+        if(e.key==='n'||e.key==='N') this._toggleNotes();
+      });
+
+      this.addEventListener('click', e => {
+        const x = e.clientX / window.innerWidth;
+        if(x < 0.33) this._go(this._idx - 1);
+        else if(x > 0.67) this._go(this._idx + 1);
+      });
+
+      this._scale();
+      this._go(0);
+      window.addEventListener('resize', () => this._scale());
+    }
+    _scale(){
+      const W = parseInt(this.getAttribute('width')||1920);
+      const H = parseInt(this.getAttribute('height')||1080);
+      const s = Math.min(window.innerWidth/W, window.innerHeight/H);
+      const ox = (window.innerWidth  - W*s) / 2;
+      const oy = (window.innerHeight - H*s) / 2;
+      this._stage.style.transform = `translate(${ox}px,${oy}px) scale(${s})`;
+    }
+    _go(n){
+      n = Math.max(0, Math.min(n, this._slides.length-1));
+      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
+      this._idx = n;
+      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'flex';
+      this._ctr.textContent = (n+1)+' / '+this._slides.length;
+      if(this._notes_el.style.display==='block' && this._notes[n])
+        this._notes_el.textContent = this._notes[n];
+    }
+    _toggleNotes(){
+      const visible = this._notes_el.style.display === 'block';
+      this._notes_el.style.display = visible ? 'none' : 'block';
+      if(!visible && this._notes[this._idx])
+        this._notes_el.textContent = this._notes[this._idx];
+    }
+  }
+  customElements.define('deck-stage', DeckStage);
+})();
+</script>
+
+<script>
+(function(){
+  if(customElements.get('image-slot')) return;
+  class ImageSlot extends HTMLElement {
+    connectedCallback(){
+      if(this._init) return; this._init = true;
+      const ph = this.getAttribute('placeholder') || 'Drop image here';
+      Object.assign(this.style, {
+        display:'flex', alignItems:'center', justifyContent:'center',
+        borderRadius:'12px', border:'2px dashed rgba(255,255,255,0.15)',
+        background:'rgba(255,255,255,0.04)', color:'rgba(255,255,255,0.3)',
+        fontFamily:'JetBrains Mono, monospace', fontSize:'16px',
+        textAlign:'center', padding:'16px', cursor:'pointer'
+      });
+      this.textContent = ph;
+      this.addEventListener('click', () => {
+        const inp = document.createElement('input');
+        inp.type = 'file'; inp.accept = 'image/*';
+        inp.onchange = e => {
+          const f = e.target.files[0]; if(!f) return;
+          const r = new FileReader();
+          r.onload = ev => {
+            this.style.background = `url(${ev.target.result}) center/cover no-repeat`;
+            this.style.border = 'none';
+            this.textContent = '';
+          };
+          r.readAsDataURL(f);
+        };
+        inp.click();
+      });
+    }
+  }
+  customElements.define('image-slot', ImageSlot);
+})();
+</script>
+
+</body>
+</html>

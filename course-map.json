@@ -201,6 +201,35 @@
         { "type": "Reading", "path": "MATH/M07/bus123-math-m07-l01-prereading.pdf" },
         { "type": "Starter Workbook", "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx" }
       ]
+    },
+    {
+      "id": "math-m08-l01",
+      "track": "math",
+      "module": "M08",
+      "lesson": "L01",
+      "title": "Simple Interest and Discounting",
+      "status": "Live",
+      "caseStudy": "Meridian Advisory Group",
+      "skillFocus": ["Time value of money", "Simple interest", "Future value", "Discounting"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M08/bus123-math-m08-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M08/bus123-math-m08-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m09-l01",
+      "track": "math",
+      "module": "M09",
+      "lesson": "L01",
+      "title": "Simple Interest, Compound Interest, and Present Value",
+      "status": "Live",
+      "caseStudy": "Meridian Advisory Group",
+      "skillFocus": ["Simple interest", "Compound interest", "Future value", "Present value"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M09/bus123-math-m09-l01-slides.html" },
+        { "type": "Starter Workbook", "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx" }
+      ]
     }
   ]
 }

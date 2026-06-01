@@ -9,6 +9,10 @@ Use these Drive files as the current source of truth for BUS123 work:
 
 For new or revised course materials, follow the brand template and project instructions above. If these Drive files conflict with older patterns in the repository, treat the Drive files as the current guidance.
 
+Existing HTML decks in this repository span multiple generations of the slide scaffold and should be treated as legacy deliverables, not as templates for new work. Do not copy an older deck's fonts, authored dimensions, navigation scripts, external scaffold imports, inline scaffold code, or Tweaks panel behavior into a new or revised deck unless the current Drive guidance explicitly requires that pattern. Do not bulk-migrate legacy decks unless Bethany explicitly asks for that work.
+
+When the Drive brand template and project instructions are being revised, avoid filling gaps by combining incompatible scaffold patterns. If the current Drive files do not clearly resolve a deck-format decision, ask Bethany before building or substantially revising a slide deck.
+
 ## Local Operating Rules
 
 Use this repository as the public, student-facing BUS123 course materials repo. Do not add instructor-only files here, including answer keys, instructor solutions, private lesson plans, or grading notes. Canvas QTI quiz ZIP files should not be added to GitHub unless Bethany explicitly asks for that in the current task.

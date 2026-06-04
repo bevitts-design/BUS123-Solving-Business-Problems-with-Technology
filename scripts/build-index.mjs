@@ -4,6 +4,9 @@ import path from "node:path";
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 const data = JSON.parse(await fs.readFile(path.join(root, "course-map.json"), "utf8"));
 
+const allowedStatuses = new Set(["Current", "Live", "Coming Soon", "In Progress", "Canvas Only", "Not Released"]);
+const privatePathPattern = /(^|[/_-])(instructor|answer[-_ ]?key|solutions?|grading|qti)([/_.-]|$)|\.zip$/i;
+
 const esc = (value) =>
   String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -11,32 +14,161 @@ const esc = (value) =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
-const materialLabel = (material) =>
-  `<a href="${esc(material.path)}">${esc(material.type)}</a>`;
+const slug = (value) =>
+  String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const trackById = new Map(data.tracks.map((track) => [track.id, track]));
+
+const materialGroups = [
+  { id: "before", label: "Before class", types: new Set(["Reading", "Pre-reading"]) },
+  { id: "class", label: "In class", types: new Set(["Slides", "Company Profiles"]) },
+  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Interactive Practice", "Homework"]) }
+];
+
+const materialFilters = ["Slides", "Reading", "Starter Workbook", "Interactive Practice"];
+const statusFilters = ["Current", "Live", "Coming Soon"];
+
+function validateCourseMap() {
+  const issues = [];
+  const seen = new Set();
+
+  if (!data.course?.currentLessonId) {
+    issues.push("course.currentLessonId is required.");
+  }
+
+  for (const track of data.tracks ?? []) {
+    if (!track.id || !track.label) {
+      issues.push(`Track is missing id or label: ${JSON.stringify(track)}`);
+    }
+  }
+
+  for (const lesson of data.lessons ?? []) {
+    if (!lesson.id) {
+      issues.push(`Lesson is missing id: ${JSON.stringify(lesson)}`);
+      continue;
+    }
+    if (seen.has(lesson.id)) {
+      issues.push(`Duplicate lesson id: ${lesson.id}`);
+    }
+    seen.add(lesson.id);
+
+    if (!trackById.has(lesson.track)) {
+      issues.push(`${lesson.id} references unknown track "${lesson.track}".`);
+    }
+    if (!allowedStatuses.has(lesson.status)) {
+      issues.push(`${lesson.id} uses unsupported status "${lesson.status}".`);
+    }
+
+    for (const material of lesson.materials ?? []) {
+      if (!material.type) {
+        issues.push(`${lesson.id} has a material without a type.`);
+      }
+      if (!material.path || material.path === "#") {
+        issues.push(`${lesson.id} has a placeholder path for ${material.type ?? "a material"}.`);
+        continue;
+      }
+      if (privatePathPattern.test(material.path)) {
+        issues.push(`${lesson.id} links a private or non-public material: ${material.path}`);
+      }
+      if (!/^https?:\/\//i.test(material.path)) {
+        const materialPath = path.join(root, material.path);
+        if (!awaitFileExists(materialPath)) {
+          issues.push(`${lesson.id} is missing ${material.type}: ${material.path}`);
+        }
+      }
+    }
+  }
+
+  if (!seen.has(data.course.currentLessonId)) {
+    issues.push(`currentLessonId "${data.course.currentLessonId}" does not match a lesson id.`);
+  }
+
+  if (issues.length) {
+    throw new Error(`Course map validation failed:\n- ${issues.join("\n- ")}`);
+  }
+}
+
+function awaitFileExists(filePath) {
+  return fileExistsCache.get(filePath) ?? false;
+}
+
+const fileExistsCache = new Map();
+await Promise.all((data.lessons ?? []).flatMap((lesson) =>
+  (lesson.materials ?? [])
+    .filter((material) => material.path && material.path !== "#" && !/^https?:\/\//i.test(material.path))
+    .map(async (material) => {
+      const materialPath = path.join(root, material.path);
+      try {
+        await fs.access(materialPath);
+        fileExistsCache.set(materialPath, true);
+      } catch {
+        fileExistsCache.set(materialPath, false);
+      }
+    })
+));
+
+validateCourseMap();
+
+const materialIcon = (type) => {
+  const icons = {
+    "Slides": "S",
+    "Reading": "R",
+    "Pre-reading": "R",
+    "Starter Workbook": "W",
+    "Interactive Practice": "P",
+    "Homework": "H",
+    "Company Profiles": "C"
+  };
+  return icons[type] ?? "M";
+};
+
+const materialLink = (material, options = {}) =>
+  `<a class="${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}" href="${esc(material.path)}">
+    <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
+    <span>${esc(material.type)}</span>
+  </a>`;
+
+const groupMaterials = (materials) =>
+  materialGroups.map((group) => ({
+    ...group,
+    materials: (materials ?? []).filter((material) => group.types.has(material.type))
+  })).filter((group) => group.materials.length);
+
+const primaryMaterial = (lesson) =>
+  (lesson.materials ?? []).find((material) => material.type === "Slides") ?? (lesson.materials ?? [])[0];
+
+const searchText = (lesson, track) => [
+  lesson.title,
+  lesson.track,
+  track?.label,
+  lesson.module,
+  lesson.lesson,
+  lesson.status,
+  lesson.caseStudy,
+  ...(lesson.skillFocus ?? []),
+  ...(lesson.materials ?? []).flatMap((item) => [item.type, item.path])
+].filter(Boolean).join(" ").toLowerCase();
 
 const lessonCard = (lesson) => {
-  const search = [
-    lesson.title,
-    lesson.track,
-    lesson.module,
-    lesson.lesson,
-    lesson.status,
-    lesson.caseStudy,
-    ...(lesson.skillFocus ?? []),
-    ...(lesson.materials ?? []).map((item) => item.type)
-  ].filter(Boolean).join(" ").toLowerCase();
+  const track = trackById.get(lesson.track);
+  const materialSlugs = (lesson.materials ?? []).map((item) => slug(item.type)).join(" ");
 
-  return `<article class="lesson" data-lesson data-track="${esc(lesson.track)}" data-search="${esc(search)}">
+  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(lesson.status))}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
     <div class="lesson-header">
       <div>
-        <div class="code">${esc(lesson.track)} · ${esc(lesson.module)} · ${esc(lesson.lesson)}</div>
+        <div class="code">${esc(track?.label ?? lesson.track)} · ${esc(lesson.module)} · ${esc(lesson.lesson)}</div>
         <h3>${esc(lesson.title)}</h3>
       </div>
-      <span class="status ${esc(lesson.status.toLowerCase().replaceAll(" ", "-"))}">${esc(lesson.status)}</span>
+      <span class="status ${esc(slug(lesson.status))}">${esc(lesson.status)}</span>
     </div>
     <p>${esc(lesson.caseStudy || "General course foundation")}</p>
     <div class="skills">${esc((lesson.skillFocus ?? []).join(" · "))}</div>
-    <div class="materials">${(lesson.materials ?? []).map(materialLabel).join("")}</div>
+    <div class="materials">${(lesson.materials ?? []).map((material) => materialLink(material)).join("")}</div>
   </article>`;
 };
 
@@ -51,7 +183,31 @@ const tracks = data.tracks.map((track) => {
   </section>`;
 }).join("\n");
 
-const current = data.lessons.find((lesson) => lesson.id === data.course.currentLessonId) ?? data.lessons[0];
+const currentIndex = data.lessons.findIndex((lesson) => lesson.id === data.course.currentLessonId);
+const current = data.lessons[currentIndex];
+const currentTrack = trackById.get(current.track);
+const primary = primaryMaterial(current);
+
+const sequenceItem = (label, lesson) => {
+  if (!lesson) {
+    return `<div class="sequence-card is-empty">
+      <span>${esc(label)}</span>
+      <strong>None</strong>
+    </div>`;
+  }
+  const track = trackById.get(lesson.track);
+  return `<a class="sequence-card" href="#${esc(lesson.id)}">
+    <span>${esc(label)}</span>
+    <strong>${esc(track?.label ?? lesson.track)} ${esc(lesson.module)} ${esc(lesson.lesson)}</strong>
+    <em>${esc(lesson.title)}</em>
+  </a>`;
+};
+
+const secondaryCurrentMaterials = (current.materials ?? []).filter((material) => material !== primary);
+const currentGroups = groupMaterials(secondaryCurrentMaterials);
+
+const filterButton = (group, value, label, active = false) =>
+  `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -85,21 +241,42 @@ const html = `<!DOCTYPE html>
         <h1>Find the right BUS123 materials quickly.</h1>
         <p>This course map is the student-facing source for live lesson slides, readings, workbooks, and practice materials.</p>
         <div class="current">
-          <div>
-            <div class="meta">Current · ${esc(current.track)} ${esc(current.module)} ${esc(current.lesson)}</div>
+          <div class="current-copy">
+            <div class="meta">Current · ${esc(currentTrack?.label ?? current.track)} ${esc(current.module)} ${esc(current.lesson)}</div>
             <h2>${esc(current.title)}</h2>
             <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
+            ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
           </div>
-          <div class="materials">${(current.materials ?? []).map(materialLabel).join("")}</div>
+          <div class="current-groups" aria-label="Current lesson materials">
+            ${currentGroups.map((group) => `<div class="material-group">
+              <h3>${esc(group.label)}</h3>
+              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
+            </div>`).join("")}
+          </div>
+        </div>
+        <div class="sequence-strip" aria-label="Lesson sequence">
+          ${sequenceItem("Previous", data.lessons[currentIndex - 1])}
+          ${sequenceItem("Current", current)}
+          ${sequenceItem("Next", data.lessons[currentIndex + 1])}
         </div>
       </div>
     </section>
 
     <section class="shell controls" aria-label="Search and filter">
       <input class="search" type="search" placeholder="Search by title, skill, track, module, material, or case company" data-search>
-      <div class="filters">
-        <button class="active" type="button" data-filter="all">All</button>
-        ${data.tracks.map((track) => `<button type="button" data-filter="${esc(track.id)}">${esc(track.label)}</button>`).join("")}
+      <div class="filter-panel">
+        <div class="filters" aria-label="Track filters">
+          ${filterButton("track", "all", "All", true)}
+          ${data.tracks.map((track) => filterButton("track", track.id, track.label)).join("")}
+        </div>
+        <div class="filters" aria-label="Material filters">
+          ${filterButton("material", "all", "Any Material", true)}
+          ${materialFilters.map((type) => filterButton("material", slug(type), type)).join("")}
+        </div>
+        <div class="filters" aria-label="Status filters">
+          ${filterButton("status", "all", "Any Status", true)}
+          ${statusFilters.map((status) => filterButton("status", slug(status), status)).join("")}
+        </div>
       </div>
     </section>
 
@@ -114,3 +291,5 @@ const html = `<!DOCTYPE html>
 `;
 
 await fs.writeFile(path.join(root, "index.html"), html);
+
+console.log(`Built index.html from course-map.json (${data.lessons.length} lessons, current: ${current.id}).`);

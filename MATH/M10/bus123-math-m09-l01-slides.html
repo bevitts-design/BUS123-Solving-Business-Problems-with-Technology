@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUS123 · MATH-M09-L01 · Business Statistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS v2 Hybrid ── */
+:root{
+  --ink:#0E1116; --paper:#FAF8F3; --paper-2:#F2EEE5; --white:#FFFFFF;
+  --text:#1A1F2C; --text-soft:#4A5567; --muted:#7A8290; --border:#E5E1D6;
+  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773;
+  --accent:var(--sage);
+  --serif:"Bodoni Moda",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",monospace;
+  --W:1280; --H:720;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var(--sans);}
+
+/* ── STAGE + SCALING ── */
+#stage{
+  position:fixed;top:0;left:0;
+  width:1280px;height:720px;
+  transform-origin:0 0;
+  overflow:hidden;
+}
+.slide{
+  width:1280px;height:720px;
+  position:absolute;top:0;left:0;
+  display:none;overflow:hidden;
+}
+.slide.active{display:flex;}
+
+/* ── NOTEBOOK TAB LAYOUT ── */
+.nb-wrap{display:flex;width:100%;height:100%;}
+.nb-tabs{
+  width:52px;min-width:52px;height:100%;
+  background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 0 16px;gap:6px;
+  border-right:1px solid rgba(184,132,61,.25);
+}
+.nb-tab{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.35);
+  cursor:default;transition:background .2s,color .2s;
+  font-weight:600;
+}
+.nb-tab.active-tab{background:var(--accent);color:#fff;}
+.nb-tab.done-tab{color:rgba(255,255,255,.55);}
+.nb-content{flex:1;height:100%;position:relative;overflow:hidden;}
+
+/* ── SLIDE BACKGROUNDS ── */
+.bg-ink{background:var(--ink);}
+.bg-paper{background:var(--paper);}
+.bg-terra{background:var(--terra);}
+
+/* ── GRADIENT BAR ── */
+.grad-bar{
+  height:5px;width:100%;
+  background:linear-gradient(90deg,#B8843D 0%,#9C4A2B 50%,#4A7C5E 100%);
+  flex-shrink:0;
+}
+
+/* ── TYPOGRAPHY ── */
+.t-display{font-family:var(--serif);font-size:52px;font-weight:700;line-height:1.1;color:#fff;}
+.t-display-sm{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1.15;color:var(--text);}
+.t-display-ink{font-family:var(--serif);font-size:38px;font-weight:700;line-height:1.15;color:#fff;}
+.t-subtitle{font-family:var(--serif);font-style:italic;font-size:20px;color:rgba(255,255,255,.7);}
+.t-subtitle-dark{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text-soft);}
+.t-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+.t-eyebrow-gold{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.t-eyebrow-white{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600;}
+.t-body{font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--text);}
+.t-body-sm{font-family:var(--sans);font-size:15px;line-height:1.55;color:var(--text-soft);}
+.t-body-white{font-family:var(--sans);font-size:17px;line-height:1.6;color:rgba(255,255,255,.88);}
+.t-mono{font-family:var(--mono);font-size:16px;color:var(--gold);}
+.t-big{font-family:var(--serif);font-size:72px;font-weight:700;line-height:1;color:var(--accent);}
+.t-big-gold{font-family:var(--serif);font-size:72px;font-weight:700;line-height:1;color:var(--gold);}
+
+/* ── LAYOUT UTILITIES ── */
+.col{display:flex;flex-direction:column;}
+.row{display:flex;flex-direction:row;}
+.gap-8{gap:8px;} .gap-12{gap:12px;} .gap-16{gap:16px;} .gap-20{gap:20px;} .gap-24{gap:24px;} .gap-32{gap:32px;}
+.p-32{padding:32px;} .p-40{padding:40px;} .p-48{padding:48px;}
+.pt-24{padding-top:24px;} .pt-32{padding-top:32px;}
+.flex-1{flex:1;} .w-full{width:100%;}
+.align-center{align-items:center;} .justify-center{justify-content:center;}
+.text-center{text-align:center;}
+
+/* ── CARDS ── */
+.card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.card-sage{background:rgba(74,124,94,.12);border:1px solid rgba(74,124,94,.3);border-radius:12px;padding:20px;}
+.card-gold{background:rgba(184,132,61,.1);border:1px solid rgba(184,132,61,.3);border-radius:12px;padding:20px;}
+.card-ink{background:rgba(14,17,22,.7);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;}
+.card-terra{background:rgba(156,74,43,.15);border:1px solid rgba(156,74,43,.35);border-radius:12px;padding:20px;}
+
+/* ── FORMULA PANEL ── */
+.formula-panel{
+  background:#0a0e14;border:1px solid rgba(184,132,61,.4);border-radius:10px;
+  padding:16px 20px;font-family:var(--mono);font-size:15px;color:var(--gold);
+  line-height:1.7;
+}
+.formula-panel .comment{color:rgba(255,255,255,.35);font-size:13px;}
+.formula-panel .result{color:#7ec8a0;margin-top:4px;}
+
+/* ── SLIDE COUNTER ── */
+.slide-num{
+  position:absolute;bottom:16px;right:20px;
+  font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);
+}
+.slide-num-dark{
+  position:absolute;bottom:16px;right:20px;
+  font-family:var(--mono);font-size:11px;color:var(--muted);
+}
+
+/* ── NAV BUTTONS ── */
+#nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:999;display:flex;gap:10px;}
+#nav button{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;
+  padding:8px 20px;border-radius:20px;cursor:pointer;transition:background .18s;
+}
+#nav button:hover{background:rgba(255,255,255,.22);}
+#nav span{
+  color:rgba(255,255,255,.5);font-family:var(--mono);font-size:12px;
+  display:flex;align-items:center;padding:0 8px;
+}
+
+/* ── SECTION BREAK ── */
+.section-break-inner{
+  width:100%;height:100%;
+  background:var(--ink);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  position:relative;
+}
+
+/* ── OBJECTIVE / LIST ── */
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.obj-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-family:var(--sans);font-size:17px;color:var(--text);line-height:1.5;
+}
+.obj-list li::before{
+  content:'';width:8px;height:8px;border-radius:50%;
+  background:var(--accent);margin-top:6px;flex-shrink:0;
+}
+
+/* ── STAT BAR (mini chart) ── */
+.stat-bar-wrap{display:flex;flex-direction:column;gap:8px;width:100%;}
+.stat-bar-row{display:flex;align-items:center;gap:10px;}
+.stat-bar-label{font-family:var(--sans);font-size:14px;color:var(--text-soft);width:160px;flex-shrink:0;}
+.stat-bar-track{flex:1;height:22px;background:var(--paper-2);border-radius:6px;overflow:hidden;}
+.stat-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;}
+.stat-bar-val{font-family:var(--mono);font-size:12px;color:#fff;font-weight:600;}
+
+/* ── TABLE ── */
+.data-table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:15px;}
+.data-table th{
+  background:#1a1a2e;color:#e2c47a;font-family:var(--mono);font-size:12px;
+  font-weight:600;text-align:left;padding:10px 14px;border-bottom:2px solid #c9a84c;
+}
+.data-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);}
+.data-table tr:nth-child(even) td{background:#f7f8fa;}
+.data-table .result-row td{background:#fffbf0;border-left:3px solid #c9a84c;font-weight:600;color:#1a6b3c;}
+
+/* ── CORRELATION GRID ── */
+.corr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;width:100%;}
+.corr-cell{
+  background:var(--white);border:1px solid var(--border);border-radius:10px;
+  padding:18px;text-align:center;
+}
+.corr-val{font-family:var(--serif);font-size:40px;font-weight:700;line-height:1;}
+.corr-val.pos{color:var(--sage);}
+.corr-val.neg{color:var(--terra);}
+.corr-val.zero{color:var(--muted);}
+
+/* ── DISTRIBUTION VIZ ── */
+.bell-label{font-family:var(--mono);font-size:11px;color:var(--muted);}
+
+/* ── MISTAKE CALLOUT ── */
+.mistake-badge{
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);
+  border-radius:20px;padding:4px 14px;display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;color:#fff;letter-spacing:.08em;
+}
+
+/* ── INTERACTIVE WIDGET ── */
+.widget-wrap{
+  background:#0a0e14;border:1px solid rgba(184,132,61,.3);border-radius:12px;
+  padding:20px;
+}
+.widget-input{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  border-radius:6px;padding:8px 12px;color:#fff;font-family:var(--mono);
+  font-size:14px;width:100%;outline:none;
+}
+.widget-input:focus{border-color:var(--gold);}
+.widget-result{
+  font-family:var(--mono);font-size:18px;color:#7ec8a0;
+  padding:12px 0 4px;
+}
+.widget-label{font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.5);margin-bottom:4px;}
+.widget-btn{
+  background:var(--sage);color:#fff;border:none;border-radius:6px;
+  padding:10px 20px;font-family:var(--sans);font-size:14px;font-weight:600;
+  cursor:pointer;margin-top:12px;
+}
+.widget-btn:hover{background:#3d6b4f;}
+
+/* ── COMPARISON BOARD ── */
+.comp-row{display:flex;gap:16px;width:100%;}
+.comp-col{flex:1;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.comp-col-head{padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:600;}
+.comp-col-body{padding:14px 18px;}
+
+</style>
+</head>
+<body>
+
+<div id="stage">
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 1 · TITLE
+     ════════════════════════════════════════════════════ -->
+<section class="slide active bg-ink" data-section="title">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">M9</div>
+    </div>
+    <div class="nb-content col" style="position:relative;">
+      <div class="grad-bar"></div>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 64px;gap:18px;text-align:center;">
+        <span class="t-eyebrow-gold">MATH-M09-L01 · Fall 2026</span>
+        <h1 class="t-display" style="max-width:760px;line-height:1.05;">Business Statistics</h1>
+        <p class="t-subtitle">Central Tendency, Dispersion &amp; Correlation</p>
+        <div style="width:64px;height:2px;background:var(--accent);margin:8px 0;"></div>
+        <p style="font-family:var(--sans);font-size:16px;color:rgba(255,255,255,.5);">
+          BUS123 · Solving Business Problems with Technology<br>
+          Gerrish School of Business · Endicott College
+        </p>
+      </div>
+      <div class="grad-bar"></div>
+      <div class="slide-num">01 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 2 · AGENDA
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="agenda">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">M9</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:28px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Today's Agenda</span>
+        <h2 class="t-display-sm">What we're covering</h2>
+      </div>
+      <div class="col gap-16" style="max-width:680px;">
+        <div class="card row gap-20 align-center">
+          <div style="width:44px;height:44px;background:var(--sage);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">1</span>
+          </div>
+          <div>
+            <p style="font-family:var(--sans);font-size:17px;font-weight:600;color:var(--text);">Central Tendency</p>
+            <p class="t-body-sm">Mean, Median &amp; Mode — finding the center of your data</p>
+          </div>
+        </div>
+        <div class="card row gap-20 align-center">
+          <div style="width:44px;height:44px;background:var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">2</span>
+          </div>
+          <div>
+            <p style="font-family:var(--sans);font-size:17px;font-weight:600;color:var(--text);">Dispersion</p>
+            <p class="t-body-sm">Standard deviation — measuring the spread of your data</p>
+          </div>
+        </div>
+        <div class="card row gap-20 align-center">
+          <div style="width:44px;height:44px;background:var(--terra);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">3</span>
+          </div>
+          <div>
+            <p style="font-family:var(--sans);font-size:17px;font-weight:600;color:var(--text);">Correlation</p>
+            <p class="t-body-sm">Identifying relationships between two variables in Excel</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">02 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 3 · LEARNING OBJECTIVES
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="objectives">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">M9</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:28px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Learning Objectives</span>
+        <h2 class="t-display-sm">By the end of this lesson, I can…</h2>
+      </div>
+      <ul class="obj-list" style="max-width:740px;">
+        <li>Calculate and interpret mean, median, and mode for a business dataset using Excel functions</li>
+        <li>Calculate standard deviation and explain what a high or low value means in a business context</li>
+        <li>Use Excel's CORREL function to measure the relationship between two numeric variables</li>
+        <li>Distinguish between correlation and causation when analyzing business data</li>
+      </ul>
+      <div class="slide-num-dark">03 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 4 · RECAP / BRIDGE
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="recap">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">M9</div>
+    </div>
+    <div class="nb-content row" style="gap:0;">
+      <div class="col p-48" style="flex:1;gap:24px;justify-content:center;">
+        <span class="t-eyebrow">Building On M08</span>
+        <h2 class="t-display-sm">From formulas to data insight</h2>
+        <p class="t-body" style="max-width:480px;">
+          In Module 08 we mastered financial math — loan payments, interest, and time value. 
+          Now we turn to <strong>data analysis</strong>: using statistics to understand patterns 
+          hidden inside real business numbers.
+        </p>
+        <div class="card-sage" style="max-width:480px;">
+          <p class="t-body-sm"><strong>Think of it this way:</strong> Financial math tells you <em>what</em> a number is. 
+          Statistics tell you <em>what that number means</em> compared to everything else.</p>
+        </div>
+      </div>
+      <div style="width:360px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:40px;">
+        <div style="text-align:center;">
+          <div class="t-big" style="font-size:56px;">M08</div>
+          <p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;">Financial Math</p>
+        </div>
+        <div style="width:2px;height:40px;background:linear-gradient(180deg,var(--sage),var(--gold));"></div>
+        <div style="text-align:center;">
+          <div class="t-big-gold" style="font-size:56px;">M09</div>
+          <p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;">Business Statistics</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-dark">04 / 22</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 5 · SECTION BREAK — PART 1
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="break-1">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">1</div>
+    </div>
+    <div class="nb-content">
+      <div class="section-break-inner">
+        <div class="grad-bar" style="position:absolute;top:0;left:0;right:0;"></div>
+        <span class="t-eyebrow-white">Part 1 of 3</span>
+        <h2 style="font-family:var(--serif);font-size:54px;font-weight:700;color:#fff;text-align:center;line-height:1.1;">
+          Central Tendency
+        </h2>
+        <p class="t-subtitle" style="max-width:480px;text-align:center;">Mean · Median · Mode</p>
+        <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
+      </div>
+      <div class="slide-num">05 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 6 · MEAN — CONCEPT
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-1">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">1</div>
+    </div>
+    <div class="nb-content row" style="gap:0;">
+      <div class="col p-48" style="flex:1;gap:22px;justify-content:center;">
+        <span class="t-eyebrow">Central Tendency · Mean</span>
+        <h2 class="t-display-sm">The Arithmetic Average</h2>
+        <p class="t-body" style="max-width:480px;">
+          Add up all the values in a dataset, then divide by how many values there are.
+          The mean is the most common "average" — but it can be pulled off-center by extreme outliers.
+        </p>
+        <div class="formula-panel" style="max-width:480px;">
+          <span class="comment">// Excel syntax — always first</span><br>
+          =AVERAGE(number1, [number2], ...)
+          <br><br>
+          <span class="comment">// Manual calculation</span><br>
+          Mean = Σx ÷ n
+        </div>
+      </div>
+      <div style="width:380px;display:flex;flex-direction:column;justify-content:center;padding:40px;gap:14px;">
+        <div class="card-gold">
+          <p class="t-eyebrow-gold" style="margin-bottom:6px;">Harborside Medical</p>
+          <p class="t-body-sm">Daily patient wait times (minutes): 12, 15, 18, 11, 42</p>
+          <p style="font-family:var(--mono);font-size:14px;color:var(--gold);margin-top:10px;">=AVERAGE(A2:A6) → 19.6 min</p>
+          <p style="font-family:var(--sans);font-size:13px;color:var(--text-soft);margin-top:6px;">(12+15+18+11+42) ÷ 5 = 98 ÷ 5</p>
+        </div>
+        <div class="card-terra">
+          <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--terra);margin-bottom:4px;">⚠ Watch Out</p>
+          <p class="t-body-sm">The 42-minute outlier pulls the mean up to 19.6. Most days were 11–18 min. The mean alone is misleading here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-dark">06 / 22</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 7 · MEDIAN
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-1">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">1</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:24px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Central Tendency · Median</span>
+        <h2 class="t-display-sm">The Middle Value</h2>
+      </div>
+      <div class="row gap-24" style="align-items:flex-start;">
+        <div class="col gap-16" style="flex:1;">
+          <p class="t-body">Sort the values from smallest to largest. The median is the middle number. If there's an even count, average the two middle values.</p>
+          <div class="formula-panel">
+            =MEDIAN(number1, [number2], ...)<br>
+            <span class="comment">// Returns the middle value of a sorted range</span>
+          </div>
+          <div class="card" style="margin-top:4px;">
+            <p class="t-eyebrow" style="margin-bottom:10px;">Harborside Wait Times — sorted</p>
+            <div class="row" style="gap:8px;align-items:center;flex-wrap:wrap;">
+              <div style="padding:10px 16px;background:var(--paper-2);border-radius:8px;font-family:var(--mono);font-size:18px;color:var(--text);">11</div>
+              <div style="padding:10px 16px;background:var(--paper-2);border-radius:8px;font-family:var(--mono);font-size:18px;color:var(--text);">12</div>
+              <div style="padding:10px 16px;background:var(--sage);border-radius:8px;font-family:var(--mono);font-size:18px;color:#fff;font-weight:700;">15</div>
+              <div style="padding:10px 16px;background:var(--paper-2);border-radius:8px;font-family:var(--mono);font-size:18px;color:var(--text);">18</div>
+              <div style="padding:10px 16px;background:var(--paper-2);border-radius:8px;font-family:var(--mono);font-size:18px;color:var(--text);">42</div>
+            </div>
+            <p style="font-family:var(--mono);font-size:14px;color:var(--sage);margin-top:12px;">=MEDIAN(A2:A6) → 15 min</p>
+          </div>
+        </div>
+        <div class="col gap-12" style="width:280px;">
+          <div class="card-sage">
+            <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--sage);margin-bottom:6px;">Why median &gt; mean here?</p>
+            <p class="t-body-sm">Mean = 19.6 min. Median = 15 min. The median is a more honest picture of typical patient wait times because it isn't dragged upward by that one 42-minute day.</p>
+          </div>
+          <div class="card-gold">
+            <p style="font-family:var(--mono);font-size:12px;color:var(--gold);margin-bottom:6px;">RULE OF THUMB</p>
+            <p class="t-body-sm">Use <strong>median</strong> when your data has outliers or is skewed. Use <strong>mean</strong> when the data is symmetric.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">07 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 8 · MODE
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-1">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">1</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:24px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Central Tendency · Mode</span>
+        <h2 class="t-display-sm">The Most Frequent Value</h2>
+      </div>
+      <div class="row gap-24">
+        <div class="col gap-16" style="flex:1;">
+          <p class="t-body">The mode is the value that appears most often. A dataset can have no mode, one mode, or be <em>bimodal</em> (two values tie for most frequent).</p>
+          <div class="formula-panel">
+            =MODE.SNGL(number1, [number2], ...)<br>
+            <span class="comment">// Returns the most frequent value</span><br><br>
+            =MODE.MULT(number1, [number2], ...)<br>
+            <span class="comment">// Returns ALL modes (array — use Ctrl+Shift+Enter)</span>
+          </div>
+        </div>
+        <div class="col gap-14" style="width:340px;">
+          <div class="card">
+            <p class="t-eyebrow" style="margin-bottom:10px;">Harborside · Diagnosis Codes Filed (10 days)</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">J06.9</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--sage);color:#fff;border-radius:6px;font-weight:600;">Z00.0</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">J06.9</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--sage);color:#fff;border-radius:6px;font-weight:600;">Z00.0</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--sage);color:#fff;border-radius:6px;font-weight:600;">Z00.0</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">M54.5</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">J06.9</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">M54.5</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--sage);color:#fff;border-radius:6px;font-weight:600;">Z00.0</span>
+              <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">J06.9</span>
+            </div>
+            <p style="font-family:var(--mono);font-size:13px;color:var(--sage);">Mode → Z00.0 (routine checkup) · appears 4×</p>
+          </div>
+          <div class="card-sage">
+            <p class="t-body-sm"><strong>Why it matters:</strong> The mode tells Harborside which visit type to staff for most heavily. Routine checkups dominate — schedule accordingly.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">08 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 9 · SECTION BREAK — PART 2
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="break-2">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab active-tab">2</div>
+    </div>
+    <div class="nb-content">
+      <div class="section-break-inner">
+        <div class="grad-bar" style="position:absolute;top:0;left:0;right:0;"></div>
+        <span class="t-eyebrow-white">Part 2 of 3</span>
+        <h2 style="font-family:var(--serif);font-size:54px;font-weight:700;color:#fff;text-align:center;line-height:1.1;">
+          Dispersion
+        </h2>
+        <p class="t-subtitle" style="max-width:520px;text-align:center;">Standard Deviation — measuring the spread of data</p>
+        <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
+      </div>
+      <div class="slide-num">09 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 10 · WHY SPREAD MATTERS
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-2">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab active-tab">2</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:24px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Dispersion · Why Spread Matters</span>
+        <h2 class="t-display-sm">Same mean — very different data</h2>
+      </div>
+      <div class="row gap-20">
+        <div class="card" style="flex:1;">
+          <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;">Hospital A · Wait Times (min)</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--sage);color:#fff;border-radius:6px;">18</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--sage);color:#fff;border-radius:6px;">19</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--sage);color:#fff;border-radius:6px;">20</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--sage);color:#fff;border-radius:6px;">21</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--sage);color:#fff;border-radius:6px;">22</span>
+          </div>
+          <p style="font-family:var(--mono);font-size:13px;color:var(--sage);">Mean = 20 min · SD ≈ 1.6 min</p>
+          <p class="t-body-sm" style="margin-top:8px;color:var(--sage);">Consistent and predictable — low spread</p>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:32px;color:var(--muted);">vs</div>
+        <div class="card" style="flex:1;">
+          <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;">Hospital B · Wait Times (min)</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--terra);color:#fff;border-radius:6px;">2</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--terra);color:#fff;border-radius:6px;">8</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--terra);color:#fff;border-radius:6px;">20</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--terra);color:#fff;border-radius:6px;">35</span>
+            <span style="font-family:var(--mono);font-size:16px;padding:6px 12px;background:var(--terra);color:#fff;border-radius:6px;">35</span>
+          </div>
+          <p style="font-family:var(--mono);font-size:13px;color:var(--terra);">Mean = 20 min · SD ≈ 13.5 min</p>
+          <p class="t-body-sm" style="margin-top:8px;color:var(--terra);">Wildly unpredictable — high spread</p>
+        </div>
+      </div>
+      <div class="card-gold" style="max-width:780px;">
+        <p class="t-body-sm"><strong>Key insight:</strong> Both hospitals have the same mean wait time. But Hospital B's high standard deviation signals a serious process problem — some patients wait 2 minutes, others 35. The mean alone hides this.</p>
+      </div>
+      <div class="slide-num-dark">10 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 11 · STDEV FORMULA + EXCEL SYNTAX
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-2">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab active-tab">2</div>
+    </div>
+    <div class="nb-content row" style="gap:0;">
+      <div class="col p-48" style="flex:1;gap:20px;justify-content:center;">
+        <span class="t-eyebrow">Standard Deviation · Excel Syntax</span>
+        <h2 class="t-display-sm">Two versions — know which to use</h2>
+        <div class="formula-panel">
+          =STDEV.S(number1, [number2], ...)<br>
+          <span class="comment">// Sample standard deviation — use when your data</span><br>
+          <span class="comment">// is a SAMPLE from a larger population (most common)</span><br><br>
+          =STDEV.P(number1, [number2], ...)<br>
+          <span class="comment">// Population standard deviation — use ONLY when</span><br>
+          <span class="comment">// you have data for the ENTIRE population</span>
+        </div>
+        <div class="card-sage" style="max-width:480px;">
+          <p class="t-body-sm"><strong>Business rule:</strong> Unless you have data for every single observation (every patient, every sale, every employee), use <code style="font-family:var(--mono);font-size:13px;color:var(--sage);">STDEV.S</code>.</p>
+        </div>
+      </div>
+      <div style="width:360px;display:flex;flex-direction:column;justify-content:center;padding:36px;gap:14px;background:var(--paper-2);">
+        <p class="t-eyebrow" style="margin-bottom:4px;">Manual formula</p>
+        <div style="background:#0a0e14;border:1px solid rgba(184,132,61,.3);border-radius:10px;padding:18px;font-family:var(--mono);font-size:13px;color:var(--gold);line-height:1.9;">
+          s = √[ Σ(x − x̄)² ÷ (n−1) ]<br>
+          <span style="color:rgba(255,255,255,.4);font-size:11px;">where x̄ = sample mean, n = count</span>
+        </div>
+        <div class="card">
+          <p class="t-eyebrow" style="margin-bottom:8px;">Step by step</p>
+          <ol style="list-style:decimal;padding-left:20px;font-family:var(--sans);font-size:14px;color:var(--text-soft);line-height:1.8;">
+            <li>Find the mean</li>
+            <li>Subtract mean from each value</li>
+            <li>Square each difference</li>
+            <li>Sum the squares</li>
+            <li>Divide by (n−1)</li>
+            <li>Take the square root</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num-dark">11 / 22</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 12 · STDEV WORKED EXAMPLE
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-2">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab active-tab">2</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:20px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Worked Example · Harborside Medical Center</span>
+        <h2 class="t-display-sm">Analyzing nurse overtime hours</h2>
+      </div>
+      <div class="row gap-24" style="align-items:flex-start;">
+        <div style="flex:1;">
+          <table class="data-table" style="margin-bottom:14px;">
+            <thead>
+              <tr><th>Nurse</th><th>Overtime Hrs (Week)</th><th>Deviation from Mean</th><th>(x − x̄)²</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Rivera</td><td>4</td><td>4 − 8 = −4</td><td>16</td></tr>
+              <tr><td>Chen</td><td>6</td><td>6 − 8 = −2</td><td>4</td></tr>
+              <tr><td>O'Brien</td><td>8</td><td>8 − 8 = 0</td><td>0</td></tr>
+              <tr><td>Patel</td><td>10</td><td>10 − 8 = +2</td><td>4</td></tr>
+              <tr><td>Walsh</td><td>12</td><td>12 − 8 = +4</td><td>16</td></tr>
+              <tr class="result-row"><td colspan="2"><strong>Mean = 8 hrs</strong></td><td colspan="2"><strong>Σ(x−x̄)² = 40</strong></td></tr>
+            </tbody>
+          </table>
+          <div class="formula-panel" style="font-size:13px;">
+            s = √(40 ÷ 4) = √10 ≈ <span style="color:#7ec8a0;font-weight:600;">3.16 hours</span><br>
+            <span class="comment">// =STDEV.S(B2:B6) → 3.16</span>
+          </div>
+        </div>
+        <div class="col gap-14" style="width:280px;">
+          <div class="card-sage">
+            <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--sage);margin-bottom:6px;">What does 3.16 tell us?</p>
+            <p class="t-body-sm">Most nurses worked within about ±3 hours of the 8-hour mean. The overtime schedule is fairly balanced — no one is dramatically overloaded.</p>
+          </div>
+          <div class="card-gold">
+            <p style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px;">DECISION USE</p>
+            <p class="t-body-sm">If SD jumped to 8+ hours, HR would flag a scheduling problem and investigate workload fairness.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">12 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 13 · SECTION BREAK — PART 3
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="break-3">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab active-tab">3</div>
+    </div>
+    <div class="nb-content">
+      <div class="section-break-inner">
+        <div class="grad-bar" style="position:absolute;top:0;left:0;right:0;"></div>
+        <span class="t-eyebrow-white">Part 3 of 3</span>
+        <h2 style="font-family:var(--serif);font-size:54px;font-weight:700;color:#fff;text-align:center;line-height:1.1;">
+          Correlation
+        </h2>
+        <p class="t-subtitle" style="max-width:520px;text-align:center;">Measuring relationships between two variables</p>
+        <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
+      </div>
+      <div class="slide-num">13 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 14 · CORRELATION CONCEPT
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-3">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab active-tab">3</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:24px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Correlation · The Concept</span>
+        <h2 class="t-display-sm">Do two variables move together?</h2>
+      </div>
+      <div class="corr-grid">
+        <div class="corr-cell">
+          <div class="corr-val pos">+1</div>
+          <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--sage);margin:8px 0 4px;">Perfect Positive</p>
+          <p class="t-body-sm">As X increases, Y always increases in lock step</p>
+          <p style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;">e.g. staff hours ↑ → patients seen ↑</p>
+        </div>
+        <div class="corr-cell">
+          <div class="corr-val zero">0</div>
+          <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--muted);margin:8px 0 4px;">No Correlation</p>
+          <p class="t-body-sm">Changes in X tell us nothing about Y</p>
+          <p style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;">e.g. day of week vs. patient zip code</p>
+        </div>
+        <div class="corr-cell">
+          <div class="corr-val neg">−1</div>
+          <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--terra);margin:8px 0 4px;">Perfect Negative</p>
+          <p class="t-body-sm">As X increases, Y always decreases</p>
+          <p style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px;">e.g. wait time ↑ → satisfaction score ↓</p>
+        </div>
+      </div>
+      <div class="formula-panel" style="max-width:600px;">
+        =CORREL(array1, array2)<br>
+        <span class="comment">// Returns a coefficient between −1 and +1</span><br>
+        <span class="comment">// Strong: |r| &gt; 0.7  ·  Moderate: 0.4–0.7  ·  Weak: &lt; 0.4</span>
+      </div>
+      <div class="slide-num-dark">14 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 15 · CORREL WORKED EXAMPLE
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-3">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab active-tab">3</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:20px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Worked Example · Harborside Medical Center</span>
+        <h2 class="t-display-sm">Do longer waits hurt patient satisfaction?</h2>
+      </div>
+      <div class="row gap-24">
+        <div style="flex:1;">
+          <table class="data-table" style="margin-bottom:14px;">
+            <thead>
+              <tr><th>Day</th><th>Avg Wait (min)</th><th>Satisfaction Score (1–10)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Monday</td><td>12</td><td>8.4</td></tr>
+              <tr><td>Tuesday</td><td>15</td><td>7.9</td></tr>
+              <tr><td>Wednesday</td><td>10</td><td>8.8</td></tr>
+              <tr><td>Thursday</td><td>22</td><td>6.5</td></tr>
+              <tr><td>Friday</td><td>30</td><td>5.2</td></tr>
+              <tr><td>Saturday</td><td>8</td><td>9.1</td></tr>
+              <tr><td>Sunday</td><td>18</td><td>7.1</td></tr>
+              <tr class="result-row"><td colspan="3"><strong>=CORREL(B2:B8, C2:C8) → −0.98</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col gap-14" style="width:300px;">
+          <div class="card-terra">
+            <p style="font-family:var(--serif);font-size:40px;font-weight:700;color:var(--terra);line-height:1;">r = −0.98</p>
+            <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--terra);margin:8px 0 4px;">Very strong negative correlation</p>
+            <p class="t-body-sm">As wait time increases, satisfaction scores drop sharply. This relationship is nearly perfect (r = −1 would be perfect).</p>
+          </div>
+          <div class="card-gold">
+            <p style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px;">MANAGEMENT ACTION</p>
+            <p class="t-body-sm">Reducing average wait time by even 5 minutes is likely to produce a meaningful improvement in patient satisfaction scores.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">15 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 16 · CORRELATION ≠ CAUSATION
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-3">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab active-tab">3</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:24px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Critical Thinking · The Most Important Rule</span>
+        <h2 class="t-display-sm">Correlation ≠ Causation</h2>
+      </div>
+      <div class="row gap-20" style="align-items:stretch;">
+        <div class="card col gap-12" style="flex:1;">
+          <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--text);">What correlation tells you</p>
+          <p class="t-body">Two variables move together. When one goes up, the other tends to go up (or down).</p>
+          <div style="padding:12px 16px;background:var(--paper-2);border-radius:8px;font-family:var(--mono);font-size:13px;color:var(--sage);">r = +0.89 between ice cream sales and hospital admissions in July</div>
+        </div>
+        <div style="display:flex;align-items:center;font-family:var(--serif);font-size:28px;color:var(--terra);font-weight:700;padding:0 8px;">≠</div>
+        <div class="card col gap-12" style="flex:1;border-color:var(--terra);">
+          <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--terra);">What correlation does NOT tell you</p>
+          <p class="t-body">That one thing <em>causes</em> the other. Both could be caused by a third variable — heat in July causes both more ice cream purchases AND more heat-stroke admissions.</p>
+        </div>
+      </div>
+      <div class="card-sage" style="max-width:780px;">
+        <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--sage);margin-bottom:6px;">Harborside Example</p>
+        <p class="t-body-sm">We found r = −0.98 between wait time and satisfaction. We <strong>cannot</strong> conclude from this alone that reducing wait time <em>causes</em> higher satisfaction. Maybe low-severity cases (shorter waits) are inherently more satisfied regardless. Deeper analysis is needed before making a staffing investment decision.</p>
+      </div>
+      <div class="slide-num-dark">16 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 17 · INTERACTIVE EXPLORER
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="part-3">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab active-tab">3</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:20px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Try It · Live Statistics Explorer</span>
+        <h2 class="t-display-sm">Enter your own dataset</h2>
+      </div>
+      <div class="row gap-24" style="align-items:flex-start;">
+        <div class="widget-wrap col gap-12" style="flex:1;">
+          <div class="widget-label">Enter comma-separated numbers (e.g. 12, 15, 18, 11, 42)</div>
+          <input class="widget-input" id="dataInput" type="text" value="12, 15, 18, 11, 42" placeholder="Enter numbers...">
+          <button class="widget-btn" onclick="calcStats()">Calculate</button>
+          <div id="statsResult" style="display:none;" class="col gap-8 pt-24">
+            <div class="row gap-16" style="flex-wrap:wrap;">
+              <div style="flex:1;min-width:100px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px;text-align:center;">
+                <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:4px;">MEAN</p>
+                <p id="rMean" style="font-family:var(--serif);font-size:28px;color:var(--gold);"></p>
+              </div>
+              <div style="flex:1;min-width:100px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px;text-align:center;">
+                <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:4px;">MEDIAN</p>
+                <p id="rMedian" style="font-family:var(--serif);font-size:28px;color:var(--sage);"></p>
+              </div>
+              <div style="flex:1;min-width:100px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px;text-align:center;">
+                <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:4px;">MODE</p>
+                <p id="rMode" style="font-family:var(--serif);font-size:28px;color:#7ec8a0;"></p>
+              </div>
+              <div style="flex:1;min-width:100px;background:rgba(255,255,255,.07);border-radius:8px;padding:12px;text-align:center;">
+                <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:4px;">STDEV (S)</p>
+                <p id="rStdev" style="font-family:var(--serif);font-size:28px;color:var(--terra);"></p>
+              </div>
+            </div>
+            <p id="rNote" style="font-family:var(--sans);font-size:13px;color:rgba(255,255,255,.5);"></p>
+          </div>
+        </div>
+        <div class="col gap-12" style="width:280px;">
+          <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:18px;">
+            <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-bottom:8px;">TRY THESE DATASETS</p>
+            <div class="col gap-8">
+              <button onclick="document.getElementById('dataInput').value='5,5,5,5,5'" class="widget-btn" style="background:rgba(74,124,94,.3);font-size:13px;padding:7px 14px;">All same → SD = ?</button>
+              <button onclick="document.getElementById('dataInput').value='1,2,3,100'" class="widget-btn" style="background:rgba(156,74,43,.3);font-size:13px;padding:7px 14px;">One outlier →mean vs median</button>
+              <button onclick="document.getElementById('dataInput').value='10,20,10,30,10,40'" class="widget-btn" style="background:rgba(184,132,61,.3);font-size:13px;padding:7px 14px;">Repeated values → find mode</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-num-dark">17 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 18 · COMMON MISTAKE (terra)
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-terra" data-section="mistake">
+  <div class="nb-wrap">
+    <div class="nb-tabs" style="background:#7a3520;border-right:1px solid rgba(255,255,255,.1);">
+      <div class="nb-tab active-tab" style="background:rgba(255,255,255,.2);">!</div>
+    </div>
+    <div class="nb-content col" style="padding:48px;gap:28px;justify-content:center;">
+      <div class="mistake-badge">⚠ Common Mistake</div>
+      <h2 style="font-family:var(--serif);font-size:44px;font-weight:700;color:#fff;line-height:1.1;max-width:680px;">
+        Using the mean without reporting the standard deviation
+      </h2>
+      <div class="row gap-24" style="align-items:flex-start;">
+        <div style="flex:1;">
+          <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:20px;margin-bottom:14px;">
+            <p style="font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px;">❌ INCOMPLETE — misleading</p>
+            <p style="font-family:var(--sans);font-size:16px;color:#fff;">"Harborside's average patient satisfaction score is 7.6 out of 10."</p>
+          </div>
+          <div style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:20px;">
+            <p style="font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.8);margin-bottom:8px;">✓ COMPLETE — actionable</p>
+            <p style="font-family:var(--sans);font-size:16px;color:#fff;">"Harborside's average satisfaction score is 7.6 (SD = 2.4), meaning scores range widely — from 5.2 to 9.1. There is a high-variance problem to solve."</p>
+          </div>
+        </div>
+        <div style="width:280px;background:rgba(0,0,0,.2);border-radius:10px;padding:20px;">
+          <p style="font-family:var(--serif);font-style:italic;font-size:17px;color:rgba(255,255,255,.85);line-height:1.5;margin-bottom:10px;">"Talking about the mean without the standard deviation is like describing the Titanic without mentioning the iceberg."</p>
+          <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);">— Statistics instructor wisdom</p>
+        </div>
+      </div>
+      <div class="slide-num">18 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 19 · DISCUSSION
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="discussion">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">?</div>
+    </div>
+    <div class="nb-content col" style="padding:56px;gap:36px;justify-content:center;">
+      <span class="t-eyebrow-white">Class Discussion</span>
+      <div class="row gap-28">
+        <div style="flex:1;background:rgba(74,124,94,.15);border:1px solid rgba(74,124,94,.3);border-radius:14px;padding:28px;">
+          <p style="font-family:var(--mono);font-size:11px;color:var(--sage);letter-spacing:.1em;margin-bottom:14px;">QUESTION 01</p>
+          <p style="font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;line-height:1.4;">Harborside discovers its mean patient bill is $2,400 — but the standard deviation is $1,900. What does that tell the finance team, and what would they want to do next?</p>
+        </div>
+        <div style="flex:1;background:rgba(184,132,61,.12);border:1px solid rgba(184,132,61,.3);border-radius:14px;padding:28px;">
+          <p style="font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.1em;margin-bottom:14px;">QUESTION 02</p>
+          <p style="font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;line-height:1.4;">A new hospital CEO shows that hiring more nurses is highly correlated with lower infection rates. A board member says "great — let's hire 50 nurses and solve infections." What's wrong with that reasoning?</p>
+        </div>
+      </div>
+      <div class="slide-num">19 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 20 · KEY TAKEAWAYS
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-paper" data-section="takeaways">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab done-tab">1</div>
+      <div class="nb-tab done-tab">2</div>
+      <div class="nb-tab done-tab">3</div>
+    </div>
+    <div class="nb-content col p-48" style="gap:32px;">
+      <div class="col gap-8">
+        <span class="t-eyebrow">Key Takeaways</span>
+        <h2 class="t-display-sm">What to carry out of this room</h2>
+      </div>
+      <div class="col gap-16" style="max-width:780px;">
+        <div class="card row gap-20 align-center">
+          <div style="width:48px;height:48px;background:var(--sage);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">1</span>
+          </div>
+          <p class="t-body"><strong>Mean, median, and mode</strong> each tell a different story. Choose the right one for your data — median when you have outliers, mode for categorical data, mean for symmetric distributions.</p>
+        </div>
+        <div class="card row gap-20 align-center">
+          <div style="width:48px;height:48px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">2</span>
+          </div>
+          <p class="t-body"><strong>Standard deviation</strong> is the essential partner to the mean. Always report both. A high SD signals inconsistency; a low SD signals reliability — both are actionable business signals.</p>
+        </div>
+        <div class="card row gap-20 align-center">
+          <div style="width:48px;height:48px;background:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="font-family:var(--serif);font-size:22px;font-weight:700;color:#fff;">3</span>
+          </div>
+          <p class="t-body"><strong>Correlation (CORREL)</strong> measures relationship strength from −1 to +1. Strong correlation is worth investigating — but it never proves causation. Always dig deeper before recommending action.</p>
+        </div>
+      </div>
+      <div class="slide-num-dark">20 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 21 · UP NEXT
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="up-next">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">→</div>
+    </div>
+    <div class="nb-content col" style="padding:56px;gap:24px;justify-content:center;position:relative;">
+      <span class="t-eyebrow-gold">Up Next · MATH-M10</span>
+      <h2 style="font-family:var(--serif);font-size:44px;font-weight:700;color:#fff;line-height:1.1;max-width:600px;">
+        Data Visualization &amp; Charts in Excel
+      </h2>
+      <p style="font-family:var(--sans);font-size:18px;color:rgba(255,255,255,.65);max-width:540px;">
+        You've computed the numbers — next we'll make them visual. We'll build bar charts, scatter plots, and histograms that turn statistics into business stories.
+      </p>
+      <div class="row gap-16" style="margin-top:8px;">
+        <div style="padding:10px 18px;background:rgba(74,124,94,.2);border:1px solid rgba(74,124,94,.4);border-radius:8px;font-family:var(--mono);font-size:12px;color:var(--sage);">Bar &amp; Column Charts</div>
+        <div style="padding:10px 18px;background:rgba(184,132,61,.15);border:1px solid rgba(184,132,61,.3);border-radius:8px;font-family:var(--mono);font-size:12px;color:var(--gold);">Scatter Plots</div>
+        <div style="padding:10px 18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.5);">Histograms</div>
+      </div>
+      <div class="slide-num">21 / 22</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════
+     SLIDE 22 · CLOSE / Q&A
+     ════════════════════════════════════════════════════ -->
+<section class="slide bg-ink" data-section="close">
+  <div class="nb-wrap">
+    <div class="nb-tabs">
+      <div class="nb-tab active-tab">Q</div>
+    </div>
+    <div class="nb-content col" style="align-items:center;justify-content:center;gap:20px;padding:56px;text-align:center;position:relative;">
+      <div class="grad-bar" style="position:absolute;top:0;left:0;right:0;"></div>
+      <span class="t-eyebrow-white">MATH-M09-L01</span>
+      <h2 style="font-family:var(--serif);font-size:64px;font-weight:700;color:#fff;line-height:1;">Questions?</h2>
+      <p class="t-subtitle">Central Tendency · Dispersion · Correlation</p>
+      <div style="width:64px;height:2px;background:var(--sage);margin:12px 0;"></div>
+      <p style="font-family:var(--sans);font-size:16px;color:rgba(255,255,255,.45);">
+        Office hours · Canvas · bevitts@endicott.edu
+      </p>
+      <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
+      <div class="slide-num">22 / 22</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /stage -->
+
+<!-- NAV -->
+<div id="nav">
+  <button onclick="prevSlide()">← Prev</button>
+  <span id="navCounter">1 / 22</span>
+  <button onclick="nextSlide()">Next →</button>
+</div>
+
+<!-- SPEAKER NOTES (JSON) -->
+<script id="speaker-notes" type="application/json">
+[
+  "Welcome to Module 9 — Business Statistics. Today we connect Excel skills to real data analysis. Harborside Medical Center is our anchor company throughout.",
+  "Three clean parts today: central tendency, dispersion, then correlation. By the end students will be able to use AVERAGE, MEDIAN, MODE, STDEV.S, and CORREL in Excel with confidence.",
+  "Read through the I Can statements together. Emphasize that these are Excel-first objectives — we learn the function syntax before the manual math.",
+  "Quick bridge from M08. Financial math told us what numbers to calculate. Statistics now tell us what those numbers mean in context. Same tools, bigger questions.",
+  "Part 1 break. Central tendency is about finding the center of a set of numbers. Three tools, three different definitions of center.",
+  "Walk through the Harborside wait time example. Ask students: does 19.6 minutes feel like a fair average? Note how the 42-minute day drags it up. Use AVERAGE in Excel first, then show the manual formula.",
+  "Now we sort the same data and find the middle. The median of 15 minutes is much more representative. Ask: when would you choose median over mean for a business report?",
+  "Mode is different — it's the most frequent value, and it works on text categories too. Diagnosis codes are a great example because they can't be averaged. Ask: what does knowing the mode tell Harborside's scheduling team?",
+  "Part 2 break. Standard deviation is the most important concept today. It's the thing that makes the mean meaningful.",
+  "Show the two hospitals side by side. Same mean = 20 minutes. Hospital A is consistent; Hospital B is chaotic. Ask students which hospital they'd rather visit and why. The SD tells the whole story the mean hides.",
+  "Excel syntax first: STDEV.S for samples, STDEV.P only for full populations. The key teaching point is n-1 in the denominator — that adjustment is why we use .S in almost every business context.",
+  "Walk through the nurse overtime table row by row. Students can follow along manually. Emphasize that the final step is always take the square root. Ask: is 3.16 hours a concerning spread for overtime?",
+  "Part 3 break. Correlation is about relationships — not just individual variables but how two things move together.",
+  "The three-cell grid is the whole concept in one view. Positive, zero, negative. CORREL returns one number. Spend time on the strength thresholds: above 0.7 is strong, 0.4–0.7 moderate, below 0.4 weak.",
+  "Work through the CORREL example. r = -0.98 is very close to perfect negative. Ask students to read that number: longer waits, lower scores, consistently. Walk through the CORREL Excel syntax and show where the two arrays go.",
+  "Critical thinking slide — this is the most important one. Correlation never proves causation. Both ice cream and hospitalizations go up in summer because of heat. Ask: what third variable might be driving Harborside's correlation?",
+  "Interactive slide — let students type in their own numbers. The three preset buttons are great for class demos. All same values → SD = 0. One outlier → mean vs median diverge sharply. Repeated values → mode appears.",
+  "Common mistake slide. Read the contrast aloud. The iceberg quote lands well. Ask: in a business presentation would you ever just report the mean? What would your manager ask next?",
+  "Discussion questions — give 3–4 minutes in pairs before opening to the room. Q1 is about interpreting a high SD on a financial metric. Q2 is the classic causation trap.",
+  "Takeaways — three numbered, not a bullet list. Ask students to pick the one that surprised them most.",
+  "Up next teaser: M10 is data visualization. We take today's numbers and make them charts. Scatter plots connect directly to the correlation work we did today.",
+  "Open for questions. Remind students the Excel workbook for this lesson is on Canvas — they should complete it before next class. Office hours info is on slide."
+]
+</script>
+
+<!-- SCAFFOLD + INTERACTIVE SCRIPTS -->
+<script>
+(function(){
+  const W=1280,H=720;
+  const stage=document.getElementById('stage');
+  function scale(){
+    const s=Math.min(innerWidth/W,innerHeight/H);
+    stage.style.transform=`translate(${(innerWidth-W*s)/2}px,${(innerHeight-H*s)/2}px) scale(${s})`;
+  }
+  window.addEventListener('resize',scale);scale();
+
+  const slides=[...document.querySelectorAll('.slide')];
+  let cur=0;
+  const counter=document.getElementById('navCounter');
+
+  function show(i){
+    slides[cur].classList.remove('active');
+    cur=Math.max(0,Math.min(i,slides.length-1));
+    slides[cur].classList.add('active');
+    counter.textContent=`${cur+1} / ${slides.length}`;
+  }
+
+  window.nextSlide=()=>show(cur+1);
+  window.prevSlide=()=>show(cur-1);
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')show(cur+1);
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp')show(cur-1);
+  });
+})();
+
+/* ── STATS CALCULATOR ── */
+function calcStats(){
+  const raw=document.getElementById('dataInput').value;
+  const nums=raw.split(',').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
+  if(nums.length<2){alert('Enter at least 2 numbers');return;}
+
+  const n=nums.length;
+  const mean=nums.reduce((a,b)=>a+b,0)/n;
+  const sorted=[...nums].sort((a,b)=>a-b);
+  const median=n%2===0?(sorted[n/2-1]+sorted[n/2])/2:sorted[Math.floor(n/2)];
+
+  // Mode
+  const freq={};nums.forEach(x=>freq[x]=(freq[x]||0)+1);
+  const maxF=Math.max(...Object.values(freq));
+  const modes=Object.keys(freq).filter(k=>freq[k]===maxF).map(Number);
+  const modeStr=modes.length===nums.length?'None':modes.join(', ');
+
+  // STDEV.S
+  const variance=nums.reduce((acc,x)=>acc+Math.pow(x-mean,2),0)/(n-1);
+  const sd=Math.sqrt(variance);
+
+  document.getElementById('rMean').textContent=mean.toFixed(2);
+  document.getElementById('rMedian').textContent=median.toFixed(2);
+  document.getElementById('rMode').textContent=modeStr;
+  document.getElementById('rStdev').textContent=sd.toFixed(2);
+
+  const diff=Math.abs(mean-median);
+  const note=diff>sd*0.5?
+    `Mean (${mean.toFixed(1)}) and median (${median.toFixed(1)}) differ by ${diff.toFixed(1)} — possible outlier effect. Median may be more representative.`:
+    `Mean and median are close — distribution appears roughly symmetric. Both measures are reliable here.`;
+  document.getElementById('rNote').textContent=note;
+  document.getElementById('statsResult').style.display='flex';
+  document.getElementById('statsResult').style.flexDirection='column';
+}
+</script>
+</body>
+</html>

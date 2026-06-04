@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foundations of Excellence: Microsoft Excel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:#0E1116;
+      --paper:#FAF8F3;
+      --paper-2:#F2EEE5;
+      --white:#FFFFFF;
+      --text:#1A1F2C;
+      --text-soft:#4A5567;
+      --muted:#7A8290;
+      --border:#E5E1D6;
+      --sage:#4A7C5E;
+      --gold:#B8843D;
+      --terra:#9C4A2B;
+      --steel:#355773;
+      --accent:var(--sage);
+      --gradient:linear-gradient(90deg, #B8843D 0%, #9C4A2B 50%, #4A7C5E 100%);
+      --type-display:112px;
+      --type-title:72px;
+      --type-subtitle:44px;
+      --type-lead:34px;
+      --type-body:28px;
+      --type-small:24px;
+      --type-eyebrow:24px;
+      --type-mono:24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #000;
+      color: var(--text);
+      font-family: "Geist", sans-serif;
+    }
+
+    deck-stage:not(:defined) { visibility: hidden; }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      padding: 104px 128px 96px;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--text);
+      position: relative;
+      font-family: "Geist", sans-serif;
+    }
+
+    .slide.dark {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .slide.cream {
+      background:
+        linear-gradient(90deg, rgba(74, 124, 94, 0.08) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, rgba(74, 124, 94, 0.06) 0 1px, transparent 1px 100%),
+        var(--paper);
+      background-size: 96px 96px;
+    }
+
+    .slide::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 128px;
+      bottom: 44px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 18px;
+      color: rgba(26, 31, 44, 0.42);
+    }
+
+    .slide.dark::after { color: rgba(255, 255, 255, 0.42); }
+
+    .gradient-bar {
+      position: absolute;
+      left: 128px;
+      right: 128px;
+      bottom: 84px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--gradient);
+    }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: var(--type-eyebrow);
+      letter-spacing: 0;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 28px;
+      font-weight: 500;
+    }
+
+    .dark .eyebrow { color: #D9E8DD; }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1, h2 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 0.96;
+    }
+
+    h1 {
+      font-size: var(--type-display);
+      max-width: 1180px;
+    }
+
+    h2 {
+      font-size: var(--type-title);
+      max-width: 1320px;
+    }
+
+    h3 {
+      font-size: 32px;
+      line-height: 1.1;
+      font-weight: 650;
+      color: var(--text);
+    }
+
+    .dark h3 { color: var(--white); }
+
+    .lead {
+      font-size: var(--type-lead);
+      line-height: 1.28;
+      color: var(--text-soft);
+      max-width: 1180px;
+      margin-top: 28px;
+    }
+
+    .dark .lead { color: rgba(255, 255, 255, 0.78); }
+
+    .body {
+      font-size: var(--type-body);
+      line-height: 1.35;
+      color: var(--text-soft);
+    }
+
+    .small {
+      font-size: var(--type-small);
+      line-height: 1.35;
+      color: var(--text-soft);
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+      font-size: var(--type-mono);
+    }
+
+    .topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 52px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: stretch;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .four-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 30px;
+      min-height: 170px;
+    }
+
+    .dark .card {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .dark .card p,
+    .dark .card .small { color: rgba(255, 255, 255, 0.76); }
+
+    .tag-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 70px;
+    }
+
+    .tag {
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      padding: 16px 26px;
+      font-size: 26px;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .source-note {
+      position: absolute;
+      left: 128px;
+      right: 128px;
+      bottom: 118px;
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.48);
+    }
+
+    .stat {
+      min-width: 330px;
+      text-align: right;
+    }
+
+    .stat .number {
+      display: block;
+      font-family: "Instrument Serif", serif;
+      font-size: 132px;
+      line-height: 0.9;
+      color: var(--accent);
+    }
+
+    .stat .caption {
+      display: block;
+      font-size: 26px;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+    .numbered {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 22px;
+      align-items: start;
+      margin-top: 20px;
+    }
+
+    .num {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .excel-window {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 18px 60px rgba(14, 17, 22, 0.12);
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .excel-ribbon {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .excel-ribbon span {
+      background: var(--paper-2);
+      padding: 16px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .formula-bar {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .name-box {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--accent);
+      background: var(--paper);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 70px repeat(5, 1fr);
+      grid-auto-rows: 52px;
+      font-size: 24px;
+    }
+
+    .grid span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .grid .head { background: var(--paper-2); font-weight: 650; }
+    .grid .active { outline: 4px solid var(--accent); outline-offset: -4px; background: #EEF5F0; }
+
+    .shortcut-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 46px;
+    }
+
+    .shortcut {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      padding: 30px;
+      min-height: 160px;
+    }
+
+    .key {
+      display: inline-block;
+      min-width: 74px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 46px;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 26px;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .mini-table.compact th,
+    .mini-table.compact td {
+      padding: 11px 20px;
+      font-size: 24px;
+    }
+
+    .mini-table th {
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 650;
+    }
+
+    .mini-table tr:last-child td { border-bottom: 0; }
+    .mini-table .ghost { color: var(--muted); background: var(--paper-2); }
+
+    .reference-states {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      margin-top: 50px;
+    }
+
+    .ref-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 34px 28px;
+      min-height: 210px;
+      text-align: center;
+    }
+
+    .formula {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 48px;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .format-sample {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 42px;
+    }
+
+    .format-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr 1fr;
+      min-height: 74px;
+      font-size: 25px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .format-row:last-child { border-bottom: 0; }
+    .format-row.header { font-weight: 700; background: var(--paper-2); border-bottom: 5px solid var(--text); }
+    .format-row:nth-child(even):not(.header) { background: #F7F4ED; }
+    .format-row span { padding: 18px 22px; }
+    .dip { color: #9C4A2B; font-weight: 700; }
+    .gain { color: var(--accent); font-weight: 700; }
+
+    .tool-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 44px;
+    }
+
+    .big-code {
+      display: block;
+      margin-top: 20px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 44px;
+      color: var(--accent);
+    }
+
+    .function-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .function-chip {
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 8px;
+      padding: 24px;
+      min-height: 132px;
+    }
+
+    .function-chip strong {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      color: var(--accent);
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .pivot {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .pivot div {
+      min-height: 126px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 22px;
+    }
+
+    .pivot strong {
+      display: block;
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .next-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .practice {
+      margin-top: 54px;
+      padding: 36px 42px;
+      border-left: 10px solid var(--accent);
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      max-width: 1320px;
+    }
+
+    .practice.compact {
+      margin-top: 28px;
+      padding: 24px 36px;
+    }
+  </style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080" no-rail>
+    <section class="slide dark" data-label="01 Title">
+      <p class="eyebrow">BUS123 / Excel Foundations</p>
+      <h1>Foundations of Excellence: Microsoft Excel</h1>
+      <p class="lead">A practical, finance-oriented guide to navigating the interface, building reliable formulas, formatting analysis, and reducing spreadsheet risk.</p>
+      <div class="tag-row">
+        <span class="tag">Navigate</span>
+        <span class="tag">Model</span>
+        <span class="tag">Audit</span>
+        <span class="tag">Present</span>
+      </div>
+      <p class="source-note">Prepared from the provided Excel mastery guide</p>
+      <div class="gradient-bar"></div>
+    </section>
+
+    <section class="slide cream" data-label="02 Strategic Imperative">
+      <div class="topline">
+        <div>
+          <p class="eyebrow">1 / Strategic Imperative</p>
+          <h2>Excel mastery turns raw data into reliable business decisions</h2>
+          <p class="lead">In finance, FP&amp;A, accounting, and research, Excel is the everyday engine for models, analysis, and executive communication.</p>
+        </div>
+        <div class="stat">
+          <span class="number">88%</span>
+          <span class="caption">reported spreadsheet error rate</span>
+        </div>
+      </div>
+      <div class="four-col">
+        <article class="card">
+          <h3>Elite productivity</h3>
+          <p class="small">Keyboard shortcuts and mouse-free workflows let analysts navigate large datasets faster and with fewer interruptions.</p>
+        </article>
+        <article class="card">
+          <h3>Risk mitigation</h3>
+          <p class="small">Structured references, auditing habits, and disciplined model design reduce hidden formula mistakes and overwrites.</p>
+        </article>
+        <article class="card">
+          <h3>Analytical depth</h3>
+          <p class="small">Functions support time value of money, trend analysis, and scenario work that are core to professional finance.</p>
+        </article>
+        <article class="card">
+          <h3>Executive insight</h3>
+          <p class="small">Formatting and visualization convert dense worksheets into boardroom-ready analysis that supports capital allocation.</p>
+        </article>
+      </div>
+      <p class="body" style="margin-top:54px; max-width:1420px;">Mastery is not memorizing every function; it is learning a reliable workflow for speed, accuracy, and clear communication.</p>
+      <p class="small" style="margin-top:18px;">Source note: Provided guide; CFI Analyst Trifecta concept; spreadsheet error-rate research cited in source text.</p>
+    </section>
+
+    <section class="slide cream" data-label="03 Anatomy and Navigation">
+      <div class="topline">
+        <div>
+          <p class="eyebrow">2 / Anatomy and Navigation</p>
+          <h2>Professional Excel users speak in precise workbook, worksheet, cell, and range terms</h2>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="excel-window" aria-label="Editable visual representation of the Excel interface">
+          <div class="excel-ribbon">
+            <span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span>
+          </div>
+          <div class="formula-bar">
+            <span class="name-box">B7</span>
+            <span class="mono">=SUM(B2:B6)</span>
+          </div>
+          <div class="grid">
+            <span class="head"></span><span class="head">A</span><span class="head">B</span><span class="head">C</span><span class="head">D</span><span class="head">E</span>
+            <span class="head">1</span><span></span><span></span><span></span><span></span><span></span>
+            <span class="head">2</span><span></span><span>$100</span><span></span><span></span><span></span>
+            <span class="head">3</span><span></span><span>$115</span><span></span><span></span><span></span>
+            <span class="head">4</span><span></span><span>$122</span><span></span><span></span><span></span>
+            <span class="head">5</span><span></span><span>$130</span><span></span><span></span><span></span>
+            <span class="head">6</span><span></span><span>$142</span><span></span><span></span><span></span>
+            <span class="head">7</span><span></span><span class="active">$609</span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div>
+          <div class="numbered">
+            <span class="num">01</span>
+            <div><h3>Workbook vs. worksheet</h3><p class="small">The workbook is the file; worksheets are the tabbed pages inside it.</p></div>
+          </div>
+          <div class="numbered">
+            <span class="num">02</span>
+            <div><h3>Grid, rows, columns, cells</h3><p class="small">Columns use letters, rows use numbers, and each cell has a unique address such as B7.</p></div>
+          </div>
+          <div class="numbered">
+            <span class="num">03</span>
+            <div><h3>Ribbon and formula bar</h3><p class="small">The ribbon holds commands; the formula bar is the safer place to inspect and edit logic.</p></div>
+          </div>
+          <div class="numbered">
+            <span class="num">04</span>
+            <div><h3>Name box</h3><p class="small">Shows the active cell and lets you jump to a range such as A100.</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:32px;"><strong>Quick check:</strong> Can you explain the difference between a workbook, worksheet, and cell reference to a classmate in one sentence?</p>
+    </section>
+
+    <section class="slide dark" data-label="04 Mouse-Free Basics">
+      <p class="eyebrow">3 / Mouse-Free Basics</p>
+      <h2>Start with six shortcuts that make review and editing faster</h2>
+      <div class="shortcut-grid">
+        <article class="shortcut"><span class="key">Ctrl Home</span><h3>Jump to A1</h3><p class="small">Reset your view before reviewing or presenting a worksheet.</p></article>
+        <article class="shortcut"><span class="key">F2</span><h3>Edit a formula</h3><p class="small">Inspect logic without accidentally replacing the full cell.</p></article>
+        <article class="shortcut"><span class="key">Ctrl S</span><h3>Save reflexively</h3><p class="small">Protect model progress before every meaningful change.</p></article>
+        <article class="shortcut"><span class="key">Shift Space</span><h3>Select row</h3><p class="small">Review, format, or move a full record quickly.</p></article>
+        <article class="shortcut"><span class="key">Ctrl Space</span><h3>Select column</h3><p class="small">Work with a full field without dragging across the grid.</p></article>
+        <article class="shortcut"><span class="key">Tab / Enter</span><h3>Control direction</h3><p class="small">Tab moves right, Enter moves down, Shift reverses direction.</p></article>
+      </div>
+      <div class="practice compact">
+        <h3>10-minute drill</h3>
+        <p class="body" style="color:rgba(255,255,255,0.78); margin-top:16px;">Open any worksheet, jump to A1, edit one formula with F2 or Ctrl + U, select a full row and column, then save without touching the mouse.</p>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="05 Data Entry Mechanics">
+      <p class="eyebrow">4 / Data Entry Mechanics</p>
+      <h2>Clean data entry starts with patterns, direction, and overwrite awareness</h2>
+      <div class="process">
+        <article class="card">
+          <span class="num">01</span>
+          <h3 style="margin-top:24px;">Enter the first values</h3>
+          <p class="small">Create the seed pattern: dates, months, numbers, or formulas.</p>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h3 style="margin-top:24px;">Use the fill handle</h3>
+          <p class="small">Drag or double-click the green square to extend the pattern.</p>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h3 style="margin-top:24px;">Let Excel detect range</h3>
+          <p class="small">Double-clicking can shoot formulas down to the adjacent data's bottom.</p>
+        </article>
+      </div>
+      <div class="two-col" style="margin-top:42px; align-items:start;">
+        <table class="mini-table compact">
+          <thead><tr><th>Month</th><th>Revenue</th></tr></thead>
+          <tbody>
+            <tr><td>Jan</td><td>$100</td></tr>
+            <tr><td>Feb</td><td>$115</td></tr>
+            <tr><td>Mar</td><td>$122</td></tr>
+            <tr><td>Apr</td><td>$130</td></tr>
+            <tr class="ghost"><td>May</td><td></td></tr>
+            <tr class="ghost"><td>Jun</td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="three-col">
+          <article class="card">
+            <h3>F2 / Ctrl + U</h3>
+            <p class="small">Edit the active cell without accidental replacement.</p>
+          </article>
+          <article class="card">
+            <h3>Overwrite rule</h3>
+            <p class="small">Click once and type: existing content is deleted immediately.</p>
+          </article>
+          <article class="card">
+            <h3>Directional flow</h3>
+            <p class="small">Tab moves right; Enter moves down. Add Shift to reverse direction.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="06 Cell Referencing Logic">
+      <p class="eyebrow">5 / Cell Referencing Logic</p>
+      <h2>The dollar sign locks the part of a reference that must stay fixed</h2>
+      <p class="lead">Use F4 / Command + T while editing a formula to toggle reference states instead of manually typing dollar signs.</p>
+      <div class="reference-states">
+        <article class="ref-card"><span class="formula">$A$1</span><h3>Absolute</h3><p class="small">Locks both column and row.</p></article>
+        <article class="ref-card"><span class="formula">A$1</span><h3>Mixed</h3><p class="small">Lets the column move, locks the row.</p></article>
+        <article class="ref-card"><span class="formula">$A1</span><h3>Mixed</h3><p class="small">Locks the column, lets the row move.</p></article>
+        <article class="ref-card"><span class="formula">A1</span><h3>Relative</h3><p class="small">Moves both row and column when copied.</p></article>
+      </div>
+      <div class="two-col" style="margin-top:52px;">
+        <article class="card">
+          <h3>Modeling habit</h3>
+          <p class="body">Never hard-code assumptions inside formulas. Put the assumption in its own cell, label it clearly, and reference that cell.</p>
+        </article>
+        <article class="card">
+          <h3>Rule of thumb</h3>
+          <p class="body">The dollar sign comes immediately before the row or column it locks: $A locks the column; $1 locks the row.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide cream" data-label="07 Business Formatting">
+      <p class="eyebrow">6 / Business Formatting</p>
+      <h2>Readable formatting guides attention from raw numbers to insight</h2>
+      <div class="four-col" style="margin-top:46px;">
+        <article class="card"><h3>Number formatting</h3><p class="small">Use Accounting for statements so symbols and decimals align; use Currency for simpler reports.</p></article>
+        <article class="card"><h3>Cell hygiene</h3><p class="small">Auto-fit columns to prevent truncation, and use Wrap Text when a cell needs vertical space.</p></article>
+        <article class="card"><h3>Visual hierarchy</h3><p class="small">Bold headers, thick bottom borders, and banded rows make large tables easier to scan.</p></article>
+        <article class="card"><h3>Conditional formatting</h3><p class="small">Color scales surface outliers, such as revenue dips, margin pressure, or cost overruns.</p></article>
+      </div>
+      <div class="format-sample">
+        <div class="format-row header"><span>Metric</span><span>Q1</span><span>Q2</span><span>Signal</span></div>
+        <div class="format-row"><span>Revenue</span><span>$100,000</span><span>$115,000</span><span class="gain">Improving</span></div>
+        <div class="format-row"><span>Gross margin</span><span>42.0%</span><span>39.5%</span><span class="dip">Pressure</span></div>
+        <div class="format-row"><span>Operating costs</span><span>$61,000</span><span>$64,500</span><span>Monitor</span></div>
+      </div>
+      <p class="small" style="margin-top:28px;"><strong>Pro tip:</strong> Double-click Format Painter to lock it, then apply the same professional look to multiple non-adjacent ranges.</p>
+    </section>
+
+    <section class="slide cream" data-label="08 Functions and Synthesis">
+      <p class="eyebrow">7 / Functions and Synthesis</p>
+      <h2>Use functions for repeatable logic and Pivot Tables for fast summaries</h2>
+      <div class="tool-compare">
+        <article class="card">
+          <h3>Formula</h3>
+          <span class="big-code">=A1+A2</span>
+          <p class="small">A custom expression you write.</p>
+        </article>
+        <article class="card">
+          <h3>Function</h3>
+          <span class="big-code">=SUM(A1:A2)</span>
+          <p class="small">A predefined calculation.</p>
+        </article>
+      </div>
+      <div class="two-col" style="margin-top:34px; align-items:start;">
+        <div class="function-grid">
+          <article class="function-chip"><strong>SUM</strong><p class="small">Grand totals; Alt + = is the analyst's fast path.</p></article>
+          <article class="function-chip"><strong>AVERAGE</strong><p class="small">Mean values for baselines and comparisons.</p></article>
+          <article class="function-chip"><strong>COUNT / COUNTA</strong><p class="small">Audit whether numeric or non-empty entries exist.</p></article>
+          <article class="function-chip"><strong>MIN / MAX</strong><p class="small">Find range boundaries and volatility.</p></article>
+        </div>
+        <div>
+          <h3>Pivot Table quadrants</h3>
+          <div class="pivot">
+            <div><strong>Filters</strong><p class="small">Global exclusions, such as fiscal year.</p></div>
+            <div><strong>Columns</strong><p class="small">Horizontal categories for comparison.</p></div>
+            <div><strong>Rows</strong><p class="small">Vertical structure for the report.</p></div>
+            <div><strong>Values</strong><p class="small">Quantitative core, usually Sum or Average.</p></div>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:28px;"><strong>Finance extension:</strong> PV, FV, and RATE support Time Value of Money work by translating future cash flows and investment returns into decision-ready calculations.</p>
+    </section>
+
+    <section class="slide dark" data-label="09 Error Management and Next Steps">
+      <p class="eyebrow">8 / Error Management and Next Steps</p>
+      <h2>Reliable analysts audit formulas, version work, and avoid hidden assumptions</h2>
+      <div class="next-steps">
+        <article class="card"><h3>Stop hard-coding</h3><p class="small">Put assumptions in labeled input cells, then reference them in formulas.</p></article>
+        <article class="card"><h3>Save consistently</h3><p class="small">Ctrl + S or Command + S is a professional reflex, not an afterthought.</p></article>
+        <article class="card"><h3>Verify sample size</h3><p class="small">Before presenting, check whether the data volume supports your conclusion.</p></article>
+        <article class="card"><h3>Automate integration</h3><p class="small">Use ranges and Pivot Tables to maintain a single version of the truth.</p></article>
+      </div>
+      <div class="practice">
+        <h3>Practice path</h3>
+        <p class="body" style="color:rgba(255,255,255,0.78); margin-top:16px;">Pick one dataset this week. Build a clean table, add formulas with correct references, create a Pivot Table, apply business formatting, and audit every formula before sharing.</p>
+      </div>
+      <p class="lead" style="margin-top:56px;">Closing message: Excel is a muscle; build speed, precision, and judgment through repeated practice.</p>
+      <div class="gradient-bar"></div>
+    </section>
+  </deck-stage>
+
+  <div id="tweaks-root" style="position:fixed; bottom:0; right:0; z-index:10000;"></div>
+  <script src="../../deck-stage.js"></script>
+  <script src="../../image-slot.js"></script>
+  <script type="text/babel" src="../../tweaks-panel.jsx"></script>
+</body>
+</html>

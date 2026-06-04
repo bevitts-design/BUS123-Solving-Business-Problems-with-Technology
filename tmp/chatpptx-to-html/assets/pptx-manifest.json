@@ -1,0 +1,1490 @@
+{
+  "pptx": "/Users/bethanyevittsair2/Library/CloudStorage/GoogleDrive-bevitts@endicott.edu/My Drive/2026 Fall Class - Final Versions/_Claude Working Files/ChatPPTX_to _HTML.pptx",
+  "slides": [
+    {
+      "slide": 1,
+      "texts": [
+        {
+          "text": "Foundations of Excellence: Microsoft Excel",
+          "box": {
+            "x": 685783,
+            "y": 1333500,
+            "cx": 6667333,
+            "cy": 1104900
+          }
+        },
+        {
+          "text": "A practical, finance-oriented guide to navigating the interface, building reliable formulas, formatting analysis, and reducing spreadsheet risk.",
+          "box": {
+            "x": 723882,
+            "y": 3676650,
+            "cx": 6095848,
+            "cy": 914400
+          }
+        },
+        {
+          "text": "Navigate",
+          "box": {
+            "x": 723882,
+            "y": 5219700,
+            "cx": 1042664,
+            "cy": 447675
+          }
+        },
+        {
+          "text": "Model",
+          "box": {
+            "x": 1899892,
+            "y": 5219700,
+            "cx": 841453,
+            "cy": 447675
+          }
+        },
+        {
+          "text": "Audit",
+          "box": {
+            "x": 2874692,
+            "y": 5219700,
+            "cx": 766595,
+            "cy": 447675
+          }
+        },
+        {
+          "text": "Present",
+          "box": {
+            "x": 3774633,
+            "y": 5219700,
+            "cx": 955899,
+            "cy": 447675
+          }
+        },
+        {
+          "text": "Prepared from the provided Excel mastery guide",
+          "box": {
+            "x": 723882,
+            "y": 6305550,
+            "cx": 2880050,
+            "cy": 152400
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 2,
+      "texts": [
+        {
+          "text": "1 / STRATEGIC IMPERATIVE",
+          "box": {
+            "x": 609585,
+            "y": 400050,
+            "cx": 2326870,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Excel mastery turns raw data into reliable business decisions",
+          "box": {
+            "x": 609585,
+            "y": 704850,
+            "cx": 7810305,
+            "cy": 857250
+          }
+        },
+        {
+          "text": "In finance, FP&A, accounting, and research, Excel is the everyday engine for models, analysis, and executive communication.",
+          "box": {
+            "x": 609585,
+            "y": 1695450,
+            "cx": 7238819,
+            "cy": 476250
+          }
+        },
+        {
+          "text": "88%",
+          "box": {
+            "x": 3543211,
+            "y": 3048000,
+            "cx": 857229,
+            "cy": 895350
+          }
+        },
+        {
+          "text": "reported\\nerror rate",
+          "box": {
+            "x": 3543211,
+            "y": 4038600,
+            "cx": 857229,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "Elite productivity",
+          "box": {
+            "x": 5010025,
+            "y": 2466975,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Keyboard shortcuts and \u201cmouse-free\u201d workflows let analysts navigate large datasets faster and with fewer interruptions.",
+          "box": {
+            "x": 5010025,
+            "y": 2743200,
+            "cx": 2838379,
+            "cy": 838200
+          }
+        },
+        {
+          "text": "Risk mitigation",
+          "box": {
+            "x": 8477038,
+            "y": 2466975,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Structured references, auditing habits, and disciplined model design reduce hidden formula mistakes and overwrites.",
+          "box": {
+            "x": 8477038,
+            "y": 2743200,
+            "cx": 2838379,
+            "cy": 838200
+          }
+        },
+        {
+          "text": "Analytical depth",
+          "box": {
+            "x": 5010025,
+            "y": 4238625,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Functions support time value of money, trend analysis, and scenario work that are core to professional finance.",
+          "box": {
+            "x": 5010025,
+            "y": 4514850,
+            "cx": 2838379,
+            "cy": 838200
+          }
+        },
+        {
+          "text": "Executive insight",
+          "box": {
+            "x": 8477038,
+            "y": 4238625,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Formatting and visualization convert dense worksheets into boardroom-ready analysis that supports capital allocation.",
+          "box": {
+            "x": 8477038,
+            "y": 4514850,
+            "cx": 2838379,
+            "cy": 838200
+          }
+        },
+        {
+          "text": "Mastery is not memorizing every function; it is learning a reliable workflow for speed, accuracy, and clear communication.",
+          "box": {
+            "x": 2715897,
+            "y": 5676900,
+            "cx": 8618570,
+            "cy": 438150
+          }
+        },
+        {
+          "text": "Source note: Provided guide; CFI Analyst Trifecta concept; spreadsheet error-rate research cited in source text.",
+          "box": {
+            "x": 609585,
+            "y": 6496050,
+            "cx": 5663066,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 3,
+      "texts": [
+        {
+          "text": "2 / ANATOMY AND NAVIGATION",
+          "box": {
+            "x": 571486,
+            "y": 342900,
+            "cx": 2627495,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Professional Excel users speak in precise workbook, worksheet, cell, and range terms",
+          "box": {
+            "x": 571486,
+            "y": 647700,
+            "cx": 7238819,
+            "cy": 647700
+          }
+        },
+        {
+          "text": "Home",
+          "box": {
+            "x": 800080,
+            "y": 1800225,
+            "cx": 404654,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Insert",
+          "box": {
+            "x": 1452377,
+            "y": 1800225,
+            "cx": 391557,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Formulas",
+          "box": {
+            "x": 2091578,
+            "y": 1800225,
+            "cx": 637415,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Data",
+          "box": {
+            "x": 2976637,
+            "y": 1800225,
+            "cx": 320270,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Review",
+          "box": {
+            "x": 3544551,
+            "y": 1800225,
+            "cx": 494692,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "A",
+          "box": {
+            "x": 1209645,
+            "y": 3000375,
+            "cx": 1148627,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "B",
+          "box": {
+            "x": 2358272,
+            "y": 3000375,
+            "cx": 1148627,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "C",
+          "box": {
+            "x": 3506898,
+            "y": 3000375,
+            "cx": 1148776,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "D",
+          "box": {
+            "x": 4655674,
+            "y": 3000375,
+            "cx": 1148627,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "E",
+          "box": {
+            "x": 5804301,
+            "y": 3000375,
+            "cx": 1148627,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "1",
+          "box": {
+            "x": 771506,
+            "y": 3324225,
+            "cx": 438139,
+            "cy": 363438
+          }
+        },
+        {
+          "text": "2",
+          "box": {
+            "x": 771506,
+            "y": 3687663,
+            "cx": 438139,
+            "cy": 363587
+          }
+        },
+        {
+          "text": "3",
+          "box": {
+            "x": 771506,
+            "y": 4051250,
+            "cx": 438139,
+            "cy": 363438
+          }
+        },
+        {
+          "text": "4",
+          "box": {
+            "x": 771506,
+            "y": 4414689,
+            "cx": 438139,
+            "cy": 363587
+          }
+        },
+        {
+          "text": "5",
+          "box": {
+            "x": 771506,
+            "y": 4778276,
+            "cx": 438139,
+            "cy": 363587
+          }
+        },
+        {
+          "text": "6",
+          "box": {
+            "x": 771506,
+            "y": 5141863,
+            "cx": 438139,
+            "cy": 363438
+          }
+        },
+        {
+          "text": "7",
+          "box": {
+            "x": 771506,
+            "y": 5505301,
+            "cx": 438139,
+            "cy": 152549
+          }
+        },
+        {
+          "text": "Workbook vs. worksheet",
+          "box": {
+            "x": 7953176,
+            "y": 1609725,
+            "cx": 3514637,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "The workbook is the file; worksheets are the tabbed pages inside it.",
+          "box": {
+            "x": 7953176,
+            "y": 1847850,
+            "cx": 3514637,
+            "cy": 342900
+          }
+        },
+        {
+          "text": "Grid, rows, columns, cells",
+          "box": {
+            "x": 7953176,
+            "y": 2533650,
+            "cx": 3514637,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Columns use letters, rows use numbers, and each cell has a unique address such as B7.",
+          "box": {
+            "x": 7953176,
+            "y": 2771775,
+            "cx": 3514637,
+            "cy": 342900
+          }
+        },
+        {
+          "text": "Ribbon and formula bar",
+          "box": {
+            "x": 7953176,
+            "y": 3457575,
+            "cx": 3514637,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "The ribbon holds commands; the formula bar is the safer place to inspect and edit logic.",
+          "box": {
+            "x": 7953176,
+            "y": 3695700,
+            "cx": 3514637,
+            "cy": 342900
+          }
+        },
+        {
+          "text": "Name box",
+          "box": {
+            "x": 7953176,
+            "y": 4381500,
+            "cx": 3514637,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Shows the active cell and lets you jump to a range such as A100.",
+          "box": {
+            "x": 7953176,
+            "y": 4619625,
+            "cx": 3514637,
+            "cy": 342900
+          }
+        },
+        {
+          "text": "Quick check",
+          "box": {
+            "x": 7924602,
+            "y": 5381625,
+            "cx": 3524162,
+            "cy": 219075
+          }
+        },
+        {
+          "text": "Can you explain the difference between a workbook, worksheet, and cell reference to a classmate in one sentence?",
+          "box": {
+            "x": 7924602,
+            "y": 5600700,
+            "cx": 3524162,
+            "cy": 542925
+          }
+        },
+        {
+          "text": "Learning objective: identify core interface components and use correct Excel vocabulary.",
+          "box": {
+            "x": 571486,
+            "y": 6496050,
+            "cx": 4526048,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 4,
+      "texts": [
+        {
+          "text": "3 / MOUSE-FREE BASICS",
+          "box": {
+            "x": 609585,
+            "y": 266700,
+            "cx": 1966268,
+            "cy": 161925
+          }
+        },
+        {
+          "text": "Start with six shortcuts that make review and editing faster",
+          "box": {
+            "x": 609585,
+            "y": 552450,
+            "cx": 8572286,
+            "cy": 685800
+          }
+        },
+        {
+          "text": "10-minute drill",
+          "box": {
+            "x": 9038999,
+            "y": 1514475,
+            "cx": 2324042,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "1. Open any worksheet and jump to A1.\\n2. Edit one formula with F2 or Ctrl + U.\\n3. Select a full row and a full column.\\n4. Save without touching the mouse.",
+          "box": {
+            "x": 9038999,
+            "y": 1790700,
+            "cx": 2324042,
+            "cy": 1676400
+          }
+        },
+        {
+          "text": "Habit to build",
+          "box": {
+            "x": 9010425,
+            "y": 4048125,
+            "cx": 2381190,
+            "cy": 247650
+          }
+        },
+        {
+          "text": "Use the keyboard first. Reach for the mouse only when it is truly faster or clearer.",
+          "box": {
+            "x": 9010425,
+            "y": 4295775,
+            "cx": 2381190,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Learning objective: practice a minimum viable shortcut set for professional spreadsheet navigation.",
+          "box": {
+            "x": 609585,
+            "y": 6496050,
+            "cx": 5051249,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 5,
+      "texts": [
+        {
+          "text": "4 / DATA ENTRY MECHANICS",
+          "box": {
+            "x": 609585,
+            "y": 400050,
+            "cx": 2422712,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Clean data entry starts with patterns, direction, and overwrite awareness",
+          "box": {
+            "x": 609585,
+            "y": 704850,
+            "cx": 7238819,
+            "cy": 819150
+          }
+        },
+        {
+          "text": "01",
+          "box": {
+            "x": 1076298,
+            "y": 2343150,
+            "cx": 1352516,
+            "cy": 200025
+          }
+        },
+        {
+          "text": "Enter the first values",
+          "box": {
+            "x": 1076298,
+            "y": 2619375,
+            "cx": 1352516,
+            "cy": 457200
+          }
+        },
+        {
+          "text": "Create the seed pattern: dates, months, numbers, or formulas.",
+          "box": {
+            "x": 1076298,
+            "y": 3076575,
+            "cx": 1352516,
+            "cy": 800100
+          }
+        },
+        {
+          "text": "02",
+          "box": {
+            "x": 3362241,
+            "y": 2343150,
+            "cx": 1352516,
+            "cy": 200025
+          }
+        },
+        {
+          "text": "Use the fill handle",
+          "box": {
+            "x": 3362241,
+            "y": 2619375,
+            "cx": 1352516,
+            "cy": 457200
+          }
+        },
+        {
+          "text": "Drag or double-click the green square to extend the pattern.",
+          "box": {
+            "x": 3362241,
+            "y": 3076575,
+            "cx": 1352516,
+            "cy": 800100
+          }
+        },
+        {
+          "text": "03",
+          "box": {
+            "x": 5648184,
+            "y": 2343150,
+            "cx": 1352516,
+            "cy": 200025
+          }
+        },
+        {
+          "text": "Let Excel detect range",
+          "box": {
+            "x": 5648184,
+            "y": 2619375,
+            "cx": 1352516,
+            "cy": 457200
+          }
+        },
+        {
+          "text": "Double-clicking can shoot formulas down to the adjacent data\u2019s bottom.",
+          "box": {
+            "x": 5648184,
+            "y": 3076575,
+            "cx": 1352516,
+            "cy": 1000125
+          }
+        },
+        {
+          "text": "Mini example",
+          "box": {
+            "x": 8591335,
+            "y": 1866900,
+            "cx": 2685983,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Month",
+          "box": {
+            "x": 8600860,
+            "y": 2152650,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Revenue",
+          "box": {
+            "x": 9934327,
+            "y": 2152650,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Jan",
+          "box": {
+            "x": 8600860,
+            "y": 2438400,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "$100",
+          "box": {
+            "x": 9934327,
+            "y": 2438400,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Feb",
+          "box": {
+            "x": 8600860,
+            "y": 2724150,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "$115",
+          "box": {
+            "x": 9934327,
+            "y": 2724150,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Mar",
+          "box": {
+            "x": 8600860,
+            "y": 3009900,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "$122",
+          "box": {
+            "x": 9934327,
+            "y": 3009900,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Apr",
+          "box": {
+            "x": 8600860,
+            "y": 3295650,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "$130",
+          "box": {
+            "x": 9934327,
+            "y": 3295650,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "May",
+          "box": {
+            "x": 8600860,
+            "y": 3581400,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "Jun",
+          "box": {
+            "x": 8600860,
+            "y": 3867150,
+            "cx": 1333467,
+            "cy": 285750
+          }
+        },
+        {
+          "text": "The fill handle extends the month pattern and can copy formulas down a structured table.",
+          "box": {
+            "x": 8591335,
+            "y": 4162425,
+            "cx": 2685983,
+            "cy": 542925
+          }
+        },
+        {
+          "text": "F2 / Ctrl + U",
+          "box": {
+            "x": 847704,
+            "y": 5495925,
+            "cx": 3114597,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Edits the active cell without accidental replacement.",
+          "box": {
+            "x": 847704,
+            "y": 5734050,
+            "cx": 3114597,
+            "cy": 400050
+          }
+        },
+        {
+          "text": "Overwrite rule",
+          "box": {
+            "x": 4562361,
+            "y": 5495925,
+            "cx": 3114597,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Click once and type: existing content is deleted immediately.",
+          "box": {
+            "x": 4562361,
+            "y": 5734050,
+            "cx": 3114597,
+            "cy": 400050
+          }
+        },
+        {
+          "text": "Directional flow",
+          "box": {
+            "x": 8277018,
+            "y": 5495925,
+            "cx": 3114597,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Tab moves right; Enter moves down. Add Shift to reverse direction.",
+          "box": {
+            "x": 8277018,
+            "y": 5734050,
+            "cx": 3114597,
+            "cy": 400050
+          }
+        },
+        {
+          "text": "Learning objective: use Autofill and directional movement to populate structured data efficiently.",
+          "box": {
+            "x": 609585,
+            "y": 6496050,
+            "cx": 4884566,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 6,
+      "texts": [
+        {
+          "text": "5 / CELL REFERENCING LOGIC",
+          "box": {
+            "x": 609585,
+            "y": 381000,
+            "cx": 2594307,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "The dollar sign locks the part of a reference that must stay fixed",
+          "box": {
+            "x": 609585,
+            "y": 685800,
+            "cx": 8000800,
+            "cy": 819150
+          }
+        },
+        {
+          "text": "Use F4 / Command + T",
+          "box": {
+            "x": 8410365,
+            "y": 1857375,
+            "cx": 2914577,
+            "cy": 304800
+          }
+        },
+        {
+          "text": "While editing a formula, toggle through the reference states instead of manually typing dollar signs.",
+          "box": {
+            "x": 8410365,
+            "y": 2162175,
+            "cx": 2914577,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "$A$1",
+          "box": {
+            "x": 8410365,
+            "y": 2943225,
+            "cx": 2914577,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "A$1",
+          "box": {
+            "x": 8410365,
+            "y": 3419475,
+            "cx": 2914577,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "$A1",
+          "box": {
+            "x": 8410365,
+            "y": 3895725,
+            "cx": 2914577,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "A1",
+          "box": {
+            "x": 8410365,
+            "y": 4371975,
+            "cx": 2914577,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Modeling habit",
+          "box": {
+            "x": 904852,
+            "y": 5286375,
+            "cx": 6143471,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "Never hard-code assumptions inside formulas. Put the assumption in its own cell, label it clearly, and reference that cell.",
+          "box": {
+            "x": 904852,
+            "y": 5543550,
+            "cx": 6143471,
+            "cy": 419100
+          }
+        },
+        {
+          "text": "Rule of thumb",
+          "box": {
+            "x": 8381790,
+            "y": 5019675,
+            "cx": 2971726,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "The dollar sign comes immediately before the row or column it locks: $A locks the column; $1 locks the row.",
+          "box": {
+            "x": 8381790,
+            "y": 5276850,
+            "cx": 2971726,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Learning objective: choose the correct reference type before copying formulas across rows or columns.",
+          "box": {
+            "x": 609585,
+            "y": 6477000,
+            "cx": 5273295,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 7,
+      "texts": [
+        {
+          "text": "6 / BUSINESS FORMATTING",
+          "box": {
+            "x": 571486,
+            "y": 381000,
+            "cx": 2315559,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Readable formatting guides attention from raw numbers to insight",
+          "box": {
+            "x": 571486,
+            "y": 685800,
+            "cx": 8096048,
+            "cy": 819150
+          }
+        },
+        {
+          "text": "Number formatting",
+          "box": {
+            "x": 800080,
+            "y": 1838325,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Use Accounting for financial statements so symbols and decimals align; use Currency for simpler reports.",
+          "box": {
+            "x": 800080,
+            "y": 2114550,
+            "cx": 2838379,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Cell hygiene",
+          "box": {
+            "x": 4267093,
+            "y": 1838325,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Auto-fit columns to prevent truncation, and use Wrap Text when a cell needs vertical space.",
+          "box": {
+            "x": 4267093,
+            "y": 2114550,
+            "cx": 2838379,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Visual hierarchy",
+          "box": {
+            "x": 800080,
+            "y": 3924300,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Bold headers, thick bottom borders, and banded rows make large tables easier to scan.",
+          "box": {
+            "x": 800080,
+            "y": 4200525,
+            "cx": 2838379,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Conditional formatting",
+          "box": {
+            "x": 4267093,
+            "y": 3924300,
+            "cx": 2838379,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "Color scales surface outliers quickly, such as revenue dips, margin pressure, or cost overruns.",
+          "box": {
+            "x": 4267093,
+            "y": 4200525,
+            "cx": 2838379,
+            "cy": 628650
+          }
+        },
+        {
+          "text": "Before presenting, make patterns visible",
+          "box": {
+            "x": 8296068,
+            "y": 1800225,
+            "cx": 3028874,
+            "cy": 514350
+          }
+        },
+        {
+          "text": "The same data becomes easier to discuss when headers, row banding, and outlier colors are applied consistently.",
+          "box": {
+            "x": 8296068,
+            "y": 4743450,
+            "cx": 3028874,
+            "cy": 600075
+          }
+        },
+        {
+          "text": "Pro tip: Double-click Format Painter to lock it, then apply the same professional look to multiple non-adjacent ranges.",
+          "box": {
+            "x": 800080,
+            "y": 5953125,
+            "cx": 9012559,
+            "cy": 200025
+          }
+        },
+        {
+          "text": "Learning objective: use formatting choices to improve comprehension, not to add noise.",
+          "box": {
+            "x": 571486,
+            "y": 6515100,
+            "cx": 4490628,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 8,
+      "texts": [
+        {
+          "text": "7 / FUNCTIONS AND SYNTHESIS",
+          "box": {
+            "x": 609585,
+            "y": 381000,
+            "cx": 2712622,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Use functions for repeatable logic and Pivot Tables for fast summaries",
+          "box": {
+            "x": 609585,
+            "y": 685800,
+            "cx": 8000800,
+            "cy": 819150
+          }
+        },
+        {
+          "text": "Formula",
+          "box": {
+            "x": 809605,
+            "y": 1781175,
+            "cx": 2104972,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "=A1+A2",
+          "box": {
+            "x": 809605,
+            "y": 2057400,
+            "cx": 2104972,
+            "cy": 219075
+          }
+        },
+        {
+          "text": "A custom expression you write.",
+          "box": {
+            "x": 809605,
+            "y": 2352675,
+            "cx": 2104972,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Function",
+          "box": {
+            "x": 3447964,
+            "y": 1781175,
+            "cx": 2104972,
+            "cy": 276225
+          }
+        },
+        {
+          "text": "=SUM(A1:A2)",
+          "box": {
+            "x": 3447964,
+            "y": 2057400,
+            "cx": 2104972,
+            "cy": 219075
+          }
+        },
+        {
+          "text": "A predefined calculation.",
+          "box": {
+            "x": 3447964,
+            "y": 2352675,
+            "cx": 2104972,
+            "cy": 190500
+          }
+        },
+        {
+          "text": "SUM",
+          "box": {
+            "x": 809605,
+            "y": 3248025,
+            "cx": 2162121,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Grand totals; Alt + = is the analyst\u2019s fast path.",
+          "box": {
+            "x": 809605,
+            "y": 3486150,
+            "cx": 2162121,
+            "cy": 361950
+          }
+        },
+        {
+          "text": "AVERAGE",
+          "box": {
+            "x": 3438439,
+            "y": 3248025,
+            "cx": 2162121,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Mean values for baselines and comparisons.",
+          "box": {
+            "x": 3438439,
+            "y": 3486150,
+            "cx": 2162121,
+            "cy": 361950
+          }
+        },
+        {
+          "text": "COUNT / COUNTA",
+          "box": {
+            "x": 809605,
+            "y": 4248150,
+            "cx": 2162121,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Audit whether numeric or non-empty entries exist.",
+          "box": {
+            "x": 809605,
+            "y": 4486275,
+            "cx": 2162121,
+            "cy": 361950
+          }
+        },
+        {
+          "text": "MIN / MAX",
+          "box": {
+            "x": 3438439,
+            "y": 4248150,
+            "cx": 2162121,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Find range boundaries and volatility.",
+          "box": {
+            "x": 3438439,
+            "y": 4486275,
+            "cx": 2162121,
+            "cy": 361950
+          }
+        },
+        {
+          "text": "Pivot Table quadrants",
+          "box": {
+            "x": 6514937,
+            "y": 1847850,
+            "cx": 4800480,
+            "cy": 352425
+          }
+        },
+        {
+          "text": "With the cursor inside a dataset, Insert > Pivot Table lets Excel summarize large data ranges quickly.",
+          "box": {
+            "x": 6514937,
+            "y": 2200275,
+            "cx": 4800480,
+            "cy": 419100
+          }
+        },
+        {
+          "text": "Filters",
+          "box": {
+            "x": 6676858,
+            "y": 2952750,
+            "cx": 2019250,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Global data exclusion, such as a fiscal year filter.",
+          "box": {
+            "x": 6676858,
+            "y": 3190875,
+            "cx": 2019250,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Columns",
+          "box": {
+            "x": 9134247,
+            "y": 2952750,
+            "cx": 2019250,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Horizontal categories for side-by-side comparison.",
+          "box": {
+            "x": 9134247,
+            "y": 3190875,
+            "cx": 2019250,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Rows",
+          "box": {
+            "x": 6676858,
+            "y": 4010025,
+            "cx": 2019250,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Vertical structure for the report.",
+          "box": {
+            "x": 6676858,
+            "y": 4248150,
+            "cx": 2019250,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Values",
+          "box": {
+            "x": 9134247,
+            "y": 4010025,
+            "cx": 2019250,
+            "cy": 238125
+          }
+        },
+        {
+          "text": "Quantitative core, usually Sum or Average.",
+          "box": {
+            "x": 9134247,
+            "y": 4248150,
+            "cx": 2019250,
+            "cy": 381000
+          }
+        },
+        {
+          "text": "Finance extension: PV, FV, and RATE support Time Value of Money work by translating future cash flows and investment returns into decision-ready calculations.",
+          "box": {
+            "x": 904852,
+            "y": 5800725,
+            "cx": 10448664,
+            "cy": 466725
+          }
+        },
+        {
+          "text": "Learning objective: select the right tool for calculations, auditing, and summarizing datasets.",
+          "box": {
+            "x": 609585,
+            "y": 6553200,
+            "cx": 4701809,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 9,
+      "texts": [
+        {
+          "text": "8 / ERROR MANAGEMENT AND NEXT STEPS",
+          "box": {
+            "x": 609585,
+            "y": 381000,
+            "cx": 3682809,
+            "cy": 171450
+          }
+        },
+        {
+          "text": "Reliable analysts audit formulas, version work, and avoid hidden assumptions",
+          "box": {
+            "x": 609585,
+            "y": 685800,
+            "cx": 7810305,
+            "cy": 819150
+          }
+        },
+        {
+          "text": "Stop hard-coding",
+          "box": {
+            "x": 6343491,
+            "y": 1800225,
+            "cx": 2257369,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "Put assumptions in labeled input cells, then reference them in formulas.",
+          "box": {
+            "x": 6343491,
+            "y": 2057400,
+            "cx": 2257369,
+            "cy": 600075
+          }
+        },
+        {
+          "text": "Save consistently",
+          "box": {
+            "x": 9134247,
+            "y": 1800225,
+            "cx": 2257369,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "Ctrl + S or Command + S is a professional reflex, not an afterthought.",
+          "box": {
+            "x": 9134247,
+            "y": 2057400,
+            "cx": 2257369,
+            "cy": 600075
+          }
+        },
+        {
+          "text": "Verify sample size",
+          "box": {
+            "x": 6343491,
+            "y": 3238500,
+            "cx": 2257369,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "Before presenting, check whether the data volume supports your conclusion.",
+          "box": {
+            "x": 6343491,
+            "y": 3495675,
+            "cx": 2257369,
+            "cy": 600075
+          }
+        },
+        {
+          "text": "Automate integration",
+          "box": {
+            "x": 9134247,
+            "y": 3238500,
+            "cx": 2257369,
+            "cy": 257175
+          }
+        },
+        {
+          "text": "Use ranges and Pivot Tables to maintain a single version of the truth.",
+          "box": {
+            "x": 9134247,
+            "y": 3495675,
+            "cx": 2257369,
+            "cy": 600075
+          }
+        },
+        {
+          "text": "Practice path",
+          "box": {
+            "x": 876278,
+            "y": 5715000,
+            "cx": 2381190,
+            "cy": 323850
+          }
+        },
+        {
+          "text": "Pick one dataset this week. Build a clean table, add formulas with correct references, create a Pivot Table, apply business formatting, and audit every formula before sharing.",
+          "box": {
+            "x": 3486063,
+            "y": 5638800,
+            "cx": 7829354,
+            "cy": 476250
+          }
+        },
+        {
+          "text": "Closing message: Excel is a muscle; build speed, precision, and judgment through repeated practice.",
+          "box": {
+            "x": 609585,
+            "y": 6515100,
+            "cx": 5168076,
+            "cy": 133350
+          }
+        }
+      ],
+      "images": []
+    }
+  ]
+}

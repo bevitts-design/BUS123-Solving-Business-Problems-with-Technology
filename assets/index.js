@@ -1,30 +1,51 @@
 const searchInput = document.querySelector("[data-search]");
-const filterButtons = [...document.querySelectorAll("[data-filter]")];
+const filterButtons = [...document.querySelectorAll("[data-filter-group]")];
 const lessons = [...document.querySelectorAll("[data-lesson]")];
+const emptyState = document.querySelector("[data-empty]");
 
-let activeTrack = "all";
+const activeFilters = {
+  track: "all",
+  material: "all",
+  status: "all"
+};
 
 function applyFilters() {
   const query = searchInput.value.trim().toLowerCase();
   let visible = 0;
 
   lessons.forEach((lesson) => {
-    const matchesTrack = activeTrack === "all" || lesson.dataset.track === activeTrack;
+    const materials = (lesson.dataset.materials || "").split(" ").filter(Boolean);
+    const matchesTrack = activeFilters.track === "all" || lesson.dataset.track === activeFilters.track;
+    const matchesMaterial = activeFilters.material === "all" || materials.includes(activeFilters.material);
+    const matchesStatus = activeFilters.status === "all" || lesson.dataset.status === activeFilters.status;
     const matchesText = !query || lesson.dataset.search.includes(query);
-    const show = matchesTrack && matchesText;
+    const show = matchesTrack && matchesMaterial && matchesStatus && matchesText;
+
     lesson.hidden = !show;
     if (show) visible += 1;
   });
 
-  document.querySelector("[data-empty]").hidden = visible !== 0;
+  emptyState.hidden = visible !== 0;
+}
+
+function updateButtonState(group) {
+  filterButtons
+    .filter((button) => button.dataset.filterGroup === group)
+    .forEach((button) => {
+      const isActive = button.dataset.filterValue === activeFilters[group];
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
 }
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    activeTrack = button.dataset.filter;
-    filterButtons.forEach((item) => item.classList.toggle("active", item === button));
+    const group = button.dataset.filterGroup;
+    activeFilters[group] = button.dataset.filterValue;
+    updateButtonState(group);
     applyFilters();
   });
 });
 
 searchInput.addEventListener("input", applyFilters);
+applyFilters();

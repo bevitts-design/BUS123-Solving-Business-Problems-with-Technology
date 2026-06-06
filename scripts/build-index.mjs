@@ -4,7 +4,7 @@ import path from "node:path";
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 const data = JSON.parse(await fs.readFile(path.join(root, "course-map.json"), "utf8"));
 
-const allowedStatuses = new Set(["Current", "Live", "Coming Soon", "In Progress", "Canvas Only", "Not Released"]);
+const allowedStatuses = new Set(["Live", "Coming Soon", "In Progress", "Canvas Only", "Not Released"]);
 const privatePathPattern = /(^|[/_-])(instructor|answer[-_ ]?key|solutions?|grading|qti)([/_.-]|$)|\.zip$/i;
 
 const esc = (value) =>
@@ -60,7 +60,9 @@ function validateCourseMap() {
     if (!trackById.has(lesson.track)) {
       issues.push(`${lesson.id} references unknown track "${lesson.track}".`);
     }
-    if (!allowedStatuses.has(lesson.status)) {
+    if (lesson.status === "Current") {
+      issues.push(`${lesson.id} uses "Current" as a status. Set course.currentLessonId instead and keep lesson.status as a release state.`);
+    } else if (!allowedStatuses.has(lesson.status)) {
       issues.push(`${lesson.id} uses unsupported status "${lesson.status}".`);
     }
 
@@ -142,13 +144,16 @@ const groupMaterials = (materials) =>
 const primaryMaterial = (lesson) =>
   (lesson.materials ?? []).find((material) => material.type === "Slides") ?? (lesson.materials ?? [])[0];
 
+const effectiveStatus = (lesson) =>
+  lesson.id === data.course.currentLessonId ? "Current" : lesson.status;
+
 const searchText = (lesson, track) => [
   lesson.title,
   lesson.track,
   track?.label,
   lesson.module,
   lesson.lesson,
-  lesson.status,
+  effectiveStatus(lesson),
   lesson.caseStudy,
   ...(lesson.skillFocus ?? []),
   ...(lesson.materials ?? []).flatMap((item) => [item.type, item.path])
@@ -157,14 +162,15 @@ const searchText = (lesson, track) => [
 const lessonCard = (lesson) => {
   const track = trackById.get(lesson.track);
   const materialSlugs = (lesson.materials ?? []).map((item) => slug(item.type)).join(" ");
+  const status = effectiveStatus(lesson);
 
-  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(lesson.status))}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
+  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(status))}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
     <div class="lesson-header">
       <div>
         <div class="code">${esc(track?.label ?? lesson.track)} · ${esc(lesson.module)} · ${esc(lesson.lesson)}</div>
         <h3>${esc(lesson.title)}</h3>
       </div>
-      <span class="status ${esc(slug(lesson.status))}">${esc(lesson.status)}</span>
+      <span class="status ${esc(slug(status))}">${esc(status)}</span>
     </div>
     <p>${esc(lesson.caseStudy || "General course foundation")}</p>
     <div class="skills">${esc((lesson.skillFocus ?? []).join(" · "))}</div>
@@ -240,20 +246,6 @@ const html = `<!DOCTYPE html>
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>Find the right BUS123 materials quickly.</h1>
         <p>This course map is the student-facing source for live lesson slides, readings, workbooks, and practice materials.</p>
-        <div class="current">
-          <div class="current-copy">
-            <div class="meta">Current · ${esc(currentTrack?.label ?? current.track)} ${esc(current.module)} ${esc(current.lesson)}</div>
-            <h2>${esc(current.title)}</h2>
-            <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
-            ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
-          </div>
-          <div class="current-groups" aria-label="Current lesson materials">
-            ${currentGroups.map((group) => `<div class="material-group">
-              <h3>${esc(group.label)}</h3>
-              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
-            </div>`).join("")}
-          </div>
-        </div>
         <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
           <div class="week-ahead-header">
             <div>
@@ -270,6 +262,20 @@ const html = `<!DOCTYPE html>
             <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
           </div>
         </section>
+        <div class="current">
+          <div class="current-copy">
+            <div class="meta">Current · ${esc(currentTrack?.label ?? current.track)} ${esc(current.module)} ${esc(current.lesson)}</div>
+            <h2>${esc(current.title)}</h2>
+            <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
+            ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
+          </div>
+          <div class="current-groups" aria-label="Current lesson materials">
+            ${currentGroups.map((group) => `<div class="material-group">
+              <h3>${esc(group.label)}</h3>
+              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
+            </div>`).join("")}
+          </div>
+        </div>
         <div class="sequence-strip" aria-label="Lesson sequence">
           ${sequenceItem("Previous", data.lessons[currentIndex - 1])}
           ${sequenceItem("Current", current)}

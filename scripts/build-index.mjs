@@ -254,6 +254,22 @@ const html = `<!DOCTYPE html>
             </div>`).join("")}
           </div>
         </div>
+        <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
+          <div class="week-ahead-header">
+            <div>
+              <div class="meta">Canvas</div>
+              <h2 id="week-ahead-title">Week Ahead</h2>
+              <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
+            </div>
+            <div class="week-ahead-actions">
+              <span data-week-ahead-updated>Checking Canvas dates...</span>
+              ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Open Canvas</a>` : ""}
+            </div>
+          </div>
+          <div class="week-ahead-list" data-week-ahead-list>
+            <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
+          </div>
+        </section>
         <div class="sequence-strip" aria-label="Lesson sequence">
           ${sequenceItem("Previous", data.lessons[currentIndex - 1])}
           ${sequenceItem("Current", current)}

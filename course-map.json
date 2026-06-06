@@ -74,14 +74,29 @@
     {
       "id": "excel-m01-l02",
       "track": "excel",
+      "module": "M01",
+      "lesson": "L02",
+      "title": "Aggregate Functions and Data Analysis",
+      "status": "In Progress",
+      "caseStudy": "Anchor & Oak Events",
+      "skillFocus": ["Aggregate functions", "Cell references", "Business data analysis"],
+      "materials": [
+        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "excel-m02-l01",
+      "track": "excel",
       "module": "M02",
       "lesson": "L01",
-      "title": "Formulas and Functions",
+      "title": "Formatting and Organizing Worksheets",
       "status": "Live",
       "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Formulas", "Cell references"],
+      "skillFocus": ["Worksheet formatting", "Data organization", "Audit-friendly design"],
       "materials": [
-        { "type": "Slides", "path": "EXCEL/M02/bus123-excel-m02-l01-slides.html" }
+        { "type": "Slides", "path": "EXCEL/M02/bus123-excel-m02-l01-slides.html" },
+        { "type": "Reading", "path": "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf" },
+        { "type": "Starter Workbook", "path": "EXCEL/M02/bus123-excel-m02-l01-starter.xlsx" }
       ]
     },
     {
@@ -198,6 +213,7 @@
       "caseStudy": "Tidal Goods Co. · Meridian Advisory Group",
       "skillFocus": ["Sales tax", "Excise tax", "Property tax", "Tax rate rounding"],
       "materials": [
+        { "type": "Slides", "path": "MATH/M07/bus123-math-m07-l01-slides.html" },
         { "type": "Reading", "path": "MATH/M07/bus123-math-m07-l01-prereading.pdf" },
         { "type": "Starter Workbook", "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx" }
       ]
@@ -214,7 +230,8 @@
       "materials": [
         { "type": "Slides", "path": "MATH/M08/bus123-math-m08-l01-slides.html" },
         { "type": "Reading", "path": "MATH/M08/bus123-math-m08-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx" }
+        { "type": "Starter Workbook", "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx" },
+        { "type": "Activity Instructions", "path": "MATH/M08/bus123-math-m08-l01-activity-instructions.docx" }
       ]
     },
     {
@@ -229,6 +246,21 @@
       "materials": [
         { "type": "Slides", "path": "MATH/M09/bus123-math-m09-l01-slides.html" },
         { "type": "Starter Workbook", "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx" }
+      ]
+    },
+    {
+      "id": "math-m10-l01",
+      "track": "math",
+      "module": "M10",
+      "lesson": "L01",
+      "title": "Business Statistics",
+      "status": "Coming Soon",
+      "caseStudy": "Harborside Medical Center",
+      "skillFocus": ["Business statistics", "Data analysis", "Descriptive statistics", "Excel modeling"],
+      "materials": [
+        { "type": "Slides", "path": "MATH/M10/bus123-math-m10-l01-slides.html" },
+        { "type": "Reading", "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M10/bus123-math-m10-l01-starter.xlsx" }
       ]
     }
   ]

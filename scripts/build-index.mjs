@@ -27,11 +27,11 @@ const trackById = new Map(data.tracks.map((track) => [track.id, track]));
 const materialGroups = [
   { id: "before", label: "Before class", types: new Set(["Reading", "Pre-reading"]) },
   { id: "class", label: "In class", types: new Set(["Slides", "Company Profiles"]) },
-  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Interactive Practice", "Homework"]) }
+  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
 ];
 
-const materialFilters = ["Slides", "Reading", "Starter Workbook", "Interactive Practice"];
-const statusFilters = ["Current", "Live", "Coming Soon"];
+const materialFilters = ["Slides", "Reading", "Starter Workbook", "Interactive Practice", "Activity Instructions"];
+const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 
 function validateCourseMap() {
   const issues = [];
@@ -123,6 +123,7 @@ const materialIcon = (type) => {
     "Pre-reading": "R",
     "Starter Workbook": "W",
     "Interactive Practice": "P",
+    "Activity Instructions": "A",
     "Homework": "H",
     "Company Profiles": "C"
   };

@@ -190,6 +190,33 @@
       letter-spacing: 0.08em;
     }
 
+    /* ── Formula panel — v2 Hybrid brand standard (LOCKED) ── */
+    .formula-panel {
+      background: #EAF3EC;
+      border-left: 4px solid #4A7C5E;
+      border-radius: 0 8px 8px 0;
+      color: #0E1116;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      line-height: 1.7;
+      padding: 28px 36px;
+    }
+    .formula-panel .fn {
+      font-size: 22px;
+      font-weight: 700;
+      color: #355773;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .formula-panel .comment {
+      color: #4A5567;
+      font-size: 14px;
+    }
+    .formula-panel .result {
+      color: #2d6a4a;
+      font-weight: 600;
+    }
+
     /* ── Mistake callout ── */
     .mistake-panel {
       background: var(--terra);
@@ -509,11 +536,11 @@
       <div class="col">
         <h2>Arithmetic in Excel</h2>
         <p style="margin-top:24px; margin-bottom:32px;">Always reference cells. Never type numbers inside a formula — one input change should recalculate everything automatically.</p>
-        <div class="dark-panel">
-          =SUM(B2:B10)         <span style="color:rgba(255,255,255,0.4);">← addition range</span><br>
-          =B5 - C5             <span style="color:rgba(255,255,255,0.4);">← subtraction</span><br>
-          =B3 * C3             <span style="color:rgba(255,255,255,0.4);">← multiply: qty × fee</span><br>
-          =B7 / C7             <span style="color:rgba(255,255,255,0.4);">← divide: total ÷ count</span>
+        <div class="formula-panel">
+          <span class="fn">=SUM(B2:B10)</span><span class="comment">← addition range</span><br>
+          <span class="fn">=B5 - C5</span><span class="comment">← subtraction</span><br>
+          <span class="fn">=B3 * C3</span><span class="comment">← multiply: qty × fee</span><br>
+          <span class="fn">=B7 / C7</span><span class="comment">← divide: total ÷ count</span>
         </div>
       </div>
       <div class="col" style="display:flex; align-items:center;">
@@ -573,9 +600,9 @@
           </div>
           <div style="margin-top:32px;">
             <div class="formula-label">Manual math first, then Excel</div>
-            <div class="dark-panel">
-              =B2 + B3 - B4   <span style="color:rgba(255,255,255,0.4);">← accounts Q-end</span><br>
-              =B5 * C2        <span style="color:rgba(255,255,255,0.4);">← total fee revenue</span>
+            <div class="formula-panel">
+              <span class="fn">=B2 + B3 - B4</span><span class="comment">← accounts Q-end</span><br>
+              <span class="fn">=B5 * C2</span><span class="comment">← total fee revenue</span>
             </div>
           </div>
         </div>
@@ -636,12 +663,12 @@
         </div>
       </div>
       <div style="width:520px; flex-shrink:0;">
-        <div class="dark-panel">
-          <div style="color:rgba(255,255,255,0.5); margin-bottom:8px;">← Excel converts fraction to decimal</div>
-          =2/6   → 0.3333...<br>
-          =1/4   → 0.25<br>
-          =5/9   → 0.5556<br><br>
-          <div style="color:rgba(255,255,255,0.5);">Format cell as Fraction or % as needed</div>
+        <div class="formula-panel">
+          <span class="comment">← Excel converts fraction to decimal</span><br>
+          <span class="fn">=2/6</span><span class="result">→ 0.3333...</span><br>
+          <span class="fn">=1/4</span><span class="result">→ 0.25</span><br>
+          <span class="fn">=5/9</span><span class="result">→ 0.5556</span><br><br>
+          <span class="comment">Format cell as Fraction or % as needed</span>
         </div>
       </div>
     </div>
@@ -743,13 +770,13 @@
       <div class="col">
         <h2>Percent Formulas in Excel</h2>
         <p style="margin-top:24px; margin-bottom:32px;">Format the result cell as <strong>Percentage</strong>. Do not multiply by 100 manually — Excel's format handles the display automatically.</p>
-        <div class="dark-panel">
-          <span style="color:rgba(255,255,255,0.45);">Case 1 — percent of whole</span><br>
-          =B2 * B3              <span style="color:rgba(255,255,255,0.4);">← whole * rate</span><br><br>
-          <span style="color:rgba(255,255,255,0.45);">Case 2 — percent change</span><br>
-          =(B5 - B4) / B4       <span style="color:rgba(255,255,255,0.4);">← (new−old)/old</span><br><br>
-          <span style="color:rgba(255,255,255,0.45);">Case 3 — ratio as percent</span><br>
-          =B7 / B8              <span style="color:rgba(255,255,255,0.4);">← part/whole → format %</span>
+        <div class="formula-panel">
+          <span class="comment">Case 1 — percent of whole</span><br>
+          <span class="fn">=B2 * B3</span><span class="comment">← whole * rate</span><br><br>
+          <span class="comment">Case 2 — percent change</span><br>
+          <span class="fn">=(B5 - B4) / B4</span><span class="comment">← (new−old)/old</span><br><br>
+          <span class="comment">Case 3 — ratio as percent</span><br>
+          <span class="fn">=B7 / B8</span><span class="comment">← part/whole → format %</span>
         </div>
       </div>
       <div class="col" style="display:flex; align-items:center;">

@@ -186,29 +186,35 @@
       padding-top: 8px;
     }
 
-    /* ── Equation panel (light, for cream slides) ── */
+    /* ── Equation panel (light, for cream slides) — v2 Hybrid brand standard ── */
     .eq-panel {
-      background: #F4F0E8;
-      border: 1.5px solid #D8D0C0;
-      border-left: 5px solid var(--sage);
+      background: #EAF3EC;
+      border-left: 4px solid #4A7C5E;
+      border-radius: 0 8px 8px 0;
       font-family: var(--font-mono);
-      font-size: var(--type-mono);
-      border-radius: 0 10px 10px 0;
+      font-size: 18px;
       padding: 28px 36px;
       line-height: 1.9;
-      color: var(--text);
+      color: #0E1116;
+    }
+    .eq-panel .fn {
+      font-size: 22px;
+      font-weight: 700;
+      color: #355773;
+      display: block;
+      margin-bottom: 14px;
     }
     .eq-panel .comment {
-      color: #2A4A7F;
-      font-size: calc(var(--type-mono) * 0.88);
+      color: #4A5567;
+      font-size: 14px;
     }
     .eq-panel .eq-step {
-      color: #2A4A7F;
-      font-size: calc(var(--type-mono) * 0.88);
+      color: #4A5567;
+      font-size: 14px;
     }
     .eq-panel .result {
-      color: #2A6B42;
-      font-weight: 500;
+      color: #2d6a4a;
+      font-weight: 600;
     }
     /* Keep dark-panel for use on dark slides if needed */
     .dark-panel {
@@ -219,13 +225,6 @@
       border-radius: 10px;
       padding: 24px 32px;
       line-height: 1.7;
-    }
-    .dark-panel .comment {
-      color: rgba(255,255,255,0.45);
-      font-size: calc(var(--type-mono) * 0.9);
-    }
-    .dark-panel .result {
-      color: #7DD3A0;
     }
 
     /* ── Terracotta mistake callout ── */

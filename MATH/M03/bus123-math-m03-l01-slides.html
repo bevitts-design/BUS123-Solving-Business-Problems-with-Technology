@@ -5,7 +5,7 @@
   <title>BUS123 · M03 · L01 — Discounts: Trade and Cash</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script type="application/json" id="speaker-notes">
   [
@@ -27,8 +27,10 @@
     "Cash discounts are incentives for paying invoices early. You'll see them written in shorthand like 2/10 net 30. This means: take 2% off the invoice if you pay within 10 days, otherwise the full amount is due in 30 days. The first number is the discount percentage. The second is the discount period in days. The last is the total credit period.",
     "Let's put this in context. Tidal Goods receives an invoice for $4,200.00 from their wetsuit supplier. The terms are 2/10 net 30. If Tidal Goods pays within 10 days, they get 2% off. In Excel, the discounted payment is $4,116.00. That's an $84 savings just for paying 20 days early. Doesn't sound like much? We'll see why it really adds up.",
     "Here's a question to think about: what's the annualized cost of NOT taking the cash discount? You're essentially paying $84 to use $4,116 for an extra 20 days. That works out to roughly 37% annually. So not taking cash discounts is like borrowing money at 37% interest. Almost always a bad deal.",
+    "Two discussion questions — give these a few minutes to think through before we debrief as a class. The first one is comparing two payment structures head to head. The second pushes you to think about the exceptions — when might it actually make sense to skip a cash discount? Think cash flow constraints, credit line availability, relationship with the supplier.",
     "Let's open the workbook and practice. You'll work through trade discounts, chain discounts, and cash discounts using Tidal Goods inventory data. Yellow cells are where you enter your work. Check the FormulaReferenceCard tab if you need a quick refresher on any formula.",
-    "Let's review what we covered. One: trade discounts convert list prices to net prices using the complement. Two: chain discounts multiply complements sequentially — never add the rates. Three: cash discounts reward early payment and have a surprisingly high annualized cost when skipped. Next class, we'll build on this with markup and markdown calculations.",
+    "Let's review what we covered. One: trade discounts convert list prices to net prices using the complement. Two: chain discounts multiply complements sequentially — never add the rates. Three: cash discounts reward early payment and have a surprisingly high annualized cost when skipped.",
+    "Next class we move to markup and markdown — how Tidal Goods sets a selling price above their cost, and how they adjust it downward when running a sale. The same percentage-and-complement logic applies, so you already have the foundation. Make sure you've completed today's workbook before next class.",
     "Questions? My office hours are posted on Canvas. Feel free to email me or stop by."
   ]
   </script>
@@ -50,34 +52,34 @@
       --accent:    var(--sage);
       --gradient:  linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
 
-      --font-display: 'Instrument Serif', serif;
-      --font-body:    'Geist', sans-serif;
+      --font-display: 'Bodoni Moda', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
       --font-mono:    'JetBrains Mono', monospace;
 
       --scale: 1;
-      --type-display:  calc(112px * var(--scale));
-      --type-title:    calc(72px  * var(--scale));
-      --type-subtitle: calc(44px  * var(--scale));
-      --type-lead:     calc(34px  * var(--scale));
-      --type-body:     calc(28px  * var(--scale));
-      --type-small:    calc(24px  * var(--scale));
-      --type-eyebrow:  calc(24px  * var(--scale));
-      --type-mono:     calc(24px  * var(--scale));
-      --type-stat:     calc(220px * var(--scale));
+      --type-display:  calc(72px  * var(--scale));
+      --type-title:    calc(48px  * var(--scale));
+      --type-subtitle: calc(30px  * var(--scale));
+      --type-lead:     calc(22px  * var(--scale));
+      --type-body:     calc(18px  * var(--scale));
+      --type-small:    calc(16px  * var(--scale));
+      --type-eyebrow:  calc(16px  * var(--scale));
+      --type-mono:     calc(16px  * var(--scale));
+      --type-stat:     calc(140px * var(--scale));
 
-      --pad-x:      128px;
-      --pad-top:     104px;
-      --pad-bottom:  96px;
-      --gap-title:   56px;
-      --gap-item:    32px;
+      --pad-x:      80px;
+      --pad-top:     64px;
+      --pad-bottom:  56px;
+      --gap-title:   36px;
+      --gap-item:    20px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #111; overflow: hidden; }
 
     .slide {
-      width: 1920px;
-      height: 1080px;
+      width: 1280px;
+      height: 720px;
       overflow: hidden;
       flex-direction: column;
     }
@@ -185,6 +187,27 @@
     .dark .numbered .n { color: var(--sage); }
     .dark .numbered .n-body { color: rgba(255,255,255,0.85); }
 
+    /* ── Formula panel (cream slides) — v2 Hybrid brand standard ── */
+    .formula-panel {
+      background: #EAF3EC;
+      border-left: 4px solid #4A7C5E;
+      border-radius: 0 8px 8px 0;
+      color: #0E1116;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      padding: 24px 32px;
+      line-height: 1.7;
+    }
+    .formula-panel .fn {
+      font-size: 22px;
+      font-weight: 700;
+      color: #355773;
+      display: inline;
+    }
+    .formula-panel .comment { color: #4A5567; font-size: 14px; }
+    .formula-panel .result  { color: #2d6a4a; font-weight: 600; }
+
+    /* ── Dark panel (dark slides only — intentional) ── */
     .dark-panel {
       background: var(--ink);
       color: var(--gold);
@@ -194,16 +217,11 @@
       padding: 24px 32px;
       line-height: 1.7;
     }
-    .cream .dark-panel { border: 1px solid var(--border); }
-
-    .dark-panel .fn { color: #8BC6A0; }
-    .dark-panel .comment { color: var(--muted); }
-    .dark-panel .result { color: #E2E8F0; }
 
     .section-number {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: calc(180px * var(--scale));
+      font-size: calc(120px * var(--scale));
       color: rgba(255,255,255,0.08);
       position: absolute;
       right: var(--pad-x);
@@ -325,7 +343,7 @@
     .stat-big {
       font-family: var(--font-display);
       font-style: italic;
-      font-size: calc(96px * var(--scale));
+      font-size: calc(60px * var(--scale));
       color: var(--accent);
       line-height: 1;
     }
@@ -333,7 +351,7 @@
   </style>
 </head>
 <body>
-  <deck-stage width="1920" height="1080" no-rail>
+  <deck-stage width="1280" height="720" no-rail>
 
     <!-- SLIDE 1 · Title -->
     <section class="slide dark" data-label="01 Title">
@@ -424,7 +442,7 @@
       <div class="slide-pad">
         <h2>The Core Formula</h2>
         <div style="margin-bottom:40px;">
-          <div class="dark-panel" style="font-size:calc(32px * var(--scale)); text-align:center; padding:36px;">
+          <div class="formula-panel" style="font-size:calc(32px * var(--scale)); text-align:center; padding:36px;">
             <span class="fn">=</span> List_Price <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> Discount_Rate<span class="fn">)</span>
           </div>
         </div>
@@ -441,7 +459,7 @@
         <div class="eyebrow">Tidal Goods Co.</div>
         <h2>Trade Discount: Wetsuits</h2>
         <div style="margin-bottom:32px;">
-          <div class="dark-panel">
+          <div class="formula-panel">
             <span class="fn">=</span> 189.99 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.30<span class="fn">)</span> <span class="comment">→ Net Price</span><br>
             <span class="fn">=</span> 189.99 <span class="fn">*</span> 0.70<br>
             <span class="result">= $132.99</span>
@@ -497,7 +515,7 @@
       <div class="slide-pad">
         <h2>Chain Discount Formula</h2>
         <div style="margin-bottom:40px;">
-          <div class="dark-panel" style="font-size:calc(30px * var(--scale)); text-align:center; padding:36px;">
+          <div class="formula-panel" style="font-size:calc(30px * var(--scale)); text-align:center; padding:36px;">
             <span class="fn">=</span> List_Price <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d1<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d2<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> d3<span class="fn">)</span>
           </div>
         </div>
@@ -514,7 +532,7 @@
         <div class="eyebrow">Tidal Goods Co.</div>
         <h2>Chain Discount: Surfboard Fins</h2>
         <div style="margin-bottom:32px;">
-          <div class="dark-panel">
+          <div class="formula-panel">
             <span class="fn">=</span> 64.00 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.20<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.10<span class="fn">)</span> <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.05<span class="fn">)</span><br>
             <span class="fn">=</span> 64.00 <span class="fn">*</span> 0.80 <span class="fn">*</span> 0.90 <span class="fn">*</span> 0.95<br>
             <span class="result">= $43.78</span>
@@ -567,7 +585,7 @@
       <div class="slide-pad">
         <h2>Reading Payment Terms</h2>
         <div style="text-align:center; margin-bottom:40px;">
-          <div class="dark-panel" style="display:inline-block; font-size:calc(48px * var(--scale)); padding:32px 64px;">
+          <div class="formula-panel" style="display:inline-block; font-size:calc(48px * var(--scale)); padding:32px 64px;">
             2/10 <span style="color:var(--muted);">net</span> 30
           </div>
         </div>
@@ -594,7 +612,7 @@
         <div class="eyebrow">Tidal Goods Co.</div>
         <h2>Cash Discount Calculation</h2>
         <div style="margin-bottom:32px;">
-          <div class="dark-panel">
+          <div class="formula-panel">
             <span class="comment">Invoice: $4,200.00 · Terms: 2/10 net 30</span><br>
             <span class="fn">=</span> 4200 <span class="fn">*</span> <span class="fn">(</span>1 <span class="fn">-</span> 0.02<span class="fn">)</span> <span class="comment">→ Pay within 10 days</span><br>
             <span class="fn">=</span> 4200 <span class="fn">*</span> 0.98<br>

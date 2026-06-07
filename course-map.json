@@ -154,7 +154,8 @@
       "skillFocus": ["Trade discounts", "Cash discounts", "Payment terms"],
       "materials": [
         { "type": "Slides", "path": "MATH/M03/bus123-math-m03-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M03/bus123-math-m03-l01-pre-reading.pdf" }
+        { "type": "Reading", "path": "MATH/M03/bus123-math-m03-l01-pre-reading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M03/bus123-math-m03-l01-starter.xlsx" }
       ]
     },
     {
@@ -185,6 +186,7 @@
       "materials": [
         { "type": "Slides", "path": "MATH/M05/bus123-math-m05-l01-slides.html" },
         { "type": "Reading", "path": "MATH/M05/bus123-math-m05-l01-prereading.pdf" },
+        { "type": "Starter Workbook", "path": "MATH/M05/bus123-math-m05-l01-starter.xlsx" },
         { "type": "Interactive Practice", "path": "MATH/M05/bus123-math-m05-l01-interactive.html" }
       ]
     },

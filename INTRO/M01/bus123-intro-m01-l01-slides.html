@@ -6,56 +6,59 @@
   <title>BUS123 · INTRO-M01-L01 — Essentials of Software Applications</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     /* ─── Reset ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { width: 100%; height: 100%; background: #111; overflow: hidden; font-family: "DM Sans", sans-serif; }
+    html, body { width: 100%; height: 100%; background: var(--ink); overflow: hidden; font-family: var(--sans); }
 
     /* ─── Design tokens ─── */
     :root {
-      --ink:       #0E1116;
-      --paper:     #FAF8F3;
-      --paper-2:   #F2EEE5;
-      --white:     #FFFFFF;
-      --text:      #1A1F2C;
-      --text-soft: #4A5567;
-      --muted:     #7A8290;
-      --border:    #E5E1D6;
-      --sage:      #4A7C5E;
-      --gold:      #B8843D;
-      --terra:     #9C4A2B;
-      --steel:     #355773;
-      --accent:    var(--sage);
-      --gradient:  linear-gradient(90deg, #B8843D 0%, #9C4A2B 50%, #4A7C5E 100%);
+      --ink:#0E1116;
+      --paper:#FAF8F3;
+      --paper-2:#F2EEE5;
+      --white:#FFFFFF;
+      --text:#1A1F2C;
+      --text-soft:#4A5567;
+      --muted:#7A8290;
+      --border:#E5E1D6;
+      --sage:#4A7C5E;
+      --gold:#B8843D;
+      --terra:#9C4A2B;
+      --steel:#355773;
+      --formula-bg:#EAF3EC;
+      --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+
+      --serif:"Bodoni Moda",serif;
+      --sans:"DM Sans",sans-serif;
+      --mono:"JetBrains Mono",monospace;
+      --accent:var(--sage);
 
       /* ─── Fixed px type scale (1280×720 authoring) ─── */
-      --t-display:  80px;
-      --t-title:    52px;
-      --t-subtitle: 34px;
-      --t-lead:     26px;
-      --t-body:     21px;
-      --t-small:    18px;
-      --t-eyebrow:  14px;
-      --t-mono:     16px;
-      --t-stat:     160px;
+      --type-display:72px;
+      --type-title:46px;
+      --type-subtitle:30px;
+      --type-lead:24px;
+      --type-body:20px;
+      --type-small:16px;
+      --type-eyebrow:15px;
+      --type-stat:140px;
+      --type-mono:16px;
 
       /* ─── Spacing ─── */
-      --pad-x:      80px;
-      --pad-top:    64px;
-      --pad-bottom: 56px;
-      --gap-title:  36px;
-      --gap-item:   22px;
+      --pad-x:80px;
+      --pad-top:64px;
+      --pad-bottom:56px;
+      --gap-title:36px;
+      --gap-item:22px;
     }
 
     /* ─── Notebook Tab layout ─── */
     #app {
       width: 100vw;
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #111;
+      position: relative;
+      background: var(--ink);
       overflow: hidden;
     }
     #stage-outer {
@@ -64,32 +67,62 @@
     }
     #tab-strip {
       position: absolute;
-      left: -44px;
+      left: 0;
       top: 0;
       bottom: 0;
-      width: 44px;
+      width: 84px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 10px;
+      padding: 24px 12px;
+      background: var(--ink);
       z-index: 50;
     }
+    .home-dot {
+      width: 26px;
+      height: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--gradient);
+      cursor: pointer;
+      margin: 0 auto 18px;
+      flex: 0 0 auto;
+    }
     .tab-item {
-      flex: 1;
+      flex: 0 0 120px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255,255,255,0.06);
-      border-radius: 6px 0 0 6px;
+      background: color-mix(in srgb, var(--white) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--white) 12%, transparent);
+      border-radius: 8px;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: background 0.15s, border-color 0.15s;
       min-height: 0;
+      position: relative;
     }
-    .tab-item:hover { background: rgba(255,255,255,0.12); }
-    .tab-item.active { background: var(--sage); }
+    .tab-item[data-tab-section="1"] { border-left: 4px solid var(--sage); }
+    .tab-item[data-tab-section="2"] { border-left: 4px solid var(--gold); }
+    .tab-item[data-tab-section="3"] { border-left: 4px solid var(--terra); }
+    .tab-item:hover { background: color-mix(in srgb, var(--white) 14%, transparent); }
+    .tab-item.active {
+      background: var(--paper);
+      border-color: var(--paper);
+    }
+    .tab-item.active::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--tab-color, var(--sage));
+    }
     .tab-item span {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 10px;
-      color: rgba(255,255,255,0.5);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: color-mix(in srgb, var(--white) 58%, transparent);
       writing-mode: vertical-rl;
       text-orientation: mixed;
       transform: rotate(180deg);
@@ -99,7 +132,7 @@
       max-height: 100%;
       overflow: hidden;
     }
-    .tab-item.active span { color: #fff; }
+    .tab-item.active span { color: var(--ink); }
 
     /* ─── Stage ─── */
     #stage {
@@ -117,13 +150,13 @@
       height: 720px;
       display: none;
       flex-direction: column;
-      padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+      padding: var(--pad-top) var(--pad-x) var(--pad-bottom) calc(var(--pad-x) + 84px);
       overflow: hidden;
     }
     .slide.active { display: flex; }
-    .slide.dark  { background: var(--ink);   color: #fff; }
+    .slide.dark  { background: var(--ink);   color: var(--white); }
     .slide.paper { background: var(--paper); color: var(--text); }
-    .slide.terra { background: var(--terra); color: #fff; }
+    .slide.terra { background: var(--terra); color: var(--white); }
 
     /* ─── Nav ─── */
     #nav {
@@ -140,7 +173,7 @@
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.18);
       background: rgba(14,17,22,0.82);
-      color: #fff;
+      color: var(--white);
       font-size: 16px;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
@@ -148,7 +181,7 @@
     }
     .nav-btn:hover { background: var(--sage); border-color: var(--sage); }
     #slide-counter {
-      font-family: "JetBrains Mono", monospace;
+      font-family: var(--mono);
       font-size: 12px;
       color: rgba(255,255,255,0.45);
       min-width: 48px;
@@ -164,7 +197,7 @@
       padding: 10px 32px;
       font-size: 13px;
       color: rgba(255,255,255,0.55);
-      font-family: "DM Sans", sans-serif;
+      font-family: var(--sans);
       line-height: 1.5;
       display: none;
       z-index: 200;
@@ -174,7 +207,7 @@
       position: fixed;
       bottom: 24px;
       left: 24px;
-      font-family: "JetBrains Mono", monospace;
+      font-family: var(--mono);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -205,8 +238,8 @@
       flex-shrink: 0;
     }
     .eyebrow {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-eyebrow);
+      font-family: var(--mono);
+      font-size: var(--type-eyebrow);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--accent);
@@ -218,44 +251,44 @@
 
     /* Headings */
     h1.slide-title {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-weight: 400;
-      font-size: var(--t-display);
+      font-size: var(--type-display);
       line-height: 1.0;
-      color: #fff;
+      color: var(--white);
     }
     h2 {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-weight: 400;
-      font-size: var(--t-title);
+      font-size: var(--type-title);
       line-height: 1.05;
       color: var(--text);
     }
-    .slide.dark h2 { color: #fff; }
-    .slide.terra h2 { color: #fff; }
+    .slide.dark h2 { color: var(--white); }
+    .slide.terra h2 { color: var(--white); }
 
     .subtitle {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-style: italic;
-      font-size: var(--t-subtitle);
+      font-size: var(--type-subtitle);
       line-height: 1.25;
       color: var(--text-soft);
     }
     .slide.dark .subtitle { color: rgba(255,255,255,0.65); }
 
     .lead {
-      font-size: var(--t-lead);
+      font-size: var(--type-lead);
       line-height: 1.5;
       color: var(--text-soft);
     }
     .slide.dark .lead { color: rgba(255,255,255,0.7); }
-    p { font-size: var(--t-body); line-height: 1.55; color: var(--text-soft); }
+    p { font-size: var(--type-body); line-height: 1.55; color: var(--text-soft); }
     .slide.dark p { color: rgba(255,255,255,0.7); }
 
     /* Eyebrow course label on title */
     .title-course {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-eyebrow);
+      font-family: var(--mono);
+      font-size: var(--type-eyebrow);
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
@@ -263,13 +296,13 @@
       flex-shrink: 0;
     }
     .title-meta { display: flex; gap: 48px; margin-top: 40px; }
-    .title-meta-item { font-size: var(--t-small); color: rgba(255,255,255,0.4); }
+    .title-meta-item { font-size: var(--type-small); color: rgba(255,255,255,0.4); }
     .title-meta-item strong { display: block; color: rgba(255,255,255,0.75); font-weight: 500; margin-bottom: 3px; }
 
     /* Section break */
     .section-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-eyebrow);
+      font-family: var(--mono);
+      font-size: var(--type-eyebrow);
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--gold);
@@ -277,11 +310,11 @@
       flex-shrink: 0;
     }
     .section-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-display);
+      font-family: var(--serif);
+      font-size: var(--type-display);
       font-weight: 400;
       line-height: 1.0;
-      color: #fff;
+      color: var(--white);
     }
 
     /* Cards */
@@ -295,22 +328,22 @@
     .card-grid-2 { grid-template-columns: 1fr 1fr; }
     .card-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
     .card-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       letter-spacing: 0.10em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 10px;
     }
     .card-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-lead);
+      font-family: var(--serif);
+      font-size: var(--type-lead);
       color: var(--text);
       margin-bottom: 8px;
       line-height: 1.2;
     }
     .card-body {
-      font-size: var(--t-body);
+      font-size: var(--type-body);
       line-height: 1.5;
       color: var(--text-soft);
     }
@@ -319,7 +352,7 @@
     .numbered-list { display: flex; flex-direction: column; gap: var(--gap-item); }
     .numbered { display: flex; align-items: flex-start; gap: 28px; }
     .n {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-style: italic;
       font-size: 44px;
       line-height: 1;
@@ -328,7 +361,7 @@
     }
     .slide.dark .n { color: var(--gold); }
     .slide.terra .n { color: rgba(255,255,255,0.6); }
-    .n-body { font-size: var(--t-body); line-height: 1.5; color: var(--text); padding-top: 8px; }
+    .n-body { font-size: var(--type-body); line-height: 1.5; color: var(--text); padding-top: 8px; }
     .slide.dark .n-body { color: rgba(255,255,255,0.85); }
 
     /* Steps */
@@ -341,17 +374,17 @@
       padding: 18px 28px;
     }
     .step-num {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-lead);
+      font-family: var(--mono);
+      font-size: var(--type-lead);
       color: var(--accent);
       flex-shrink: 0; width: 48px;
     }
-    .step-text { font-size: var(--t-body); color: var(--text); line-height: 1.4; }
+    .step-text { font-size: var(--type-body); color: var(--text); line-height: 1.4; }
     .step-text strong { font-weight: 600; }
 
     /* Folder tree */
     .folder-tree {
-      font-family: "JetBrains Mono", monospace;
+      font-family: var(--mono);
       font-size: 18px;
       line-height: 2.0;
       background: var(--paper-2);
@@ -371,17 +404,17 @@
       flex-shrink: 0;
     }
     .mistake-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.55);
       margin-bottom: 8px;
     }
     .mistake-heading {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-lead);
-      color: #fff;
+      font-family: var(--serif);
+      font-size: var(--type-lead);
+      color: var(--white);
       line-height: 1.3;
     }
     .fix-box {
@@ -391,26 +424,26 @@
       margin-top: 20px;
     }
     .fix-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: rgba(255,255,255,0.55);
       text-transform: uppercase;
       letter-spacing: 0.10em;
       margin-bottom: 8px;
     }
-    .fix-text { font-size: var(--t-body); color: rgba(255,255,255,0.85); line-height: 1.5; }
+    .fix-text { font-size: var(--type-body); color: rgba(255,255,255,0.85); line-height: 1.5; }
 
     /* Stat */
     .stat-number {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-style: italic;
-      font-size: var(--t-stat);
+      font-size: var(--type-stat);
       line-height: 1;
       color: var(--gold);
     }
     .stat-label {
-      font-size: var(--t-lead);
-      color: rgba(255,255,255,0.6);
+      font-size: var(--type-lead);
+      color: var(--text-soft);
       margin-top: 20px;
       max-width: 720px;
       line-height: 1.45;
@@ -426,16 +459,16 @@
       display: flex; flex-direction: column; justify-content: center;
     }
     .question-num {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--accent);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
     .question-text {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-subtitle);
+      font-family: var(--serif);
+      font-size: var(--type-subtitle);
       color: var(--text);
       line-height: 1.3;
     }
@@ -449,23 +482,23 @@
       display: flex; flex-direction: column; justify-content: center;
     }
     .activity-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--gold);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
     .activity-question {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-subtitle);
-      color: #fff;
+      font-family: var(--serif);
+      font-size: var(--type-subtitle);
+      color: var(--white);
       line-height: 1.3;
       margin-bottom: 28px;
     }
     .activity-prompts { display: flex; flex-direction: column; gap: 12px; }
     .activity-prompt {
-      font-size: var(--t-body);
+      font-size: var(--type-body);
       color: rgba(255,255,255,0.6);
       padding-left: 20px;
       border-left: 2px solid var(--gold);
@@ -476,25 +509,39 @@
     .profile-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; flex: 1; min-height: 0; }
     .profile-img-slot {
       background: var(--paper-2);
-      border: 2px dashed var(--border);
+      border: 1px solid var(--border);
       border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--muted);
       text-align: center; padding: 20px;
       line-height: 1.6;
     }
+    .profile-mark {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-family: var(--serif);
+      font-size: 86px;
+      font-weight: 700;
+      box-shadow: 0 24px 60px rgba(14,17,22,0.16);
+    }
     .profile-details { display: flex; flex-direction: column; gap: 18px; justify-content: center; }
     .profile-item { display: flex; flex-direction: column; gap: 4px; }
     .profile-item-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.10em;
     }
-    .profile-item-value { font-size: var(--t-body); color: var(--text); line-height: 1.45; }
+    .profile-item-value { font-size: var(--type-body); color: var(--text); line-height: 1.45; }
 
     /* Agenda */
     .agenda-list { display: flex; flex-direction: column; gap: 18px; }
@@ -506,12 +553,12 @@
       padding: 18px 28px;
     }
     .agenda-num {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--accent);
       flex-shrink: 0; width: 36px;
     }
-    .agenda-text { font-size: var(--t-lead); color: var(--text); }
+    .agenda-text { font-size: var(--type-lead); color: var(--text); }
 
     /* Objectives */
     .obj-list { display: flex; flex-direction: column; gap: 18px; }
@@ -527,7 +574,7 @@
       margin-top: 2px;
     }
     .obj-check svg { width: 14px; height: 14px; }
-    .obj-text { font-size: var(--t-lead); color: var(--text); line-height: 1.4; }
+    .obj-text { font-size: var(--type-lead); color: var(--text); line-height: 1.4; }
 
     /* App comparison cards */
     .app-card {
@@ -543,36 +590,36 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 26px;
       font-weight: 700;
-      color: #fff;
+      color: var(--white);
       flex-shrink: 0;
     }
-    .app-icon.xl { background: #1D6F42; }
-    .app-icon.wd { background: #2B579A; }
-    .app-icon.pp { background: #B7472A; }
-    .app-name { font-family: "Bodoni Moda", serif; font-size: var(--t-lead); color: var(--text); }
+    .app-icon.xl { background: var(--sage); }
+    .app-icon.wd { background: var(--steel); }
+    .app-icon.pp { background: var(--terra); }
+    .app-name { font-family: var(--serif); font-size: var(--type-lead); color: var(--text); }
     .app-role {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.10em;
     }
-    .app-desc { font-size: var(--t-small); color: var(--text-soft); line-height: 1.5; }
+    .app-desc { font-size: var(--type-small); color: var(--text-soft); line-height: 1.5; }
 
     /* Close slide */
     .close-main {
-      font-family: "Bodoni Moda", serif;
+      font-family: var(--serif);
       font-size: 120px;
-      font-weight: 400; color: #fff; line-height: 1;
+      font-weight: 400; color: var(--white); line-height: 1;
       margin-bottom: 36px;
     }
     .office-hours { display: flex; gap: 56px; margin-top: 32px; }
-    .oh-item { font-size: var(--t-body); color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 320px; }
+    .oh-item { font-size: var(--type-body); color: rgba(255,255,255,0.5); line-height: 1.6; max-width: 320px; }
     .oh-item strong {
       display: block;
       color: var(--gold);
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       letter-spacing: 0.10em;
       text-transform: uppercase;
       margin-bottom: 6px;
@@ -582,16 +629,40 @@
     .up-next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; align-items: center; }
     .up-next-img {
       background: var(--paper-2);
-      border: 2px dashed var(--border);
+      border: 1px solid var(--border);
       border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
       height: 100%;
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--muted);
       text-align: center; padding: 20px;
       line-height: 1.6;
     }
+    .laptop-visual {
+      width: 340px;
+      height: 220px;
+      border: 12px solid var(--ink);
+      border-radius: 16px;
+      background: var(--white);
+      padding: 20px;
+      box-shadow: 0 24px 60px rgba(14,17,22,0.16);
+    }
+    .laptop-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 8px;
+      height: 100%;
+    }
+    .laptop-grid span {
+      background: var(--formula-bg);
+      border: 1px solid var(--border);
+    }
+    .laptop-grid span:nth-child(4n) { background: var(--paper-2); }
+    .laptop-grid span:nth-child(13),
+    .laptop-grid span:nth-child(14),
+    .laptop-grid span:nth-child(15),
+    .laptop-grid span:nth-child(16) { background: var(--gold); }
 
     /* Bucket cards */
     .bucket-card {
@@ -605,30 +676,30 @@
       margin-bottom: 10px;
     }
     .bucket-label {
-      font-family: "JetBrains Mono", monospace;
-      font-size: var(--t-mono);
+      font-family: var(--mono);
+      font-size: var(--type-mono);
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.10em;
       margin-bottom: 8px;
     }
     .bucket-title {
-      font-family: "Bodoni Moda", serif;
-      font-size: var(--t-lead);
+      font-family: var(--serif);
+      font-size: var(--type-lead);
       color: var(--text);
       margin-bottom: 8px;
     }
-    .bucket-body { font-size: var(--t-small); color: var(--text-soft); line-height: 1.5; }
+    .bucket-body { font-size: var(--type-small); color: var(--text-soft); line-height: 1.5; }
   </style>
 </head>
 <body>
 <div id="app">
-  <div id="stage-outer">
+  <div id="stage-outer" class="deck-shell">
     <div id="tab-strip"></div>
     <div id="stage">
 
       <!-- ─── 01 TITLE ─── -->
-      <section class="slide dark active" data-section="title" data-label="Title">
+      <section class="slide dark active" data-section="0" data-label="Title">
         <p class="title-course">BUS 123 · INTRO · M01 · L01 · Fall 2026</p>
         <h1 class="slide-title">Essentials of<br>Software Applications.</h1>
         <p class="subtitle" style="margin-top:24px;">Getting you set up for a semester of real professional work.</p>
@@ -641,7 +712,7 @@
       </section>
 
       <!-- ─── 02 AGENDA ─── -->
-      <section class="slide paper" data-section="agenda" data-label="Agenda">
+      <section class="slide paper" data-section="0" data-label="Agenda">
         <div class="header-row">
           <span class="eyebrow">Today's plan</span>
           <div class="rule"></div>
@@ -656,7 +727,7 @@
       </section>
 
       <!-- ─── 03 LEARNING OBJECTIVES ─── -->
-      <section class="slide paper" data-section="objectives" data-label="Objectives">
+      <section class="slide paper" data-section="0" data-label="Objectives">
         <div class="header-row">
           <span class="eyebrow">I can…</span>
           <div class="rule"></div>
@@ -664,22 +735,22 @@
         <h2 style="margin-bottom:32px;">Three targets for today.</h2>
         <div class="obj-list" style="flex:1;justify-content:center;display:flex;flex-direction:column;">
           <div class="obj-item">
-            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <span class="obj-text">Name the core Microsoft 365 apps and the distinct job each one does.</span>
           </div>
           <div class="obj-item">
-            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <span class="obj-text">Explain why OneDrive matters for professional work and collaboration.</span>
           </div>
           <div class="obj-item">
-            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="obj-check"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
             <span class="obj-text">Set up and confirm the BUS123 OneDrive folder structure before leaving class.</span>
           </div>
         </div>
       </section>
 
       <!-- ─── 04 RECAP / BRIDGE ─── -->
-      <section class="slide paper" data-section="bridge" data-label="Why Tech?">
+      <section class="slide paper" data-section="0" data-label="Why Tech?">
         <div class="header-row">
           <span class="eyebrow">Why we're here</span>
           <div class="rule"></div>
@@ -691,31 +762,31 @@
             <p>The question isn't whether you'll use these tools — it's whether you'll use them well.</p>
           </div>
           <div style="background:var(--paper-2);border:1px solid var(--border);border-radius:12px;padding:36px 40px;display:flex;flex-direction:column;gap:20px;">
-            <div style="font-family:'Bodoni Moda',serif;font-size:var(--t-display);color:var(--sage);line-height:1;">1.2<span style="font-size:var(--t-lead);color:var(--text-soft);display:block;margin-top:8px;font-family:'DM Sans',sans-serif;">billion users of Microsoft 365 worldwide</span></div>
-            <p style="font-size:var(--t-small);">That's the ecosystem you're entering. Tool fluency is a professional advantage, not a nice-to-have.</p>
+            <div style="font-family:var(--serif);font-size:var(--type-display);color:var(--sage);line-height:1;">1.2<span style="font-size:var(--type-lead);color:var(--text-soft);display:block;margin-top:8px;font-family:var(--sans);">billion users of Microsoft 365 worldwide</span></div>
+            <p style="font-size:var(--type-small);">That's the ecosystem you're entering. Tool fluency is a professional advantage, not a nice-to-have.</p>
           </div>
         </div>
       </section>
 
       <!-- ─── 05 SECTION BREAK 1 ─── -->
-      <section class="slide dark" data-section="break" data-label="Part 1">
+      <section class="slide dark" data-section="1" data-label="Part 1">
         <div class="section-label">Part 1 of 3</div>
         <h1 class="section-title">Meet your instructor<br>&amp; your course.</h1>
         <div class="grad-bar"></div>
       </section>
 
       <!-- ─── 06 INSTRUCTOR INTRO ─── -->
-      <section class="slide paper" data-section="content-1" data-label="About Prof. Evitts">
+      <section class="slide paper" data-section="1" data-label="About Prof. Evitts">
         <div class="header-row">
           <span class="eyebrow">Your instructor</span>
           <div class="rule"></div>
         </div>
         <div class="profile-grid">
-          <div class="profile-img-slot">Prof. Evitts photo<br>Drop image here</div>
+          <div class="profile-img-slot"><div class="profile-mark">BE</div></div>
           <div class="profile-details">
             <div class="profile-item">
               <span class="profile-item-label">Name</span>
-              <span class="profile-item-value" style="font-family:'Bodoni Moda',serif;font-size:var(--t-subtitle);">Professor Bethany Evitts</span>
+              <span class="profile-item-value" style="font-family:var(--serif);font-size:var(--type-subtitle);">Professor Bethany Evitts</span>
             </div>
             <div class="profile-item">
               <span class="profile-item-label">Credentials</span>
@@ -734,7 +805,7 @@
       </section>
 
       <!-- ─── 07 COURSE OVERVIEW ─── -->
-      <section class="slide paper" data-section="content-1" data-label="Course Overview">
+      <section class="slide paper" data-section="1" data-label="Course Overview">
         <div class="header-row">
           <span class="eyebrow">BUS 123</span>
           <div class="rule"></div>
@@ -760,43 +831,43 @@
       </section>
 
       <!-- ─── 08 COURSE HOOK — Real-world ─── -->
-      <section class="slide dark" data-section="content-1" data-label="Real-World Hook">
+      <section class="slide paper" data-section="1" data-label="Real-World Hook">
         <div class="header-row">
-          <span class="eyebrow-gold eyebrow">Case study</span>
-          <div class="rule rule-dark"></div>
+          <span class="eyebrow">Case study</span>
+          <div class="rule"></div>
         </div>
         <div style="flex:1;display:flex;align-items:center;gap:60px;">
           <div style="flex:1;">
-            <p style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--gold);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;">Moderna · 2020</p>
-            <h2 style="margin-bottom:20px;">Vaccine coordination across 12 countries — powered by cloud tools.</h2>
-            <p>Every document, every data file, every version of every analysis lived in the cloud. That coordination problem is a Microsoft 365 problem — and the tools you're learning today solved it.</p>
+            <p style="font-family:var(--mono);font-size:var(--type-mono);color:var(--sage);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:16px;">Tidal Goods Co.</p>
+            <h2 style="margin-bottom:20px;">Store files, inventory notes, and weekly analysis need one shared home.</h2>
+            <p>When a retail team is juggling product lists, order updates, and spreadsheet analysis, version control becomes a business problem. OneDrive creates the shared file layer the rest of the work depends on.</p>
           </div>
           <div style="flex:0 0 280px;display:flex;flex-direction:column;gap:16px;">
-            <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:20px 24px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--gold);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Teams</div>
-              <div style="font-size:var(--t-small);color:rgba(255,255,255,0.65);">Real-time collaboration across labs &amp; regulators</div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+              <div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--sage);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Word</div>
+              <div style="font-size:var(--type-small);color:var(--text-soft);">Shared product notes and process docs</div>
             </div>
-            <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:20px 24px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--gold);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">SharePoint + OneDrive</div>
-              <div style="font-size:var(--t-small);color:rgba(255,255,255,0.65);">Single source of truth for clinical trial data</div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+              <div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--sage);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">OneDrive</div>
+              <div style="font-size:var(--type-small);color:var(--text-soft);">Single source of truth for team files</div>
             </div>
-            <div style="background:rgba(255,255,255,0.06);border-radius:10px;padding:20px 24px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--gold);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Excel</div>
-              <div style="font-size:var(--t-small);color:rgba(255,255,255,0.65);">Supply chain logistics &amp; dose forecasting models</div>
+            <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px 24px;">
+              <div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--sage);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Excel</div>
+              <div style="font-size:var(--type-small);color:var(--text-soft);">Inventory analysis and weekly decisions</div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ─── 09 SECTION BREAK 2 ─── -->
-      <section class="slide dark" data-section="break" data-label="Part 2">
+      <section class="slide dark" data-section="2" data-label="Part 2">
         <div class="section-label">Part 2 of 3</div>
         <h1 class="section-title">Microsoft 365<br>&amp; OneDrive.</h1>
         <div class="grad-bar"></div>
       </section>
 
       <!-- ─── 10 THREE APPS ─── -->
-      <section class="slide paper" data-section="content-2" data-label="The Three Apps">
+      <section class="slide paper" data-section="2" data-label="The Three Apps">
         <div class="header-row">
           <span class="eyebrow">Microsoft 365</span>
           <div class="rule"></div>
@@ -825,7 +896,7 @@
       </section>
 
       <!-- ─── 11 ONEDRIVE ─── -->
-      <section class="slide paper" data-section="content-2" data-label="OneDrive">
+      <section class="slide paper" data-section="2" data-label="OneDrive">
         <div class="header-row">
           <span class="eyebrow">Cloud layer</span>
           <div class="rule"></div>
@@ -839,22 +910,22 @@
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:18px 24px;display:flex;align-items:center;gap:20px;">
               <span style="font-size:28px;">☁️</span>
-              <div><div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Auto-Sync</div><div style="font-size:var(--t-small);color:var(--text-soft);">Save once, available everywhere</div></div>
+              <div><div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Auto-Sync</div><div style="font-size:var(--type-small);color:var(--text-soft);">Save once, available everywhere</div></div>
             </div>
             <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:18px 24px;display:flex;align-items:center;gap:20px;">
               <span style="font-size:28px;">🔄</span>
-              <div><div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Version History</div><div style="font-size:var(--t-small);color:var(--text-soft);">Restore any prior version instantly</div></div>
+              <div><div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Version History</div><div style="font-size:var(--type-small);color:var(--text-soft);">Restore any prior version instantly</div></div>
             </div>
             <div style="background:var(--white);border:1px solid var(--border);border-radius:9px;padding:18px 24px;display:flex;align-items:center;gap:20px;">
               <span style="font-size:28px;">👥</span>
-              <div><div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Real-Time Collaboration</div><div style="font-size:var(--t-small);color:var(--text-soft);">Multiple editors, no attachment chaos</div></div>
+              <div><div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:4px;">Real-Time Collaboration</div><div style="font-size:var(--type-small);color:var(--text-soft);">Multiple editors, no attachment chaos</div></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ─── 12 SETUP STEPS ─── -->
-      <section class="slide paper" data-section="content-2" data-label="Setup Steps">
+      <section class="slide paper" data-section="2" data-label="Setup Steps">
         <div class="header-row">
           <span class="eyebrow">Do this now</span>
           <div class="rule"></div>
@@ -868,7 +939,7 @@
       </section>
 
       <!-- ─── 13 FOLDER STRUCTURE ─── -->
-      <section class="slide paper" data-section="content-2" data-label="Folder Structure">
+      <section class="slide paper" data-section="2" data-label="Folder Structure">
         <div class="header-row">
           <span class="eyebrow">Build your workspace</span>
           <div class="rule"></div>
@@ -883,24 +954,24 @@
             <div class="folder-sub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ 📁 Submissions</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <p style="font-size:var(--t-small);color:var(--text-soft);">Take five minutes. I'll walk the room.</p>
+            <p style="font-size:var(--type-small);color:var(--text-soft);">Take five minutes. I'll walk the room.</p>
             <div style="background:var(--paper-2);border:1px solid var(--border);border-radius:9px;padding:18px 24px;">
-              <div style="font-family:'JetBrains Mono',monospace;font-size:var(--t-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Why this structure?</div>
-              <p style="font-size:var(--t-small);">Modules = pre-readings &amp; slides · Activities = in-class Excel files · Submissions = final deliverables. Every week maps to this same structure.</p>
+              <div style="font-family:var(--mono);font-size:var(--type-mono);color:var(--accent);text-transform:uppercase;letter-spacing:0.10em;margin-bottom:6px;">Why this structure?</div>
+              <p style="font-size:var(--type-small);">Modules = pre-readings &amp; slides · Activities = in-class Excel files · Submissions = final deliverables. Every week maps to this same structure.</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ─── 14 SECTION BREAK 3 ─── -->
-      <section class="slide dark" data-section="break" data-label="Part 3">
+      <section class="slide dark" data-section="3" data-label="Part 3">
         <div class="section-label">Part 3 of 3</div>
         <h1 class="section-title">What is a<br>business problem?</h1>
         <div class="grad-bar"></div>
       </section>
 
       <!-- ─── 15 GROUP ACTIVITY ─── -->
-      <section class="slide paper" data-section="content-3" data-label="Group Activity">
+      <section class="slide paper" data-section="3" data-label="Group Activity">
         <div class="header-row">
           <span class="eyebrow">10 minutes</span>
           <div class="rule"></div>
@@ -917,7 +988,7 @@
       </section>
 
       <!-- ─── 16 PUSH DEEPER ─── -->
-      <section class="slide paper" data-section="content-3" data-label="Problem Buckets">
+      <section class="slide paper" data-section="3" data-label="Problem Buckets">
         <div class="header-row">
           <span class="eyebrow">Go deeper</span>
           <div class="rule"></div>
@@ -946,10 +1017,10 @@
       </section>
 
       <!-- ─── 17 STAT SLIDE ─── -->
-      <section class="slide dark" data-section="content-3" data-label="The Stat">
+      <section class="slide paper" data-section="3" data-label="The Stat">
         <div class="header-row">
-          <span class="eyebrow-gold eyebrow">The scale</span>
-          <div class="rule rule-dark"></div>
+          <span class="eyebrow">The scale</span>
+          <div class="rule"></div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
           <div class="stat-number">90%</div>
@@ -958,7 +1029,7 @@
       </section>
 
       <!-- ─── 18 COMMON MISTAKE ─── -->
-      <section class="slide terra" data-section="mistake" data-label="Common Mistake">
+      <section class="slide terra" data-section="3" data-label="Common Mistake">
         <div class="header-row">
           <span class="eyebrow" style="color:rgba(255,255,255,0.55);">Watch out</span>
           <div class="rule" style="background:rgba(255,255,255,0.15);"></div>
@@ -980,7 +1051,7 @@
       </section>
 
       <!-- ─── 19 DISCUSSION ─── -->
-      <section class="slide paper" data-section="discussion" data-label="Discussion">
+      <section class="slide paper" data-section="4" data-label="Discussion">
         <div class="header-row">
           <span class="eyebrow">Share out</span>
           <div class="rule"></div>
@@ -999,7 +1070,7 @@
       </section>
 
       <!-- ─── 20 KEY TAKEAWAYS ─── -->
-      <section class="slide paper" data-section="takeaways" data-label="Key Takeaways">
+      <section class="slide paper" data-section="4" data-label="Key Takeaways">
         <div class="header-row">
           <span class="eyebrow">Take with you</span>
           <div class="rule"></div>
@@ -1013,7 +1084,7 @@
       </section>
 
       <!-- ─── 21 UP NEXT ─── -->
-      <section class="slide paper" data-section="up-next" data-label="Up Next">
+      <section class="slide paper" data-section="4" data-label="Up Next">
         <div class="header-row">
           <span class="eyebrow">Next lesson</span>
           <div class="rule"></div>
@@ -1022,14 +1093,23 @@
           <div>
             <h2 style="margin-bottom:20px;">We open Excel for the first time.</h2>
             <p class="lead" style="margin-bottom:20px;">We'll tour the interface, understand how spreadsheets are structured, and start entering and formatting real data.</p>
-            <p style="font-size:var(--t-body);color:var(--text-soft);">Before you arrive: make sure your BUS123 OneDrive folder is set up and syncing. That's the entry ticket for next class.</p>
+            <p style="font-size:var(--type-body);color:var(--text-soft);">Before you arrive: make sure your BUS123 OneDrive folder is set up and syncing. That's the entry ticket for next class.</p>
           </div>
-          <div class="up-next-img">Excel on a laptop<br>img/ slot</div>
+          <div class="up-next-img">
+            <div class="laptop-visual">
+              <div class="laptop-grid">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- ─── 22 CLOSE ─── -->
-      <section class="slide dark" data-section="close" data-label="Close">
+      <section class="slide dark" data-section="4" data-label="Close">
         <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
           <p class="close-main">Questions?</p>
           <div class="office-hours">
@@ -1045,9 +1125,9 @@
 
     <!-- ─── Nav ─── -->
     <div id="nav">
-      <button class="nav-btn" id="btn-prev" title="Previous (←)">&#8592;</button>
-      <span id="slide-counter">1 / 23</span>
-      <button class="nav-btn" id="btn-next" title="Next (→)">&#8594;</button>
+      <button class="nav-btn" id="btn-prev" title="Previous">&larr;</button>
+      <span id="slide-counter">1 / 22</span>
+      <button class="nav-btn" id="btn-next" title="Next">&rarr;</button>
     </div>
 
   </div><!-- #stage-outer -->
@@ -1057,6 +1137,33 @@
 <button id="notes-toggle">Notes</button>
 <div id="notes-bar"></div>
 
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome everyone — I'm Bethany Evitts. This is BUS 123, Solving Business Problems with Technology. Today is our first class and we're jumping straight into the tools that will be your professional foundation all semester. By the end of today you'll have your files organized and ready to go.",
+  "Here's how today works. Four things: I'll introduce myself and the course, we'll talk about why M365 matters professionally, we'll set up OneDrive together, and we'll close with a group activity. Lots of doing today — not just listening.",
+  "Three targets for today. Name the core M365 apps. Explain why OneDrive matters. And have your BUS123 folder live and syncing before you leave. We'll check all three before class ends.",
+  "Let's start with why any of this matters. Think about the last app you used for school or work. Chances are it's in the Microsoft ecosystem. Every business runs on shared files and collaboration tools. The question isn't whether you'll use these — it's whether you'll use them well.",
+  "Part one — introductions. Let me tell you who I am and what this course is actually about.",
+  "I'm Bethany Evitts. CFA charter, MBA from Boston College, BA from Holy Cross. I've worked in trading and portfolio management — which means I've lived inside spreadsheets professionally. That's why this course exists: to give you the tool fluency that actually gets used on the job.",
+  "BUS 123 is about one thing: using technology to make better business decisions. No textbook, no SIMnet. Everything we build together is designed to look and feel like actual professional work. You'll leave with a portfolio of output you can show someone.",
+  "Tidal Goods Co. has to coordinate store inventory, online orders, shared product files, and weekly analysis without losing track of versions. That is the same kind of cloud-work problem these tools solve: one source of truth, shared access, and better decisions.",
+  "Part two — Microsoft 365 and OneDrive. Let's get into the tools.",
+  "Three apps, three jobs. Excel is your data and math engine — we'll spend most of the semester here. Word is your document layer. PowerPoint is your communication layer. Knowing which tool to reach for is itself a professional skill.",
+  "OneDrive is Microsoft's cloud storage. Files sync automatically, you can access them from any device, and you can collaborate without emailing attachments. That last part matters a lot in team environments. We're connecting your Endicott OneDrive right now.",
+  "Follow along on your laptop. Open the OneDrive desktop app — not the browser. Sign in with your Endicott email. Confirm the sync icon is visible. Raise your hand if you don't see it — we'll fix it before moving on.",
+  "Now build your folder structure. Inside OneDrive: create BUS123, then three subfolders — Modules, Activities, Submissions. This mirrors how we work all semester. Take five minutes. I'll walk the room.",
+  "Part three — group activity. Let's define what a business problem actually is.",
+  "Get into groups of three. You have ten minutes to answer: what is a business problem? Not vague. Pick a real business you use and name a specific problem they had to solve. We'll share out after.",
+  "To push your thinking deeper — is the problem about information, coordination, or efficiency? Most business problems fit one of those three buckets. See which one fits your example.",
+  "Ninety percent of business tasks involve creating, analyzing, or sharing information. That's the scope of what these tools cover. Fluency here isn't optional — it's foundational.",
+  "Common mistake — and I see this every semester. Students save to Desktop and then lose the file when their laptop has a problem. OneDrive is your safety net. The rule: if it's not in OneDrive, it doesn't exist. Get in the habit now.",
+  "Let's hear from a few groups. I'm looking for specificity — not 'they had a supply chain problem' but 'they didn't know which warehouse had inventory so orders were delayed.' The more specific, the more useful.",
+  "Three things to take with you. M365 is your toolkit. OneDrive is your cloud layer. And business problems are specific — precise definition is the first step to any real solution.",
+  "Next lesson we open Excel. Make sure your BUS123 folder is set up and syncing before you come in. If your OneDrive setup didn't fully work today, come to office hours or email me before next lesson.",
+  "That's it for today. Questions? Office hours are on Canvas. If OneDrive isn't set up, that's priority one before next lesson."
+]
+</script>
+
 <script>
 (function(){
   /* ─── Spec: 1280×720 authoring, pixel-offset centering ─── */
@@ -1064,28 +1171,43 @@
 
   const slides = Array.from(document.querySelectorAll('.slide'));
   const total  = slides.length;
+  const NOTES = JSON.parse(document.getElementById('speaker-notes').textContent);
   let current  = 0;
 
   /* ─── Tab strip ─── */
   const tabStrip = document.getElementById('tab-strip');
-  slides.forEach((s, i) => {
+  const home = document.createElement('button');
+  home.className = 'home-dot';
+  home.title = 'Title';
+  home.addEventListener('click', () => goTo(0));
+  tabStrip.appendChild(home);
+
+  const sectionTabs = [
+    { section: '1', label: 'Part 1', target: 4, color: 'var(--sage)' },
+    { section: '2', label: 'Part 2', target: 8, color: 'var(--gold)' },
+    { section: '3', label: 'Part 3', target: 13, color: 'var(--terra)' }
+  ];
+  sectionTabs.forEach(item => {
     const t = document.createElement('div');
-    t.className = 'tab-item' + (i === 0 ? ' active' : '');
+    t.className = 'tab-item';
+    t.dataset.tabSection = item.section;
+    t.style.setProperty('--tab-color', item.color);
     const sp = document.createElement('span');
-    sp.textContent = s.dataset.label || (i + 1);
+    sp.textContent = item.label;
     t.appendChild(sp);
-    t.addEventListener('click', () => goTo(i));
+    t.addEventListener('click', () => goTo(item.target));
     tabStrip.appendChild(t);
   });
 
   function goTo(n) {
     slides[current].style.display = 'none';
     slides[current].classList.remove('active');
-    tabStrip.children[current].classList.remove('active');
     current = Math.max(0, Math.min(n, total - 1));
     slides[current].style.display = 'flex';
     slides[current].classList.add('active');
-    tabStrip.children[current].classList.add('active');
+    Array.from(tabStrip.querySelectorAll('.tab-item')).forEach(tab => {
+      tab.classList.toggle('active', tab.dataset.tabSection === slides[current].dataset.section);
+    });
     document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
     const nb = document.getElementById('notes-bar');
     if (nb.classList.contains('visible')) nb.textContent = NOTES[current] || '';
@@ -1121,32 +1243,6 @@
   }
   window.addEventListener('resize', scaleStage);
   scaleStage();
-
-  /* ─── Speaker notes ─── */
-  const NOTES = [
-    "Welcome everyone — I'm Bethany Evitts. This is BUS 123, Solving Business Problems with Technology. Today is our first class and we're jumping straight into the tools that will be your professional foundation all semester. By the end of today you'll have your files organized and ready to go.",
-    "Here's how today works. Four things: I'll introduce myself and the course, we'll talk about why M365 matters professionally, we'll set up OneDrive together, and we'll close with a group activity. Lots of doing today — not just listening.",
-    "Three targets for today. Name the core M365 apps. Explain why OneDrive matters. And have your BUS123 folder live and syncing before you leave. We'll check all three before class ends.",
-    "Let's start with why any of this matters. Think about the last app you used for school or work. Chances are it's in the Microsoft ecosystem. Every business runs on shared files and collaboration tools. The question isn't whether you'll use these — it's whether you'll use them well.",
-    "Part one — introductions. Let me tell you who I am and what this course is actually about.",
-    "I'm Bethany Evitts. CFA charter, MBA from Boston College, BA from Holy Cross. I've worked in trading and portfolio management — which means I've lived inside spreadsheets professionally. That's why this course exists: to give you the tool fluency that actually gets used on the job. Outside of work I have my husband Mark, two sons Wade and Zach, a daughter Sydney, and a cat named Boots.",
-    "BUS 123 is about one thing: using technology to make better business decisions. No textbook, no SIMnet. Everything we build together is designed to look and feel like actual professional work. You'll leave with a portfolio of output you can show someone.",
-    "Moderna had to coordinate vaccine development across labs, regulatory offices, and manufacturing in multiple countries. Every document and data file lived in the cloud. That's the scale of problem these tools were built for — and it's the same ecosystem you're entering.",
-    "Part two — Microsoft 365 and OneDrive. Let's get into the tools.",
-    "Three apps, three jobs. Excel is your data and math engine — we'll spend most of the semester here. Word is your document layer. PowerPoint is your communication layer. Knowing which tool to reach for is itself a professional skill.",
-    "OneDrive is Microsoft's cloud storage. Files sync automatically, you can access them from any device, and you can collaborate without emailing attachments. That last part matters a lot in team environments. We're connecting your Endicott OneDrive right now.",
-    "Follow along on your laptop. Open the OneDrive desktop app — not the browser. Sign in with your Endicott email. Confirm the sync icon is visible. Raise your hand if you don't see it — we'll fix it before moving on.",
-    "Now build your folder structure. Inside OneDrive: create BUS123, then three subfolders — Modules, Activities, Submissions. This mirrors how we work all semester. Take five minutes. I'll walk the room.",
-    "Part three — group activity. Let's define what a business problem actually is.",
-    "Get into groups of three. You have ten minutes to answer: what is a business problem? Not vague. Pick a real business you use and name a specific problem they had to solve. We'll share out after.",
-    "To push your thinking deeper — is the problem about information, coordination, or efficiency? Most business problems fit one of those three buckets. See which one fits your example.",
-    "Ninety percent of business tasks involve creating, analyzing, or sharing information. That's the scope of what these tools cover. Fluency here isn't optional — it's foundational.",
-    "Common mistake — and I see this every semester. Students save to Desktop and then lose the file when their laptop has a problem. OneDrive is your safety net. The rule: if it's not in OneDrive, it doesn't exist. Get in the habit now.",
-    "Let's hear from a few groups. I'm looking for specificity — not 'they had a supply chain problem' but 'they didn't know which warehouse had inventory so orders were delayed.' The more specific, the more useful.",
-    "Three things to take with you. M365 is your toolkit. OneDrive is your cloud layer. And business problems are specific — precise definition is the first step to any real solution.",
-    "Next lesson we open Excel. Make sure your BUS123 folder is set up and syncing before you come in. If your OneDrive setup didn't fully work today, come to office hours or email me before next lesson.",
-    "That's it for today. Questions? Office hours are on Canvas. If OneDrive isn't set up, that's priority one before next lesson."
-  ];
 
 })();
 </script>

@@ -34,6 +34,8 @@ Expected public-facing lesson materials may include:
 - Student-facing interactive HTML activities
 - Reusable or lesson-specific visual assets
 
+Pre-reading PDFs should be treated as generated student-facing outputs. Create and revise the editable source in a lesson/module `source/` folder as Markdown, using the matching public filename with a `.md` extension, such as `INTRO/M01/source/bus123-intro-m01-l02-prereading.md`. Regenerate one ready source with `python3 scripts/build-prereadings.py [source-file]`, or regenerate all ready sources with `python3 scripts/build-prereadings.py --all`. Existing PDFs may have bootstrapped Markdown files marked `status: "draft-from-pdf"`; clean those Markdown drafts and remove the draft status before including them in bulk builds. Do not hand-edit a pre-reading PDF for content changes; direct PDF edits should be limited to page surgery such as merging, splitting, deleting, or reordering pages.
+
 ## Public Course Map
 
 Treat `index.html` as the student-facing public course map, not just a decorative homepage. Its primary jobs are to help students know what to do next, find the right materials quickly, and trust that lesson titles, sequence, file paths, and links are accurate.

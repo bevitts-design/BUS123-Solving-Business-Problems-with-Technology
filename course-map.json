@@ -22,8 +22,7 @@
       "caseStudy": null,
       "skillFocus": ["Course setup", "Digital workflow"],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" },
-        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l01-prereading.pdf" }
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" }
       ]
     },
     {
@@ -36,7 +35,7 @@
       "caseStudy": null,
       "skillFocus": ["OneDrive", "Microsoft Office"],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" },
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l02-slides.html" },
         { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l02-prereading.pdf" }
       ]
     },
@@ -50,7 +49,6 @@
       "caseStudy": "Course case companies",
       "skillFocus": ["Business context", "Case study navigation"],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l03-slides.html" },
         { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l03-prereading.pdf" },
         { "type": "Company Profiles", "path": "INTRO/M01/bus123-intro-m01-company-profiles.html" }
       ]

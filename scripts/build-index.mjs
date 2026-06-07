@@ -212,6 +212,10 @@ const sequenceItem = (label, lesson) => {
 
 const secondaryCurrentMaterials = (current.materials ?? []).filter((material) => material !== primary);
 const currentGroups = groupMaterials(secondaryCurrentMaterials);
+const currentGroupsHtml = currentGroups.map((group) => `<div class="material-group">
+              <h3>${esc(group.label)}</h3>
+              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
+            </div>`).join("");
 
 const filterButton = (group, value, label, active = false) =>
   `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
@@ -270,12 +274,7 @@ const html = `<!DOCTYPE html>
             <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
             ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
           </div>
-          <div class="current-groups" aria-label="Current lesson materials">
-            ${currentGroups.map((group) => `<div class="material-group">
-              <h3>${esc(group.label)}</h3>
-              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
-            </div>`).join("")}
-          </div>
+          <div class="current-groups" aria-label="Current lesson materials">${currentGroupsHtml}</div>
         </div>
         <div class="sequence-strip" aria-label="Lesson sequence">
           ${sequenceItem("Previous", data.lessons[currentIndex - 1])}

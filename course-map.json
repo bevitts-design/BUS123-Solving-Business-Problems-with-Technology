@@ -36,7 +36,7 @@
       "caseStudy": null,
       "skillFocus": ["OneDrive", "Microsoft Office"],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l02-slides.html" },
+        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" },
         { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l02-prereading.pdf" }
       ]
     },

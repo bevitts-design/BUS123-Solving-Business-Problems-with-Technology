@@ -355,13 +355,8 @@
         },
         {
           "type": "Interactive Practice",
-          "label": "Simple Interest Lab",
-          "path": "MATH/M08/bus123-math-m08-l01-interactive.html"
-        },
-        {
-          "type": "Interactive Practice",
-          "label": "Cash Flow Timeline",
-          "path": "MATH/M08/bus123-math-m08-l01-cashflow-timeline.html"
+          "label": "Business Finance Toolkit",
+          "path": "MATH/shared/bus123-tvm-toolkit.html"
         },
         {
           "type": "Activity Instructions",
@@ -393,6 +388,11 @@
         {
           "type": "Starter Workbook",
           "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Business Finance Toolkit",
+          "path": "MATH/shared/bus123-tvm-toolkit.html"
         }
       ],
       "moduleType": "Math",

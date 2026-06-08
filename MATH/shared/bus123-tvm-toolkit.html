@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Finance Toolkit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116;
+      --paper: #FAF8F3;
+      --paper-2: #F2EEE5;
+      --white: #FFFFFF;
+      --text: #1A1F2C;
+      --text-soft: #4A5567;
+      --muted: #717987;
+      --border: #E5E1D6;
+      --sage: #4A7C5E;
+      --gold: #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+      --formula: #0F6A3B;
+      --input: #164B73;
+      --font-serif: "Instrument Serif", Georgia, serif;
+      --font-sans: "Geist", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "Courier New", monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    .mode-btn:focus-visible {
+      outline: 3px solid rgba(74, 124, 94, .36);
+      outline-offset: 3px;
+    }
+
+    .top {
+      background: var(--ink);
+      color: var(--white);
+      border-top: 8px solid var(--gold);
+      padding: 24px 0;
+    }
+
+    .shell {
+      width: min(1240px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.04;
+    }
+
+    h1 {
+      max-width: 920px;
+      font-size: clamp(42px, 6vw, 72px);
+    }
+
+    .top p {
+      max-width: 860px;
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, .74);
+      font-size: 18px;
+    }
+
+    main {
+      padding: 22px 0 48px;
+    }
+
+    .mode-bar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 248, 243, .96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .mode-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scrollbar-width: thin;
+    }
+
+    .mode-btn {
+      flex: 0 0 auto;
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--text);
+      padding: 9px 12px;
+      text-decoration: none;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .mode-btn[aria-current="true"] {
+      border-color: var(--sage);
+      background: #EEF5EE;
+      color: var(--formula);
+    }
+
+    .activity {
+      display: none;
+      grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      padding-top: 24px;
+    }
+
+    .activity.active {
+      display: grid;
+    }
+
+    .panel,
+    .stage {
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .stage {
+      padding: 22px;
+    }
+
+    .panel h2,
+    .stage h2 {
+      margin-bottom: 10px;
+      font-size: 34px;
+    }
+
+    .panel p,
+    .stage p {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .controls {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-weight: 650;
+    }
+
+    label span {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    output {
+      color: var(--input);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--sage);
+    }
+
+    .choice-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .choice-grid button {
+      min-height: 50px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--text);
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 650;
+    }
+
+    .choice-grid button[aria-pressed="true"] {
+      border-color: var(--sage);
+      background: #EEF5EE;
+      color: var(--formula);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .metric {
+      min-height: 118px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .metric small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--text);
+      font-family: var(--font-serif);
+      font-size: 40px;
+      font-weight: 400;
+      line-height: .95;
+      overflow-wrap: anywhere;
+    }
+
+    .metric.accent strong { color: var(--formula); }
+    .metric.warning strong { color: var(--terra); }
+
+    .bars,
+    .schedule {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) 120px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .bar-label {
+      color: var(--text-soft);
+      font-weight: 650;
+    }
+
+    .bar-track {
+      height: 28px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--paper-2);
+    }
+
+    .bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--sage);
+      transition: width 200ms ease;
+    }
+
+    .bar.gold { background: var(--gold); }
+    .bar.terra { background: var(--terra); }
+    .bar.steel { background: var(--steel); }
+
+    .bar-value {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      text-align: right;
+      color: var(--text);
+    }
+
+    .timeline-wrap,
+    .table-wrap {
+      max-width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 16px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .timeline {
+      position: relative;
+      min-width: 560px;
+      min-height: 210px;
+    }
+
+    .axis {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 102px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--ink);
+    }
+
+    .tick {
+      position: absolute;
+      top: 88px;
+      width: 2px;
+      height: 30px;
+      background: var(--border);
+      transform: translateX(-1px);
+    }
+
+    .tick span {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .marker {
+      position: absolute;
+      width: 126px;
+      min-height: 64px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--paper);
+      transform: translateX(-50%);
+      text-align: center;
+      box-shadow: 0 10px 22px rgba(14, 17, 22, .08);
+    }
+
+    .marker small {
+      display: block;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .marker strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--text);
+      font-size: 17px;
+    }
+
+    .marker.source {
+      top: 4px;
+      border-color: rgba(53, 87, 115, .38);
+    }
+
+    .marker.target {
+      top: 132px;
+      border-color: rgba(74, 124, 94, .42);
+      background: #EEF5EE;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 74px;
+      height: 44px;
+      pointer-events: none;
+    }
+
+    .arrow-line {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .arrow-head {
+      position: absolute;
+      top: 13px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+
+    .arrow-head.forward {
+      right: -1px;
+      border-left: 13px solid var(--gold);
+    }
+
+    .arrow-head.backward {
+      left: -1px;
+      border-right: 13px solid var(--gold);
+    }
+
+    table {
+      width: 100%;
+      min-width: 540px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--border);
+      padding: 9px 10px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      color: var(--text-soft);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .formula-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .formula-card {
+      min-height: 130px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 16px;
+    }
+
+    .formula-card h3 {
+      margin-bottom: 8px;
+      font-size: 26px;
+    }
+
+    .formula-card code {
+      display: block;
+      margin: 10px 0;
+      color: var(--formula);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      white-space: normal;
+    }
+
+    .decision {
+      margin-top: 18px;
+      background: var(--ink);
+      border-radius: 8px;
+      color: var(--white);
+      padding: 18px;
+    }
+
+    .decision strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .decision p {
+      color: rgba(255, 255, 255, .76);
+    }
+
+    @media (max-width: 940px) {
+      .activity,
+      .formula-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100vw - 28px, 1240px);
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-row {
+        grid-template-columns: 1fr;
+      }
+
+      .bar-value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">Business Finance Toolkit</p>
+      <h1>Move money through time, then build it in Excel.</h1>
+      <p>A reusable classroom toolkit for time value of money, compounding, cash-flow movement, borrowing, saving, and offer comparison.</p>
+    </div>
+  </header>
+
+  <nav class="mode-bar" aria-label="Toolkit activities">
+    <div class="shell mode-scroll">
+      <a class="mode-btn" href="#simple-interest" data-mode-link="simple-interest">Simple Interest</a>
+      <a class="mode-btn" href="#cash-flow" data-mode-link="cash-flow">Cash Flow Timeline</a>
+      <a class="mode-btn" href="#fv-scheduler" data-mode-link="fv-scheduler">FV Scheduler</a>
+      <a class="mode-btn" href="#rule-72" data-mode-link="rule-72">Rule of 72</a>
+      <a class="mode-btn" href="#savings-goal" data-mode-link="savings-goal">Savings Goal</a>
+      <a class="mode-btn" href="#apr-ear" data-mode-link="apr-ear">APR vs EAR</a>
+      <a class="mode-btn" href="#loan-payment" data-mode-link="loan-payment">Loan Payment</a>
+      <a class="mode-btn" href="#offer-compare" data-mode-link="offer-compare">Offer Compare</a>
+    </div>
+  </nav>
+
+  <main class="shell">
+    <section class="activity" id="simple-interest" data-activity>
+      <aside class="panel">
+        <h2>Simple Interest</h2>
+        <p>Start with $1,500, 7%, and 3 years. Compare simple interest with compounding.</p>
+        <div class="controls">
+          <label><span>Principal <output id="siPrincipalOut">$1,500</output></span><input id="siPrincipal" type="range" min="500" max="10000" step="250" value="1500"></label>
+          <label><span>Annual rate <output id="siRateOut">7.00%</output></span><input id="siRate" type="range" min="1" max="18" step=".25" value="7"></label>
+          <label><span>Years <output id="siYearsOut">3</output></span><input id="siYears" type="range" min="1" max="10" step="1" value="3"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Simple vs. Compound</h2>
+        <p>Simple interest earns interest only on the starting principal. Compound interest earns interest on prior interest too.</p>
+        <div class="metrics">
+          <div class="metric"><small>Simple Interest</small><strong id="siInterest">$315.00</strong></div>
+          <div class="metric"><small>Simple FV</small><strong id="siSimpleFv">$1,815.00</strong></div>
+          <div class="metric accent"><small>Interest on Interest</small><strong id="siGap">$22.56</strong></div>
+        </div>
+        <div class="bars" id="siBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Build</h3><p>Use assumptions in B1:B3.</p><code>=B1*B2*B3</code><code>=B1*(1+B2)^B3</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>If this were a loan versus an investment, who benefits from compounding?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="cash-flow" data-activity>
+      <aside class="panel">
+        <h2>Cash Flow Timeline</h2>
+        <p>Move a cash flow to a different year and decide whether PV or FV logic applies.</p>
+        <div class="choice-grid">
+          <button type="button" data-cf-choice="pv" aria-pressed="true">Moving earlier: use present value</button>
+          <button type="button" data-cf-choice="fv" aria-pressed="false">Moving later: use future value</button>
+        </div>
+        <div class="controls">
+          <label><span>Cash flow <output id="cfCashOut">$250</output></span><input id="cfCash" type="range" min="100" max="50000" step="50" value="250"></label>
+          <label><span>Annual rate <output id="cfRateOut">12.00%</output></span><input id="cfRate" type="range" min="1" max="18" step=".25" value="12"></label>
+          <label><span>Original year <output id="cfOriginOut">15</output></span><input id="cfOrigin" type="range" min="0" max="15" step="1" value="15"></label>
+          <label><span>Target year <output id="cfTargetOut">3</output></span><input id="cfTarget" type="range" min="0" max="15" step="1" value="3"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>PV or FV?</h2>
+        <p id="cfSentence">A cash flow is being moved through time.</p>
+        <div class="metrics">
+          <div class="metric warning"><small>Direction</small><strong id="cfDirection">Earlier</strong></div>
+          <div class="metric"><small>Periods Moved</small><strong id="cfPeriods">12</strong></div>
+          <div class="metric accent"><small>Target Value</small><strong id="cfResult">$64.17</strong></div>
+        </div>
+        <div class="timeline-wrap">
+          <div class="timeline" id="cfTimeline">
+            <div class="axis"></div>
+            <div class="arrow" id="cfArrow"><div class="arrow-line"></div><div class="arrow-head backward" id="cfArrowHead"></div></div>
+            <div class="marker source" id="cfSourceMarker"><small>Original</small><strong id="cfSourceLabel">Year 15</strong></div>
+            <div class="marker target" id="cfTargetMarker"><small>Target</small><strong id="cfTargetLabel">Year 3</strong></div>
+          </div>
+        </div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Translation</h3><p id="cfExcelText">Moving earlier means discount with PV.</p><code id="cfExcelFormula">=PV(rate, periods, 0, -future_value)</code></article>
+          <article class="formula-card"><h3>Math Logic</h3><p id="cfMathText">Divide by the growth factor.</p><code id="cfMathFormula">Target = Cash Flow / (1 + rate)^periods</code></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="fv-scheduler" data-activity>
+      <aside class="panel">
+        <h2>FV Scheduler</h2>
+        <p>Build a year-by-year compounding schedule with a changing rate path.</p>
+        <div class="controls">
+          <label><span>Starting amount <output id="fvStartOut">$1,000</output></span><input id="fvStart" type="range" min="500" max="10000" step="250" value="1000"></label>
+          <label><span>Year 1 rate <output id="fvR1Out">5.00%</output></span><input id="fvR1" type="range" min="0" max="15" step=".25" value="5"></label>
+          <label><span>Year 2 rate <output id="fvR2Out">7.00%</output></span><input id="fvR2" type="range" min="0" max="15" step=".25" value="7"></label>
+          <label><span>Year 3 rate <output id="fvR3Out">9.00%</output></span><input id="fvR3" type="range" min="0" max="15" step=".25" value="9"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Rate Path Matters</h2>
+        <p>Each year starts from the prior year's ending value, not the original principal.</p>
+        <div class="metrics">
+          <div class="metric"><small>Ending Value</small><strong id="fvEnd">$1,225.31</strong></div>
+          <div class="metric accent"><small>Total Growth</small><strong id="fvGrowth">$225.31</strong></div>
+          <div class="metric"><small>Equivalent 3-Yr Rate</small><strong id="fvEquivalent">7.00%</strong></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Year</th><th>Start</th><th>Rate</th><th>Interest</th><th>End</th></tr></thead><tbody id="fvRows"></tbody></table></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Pattern</h3><p>Use the prior ending value as the next beginning value.</p><code>=Prior_Ending_Value*(1+Rate)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>Why is a schedule easier to audit than one long formula?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="rule-72" data-activity>
+      <aside class="panel">
+        <h2>Rule of 72</h2>
+        <p>Compare the quick estimate with the exact doubling time.</p>
+        <div class="controls">
+          <label><span>Annual rate <output id="r72RateOut">8.00%</output></span><input id="r72Rate" type="range" min="1" max="20" step=".25" value="8"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Shortcut or Exact?</h2>
+        <p>The Rule of 72 is fast enough for conversation, but Excel can calculate the exact answer.</p>
+        <div class="metrics">
+          <div class="metric"><small>Rule of 72</small><strong id="r72Estimate">9.00 yrs</strong></div>
+          <div class="metric"><small>Exact Years</small><strong id="r72Exact">9.01 yrs</strong></div>
+          <div class="metric accent"><small>Error</small><strong id="r72Error">0.01 yrs</strong></div>
+        </div>
+        <div class="bars" id="r72Bars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Exact</h3><p>Find the number of periods needed to double.</p><code>=NPER(rate, 0, -1, 2)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>When is the shortcut good enough for a business conversation?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="savings-goal" data-activity>
+      <aside class="panel">
+        <h2>Savings Goal</h2>
+        <p>Set a future goal and test whether today's deposits can get there.</p>
+        <div class="controls">
+          <label><span>Goal <output id="goalOut">$30,000</output></span><input id="goal" type="range" min="5000" max="80000" step="1000" value="30000"></label>
+          <label><span>Deposit today <output id="dep0Out">$5,000</output></span><input id="dep0" type="range" min="0" max="30000" step="500" value="5000"></label>
+          <label><span>Deposit year 1 <output id="dep1Out">$4,000</output></span><input id="dep1" type="range" min="0" max="30000" step="500" value="4000"></label>
+          <label><span>Deposit year 2 <output id="dep2Out">$3,000</output></span><input id="dep2" type="range" min="0" max="30000" step="500" value="3000"></label>
+          <label><span>Annual return <output id="goalRateOut">8.00%</output></span><input id="goalRate" type="range" min="1" max="15" step=".25" value="8"></label>
+          <label><span>Target year <output id="goalYearOut">5</output></span><input id="goalYear" type="range" min="3" max="12" step="1" value="5"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Timing Has Value</h2>
+        <p>Earlier deposits have more time to compound, so timing matters alongside amount.</p>
+        <div class="metrics">
+          <div class="metric"><small>Projected Value</small><strong id="goalValue">$15,338.39</strong></div>
+          <div class="metric accent"><small>Gap to Goal</small><strong id="goalGap">$14,661.61</strong></div>
+          <div class="metric"><small>Goal Status</small><strong id="goalStatus">Short</strong></div>
+        </div>
+        <div class="bars" id="goalBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Pattern</h3><p>Move each deposit to the same target year, then add them.</p><code>=FV(rate, target_year-deposit_year, 0, -deposit)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>Which matters more here: amount, timing, or return?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="apr-ear" data-activity>
+      <aside class="panel">
+        <h2>APR vs. EAR</h2>
+        <p>Compare two rates after compounding frequency is included.</p>
+        <div class="controls">
+          <label><span>Card A APR <output id="aprAOut">18.00%</output></span><input id="aprA" type="range" min="5" max="35" step=".25" value="18"></label>
+          <label><span>Card A compounds/year <output id="freqAOut">12</output></span><input id="freqA" type="range" min="1" max="365" step="1" value="12"></label>
+          <label><span>Card B APR <output id="aprBOut">17.50%</output></span><input id="aprB" type="range" min="5" max="35" step=".25" value="17.5"></label>
+          <label><span>Card B compounds/year <output id="freqBOut">365</output></span><input id="freqB" type="range" min="1" max="365" step="1" value="365"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Which Rate Is Really Higher?</h2>
+        <p>APR is the quoted annual rate. EAR shows the annual cost after compounding.</p>
+        <div class="metrics">
+          <div class="metric"><small>Card A EAR</small><strong id="earA">19.56%</strong></div>
+          <div class="metric"><small>Card B EAR</small><strong id="earB">19.12%</strong></div>
+          <div class="metric accent"><small>Lower Cost</small><strong id="earWinner">Card B</strong></div>
+        </div>
+        <div class="bars" id="earBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Formula</h3><p>Use EFFECT to convert quoted APR into effective annual rate.</p><code>=EFFECT(nominal_rate, npery)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>Which offer looks cheaper, and which one is actually cheaper?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="loan-payment" data-activity>
+      <aside class="panel">
+        <h2>Loan Payment</h2>
+        <p>Watch the monthly payment hide a much bigger total interest cost.</p>
+        <div class="controls">
+          <label><span>Loan amount <output id="loanAmountOut">$20,000</output></span><input id="loanAmount" type="range" min="1000" max="600000" step="1000" value="20000"></label>
+          <label><span>APR <output id="loanRateOut">7.50%</output></span><input id="loanRate" type="range" min="1" max="18" step=".25" value="7.5"></label>
+          <label><span>Years <output id="loanYearsOut">5</output></span><input id="loanYears" type="range" min="1" max="30" step="1" value="5"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>What Does the Payment Hide?</h2>
+        <p>The payment may feel manageable while total interest grows with rate and term.</p>
+        <div class="metrics">
+          <div class="metric"><small>Monthly Payment</small><strong id="loanPayment">$400.76</strong></div>
+          <div class="metric warning"><small>Total Interest</small><strong id="loanInterest">$4,045.41</strong></div>
+          <div class="metric"><small>Total Paid</small><strong id="loanTotal">$24,045.41</strong></div>
+        </div>
+        <div class="bars" id="loanBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Formula</h3><p>Use monthly rate and total monthly periods.</p><code>=PMT(APR/12, years*12, -loan_amount)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>What does the monthly payment hide from the borrower?</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section class="activity" id="offer-compare" data-activity>
+      <aside class="panel">
+        <h2>Offer Compare</h2>
+        <p>Compare cash today with a future payment plan using present value.</p>
+        <div class="controls">
+          <label><span>Cash today <output id="cashNowOut">$20,000</output></span><input id="cashNow" type="range" min="5000" max="100000" step="1000" value="20000"></label>
+          <label><span>Annual payment <output id="annuityPmtOut">$6,000</output></span><input id="annuityPmt" type="range" min="1000" max="30000" step="500" value="6000"></label>
+          <label><span>Years paid <output id="annuityYearsOut">4</output></span><input id="annuityYears" type="range" min="1" max="20" step="1" value="4"></label>
+          <label><span>Discount rate <output id="offerRateOut">8.00%</output></span><input id="offerRate" type="range" min="1" max="18" step=".25" value="8"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Which Offer Is Better?</h2>
+        <p>Future payments must be discounted before they can be compared to cash today.</p>
+        <div class="metrics">
+          <div class="metric"><small>PV of Payments</small><strong id="offerPv">$19,872.75</strong></div>
+          <div class="metric"><small>Cash Today</small><strong id="offerCash">$20,000</strong></div>
+          <div class="metric accent"><small>Better Offer</small><strong id="offerWinner">Cash</strong></div>
+        </div>
+        <div class="bars" id="offerBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Formula</h3><p>Use PV for a level payment stream.</p><code>=PV(rate, nper, -payment)</code></article>
+          <article class="formula-card"><h3>Class Question</h3><p>Why does the winning offer change when the discount rate changes?</p></article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+    const pct = new Intl.NumberFormat("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const modes = [...document.querySelectorAll("[data-activity]")].map((section) => section.id);
+
+    const value = (id) => Number(document.querySelector(`#${id}`).value);
+    const setText = (id, text) => { document.querySelector(`#${id}`).textContent = text; };
+    const asMoney = (amount) => money.format(amount);
+    const asMoneyNoCents = (amount) => money.format(amount).replace(".00", "");
+    const asPct = (rate) => pct.format(rate);
+
+    function setMode(mode) {
+      const selected = modes.includes(mode) ? mode : "simple-interest";
+      document.querySelectorAll("[data-activity]").forEach((section) => section.classList.toggle("active", section.id === selected));
+      document.querySelectorAll("[data-mode-link]").forEach((link) => link.setAttribute("aria-current", link.dataset.modeLink === selected ? "true" : "false"));
+      if (location.hash.slice(1) !== selected) history.replaceState(null, "", `#${selected}`);
+    }
+
+    function barRow(label, value, max, className = "") {
+      const width = max <= 0 ? 0 : Math.max(3, Math.min(100, value / max * 100));
+      return `<div class="bar-row"><div class="bar-label">${label}</div><div class="bar-track"><div class="bar ${className}" style="width:${width}%"></div></div><div class="bar-value">${asMoney(value)}</div></div>`;
+    }
+
+    function numberBarRow(label, value, max, suffix = "", className = "") {
+      const width = max <= 0 ? 0 : Math.max(3, Math.min(100, value / max * 100));
+      return `<div class="bar-row"><div class="bar-label">${label}</div><div class="bar-track"><div class="bar ${className}" style="width:${width}%"></div></div><div class="bar-value">${value.toFixed(2)}${suffix}</div></div>`;
+    }
+
+    function payment(rate, periods, pv) {
+      if (rate === 0) return pv / periods;
+      return pv * rate / (1 - Math.pow(1 + rate, -periods));
+    }
+
+    function pvAnnuity(rate, periods, pmt) {
+      if (rate === 0) return pmt * periods;
+      return pmt * (1 - Math.pow(1 + rate, -periods)) / rate;
+    }
+
+    function initTicks() {
+      const timeline = document.querySelector("#cfTimeline");
+      for (let year = 0; year <= 15; year += 3) {
+        const tick = document.createElement("div");
+        tick.className = "tick";
+        tick.style.left = `${4 + year / 15 * 92}%`;
+        tick.innerHTML = `<span>${year}</span>`;
+        timeline.appendChild(tick);
+      }
+    }
+
+    function updateSimpleInterest() {
+      const principal = value("siPrincipal");
+      const rate = value("siRate") / 100;
+      const years = value("siYears");
+      const simpleInterest = principal * rate * years;
+      const simpleFv = principal + simpleInterest;
+      const compoundFv = principal * Math.pow(1 + rate, years);
+      const gap = compoundFv - simpleFv;
+      const max = Math.max(principal, simpleFv, compoundFv);
+      setText("siPrincipalOut", asMoneyNoCents(principal));
+      setText("siRateOut", asPct(rate));
+      setText("siYearsOut", years);
+      setText("siInterest", asMoney(simpleInterest));
+      setText("siSimpleFv", asMoney(simpleFv));
+      setText("siGap", asMoney(gap));
+      document.querySelector("#siBars").innerHTML = [
+        barRow("Starting principal", principal, max, "steel"),
+        barRow("Simple future value", simpleFv, max, "gold"),
+        barRow("Compound future value", compoundFv, max, "")
+      ].join("");
+    }
+
+    const cfPos = (year) => 4 + year / 15 * 92;
+    function updateCashFlow() {
+      const cash = value("cfCash");
+      const rate = value("cfRate") / 100;
+      const origin = value("cfOrigin");
+      const target = value("cfTarget");
+      const periods = Math.abs(target - origin);
+      const earlier = target < origin;
+      const later = target > origin;
+      const result = earlier ? cash / Math.pow(1 + rate, periods) : later ? cash * Math.pow(1 + rate, periods) : cash;
+      setText("cfCashOut", asMoneyNoCents(cash));
+      setText("cfRateOut", asPct(rate));
+      setText("cfOriginOut", origin);
+      setText("cfTargetOut", target);
+      setText("cfDirection", earlier ? "Earlier" : later ? "Later" : "Same Year");
+      setText("cfPeriods", periods);
+      setText("cfResult", asMoney(result));
+      setText("cfSentence", `A ${asMoney(cash)} cash flow in year ${origin} ${earlier ? "is being moved back to" : later ? "is being moved forward to" : "already sits in"} year ${target}.`);
+      const sourceLeft = cfPos(origin);
+      const targetLeft = cfPos(target);
+      document.querySelector("#cfSourceMarker").style.left = `${sourceLeft}%`;
+      document.querySelector("#cfTargetMarker").style.left = `${targetLeft}%`;
+      setText("cfSourceLabel", `Year ${origin} - ${asMoney(cash)}`);
+      setText("cfTargetLabel", `Year ${target} - ${asMoney(result)}`);
+      const arrow = document.querySelector("#cfArrow");
+      arrow.style.left = `${Math.min(sourceLeft, targetLeft)}%`;
+      arrow.style.width = `${Math.max(2, Math.abs(targetLeft - sourceLeft))}%`;
+      document.querySelector("#cfArrowHead").className = `arrow-head ${earlier ? "backward" : "forward"}`;
+      setText("cfExcelText", earlier ? "Moving earlier means discount with PV." : later ? "Moving later means compound with FV." : "No time movement is needed.");
+      setText("cfExcelFormula", earlier ? "=PV(rate, periods, 0, -future_value)" : later ? "=FV(rate, periods, 0, -present_value)" : "=cash_flow");
+      setText("cfMathText", earlier ? "Divide by the growth factor." : later ? "Multiply by the growth factor." : "No compounding or discounting happens.");
+      setText("cfMathFormula", earlier ? "Target = Cash Flow / (1 + rate)^periods" : later ? "Target = Cash Flow x (1 + rate)^periods" : "Target = Cash Flow");
+      document.querySelectorAll("[data-cf-choice]").forEach((button) => {
+        const pressed = (earlier && button.dataset.cfChoice === "pv") || (later && button.dataset.cfChoice === "fv");
+        button.setAttribute("aria-pressed", pressed ? "true" : "false");
+      });
+    }
+
+    function updateFvScheduler() {
+      const start = value("fvStart");
+      const rates = [value("fvR1") / 100, value("fvR2") / 100, value("fvR3") / 100];
+      let running = start;
+      const rows = rates.map((rate, i) => {
+        const interest = running * rate;
+        const end = running + interest;
+        const row = `<tr><td>Year ${i + 1}</td><td>${asMoney(running)}</td><td>${asPct(rate)}</td><td>${asMoney(interest)}</td><td>${asMoney(end)}</td></tr>`;
+        running = end;
+        return row;
+      });
+      const equivalent = Math.pow(running / start, 1 / rates.length) - 1;
+      setText("fvStartOut", asMoneyNoCents(start));
+      rates.forEach((rate, i) => setText(`fvR${i + 1}Out`, asPct(rate)));
+      setText("fvEnd", asMoney(running));
+      setText("fvGrowth", asMoney(running - start));
+      setText("fvEquivalent", asPct(equivalent));
+      document.querySelector("#fvRows").innerHTML = rows.join("");
+    }
+
+    function updateRule72() {
+      const rate = value("r72Rate") / 100;
+      const estimate = 72 / (rate * 100);
+      const exact = Math.log(2) / Math.log(1 + rate);
+      const error = Math.abs(estimate - exact);
+      setText("r72RateOut", asPct(rate));
+      setText("r72Estimate", `${estimate.toFixed(2)} yrs`);
+      setText("r72Exact", `${exact.toFixed(2)} yrs`);
+      setText("r72Error", `${error.toFixed(2)} yrs`);
+      document.querySelector("#r72Bars").innerHTML = [
+        numberBarRow("Rule of 72", estimate, Math.max(estimate, exact), " yrs", "gold"),
+        numberBarRow("Exact", exact, Math.max(estimate, exact), " yrs", "")
+      ].join("");
+    }
+
+    function updateSavingsGoal() {
+      const goal = value("goal");
+      const deposits = [value("dep0"), value("dep1"), value("dep2")];
+      const rate = value("goalRate") / 100;
+      const targetYear = value("goalYear");
+      const projected = deposits.reduce((sum, deposit, year) => sum + deposit * Math.pow(1 + rate, targetYear - year), 0);
+      const gap = projected - goal;
+      setText("goalOut", asMoneyNoCents(goal));
+      deposits.forEach((deposit, i) => setText(`dep${i}Out`, asMoneyNoCents(deposit)));
+      setText("goalRateOut", asPct(rate));
+      setText("goalYearOut", targetYear);
+      setText("goalValue", asMoney(projected));
+      setText("goalGap", asMoney(Math.abs(gap)));
+      setText("goalStatus", gap >= 0 ? "Funded" : "Short");
+      document.querySelector("#goalBars").innerHTML = [
+        barRow("Projected value", projected, Math.max(projected, goal), gap >= 0 ? "" : "gold"),
+        barRow("Goal", goal, Math.max(projected, goal), "steel")
+      ].join("");
+    }
+
+    function updateAprEar() {
+      const aprA = value("aprA") / 100;
+      const aprB = value("aprB") / 100;
+      const freqA = value("freqA");
+      const freqB = value("freqB");
+      const earA = Math.pow(1 + aprA / freqA, freqA) - 1;
+      const earB = Math.pow(1 + aprB / freqB, freqB) - 1;
+      setText("aprAOut", asPct(aprA));
+      setText("aprBOut", asPct(aprB));
+      setText("freqAOut", freqA);
+      setText("freqBOut", freqB);
+      setText("earA", asPct(earA));
+      setText("earB", asPct(earB));
+      setText("earWinner", earA <= earB ? "Card A" : "Card B");
+      document.querySelector("#earBars").innerHTML = [
+        numberBarRow("Card A EAR", earA * 100, Math.max(earA, earB) * 100, "%", earA <= earB ? "" : "terra"),
+        numberBarRow("Card B EAR", earB * 100, Math.max(earA, earB) * 100, "%", earB <= earA ? "" : "terra")
+      ].join("");
+    }
+
+    function updateLoanPayment() {
+      const amount = value("loanAmount");
+      const apr = value("loanRate") / 100;
+      const years = value("loanYears");
+      const monthlyRate = apr / 12;
+      const periods = years * 12;
+      const monthly = payment(monthlyRate, periods, amount);
+      const total = monthly * periods;
+      setText("loanAmountOut", asMoneyNoCents(amount));
+      setText("loanRateOut", asPct(apr));
+      setText("loanYearsOut", years);
+      setText("loanPayment", asMoney(monthly));
+      setText("loanInterest", asMoney(total - amount));
+      setText("loanTotal", asMoney(total));
+      document.querySelector("#loanBars").innerHTML = [
+        barRow("Principal", amount, total, "steel"),
+        barRow("Interest", total - amount, total, "terra"),
+        barRow("Total paid", total, total, "")
+      ].join("");
+    }
+
+    function updateOfferCompare() {
+      const cashNow = value("cashNow");
+      const pmt = value("annuityPmt");
+      const years = value("annuityYears");
+      const rate = value("offerRate") / 100;
+      const pv = pvAnnuity(rate, years, pmt);
+      setText("cashNowOut", asMoneyNoCents(cashNow));
+      setText("annuityPmtOut", asMoneyNoCents(pmt));
+      setText("annuityYearsOut", years);
+      setText("offerRateOut", asPct(rate));
+      setText("offerPv", asMoney(pv));
+      setText("offerCash", asMoneyNoCents(cashNow));
+      setText("offerWinner", pv > cashNow ? "Payments" : "Cash");
+      document.querySelector("#offerBars").innerHTML = [
+        barRow("PV of payments", pv, Math.max(pv, cashNow), pv > cashNow ? "" : "gold"),
+        barRow("Cash today", cashNow, Math.max(pv, cashNow), cashNow >= pv ? "" : "gold")
+      ].join("");
+    }
+
+    document.querySelectorAll("[data-mode-link]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        setMode(link.dataset.modeLink);
+      });
+    });
+
+    document.querySelectorAll("[data-cf-choice]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.cfChoice === "pv") {
+          document.querySelector("#cfOrigin").value = "15";
+          document.querySelector("#cfTarget").value = "3";
+        } else {
+          document.querySelector("#cfOrigin").value = "3";
+          document.querySelector("#cfTarget").value = "15";
+        }
+        updateCashFlow();
+      });
+    });
+
+    function updateForInput(id) {
+      if (id.startsWith("si")) updateSimpleInterest();
+      else if (id.startsWith("cf")) updateCashFlow();
+      else if (id.startsWith("fv")) updateFvScheduler();
+      else if (id.startsWith("r72")) updateRule72();
+      else if (id.startsWith("goal") || id.startsWith("dep")) updateSavingsGoal();
+      else if (id.startsWith("apr") || id.startsWith("freq")) updateAprEar();
+      else if (id.startsWith("loan")) updateLoanPayment();
+      else if (id.startsWith("cashNow") || id.startsWith("annuity") || id.startsWith("offer")) updateOfferCompare();
+    }
+
+    document.querySelectorAll("input").forEach((input) => {
+      input.addEventListener("input", () => updateForInput(input.id));
+    });
+
+    initTicks();
+    [
+      updateSimpleInterest,
+      updateCashFlow,
+      updateFvScheduler,
+      updateRule72,
+      updateSavingsGoal,
+      updateAprEar,
+      updateLoanPayment,
+      updateOfferCompare
+    ].forEach((update) => update());
+    setMode(location.hash.slice(1));
+    window.addEventListener("hashchange", () => setMode(location.hash.slice(1)));
+  </script>
+</body>
+</html>

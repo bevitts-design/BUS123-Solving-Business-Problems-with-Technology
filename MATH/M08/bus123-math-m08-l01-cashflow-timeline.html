@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M08 · Cash Flow Timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116;
+      --paper: #FAF8F3;
+      --paper-2: #F2EEE5;
+      --white: #FFFFFF;
+      --text: #1A1F2C;
+      --text-soft: #4A5567;
+      --muted: #717987;
+      --border: #E5E1D6;
+      --sage: #4A7C5E;
+      --gold: #B8843D;
+      --terra: #9C4A2B;
+      --steel: #355773;
+      --formula: #0F6A3B;
+      --input: #164B73;
+      --font-serif: "Instrument Serif", Georgia, serif;
+      --font-sans: "Geist", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "Courier New", monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--paper);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    button,
+    input { font: inherit; }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid rgba(74, 124, 94, .36);
+      outline-offset: 3px;
+    }
+
+    .top {
+      background: var(--ink);
+      color: var(--white);
+      border-top: 8px solid var(--gold);
+      padding: 24px 0;
+    }
+
+    .shell {
+      width: min(1220px, calc(100vw - 40px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.04;
+    }
+
+    h1 {
+      max-width: 940px;
+      font-size: clamp(42px, 6vw, 72px);
+    }
+
+    .top p {
+      max-width: 820px;
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, .74);
+      font-size: 18px;
+    }
+
+    main {
+      padding: 24px 0 46px;
+    }
+
+    .activity-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 390px) minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel,
+    .stage {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .panel {
+      padding: 20px;
+    }
+
+    .panel h2,
+    .stage h2 {
+      margin-bottom: 10px;
+      font-size: 34px;
+    }
+
+    .panel p,
+    .stage p {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .controls {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      font-weight: 650;
+    }
+
+    label span {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    output {
+      color: var(--input);
+      font-family: var(--font-mono);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--sage);
+    }
+
+    .prompt {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .prompt button {
+      min-height: 50px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      color: var(--text);
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 650;
+    }
+
+    .prompt button[aria-pressed="true"] {
+      border-color: var(--sage);
+      background: #EEF5EE;
+      color: var(--formula);
+    }
+
+    .stage {
+      padding: 22px;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .metric {
+      min-height: 118px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .metric small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--text);
+      font-family: var(--font-serif);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: .95;
+      overflow-wrap: anywhere;
+    }
+
+    .metric.direction strong { color: var(--terra); }
+    .metric.result strong { color: var(--formula); }
+
+    .timeline-wrap {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      padding: 18px 18px 22px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .timeline {
+      position: relative;
+      min-height: 210px;
+    }
+
+    .axis {
+      position: absolute;
+      left: 4%;
+      right: 4%;
+      top: 102px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--ink);
+    }
+
+    .tick {
+      position: absolute;
+      top: 88px;
+      width: 2px;
+      height: 30px;
+      background: var(--border);
+      transform: translateX(-1px);
+    }
+
+    .tick span {
+      position: absolute;
+      top: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .marker {
+      position: absolute;
+      width: 126px;
+      min-height: 64px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--paper);
+      transform: translateX(-50%);
+      text-align: center;
+      box-shadow: 0 10px 22px rgba(14, 17, 22, .08);
+    }
+
+    .marker small {
+      display: block;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .marker strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--text);
+      font-size: 17px;
+    }
+
+    .marker.source {
+      top: 4px;
+      border-color: rgba(53, 87, 115, .38);
+    }
+
+    .marker.target {
+      top: 132px;
+      border-color: rgba(74, 124, 94, .42);
+      background: #EEF5EE;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 74px;
+      height: 44px;
+      pointer-events: none;
+    }
+
+    .arrow-line {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .arrow-head {
+      position: absolute;
+      top: 13px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+    }
+
+    .arrow-head.forward {
+      right: -1px;
+      border-left: 13px solid var(--gold);
+    }
+
+    .arrow-head.backward {
+      left: -1px;
+      border-right: 13px solid var(--gold);
+    }
+
+    .formula-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .formula-card {
+      min-height: 134px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--paper);
+      padding: 16px;
+    }
+
+    .formula-card h3 {
+      margin-bottom: 8px;
+      font-size: 26px;
+    }
+
+    .formula-card code {
+      display: block;
+      margin: 10px 0;
+      color: var(--formula);
+      font-family: var(--font-mono);
+      font-size: 15px;
+      white-space: normal;
+    }
+
+    .decision {
+      margin-top: 18px;
+      background: var(--ink);
+      border-radius: 8px;
+      color: var(--white);
+      padding: 18px;
+    }
+
+    .decision strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .decision p {
+      color: rgba(255, 255, 255, .76);
+    }
+
+    @media (max-width: 940px) {
+      .activity-grid,
+      .formula-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100vw - 28px, 1220px);
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-wrap {
+        padding: 12px 10px 18px;
+      }
+
+      .marker {
+        width: 104px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · Math M08 · Cash Flow Timeline</p>
+      <h1>Move one cash flow through time.</h1>
+      <p>Students decide whether a cash flow is moving earlier or later, then connect that direction to present value or future value logic before building the Excel formula.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="activity-grid">
+      <aside class="panel">
+        <h2>Set the Move</h2>
+        <p>Start from the workbook-style question: what is a cash flow worth in a different year?</p>
+
+        <div class="prompt" aria-label="Formula choice prompt">
+          <button type="button" data-choice="pv" aria-pressed="false">Moving earlier: use present value</button>
+          <button type="button" data-choice="fv" aria-pressed="false">Moving later: use future value</button>
+        </div>
+
+        <div class="controls">
+          <label>
+            <span>Cash flow <output id="cashOut">$250</output></span>
+            <input id="cash" type="range" min="100" max="50000" step="50" value="250">
+          </label>
+          <label>
+            <span>Annual rate <output id="rateOut">12.00%</output></span>
+            <input id="rate" type="range" min="1" max="18" step="0.25" value="12">
+          </label>
+          <label>
+            <span>Original year <output id="originOut">15</output></span>
+            <input id="origin" type="range" min="0" max="15" step="1" value="15">
+          </label>
+          <label>
+            <span>Target year <output id="targetOut">3</output></span>
+            <input id="target" type="range" min="0" max="15" step="1" value="3">
+          </label>
+        </div>
+      </aside>
+
+      <section class="stage" aria-live="polite">
+        <h2>PV or FV?</h2>
+        <p id="moveSentence">A $250 cash flow in year 15 is being moved back to year 3.</p>
+
+        <div class="metrics">
+          <div class="metric direction">
+            <small>Direction</small>
+            <strong id="direction">Earlier</strong>
+          </div>
+          <div class="metric">
+            <small>Periods Moved</small>
+            <strong id="periods">12</strong>
+          </div>
+          <div class="metric result">
+            <small>Value at Target Year</small>
+            <strong id="result">$64.17</strong>
+          </div>
+        </div>
+
+        <div class="timeline-wrap" aria-label="Cash flow movement timeline">
+          <div class="timeline" id="timeline">
+            <div class="axis"></div>
+            <div class="arrow" id="arrow"><div class="arrow-line"></div><div class="arrow-head backward" id="arrowHead"></div></div>
+            <div class="marker source" id="sourceMarker">
+              <small>Original</small>
+              <strong id="sourceLabel">Year 15 · $250</strong>
+            </div>
+            <div class="marker target" id="targetMarker">
+              <small>Target</small>
+              <strong id="targetLabel">Year 3 · $64.17</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="formula-panel">
+          <article class="formula-card">
+            <h3>Excel Translation</h3>
+            <p id="excelExplanation">Because the cash flow moves earlier, discount it with PV.</p>
+            <code id="excelFormula">=PV(rate, periods, 0, -future_value)</code>
+          </article>
+          <article class="formula-card">
+            <h3>Math Logic</h3>
+            <p id="mathExplanation">Divide by the growth factor for each period you move backward.</p>
+            <code id="mathFormula">Target Value = Cash Flow / (1 + rate)^periods</code>
+          </article>
+        </div>
+
+        <div class="decision">
+          <strong>Closing Question</strong>
+          <p>When comparing two offers, why is it unfair to compare cash flows that happen in different years without moving them to the same point in time?</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
+    const pct = new Intl.NumberFormat("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    const controls = {
+      cash: document.querySelector("#cash"),
+      rate: document.querySelector("#rate"),
+      origin: document.querySelector("#origin"),
+      target: document.querySelector("#target")
+    };
+
+    const choiceButtons = document.querySelectorAll("[data-choice]");
+    choiceButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.choice === "pv") {
+          controls.origin.value = "15";
+          controls.target.value = "3";
+        } else {
+          controls.origin.value = "3";
+          controls.target.value = "15";
+        }
+        update();
+      });
+    });
+
+    const positionForYear = (year) => 4 + (year / 15) * 92;
+
+    function makeTicks() {
+      const timeline = document.querySelector("#timeline");
+      for (let year = 0; year <= 15; year += 3) {
+        const tick = document.createElement("div");
+        tick.className = "tick";
+        tick.style.left = `${positionForYear(year)}%`;
+        tick.innerHTML = `<span>${year}</span>`;
+        timeline.appendChild(tick);
+      }
+    }
+
+    function update() {
+      const cash = Number(controls.cash.value);
+      const rate = Number(controls.rate.value) / 100;
+      const origin = Number(controls.origin.value);
+      const target = Number(controls.target.value);
+      const periods = Math.abs(target - origin);
+      const movesEarlier = target < origin;
+      const movesLater = target > origin;
+      const result = movesEarlier
+        ? cash / Math.pow(1 + rate, periods)
+        : movesLater
+          ? cash * Math.pow(1 + rate, periods)
+          : cash;
+
+      document.querySelector("#cashOut").textContent = money.format(cash).replace(".00", "");
+      document.querySelector("#rateOut").textContent = pct.format(rate);
+      document.querySelector("#originOut").textContent = String(origin);
+      document.querySelector("#targetOut").textContent = String(target);
+      document.querySelector("#periods").textContent = String(periods);
+      document.querySelector("#result").textContent = money.format(result);
+
+      let direction = "Same Year";
+      let moveText = "stays in";
+      if (movesEarlier) {
+        direction = "Earlier";
+        moveText = "is being moved back to";
+      } else if (movesLater) {
+        direction = "Later";
+        moveText = "is being moved forward to";
+      }
+      document.querySelector("#direction").textContent = direction;
+      document.querySelector("#moveSentence").textContent = `A ${money.format(cash)} cash flow in year ${origin} ${moveText} year ${target}.`;
+
+      const originLeft = positionForYear(origin);
+      const targetLeft = positionForYear(target);
+      document.querySelector("#sourceMarker").style.left = `${originLeft}%`;
+      document.querySelector("#targetMarker").style.left = `${targetLeft}%`;
+      document.querySelector("#sourceLabel").textContent = `Year ${origin} · ${money.format(cash)}`;
+      document.querySelector("#targetLabel").textContent = `Year ${target} · ${money.format(result)}`;
+
+      const arrow = document.querySelector("#arrow");
+      const arrowHead = document.querySelector("#arrowHead");
+      const left = Math.min(originLeft, targetLeft);
+      const width = Math.max(2, Math.abs(targetLeft - originLeft));
+      arrow.style.left = `${left}%`;
+      arrow.style.width = `${width}%`;
+      arrowHead.className = `arrow-head ${movesEarlier ? "backward" : "forward"}`;
+
+      let excelFormula = "=cash_flow";
+      let excelExplanation = "The cash flow is already in the target year, so no PV or FV move is needed.";
+      let mathFormula = "Target Value = Cash Flow";
+      let mathExplanation = "No compounding or discounting happens when both years match.";
+      if (movesEarlier) {
+        excelFormula = "=PV(rate, periods, 0, -future_value)";
+        excelExplanation = "Because the cash flow moves earlier, discount it with PV.";
+        mathFormula = "Target Value = Cash Flow / (1 + rate)^periods";
+        mathExplanation = "Divide by the growth factor for each period you move backward.";
+      } else if (movesLater) {
+        excelFormula = "=FV(rate, periods, 0, -present_value)";
+        excelExplanation = "Because the cash flow moves later, compound it with FV.";
+        mathFormula = "Target Value = Cash Flow × (1 + rate)^periods";
+        mathExplanation = "Multiply by the growth factor for each period you move forward.";
+      }
+      document.querySelector("#excelFormula").textContent = excelFormula;
+      document.querySelector("#excelExplanation").textContent = excelExplanation;
+      document.querySelector("#mathFormula").textContent = mathFormula;
+      document.querySelector("#mathExplanation").textContent = mathExplanation;
+
+      choiceButtons.forEach((button) => {
+        const shouldPress = (movesEarlier && button.dataset.choice === "pv") || (movesLater && button.dataset.choice === "fv");
+        button.setAttribute("aria-pressed", shouldPress ? "true" : "false");
+      });
+    }
+
+    makeTicks();
+    Object.values(controls).forEach((input) => input.addEventListener("input", update));
+    update();
+  </script>
+</body>
+</html>

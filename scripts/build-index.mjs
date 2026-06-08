@@ -155,7 +155,7 @@ const materialIcon = (type) => {
 const materialLink = (material, options = {}) =>
   `<a class="${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}" href="${esc(material.path)}">
     <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
-    <span>${esc(material.type)}</span>
+    <span>${esc(material.label ?? material.type)}</span>
   </a>`;
 
 const groupMaterials = (materials) =>
@@ -182,7 +182,7 @@ const searchText = (lesson, track) => [
   effectiveStatus(lesson),
   lesson.caseStudy,
   ...(lesson.skillFocus ?? []),
-  ...(lesson.materials ?? []).flatMap((item) => [item.type, item.path])
+  ...(lesson.materials ?? []).flatMap((item) => [item.type, item.label, item.path])
 ].filter(Boolean).join(" ").toLowerCase();
 
 const lessonCard = (lesson) => {

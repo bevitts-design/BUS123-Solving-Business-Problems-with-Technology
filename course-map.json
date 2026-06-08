@@ -354,6 +354,16 @@
           "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx"
         },
         {
+          "type": "Interactive Practice",
+          "label": "Simple Interest Lab",
+          "path": "MATH/M08/bus123-math-m08-l01-interactive.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Cash Flow Timeline",
+          "path": "MATH/M08/bus123-math-m08-l01-cashflow-timeline.html"
+        },
+        {
           "type": "Activity Instructions",
           "path": "MATH/M08/bus123-math-m08-l01-activity-instructions.docx"
         }

@@ -75,23 +75,12 @@ function validateCourseMap() {
     }
 
     for (const material of lesson.materials ?? []) {
-      if (!material.type) {
-        issues.push(`${lesson.id} has a material without a type.`);
-      }
-      if (!material.path || material.path === "#") {
-        issues.push(`${lesson.id} has a placeholder path for ${material.type ?? "a material"}.`);
-        continue;
-      }
-      if (privatePathPattern.test(material.path)) {
-        issues.push(`${lesson.id} links a private or non-public material: ${material.path}`);
-      }
-      if (!/^https?:\/\//i.test(material.path)) {
-        const materialPath = path.join(root, material.path);
-        if (!awaitFileExists(materialPath)) {
-          issues.push(`${lesson.id} is missing ${material.type}: ${material.path}`);
-        }
-      }
+      validatePublicLink(material, issues, `${lesson.id} material`);
     }
+  }
+
+  for (const resource of data.course.resources ?? []) {
+    validatePublicLink(resource, issues, "course resource");
   }
 
   if (!seen.has(data.course.currentLessonId)) {
@@ -103,24 +92,45 @@ function validateCourseMap() {
   }
 }
 
+function validatePublicLink(item, issues, context) {
+  if (!item.type) {
+    issues.push(`${context} is missing a type.`);
+  }
+  if (!item.path || item.path === "#") {
+    issues.push(`${context} has a placeholder path for ${item.type ?? "a link"}.`);
+    return;
+  }
+  if (privatePathPattern.test(item.path)) {
+    issues.push(`${context} links a private or non-public file: ${item.path}`);
+  }
+  if (!/^https?:\/\//i.test(item.path)) {
+    const itemPath = path.join(root, item.path);
+    if (!awaitFileExists(itemPath)) {
+      issues.push(`${context} is missing ${item.type}: ${item.path}`);
+    }
+  }
+}
+
 function awaitFileExists(filePath) {
   return fileExistsCache.get(filePath) ?? false;
 }
 
 const fileExistsCache = new Map();
-await Promise.all((data.lessons ?? []).flatMap((lesson) =>
-  (lesson.materials ?? [])
-    .filter((material) => material.path && material.path !== "#" && !/^https?:\/\//i.test(material.path))
-    .map(async (material) => {
-      const materialPath = path.join(root, material.path);
-      try {
-        await fs.access(materialPath);
-        fileExistsCache.set(materialPath, true);
-      } catch {
-        fileExistsCache.set(materialPath, false);
-      }
-    })
-));
+const publicLinks = [
+  ...(data.course.resources ?? []),
+  ...(data.lessons ?? []).flatMap((lesson) => lesson.materials ?? [])
+];
+await Promise.all(publicLinks
+  .filter((item) => item.path && item.path !== "#" && !/^https?:\/\//i.test(item.path))
+  .map(async (item) => {
+    const itemPath = path.join(root, item.path);
+    try {
+      await fs.access(itemPath);
+      fileExistsCache.set(itemPath, true);
+    } catch {
+      fileExistsCache.set(itemPath, false);
+    }
+  }));
 
 validateCourseMap();
 
@@ -147,7 +157,9 @@ const materialIcon = (type) => {
     "Interactive Practice": "P",
     "Activity Instructions": "A",
     "Homework": "H",
-    "Company Profiles": "C"
+    "Company Profiles": "C",
+    "Syllabus": "S",
+    "Infographic": "I"
   };
   return icons[type] ?? "M";
 };
@@ -254,6 +266,12 @@ const currentGroupsHtml = currentGroups.map((group) => `<div class="material-gro
               <h3>${esc(group.label)}</h3>
               <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
             </div>`).join("");
+const courseResources = data.course.resources ?? [];
+const courseResourcesHtml = courseResources.length
+  ? `<div class="course-resources" aria-label="Course resources">
+          ${courseResources.map((resource) => materialLink(resource, { resource: true })).join("")}
+        </div>`
+  : "";
 
 const filterButton = (group, value, label, active = false) =>
   `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
@@ -278,6 +296,7 @@ const html = `<!DOCTYPE html>
       </a>
       <nav class="nav" aria-label="Course sections">
         ${orderedTracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
+        ${courseResources.map((resource) => `<a href="${esc(resource.path)}">${esc(resource.label ?? resource.type)}</a>`).join("")}
         ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Canvas</a>` : ""}
       </nav>
     </div>
@@ -289,6 +308,7 @@ const html = `<!DOCTYPE html>
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>Find the right BUS123 materials quickly.</h1>
         <p>This course map is the student-facing source for live lesson slides, readings, workbooks, and practice materials.</p>
+        ${courseResourcesHtml}
         <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
           <div class="week-ahead-header">
             <div>

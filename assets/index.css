@@ -89,6 +89,19 @@ h3 { font-size: 28px; }
 
 .hero p { max-width: 760px; color: var(--text-soft); font-size: 18px; }
 
+.course-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 8px;
+}
+
+.course-resources .material-chip {
+  border-color: rgba(74, 124, 94, .28);
+  background: var(--white);
+  box-shadow: 0 8px 22px rgba(14, 17, 22, .08);
+}
+
 .current {
   margin: 32px 0 16px;
   background: var(--ink);

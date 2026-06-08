@@ -4,7 +4,14 @@
     "title": "Solving Business Problems with Technology",
     "term": "Fall 2026",
     "canvasUrl": "https://endicott.instructure.com/courses/58218",
-    "currentLessonId": "intro-m01-l01"
+    "currentLessonId": "intro-m01-l01",
+    "resources": [
+      {
+        "label": "Syllabus",
+        "type": "Syllabus",
+        "path": "assets/bus123-syllabus-fall-2026.docx"
+      }
+    ]
   },
   "tracks": [
     {

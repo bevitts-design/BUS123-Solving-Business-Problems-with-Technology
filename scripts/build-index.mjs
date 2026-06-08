@@ -36,6 +36,7 @@ const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 function validateCourseMap() {
   const issues = [];
   const seen = new Set();
+  const seenDisplayOrders = new Set();
 
   if (!data.course?.currentLessonId) {
     issues.push("course.currentLessonId is required.");
@@ -59,6 +60,13 @@ function validateCourseMap() {
 
     if (!trackById.has(lesson.track)) {
       issues.push(`${lesson.id} references unknown track "${lesson.track}".`);
+    }
+    if (!lesson.moduleType || !lesson.moduleLabel || !Number.isFinite(lesson.displayOrder)) {
+      issues.push(`${lesson.id} is missing valid moduleType, moduleLabel, or displayOrder metadata.`);
+    } else if (seenDisplayOrders.has(lesson.displayOrder)) {
+      issues.push(`${lesson.id} reuses displayOrder ${lesson.displayOrder}.`);
+    } else {
+      seenDisplayOrders.add(lesson.displayOrder);
     }
     if (lesson.status === "Current") {
       issues.push(`${lesson.id} uses "Current" as a status. Set course.currentLessonId instead and keep lesson.status as a release state.`);
@@ -116,6 +124,20 @@ await Promise.all((data.lessons ?? []).flatMap((lesson) =>
 
 validateCourseMap();
 
+const orderedLessons = (lessons) =>
+  lessons
+    .map((lesson, index) => ({ lesson, index }))
+    .sort((a, b) =>
+      (a.lesson.displayOrder ?? Number.MAX_SAFE_INTEGER) - (b.lesson.displayOrder ?? Number.MAX_SAFE_INTEGER) ||
+      a.index - b.index
+    )
+    .map(({ lesson }) => lesson);
+
+const sortedLessons = orderedLessons(data.lessons ?? []);
+
+const displayLabel = (lesson, track) =>
+  lesson.moduleLabel ?? [track?.label ?? lesson.track, lesson.module, lesson.lesson].filter(Boolean).join(" ");
+
 const materialIcon = (type) => {
   const icons = {
     "Slides": "S",
@@ -152,8 +174,11 @@ const searchText = (lesson, track) => [
   lesson.title,
   lesson.track,
   track?.label,
+  lesson.moduleType,
+  lesson.moduleLabel,
   lesson.module,
   lesson.lesson,
+  lesson.displayOrder,
   effectiveStatus(lesson),
   lesson.caseStudy,
   ...(lesson.skillFocus ?? []),
@@ -168,7 +193,7 @@ const lessonCard = (lesson) => {
   return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(status))}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
     <div class="lesson-header">
       <div>
-        <div class="code">${esc(track?.label ?? lesson.track)} · ${esc(lesson.module)} · ${esc(lesson.lesson)}</div>
+        <div class="code">${esc(displayLabel(lesson, track))}</div>
         <h3>${esc(lesson.title)}</h3>
       </div>
       <span class="status ${esc(slug(status))}">${esc(status)}</span>
@@ -179,8 +204,21 @@ const lessonCard = (lesson) => {
   </article>`;
 };
 
-const tracks = data.tracks.map((track) => {
-  const lessons = data.lessons.filter((lesson) => lesson.track === track.id);
+const orderedTracks = data.tracks
+  .map((track, index) => ({
+    track,
+    index,
+    firstDisplayOrder: Math.min(
+      ...sortedLessons
+        .filter((lesson) => lesson.track === track.id)
+        .map((lesson) => lesson.displayOrder ?? Number.MAX_SAFE_INTEGER)
+    )
+  }))
+  .sort((a, b) => a.firstDisplayOrder - b.firstDisplayOrder || a.index - b.index)
+  .map(({ track }) => track);
+
+const tracks = orderedTracks.map((track) => {
+  const lessons = sortedLessons.filter((lesson) => lesson.track === track.id);
   return `<section id="${esc(track.id)}" class="track-section">
     <div class="track-heading">
       <h2>${esc(track.label)}</h2>
@@ -190,8 +228,8 @@ const tracks = data.tracks.map((track) => {
   </section>`;
 }).join("\n");
 
-const currentIndex = data.lessons.findIndex((lesson) => lesson.id === data.course.currentLessonId);
-const current = data.lessons[currentIndex];
+const currentIndex = sortedLessons.findIndex((lesson) => lesson.id === data.course.currentLessonId);
+const current = sortedLessons[currentIndex];
 const currentTrack = trackById.get(current.track);
 const primary = primaryMaterial(current);
 
@@ -205,7 +243,7 @@ const sequenceItem = (label, lesson) => {
   const track = trackById.get(lesson.track);
   return `<a class="sequence-card" href="#${esc(lesson.id)}">
     <span>${esc(label)}</span>
-    <strong>${esc(track?.label ?? lesson.track)} ${esc(lesson.module)} ${esc(lesson.lesson)}</strong>
+    <strong>${esc(displayLabel(lesson, track))}</strong>
     <em>${esc(lesson.title)}</em>
   </a>`;
 };
@@ -239,7 +277,7 @@ const html = `<!DOCTYPE html>
         <span><strong>${esc(data.course.code)}</strong><span>${esc(data.course.title)}</span></span>
       </a>
       <nav class="nav" aria-label="Course sections">
-        ${data.tracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
+        ${orderedTracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
         ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Canvas</a>` : ""}
       </nav>
     </div>
@@ -269,7 +307,7 @@ const html = `<!DOCTYPE html>
         </section>
         <div class="current">
           <div class="current-copy">
-            <div class="meta">Current · ${esc(currentTrack?.label ?? current.track)} ${esc(current.module)} ${esc(current.lesson)}</div>
+            <div class="meta">Current · ${esc(displayLabel(current, currentTrack))}</div>
             <h2>${esc(current.title)}</h2>
             <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
             ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
@@ -277,9 +315,9 @@ const html = `<!DOCTYPE html>
           <div class="current-groups" aria-label="Current lesson materials">${currentGroupsHtml}</div>
         </div>
         <div class="sequence-strip" aria-label="Lesson sequence">
-          ${sequenceItem("Previous", data.lessons[currentIndex - 1])}
+          ${sequenceItem("Previous", sortedLessons[currentIndex - 1])}
           ${sequenceItem("Current", current)}
-          ${sequenceItem("Next", data.lessons[currentIndex + 1])}
+          ${sequenceItem("Next", sortedLessons[currentIndex + 1])}
         </div>
       </div>
     </section>
@@ -289,7 +327,7 @@ const html = `<!DOCTYPE html>
       <div class="filter-panel">
         <div class="filters" aria-label="Track filters">
           ${filterButton("track", "all", "All", true)}
-          ${data.tracks.map((track) => filterButton("track", track.id, track.label)).join("")}
+          ${orderedTracks.map((track) => filterButton("track", track.id, track.label)).join("")}
         </div>
         <div class="filters" aria-label="Material filters">
           ${filterButton("material", "all", "Any Material", true)}

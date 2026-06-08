@@ -7,9 +7,21 @@
     "currentLessonId": "intro-m01-l01"
   },
   "tracks": [
-    { "id": "intro", "label": "Intro", "folder": "INTRO" },
-    { "id": "excel", "label": "Excel", "folder": "EXCEL" },
-    { "id": "math", "label": "Business Math", "folder": "MATH" }
+    {
+      "id": "intro",
+      "label": "Intro",
+      "folder": "INTRO"
+    },
+    {
+      "id": "excel",
+      "label": "Excel",
+      "folder": "EXCEL"
+    },
+    {
+      "id": "math",
+      "label": "Business Math",
+      "folder": "MATH"
+    }
   ],
   "lessons": [
     {
@@ -20,10 +32,19 @@
       "title": "Course Introduction",
       "status": "Live",
       "caseStudy": null,
-      "skillFocus": ["Course setup", "Digital workflow"],
+      "skillFocus": [
+        "Course setup",
+        "Digital workflow"
+      ],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l01-slides.html" }
-      ]
+        {
+          "type": "Slides",
+          "path": "INTRO/M01/bus123-intro-m01-l01-slides.html"
+        }
+      ],
+      "moduleType": "Intro",
+      "moduleLabel": "Intro M01-L01",
+      "displayOrder": 10
     },
     {
       "id": "intro-m01-l02",
@@ -33,83 +54,49 @@
       "title": "Technology Orientation",
       "status": "Live",
       "caseStudy": null,
-      "skillFocus": ["OneDrive", "Microsoft Office"],
+      "skillFocus": [
+        "OneDrive",
+        "Microsoft Office"
+      ],
       "materials": [
-        { "type": "Slides", "path": "INTRO/M01/bus123-intro-m01-l02-slides.html" },
-        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l02-prereading.pdf" }
-      ]
+        {
+          "type": "Slides",
+          "path": "INTRO/M01/bus123-intro-m01-l02-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "INTRO/M01/bus123-intro-m01-l02-prereading.pdf"
+        }
+      ],
+      "moduleType": "Intro",
+      "moduleLabel": "Intro M01-L02",
+      "displayOrder": 20
     },
     {
       "id": "intro-m01-l03",
       "track": "intro",
       "module": "M01",
       "lesson": "L03",
-      "title": "Case Study Companies",
+      "title": "Company Case Studies",
       "status": "Live",
       "caseStudy": "Course case companies",
-      "skillFocus": ["Business context", "Case study navigation"],
+      "skillFocus": [
+        "Business context",
+        "Case study navigation"
+      ],
       "materials": [
-        { "type": "Reading", "path": "INTRO/M01/bus123-intro-m01-l03-prereading.pdf" },
-        { "type": "Company Profiles", "path": "INTRO/M01/bus123-intro-m01-company-profiles.html" }
-      ]
-    },
-    {
-      "id": "excel-m01-l01",
-      "track": "excel",
-      "module": "M01",
-      "lesson": "L01",
-      "title": "Creating and Editing Worksheets",
-      "status": "Live",
-      "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Workbook setup", "Worksheet editing"],
-      "materials": [
-        { "type": "Slides", "path": "EXCEL/M01/bus123-excel-m01-l01-slides.html" },
-        { "type": "Reading", "path": "EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf" },
-        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l01-starter.xlsx" },
-        { "type": "Interactive Practice", "path": "EXCEL/M01/bus123-excel-m01-l01-interactive.html" }
-      ]
-    },
-    {
-      "id": "excel-m01-l02",
-      "track": "excel",
-      "module": "M01",
-      "lesson": "L02",
-      "title": "Aggregate Functions and Data Analysis",
-      "status": "In Progress",
-      "caseStudy": "Anchor & Oak Events",
-      "skillFocus": ["Aggregate functions", "Cell references", "Business data analysis"],
-      "materials": [
-        { "type": "Starter Workbook", "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx" }
-      ]
-    },
-    {
-      "id": "excel-m02-l01",
-      "track": "excel",
-      "module": "M02",
-      "lesson": "L01",
-      "title": "Formatting and Organizing Worksheets",
-      "status": "Live",
-      "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Worksheet formatting", "Data organization", "Audit-friendly design"],
-      "materials": [
-        { "type": "Slides", "path": "EXCEL/M02/bus123-excel-m02-l01-slides.html" },
-        { "type": "Reading", "path": "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf" },
-        { "type": "Starter Workbook", "path": "EXCEL/M02/bus123-excel-m02-l01-starter.xlsx" }
-      ]
-    },
-    {
-      "id": "excel-m03-l01",
-      "track": "excel",
-      "module": "M03",
-      "lesson": "L01",
-      "title": "Charts and Data Visualization",
-      "status": "Live",
-      "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Charts", "Data visualization"],
-      "materials": [
-        { "type": "Slides", "path": "EXCEL/M03/bus123-excel-m03-l01-slides.html" },
-        { "type": "Starter Workbook", "path": "EXCEL/M03/bus123-excel-m03-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Reading",
+          "path": "INTRO/M01/bus123-intro-m01-l03-prereading.pdf"
+        },
+        {
+          "type": "Company Profiles",
+          "path": "INTRO/M01/bus123-intro-m01-company-profiles.html"
+        }
+      ],
+      "moduleType": "Intro",
+      "moduleLabel": "Intro M01-L03",
+      "displayOrder": 30
     },
     {
       "id": "math-m01-l01",
@@ -119,12 +106,28 @@
       "title": "Basic Math: Whole Numbers, Fractions, and Percents",
       "status": "Live",
       "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Percents", "Fractions", "Excel arithmetic"],
+      "skillFocus": [
+        "Percents",
+        "Fractions",
+        "Excel arithmetic"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M01/bus123-math-m01-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M01/bus123-math-m01-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M01/bus123-math-m01-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M01/bus123-math-m01-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M01/bus123-math-m01-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M01/bus123-math-m01-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M01",
+      "displayOrder": 40
     },
     {
       "id": "math-m02-l01",
@@ -134,12 +137,27 @@
       "title": "Solving Equations",
       "status": "Live",
       "caseStudy": "Meridian Advisory Group",
-      "skillFocus": ["Equations", "Algebra in Excel"],
+      "skillFocus": [
+        "Equations",
+        "Algebra in Excel"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M02/bus123-math-m02-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M02/bus123-math-m02-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M02/bus123-math-m02-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M02/bus123-math-m02-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M02/bus123-math-m02-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M02/bus123-math-m02-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M02",
+      "displayOrder": 50
     },
     {
       "id": "math-m03-l01",
@@ -149,12 +167,28 @@
       "title": "Discounts: Trade and Cash",
       "status": "Live",
       "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Trade discounts", "Cash discounts", "Payment terms"],
+      "skillFocus": [
+        "Trade discounts",
+        "Cash discounts",
+        "Payment terms"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M03/bus123-math-m03-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M03/bus123-math-m03-l01-pre-reading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M03/bus123-math-m03-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M03/bus123-math-m03-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M03/bus123-math-m03-l01-pre-reading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M03/bus123-math-m03-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M03",
+      "displayOrder": 60
     },
     {
       "id": "math-m04-l01",
@@ -164,13 +198,33 @@
       "title": "Markups, Markdowns, and Break-Even",
       "status": "Live",
       "caseStudy": "Anchor & Oak Events",
-      "skillFocus": ["Markup", "Markdown", "Perishables", "Break-even"],
+      "skillFocus": [
+        "Markup",
+        "Markdown",
+        "Perishables",
+        "Break-even"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M04/bus123-math-m04-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M04/bus123-math-m04-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M04/bus123-math-m04-l01-starter.xlsx" },
-        { "type": "Interactive Practice", "path": "MATH/M04/bus123-math-m04-l01-interactive.html" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M04/bus123-math-m04-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M04/bus123-math-m04-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M04/bus123-math-m04-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "path": "MATH/M04/bus123-math-m04-l01-interactive.html"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M04",
+      "displayOrder": 70
     },
     {
       "id": "math-m05-l01",
@@ -180,13 +234,33 @@
       "title": "Payroll and Depreciation",
       "status": "Live",
       "caseStudy": "Harborside Medical Center",
-      "skillFocus": ["Payroll cycles", "Overtime", "Payroll mix", "Straight-line depreciation"],
+      "skillFocus": [
+        "Payroll cycles",
+        "Overtime",
+        "Payroll mix",
+        "Straight-line depreciation"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M05/bus123-math-m05-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M05/bus123-math-m05-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M05/bus123-math-m05-l01-starter.xlsx" },
-        { "type": "Interactive Practice", "path": "MATH/M05/bus123-math-m05-l01-interactive.html" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M05/bus123-math-m05-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M05/bus123-math-m05-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M05/bus123-math-m05-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "path": "MATH/M05/bus123-math-m05-l01-interactive.html"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M05",
+      "displayOrder": 80
     },
     {
       "id": "math-m06-l01",
@@ -196,12 +270,29 @@
       "title": "Inventory, Overhead, and COGS",
       "status": "Live",
       "caseStudy": "Tidal Goods Co.",
-      "skillFocus": ["Inventory valuation", "COGS", "Gross margin", "Overhead allocation"],
+      "skillFocus": [
+        "Inventory valuation",
+        "COGS",
+        "Gross margin",
+        "Overhead allocation"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M06/bus123-math-m06-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M06/bus123-math-m06-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M06/bus123-math-m06-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M06/bus123-math-m06-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M06/bus123-math-m06-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M06/bus123-math-m06-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M06",
+      "displayOrder": 90
     },
     {
       "id": "math-m07-l01",
@@ -211,42 +302,130 @@
       "title": "Sales, Excise, and Property Taxes",
       "status": "Coming Soon",
       "caseStudy": "Tidal Goods Co. · Meridian Advisory Group",
-      "skillFocus": ["Sales tax", "Excise tax", "Property tax", "Tax rate rounding"],
+      "skillFocus": [
+        "Sales tax",
+        "Excise tax",
+        "Property tax",
+        "Tax rate rounding"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M07/bus123-math-m07-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M07/bus123-math-m07-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M07/bus123-math-m07-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M07/bus123-math-m07-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M07",
+      "displayOrder": 100
     },
     {
       "id": "math-m08-l01",
       "track": "math",
       "module": "M08",
       "lesson": "L01",
-      "title": "Simple Interest and Discounting",
+      "title": "Simple Interest, Discounting and Present Value",
       "status": "Coming Soon",
       "caseStudy": "Meridian Advisory Group",
-      "skillFocus": ["Time value of money", "Simple interest", "Future value", "Discounting"],
+      "skillFocus": [
+        "Simple interest",
+        "Discounting",
+        "Present value",
+        "Excel modeling"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M08/bus123-math-m08-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M08/bus123-math-m08-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx" },
-        { "type": "Activity Instructions", "path": "MATH/M08/bus123-math-m08-l01-activity-instructions.docx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M08/bus123-math-m08-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M08/bus123-math-m08-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M08/bus123-math-m08-l01-starter.xlsx"
+        },
+        {
+          "type": "Activity Instructions",
+          "path": "MATH/M08/bus123-math-m08-l01-activity-instructions.docx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M08",
+      "displayOrder": 110
     },
     {
       "id": "math-m09-l01",
       "track": "math",
       "module": "M09",
       "lesson": "L01",
-      "title": "Simple Interest, Compound Interest, and Present Value",
+      "title": "Compounding and Future Value",
       "status": "Coming Soon",
       "caseStudy": "Meridian Advisory Group",
-      "skillFocus": ["Simple interest", "Compound interest", "Future value", "Present value"],
+      "skillFocus": [
+        "Compound interest",
+        "Future value",
+        "Excel modeling"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M09/bus123-math-m09-l01-slides.html" },
-        { "type": "Starter Workbook", "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M09/bus123-math-m09-l01-slides.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M09",
+      "displayOrder": 120
+    },
+    {
+      "id": "math-m10-roadmap-l01",
+      "track": "math",
+      "module": "M10",
+      "lesson": "L01",
+      "title": "Stocks, Bonds and Mutual Funds",
+      "status": "Coming Soon",
+      "caseStudy": null,
+      "skillFocus": [
+        "Stocks",
+        "Bonds",
+        "Mutual funds",
+        "Investment vocabulary"
+      ],
+      "materials": [],
+      "moduleType": "Math",
+      "moduleLabel": "Math M10",
+      "displayOrder": 130
+    },
+    {
+      "id": "math-m11-l01",
+      "track": "math",
+      "module": "M11",
+      "lesson": "L01",
+      "title": "Financial Statement Introduction",
+      "status": "Coming Soon",
+      "caseStudy": null,
+      "skillFocus": [
+        "Financial statements",
+        "Income statement",
+        "Balance sheet",
+        "Business analysis"
+      ],
+      "materials": [],
+      "moduleType": "Math",
+      "moduleLabel": "Math M11",
+      "displayOrder": 140
     },
     {
       "id": "math-m10-l01",
@@ -256,12 +435,143 @@
       "title": "Business Statistics",
       "status": "Coming Soon",
       "caseStudy": "Harborside Medical Center",
-      "skillFocus": ["Business statistics", "Data analysis", "Descriptive statistics", "Excel modeling"],
+      "skillFocus": [
+        "Business statistics",
+        "Data analysis",
+        "Descriptive statistics",
+        "Excel modeling"
+      ],
       "materials": [
-        { "type": "Slides", "path": "MATH/M10/bus123-math-m10-l01-slides.html" },
-        { "type": "Reading", "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf" },
-        { "type": "Starter Workbook", "path": "MATH/M10/bus123-math-m10-l01-starter.xlsx" }
-      ]
+        {
+          "type": "Slides",
+          "path": "MATH/M10/bus123-math-m10-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M10/bus123-math-m10-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Math",
+      "moduleLabel": "Math M12",
+      "displayOrder": 150
+    },
+    {
+      "id": "excel-m01-l01",
+      "track": "excel",
+      "module": "M01",
+      "lesson": "L01",
+      "title": "Creating and Editing Worksheets",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": [
+        "Workbook setup",
+        "Worksheet editing"
+      ],
+      "materials": [
+        {
+          "type": "Slides",
+          "path": "EXCEL/M01/bus123-excel-m01-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "EXCEL/M01/bus123-excel-m01-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "path": "EXCEL/M01/bus123-excel-m01-l01-interactive.html"
+        }
+      ],
+      "moduleType": "Excel",
+      "moduleLabel": "Excel M01",
+      "displayOrder": 160
+    },
+    {
+      "id": "excel-m02-l01",
+      "track": "excel",
+      "module": "M02",
+      "lesson": "L01",
+      "title": "Formatting and Organizing Worksheets",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": [
+        "Worksheet formatting",
+        "Data organization",
+        "Audit-friendly design"
+      ],
+      "materials": [
+        {
+          "type": "Slides",
+          "path": "EXCEL/M02/bus123-excel-m02-l01-slides.html"
+        },
+        {
+          "type": "Reading",
+          "path": "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "EXCEL/M02/bus123-excel-m02-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Excel",
+      "moduleLabel": "Excel M02",
+      "displayOrder": 170
+    },
+    {
+      "id": "excel-m01-l02",
+      "track": "excel",
+      "module": "M01",
+      "lesson": "L02",
+      "title": "Aggregate Functions and Data Analysis",
+      "status": "In Progress",
+      "caseStudy": "Anchor & Oak Events",
+      "skillFocus": [
+        "Aggregate functions",
+        "Cell references",
+        "Business data analysis"
+      ],
+      "materials": [
+        {
+          "type": "Starter Workbook",
+          "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx"
+        }
+      ],
+      "moduleType": "Excel",
+      "moduleLabel": "Excel M03",
+      "displayOrder": 180
+    },
+    {
+      "id": "excel-m03-l01",
+      "track": "excel",
+      "module": "M03",
+      "lesson": "L01",
+      "title": "Charts and Data Visualization",
+      "status": "Live",
+      "caseStudy": "Tidal Goods Co.",
+      "skillFocus": [
+        "Charts",
+        "Data visualization"
+      ],
+      "materials": [
+        {
+          "type": "Slides",
+          "path": "EXCEL/M03/bus123-excel-m03-l01-slides.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "EXCEL/M03/bus123-excel-m03-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Excel",
+      "moduleLabel": "Excel M04",
+      "displayOrder": 190
     }
   ]
 }

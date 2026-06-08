@@ -563,6 +563,8 @@
   <nav class="mode-bar" aria-label="Toolkit activities">
     <div class="shell mode-scroll">
       <a class="mode-btn" href="#simple-interest" data-mode-link="simple-interest">Simple Interest</a>
+      <a class="mode-btn" href="#future-value" data-mode-link="future-value">Future Value</a>
+      <a class="mode-btn" href="#present-value" data-mode-link="present-value">Present Value</a>
       <a class="mode-btn" href="#cash-flow" data-mode-link="cash-flow">Cash Flow Timeline</a>
       <a class="mode-btn" href="#fv-scheduler" data-mode-link="fv-scheduler">FV Scheduler</a>
       <a class="mode-btn" href="#rule-72" data-mode-link="rule-72">Rule of 72</a>
@@ -597,6 +599,60 @@
           <article class="formula-card"><h3>Excel Build</h3><p>Use assumptions in B1:B3.</p><code>=B1*B2*B3</code><code>=B1*(1+B2)^B3</code></article>
           <article class="formula-card"><h3>Class Question</h3><p>If this were a loan versus an investment, who benefits from compounding?</p></article>
         </div>
+      </section>
+    </section>
+
+    <section class="activity" id="future-value" data-activity>
+      <aside class="panel">
+        <h2>Future Value</h2>
+        <p>Move one amount later in time. This is the clean single-sum version before students handle moving cash flows both directions.</p>
+        <div class="controls">
+          <label><span>Present value <output id="futurePvOut">$1,000</output></span><input id="futurePv" type="range" min="500" max="25000" step="250" value="1000"></label>
+          <label><span>Annual rate <output id="futureRateOut">8.00%</output></span><input id="futureRate" type="range" min="1" max="18" step=".25" value="8"></label>
+          <label><span>Years from today <output id="futureYearsOut">5</output></span><input id="futureYears" type="range" min="1" max="20" step="1" value="5"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Move Money Forward</h2>
+        <p>Future value answers: if we have money today, what will it be worth later after compounding?</p>
+        <div class="metrics">
+          <div class="metric"><small>Present Value</small><strong id="futurePvMetric">$1,000.00</strong></div>
+          <div class="metric accent"><small>Future Value</small><strong id="futureFvMetric">$1,469.33</strong></div>
+          <div class="metric"><small>Interest Earned</small><strong id="futureInterestMetric">$469.33</strong></div>
+        </div>
+        <div class="bars" id="futureBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Formula</h3><p>Use FV when the amount is moving later in time.</p><code>=FV(rate, nper, 0, -present_value)</code></article>
+          <article class="formula-card"><h3>Math Logic</h3><p>Multiply the starting amount by the growth factor.</p><code>FV = PV x (1 + rate)^years</code></article>
+        </div>
+        <div class="decision"><strong>Class Question</strong><p>What does a higher rate do more: add dollars evenly, or multiply the base faster over time?</p></div>
+      </section>
+    </section>
+
+    <section class="activity" id="present-value" data-activity>
+      <aside class="panel">
+        <h2>Present Value</h2>
+        <p>Move one future amount back to today. This is the clean single-sum version before students compare full offers.</p>
+        <div class="controls">
+          <label><span>Future value <output id="presentFvOut">$2,000</output></span><input id="presentFv" type="range" min="500" max="50000" step="250" value="2000"></label>
+          <label><span>Discount rate <output id="presentRateOut">10.00%</output></span><input id="presentRate" type="range" min="1" max="18" step=".25" value="10"></label>
+          <label><span>Years from today <output id="presentYearsOut">3</output></span><input id="presentYears" type="range" min="1" max="20" step="1" value="3"></label>
+        </div>
+      </aside>
+      <section class="stage">
+        <h2>Move Money Backward</h2>
+        <p>Present value answers: what is a future amount worth today after discounting for time and required return?</p>
+        <div class="metrics">
+          <div class="metric"><small>Future Value</small><strong id="presentFvMetric">$2,000.00</strong></div>
+          <div class="metric accent"><small>Present Value</small><strong id="presentPvMetric">$1,502.63</strong></div>
+          <div class="metric warning"><small>Discount</small><strong id="presentDiscountMetric">$497.37</strong></div>
+        </div>
+        <div class="bars" id="presentBars"></div>
+        <div class="formula-panel">
+          <article class="formula-card"><h3>Excel Formula</h3><p>Use PV when the amount is moving earlier in time.</p><code>=PV(rate, nper, 0, -future_value)</code></article>
+          <article class="formula-card"><h3>Math Logic</h3><p>Divide by the growth factor for the waiting period.</p><code>PV = FV / (1 + rate)^years</code></article>
+        </div>
+        <div class="decision"><strong>Class Question</strong><p>Why is money due later worth less than the same number of dollars today?</p></div>
       </section>
     </section>
 
@@ -870,6 +926,44 @@
       ].join("");
     }
 
+    function updateFutureValue() {
+      const pv = value("futurePv");
+      const rate = value("futureRate") / 100;
+      const years = value("futureYears");
+      const fv = pv * Math.pow(1 + rate, years);
+      const interest = fv - pv;
+      setText("futurePvOut", asMoneyNoCents(pv));
+      setText("futureRateOut", asPct(rate));
+      setText("futureYearsOut", years);
+      setText("futurePvMetric", asMoney(pv));
+      setText("futureFvMetric", asMoney(fv));
+      setText("futureInterestMetric", asMoney(interest));
+      document.querySelector("#futureBars").innerHTML = [
+        barRow("Present value", pv, fv, "steel"),
+        barRow("Future value", fv, fv, ""),
+        barRow("Interest earned", interest, fv, "gold")
+      ].join("");
+    }
+
+    function updatePresentValue() {
+      const fv = value("presentFv");
+      const rate = value("presentRate") / 100;
+      const years = value("presentYears");
+      const pv = fv / Math.pow(1 + rate, years);
+      const discount = fv - pv;
+      setText("presentFvOut", asMoneyNoCents(fv));
+      setText("presentRateOut", asPct(rate));
+      setText("presentYearsOut", years);
+      setText("presentFvMetric", asMoney(fv));
+      setText("presentPvMetric", asMoney(pv));
+      setText("presentDiscountMetric", asMoney(discount));
+      document.querySelector("#presentBars").innerHTML = [
+        barRow("Future value", fv, fv, "steel"),
+        barRow("Present value", pv, fv, ""),
+        barRow("Discount", discount, fv, "terra")
+      ].join("");
+    }
+
     const cfPos = (year) => 4 + year / 15 * 92;
     function updateCashFlow() {
       const cash = value("cfCash");
@@ -1045,6 +1139,8 @@
 
     function updateForInput(id) {
       if (id.startsWith("si")) updateSimpleInterest();
+      else if (id.startsWith("future")) updateFutureValue();
+      else if (id.startsWith("present")) updatePresentValue();
       else if (id.startsWith("cf")) updateCashFlow();
       else if (id.startsWith("fv")) updateFvScheduler();
       else if (id.startsWith("r72")) updateRule72();
@@ -1061,6 +1157,8 @@
     initTicks();
     [
       updateSimpleInterest,
+      updateFutureValue,
+      updatePresentValue,
       updateCashFlow,
       updateFvScheduler,
       updateRule72,

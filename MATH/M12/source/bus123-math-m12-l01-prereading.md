@@ -1,9 +1,9 @@
 ---
-title: "BUS 123 — MATH-M10-L01 — Business Statistics: Central Tendency, Dispersion & Correlation"
-lesson: "MATH-M10-L01"
+title: "BUS 123 — MATH-M12-L01 — Business Statistics: Central Tendency, Dispersion & Correlation"
+lesson: "MATH-M12-L01"
 kind: "Pre-Reading"
 status: "published"
-output: "MATH/M10/bus123-math-m10-l01-prereading.md"
+output: "MATH/M12/bus123-math-m12-l01-prereading.md"
 ---
 
 <!--
@@ -22,22 +22,22 @@ output: "MATH/M10/bus123-math-m10-l01-prereading.md"
     in most Markdown viewers and GitHub Pages.
 
   • To push to the public GitHub repo, place this file at:
-    MATH/M10/bus123-math-m10-l01-prereading.md
+    MATH/M12/bus123-math-m12-l01-prereading.md
     GitHub Pages will render it correctly with no additional configuration.
   ─────────────────────────────────────────────────────────────────────────────
 -->
 
-# BUS 123 · MATH-M10-L01 · Business Statistics: Central Tendency, Dispersion & Correlation
+# BUS 123 · MATH-M12-L01 · Business Statistics: Central Tendency, Dispersion & Correlation
 
 **Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** MATH · **Module:** M10 · **Lesson:** L01
+**Track:** MATH · **Module:** M12 · **Lesson:** L01
 **Case Study Company:** Harborside Medical Center
 
 ---
 
 ## 1 · Connect to Prior Knowledge
 
-In Module 08 you learned how to calculate financial metrics: loan payments, present value, and interest. Those formulas gave you exact answers for specific situations. Module 10 builds on that foundation by asking a different kind of question: **what does a collection of numbers tell us?**
+In Module 08 you learned how to calculate financial metrics: loan payments, present value, and interest. Those formulas gave you exact answers for specific situations. Module 12 builds on that foundation by asking a different kind of question: **what does a collection of numbers tell us?**
 
 When Harborside Medical Center tracks patient wait times across 30 days, or payroll hours across 50 nurses, a single formula is not enough. We need statistical tools to summarize, interpret, and compare datasets — and Excel has built-in functions for all of them.
 

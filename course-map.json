@@ -10,6 +10,11 @@
         "label": "Syllabus",
         "type": "Syllabus",
         "path": "assets/bus123-syllabus-fall-2026.docx"
+      },
+      {
+        "label": "Course Infographic",
+        "type": "Infographic",
+        "path": "assets/Business_Technology_Course_Syllabus_Infographic.png"
       }
     ]
   },

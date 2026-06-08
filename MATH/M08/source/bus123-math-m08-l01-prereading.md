@@ -1,175 +1,255 @@
----
-title: "BUS 123 — MATH-M08-L01 — Simple Interest & Discounting"
-lesson: "MATH-M08-L01"
-kind: "Pre-Reading"
-status: "published"
-output: "MATH/M08/bus123-math-m08-l01-prereading.pdf"
----
+# BUS123 · MATH-M08 · L01 Pre-Reading
+## Simple Interest, Discounting & Present Value
 
-
-# BUS 123 · MATH-M08-L01 · Simple Interest & Discounting
-
-**Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** MATH · **Module:** M08 · **Lesson:** L01
-**Case Study Company:** Meridian Advisory Group
-
-*Simulated data for instructional purposes — Meridian Advisory Group is a fictional company.*
+**Course:** Solving Business Problems with Technology · BUS123
+**Track:** MATH · Module 08 · Lesson 01
+**Semester:** Fall 2026 · Gerrish School of Business, Endicott College
+**Case Study Company:** Meridian Advisory Group *(fictional — all data simulated for instructional purposes)*
 
 ---
 
-## 1 · Connect to Prior Knowledge
+## Connect to Prior Knowledge
 
-In MATH-M07, you worked with percentages and rates — calculating markups, markdowns, and proportional changes. You learned that a rate is a ratio that describes change relative to a base amount.
+In the modules leading up to M08, you worked with percentages and proportional change — markup rates, markdown percentages, and ratio comparisons. A rate was a label: it described a change relative to a base amount at a single point in time.
 
-Today we put that skill to work in a new direction: using a rate to describe **how money changes over time.** Until now, a 6% rate was a label — it described a discount or a price change at a single moment. Starting today, a 6% rate is an **engine**. It tells us how fast money grows when it sits in an account or a loan, and it tells us how much we need to "shrink" a future promise to find out what it's worth right now.
+Starting today, a rate becomes an **engine**. When a business borrows money or holds cash in a reserve account, the rate no longer just changes a price — it generates a dollar amount that grows the longer time passes. This module builds the first and simplest version of that relationship: **Simple Interest**, the foundation for all of business finance.
 
-That shrinking process is called **discounting**, and it is the single most important calculation in business finance.
+We also introduce the concept that makes financial advisors indispensable: **discounting**. Money promised in the future is worth less than money in hand today, and the difference can be calculated precisely. By the end of this lesson, you will be able to quantify that gap and apply it to real client scenarios.
 
 ---
 
-## 2 · Core Concepts
+## Core Concepts
 
 ### Part A — Why a Dollar Today Is Worth More Than a Dollar Tomorrow
 
-The **Time Value of Money (TVM)** is the idea that money available today is worth more than the same amount promised in the future. Three forces explain why:
+The **Time Value of Money (TVM)** is the principle that money available today is worth more than the same dollar amount promised in the future. Three economic forces explain why:
 
-| Force               | Explanation                                                                                                    |
-|---------------------|----------------------------------------------------------------------------------------------------------------|
-| **Opportunity Cost**| Money today can be invested immediately. A dollar promised next year cannot earn anything until it arrives.    |
-| **Inflation**       | Prices tend to rise over time. The same dollar amount will buy slightly less in the future.                    |
-| **Risk**            | Future promises can fail. A payment guaranteed today carries no uncertainty; a future payment might not arrive.|
+| Force | Explanation |
+|---|---|
+| **Opportunity Cost** | Money today can be invested immediately and begin earning a return. A dollar promised next year cannot earn anything until it arrives. |
+| **Inflation** | Prices tend to rise over time. The same dollar amount will buy slightly less in the future than it does today. |
+| **Risk** | Future promises can fail. A payment guaranteed today carries no uncertainty; a future payment might not arrive at all. |
 
 > 💡 **The So What**
 >
-> When a financial advisor at Meridian evaluates a client's future payment stream, they don't just add up the dollar amounts. They ask: what are these future dollars worth **today**, given the client's opportunity cost and the risk of waiting? That calculation — discounting — is what you will build in today's activity.
+> When a financial advisor at Meridian evaluates a client's future payment stream, they don't just add up the dollar amounts. They ask: *what are these future dollars worth **today**, given the client's opportunity cost and the risk of waiting?* That calculation — discounting — is what you will build in today's activity.
+
+The interest rate used in TVM calculations is not arbitrary. It is a sum:
+
+**Total Discount Rate = Inflation Rate + Real Interest Rate + Risk Premium**
+
+Each component has economic meaning. A 7% discount rate might represent 3% inflation, 2% real return for waiting, and 2% compensation for risk. Choosing the right rate is one of the most consequential judgments in financial analysis.
 
 ---
 
-### Part B — Simple Interest: Moving Money Forward in Time
+### Part B — Simple Interest: Moving Money Forward
 
-Simple interest calculates the interest earned on a principal amount using a flat annual rate applied to the **original principal only** — interest does not earn interest (that is compound interest, covered next module). Simple interest is common in short-term loans, notes payable, and bridge financing.
+Simple interest calculates interest earned on a **principal amount** using a flat annual rate applied to the **original principal only** — interest does not earn interest (that is compound interest, covered in M09). Simple interest is common in short-term loans, notes payable, and bridge financing.
 
 **The Formula: I = P × R × T**
 
-| Variable | Stands For        | Notes                                                           |
-|----------|-------------------|-----------------------------------------------------------------|
-| **I**    | Interest earned   | The dollar amount of interest generated                         |
-| **P**    | Principal         | The original amount borrowed or invested                        |
-| **R**    | Annual interest rate | Always enter as a decimal: 6% = 0.06                        |
-| **T**    | Time in years     | Must be in years — convert: months ÷ 12, days ÷ 365           |
+| Variable | Stands For | Notes |
+|---|---|---|
+| **I** | Interest earned | The dollar amount of interest generated |
+| **P** | Principal | The original amount borrowed or invested |
+| **R** | Annual interest rate | Always enter as a decimal: 6% = 0.06 |
+| **T** | Time in years | **Must be in years** — convert: months ÷ 12, days ÷ 365 |
+
+**Ending Balance (Maturity Value / Future Value):**
+
+```
+FV = P + I   or equivalently:   FV = P × (1 + R × T)
+```
+
+The term `(1 + R × T)` is called the **growth factor**. It tells you how many times larger your money becomes. At 5.5% for 9 months, every dollar grows to $1.04125.
 
 > ⚠️ **The T Trap — Never Use Days or Months Directly**
 >
 > The most common error on simple interest problems is plugging in time without converting to years first.
-> - A 90-day loan does NOT use T = 90. It uses T = 90 ÷ 365 = **0.247**.
-> - A 6-month loan uses T = 6 ÷ 12 = **0.5**.
+> - A 90-day loan does **not** use T = 90. It uses T = 90 ÷ 365 = **0.247 years**.
+> - A 6-month loan uses T = 6 ÷ 12 = **0.5 years**.
 >
-> If you forget to convert, your interest will be 90 or 12 times too large — a result that should immediately signal something is wrong.
-
-#### Worked Example — Meridian Advisory Group
-
-A Meridian client invests $8,000 in a short-term corporate note at 5.5% simple interest for 9 months.
-
-- **Step 1 — Convert time to years:** T = 9 ÷ 12 = **0.75 years**
-- **Step 2 — Calculate interest:** I = 8,000 × 0.055 × 0.75 = **$330.00**
-- **Step 3 — Calculate Future Value:** FV = 8,000 + 330 = **$8,330.00**
-- **In Excel:** `=8000*(1+0.055*0.75)` = $8,330.00
-
-> ✅ **Key Insight: The Growth Factor**
->
-> The term `(1 + R×T)` is the growth factor — it tells you how many times larger your money becomes. At 5.5% for 9 months, every dollar grows to $1.04125. Multiply by the principal and you have the Future Value.
+> If you forget to convert, your interest will be 90× or 12× too large — a result that should immediately signal something is wrong.
 
 ---
 
-### Part C — Discounting: Running the Math Backward
+### Part C — Two Methods for Day-Based Interest
+
+When a loan term is expressed in days, two conventions are in use:
+
+**Exact Interest (÷ 365):** T = exact days ÷ 365. Used by the Federal Reserve and US government. Every calendar day counts as 1/365 of a year.
+
+**Ordinary Interest — Banker's Rule (÷ 360):** T = exact days ÷ 360. Used by most commercial banks. Dividing by the smaller number produces a slightly larger T, which produces slightly more interest — in the bank's favor. This is intentional.
+
+**Practical impact:** On a $50,000 loan at 5% for 124 days:
+
+| Method | T | Interest |
+|---|---|---|
+| Exact (÷ 365) | 0.3397 | $849.32 |
+| Ordinary (÷ 360) | 0.3444 | $861.11 |
+| **Difference** | | **$11.79** |
+
+Across a large commercial loan portfolio, the Banker's Rule generates meaningfully more revenue. It is not an error — it is a deliberate convention.
+
+---
+
+### Part D — Solving for the Unknown Variable
+
+The simple interest formula rearranges cleanly to solve for any one variable when the other two are known:
+
+| Solve for | Formula | Excel |
+|---|---|---|
+| **Principal** | P = I ÷ (R × T) | `=B5/(B3*B4)` |
+| **Rate** | R = I ÷ (P × T) | `=B5/(B2*B4)` |
+| **Time** | T = I ÷ (P × R) | `=B5/(B2*B3)` |
+
+**Worked Example — Meridian Advisory Group:**
+A client's account shows $19.48 in interest charged at 9.5% for 90 days (ordinary interest). What was the principal?
+
+```
+T = 90 ÷ 360 = 0.25 years
+P = $19.48 ÷ (0.095 × 0.25) = $19.48 ÷ 0.02375 = $820.21
+```
+
+Real analysts solve for unknowns constantly. A client paid $X in interest — what was the original loan? The formula rearranges cleanly; you just need to know which variable is missing.
+
+---
+
+### Part E — Discounting: Running the Math Backward
 
 Future Value asks: *what will this grow to?* Present Value asks the reverse: *what is a future promise worth right now?*
 
-To get Present Value, we rearrange the Future Value formula — instead of multiplying by the growth factor, we divide by it:
+To get Present Value, divide the Future Value by the discount factor instead of multiplying:
 
-| Direction  | Question                         | Formula                      |
-|------------|----------------------------------|------------------------------|
-| **Forward →** | What will P grow to?          | `FV = P × (1 + R×T)`        |
-| **← Backward** | What is FV worth today?      | `PV = FV ÷ (1 + R×T)`       |
+| Direction | Question | Formula |
+|---|---|---|
+| **Forward →** | What will P grow to? | `FV = P × (1 + R × T)` |
+| **← Backward** | What is FV worth today? | `PV = FV ÷ (1 + R × T)` |
 
-The term `(1 + R×T)` in the denominator is the **discount factor**:
+The term `(1 + R × T)` in the denominator is the **discount factor**. It is always greater than 1 (when R and T are positive), so dividing by it always produces a Present Value **smaller** than the Future Value. The higher the rate or the longer the wait, the larger the discount factor — and the smaller the PV.
 
-**`Discount Factor = 1 + R × T`**
+**Worked Example — Meridian Advisory Group:**
+A corporate client is owed $25,000 in 18 months from a contract receivable. Discount rate: 7%.
 
-The discount factor is always greater than 1 (as long as R and T are positive), so dividing by it always produces a Present Value **smaller** than the Future Value. The higher the rate or the longer the wait, the larger the discount factor — and the smaller the present value. This is the mathematical proof of TVM.
+```
+T = 18 ÷ 12 = 1.5 years
+Discount Factor = 1 + (0.07 × 1.5) = 1.105
+PV = $25,000 ÷ 1.105 = $22,624.43
+```
 
-#### Worked Example — Meridian Advisory Group
-
-A Meridian corporate client is owed $25,000 in 18 months from a contract receivable. They want to know what that future payment is worth today, using a 7% discount rate.
-
-- **Step 1 — Convert time to years:** T = 18 ÷ 12 = **1.5 years**
-- **Step 2 — Calculate discount factor:** DF = 1 + (0.07 × 1.5) = **1.105**
-- **Step 3 — Calculate Present Value:** PV = 25,000 ÷ 1.105 = **$22,624.43**
-- **In Excel:** `=25000/(1+0.07*1.5)` = $22,624.43
-
-The gap tells the story: $25,000 − $22,624 = **$2,376**. That $2,376 is the **cost of waiting** 18 months at 7% — the combined effect of opportunity cost and risk. This gap is what the entire field of discounted cash flow (DCF) analysis is built on.
+The gap: $25,000 − $22,624 = **$2,376**. That $2,376 is the **cost of waiting** 18 months at 7% — the combined effect of opportunity cost and risk measured in dollars.
 
 ---
 
-## 3 · Formula Reference
+### Part F — The Excel =PV() Function
 
-| Formula              | Algebraic Form             | Excel Form              | Use When                                    |
-|----------------------|----------------------------|-------------------------|---------------------------------------------|
-| **Simple Interest**  | `I = P × R × T`            | `=C2*D2*E2`             | Finding interest earned on a short-term note|
-| **Future Value**     | `FV = P × (1 + R×T)`       | `=C2*(1+D2*E2)`         | Finding the total maturity value            |
-| **Present Value**    | `PV = FV ÷ (1 + R×T)`      | `=C2/(1+D2*E2)`         | Discounting a future payment to today       |
-| **Discount Factor**  | `DF = 1 + R × T`           | `=1+D2*E2`              | Intermediate step in PV calculation         |
-| **Time Conversion**  | `T = months ÷ 12` or `days ÷ 365` | `=A2/12` or `=A2/365` | Always convert before using in formulas |
+For lump-sum discounting, Excel's `=PV()` function handles the division automatically.
+
+**Syntax:**
+
+```
+=PV(rate, nper, pmt, [fv], [type])
+```
+
+| Argument | Meaning | For Simple Interest Lump Sum |
+|---|---|---|
+| `rate` | Interest rate per period | Annual rate (for 1-period problems) |
+| `nper` | Total number of periods | Years (or fractional years) |
+| `pmt` | Recurring payment | Enter **0** |
+| `fv` | Future amount to discount | Enter as a **positive number** |
+| Result | Present value | Returns **negative** — see below |
+
+**The sign convention:** Excel treats outflows (money leaving your pocket) as negative and inflows (money coming to you) as positive. The `=PV()` result is negative because it represents the amount you would need to *invest today* to receive the future FV. This is not an error — it is the correct sign.
+
+```
+=PV(7%, 1.5, 0, 25000)  →  −$22,624.43
+```
+
+**Verify with the round trip:** `=FV(7%, 1.5, 0, −22624.43)` → $25,000 ✓
+
+Always run this check. If `=FV()` does not reproduce the original future value, something is wrong with your inputs.
+
+> ⚠️ **Common Mistake — The Negative PV Panic**
+>
+> Students see `−$22,624` and assume it is an error. They manually add a minus sign to flip it positive. Now the formula is broken — the sign meaning is inverted and the round-trip check will fail. The negative sign is meaningful: it represents *outflow*, the amount you must put in today. Do not flip it.
 
 ---
 
-## 4 · Check Your Understanding
+## Formula Reference Table
 
-Answer these seven questions before class. Show your work on questions 2–5. The answer key appears at the end.
+| Formula | Use |
+|---|---|
+| `I = P × R × T` | Calculate simple interest |
+| `FV = P × (1 + R × T)` | Calculate maturity value / ending balance |
+| `P = I ÷ (R × T)` | Solve for unknown principal |
+| `R = I ÷ (P × T)` | Solve for unknown rate |
+| `T = I ÷ (P × R)` | Solve for unknown time |
+| `T = months ÷ 12` | Convert months to years |
+| `T = days ÷ 365` | Exact interest time conversion |
+| `T = days ÷ 360` | Ordinary interest (Banker's Rule) |
+| `PV = FV ÷ (1 + R × T)` | Discount a future payment — manual |
+| `=PV(rate, nper, 0, fv)` | Discount a future payment — Excel |
 
-1. **(Conceptual)** In one or two sentences, explain why a financial advisor would tell a client that $15,000 promised in two years is not worth $15,000 today. Do not use a formula — explain the economic logic.
+---
 
-2. **(Calculation)** A Meridian client borrows $10,000 at 6% simple interest for 2 years. Calculate (a) the interest earned and (b) the future value at maturity.
+## Check Your Understanding
 
-3. **(Calculation)** A 180-day commercial note has a principal of $7,500 and an annual rate of 4.8%. Calculate the interest earned using the exact interest method (365-day year).
+Answer these questions before class. Show your work on questions 2–6.
 
-4. **(Calculation)** A Meridian client will receive $18,000 in 2 years. Using a 7% discount rate, calculate the present value of that payment.
+**1.** In one or two sentences, explain why a financial advisor would tell a client that $15,000 promised in two years is not worth $15,000 today. Do not use a formula — explain the economic logic.
 
-5. **(Calculation)** Using a 6% discount rate, calculate the present value of each payment, then find the total present value of this two-payment stream:
+**2.** A Meridian client borrows $10,000 at 6% simple interest for 2 years. Calculate (a) the interest earned and (b) the ending balance.
+
+**3.** A 180-day commercial note has a principal of $7,500 and an annual rate of 4.8%. Calculate the interest earned using the **exact interest method** (365-day year). Show the time conversion step.
+
+**4.** A Meridian client will receive $18,000 in 2 years. The discount rate is 7%. Calculate the present value using the manual formula. Show the discount factor calculation.
+
+**5.** Using the same scenario as Question 4, calculate the PV using the Excel `=PV()` function. Write out the formula exactly as you would type it in a cell. What sign does the result carry, and what does it mean?
+
+**6.** Using a 6% discount rate, calculate the present value of each payment below, then find the total present value of the two-payment stream:
    - Payment A: $12,000 due in 1 year
    - Payment B: $20,000 due in 3 years
 
-6. **(Conceptual)** A student calculates the present value of a payment and gets an answer larger than the future value. Without doing the math, explain what error the student must have made.
-
-7. **(Analysis)** Suppose the discount rate in Question 4 increases from 7% to 12%. Without recalculating, predict whether the present value will be higher or lower. Then calculate the new PV to verify your prediction.
+**7.** A student calculates the present value of a future payment and gets an answer *larger* than the future value. Without doing the math, explain what error the student must have made.
 
 ---
 
-### Answer Key · Check Your Understanding
+## Answer Key
 
-| # | Answer |
-|---|--------|
-| **1** | Three forces reduce the value of future money: (1) opportunity cost — the $15,000 today could be invested to earn a return; (2) inflation — prices will likely rise, so $15,000 buys less in two years; (3) risk — the future payment might not be received. Any two of these forces, explained clearly, is a complete answer. |
-| **2** | (a) I = 10,000 × 0.06 × 2 = **$1,200.00**. (b) FV = 10,000 + 1,200 = **$11,200.00** [or: `=10000*(1+0.06*2)`] |
-| **3** | T = 180 ÷ 365 = 0.4932 years. I = 7,500 × 0.048 × 0.4932 = **$177.53** |
-| **4** | DF = 1 + (0.07 × 2) = 1.14. PV = 18,000 ÷ 1.14 = **$15,789.47** |
-| **5** | Payment A: PV = 12,000 ÷ (1 + 0.06×1) = 12,000 ÷ 1.06 = **$11,320.75**. Payment B: PV = 20,000 ÷ (1 + 0.06×3) = 20,000 ÷ 1.18 = **$16,949.15**. Total PV = **$28,269.90** |
-| **6** | PV must always be **less** than FV (because the discount factor is always greater than 1). If PV > FV, the student likely **multiplied** instead of divided by the discount factor — running the formula in the wrong direction. |
-| **7** | **Prediction:** PV will be lower. A higher discount rate means a larger denominator → smaller present value. **Verification:** DF = 1 + (0.12 × 2) = 1.24. New PV = 18,000 ÷ 1.24 = **$14,516.13** (vs. $15,789.47 at 7% — lower, as predicted). |
+**1.** Three forces reduce the value of future money: opportunity cost (the $15,000 today could be invested to earn a return), inflation (prices will likely rise, so $15,000 buys less in two years), and risk (the future payment might not arrive). Any two of these, explained clearly, is a complete answer.
+
+**2.** (a) I = $10,000 × 0.06 × 2 = **$1,200.00**. (b) Ending Balance = $10,000 + $1,200 = **$11,200.00** (or: $10,000 × (1 + 0.06 × 2)).
+
+**3.** T = 180 ÷ 365 = 0.4932 years. I = $7,500 × 0.048 × 0.4932 = **$177.53**.
+
+**4.** Discount Factor = 1 + (0.07 × 2) = 1.14. PV = $18,000 ÷ 1.14 = **$15,789.47**.
+
+**5.** `=PV(7%, 2, 0, 18000)` → **−$15,789.47**. The result is negative because it represents the amount you must *invest today* (an outflow) to have $18,000 in 2 years at 7%. It is not an error.
+
+**6.** Payment A: PV = $12,000 ÷ (1 + 0.06 × 1) = $12,000 ÷ 1.06 = **$11,320.75**. Payment B: PV = $20,000 ÷ (1 + 0.06 × 3) = $20,000 ÷ 1.18 = **$16,949.15**. Total PV = **$28,269.90**.
+
+**7.** PV must always be *less* than FV (because the discount factor is always greater than 1). If PV > FV, the student almost certainly **multiplied** by the discount factor instead of dividing — running the formula in the wrong direction.
 
 ---
 
-## 5 · Key Vocabulary
+## Key Vocabulary
 
-| Term                          | Definition                                                                                                                                                   |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Time Value of Money (TVM)** | The principle that a dollar today is worth more than a dollar in the future, because today's dollar can be invested to earn a return.                        |
-| **Principal (P)**             | The original amount of money borrowed, invested, or lent — before interest is added.                                                                        |
-| **Simple Interest**           | Interest calculated only on the original principal. Interest does not earn interest.                                                                         |
-| **Future Value (FV)**         | The value a present sum of money will reach at a specified future date, given a specific interest rate and time period.                                      |
-| **Present Value (PV)**        | The current worth of a future sum of money, calculated by discounting at a specific rate. Also called the discounted value.                                  |
-| **Discount Rate**             | The interest rate used to convert future cash flows back to present value. Reflects the investor's required return — opportunity cost plus a risk premium.   |
-| **Discount Factor**           | The denominator in the PV formula: `(1 + R × T)`. A number always greater than 1 that shrinks a future value down to its present equivalent.               |
-| **Discounted Cash Flow (DCF)**| A valuation method that finds the present value of a stream of future cash flows by discounting each one back to today and summing the results.             |
-| **Opportunity Cost**          | The return foregone by choosing one option over the next best alternative. In TVM, it is why money today is more valuable — you could be earning a return on it right now. |
-| **Exact Interest**            | Simple interest calculated using a 365-day year in the denominator for time conversion.                                                                      |
+| Term | Definition |
+|---|---|
+| **Time Value of Money (TVM)** | The principle that a dollar today is worth more than a dollar in the future, because today's dollar can be invested to earn a return. |
+| **Principal (P)** | The original amount of money borrowed or invested — before interest is added. |
+| **Simple Interest** | Interest calculated only on the original principal. Interest does not earn interest on itself. |
+| **Future Value (FV)** | The value a present sum will reach at a specified future date, given a specific interest rate and time. Also called maturity value or ending balance. |
+| **Present Value (PV)** | The current worth of a future sum, calculated by discounting at a specific rate. |
+| **Discount Rate** | The interest rate used to convert future cash flows back to present value. Reflects opportunity cost plus a risk premium. |
+| **Discount Factor** | The denominator in the PV formula: `(1 + R × T)`. Always greater than 1; shrinks future value down to its present equivalent. |
+| **Exact Interest** | Simple interest using a 365-day year for the time conversion. |
+| **Ordinary Interest** | Simple interest using a 360-day year (Banker's Rule) — produces slightly more interest, favoring the lender. |
+| **Growth Factor** | The term `(1 + R × T)` in the FV formula. Tells you how many times larger your money becomes. |
+| **Discounted Cash Flow (DCF)** | A method that finds the present value of a stream of future cash flows by discounting each one back to today and summing the results. |
+
+---
+
+*⚠ I Can statements for this lesson are pending Notion confirmation — verify before distributing to students.*
+
+*Pre-reading for in-class use only. Canvas quiz questions are separate.*

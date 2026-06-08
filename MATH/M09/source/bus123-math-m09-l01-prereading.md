@@ -1,190 +1,222 @@
 # BUS123 · MATH-M09 · L01 Pre-Reading
-## Simple Interest
+## Compound Interest & Future Value
 
-**Course:** Solving Business Problems with Technology · BUS123  
-**Track:** MATH · Module 09 · Lesson 01  
+**Course:** Solving Business Problems with Technology · BUS123
+**Track:** MATH · Module 09 · Lesson 01
 **Semester:** Fall 2026 · Gerrish School of Business, Endicott College
+**Case Study Company:** Meridian Advisory Group *(fictional — all data simulated for instructional purposes)*
 
 ---
 
 ## Connect to Prior Knowledge
 
-In Module 08 we worked with percentages as tools for comparing and adjusting values — markup rates, markdown percentages, and margin calculations. Interest is that same percentage logic applied across time. When a business borrows money or puts cash in a reserve account, the rate no longer just changes a price — it generates a dollar amount that grows the longer time passes. This lesson builds the first and simplest version of that relationship: **Simple Interest**.
+In M08 we worked with simple interest — a flat, linear amount earned only on the original principal. The ending balance grew by the same dollar amount every period: if $1,000 earns 5% simple interest, it adds exactly $50 per year, every year. The growth is predictable and constant.
+
+Today that changes. **Compound interest** earns interest on the accumulated balance, not just the original principal. In year one the result is identical. In year two, the interest from year one has itself started earning — so the growth amount is slightly larger. By year 30, the difference is dramatic. This is the mathematical engine behind every savings account, investment portfolio, and retirement fund — and it is why starting to save early matters far more than most people realize.
 
 ---
 
-## Concept Explanation
+## Core Concepts
 
-### What Is Simple Interest?
+### Part A — Simple vs. Compound: The Structural Difference
 
-Simple interest is interest calculated only on the original principal — the starting amount. It does not accumulate; it does not earn interest on itself. Every period produces the same fixed dollar amount. That makes it predictable, easy to calculate, and the foundation for everything more complex that follows.
+The formulas look similar but behave completely differently over time:
 
-The formula has three inputs:
+| | Simple Interest | Compound Interest |
+|---|---|---|
+| **Interest earns on** | Original principal only | Accumulated balance (principal + prior interest) |
+| **Growth shape** | Linear — same dollar amount every period | Exponential — growing amount every period |
+| **Formula** | FV = P × (1 + R × T) | FV = PV × (1 + i)ⁿ |
+| **Excel function** | No built-in function — build directly | `=FV(rate, nper, 0, −pv)` |
+
+The key structural change is the **exponent** n. In simple interest, time multiplies: (1 + R × T). In compound interest, time is an exponent: (1 + i)ⁿ. That one change — from multiplication to exponentiation — is what creates exponential growth.
+
+**$1,000 at 5%: how the two methods diverge over time**
+
+| Year | Simple Interest | Compound Interest | Difference |
+|---|---|---|---|
+| 1 | $1,050.00 | $1,050.00 | $0.00 |
+| 2 | $1,100.00 | $1,102.50 | $2.50 |
+| 3 | $1,150.00 | $1,157.63 | $7.63 |
+| 5 | $1,250.00 | $1,276.28 | $26.28 |
+| 10 | $1,500.00 | $1,628.89 | $128.89 |
+| 30 | $2,500.00 | $4,321.94 | **$1,821.94** |
+
+Year 1: identical. Year 30: compound interest produces 73% more than simple interest — with the same rate and the same principal. This is the **snowball effect**: each year's interest rolls forward and increases the base for the next calculation.
+
+---
+
+### Part B — The Compound Interest Formula
+
+$$FV = PV \times (1 + i)^n$$
 
 | Variable | Name | Definition |
-|----------|------|-----------|
-| **P** | Principal | The starting amount borrowed or invested |
-| **R** | Rate | The annual interest rate, expressed as a decimal |
-| **T** | Time | The length of the loan or investment, **in years** |
+|---|---|---|
+| **FV** | Future Value | The ending balance after compounding |
+| **PV** | Present Value | The starting principal today |
+| **i** | Rate per period | Annual rate ÷ compounding periods per year |
+| **n** | Number of periods | Years × compounding periods per year |
 
-**Simple Interest Formula:**
+> ⚠️ **Critical Rule: i and n must refer to the same unit of time.**
+>
+> If you compound annually, i = annual rate and n = years. If you compound monthly, i = annual rate ÷ 12 and n = years × 12. Mixing units — using an annual rate with monthly periods — produces wildly inflated results. This is the single most common compound interest error.
+
+**Worked Example — Meridian Advisory Group:**
+A client deposits $40,000 at 4% compounded annually for 3 years.
 
 ```
-I = P × R × T
+FV = $40,000 × (1.04)³
+FV = $40,000 × 1.124864
+FV = $44,994.56
 ```
 
-**Ending Balance (Maturity Value):**
-
-```
-Ending Balance = P + I
-```
-
-### The Time Variable — The Most Common Source of Error
-
-Rate is always stated as an **annual** rate. Time must therefore always be expressed in years. When a loan is stated in months or days, you must convert before using the formula.
-
-| Stated term | Time (T) in years |
-|-------------|-------------------|
-| 6 months | 6 ÷ 12 = **0.5** |
-| 18 months | 18 ÷ 12 = **1.5** |
-| 90 days (ordinary) | 90 ÷ 360 = **0.25** |
-| 90 days (exact) | 90 ÷ 365 = **0.2466…** |
-
-In Excel, enter the conversion directly in the cell — `=6/12` — rather than typing the decimal. This makes your formula auditable and error-resistant.
+Simple interest over the same period: $40,000 × (1 + 0.04 × 3) = $44,800. Compound interest adds an extra $194.56 — earned entirely from interest-on-interest over three years.
 
 ---
 
-## Two Methods for Day-Based Interest
+### Part C — Non-Annual Compounding
 
-When a loan term is expressed in days rather than months or years, two methods are in use:
+When interest compounds more frequently than once per year, **both rate and nper must be adjusted** to match the compounding period. The annual rate alone is not sufficient.
 
-### Method 1: Exact Interest (÷ 365)
+| Compounding | Rate per period | Number of periods |
+|---|---|---|
+| Annually | R ÷ 1 | Years × 1 |
+| Semiannually | R ÷ 2 | Years × 2 |
+| Quarterly | R ÷ 4 | Years × 4 |
+| Monthly | R ÷ 12 | Years × 12 |
 
-$$T = \frac{\text{exact number of days}}{365}$$
+**$25,000 at 6% for 5 years — what compounding frequency does:**
 
-Used by the **Federal Reserve** and the **US government**. Every day counts as 1/365 of a year.
+| Frequency | rate arg | nper arg | FV |
+|---|---|---|---|
+| Annually | 6% | 5 | $33,455.64 |
+| Quarterly | 1.5% | 20 | $33,672.54 |
+| Monthly | 0.5% | 60 | $33,725.46 |
 
-### Method 2: Ordinary Interest — Banker's Rule (÷ 360)
-
-$$T = \frac{\text{exact number of days}}{360}$$
-
-Used by most **commercial banks**. Dividing by the smaller number (360) produces a slightly larger value for T, which produces slightly more interest — in the bank's favor. This is intentional.
-
-**Practical impact:** On a $50,000 loan at 5% for 124 days, the difference between the two methods is approximately $11.79. Over a large loan portfolio, those differences add up significantly.
-
-**Excel tip:** When loan dates are in cells, subtract them to get the day count automatically:
-
-```
-=B4 - B3        ← gives exact day count
-```
-
-Then divide by 365 or 360 in the interest formula, depending on which method applies.
+More frequent compounding always produces a higher ending balance, because interest starts earning interest sooner. The practical difference between annual and monthly compounding on a $25,000 investment over 5 years is $269.82 — not enormous, but meaningful across a large portfolio.
 
 ---
 
-## Solving for an Unknown
+### Part D — The Excel =FV() Function
 
-The simple interest formula rearranges cleanly to solve for any one variable when the other two are known. This is essential in real financial analysis — you often have two of the three variables and need to find the third.
+Excel calculates Future Value automatically. You supply the inputs; Excel handles the exponent.
 
-| Solve for | Formula |
-|-----------|---------|
-| **Principal** | P = I ÷ (R × T) |
-| **Rate** | R = I ÷ (P × T) |
-| **Time** | T = I ÷ (P × R) |
-
-**Example — Meridian Advisory Group:**  
-A client's account shows $19.48 in interest charged at 9.5% for 90 days (ordinary interest). What was the principal?
+**Syntax:**
 
 ```
-T = 90 ÷ 360 = 0.25 years
-P = $19.48 ÷ (0.095 × 0.25)
-P = $19.48 ÷ 0.02375
-P = $820.21
+=FV(rate, nper, pmt, [pv], [type])
 ```
 
-In Excel: `=B5/(B3*B4)` where B3 = rate, B4 = time as decimal, B5 = interest amount.
+| Argument | Meaning | For lump sum problems |
+|---|---|---|
+| `rate` | Interest rate per period | Annual rate ÷ periods per year |
+| `nper` | Total number of periods | Years × periods per year |
+| `pmt` | Recurring payment per period | Enter **0** (lump sums only) |
+| `pv` | Starting principal | Enter as a **negative number** |
+| `type` | 0 = end of period (default) | Omit or enter 0 |
+
+**The Sign Convention:**
+Excel's financial functions assign direction to every cash flow. When you invest $40,000, that money leaves your pocket — so PV = **−$40,000**. The FV result comes back positive, representing the money returning to you.
+
+```
+=FV(4%, 3, 0, −40000)   →   $44,994.56   ✓
+=FV(4%, 3, 0, 40000)    →  −$44,994.56   ✗  (wrong sign — confusing, not an error)
+```
+
+Getting the sign wrong does not produce a formula error — it produces a plausible-looking answer with the wrong sign. Always sanity-check: FV should be **larger** than the absolute value of PV when the rate is positive.
+
+**Manual verification habit:** After every `=FV()` result, run: `=ABS(pv)*(1+rate)^nper`. Both must produce the same number. If they don't, your inputs are inconsistent.
+
+---
+
+### Part E — The Rule of 72
+
+Before reaching for Excel, use this mental math shortcut to estimate how long it takes an investment to double:
+
+$$\text{Years to Double} \approx \frac{72}{\text{Annual Rate (\%)}}$$
+
+| Rate | Approximate doubling time |
+|---|---|
+| 4% | 72 ÷ 4 = **18 years** |
+| 6% | 72 ÷ 6 = **12 years** |
+| 8% | 72 ÷ 8 = **9 years** |
+| 12% | 72 ÷ 12 = **6 years** |
+
+This is an approximation — use `=FV()` for precise answers. The Rule of 72 is a planning tool: useful in quick client conversations when you need a fast, credible estimate before opening a spreadsheet.
+
+**Verification:** At 7%, the Rule of 72 estimates 72 ÷ 7 ≈ 10.3 years. `=FV(7%, 10, 0, −1000)` = $1,967.15 — very close to $2,000. The rule is accurate.
 
 ---
 
 ## Formula Reference Table
 
 | Formula | Use |
-|---------|-----|
-| `I = P × R × T` | Calculate simple interest |
-| `Ending Balance = P + I` | Calculate maturity value |
-| `P = I ÷ (R × T)` | Solve for unknown principal |
-| `R = I ÷ (P × T)` | Solve for unknown rate |
-| `T = I ÷ (P × R)` | Solve for unknown time |
-| `T = days ÷ 365` | Exact interest conversion |
-| `T = days ÷ 360` | Ordinary interest (Banker's Rule) |
-
-**Excel equivalents:**
-
-| What you want | Excel formula |
-|--------------|---------------|
-| Simple interest | `=B2*B3*B4` |
-| Ending balance | `=B2+B6` |
-| Fractional year | `=6/12` or `=B4-B3` (dates) |
-| Principal (unknown) | `=B5/(B3*B4)` |
+|---|---|
+| `FV = PV × (1 + i)ⁿ` | Compound interest — manual calculation |
+| `=FV(rate, nper, 0, −pv)` | Compound FV — Excel (lump sum) |
+| `=ABS(pv)*(1+rate)^nper` | Manual verify — must match =FV() |
+| `rate per period = annual ÷ periods/yr` | Non-annual compounding adjustment |
+| `nper = years × periods/yr` | Non-annual compounding adjustment |
+| `72 ÷ rate (%) ≈ years to double` | Rule of 72 estimate |
 
 ---
 
 ## Check Your Understanding
 
-Answer these questions before class. You do not need to submit them — they prepare you for the in-class activity.
+Answer these questions before class. Show your work on questions 2–6.
 
-**1.** A business deposits $25,000 in an account at 3.5% annual interest for 2 years. What is the simple interest earned?
+**1.** What is the structural difference between simple interest and compound interest? Your answer should explain *why* compound interest grows exponentially while simple interest grows linearly — not just state that they use different formulas.
 
-**2.** Using the same scenario, what is the ending balance?
+**2.** $1,000 is invested at 6% compounded annually for 5 years. Calculate the FV using the formula FV = PV × (1 + i)ⁿ. Show your work including the exponent calculation.
 
-**3.** A loan is taken out for 9 months at 6% annual interest on $12,000. What is T in this problem?
+**3.** Using the same scenario as Question 2, write the Excel `=FV()` formula exactly as you would type it into a cell. Include the correct sign on pv.
 
-**4.** Using your answer to Question 3, calculate the simple interest and ending balance.
+**4.** Use the Rule of 72 to estimate how long it takes to double $5,000 at 8% annual interest. Then verify with `=FV()` at your estimated number of years — is the result close to $10,000?
 
-**5.** Meridian Advisory Group has a client who paid $450 in interest on a 1-year loan at 4.5%. What was the original principal?
+**5.** A Meridian client invests $25,000 at 6% for 5 years. Calculate the FV under (a) annual compounding and (b) monthly compounding. For monthly, show the adjusted rate and nper values before calculating.
 
-**6.** A $10,000 loan at 8% runs from April 1 to September 18 (170 days). Calculate the interest under (a) exact interest and (b) ordinary interest. Which produces more interest, and why?
+**6.** True or False: In Excel's =FV() function, pv should always be entered as a negative number for investment problems. Explain why in one or two sentences.
 
-**7.** True or False: If the rate doubles but everything else stays the same, the simple interest exactly doubles. Explain your reasoning.
+**7.** A Meridian client considers two options: (a) invest $15,000 today at 5% compounded annually for 10 years, or (b) invest the same $15,000 at 5% compounded monthly for 10 years. Which produces more? Calculate both and explain the difference.
 
 ---
 
 ## Answer Key
 
-**1.** I = $25,000 × 0.035 × 2 = **$1,750**
+**1.** Simple interest applies the rate to the original principal only — the same dollar amount is added every period, producing linear growth. Compound interest applies the rate to the accumulated balance, so each period's interest is slightly larger than the last because prior interest is now itself earning a return. The exponent n is the structural cause: (1+i)ⁿ raises the growth factor to a power, producing exponential rather than linear growth.
 
-**2.** Ending Balance = $25,000 + $1,750 = **$26,750**
+**2.** FV = $1,000 × (1.06)⁵ = $1,000 × 1.3382 = **$1,338.23**.
 
-**3.** T = 9 ÷ 12 = **0.75 years**
+**3.** `=FV(6%, 5, 0, −1000)` → $1,338.23. PV is negative because the $1,000 is money leaving the investor's pocket (an outflow).
 
-**4.** I = $12,000 × 0.06 × 0.75 = **$540**; Ending Balance = **$12,540**
+**4.** 72 ÷ 8 = **9 years** (estimate). Verification: `=FV(8%, 9, 0, −5000)` = $9,993.50 — very close to $10,000. The Rule of 72 is accurate here.
 
-**5.** P = $450 ÷ (0.045 × 1) = **$10,000**
+**5.** (a) Annual: rate = 6%, nper = 5. `=FV(6%, 5, 0, −25000)` = **$33,455.64**. (b) Monthly: rate = 6%/12 = 0.5%, nper = 5 × 12 = 60. `=FV(0.5%, 60, 0, −25000)` = **$33,725.46**. Monthly produces $269.82 more.
 
-**6.**  
-(a) Exact: I = $10,000 × 0.08 × (170/365) = **$372.60**  
-(b) Ordinary: I = $10,000 × 0.08 × (170/360) = **$377.78**  
-Ordinary produces more because dividing by 360 (smaller) makes T larger, increasing interest. The bank benefits.
+**6.** **True.** pv represents the starting investment — money leaving the investor's pocket on day one. Excel's sign convention treats outflows as negative. Entering pv as positive reverses the sign of the FV result, producing a negative FV that is correct in magnitude but wrong in directional meaning.
 
-**7.** **True.** Because I = P × R × T, and rate R appears as a direct multiplier with no exponent, doubling R exactly doubles I. This is a property of simple interest — not true for compound interest.
+**7.** (a) Annual: `=FV(5%, 10, 0, −15000)` = **$24,433.42**. (b) Monthly: `=FV(5%/12, 120, 0, −15000)` = **$24,706.71**. Monthly produces **$273.29 more**. The difference arises because monthly compounding applies the rate more frequently, so interest begins earning on interest 12 times per year instead of once.
 
 ---
 
 ## Key Vocabulary
 
 | Term | Definition |
-|------|-----------|
-| **Simple Interest** | Interest calculated only on the original principal; does not compound |
-| **Principal (P)** | The original amount borrowed or invested |
-| **Rate (R)** | The annual interest rate, expressed as a decimal in calculations |
-| **Time (T)** | The duration of the loan or investment, expressed in years |
-| **Maturity Value** | The total amount owed or received at the end of the term; also called Ending Balance |
-| **Exact Interest** | Day-based interest calculated using 365 days per year |
-| **Ordinary Interest** | Day-based interest calculated using 360 days per year (Banker's Rule) |
-| **Banker's Rule** | The convention of using 360 days to calculate daily interest, favoring the lender |
+|---|---|
+| **Compound Interest** | Interest calculated on the accumulated balance — principal plus all prior interest earned. |
+| **Future Value (FV)** | The value of an investment at a specific future date, after compounding at a given rate and for a given number of periods. |
+| **Present Value (PV)** | The current worth of a future amount. In =FV(): the starting principal, entered as negative. |
+| **i (rate per period)** | The interest rate per compounding period. Annual rate ÷ compounding periods per year. |
+| **n (number of periods)** | Total number of compounding periods. Years × compounding periods per year. |
+| **Compounding** | The process of earning interest on previously earned interest. The source of exponential growth. |
+| **Non-annual Compounding** | Compounding more than once per year (monthly, quarterly, semiannual). Requires adjusting both rate and nper. |
+| **Sign Convention** | In Excel TVM functions, outflows (money paid out) are negative; inflows (money received) are positive. |
+| **Rule of 72** | Mental math shortcut: 72 ÷ annual rate (%) ≈ years to double an investment. An approximation — verify with =FV(). |
+| **Snowball Effect** | The accelerating growth dynamic of compound interest: each period's interest increases the base for the next calculation. |
+| **Growth Factor** | The term (1 + i)ⁿ. Tells you how many times larger your principal becomes after n periods at rate i. |
 
 ---
 
-*⚠ I Can statements for this lesson are instructor drafts — not yet confirmed in Notion. Confirm before distributing to students.*
+*⚠ I Can statements for this lesson are pending Notion confirmation — verify before distributing to students.*
 
-*Pre-reading for in-class use only. Questions go in the Canvas homework quiz — do not embed in this document.*
+*Pre-reading for in-class use only. Canvas quiz questions are separate.*

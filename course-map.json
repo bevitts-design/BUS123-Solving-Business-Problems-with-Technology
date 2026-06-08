@@ -381,23 +381,37 @@
       "id": "math-m09-l01",
       "track": "math",
       "module": "M09",
-      "lesson": "L01",
-      "title": "Compounding and Future Value",
+      "lesson": "L01-L02",
+      "title": "Compounding, Future Value, PMT, and Annuities",
       "status": "Coming Soon",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Compound interest",
         "Future value",
+        "PMT function",
+        "Annuities",
         "Excel modeling"
       ],
       "materials": [
         {
           "type": "Slides",
+          "label": "L01 Slides",
           "path": "MATH/M09/bus123-math-m09-l01-slides.html"
         },
         {
           "type": "Starter Workbook",
+          "label": "L01 Starter Workbook",
           "path": "MATH/M09/bus123-math-m09-l01-starter.xlsx"
+        },
+        {
+          "type": "Slides",
+          "label": "L02 Slides",
+          "path": "MATH/M09/bus123-math-m09-l02-slides.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "label": "L02 Starter Workbook",
+          "path": "MATH/M09/bus123-math-m09-l02-starter.xlsx"
         },
         {
           "type": "Interactive Practice",

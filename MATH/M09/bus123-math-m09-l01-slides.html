@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BUS123 · MATH-M09-L01 · Simple Interest, Compound Interest &amp; Present Value</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATH-M09-L01 · Compound Interest &amp; Future Value</title>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
-
-<script type="application/json" id="speaker-notes">[
-  "Welcome to MATH-M09. Today we cover three connected ideas: simple interest, compound interest, and present value. This module connects directly to Meridian Advisory Group's core business — they deal with loans, investments, and TVM every single day.",
-  "Here's what we're covering today. Part 1 is simple interest — the foundation. Part 2 is compound interest and future value — where Excel's FV function lives. Part 3 is present value — running the math in reverse. We finish with a common mistake that trips up almost every student.",
-  "By the end of today you should be able to do all four of these things in Excel without looking at notes. The FV and PV functions will show up on the exam and in the capstone project.",
-  "You learned markup, markdown, and COGS in M06. Those were about what things cost and how businesses price them. Today we move to the cost of money itself — what it costs to borrow, and what it earns when invested. Same logic, different context.",
-  "Part 1: Simple Interest. This is the starting point for all interest math.",
-  "Quick hook: Imagine you just got your first credit card with a $1,000 limit and a 22% APR. If you charge $1,000 and only make minimum payments, how much do you actually pay back? Spoiler: it's not $1,000. That gap between what you borrowed and what you paid is interest — and understanding how it works is one of the most valuable things you'll learn this semester.",
-  "Simple interest has three ingredients. P is your principal — the starting amount. R is the annual rate — always stated as a percent. T is time — always converted to years. The formula is just multiplication: I = P × R × T. That's it.",
-  "At Meridian, a client takes a short-term bridge loan of $40,000 at 6% for 9 months. Watch how T converts: 9 months divided by 12 = 0.75 years. Interest = $40,000 × 0.06 × 0.75 = $1,800. Ending balance = $40,000 + $1,800 = $41,800. In Excel: Interest goes in one cell as =B3*B4*B5. Ending balance is =B3+B7.",
-  "There are two ways banks count days. Exact interest uses 365 days — used by the Federal Reserve and government. Ordinary interest uses 360 days — used by most commercial banks. The 360-day method charges slightly more interest because the denominator is smaller. For a date-based problem, T = (End Date − Start Date) / 360 or 365. In Excel, just subtract the two date cells and divide.",
-  "Sometimes you know the interest but not the principal, rate, or time. You just rearrange I = P × R × T algebraically. For P: divide I by (R × T). For R: divide I by (P × T). For T: divide I by (P × R). These rearrangements map directly to Excel formulas — you're just changing which cell is the output.",
-  "Part 2: Compound Interest and Future Value. This is where money really grows.",
-  "Here's the real-world hook: If you invest $5,000 at age 22 in an S&P 500 index fund averaging 10% per year and never touch it, you'll have roughly $293,000 by age 65. If you wait until age 32 to start, you end up with about $113,000. A ten-year delay costs you $180,000 — because of compounding. This is the single most important financial concept you'll ever learn.",
-  "With simple interest, you always earn interest only on the original principal. With compound interest, you earn interest on your interest too. After Year 1 at 5%: simple gives $105. Compound gives $105. Same. After Year 2: simple gives $110. Compound gives $110.25. The extra $0.25 is interest on last year's interest — that's the snowball starting to roll.",
-  "The Excel function is FV — Future Value. Syntax first: =FV(rate, nper, pmt, [pv], [type]). Rate is the per-period rate — divide annual by periods. Nper is total periods — multiply years by periods per year. Pmt is 0 for lump-sum problems. PV must be negative — it's a cash outflow. For monthly compounding: =FV(0.06/12, 5*12, 0, -10000). The negative sign on PV is not optional — Excel needs it to return a positive future value.",
-  "Meridian advises a client investing $25,000 for 5 years at 6% annually. Excel syntax: =FV(6%, 5, 0, -25000) → $33,455.64. Manual check: FV = PV × (1 + i)^n = 25000 × (1.06)^5 = 25000 × 1.3382 = $33,455. The FV function and the manual formula give the same answer — that's your built-in error check. Always verify both match.",
-  "Compounding frequency matters a lot. Same $25,000 at 6% for 5 years: annually (n=5, r=6%) → $33,455.64. Semiannually (n=10, r=3%) → $33,598.44. Monthly (n=60, r=0.5%) → $33,745.97. More compounding periods = more growth. In Excel, you adjust by dividing the rate and multiplying nper by the number of periods per year. The Rule of 72: divide 72 by the rate to estimate years to double. At 6%: 72/6 = 12 years.",
-  "Part 3: Present Value. Running the future backward to today.",
-  "Present value answers a different question: instead of 'how much will this grow to?', it asks 'how much is that future payment worth to me right now?' Meridian uses this constantly — if a client is promised $50,000 in 5 years, what's that worth today if they could earn 6%? PV tells you. It's compound interest in reverse — discounting instead of growing.",
-  "Excel function: =PV(rate, nper, pmt, [fv], [type]). Rate and nper work exactly the same as FV. Pmt is 0 for lump sums. FV is the future amount — enter it as a positive number. The result comes back negative because it's a cash outflow today. Meridian example: a client will receive $50,000 in 5 years. Discount rate 6%. =PV(6%, 5, 0, 50000) → ($37,362.91). That means $37,363 today equals $50,000 in 5 years at 6%.",
-  "Common Mistake: Forgetting the negative sign on PV in FV calculations — or using the wrong sign convention entirely. If you enter PV as a positive number in =FV(), Excel returns a negative result. Students see a negative number and think they made an error, so they flip it — then get confused when PV gives a different sign. The rule: cash you invest TODAY goes in as negative. Cash you receive in the FUTURE comes back as positive. This is the number-one source of wrong answers on the exam.",
-  "Real-world practice: Meridian is evaluating two options for a client. Option A: invest $20,000 today at 5% for 10 years. Option B: receive a lump sum of $35,000 in 10 years. Use FV to find Option A's future value, then compare to $35,000 — or use PV to find Option B's present value and compare to $20,000. Both approaches work. Which would you choose? Build this in Excel and see.",
-  "Three formulas. Three Excel functions. One logic: money has a time value. Simple interest: I = P × R × T, Ending Balance = P + I, no Excel function needed. Compound FV: =FV(rate, nper, 0, -pv) — money growing forward. Present Value: =PV(rate, nper, 0, fv) — discounting back to today. These three are the foundation of every financial calculation in this course and in professional finance.",
-  "Next lesson we extend this to annuities — what happens when you make regular payments instead of a single lump sum. The PMT function enters the picture. You'll also see how loans are structured: why your first mortgage payment is mostly interest, and how that changes over time. Start thinking about any recurring payment in your life — that's an annuity.",
-  "Questions? Take 5 minutes now and build the Meridian FV example in Excel from scratch — $25,000, 6%, 5 years. Verify your FV function result matches the manual calculation. If they match, you've got it."
-]</script>
-
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome back. Last module we moved money forward and backward with simple interest — linear growth. Today: compound interest. Same logic, one change: the interest earns interest. That changes everything over long horizons.",
+  "Three parts. Part 1: simple vs compound comparison — same money, same rate, dramatically different outcomes. Part 2: FV equals PV times (1+i) to the n and the =FV() function. Part 3: non-annual compounding and Rule of 72.",
+  "Four I Can statements — all have an Excel component. The =FV() function is the star today. pmt stays zero — we add recurring payments in L02.",
+  "Bridge from M08. Simple interest: same dollar amount every period, linear. Compound interest: interest earns interest, exponential. The exponent n is the structural difference — that single change drives everything.",
+  "The $1,000 comparison. Year 1: identical. Year 2: compound pulls ahead by $2.50 — tiny. Year 30: compound has $4,321 vs simple interest $2,500. The gap is $1,821 on a $1,000 investment. Same rate, same principal.",
+  "The formula. FV = PV times (1+i)^n. Two things to remember: i is rate per compounding period, not annual rate. n is total periods, not years. If compounding is quarterly, i = annual/4 and n = years times 4.",
+  "=FV() syntax. Rate, nper, pmt, pv. For lump sums: pmt = 0, pv = negative. Excel handles the exponent. Always show syntax first, then manual verification below.",
+  "Sign convention. PV negative because money leaves your pocket on day one. FV comes back positive. Entering PV as positive flips the sign — no error, just wrong meaning. Always sanity check: is FV larger than PV?",
+  "Worked example. $40,000 at 4% for 3 years. Excel: =FV(4%,3,0,-40000) = $44,994.56. Year by year: 41,600 then 43,264 then 44,994.56. Simple interest would give $44,800 — compound adds $194.56 over just 3 years.",
+  "Excel worksheet demo. Each input in its own labeled cell. FV formula uses cell references. Manual verify row must match. Students should be able to trace every argument back to its source cell.",
+  "Section break. Non-annual compounding. Same principal, same annual rate, same years — different results. The rule: always adjust BOTH rate and nper to match the compounding period.",
+  "Frequency table. $25,000 at 6% for 5 years. Annual: $33,455. Monthly: $33,725. Daily: $33,746. More frequent = higher FV. The gap between annual and daily is $290. At higher rates or longer horizons the difference is much larger.",
+  "Rule of 72. 72 divided by the annual rate gives approximate years to double. At 6%: 12 years. At 9%: 8 years. Quick estimation tool — not exact. Verify with =FV(). Use it for planning conversations.",
+  "Quarterly worked example. Same $25,000, 6%, 5 years but quarterly. Rate = 6%/4 = 1.5%. Nper = 5*4 = 20. =FV(1.5%,20,0,-25000) = $33,672.54. The worksheet shows rate and nper cells calculated from the inputs.",
+  "Common mistake. Adjusting nper to 20 for quarterly but leaving rate at 6% instead of 1.5%. Returns $80,178 — wildly inflated. No error message. The fix: rate and nper must always refer to the same unit of time.",
+  "Student practice. Three problems. A: annual compounding with =FV(). B: same numbers monthly — adjust both. C: Rule of 72 estimate then verify with =FV(). 8 minutes.",
+  "Discussion. Computational: dollar difference between annual and monthly on $25,000 at 6% over 5 years. Conceptual: why exponential vs linear. Applied: 4% annual vs 3.8% monthly on $100,000 over 10 years — which wins?",
+  "Three takeaways. The exponent FV=PV(1+i)^n. The function =FV(rate,nper,0,-pv). Rule of 72. Next: PMT and annuities — the pmt argument we left at zero today becomes the main event.",
+  "Preview of M09-L02. Money goes in or out every period. Mortgages, car loans, retirement contributions. =PMT() calculates the required payment. Same TVM logic, new variable.",
+  "That is MATH-M09-L01. Questions? Key insight: interest earns interest. Same rate, exponentially more money the longer time passes. =FV() handles the exponent. Signs matter. Periods must match rates."
+]
+</script>
 <style>
   /* ============================================================
      BUS123 v2 Hybrid Design System — MATH-M09-L01
@@ -756,1000 +752,450 @@
     line-height: 1.5;
   }
 
+
+  .r72-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .r72-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px; text-align: center; }
+  .r72-rate { font-family: 'Bodoni Moda',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+  .r72-years { font-family: 'DM Sans',sans-serif; font-size: 13px; color: var(--text-soft); }
+  .r72-years strong { color: var(--text); }
 </style>
 </head>
 <body>
-
 <div class="deck-shell">
-
-  <!-- Tab Strip -->
-  <nav class="tab-strip" id="tab-strip">
+  <nav class="tab-strip">
     <button class="tab-btn" data-section="1" onclick="jumpSection(1)">Part 1</button>
     <button class="tab-btn" data-section="2" onclick="jumpSection(2)">Part 2</button>
     <button class="tab-btn" data-section="3" onclick="jumpSection(3)">Part 3</button>
-    <div class="tab-spacer"></div>
     <button class="tab-btn" data-section="4" onclick="jumpSection(4)">Wrap</button>
+    <div class="tab-spacer"></div>
   </nav>
-
-  <!-- Slide Viewport -->
   <div class="slide-viewport" id="viewport">
     <div class="slide-scaler" id="scaler">
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 01 · Title  (dark)
-           ═══════════════════════════════════════════ -->
+      <!-- SLIDE 0 · Title -->
       <section class="slide dark active" data-index="0" data-section="0">
-        <!-- Geometric decoration -->
-        <div class="geo" style="width:420px;height:420px;top:-120px;right:-80px;background:radial-gradient(circle, rgba(184,132,61,0.08) 0%, transparent 70%);"></div>
-        <div class="geo" style="width:280px;height:280px;bottom:-60px;left:60px;background:radial-gradient(circle, rgba(74,124,94,0.07) 0%, transparent 70%);"></div>
-        <div class="geo" style="width:180px;height:180px;top:140px;right:220px;background:radial-gradient(circle, rgba(156,74,43,0.06) 0%, transparent 70%);"></div>
-
         <div class="slide-inner">
           <div class="gradient-bar"></div>
-          <div class="eyebrow gold anim-1">BUS123 · MATH-M09-L01 · Meridian Advisory Group</div>
-          <h1 class="display anim-2">Simple Interest,<br><em>Compound Interest</em><br>&amp; Present Value</h1>
-          <div class="subtitle-italic anim-3">The time value of money — and why it matters to you right now.</div>
-          <div style="margin-top:auto; display:flex; gap:40px; anim-4" class="anim-4">
-            <div class="stat-block">
-              <div class="stat-num">$0.25</div>
-              <div class="stat-label">extra earned in Year 2 on $100 at 5%<br>compound vs. simple</div>
-            </div>
-            <div class="stat-block">
-              <div class="stat-num" style="color:var(--sage)">$180K</div>
-              <div class="stat-label">lost by waiting 10 years<br>to start investing</div>
-            </div>
+          <div class="eyebrow gold anim-1">MATH-M09 · L01 &nbsp;·&nbsp; Meridian Advisory Group</div>
+          <h1 class="display anim-2">Compound Interest<br>&amp; <em>Future Value</em></h1>
+          <p class="subtitle-italic anim-3">BUS123 · Solving Business Problems with Technology</p>
+          <div style="margin-top:auto;display:flex;gap:32px;" class="anim-4">
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Track</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Business Math</div></div>
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Semester</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Fall 2026</div></div>
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">School</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Gerrish School of Business</div></div>
           </div>
         </div>
+        <div class="geo" style="width:320px;height:320px;background:radial-gradient(circle,rgba(184,132,61,0.08),transparent 70%);right:-60px;top:-60px;"></div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 02 · Agenda  (paper)
-           ═══════════════════════════════════════════ -->
+      <!-- SLIDE 1 · Agenda -->
       <section class="slide paper" data-index="1" data-section="0">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">02</span>
-            <span class="eyebrow">Today's Agenda</span>
-          </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">Where We're Going</h2>
+          <div class="eyebrow anim-1">Today's Plan</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
+          <div class="title-rule"></div>
           <div class="agenda-list anim-3">
-            <div class="agenda-item">
-              <div class="agenda-num sage">1</div>
-              <div>
-                <div class="agenda-label">Simple Interest</div>
-                <div class="agenda-sub">I = P × R × T · Exact vs. Ordinary · Solving for unknowns</div>
-              </div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num gold">2</div>
-              <div>
-                <div class="agenda-label">Compound Interest &amp; Future Value</div>
-                <div class="agenda-sub">=FV() · Compounding frequency · The Rule of 72</div>
-              </div>
-            </div>
-            <div class="agenda-item">
-              <div class="agenda-num terra">3</div>
-              <div>
-                <div class="agenda-label">Present Value</div>
-                <div class="agenda-sub">=PV() · Discounting · Running the math in reverse</div>
-              </div>
-            </div>
+            <div class="agenda-item"><div class="agenda-num sage">1</div><div><div class="agenda-label">Simple vs. Compound — The Key Difference</div><div class="agenda-sub">Why interest-on-interest changes everything over time</div></div></div>
+            <div class="agenda-item"><div class="agenda-num gold">2</div><div><div class="agenda-label">FV = PV × (1 + i)ⁿ &amp; the =FV() Function</div><div class="agenda-sub">The exponent · sign convention · =FV() syntax and worked examples</div></div></div>
+            <div class="agenda-item"><div class="agenda-num terra">3</div><div><div class="agenda-label">Non-Annual Compounding &amp; Rule of 72</div><div class="agenda-sub">Adjusting rate and nper · frequency table · doubling time estimates</div></div></div>
+            <div class="agenda-item"><div class="agenda-num" style="color:var(--muted);">4</div><div><div class="agenda-label">Meridian Activity + Discussion</div><div class="agenda-sub">Build FV models, compare frequencies, defend your recommendation</div></div></div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 03 · Learning Objectives  (paper)
-           ═══════════════════════════════════════════ -->
+      <!-- SLIDE 2 · I Can Statements -->
       <section class="slide paper" data-index="2" data-section="0">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">03</span>
-            <span class="eyebrow">Learning Objectives</span>
-          </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">I Can Statements</h2>
+          <div class="eyebrow sage anim-1">Learning Objectives</div>
+          <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
+          <div class="title-rule sage"></div>
           <div class="obj-grid anim-3">
-            <div class="obj-item">
-              <div class="obj-icon sage">📐</div>
-              <div class="obj-text"><strong>Simple Interest</strong> Calculate interest and ending balance for any principal, rate, and time period — including fractional years and day-count methods.</div>
-            </div>
-            <div class="obj-item">
-              <div class="obj-icon gold">📈</div>
-              <div class="obj-text"><strong>Future Value</strong> Use =FV() to project lump-sum growth under compound interest with any compounding frequency.</div>
-            </div>
-            <div class="obj-item">
-              <div class="obj-icon gold">🔄</div>
-              <div class="obj-text"><strong>Solve for Unknowns</strong> Rearrange the simple interest formula to find principal, rate, or time when given the other variables.</div>
-            </div>
-            <div class="obj-item">
-              <div class="obj-icon terra">⬅️</div>
-              <div class="obj-text"><strong>Present Value</strong> Use =PV() to discount a future lump sum back to its current value, and explain why the result is negative.</div>
-            </div>
+            <div class="obj-item"><div class="obj-icon sage">📐</div><div class="obj-text"><strong>Simple vs. Compound</strong>Explain the difference and calculate FV using both methods for a lump sum.</div></div>
+            <div class="obj-item"><div class="obj-icon gold">📈</div><div class="obj-text"><strong>=FV() Function</strong>Use =FV(rate, nper, 0, −pv) in Excel with correct sign convention.</div></div>
+            <div class="obj-item"><div class="obj-icon terra">🔢</div><div class="obj-text"><strong>Non-Annual Compounding</strong>Adjust both rate and nper for quarterly, monthly, and semiannual compounding.</div></div>
+            <div class="obj-item"><div class="obj-icon" style="background:rgba(74,124,94,0.12);">⚡</div><div class="obj-text"><strong>Rule of 72</strong>Estimate doubling time using 72 ÷ rate and verify with =FV().</div></div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 04 · Recap / Bridge  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="3" data-section="0">
+      <!-- SLIDE 3 · Bridge from M08 -->
+      <section class="slide paper" data-index="3" data-section="1">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">04</span>
-            <span class="eyebrow">Connecting to M06</span>
+          <div class="eyebrow sage anim-1">Part 1 · Building on M08</div>
+          <div class="header-row anim-2"><h2 class="slide-title">From Simple to Compound — One Change, Exponential Impact</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div class="card" style="border-left:3px solid var(--sage);">
+              <h4 class="sage">M08 — Simple Interest (Linear)</h4>
+              <p class="body-text" style="font-size:13px;margin-bottom:10px;">Interest calculated on the <strong>original principal only</strong>. Same dollar amount every period.</p>
+              <div class="math-panel"><div class="label">FV = P × (1 + R × T)</div><code>Flat growth — same $ added every year</code></div>
+            </div>
+            <div class="card" style="border-left:3px solid var(--gold);">
+              <h4 class="gold">M09 — Compound Interest (Exponential)</h4>
+              <p class="body-text" style="font-size:13px;margin-bottom:10px;">Interest calculated on the <strong>accumulated balance</strong>. The base grows every period.</p>
+              <div class="formula-panel" style="margin-bottom:0;"><div class="label">FV = PV × (1 + i)ⁿ</div><code><span class="comment">// Exponential growth — more every year</span></code></div>
+            </div>
           </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">From the Cost of Goods to the Cost of Money</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div>
-              <div class="card tinted">
-                <h4 class="sage">What We Built in M06</h4>
-                <ul class="bullet-list sage" style="margin-top:0;">
-                  <li>Tidal Goods inventory — COGS, markup, markdown</li>
-                  <li>Unit prices — what it costs to stock and sell a product</li>
-                  <li>Overhead — the fixed costs behind every transaction</li>
-                </ul>
-              </div>
-              <div class="highlight-box sage" style="margin-top:14px;">
-                <p>That was the cost of <strong>stuff</strong>. Today we move to the cost of <strong>money itself</strong> — what you pay to borrow it, and what you earn when you invest it.</p>
-              </div>
-            </div>
-            <div>
-              <div class="card">
-                <h4 class="gold">Meridian Advisory Group</h4>
-                <ul class="bullet-list gold" style="margin-top:0;">
-                  <li>Financial services firm — advises clients on loans, savings, and investments</li>
-                  <li>Every calculation today maps to something Meridian does for clients daily</li>
-                  <li>Same formulas, real stakes — retirement savings, bridge loans, bond pricing</li>
-                </ul>
-              </div>
-            </div>
+          <div class="highlight-box gold anim-4" style="margin-top:14px;">
+            <p><strong>The key change:</strong> simple uses R×T (multiplication). Compound uses (1+i)ⁿ (exponentiation). The exponent n is what makes the snowball roll.</p>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 05 · Section Break — Part 1  (dark)
-           ═══════════════════════════════════════════ -->
-      <section class="slide dark" data-index="4" data-section="1">
-        <div class="geo" style="width:500px;height:500px;top:-150px;right:-100px;background:radial-gradient(circle, rgba(74,124,94,0.1) 0%, transparent 65%);"></div>
-        <div class="geo" style="width:200px;height:200px;bottom:60px;left:80px;background:radial-gradient(circle, rgba(74,124,94,0.08) 0%, transparent 70%);"></div>
+      <!-- SLIDE 4 · $1,000 comparison table -->
+      <section class="slide paper" data-index="4" data-section="1">
         <div class="slide-inner">
-          <div class="gradient-bar" style="background:linear-gradient(90deg, var(--sage), rgba(74,124,94,0.3));"></div>
-          <div class="pill sage">Part 1 of 3</div>
-          <h2 class="section-title" style="color:var(--sage);">Simple Interest</h2>
-          <p class="body-text dark" style="max-width:520px;font-size:17px;margin-top:8px;">The foundation. Before you can understand compounding, you need to own I = P × R × T — and know what each variable actually represents.</p>
-          <div style="margin-top:auto;display:flex;gap:32px;">
-            <div class="stat-block"><div class="stat-num" style="font-size:36px;color:var(--sage);">3</div><div class="stat-label">unknowns you<br>can solve for</div></div>
-            <div class="stat-block"><div class="stat-num" style="font-size:36px;">2</div><div class="stat-label">day-count<br>methods</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 06 · Simple Interest Hook  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="5" data-section="1">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">06</span>
-            <span class="eyebrow sage">Part 1 · Simple Interest</span>
-          </div>
-          <div class="title-rule sage anim-1"></div>
-          <h2 class="slide-title anim-2">Your First Credit Card</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card">
-                <h4 class="terra">The Scenario</h4>
-                <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-soft);line-height:1.6;">You charge <strong style="color:var(--text);">$1,000</strong> on a card with a <strong style="color:var(--terra);">22% APR</strong>. You only make minimum payments. How much do you actually pay back over time?</p>
-                <div class="highlight-box terra" style="margin-top:10px;padding:10px 14px;">
-                  <p style="font-size:13px;">The gap between <strong>$1,000 borrowed</strong> and what you ultimately pay is <strong>interest</strong>. Understanding how it compounds is one of the most financially important things you'll learn this semester.</p>
-                </div>
-              </div>
-              <div class="card tinted">
-                <h4 class="sage">Simple Interest: The Core Formula</h4>
-                <p style="font-family:'DM Sans',sans-serif;font-size:23px;font-weight:700;color:var(--text);letter-spacing:0.01em;">I = P × R × T</p>
-                <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-soft);margin-top:6px;"><strong>P</strong> = Principal (starting amount) &nbsp;·&nbsp; <strong>R</strong> = Annual rate &nbsp;·&nbsp; <strong>T</strong> = Time in years</p>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card">
-                <h4>Ending Balance</h4>
-                <p style="font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;color:var(--text);">Ending Balance = P + I</p>
-                <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:var(--text-soft);margin-top:8px;">Also called <strong>Maturity Value</strong> in the textbook.</p>
-              </div>
-              <div class="card tinted">
-                <h4 class="sage">Key Conversion Rule</h4>
-                <ul class="bullet-list sage" style="margin-top:0;">
-                  <li><strong>T is always in years</strong> — convert months by dividing by 12</li>
-                  <li>6 months = 0.5, 9 months = 0.75, 18 months = 1.5</li>
-                  <li>R is always the <strong>annual</strong> rate — don't adjust it for monthly</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 07 · Simple Interest — Meridian Example + Excel  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="6" data-section="1">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">07</span>
-            <span class="eyebrow sage">Part 1 · Simple Interest</span>
-          </div>
-          <div class="title-rule sage anim-1"></div>
-          <h2 class="slide-title anim-2">Meridian Client Bridge Loan</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="sage">The Scenario</h4>
-                <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--text-soft);line-height:1.6;">A Meridian client needs a <strong style="color:var(--text);">$40,000 bridge loan</strong> at <strong style="color:var(--text);">6% annual rate</strong> for <strong style="color:var(--text);">9 months</strong>. Calculate the interest and ending balance.</p>
-              </div>
-              <div class="formula-panel">
-                <div class="label">Excel Formula</div>
-                <code><span class="fn">=</span><span class="val">B3</span> <span class="fn">*</span> <span class="val">B4</span> <span class="fn">*</span> <span class="val">B5</span></code>
-              </div>
-              <div class="math-panel">
-                <div class="label">Manual Math</div>
-                <code>T = 9 ÷ 12 = <span class="result">0.75 years</span>
-I = $40,000 × 0.06 × 0.75
-I = <span class="result">$1,800.00</span>
-Ending = $40,000 + $1,800 = <span class="result">$41,800.00</span></code>
-              </div>
-            </div>
-            <div>
-              <div class="xls-wrap">
-                <table class="xls-table">
-                  <thead><tr><th class="row-num">#</th><th>A</th><th>B</th><th>D (formula)</th></tr></thead>
-                  <tbody>
-                    <tr><td class="row-num">1</td><td colspan="3" style="color:var(--xls-header-text);background:var(--xls-header-bg);font-weight:700;letter-spacing:0.04em;">Simple Interest</td></tr>
-                    <tr><td class="row-num">2</td><td>Period</td><td><strong>9 Months</strong></td><td></td></tr>
-                    <tr><td class="row-num">3</td><td>Principal</td><td>$40,000</td><td></td></tr>
-                    <tr><td class="row-num">4</td><td>Rate (%)</td><td>6.00%</td><td></td></tr>
-                    <tr><td class="row-num">5</td><td>Time (Years)</td><td>0.75</td><td class="formula-cell">=9/12</td></tr>
-                    <tr><td class="row-num">6</td><td></td><td></td><td></td></tr>
-                    <tr class="result-row"><td class="row-num">7</td><td>Simple Interest</td><td>$1,800.00</td><td class="formula-cell">=B3*B4*B5</td></tr>
-                    <tr><td class="row-num">8</td><td></td><td></td><td></td></tr>
-                    <tr class="result-row"><td class="row-num">9</td><td>Ending Balance</td><td>$41,800.00</td><td class="formula-cell">=B3+B7</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 08 · Exact vs Ordinary Interest + Solving for Unknowns  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="7" data-section="1">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">08</span>
-            <span class="eyebrow sage">Part 1 · Simple Interest</span>
-          </div>
-          <div class="title-rule sage anim-1"></div>
-          <h2 class="slide-title anim-2">Day-Count Methods &amp; Solving for Unknowns</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="card">
-                <h4>Two Day-Count Methods</h4>
-                <table class="freq-table" style="margin-top:6px;">
-                  <thead><tr><th>Method</th><th>Denominator</th><th>Used By</th><th>Effect</th></tr></thead>
-                  <tbody>
-                    <tr><td><strong>Exact Interest</strong></td><td>365 days</td><td>Fed / Gov't</td><td>Lower interest</td></tr>
-                    <tr><td><strong>Ordinary (Banker's Rule)</strong></td><td>360 days</td><td>Most banks</td><td>Slightly higher</td></tr>
-                  </tbody>
-                </table>
-                <div class="highlight-box sage" style="margin-top:10px;padding:10px 14px;">
-                  <p style="font-size:12px;">In Excel: <strong>T = (End Date − Start Date) / 365</strong> or <strong>/ 360</strong>. Subtract date cells directly — Excel handles the arithmetic.</p>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="card tinted">
-                <h4 class="gold">Solving for Unknowns — Rearrange I = P × R × T</h4>
-                <div class="formula-panel" style="margin-top:8px;margin-bottom:0;">
-                  <div class="label">Three Rearrangements</div>
-                  <code style="font-size:13px;line-height:1.8;"><span class="fn">P = </span><span class="val">I / (R × T)</span>
-<span class="fn">R = </span><span class="val">I / (P × T)</span>
-<span class="fn">T = </span><span class="val">I / (P × R)</span></code>
-                </div>
-              </div>
-              <div class="card">
-                <h4>Meridian Example — Solve for Rate</h4>
-                <p style="font-size:13px;color:var(--text-soft);line-height:1.5;">A client paid <strong>$19.48</strong> interest on a <strong>$820.21</strong> loan for <strong>90 days</strong> (ordinary). What rate?</p>
-                <div class="math-panel" style="margin-top:8px;">
-                  <div class="label">Manual</div>
-                  <code style="font-size:13px;">R = $19.48 / ($820.21 × 90/360)
-R = $19.48 / $205.05 = <span class="result">9.5%</span></code>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 09 · Section Break — Part 2  (dark)
-           ═══════════════════════════════════════════ -->
-      <section class="slide dark" data-index="8" data-section="2">
-        <div class="geo" style="width:480px;height:480px;top:-120px;right:-60px;background:radial-gradient(circle, rgba(184,132,61,0.1) 0%, transparent 65%);"></div>
-        <div class="geo" style="width:220px;height:220px;bottom:40px;left:100px;background:radial-gradient(circle, rgba(184,132,61,0.07) 0%, transparent 70%);"></div>
-        <div class="slide-inner">
-          <div class="gradient-bar" style="background:linear-gradient(90deg, var(--gold), rgba(184,132,61,0.3));"></div>
-          <div class="pill gold">Part 2 of 3</div>
-          <h2 class="section-title" style="color:var(--gold);">Compound Interest &amp; Future Value</h2>
-          <p class="body-text dark" style="max-width:520px;font-size:17px;margin-top:8px;">Where money actually grows. The =FV() function, compounding frequency, and the Rule of 72 — tools every financial professional uses every day.</p>
-          <div style="margin-top:auto;display:flex;gap:32px;">
-            <div class="stat-block"><div class="stat-num" style="color:var(--gold);">$293K</div><div class="stat-label">from $5,000 at 22 → 65<br>at 10%/year</div></div>
-            <div class="stat-block"><div class="stat-num">$113K</div><div class="stat-label">from $5,000 at 32 → 65<br>same rate</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 10 · Simple vs Compound — The Snowball  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="9" data-section="2">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">10</span>
-            <span class="eyebrow gold">Part 2 · Compound Interest</span>
-          </div>
-          <div class="title-rule gold anim-1"></div>
-          <h2 class="slide-title anim-2">Simple vs. Compound — Bill Smith's $80</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div>
+          <div class="eyebrow anim-1">Part 1 · The Snowball Effect</div>
+          <div class="header-row anim-2"><h2 class="slide-title">$1,000 at 5% — Simple vs. Compound</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="xls-wrap">
               <table class="compare-table">
-                <thead>
-                  <tr>
-                    <th class="label-head">Item</th>
-                    <th class="simple-head">Simple Interest</th>
-                    <th class="compound-head">Compound Interest</th>
-                  </tr>
-                </thead>
+                <thead><tr><th class="label-head">Year</th><th class="simple-head">Simple Interest</th><th class="compound-head">Compound Interest</th><th class="label-head" style="background:rgba(156,74,43,0.08);color:var(--terra);">Difference</th></tr></thead>
                 <tbody>
-                  <tr>
-                    <td class="label-cell">Principal</td>
-                    <td class="simple-cell">$80.00</td>
-                    <td class="compound-cell">$80.00</td>
-                  </tr>
-                  <tr>
-                    <td class="label-cell">Rate / Term</td>
-                    <td class="simple-cell">8% × 4 years</td>
-                    <td class="compound-cell">8% × 4 years</td>
-                  </tr>
-                  <tr>
-                    <td class="label-cell">Formula</td>
-                    <td class="simple-cell">I = P × R × T</td>
-                    <td class="compound-cell">FV = PV × (1+i)^n</td>
-                  </tr>
-                  <tr>
-                    <td class="label-cell">Interest earned</td>
-                    <td class="simple-cell">$25.60</td>
-                    <td class="compound-cell"><strong>$28.83</strong></td>
-                  </tr>
-                  <tr>
-                    <td class="label-cell">Ending balance</td>
-                    <td class="simple-cell">$105.60</td>
-                    <td class="compound-cell"><strong>$108.83</strong></td>
-                  </tr>
+                  <tr><td class="label-cell">1</td><td class="simple-cell">$1,050.00</td><td class="compound-cell">$1,050.00</td><td>$0.00</td></tr>
+                  <tr><td class="label-cell">2</td><td class="simple-cell">$1,100.00</td><td class="compound-cell">$1,102.50</td><td>$2.50</td></tr>
+                  <tr><td class="label-cell">3</td><td class="simple-cell">$1,150.00</td><td class="compound-cell">$1,157.63</td><td>$7.63</td></tr>
+                  <tr><td class="label-cell">5</td><td class="simple-cell">$1,250.00</td><td class="compound-cell">$1,276.28</td><td>$26.28</td></tr>
+                  <tr><td class="label-cell">10</td><td class="simple-cell">$1,500.00</td><td class="compound-cell">$1,628.89</td><td>$128.89</td></tr>
+                  <tr><td class="label-cell">30</td><td class="simple-cell">$2,500.00</td><td class="compound-cell">$4,321.94</td><td style="color:var(--terra);font-weight:700;">$1,821.94</td></tr>
                 </tbody>
               </table>
             </div>
             <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="gold">Why the $3.23 Difference?</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.6;">With compound interest, Bill earns interest on his <strong style="color:var(--text);">interest</strong>, not just the original $80. Year 2 interest is calculated on $86.40, not $80 — that snowball keeps growing every year.</p>
-              </div>
-              <div class="card">
-                <h4 class="gold">The Manual Formula</h4>
-                <div class="math-panel" style="margin-top:0;">
-                  <div class="label">FV = PV × (1 + i)^n</div>
-                  <code>FV = $80 × (1.08)^4
-FV = $80 × 1.36049
-FV = <span class="result">$108.83</span></code>
-                </div>
-              </div>
+              <div class="card"><h4 class="gold">Year 1 — No Difference</h4><p class="body-text" style="font-size:13px;">Both give $1,050 in year 1. Compound diverges from year 2 onward, when interest begins earning on prior interest.</p></div>
+              <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Year 30 — Enormous Gap</h4><p class="body-text" style="font-size:13px;"><strong>$4,321 vs. $2,500.</strong> Same rate. Same principal. Compound produces <strong>73% more.</strong></p></div>
+              <div class="highlight-box sage"><p>This is the engine behind every retirement account and long-term investment. The math is simple — the exponent does all the work.</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 11 · FV Function Syntax  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="10" data-section="2">
+      <!-- SLIDE 5 · Section break FV formula -->
+      <section class="slide dark" data-index="5" data-section="2">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">11</span>
-            <span class="eyebrow gold">Part 2 · Future Value</span>
+          <div class="eyebrow gold anim-1">Part 2 · Future Value</div>
+          <h2 class="section-title anim-2" style="color:var(--gold);">FV = PV × (1 + i)ⁿ</h2>
+          <div class="anim-3" style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px;">
+            <div style="padding:16px;background:rgba(184,132,61,0.08);border-left:3px solid var(--gold);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">i · Rate per Period</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Annual rate ÷ compounding periods per year. <strong style="color:var(--paper);">Must match nper's unit.</strong></p></div>
+            <div style="padding:16px;background:rgba(74,124,94,0.08);border-left:3px solid var(--sage);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">n · Number of Periods</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Years × compounding periods per year. <strong style="color:var(--paper);">Must match i's unit.</strong></p></div>
           </div>
-          <div class="title-rule gold anim-1"></div>
-          <h2 class="slide-title anim-2">The =FV() Function — Syntax First</h2>
-          <div style="display:flex;flex-direction:column;gap:14px;flex:1;min-height:0;" class="anim-3">
-            <div class="formula-panel">
-              <div class="label">Excel Syntax</div>
-              <code>=<span class="fn">FV</span>(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, [<span class="arg">pv</span>], [<span class="arg">type</span>])</code>
+          <div class="anim-4" style="margin-top:20px;padding:16px 20px;background:rgba(250,248,243,0.04);border:1px solid rgba(250,248,243,0.08);border-radius:6px;max-width:580px;">
+            <p style="font-size:14px;color:rgba(250,248,243,0.65);line-height:1.6;"><strong style="color:var(--paper);">Critical rule:</strong> i and n must always refer to the same unit of time. Mismatching is the most common compound interest error.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 · =FV() Syntax -->
+      <section class="slide paper" data-index="6" data-section="2">
+        <div class="slide-inner">
+          <div class="eyebrow gold anim-1">Part 2 · Excel =FV() Function</div>
+          <div class="header-row anim-2"><h2 class="slide-title">The =FV() Function — Syntax First</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="anim-3"><div class="formula-panel"><div class="label">Excel Syntax</div><code><span class="fn">=FV(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, [<span class="neg">pv</span>], [<span class="arg">type</span>])</span></code></div></div>
+          <div class="two-col anim-4" style="grid-template-columns:1.6fr 1fr;">
+            <div class="xls-wrap">
+              <table class="xls-table">
+                <thead><tr><th>Argument</th><th>Meaning</th><th>For Lump Sum</th></tr></thead>
+                <tbody>
+                  <tr><td style="font-weight:600;color:var(--sage);">rate</td><td>Rate per compounding period</td><td>Annual rate ÷ periods/yr</td></tr>
+                  <tr><td style="font-weight:600;color:var(--gold);">nper</td><td>Total compounding periods</td><td>Years × periods/yr</td></tr>
+                  <tr><td style="font-weight:600;color:var(--muted);">pmt</td><td>Recurring payment (annuities)</td><td>Enter <strong>0</strong></td></tr>
+                  <tr><td style="font-weight:600;color:var(--terra);">pv</td><td>Present value (starting amount)</td><td>Enter as <strong>negative</strong></td></tr>
+                  <tr class="result-row"><td>Result</td><td>Future value at end of nper</td><td>Returns <strong>positive</strong></td></tr>
+                </tbody>
+              </table>
             </div>
-            <div class="two-col" style="flex:1;min-height:0;">
-              <div style="display:flex;flex-direction:column;gap:10px;">
-                <div class="card tinted">
-                  <h4 class="gold">Argument Breakdown</h4>
-                  <ul class="bullet-list gold" style="margin-top:0;">
-                    <li><strong>rate</strong> — interest per period. Annual rate ÷ periods/year. Monthly at 6%: <code style="font-size:12px;color:var(--text);">6%/12</code></li>
-                    <li><strong>nper</strong> — total periods. Years × periods/year. 5 yr monthly: <code style="font-size:12px;color:var(--text);">5*12</code></li>
-                    <li><strong>pmt</strong> — recurring payment. Use <strong>0</strong> for lump-sum problems</li>
-                    <li><strong>pv</strong> — starting amount. <strong>Enter as negative</strong> (cash leaving your pocket)</li>
-                    <li><strong>type</strong> — optional. 0 = end of period (default). Usually omit it.</li>
-                  </ul>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:10px;">
-                <div class="formula-panel">
-                  <div class="label">Annual Compounding · $25,000 · 6% · 5 yr</div>
-                  <code>=<span class="fn">FV</span>(<span class="val">6%</span>, <span class="val">5</span>, <span class="val">0</span>, <span class="neg">-25000</span>)</code>
-                </div>
-                <div class="formula-panel" style="border-left-color:var(--sage);">
-                  <div class="label" style="color:var(--sage);">Monthly Compounding · same scenario</div>
-                  <code>=<span class="fn">FV</span>(<span class="val">6%/12</span>, <span class="val">5*12</span>, <span class="val">0</span>, <span class="neg">-25000</span>)</code>
-                </div>
-                <div class="math-panel">
-                  <div class="label">Manual Verify</div>
-                  <code>FV = 25000 × (1.06)^5
-   = 25000 × 1.3382
-   = <span class="result">$33,455.64</span></code>
-                </div>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="formula-panel"><div class="label">Lump Sum Example</div><code><span class="fn">=FV(6%, 5, 0, <span class="neg">−25000</span>)</span><span class="comment">// Returns: +$33,455.64</span><span class="comment">// pv negative = money out today</span></code></div>
+              <div class="highlight-box terra"><p><strong>pmt = annuity argument.</strong> Always 0 for single lump-sum problems. We use it in M09-L02.</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 12 · Compounding Frequency + Rule of 72  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="11" data-section="2">
+      <!-- SLIDE 7 · Sign convention -->
+      <section class="slide paper" data-index="7" data-section="2">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">12</span>
-            <span class="eyebrow gold">Part 2 · Future Value</span>
-          </div>
-          <div class="title-rule gold anim-1"></div>
-          <h2 class="slide-title anim-2">Frequency Matters &amp; The Rule of 72</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card">
-                <h4 class="gold">$25,000 at 6% for 5 Years — What Frequency Does</h4>
-                <table class="freq-table" style="margin-top:8px;">
-                  <thead><tr><th>Frequency</th><th>rate arg</th><th>nper arg</th><th>FV</th></tr></thead>
-                  <tbody>
-                    <tr><td>Annually</td><td>6%</td><td>5</td><td><strong>$33,455.64</strong></td></tr>
-                    <tr><td>Semiannually</td><td>3%</td><td>10</td><td><strong>$33,598.44</strong></td></tr>
-                    <tr><td>Monthly</td><td>0.5%</td><td>60</td><td><strong>$33,745.97</strong></td></tr>
-                  </tbody>
-                </table>
-                <p style="font-size:12px;color:var(--text-soft);margin-top:8px;">More periods = more compounding = more growth. The difference is small here — but over 30 years it becomes enormous.</p>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="gold">The Rule of 72 — Quick Mental Math</h4>
-                <div class="formula-panel" style="margin-top:6px;">
-                  <div class="label">Formula</div>
-                  <code>Years to Double = <span class="val">72 / Rate</span></code>
-                </div>
-                <table class="freq-table" style="margin-top:10px;">
-                  <thead><tr><th>Rate</th><th>Years to Double</th><th>Example</th></tr></thead>
-                  <tbody>
-                    <tr><td>4%</td><td>18 years</td><td>Savings account</td></tr>
-                    <tr><td>6%</td><td>12 years</td><td>Bond portfolio</td></tr>
-                    <tr><td>10%</td><td>7.2 years</td><td>S&amp;P 500 average</td></tr>
-                    <tr><td>24%</td><td>3 years</td><td>Credit card APR ⚠️</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 13 · FV Meridian Full Example + Excel  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="12" data-section="2">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">13</span>
-            <span class="eyebrow gold">Part 2 · Future Value</span>
-          </div>
-          <div class="title-rule gold anim-1"></div>
-          <h2 class="slide-title anim-2">Meridian Client Investment — FV in Excel</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="gold">Scenario</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.6;">A client invests <strong style="color:var(--text);">$25,000</strong> for <strong style="color:var(--text);">5 years</strong> at <strong style="color:var(--text);">6% compounded annually</strong>. What will the investment be worth?</p>
-              </div>
-              <div class="formula-panel">
-                <div class="label">Excel — Step 1 (type this first)</div>
-                <code>=<span class="fn">FV</span>(<span class="val">B3</span>, <span class="val">B4</span>, <span class="val">0</span>, <span class="neg">-B2</span>)</code>
-              </div>
-              <div class="math-panel">
-                <div class="label">Manual Verify — Step 2 (confirm match)</div>
-                <code>FV = $25,000 × (1.06)^5
-   = $25,000 × 1.33823
-   = <span class="result">$33,455.64</span></code>
-              </div>
-              <div class="highlight-box gold" style="padding:10px 14px;">
-                <p style="font-size:12px;"><strong>Always verify:</strong> if =FV() and manual math agree, you've built the model correctly. If they don't match, check the sign on PV first.</p>
-              </div>
+          <div class="eyebrow anim-1">Part 2 · Sign Convention</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Why pv Must Be Negative</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="gold">Excel's Cash Flow Rule</h4><p class="body-text" style="font-size:13px;margin-bottom:8px;"><strong>Outflow (money leaving you):</strong> negative<br><strong>Inflow (money coming to you):</strong> positive</p><p class="body-text" style="font-size:13px;">Investing $25,000 today is an outflow — money leaves your pocket. PV = −$25,000. The FV result returns positive.</p></div>
+              <div class="highlight-box sage"><p><strong>Sanity check:</strong> FV should always be larger than PV in absolute terms. If it isn't, the sign is wrong.</p></div>
             </div>
             <div>
-              <div class="xls-wrap">
-                <table class="xls-table">
-                  <thead><tr><th class="row-num">#</th><th>A</th><th>B</th><th>D (formula)</th></tr></thead>
-                  <tbody>
-                    <tr><td class="row-num">1</td><td colspan="3" style="color:var(--xls-header-text);background:var(--xls-header-bg);font-weight:700;">Compound Interest — FV</td></tr>
-                    <tr><td class="row-num">2</td><td>Principal (PV)</td><td>$25,000</td><td></td></tr>
-                    <tr><td class="row-num">3</td><td>Rate (%)</td><td>6.00%</td><td></td></tr>
-                    <tr><td class="row-num">4</td><td>Time (Years)</td><td>5</td><td></td></tr>
-                    <tr><td class="row-num">5</td><td></td><td></td><td></td></tr>
-                    <tr class="result-row"><td class="row-num">6</td><td>FV (Excel)</td><td>$33,455.64</td><td class="formula-cell">=FV(B3,B4,0,-B2)</td></tr>
-                    <tr><td class="row-num">7</td><td></td><td></td><td></td></tr>
-                    <tr class="result-row"><td class="row-num">8</td><td>FV (Manual)</td><td>$33,455.64</td><td class="formula-cell">=(1+B3)^B4*B2</td></tr>
-                    <tr><td class="row-num">9</td><td>Interest Earned</td><td>$8,455.64</td><td class="formula-cell">=B8-B2</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <div class="formula-panel" style="margin-bottom:10px;"><div class="label">✓ Correct</div><code>=FV(6%, 5, 0, <span class="neg">−25000</span>) → <span class="val">+$33,456</span><span class="comment">// pv negative → FV positive</span></code></div>
+              <div class="formula-panel"><div class="label">✗ Wrong Sign — Still Returns a Number</div><code>=FV(6%, 5, 0, <span class="val">25000</span>) → <span class="neg">−$33,456</span><span class="comment">// No error — just wrong meaning</span></code></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 14 · Section Break — Part 3  (dark)
-           ═══════════════════════════════════════════ -->
-      <section class="slide dark" data-index="13" data-section="3">
-        <div class="geo" style="width:460px;height:460px;top:-100px;right:-80px;background:radial-gradient(circle, rgba(156,74,43,0.1) 0%, transparent 65%);"></div>
-        <div class="geo" style="width:200px;height:200px;bottom:80px;left:60px;background:radial-gradient(circle, rgba(156,74,43,0.07) 0%, transparent 70%);"></div>
+      <!-- SLIDE 8 · Worked example -->
+      <section class="slide paper" data-index="8" data-section="2">
         <div class="slide-inner">
-          <div class="gradient-bar" style="background:linear-gradient(90deg, var(--terra), rgba(156,74,43,0.3));"></div>
-          <div class="pill terra">Part 3 of 3</div>
-          <h2 class="section-title" style="color:var(--terra);">Present Value</h2>
-          <p class="body-text dark" style="max-width:520px;font-size:17px;margin-top:8px;">Running compound interest in reverse. If someone promises you money in the future, how much is that promise worth to you right now?</p>
-          <div style="margin-top:auto;display:flex;gap:40px;">
-            <div class="stat-block">
-              <div class="stat-num" style="color:var(--terra);">$37,363</div>
-              <div class="stat-label">today's value of $50,000<br>promised in 5 years at 6%</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 15 · PV Concept  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="14" data-section="3">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">15</span>
-            <span class="eyebrow terra">Part 3 · Present Value</span>
-          </div>
-          <div class="title-rule terra anim-1"></div>
-          <h2 class="slide-title anim-2">What Is a Future Promise Worth Today?</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="terra">The Core Idea</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.65;">Present value is <strong style="color:var(--text);">discounting</strong> — the reverse of compounding. If money grows forward at a certain rate, then a future amount is worth <em>less</em> in today's dollars by exactly that same rate.</p>
-              </div>
-              <div class="card">
-                <h4>The Manual Formula</h4>
-                <div class="math-panel" style="margin-top:0;">
-                  <div class="label">PV = FV ÷ (1 + i)^n</div>
-                  <code>FV = $50,000 in 5 years
-i = 6%, n = 5
-
-PV = $50,000 / (1.06)^5
-   = $50,000 / 1.33823
-   = <span class="result">$37,362.91</span></code>
-                </div>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="formula-panel">
-                <div class="label">Excel Syntax</div>
-                <code>=<span class="fn">PV</span>(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, [<span class="arg">fv</span>], [<span class="arg">type</span>])</code>
-              </div>
-              <div class="formula-panel" style="border-left-color:var(--terra);">
-                <div class="label" style="color:var(--terra);">Meridian Example</div>
-                <code>=<span class="fn">PV</span>(<span class="val">6%</span>, <span class="val">5</span>, <span class="val">0</span>, <span class="val">50000</span>)</code>
-              </div>
-              <div class="highlight-box terra">
-                <p style="font-size:13px;"><strong>FV is entered as positive</strong> — it's money you receive in the future. The PV function returns a <strong>negative number</strong> because you'd have to spend (invest) that amount today. This is normal — it's the sign convention, not an error.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 16 · PV Table + Excel Replica  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="15" data-section="3">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">16</span>
-            <span class="eyebrow terra">Part 3 · Present Value</span>
-          </div>
-          <div class="title-rule terra anim-1"></div>
-          <h2 class="slide-title anim-2">Meridian PV Table — $50,000 at 6%</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
+          <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — $40,000 at 4% for 3 Years</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
             <div>
-              <div class="xls-wrap">
-                <table class="xls-table">
-                  <thead><tr><th class="row-num">#</th><th>A</th><th>B (PV)</th><th>C (FV)</th><th>D (n)</th></tr></thead>
-                  <tbody>
-                    <tr><td class="row-num">1</td><td colspan="4" style="color:var(--xls-header-text);background:var(--xls-header-bg);font-weight:700;">Present Value — 6% Discount Rate</td></tr>
-                    <tr><td class="row-num">2</td><td>1 year out</td><td>($47,169.81)</td><td>$50,000</td><td>1</td></tr>
-                    <tr><td class="row-num">3</td><td>2 years out</td><td>($44,499.82)</td><td>$50,000</td><td>2</td></tr>
-                    <tr><td class="row-num">4</td><td>3 years out</td><td>($41,981.00)</td><td>$50,000</td><td>3</td></tr>
-                    <tr><td class="row-num">5</td><td>4 years out</td><td>($39,604.72)</td><td>$50,000</td><td>4</td></tr>
-                    <tr class="result-row"><td class="row-num">6</td><td>5 years out</td><td>($37,362.91)</td><td>$50,000</td><td>5</td></tr>
-                    <tr><td class="row-num">7</td><td>10 years out</td><td>($27,919.74)</td><td>$50,000</td><td>10</td></tr>
-                  </tbody>
-                </table>
-              </div>
+              <div class="formula-panel"><div class="label">Excel First</div><code><span class="fn">=FV(4%, 3, 0, <span class="neg">−40000</span>)</span><span class="comment">// Returns: $44,994.56</span></code></div>
+              <div class="math-panel"><div class="label">Manual Verification — Year by Year</div><code>Start: $40,000.00<br>Year 1: 40,000 × 1.04 = <span class="result">$41,600.00</span><br>Year 2: 41,600 × 1.04 = <span class="result">$43,264.00</span><br>Year 3: 43,264 × 1.04 = <span class="result">$44,994.56</span></code></div>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="terra">What This Table Tells You</h4>
-                <ul class="bullet-list terra" style="margin-top:0;">
-                  <li>The longer you wait for money, the <strong>less it's worth today</strong></li>
-                  <li>At 6%, $50,000 promised in 10 years is only worth $27,920 today</li>
-                  <li>This is why Meridian uses PV to evaluate whether a future payment is a good deal</li>
-                </ul>
-              </div>
-              <div class="formula-panel" style="border-left-color:var(--terra);">
-                <div class="label" style="color:var(--terra);">Formula in column B</div>
-                <code>=<span class="fn">PV</span>(<span class="val">6%</span>, <span class="val">D2</span>, <span class="val">0</span>, <span class="val">C2</span>)</code>
-              </div>
+            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
+              <h4 class="gold">Simple vs. Compound</h4>
+              <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Simple Interest</td><td style="padding:6px 0;font-weight:600;color:var(--sage);">$44,800.00</td></tr>
+                <tr><td style="padding:6px 0;color:var(--text-soft);">Compound Interest</td><td style="padding:6px 0;font-weight:600;color:var(--gold);">$44,994.56</td></tr>
+                <tr style="border-top:2px solid var(--border);"><td style="padding:6px 0;font-weight:500;color:var(--text);">Compound advantage</td><td style="padding:6px 0;font-weight:700;color:var(--terra);">+$194.56</td></tr>
+              </table>
+              <div class="highlight-box gold" style="margin-top:4px;"><p>$194.56 extra in 3 years. At 30 years: over $1,800 on the same $1,000. The longer the horizon, the more the exponent matters.</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 17 · FV vs PV — Side by Side  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="16" data-section="3">
+      <!-- SLIDE 9 · Excel model annual -->
+      <section class="slide paper" data-index="9" data-section="2">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">17</span>
-            <span class="eyebrow terra">Part 3 · Present Value</span>
-          </div>
-          <div class="title-rule terra anim-1"></div>
-          <h2 class="slide-title anim-2">FV vs. PV — Two Directions, One Logic</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card" style="border-top:3px solid var(--gold);">
-                <h4 class="gold">Future Value — Growing Forward</h4>
-                <p style="font-size:13px;color:var(--text-soft);line-height:1.55;margin-bottom:10px;">You have money <strong>today</strong>. How much will it be worth <strong>in the future</strong>?</p>
-                <div class="formula-panel" style="margin-bottom:0;">
-                  <div class="label">Excel</div>
-                  <code>=<span class="fn">FV</span>(<span class="val">rate</span>, <span class="val">nper</span>, <span class="val">0</span>, <span class="neg">-PV</span>)</code>
-                </div>
-                <p style="font-size:12px;color:var(--text-soft);margin-top:8px;">PV is <strong>negative</strong>. FV result is <strong>positive</strong>.</p>
-              </div>
-              <div class="card tinted">
-                <h4>Meridian Comparison Example</h4>
-                <p style="font-size:13px;color:var(--text-soft);line-height:1.55;">Client has two options: invest $20,000 today at 5% for 10 years (Option A), or receive $35,000 in 10 years (Option B). Which wins?</p>
-                <div class="math-panel" style="margin-top:8px;">
-                  <div class="label">Option A — FV</div>
-                  <code>=FV(5%,10,0,-20000) = <span class="result">$32,578</span></code>
-                </div>
-              </div>
+          <div class="eyebrow anim-1">Part 2 · Excel Setup</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian FV Model — Annual Compounding</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col wide-left anim-3">
+            <div class="xls-wrap">
+              <table class="xls-table">
+                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th><th>C</th></tr></thead>
+                <tbody>
+                  <tr><td class="row-num">2</td><td>Present Value (PV)</td><td style="background:#fef9e7;color:#856404;">−40,000</td><td style="color:var(--muted);font-size:11px;">Enter as negative</td></tr>
+                  <tr><td class="row-num">3</td><td>Annual Rate (i)</td><td style="background:#fef9e7;color:#856404;">0.04</td><td style="color:var(--muted);font-size:11px;">As decimal</td></tr>
+                  <tr><td class="row-num">4</td><td>Years (n)</td><td style="background:#fef9e7;color:#856404;">3</td><td style="color:var(--muted);font-size:11px;">Annual → n = years</td></tr>
+                  <tr><td class="row-num">5</td><td>PMT</td><td>0</td><td style="color:var(--muted);font-size:11px;">Lump sum — no payments</td></tr>
+                  <tr class="result-row"><td class="row-num">6</td><td>Future Value</td><td class="formula-cell">=FV(B3,B4,B5,B2)</td><td style="color:var(--xls-result-text);font-weight:600;">$44,994.56</td></tr>
+                  <tr><td class="row-num">7</td><td>Manual Verify</td><td class="formula-cell">=ABS(B2)*(1+B3)^B4</td><td style="color:var(--muted);font-size:11px;">Must match B6</td></tr>
+                </tbody>
+              </table>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card" style="border-top:3px solid var(--terra);">
-                <h4 class="terra">Present Value — Discounting Back</h4>
-                <p style="font-size:13px;color:var(--text-soft);line-height:1.55;margin-bottom:10px;">You're promised money <strong>in the future</strong>. What is it worth <strong>today</strong>?</p>
-                <div class="formula-panel" style="border-left-color:var(--terra);margin-bottom:0;">
-                  <div class="label" style="color:var(--terra);">Excel</div>
-                  <code>=<span class="fn">PV</span>(<span class="val">rate</span>, <span class="val">nper</span>, <span class="val">0</span>, <span class="val">+FV</span>)</code>
-                </div>
-                <p style="font-size:12px;color:var(--text-soft);margin-top:8px;">FV is <strong>positive</strong>. PV result is <strong>negative</strong>.</p>
-              </div>
-              <div class="highlight-box terra" style="margin-top:0;">
-                <p style="font-size:13px;"><strong>Option B PV check:</strong> =PV(5%,10,0,35000) → ($21,484). Option B is worth $21,484 today vs. $20,000 cost — so Option B is slightly better. But if the rate were 6%, Option A wins. That's why the rate assumption matters.</p>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="card"><h4 class="sage">Model Rules</h4><ul class="bullet-list sage" style="font-size:13px;"><li>Each input in its own labeled cell</li><li>FV formula uses only cell references</li><li>Manual verify row must match FV row</li></ul></div>
+              <div class="highlight-box gold"><p><strong>Habit to build:</strong> after every =FV(), run the manual verify. If they don't match, find the mistake before moving on.</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 18 · Common Mistake  (dark/terra)
-           ═══════════════════════════════════════════ -->
-      <section class="slide dark" data-index="17" data-section="3" style="background:#1a0b06;">
-        <div class="geo" style="width:400px;height:400px;top:-80px;right:-60px;background:radial-gradient(circle, rgba(156,74,43,0.18) 0%, transparent 65%);"></div>
-        <div class="geo" style="width:250px;height:250px;bottom:40px;left:40px;background:radial-gradient(circle, rgba(156,74,43,0.1) 0%, transparent 70%);"></div>
+      <!-- SLIDE 10 · Section break non-annual -->
+      <section class="slide dark" data-index="10" data-section="3">
         <div class="slide-inner">
-          <div class="gradient-bar" style="background:linear-gradient(90deg, var(--terra), rgba(156,74,43,0.3));"></div>
-          <div class="pill terra">⚠ Common Mistake</div>
-          <h2 class="section-title" style="color:var(--terra);font-size:34px;margin-bottom:16px;">The Sign Convention Trap</h2>
-          <div class="two-col" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div style="background:rgba(156,74,43,0.15);border:1px solid rgba(156,74,43,0.3);border-radius:6px;padding:16px 18px;">
-                <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--terra);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">❌ Wrong</p>
-                <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(250,248,243,0.75);line-height:1.6;">Entering PV as a <strong style="color:var(--paper);">positive</strong> number in =FV() returns a negative result. Student sees negative, panics, and manually adds a minus sign — now the answer is doubly wrong.</p>
-                <div style="background:#0a0c10;border-radius:4px;padding:10px 14px;margin-top:10px;">
-                  <code style="font-family:'DM Sans',sans-serif;font-size:15px;color:#e8887a;">=FV(6%, 5, 0, 25000) → -$33,455 ← wrong!</code>
-                </div>
-              </div>
+          <div class="eyebrow terra anim-1">Part 3 · Compounding Frequency</div>
+          <h2 class="section-title anim-2" style="color:var(--terra);">Frequency Matters</h2>
+          <p class="body-text dark anim-3" style="max-width:520px;margin-top:12px;">Same principal. Same annual rate. Same years. Different ending balances. When compounding happens more often, interest starts earning interest sooner.</p>
+          <div class="anim-4" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px;">
+            <div style="padding:14px;background:rgba(74,124,94,0.08);border-left:3px solid var(--sage);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">The Rule: Always Adjust Both</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;"><strong style="color:var(--paper);">rate</strong> = annual rate ÷ periods/year<br><strong style="color:var(--paper);">nper</strong> = years × periods/year</p></div>
+            <div style="padding:14px;background:rgba(184,132,61,0.08);border-left:3px solid var(--gold);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Never Adjust Only One</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Changing nper but not rate produces a completely wrong result. Both must change together.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 · Frequency table -->
+      <section class="slide paper" data-index="11" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · Non-Annual Compounding</div>
+          <div class="header-row anim-2"><h2 class="slide-title">$25,000 at 6% for 5 Years — What Frequency Does</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div class="xls-wrap">
+              <table class="freq-table">
+                <thead><tr><th>Frequency</th><th>rate arg</th><th>nper arg</th><th>FV</th></tr></thead>
+                <tbody>
+                  <tr><td>Annually</td><td>6% ÷ 1 = 6%</td><td>5 × 1 = 5</td><td><strong>$33,455.64</strong></td></tr>
+                  <tr><td>Semiannually</td><td>6% ÷ 2 = 3%</td><td>5 × 2 = 10</td><td><strong>$33,598.38</strong></td></tr>
+                  <tr><td>Quarterly</td><td>6% ÷ 4 = 1.5%</td><td>5 × 4 = 20</td><td><strong>$33,672.54</strong></td></tr>
+                  <tr><td>Monthly</td><td>6% ÷ 12 = 0.5%</td><td>5 × 12 = 60</td><td><strong>$33,725.46</strong></td></tr>
+                  <tr><td>Daily</td><td>6% ÷ 365 ≈ 0.016%</td><td>5 × 365 = 1,825</td><td><strong>$33,746.49</strong></td></tr>
+                </tbody>
+              </table>
             </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div style="background:rgba(74,124,94,0.12);border:1px solid rgba(74,124,94,0.3);border-radius:6px;padding:16px 18px;">
-                <p style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--sage);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">✓ Correct</p>
-                <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(250,248,243,0.75);line-height:1.6;">Cash you invest <strong style="color:var(--paper);">today leaves your pocket → negative</strong>. Cash you receive in the <strong style="color:var(--paper);">future arrives → positive</strong>. Always.</p>
-                <div style="background:#0a0c10;border-radius:4px;padding:10px 14px;margin-top:10px;">
-                  <code style="font-family:'DM Sans',sans-serif;font-size:15px;color:#7fba8a;">=FV(6%, 5, 0, -25000) → +$33,455 ✓</code>
-                </div>
-              </div>
-              <div style="background:rgba(184,132,61,0.1);border:1px solid rgba(184,132,61,0.25);border-radius:6px;padding:12px 16px;">
-                <p style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(250,248,243,0.7);line-height:1.55;">Same logic for =PV(): FV is entered as <strong style="color:var(--paper);">positive</strong>. Result comes back negative (cost to invest today). That negative is the answer — don't flip it.</p>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="formula-panel"><div class="label">Excel — Monthly Compounding</div><code><span class="fn">=FV(6%/12, 5*12, 0, <span class="neg">−25000</span>)</span><span class="comment">// rate: 6%/12  nper: 5*12</span><span class="comment">// Returns: $33,725.46</span></code></div>
+              <div class="card"><h4 class="terra">The Takeaway</h4><p class="body-text" style="font-size:13px;">More frequent = higher FV. Annual-to-daily gap is $290 on $25,000 over 5 years. At higher rates or longer horizons the gap grows substantially.</p></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 19 · Discussion / Practice  (paper)
-           ═══════════════════════════════════════════ -->
+      <!-- SLIDE 12 · Rule of 72 -->
+      <section class="slide paper" data-index="12" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · Mental Math Shortcut</div>
+          <div class="header-row anim-2"><h2 class="slide-title">The Rule of 72 — Doubling Time Estimate</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="formula-panel" style="margin-bottom:14px;"><div class="label">Rule of 72</div><code><span class="fn">Years to Double ≈ 72 ÷ Rate (%)</span><span class="comment">// Quick estimate — not exact</span><span class="comment">// Verify precise answer with =FV()</span></code></div>
+              <div class="r72-grid" style="grid-template-columns:repeat(2,1fr);">
+                <div class="r72-card"><div class="r72-rate">4%</div><div class="r72-years">72÷4 = <strong>18 yrs</strong></div></div>
+                <div class="r72-card"><div class="r72-rate">6%</div><div class="r72-years">72÷6 = <strong>12 yrs</strong></div></div>
+                <div class="r72-card"><div class="r72-rate">8%</div><div class="r72-years">72÷8 = <strong>9 yrs</strong></div></div>
+                <div class="r72-card"><div class="r72-rate">12%</div><div class="r72-years">72÷12 = <strong>6 yrs</strong></div></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="card"><h4 class="sage">When to Use It</h4><p class="body-text" style="font-size:13px;">Quick client conversations. Back-of-napkin planning. Sanity-checking whether an Excel answer is in the right ballpark. Does not replace exact calculation.</p></div>
+              <div class="card"><h4 class="gold">Try It Now</h4><p class="body-text" style="font-size:13px;">A Meridian client has a retirement account earning 7% annually. How many years to double?</p><p class="body-text" style="font-size:14px;margin-top:8px;"><strong>72 ÷ 7 ≈ 10.3 years.</strong><br>Verify: =FV(7%,10,0,−1000) = $1,967 ≈ $2,000 ✓</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 · Quarterly compounding worked example -->
+      <section class="slide paper" data-index="13" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow terra anim-1">Part 3 · Non-Annual Compounding</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Quarterly Compounding</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Given</h4><p class="body-text" style="font-size:14px;">P = $25,000 &nbsp;·&nbsp; 6% annual &nbsp;·&nbsp; 5 years &nbsp;·&nbsp; <strong>Quarterly compounding</strong></p></div>
+              <div class="math-panel"><div class="label">Adjustments</div><code>Rate per period: 6% ÷ 4 = <span class="result">1.5%</span><br>Total periods:   5 × 4   = <span class="result">20</span></code></div>
+              <div class="formula-panel" style="margin-top:10px;"><div class="label">Excel</div><code><span class="fn">=FV(6%/4, 5*4, 0, <span class="neg">−25000</span>)</span><span class="comment">// Returns: $33,672.54</span></code></div>
+            </div>
+            <div class="xls-wrap">
+              <table class="xls-table">
+                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                  <tr><td class="row-num">2</td><td>PV</td><td style="background:#fef9e7;color:#856404;">−25,000</td></tr>
+                  <tr><td class="row-num">3</td><td>Annual Rate</td><td style="background:#fef9e7;color:#856404;">0.06</td></tr>
+                  <tr><td class="row-num">4</td><td>Years</td><td style="background:#fef9e7;color:#856404;">5</td></tr>
+                  <tr><td class="row-num">5</td><td>Periods/Year</td><td style="background:#fef9e7;color:#856404;">4</td></tr>
+                  <tr><td class="row-num">6</td><td>Rate per Period</td><td class="formula-cell">=B3/B5</td></tr>
+                  <tr><td class="row-num">7</td><td>Total Periods</td><td class="formula-cell">=B4*B5</td></tr>
+                  <tr class="result-row"><td class="row-num">8</td><td>FV</td><td class="formula-cell">=FV(B6,B7,0,B2)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 · COMMON MISTAKE -->
+      <section class="slide dark" data-index="14" data-section="3" style="background:#1a0a05;">
+        <div class="slide-inner">
+          <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
+          <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Adjusting nper but Forgetting to Adjust rate</h2>
+          <div class="two-col anim-3">
+            <div>
+              <div style="background:rgba(156,74,43,0.12);border:1px solid rgba(156,74,43,0.4);border-left:4px solid var(--terra);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">❌ The Mistake</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Switching to quarterly, student updates nper to 20 but leaves rate at 6% instead of changing it to 1.5%.</p></div>
+              <div class="formula-panel"><div class="label">Wrong Formula</div><code>=FV(<span class="neg">6%</span>, <span class="val">20</span>, 0, −25000)<span class="comment">// rate=annual, nper=quarterly</span><span class="comment">// Returns: $80,178 ← wildly inflated</span></code></div>
+            </div>
+            <div>
+              <div style="background:rgba(74,124,94,0.1);border:1px solid rgba(74,124,94,0.3);border-left:4px solid var(--sage);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">✓ Correct — Adjust Both</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Rate and nper must always refer to the <strong style="color:var(--sage);">same unit of time.</strong></p></div>
+              <div class="formula-panel"><div class="label">Correct Formula</div><code>=FV(<span class="val">6%/4</span>, <span class="val">5*4</span>, 0, −25000)<span class="comment">// rate=quarterly, nper=quarters</span><span class="comment">// Returns: $33,672.54 ✓</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 · Student Practice -->
+      <section class="slide paper" data-index="15" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Student Practice · 8 Minutes</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Your Turn — Build the Meridian FV Model</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Part A — Annual Compounding (3 min)</h4><p class="body-text" style="font-size:14px;">$50,000 at 5% compounded annually for 4 years. Build =FV() using cell references. Add a manual verify row — both must match.</p></div>
+            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Part B — Monthly Compounding (3 min)</h4><p class="body-text" style="font-size:14px;">Same $50,000, 5%, 4 years — monthly compounding. Adjust both rate and nper. Add an annual row for comparison. What is the dollar difference?</p></div>
+            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Part C — Rule of 72 (2 min)</h4><p class="body-text" style="font-size:14px;">At 5% annually, approximately how many years until $50,000 doubles? Use Rule of 72, then verify with =FV(). How close is the estimate?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 · Discussion -->
+      <section class="slide paper" data-index="16" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Discussion</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
+          <div class="title-rule"></div>
+          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div class="card" style="border-left:4px solid var(--sage);"><h4 class="sage">Computational</h4><p class="body-text" style="font-size:14px;">For $25,000 at 6% over 5 years: what is the exact dollar difference between annual and monthly compounding? Is that difference meaningful to a client?</p></div>
+            <div class="card" style="border-left:4px solid var(--gold);"><h4 class="gold">Conceptual</h4><p class="body-text" style="font-size:14px;">In plain language, no formulas: why does compound interest grow exponentially while simple interest grows linearly?</p></div>
+            <div class="card" style="border-left:4px solid var(--terra);"><h4 class="terra">Applied</h4><p class="body-text" style="font-size:14px;">Account A: 4% annual compounding. Account B: 3.8% monthly compounding. $100,000 over 10 years. Which wins — and by how much?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17 · Key Takeaways -->
+      <section class="slide paper" data-index="17" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Key Takeaways</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
+          <div class="title-rule"></div>
+          <div class="takeaway-grid anim-3">
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--sage);">01 — The Exponent</div><div class="tc-formula">FV = PV × (1 + i)ⁿ</div><p>Interest earns interest. Same rate, exponentially more money the longer time passes.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--gold);">02 — The Function</div><div class="tc-formula">=FV(rate, nper, 0, −pv)</div><p>pv is negative. pmt is zero for lump sums. rate and nper must match the compounding period.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--terra);">03 — Rule of 72</div><div class="tc-formula">72 ÷ rate ≈ years to double</div><p>Quick planning estimate. At 6%: 12 years. At 9%: 8 years. Verify with =FV().</p></div>
+          </div>
+          <div class="highlight-box gold anim-4" style="margin-top:14px;"><p><strong>Next — MATH-M09-L02:</strong> PMT and annuities. The pmt argument we left at 0 today becomes the main event. Mortgages, retirement contributions, car loans.</p></div>
+        </div>
+      </section>
+
+      <!-- SLIDE 18 · Next lesson preview -->
       <section class="slide paper" data-index="18" data-section="4">
         <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">19</span>
-            <span class="eyebrow">Student Practice</span>
-          </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">Your Turn — Build the Meridian FV Model</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card" style="border-top:3px solid var(--sage);">
-                <h4 class="sage">Part A — Simple Interest (5 min)</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.6;">A Meridian client borrows $60,000 at 7.5% for 8 months. Calculate the interest and ending balance. Then solve: if they paid $3,000 in interest on a 1-year loan at 5%, what was the principal?</p>
-              </div>
-              <div class="card" style="border-top:3px solid var(--gold);">
-                <h4 class="gold">Part B — FV with Verification (5 min)</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.6;">Invest $25,000 at 6% for 5 years. First build the =FV() formula, then manually verify using (1+i)^n. Both answers must match before you move on.</p>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card" style="border-top:3px solid var(--terra);">
-                <h4 class="terra">Part C — PV Challenge</h4>
-                <p style="font-size:14px;color:var(--text-soft);line-height:1.6;">Meridian offers a client two options: (A) invest $18,000 today at 5% for 8 years, or (B) receive $27,000 in 8 years. Use =FV() and =PV() to determine which is the better deal. Be ready to explain your answer.</p>
-              </div>
-              <div class="highlight-box sage">
-                <p style="font-size:13px;"><strong>Before you start:</strong> Remember the sign rule. PV in =FV() is negative. FV in =PV() is positive. If your result looks wrong, check the sign first — every time.</p>
-              </div>
-            </div>
+          <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L02</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Next: PMT Function &amp; Annuities</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="card"><h4 class="gold">What's Coming</h4><ul class="bullet-list gold" style="font-size:14px;"><li><strong>Annuities</strong> — payments that repeat every period</li><li><strong>=PMT()</strong> — required payment for any loan or savings goal</li><li><strong>=PV() with pmt</strong> — valuing a stream of equal payments</li><li><strong>=FV() with pmt</strong> — projecting savings with contributions</li><li>Mortgage, car loan, retirement contribution scenarios</li></ul></div>
+            <div class="card tinted"><h4>Before Next Class</h4><ul class="bullet-list sage" style="font-size:13px;"><li>Complete the Meridian FV activity</li><li>Read the MATH-M09-L02 pre-reading</li><li>Think: =FV() with pmt=0. What changes when a payment repeats every month?</li></ul></div>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════════════════════
-           SLIDE 20 · Key Takeaways  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="19" data-section="4">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">20</span>
-            <span class="eyebrow">Key Takeaways</span>
-          </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">Three Tools, One Framework</h2>
-          <div class="takeaway-grid anim-3">
-            <div class="takeaway-card" style="border-top:3px solid var(--sage);">
-              <div class="tc-label" style="color:var(--sage);">Part 1 — Simple Interest</div>
-              <div class="tc-formula">I = P × R × T</div>
-              <p>Time in years. Exact (÷365) vs. Ordinary (÷360). Rearrange to solve for P, R, or T.</p>
-            </div>
-            <div class="takeaway-card" style="border-top:3px solid var(--gold);">
-              <div class="tc-label" style="color:var(--gold);">Part 2 — Future Value</div>
-              <div class="tc-formula">=FV(rate, nper, 0, −PV)</div>
-              <p>Compound growth. Rate ÷ periods, Years × periods. PV is negative. Rule of 72 for quick estimates.</p>
-            </div>
-            <div class="takeaway-card" style="border-top:3px solid var(--terra);">
-              <div class="tc-label" style="color:var(--terra);">Part 3 — Present Value</div>
-              <div class="tc-formula">=PV(rate, nper, 0, +FV)</div>
-              <p>Discounting. FV is positive. Result is negative (cost today). The further out, the less it's worth.</p>
-            </div>
-          </div>
-          <div class="highlight-box gold anim-4" style="margin-top:14px;">
-            <p style="font-size:13px;"><strong>The unifying idea:</strong> money has a time value. A dollar today is worth more than a dollar tomorrow. =FV() quantifies the growth. =PV() quantifies the discount. Both use the same rate and period logic — just in opposite directions.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 21 · Up Next  (paper)
-           ═══════════════════════════════════════════ -->
-      <section class="slide paper" data-index="20" data-section="4">
-        <div class="slide-inner">
-          <div class="header-row anim-1">
-            <span class="slide-num">21</span>
-            <span class="eyebrow">Coming Up — MATH-M09-L02</span>
-          </div>
-          <div class="title-rule anim-1"></div>
-          <h2 class="slide-title anim-2">Next: Annuities &amp; the PMT Function</h2>
-          <div class="two-col anim-3" style="flex:1;min-height:0;">
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card tinted">
-                <h4 class="gold">What's Coming</h4>
-                <ul class="bullet-list gold" style="margin-top:0;">
-                  <li>What happens when payments repeat — monthly loan payments, retirement contributions</li>
-                  <li>The <strong>=PMT()</strong> function — calculates any recurring payment</li>
-                  <li>Why your first mortgage payment is mostly interest</li>
-                  <li>Amortization — how the interest/principal split changes over time</li>
-                </ul>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card">
-                <h4>Before Next Class</h4>
-                <ul class="bullet-list sage" style="margin-top:0;">
-                  <li>Make sure your FV and PV functions produce <strong>matching results</strong> vs. manual math</li>
-                  <li>Think of one recurring payment in your life — car loan, subscription, rent — that's an annuity</li>
-                  <li>Complete the M09-L01 Excel activity before the next session</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════════════════════
-           SLIDE 22 · Close / Q&A  (dark)
-           ═══════════════════════════════════════════ -->
-      <section class="slide dark" data-index="21" data-section="4">
-        <div class="geo" style="width:380px;height:380px;top:-80px;right:-40px;background:radial-gradient(circle, rgba(184,132,61,0.09) 0%, transparent 65%);"></div>
-        <div class="geo" style="width:200px;height:200px;bottom:60px;left:80px;background:radial-gradient(circle, rgba(74,124,94,0.07) 0%, transparent 70%);"></div>
+      <!-- SLIDE 19 · Close -->
+      <section class="slide dark" data-index="19" data-section="4">
         <div class="slide-inner" style="align-items:center;text-align:center;">
-          <div class="gradient-bar"></div>
-          <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;">
-            <div class="eyebrow gold">MATH-M09-L01 · Meridian Advisory Group</div>
-            <h2 class="section-title" style="font-size:38px;text-align:center;">Questions?</h2>
-            <p class="body-text dark" style="max-width:480px;font-size:16px;text-align:center;">The most important thing you learned today: <strong style="color:var(--gold);">money has a time value</strong>. FV grows it forward. PV discounts it back. Signs matter. Periods must match rates.</p>
-            <div style="display:flex;gap:32px;margin-top:24px;justify-content:center;">
-              <div class="stat-block" style="align-items:center;">
-                <div class="stat-num" style="font-size:28px;color:var(--sage);">=FV()</div>
-                <div class="stat-label" style="text-align:center;">Future Value</div>
-              </div>
-              <div class="stat-block" style="align-items:center;">
-                <div class="stat-num" style="font-size:28px;color:var(--gold);">=PV()</div>
-                <div class="stat-label" style="text-align:center;">Present Value</div>
-              </div>
-              <div class="stat-block" style="align-items:center;">
-                <div class="stat-num" style="font-size:28px;color:var(--terra);">Signs</div>
-                <div class="stat-label" style="text-align:center;">Always matter</div>
-              </div>
-            </div>
+          <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
+          <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L01 · Meridian Advisory Group</div>
+          <h2 class="section-title" style="text-align:center;font-size:38px;">Questions?</h2>
+          <p class="body-text dark" style="margin-top:16px;text-align:center;">The key insight of compound interest:<br><strong style="color:var(--paper);">interest earns interest.</strong><br>=FV() handles the exponent. Signs matter. Periods must match rates.</p>
+          <div style="display:flex;gap:32px;justify-content:center;margin-top:32px;">
+            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Office Hours</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Canvas · TBD</div></div>
+            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Email</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">bevitts@endicott.edu</div></div>
           </div>
         </div>
       </section>
 
-    </div><!-- /slide-scaler -->
-  </div><!-- /slide-viewport -->
-</div><!-- /deck-shell -->
-
-<!-- Nav Controls -->
-<div class="nav-controls">
-  <button class="nav-btn" id="btn-prev" onclick="prevSlide()" title="Previous (←)">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 22</span>
-  <button class="nav-btn" id="btn-next" onclick="nextSlide()" title="Next (→)">&#8594;</button>
+    </div>
+  </div>
 </div>
-
-<!-- Speaker Notes Overlay -->
+<div class="nav-controls">
+  <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
+  <span class="slide-counter" id="counter">1 / 20</span>
+  <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
+  <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
+</div>
 <div class="notes-overlay" id="notes-overlay">
   <div class="notes-label">Speaker Notes</div>
   <p id="notes-text"></p>
 </div>
-
 <script>
-  // ── State ──
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const TOTAL = slides.length;
-  let current = 0;
-  let notesVisible = false;
-
-  // ── Notes ──
-  const notesData = JSON.parse(document.getElementById('speaker-notes').textContent);
-
-  // ── Scaling ──
-  const W = 960, H = 560;
-  function rescale() {
-    const vw = document.getElementById('viewport').clientWidth;
-    const vh = document.getElementById('viewport').clientHeight;
-    const scale = Math.min(vw / W, vh / H) * 0.96;
-    const scaler = document.getElementById('scaler');
-    scaler.style.transform = `scale(${scale})`;
-    scaler.style.marginLeft = `${(vw - W * scale) / 2}px`;
-    scaler.style.marginTop  = `${(vh - H * scale) / 2}px`;
-  }
-  window.addEventListener('resize', rescale);
-  rescale();
-
-  // ── Navigate ──
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    current = Math.max(0, Math.min(TOTAL - 1, n));
-    slides[current].classList.add('active');
-    document.getElementById('counter').textContent = `${current + 1} / ${TOTAL}`;
-    updateTabs();
-    if (notesVisible) showNotes();
-  }
-  function nextSlide() { goTo(current + 1); }
-  function prevSlide() { goTo(current - 1); }
-
-  function jumpSection(sec) {
-    const idx = slides.findIndex(s => parseInt(s.dataset.section) === sec);
-    if (idx !== -1) goTo(idx);
-  }
-
-  // ── Tab highlighting ──
-  const tabBtns = Array.from(document.querySelectorAll('.tab-btn'));
-  function updateTabs() {
-    const sec = parseInt(slides[current].dataset.section);
-    tabBtns.forEach(btn => {
-      btn.className = 'tab-btn';
-      const bSec = parseInt(btn.dataset.section);
-      if (bSec === sec) {
-        if (sec === 1) btn.classList.add('active-sage');
-        else if (sec === 2) btn.classList.add('active-gold');
-        else if (sec === 3) btn.classList.add('active-terra');
-        else btn.classList.add('active-neutral');
-      }
-    });
-  }
-  updateTabs();
-
-  // ── Speaker Notes ──
-  function showNotes() {
-    const el = document.getElementById('notes-text');
-    el.textContent = notesData[current] || '';
-  }
-  function toggleNotes() {
-    notesVisible = !notesVisible;
-    const overlay = document.getElementById('notes-overlay');
-    overlay.classList.toggle('visible', notesVisible);
-    if (notesVisible) showNotes();
-  }
-
-  // ── Keyboard ──
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); nextSlide(); }
-    if (e.key === 'ArrowLeft'  || e.key === 'PageUp')                    { e.preventDefault(); prevSlide(); }
-    if (e.key === 'Home') goTo(0);
-    if (e.key === 'End')  goTo(TOTAL - 1);
-    if (e.key === 'n' || e.key === 'N') toggleNotes();
-  });
-
-  // ── Click zones ──
-  document.getElementById('viewport').addEventListener('click', e => {
-    const vw = document.getElementById('viewport').clientWidth;
-    const third = vw / 3;
-    if (e.clientX < 48 + third) prevSlide();
-    else if (e.clientX > vw - third) nextSlide();
-  });
+  const slides=Array.from(document.querySelectorAll('.slide'));
+  const TOTAL=slides.length; let current=0,notesVisible=false;
+  const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
+  const W=960,H=560;
+  function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}
+  window.addEventListener('resize',rescale);rescale();
+  function goTo(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(TOTAL-1,n));slides[current].classList.add('active');document.getElementById('counter').textContent=`${current+1} / ${TOTAL}`;updateTabs();if(notesVisible)showNotes();}
+  function nextSlide(){goTo(current+1);}function prevSlide(){goTo(current-1);}
+  function jumpSection(sec){const idx=slides.findIndex(s=>parseInt(s.dataset.section)===sec);if(idx!==-1)goTo(idx);}
+  const tabBtns=Array.from(document.querySelectorAll('.tab-btn'));
+  function updateTabs(){const sec=parseInt(slides[current].dataset.section);tabBtns.forEach(btn=>{btn.className='tab-btn';const bSec=parseInt(btn.dataset.section);if(bSec===sec){if(sec===1)btn.classList.add('active-sage');else if(sec===2)btn.classList.add('active-gold');else if(sec===3)btn.classList.add('active-terra');else btn.classList.add('active-neutral');}});}updateTabs();
+  function showNotes(){document.getElementById('notes-text').textContent=notesData[current]||'';}
+  function toggleNotes(){notesVisible=!notesVisible;document.getElementById('notes-overlay').classList.toggle('visible',notesVisible);if(notesVisible)showNotes();}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide();}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}if(e.key==='Home')goTo(0);if(e.key==='End')goTo(TOTAL-1);if(e.key==='n'||e.key==='N')toggleNotes();});
+  document.getElementById('viewport').addEventListener('click',e=>{const vw=document.getElementById('viewport').clientWidth;if(e.clientX<48+vw/3)prevSlide();else if(e.clientX>vw-vw/3)nextSlide();});
 </script>
 </body>
 </html>

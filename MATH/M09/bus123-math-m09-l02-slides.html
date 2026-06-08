@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATH-M09-L02 · PMT Function &amp; Annuities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome to M09-L02. Everything from L01 applies — same sign convention, same period-matching rule. New concept: the pmt argument. Instead of investing once and walking away, money flows in or out every single period. Mortgages, car loans, retirement contributions — all annuities.",
+  "Three parts. Part 1: what is an annuity and how does pmt fit into the TVM framework. Part 2: =PMT() — calculating required payments. Part 3: =FV() and =PV() with recurring payments. The activity runs a complete loan and savings analysis for a Meridian client.",
+  "Four I Can statements. All four require Excel. The sign rule from M08 and M09-L01 carries forward — pmt has a sign too, and it matters.",
+  "Annuity defined. Equal payments at equal intervals. Ordinary annuity: payments at end of each period — default in Excel. Annuity due: payments at beginning. Two types of problems: grow a savings goal with periodic deposits (FV + pmt), or pay down a loan with periodic payments (PV + pmt).",
+  "The pmt sign convention. Same logic as pv: money leaving your pocket is negative. For loans — you receive the principal today (positive pv) and make payments out each month (negative pmt). For savings — you invest each period (negative pmt) and receive the balance at the end (positive FV). Mixing up signs does not crash Excel — it just gives a wrong answer.",
+  "=PMT() syntax. Rate, nper, pv, fv, type. For loan payment problems: rate = period rate, nper = total periods, pv = loan amount as positive, fv = 0 (loan paid off). Result is negative — outflow, your monthly payment. Always read =PMT() result as an absolute value when communicating to clients.",
+  "Meridian client mortgage. $320,000 loan at 6.5% for 30 years, monthly payments. Rate = 6.5%/12. Nper = 30*12 = 360. =PMT(6.5%/12, 360, 320000) returns negative $2,023.13. That is the monthly payment. Manual check: multiply by 360 to get total paid — $728,326. Total interest = $408,326.",
+  "=FV() with recurring payments. Same =FV() function — just pmt is no longer zero. A Meridian client contributes $500 per month into a retirement account at 7% annual for 30 years. Rate=7%/12, nper=360, pmt=-500, pv=0. Monthly contribution leaves the pocket — negative. Result: $606,438. That is the power of regular investing.",
+  "=PV() with recurring payments. What is a stream of equal payments worth today? Meridian client will receive $1,500/month for 10 years. Discount rate 5% annual. Rate=5%/12, nper=120, pmt=1500, fv=0. Result: negative $141,799 — present cost of acquiring that stream. The sign means outflow to buy it today.",
+  "Ordinary annuity versus annuity due. Ordinary: payments at end of each period, type=0, Excel default. Annuity due: payments at beginning of each period, type=1. Annuity due always produces a slightly higher PV or FV because each payment earns one extra period of interest. Most loan and savings problems use ordinary annuity — type=0.",
+  "Total interest calculation. Take the =PMT() result, multiply by nper for total paid, subtract original pv for total interest. For the mortgage: $2,023.13 times 360 = $728,326 total paid. $728,326 minus $320,000 = $408,326 in interest. This number is the cost of borrowing over 30 years.",
+  "Impact of extra payments. One extra payment per year on that mortgage: the payoff period drops from 30 years to about 25 years and saves approximately $93,000 in interest. The math: recalculate with pmt increased by 1/12 of one payment. Small changes in pmt have large effects over long horizons.",
+  "Common mistake. Using annual rate and annual nper for a monthly payment problem. =PMT(6.5%, 30, 320000) returns -$27,006 per year — looks like a plausible annual number, not obviously wrong. But the actual monthly payment is $2,023. Always ask: what is the compounding period for this problem? Rate and nper must match.",
+  "Worked example combining L01 and L02. Meridian client has two goals: pay off a $25,000 car loan at 4.9% over 5 years monthly, and simultaneously save $200/month in a 6% annual account. What is the monthly car payment? What is the savings account value at year 5? This is a real client scenario.",
+  "Student activity. Three parts. A: calculate monthly mortgage payment and total interest for a Meridian client purchase. B: build a retirement savings model — how much does a client need to contribute monthly to reach $500,000 in 25 years at 7%? C: what is the present value of a 10-year annuity at 5%?",
+  "Discussion. Computational: for the mortgage, what is the total interest cost? Conceptual: why does a longer loan term lower the monthly payment but increase total interest paid? Applied: a client asks whether to make a $50,000 lump sum investment today or $500 per month for 10 years at 6%. Which produces more FV?",
+  "Key takeaways. PMT: =PMT(rate,nper,pv,0) — result is negative, read as absolute value. FV with payments: =FV(rate,nper,pmt,pv) — pmt and pv both negative for regular investing. PV with payments: =PV(rate,nper,pmt,0) — pmt positive for received payments. Rate and nper always match the payment period.",
+  "Module 09 is complete. You now have the full TVM toolkit: =PV(), =FV(), =PMT() — forward and backward, lump sum and annuity. These three functions underlie every mortgage, bond, retirement plan, and business valuation you will ever encounter.",
+  "Questions? bevitts@endicott.edu or Canvas. Next module: financial statements and business statistics."
+]
+</script>
+<style>
+  /* ============================================================
+     BUS123 v2 Hybrid Design System — MATH-M09-L01
+     Inline styles for standalone delivery (GitHub Pages compatible)
+     ============================================================ */
+
+  :root {
+    --ink:      #0E1116;
+    --paper:    #FAF8F3;
+    --paper-2:  #F2EEE5;
+    --white:    #FFFFFF;
+    --text:     #1A1F2C;
+    --text-soft:#4A5567;
+    --muted:    #7A8290;
+    --border:   #E5E1D6;
+    --sage:     #4A7C5E;
+    --gold:     #B8843D;
+    --terra:    #9C4A2B;
+    --gradient: linear-gradient(90deg, #B8843D, #9C4A2B, #4A7C5E);
+
+    /* Excel replica */
+    --xls-header-bg:   #1a1a2e;
+    --xls-header-text: #c9a84c;
+    --xls-header-border:#c9a84c;
+    --xls-cell-bg:     #ffffff;
+    --xls-cell-text:   #0a3d6b;
+    --xls-alt-row:     #f7f8fa;
+    --xls-result-bg:   #fffbf0;
+    --xls-result-text: #1a6b3c;
+    --xls-formula:     #1a6b3c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #111318;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ── Shell ── */
+  .deck-shell {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ── Tab Strip ── */
+  .tab-strip {
+    display: flex;
+    flex-direction: column;
+    width: 48px;
+    background: #0a0c0f;
+    border-right: 1px solid #1e2128;
+    gap: 4px;
+    padding: 12px 6px;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  .tab-strip .tab-spacer { flex: 1; }
+  .tab-btn {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #5a6270;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: #1e2128; color: #a0a8b4; }
+  .tab-btn.active-sage  { background: rgba(74,124,94,0.18); color: var(--sage);  border-left: 2px solid var(--sage); }
+  .tab-btn.active-gold  { background: rgba(184,132,61,0.18); color: var(--gold);  border-left: 2px solid var(--gold); }
+  .tab-btn.active-terra { background: rgba(156,74,43,0.18);  color: var(--terra); border-left: 2px solid var(--terra); }
+  .tab-btn.active-neutral { background: #1e2128; color: #c8cdd5; border-left: 2px solid #5a6270; }
+
+  /* ── Viewport ── */
+  .slide-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111318;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Slide Scaler ── */
+  .slide-scaler {
+    width: 960px;
+    height: 560px;
+    position: relative;
+    transform-origin: center center;
+  }
+
+  /* ── Slide Base ── */
+  .slide {
+    display: none;
+    width: 960px;
+    height: 560px;
+    position: absolute;
+    top: 0; left: 0;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+  .slide.active { display: block; }
+
+  /* Paper slides */
+  .slide.paper {
+    background: var(--paper);
+    color: var(--text);
+  }
+  .slide.paper .slide-inner {
+    padding: 44px 52px 32px 52px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Dark slides */
+  .slide.dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .slide.dark .slide-inner {
+    padding: 44px 52px 32px 52px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Gradient Bar ── */
+  .gradient-bar {
+    height: 4px;
+    background: var(--gradient);
+    width: 100%;
+    border-radius: 2px;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+  }
+
+  /* ── Typography ── */
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .eyebrow.sage  { color: var(--sage); }
+  .eyebrow.gold  { color: var(--gold); }
+  .eyebrow.terra { color: var(--terra); }
+
+  h1.display {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--paper);
+    margin-bottom: 16px;
+  }
+  h1.display em { font-style: italic; font-weight: 400; color: var(--gold); }
+
+  h2.section-title {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--paper);
+    margin-bottom: 12px;
+  }
+
+  h2.slide-title {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  h2.slide-title.paper { color: var(--text); }
+
+  h3.sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-soft);
+    margin-bottom: 8px;
+  }
+
+  p.body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--text-soft);
+  }
+  p.body-text.dark { color: rgba(250,248,243,0.78); }
+
+  .subtitle-italic {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(250,248,243,0.65);
+    margin-bottom: 32px;
+  }
+
+  /* ── Title Rule ── */
+  .title-rule {
+    height: 2px;
+    background: var(--border);
+    width: 100%;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+  .title-rule.sage  { background: var(--sage);  opacity: 0.5; }
+  .title-rule.gold  { background: var(--gold);  opacity: 0.5; }
+  .title-rule.terra { background: var(--terra); opacity: 0.5; }
+
+  /* ── Header Row ── */
+  .header-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .slide-num {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── Bullet Lists ── */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+  }
+  .bullet-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-soft);
+    padding-left: 20px;
+    position: relative;
+  }
+  .bullet-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .bullet-list.sage  li::before { color: var(--sage); }
+  .bullet-list.gold  li::before { color: var(--gold); }
+  .bullet-list.terra li::before { color: var(--terra); }
+  .bullet-list li strong { color: var(--text); font-weight: 600; }
+
+  /* ── Two-column layout ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+  }
+  .two-col.wide-left  { grid-template-columns: 1.4fr 1fr; }
+  .two-col.wide-right { grid-template-columns: 1fr 1.4fr; }
+
+  /* ── Card ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+  }
+  .card.tinted { background: var(--paper-2); }
+  .card h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .card h4.sage  { color: var(--sage); }
+  .card h4.gold  { color: var(--gold); }
+  .card h4.terra { color: var(--terra); }
+
+  /* ── Formula Panel (dark) ── */
+  .formula-panel {
+    background: #0a0c10;
+    border: 1px solid #2a2e38;
+    border-left: 3px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+  }
+  .formula-panel .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .formula-panel code {
+    font-family: 'DM Sans', sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8d5a0;
+    letter-spacing: 0.02em;
+    display: block;
+  }
+  .formula-panel code .fn { color: #7fba8a; }
+  .formula-panel code .arg { color: #8ab4d4; }
+  .formula-panel code .val { color: #e8d5a0; }
+  .formula-panel code .neg { color: #e8887a; }
+
+  /* ── Formula Panel (light — manual math) ── */
+  .math-panel {
+    background: var(--paper-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--sage);
+    border-radius: 6px;
+    padding: 14px 20px;
+  }
+  .math-panel .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 8px;
+  }
+  .math-panel code {
+    font-family: 'DM Sans', sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    line-height: 1.7;
+  }
+  .math-panel code .result { color: var(--sage); font-weight: 700; }
+
+  /* ── Excel Replica Table ── */
+  .xls-wrap {
+    overflow: hidden;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .xls-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+  }
+  .xls-table th {
+    background: var(--xls-header-bg);
+    color: var(--xls-header-text);
+    border: 1px solid var(--xls-header-border);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .xls-table th.row-num { width: 32px; text-align: center; }
+  .xls-table td {
+    background: var(--xls-cell-bg);
+    color: var(--xls-cell-text);
+    border: 1px solid #e2e8f0;
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+  .xls-table tr:nth-child(even) td { background: var(--xls-alt-row); }
+  .xls-table tr.result-row td {
+    background: var(--xls-result-bg);
+    border-left: 3px solid var(--xls-header-border);
+    color: var(--xls-result-text);
+    font-weight: 600;
+  }
+  .xls-table td.formula-cell {
+    color: var(--xls-formula);
+    font-style: italic;
+    font-size: 12px;
+  }
+  .xls-table td.row-num {
+    background: #f0f2f8;
+    color: var(--xls-header-text);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    border-color: var(--xls-header-border);
+  }
+
+  /* ── Stat / Callout ── */
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(250,248,243,0.65);
+    line-height: 1.4;
+  }
+
+  /* ── Pill tag ── */
+  .pill {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .pill.sage  { background: rgba(74,124,94,0.15);  color: var(--sage); }
+  .pill.gold  { background: rgba(184,132,61,0.15); color: var(--gold); }
+  .pill.terra { background: rgba(156,74,43,0.15);  color: var(--terra); }
+
+  /* ── Comparison table (simple vs compound) ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .compare-table th {
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .compare-table th.simple-head { background: rgba(74,124,94,0.12); color: var(--sage); }
+  .compare-table th.compound-head { background: rgba(184,132,61,0.12); color: var(--gold); }
+  .compare-table th.label-head { background: var(--paper-2); color: var(--muted); }
+  .compare-table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-soft);
+    font-size: 13px;
+  }
+  .compare-table td.label-cell { font-weight: 500; color: var(--text); background: var(--paper-2); }
+  .compare-table td.simple-cell { background: rgba(74,124,94,0.05); }
+  .compare-table td.compound-cell { background: rgba(184,132,61,0.05); }
+  .compare-table td strong { color: var(--text); font-weight: 600; }
+
+  /* ── Geometric decoration ── */
+  .geo {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+  }
+
+  /* ── Nav controls ── */
+  .nav-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-btn {
+    width: 36px; height: 36px;
+    background: #1e2128;
+    border: 1px solid #2e3340;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: #8a92a0;
+    font-size: 16px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-btn:hover { background: #2a2f3a; color: #c8cdd5; }
+  .slide-counter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #5a6270;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  /* ── Speaker Notes Overlay ── */
+  .notes-overlay {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10,12,15,0.96);
+    border-top: 1px solid #2a2e38;
+    padding: 16px 24px 16px 72px;
+    z-index: 200;
+    max-height: 28vh;
+    overflow-y: auto;
+  }
+  .notes-overlay.visible { display: block; }
+  .notes-overlay p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #a8b0bc;
+  }
+  .notes-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .slide.active .anim-1 { animation: fadeUp 0.5s ease 0.05s both; }
+  .slide.active .anim-2 { animation: fadeUp 0.5s ease 0.15s both; }
+  .slide.active .anim-3 { animation: fadeUp 0.5s ease 0.25s both; }
+  .slide.active .anim-4 { animation: fadeUp 0.5s ease 0.35s both; }
+  .slide.active .anim-5 { animation: fadeUp 0.5s ease 0.45s both; }
+  .slide.dark.active .slide-inner { animation: fadeIn 0.4s ease both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slide.active .anim-1,
+    .slide.active .anim-2,
+    .slide.active .anim-3,
+    .slide.active .anim-4,
+    .slide.active .anim-5,
+    .slide.dark.active .slide-inner { animation: none; }
+  }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 12px;
+  }
+  .highlight-box.sage  { background: rgba(74,124,94,0.1);  border-left: 3px solid var(--sage); }
+  .highlight-box.gold  { background: rgba(184,132,61,0.1); border-left: 3px solid var(--gold); }
+  .highlight-box.terra { background: rgba(156,74,43,0.1);  border-left: 3px solid var(--terra); }
+  .highlight-box p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+  .highlight-box p strong { color: var(--text); }
+
+  /* objectives grid */
+  .obj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+  }
+  .obj-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .obj-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .obj-icon.sage  { background: rgba(74,124,94,0.12); }
+  .obj-icon.gold  { background: rgba(184,132,61,0.12); }
+  .obj-icon.terra { background: rgba(156,74,43,0.12); }
+  .obj-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .obj-text strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 2px; font-size: 12px; letter-spacing: 0.04em; }
+
+  /* agenda items */
+  .agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .agenda-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .agenda-num {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .agenda-num.sage  { color: var(--sage); }
+  .agenda-num.gold  { color: var(--gold); }
+  .agenda-num.terra { color: var(--terra); }
+  .agenda-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .agenda-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+
+  /* frequency table */
+  .freq-table { width: 100%; border-collapse: collapse; }
+  .freq-table th, .freq-table td {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .freq-table th { background: var(--paper-2); font-weight: 600; color: var(--text); font-size: 12px; }
+  .freq-table td { color: var(--text-soft); }
+  .freq-table td strong { color: var(--text); font-weight: 600; }
+  .freq-table tr:nth-child(even) td { background: var(--paper-2); }
+
+  /* takeaway card */
+  .takeaway-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    flex: 1;
+  }
+  .takeaway-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .takeaway-card .tc-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .takeaway-card .tc-formula {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .takeaway-card p {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+
+  .pmt-table { width:100%; border-collapse:collapse; font-family:'DM Sans',sans-serif; font-size:13px; }
+  .pmt-table th { background:var(--paper-2); padding:8px 12px; text-align:left; font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); border-bottom:2px solid var(--border); }
+  .pmt-table td { padding:8px 12px; border-bottom:1px solid var(--border); color:var(--text-soft); }
+  .pmt-table td.key { font-weight:500; color:var(--text); background:var(--paper-2); }
+  .pmt-table td.val { font-weight:600; color:var(--sage); }
+  .takeaway-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; flex:1; }
+  .takeaway-card { background:var(--white); border:1px solid var(--border); border-radius:6px; padding:18px 16px; display:flex; flex-direction:column; gap:8px; }
+  .takeaway-card .tc-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; }
+  .takeaway-card .tc-formula { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:var(--text); }
+  .takeaway-card p { font-size:12px; color:var(--text-soft); line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="deck-shell">
+  <nav class="tab-strip">
+    <button class="tab-btn" data-section="1" onclick="jumpSection(1)">Part 1</button>
+    <button class="tab-btn" data-section="2" onclick="jumpSection(2)">Part 2</button>
+    <button class="tab-btn" data-section="3" onclick="jumpSection(3)">Part 3</button>
+    <button class="tab-btn" data-section="4" onclick="jumpSection(4)">Wrap</button>
+    <div class="tab-spacer"></div>
+  </nav>
+  <div class="slide-viewport" id="viewport">
+    <div class="slide-scaler" id="scaler">
+
+      <!-- SLIDE 0 · Title -->
+      <section class="slide dark active" data-index="0" data-section="0">
+        <div class="slide-inner">
+          <div class="gradient-bar"></div>
+          <div class="eyebrow gold anim-1">MATH-M09 · L02 &nbsp;·&nbsp; Meridian Advisory Group</div>
+          <h1 class="display anim-2">PMT Function<br>&amp; <em>Annuities</em></h1>
+          <p class="subtitle-italic anim-3">BUS123 · Solving Business Problems with Technology</p>
+          <div style="margin-top:auto;display:flex;gap:32px;" class="anim-4">
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Track</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Business Math</div></div>
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Semester</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Fall 2026</div></div>
+            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">School</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Gerrish School of Business</div></div>
+          </div>
+        </div>
+        <div class="geo" style="width:320px;height:320px;background:radial-gradient(circle,rgba(184,132,61,0.08),transparent 70%);right:-60px;top:-60px;"></div>
+      </section>
+
+      <!-- SLIDE 1 · Agenda -->
+      <section class="slide paper" data-index="1" data-section="0">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Today's Plan</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
+          <div class="title-rule"></div>
+          <div class="agenda-list anim-3">
+            <div class="agenda-item"><div class="agenda-num sage">1</div><div><div class="agenda-label">What Is an Annuity?</div><div class="agenda-sub">Ordinary vs. annuity due · how pmt fits the TVM framework · sign rule</div></div></div>
+            <div class="agenda-item"><div class="agenda-num gold">2</div><div><div class="agenda-label">=PMT() — Required Payment Calculation</div><div class="agenda-sub">Syntax · loan payment · total interest · impact of extra payments</div></div></div>
+            <div class="agenda-item"><div class="agenda-num terra">3</div><div><div class="agenda-label">=FV() and =PV() with Recurring Payments</div><div class="agenda-sub">Savings goal with monthly deposits · valuing a payment stream</div></div></div>
+            <div class="agenda-item"><div class="agenda-num" style="color:var(--muted);">4</div><div><div class="agenda-label">Meridian Activity + Discussion</div><div class="agenda-sub">Mortgage payment, retirement savings, annuity valuation</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 · I Can Statements -->
+      <section class="slide paper" data-index="2" data-section="0">
+        <div class="slide-inner">
+          <div class="eyebrow sage anim-1">Learning Objectives</div>
+          <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="obj-grid anim-3">
+            <div class="obj-item"><div class="obj-icon sage">💳</div><div class="obj-text"><strong>=PMT() Function</strong>Calculate required periodic payment for any loan using =PMT(rate, nper, pv, 0).</div></div>
+            <div class="obj-item"><div class="obj-icon gold">📈</div><div class="obj-text"><strong>=FV() with pmt</strong>Project a savings account balance with regular monthly deposits using =FV(rate, nper, pmt, pv).</div></div>
+            <div class="obj-item"><div class="obj-icon terra">⬇️</div><div class="obj-text"><strong>=PV() with pmt</strong>Value a stream of equal future payments in today's dollars using =PV(rate, nper, pmt, 0).</div></div>
+            <div class="obj-item"><div class="obj-icon" style="background:rgba(74,124,94,0.12);">🔁</div><div class="obj-text"><strong>Sign Convention</strong>Apply the correct sign to pmt — negative for payments out, positive for payments received.</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3 · What is an annuity -->
+      <section class="slide paper" data-index="3" data-section="1">
+        <div class="slide-inner">
+          <div class="eyebrow sage anim-1">Part 1 · Annuities</div>
+          <div class="header-row anim-2"><h2 class="slide-title">What Is an Annuity?</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="sage">Definition</h4><p class="body-text" style="font-size:14px;">An annuity is a series of <strong>equal payments</strong> made at <strong>equal time intervals</strong>. Every mortgage, car loan, monthly retirement contribution, and lease payment is an annuity.</p></div>
+              <div class="card"><h4 class="gold">Two Types</h4>
+                <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:4px;">
+                  <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;font-weight:600;color:var(--text);">Ordinary Annuity</td><td style="padding:6px 0;color:var(--text-soft);">Payment at <strong>end</strong> of period. type=0. Excel default. Most loans.</td></tr>
+                  <tr><td style="padding:6px 0;font-weight:600;color:var(--text);">Annuity Due</td><td style="padding:6px 0;color:var(--text-soft);">Payment at <strong>beginning</strong> of period. type=1. Lease payments.</td></tr>
+                </table>
+              </div>
+            </div>
+            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
+              <h4 class="terra">Where pmt Lives in the TVM Functions</h4>
+              <div class="formula-panel"><div class="label">All Three Functions Use pmt</div><code><span class="fn">=PMT(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pv</span>, 0)</span><span class="fn">=FV(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="neg">pmt</span>, <span class="neg">pv</span>)</span><span class="fn">=PV(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, 0)</span></code></div>
+              <div class="highlight-box gold"><p>In L01 we set pmt=0 for lump sums. Today pmt is the variable of interest. Everything else stays the same — same sign convention, same period-matching rule.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4 · pmt sign convention -->
+      <section class="slide paper" data-index="4" data-section="1">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 1 · Sign Convention</div>
+          <div class="header-row anim-2"><h2 class="slide-title">The pmt Sign Rule — Same Logic as pv</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="gold">The Rule</h4><p class="body-text" style="font-size:13px;"><strong>Money leaving your pocket → negative</strong><br><strong>Money coming to you → positive</strong></p><p class="body-text" style="font-size:13px;margin-top:8px;">This is identical to the pv rule from M08 and M09-L01. The same logic applies to every cash flow in every TVM function.</p></div>
+              <div class="highlight-box sage"><p><strong>Sanity check for loans:</strong> =PMT() result is negative (payment out). Total paid = ABS(pmt) × nper. Total interest = Total paid − original loan.</p></div>
+            </div>
+            <div>
+              <div class="formula-panel" style="margin-bottom:10px;"><div class="label">Loan Payments — pmt Negative</div><code>=PMT(rate, nper, <span class="val">+320000</span>, 0)<span class="comment">// pv positive = money received (loan proceeds)</span><span class="comment">// Result: negative = monthly payment out</span></code></div>
+              <div class="formula-panel"><div class="label">Savings Contributions — pmt Negative</div><code>=FV(rate, nper, <span class="neg">−500</span>, 0)<span class="comment">// pmt negative = monthly deposit out</span><span class="comment">// Result: positive = balance received</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5 · =PMT() section break -->
+      <section class="slide dark" data-index="5" data-section="2">
+        <div class="slide-inner">
+          <div class="eyebrow gold anim-1">Part 2 · =PMT() Function</div>
+          <h2 class="section-title anim-2" style="color:var(--gold);">What Payment Is Required?</h2>
+          <div class="anim-3" style="margin-top:16px;">
+            <div class="formula-panel" style="max-width:580px;"><div class="label">Excel Syntax</div><code><span class="fn">=PMT(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pv</span>, [<span class="arg">fv</span>], [<span class="arg">type</span>])</span><span class="comment">// For loan payoff: fv=0 (balance reaches zero)</span><span class="comment">// Result is negative — monthly payment out of pocket</span></code></div>
+          </div>
+          <div class="anim-4" style="margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:640px;">
+            <div style="padding:14px;background:rgba(74,124,94,0.08);border-left:3px solid var(--sage);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">rate</div><p style="font-size:13px;color:rgba(250,248,243,0.7);">Period rate. Always divide annual rate by payments per year.</p></div>
+            <div style="padding:14px;background:rgba(184,132,61,0.08);border-left:3px solid var(--gold);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">nper</div><p style="font-size:13px;color:rgba(250,248,243,0.7);">Total payments. Years × payments per year.</p></div>
+            <div style="padding:14px;background:rgba(156,74,43,0.08);border-left:3px solid var(--terra);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;">pv</div><p style="font-size:13px;color:rgba(250,248,243,0.7);">Loan amount. Enter as <strong style="color:var(--paper);">positive</strong> — money you received.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6 · Mortgage worked example -->
+      <section class="slide paper" data-index="6" data-section="2">
+        <div class="slide-inner">
+          <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — $320,000 Mortgage at 6.5% for 30 Years</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="formula-panel"><div class="label">Excel — Monthly Payment</div><code><span class="fn">=PMT(6.5%/12, 30*12, 320000)</span><span class="comment">// rate=6.5%/12  nper=360  pv=320,000</span><span class="comment">// Returns: −$2,023.13</span></code></div>
+              <div class="math-panel" style="margin-top:12px;"><div class="label">Total Cost Analysis</div><code>Monthly payment: <span class="result">$2,023.13</span><br>Total paid: 2,023.13 × 360 = <span class="result">$728,326</span><br>Original loan:             <span class="result">$320,000</span><br>Total interest:            <span class="result">$408,326</span></code></div>
+            </div>
+            <div class="xls-wrap">
+              <table class="xls-table">
+                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th></tr></thead>
+                <tbody>
+                  <tr><td class="row-num">2</td><td>Loan Amount (PV)</td><td style="background:#fef9e7;color:#856404;">320,000</td></tr>
+                  <tr><td class="row-num">3</td><td>Annual Rate</td><td style="background:#fef9e7;color:#856404;">0.065</td></tr>
+                  <tr><td class="row-num">4</td><td>Years</td><td style="background:#fef9e7;color:#856404;">30</td></tr>
+                  <tr><td class="row-num">5</td><td>Rate per Month</td><td class="formula-cell">=B3/12</td></tr>
+                  <tr><td class="row-num">6</td><td>Total Payments</td><td class="formula-cell">=B4*12</td></tr>
+                  <tr class="result-row"><td class="row-num">7</td><td>Monthly PMT</td><td class="formula-cell">=PMT(B5,B6,B2,0)</td></tr>
+                  <tr><td class="row-num">8</td><td>Total Paid</td><td class="formula-cell">=ABS(B7)*B6</td></tr>
+                  <tr><td class="row-num">9</td><td>Total Interest</td><td class="formula-cell">=B8-B2</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7 · =FV() with pmt -->
+      <section class="slide paper" data-index="7" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow terra anim-1">Part 3 · =FV() with Payments</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Monthly Savings — Building a Retirement Account</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Meridian Client Scenario</h4><p class="body-text" style="font-size:14px;">A client contributes <strong>$500/month</strong> to a retirement account earning <strong>7% annual</strong> for <strong>30 years</strong>. How much will they have?</p></div>
+              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=FV(7%/12, 30*12, <span class="neg">−500</span>, 0)</span><span class="comment">// pmt negative = monthly deposit out</span><span class="comment">// Returns: $606,438.29</span></code></div>
+              <div class="math-panel" style="margin-top:12px;"><div class="label">What They Contributed</div><code>Total deposited: 500 × 360 = <span class="result">$180,000</span><br>Account value:              <span class="result">$606,438</span><br>Growth from compounding:    <span class="result">$426,438</span></code></div>
+            </div>
+            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
+              <h4 class="gold">The Power of Regular Investing</h4>
+              <p class="body-text" style="font-size:13px;">The client put in $180,000 over 30 years. Compounding turned it into $606,438 — <strong>3.4× their total contributions.</strong></p>
+              <div class="highlight-box sage"><p><strong>Key insight:</strong> The earlier the contributions start, the more compounding periods each dollar has. Missing the first 5 years of contributions costs far more than $30,000 in deposits.</p></div>
+              <div class="formula-panel" style="margin-top:4px;"><div class="label">Starting with a Lump Sum</div><code><span class="fn">=FV(7%/12, 360, <span class="neg">−500</span>, <span class="neg">−10000</span>)</span><span class="comment">// pv=−10000 AND pmt=−500</span><span class="comment">// Both negative — both are outflows</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8 · =PV() with pmt -->
+      <section class="slide paper" data-index="8" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · =PV() with Payments</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Valuing a Payment Stream — What Is It Worth Today?</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Meridian Client Scenario</h4><p class="body-text" style="font-size:14px;">A client will receive <strong>$1,500/month</strong> for <strong>10 years</strong>. Discount rate <strong>5% annual</strong>. What is the stream worth today?</p></div>
+              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=PV(5%/12, 10*12, <span class="val">1500</span>, 0)</span><span class="comment">// pmt positive = payments received</span><span class="comment">// Returns: −$141,799</span><span class="comment">// Negative = cost to acquire this stream today</span></code></div>
+            </div>
+            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
+              <h4 class="gold">Interpreting the Result</h4>
+              <p class="body-text" style="font-size:13px;">The stream pays out $1,500 × 120 = <strong>$180,000</strong> total. But in today's dollars at 5%, it is only worth <strong>$141,799</strong>.</p>
+              <p class="body-text" style="font-size:13px;">The negative means <em>outflow</em> — what you would pay today to acquire this stream. If someone offers to sell the stream for $130,000, it's a good deal. At $155,000, it's overpriced.</p>
+              <div class="highlight-box sage" style="margin-top:4px;"><p><strong>Compare to DCF from M08:</strong> In M08 we discounted individual payments and summed them. =PV() with pmt does the same calculation in one step — but only for <em>equal</em> payments.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9 · Ordinary vs annuity due -->
+      <section class="slide paper" data-index="9" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · Payment Timing</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Ordinary Annuity vs. Annuity Due</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;border-left:3px solid var(--sage);"><h4 class="sage">Ordinary Annuity (type=0, Default)</h4><p class="body-text" style="font-size:13px;">Payments at the <strong>end</strong> of each period. Most loans, mortgages, and savings plans. =PMT() and =PV() default to type=0 — omit the argument.</p></div>
+              <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Annuity Due (type=1)</h4><p class="body-text" style="font-size:13px;">Payments at the <strong>beginning</strong> of each period. Leases, insurance premiums paid upfront. Each payment earns one extra period of interest — slightly higher FV, slightly lower required PMT.</p></div>
+            </div>
+            <div>
+              <div class="formula-panel" style="margin-bottom:10px;"><div class="label">Ordinary Annuity (default)</div><code><span class="fn">=PMT(6%/12, 60, 25000, 0, 0)</span><span class="comment">// type=0 → payment at end</span><span class="comment">// Returns: −$483.32/month</span></code></div>
+              <div class="formula-panel"><div class="label">Annuity Due</div><code><span class="fn">=PMT(6%/12, 60, 25000, 0, 1)</span><span class="comment">// type=1 → payment at beginning</span><span class="comment">// Returns: −$480.91/month (lower)</span></code></div>
+              <div class="highlight-box gold" style="margin-top:12px;"><p><strong>For all activity problems:</strong> use type=0 (ordinary annuity) unless specified otherwise. This is the real-world default for loans.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10 · Total interest calculation -->
+      <section class="slide paper" data-index="10" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · Total Cost of Borrowing</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Total Interest — The True Cost of a Loan</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="xls-wrap">
+              <table class="pmt-table">
+                <thead><tr><th>Loan Term</th><th>Monthly PMT</th><th>Total Paid</th><th>Total Interest</th></tr></thead>
+                <tbody>
+                  <tr><td class="key">10 years</td><td>$3,614</td><td>$433,714</td><td class="val">$113,714</td></tr>
+                  <tr><td class="key">15 years</td><td>$2,790</td><td>$502,178</td><td class="val">$182,178</td></tr>
+                  <tr><td class="key">20 years</td><td>$2,393</td><td>$574,221</td><td class="val">$254,221</td></tr>
+                  <tr><td class="key">30 years</td><td>$2,023</td><td>$728,326</td><td class="val">$408,326</td></tr>
+                </tbody>
+              </table>
+              <p style="font-size:11px;color:var(--muted);padding:6px 12px;font-style:italic;">$320,000 loan at 6.5% — all monthly</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="card"><h4 class="terra">The Trade-Off</h4><p class="body-text" style="font-size:13px;">Longer term → lower monthly payment → much more total interest. The 30-year borrower pays <strong>$294,612 more</strong> than the 10-year borrower over the life of the loan.</p></div>
+              <div class="formula-panel"><div class="label">Total Interest Formula</div><code><span class="fn">Total Interest = ABS(PMT) × nper − PV</span><span class="comment">// In Excel: =ABS(B7)*B6-B2</span></code></div>
+              <div class="highlight-box gold"><p>This is one of the most impactful calculations a financial advisor can show a client. A clear table like this drives real decisions.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11 · Combined example -->
+      <section class="slide paper" data-index="11" data-section="3">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Part 3 · Combining L01 and L02</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Two Simultaneous Goals</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Goal 1 — Car Loan</h4><p class="body-text" style="font-size:13px;">$25,000 at 4.9% for 5 years, monthly payments.</p><div class="formula-panel" style="margin-top:8px;"><div class="label">Excel</div><code><span class="fn">=PMT(4.9%/12, 60, 25000, 0)</span><span class="comment">// Returns: −$471.66/month</span></code></div></div>
+              <div class="card"><h4 class="gold">Goal 2 — Retirement Savings</h4><p class="body-text" style="font-size:13px;">$200/month at 6% annual for 5 years.</p><div class="formula-panel" style="margin-top:8px;"><div class="label">Excel</div><code><span class="fn">=FV(6%/12, 60, <span class="neg">−200</span>, 0)</span><span class="comment">// Returns: $13,954.01</span></code></div></div>
+            </div>
+            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
+              <h4>Summary — Monthly Cash Flow</h4>
+              <table style="width:100%;border-collapse:collapse;font-size:13px;">
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Car payment</td><td style="padding:6px 0;font-weight:600;color:var(--terra);">−$471.66/mo</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Retirement savings</td><td style="padding:6px 0;font-weight:600;color:var(--terra);">−$200.00/mo</td></tr>
+                <tr style="border-bottom:2px solid var(--border);"><td style="padding:6px 0;font-weight:500;color:var(--text);">Total monthly outflow</td><td style="padding:6px 0;font-weight:700;color:var(--text);">$671.66</td></tr>
+                <tr><td style="padding:6px 0;color:var(--text-soft);">Savings balance at 5 yrs</td><td style="padding:6px 0;font-weight:600;color:var(--sage);">$13,954</td></tr>
+              </table>
+              <div class="highlight-box gold" style="margin-top:4px;"><p>This is a real client conversation: two competing goals, one cash flow constraint. =PMT() and =FV() together give the complete picture in seconds.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 12 · COMMON MISTAKE -->
+      <section class="slide dark" data-index="12" data-section="3" style="background:#1a0a05;">
+        <div class="slide-inner">
+          <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
+          <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Annual Rate and Annual nper for a Monthly Payment Problem</h2>
+          <div class="two-col anim-3">
+            <div>
+              <div style="background:rgba(156,74,43,0.12);border:1px solid rgba(156,74,43,0.4);border-left:4px solid var(--terra);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">❌ The Mistake</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Using annual rate and years instead of monthly rate and months for a monthly payment calculation.</p></div>
+              <div class="formula-panel"><div class="label">Wrong Formula</div><code>=PMT(<span class="neg">6.5%</span>, <span class="neg">30</span>, 320000)<span class="comment">// rate=annual, nper=years</span><span class="comment">// Returns: −$27,006/year ← looks plausible</span><span class="comment">// But monthly payment is $2,023</span></code></div>
+            </div>
+            <div>
+              <div style="background:rgba(74,124,94,0.1);border:1px solid rgba(74,124,94,0.3);border-left:4px solid var(--sage);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">✓ Correct — Match Period to Payment Frequency</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">For monthly payments, use monthly rate and total months. Always ask: what is the payment frequency?</p></div>
+              <div class="formula-panel"><div class="label">Correct Formula</div><code>=PMT(<span class="val">6.5%/12</span>, <span class="val">30*12</span>, 320000)<span class="comment">// rate=monthly  nper=months</span><span class="comment">// Returns: −$2,023.13/month ✓</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 13 · Student Practice -->
+      <section class="slide paper" data-index="13" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Student Practice · 10 Minutes</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Meridian Activity — Three Problems</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Part A — Mortgage Payment (3 min)</h4><p class="body-text" style="font-size:14px;">A Meridian client buys a home for $450,000 at 7.25% for 25 years, monthly payments. Calculate the monthly payment, total paid, and total interest. Build the model with cell references.</p></div>
+            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Part B — Retirement Goal (4 min)</h4><p class="body-text" style="font-size:14px;">A client wants $500,000 in 25 years. Their account earns 7% annual, compounded monthly. How much must they contribute per month? Use =PMT() — hint: pv=0, fv=500000, solve for pmt.</p></div>
+            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Part C — Annuity Valuation (3 min)</h4><p class="body-text" style="font-size:14px;">What is the present value of $2,000/month for 15 years at a 6% annual discount rate? Use =PV(). Is this stream worth more or less than its total nominal value?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 14 · Discussion -->
+      <section class="slide paper" data-index="14" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Discussion</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
+          <div class="title-rule"></div>
+          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div class="card" style="border-left:4px solid var(--sage);"><h4 class="sage">Computational</h4><p class="body-text" style="font-size:14px;">For the $320,000 mortgage at 6.5% over 30 years: what is the total interest? How does it compare to the original loan amount as a percentage?</p></div>
+            <div class="card" style="border-left:4px solid var(--gold);"><h4 class="gold">Conceptual</h4><p class="body-text" style="font-size:14px;">Why does a longer loan term lower the monthly payment but dramatically increase total interest paid? What is the trade-off the borrower is making?</p></div>
+            <div class="card" style="border-left:4px solid var(--terra);"><h4 class="terra">Applied</h4><p class="body-text" style="font-size:14px;">A Meridian client can make a $50,000 lump sum investment today or invest $500/month for 10 years, both at 6%. Which produces a higher FV at year 10 — and by how much?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 15 · Key Takeaways -->
+      <section class="slide paper" data-index="15" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Key Takeaways</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
+          <div class="title-rule"></div>
+          <div class="takeaway-grid anim-3">
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--sage);">01 — =PMT()</div><div class="tc-formula">=PMT(rate, nper, pv, 0)</div><p>Result is negative — outflow. Read as absolute value. Total interest = ABS(pmt)×nper − pv.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--gold);">02 — =FV() with pmt</div><div class="tc-formula">=FV(rate, nper, −pmt, −pv)</div><p>Both pmt and pv negative for regular investing. Result positive — balance received.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--terra);">03 — =PV() with pmt</div><div class="tc-formula">=PV(rate, nper, +pmt, 0)</div><p>pmt positive for received payments. Result negative — cost to acquire the stream today.</p></div>
+          </div>
+          <div class="highlight-box gold anim-4" style="margin-top:14px;"><p><strong>Module 09 Complete.</strong> You now have the full TVM toolkit — =PV(), =FV(), =PMT(). These three functions underlie every mortgage, bond, retirement plan, and business valuation you will encounter.</p></div>
+        </div>
+      </section>
+
+      <!-- SLIDE 16 · Module Complete -->
+      <section class="slide paper" data-index="16" data-section="4">
+        <div class="slide-inner">
+          <div class="eyebrow gold anim-1">Module 09 Complete</div>
+          <div class="header-row anim-2"><h2 class="slide-title">The Full TVM Toolkit</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
+            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">M08 — Simple Interest &amp; Discounting</h4><p class="body-text" style="font-size:13px;">I = P×R×T · FV = P(1+RT) · PV = FV÷(1+RT) · =PV() for lump-sum discounting · manual DCF model</p></div>
+            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">M09-L01 — Compound Interest &amp; Future Value</h4><p class="body-text" style="font-size:13px;">FV = PV×(1+i)ⁿ · =FV() · non-annual compounding · Rule of 72 · =PV() with compound discounting</p></div>
+            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">M09-L02 — PMT &amp; Annuities (Today)</h4><p class="body-text" style="font-size:13px;">=PMT() · =FV() with pmt · =PV() with pmt · ordinary vs. annuity due · total interest calculation</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 17 · Close -->
+      <section class="slide dark" data-index="17" data-section="4">
+        <div class="slide-inner" style="align-items:center;text-align:center;">
+          <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
+          <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L02 · Meridian Advisory Group</div>
+          <h2 class="section-title" style="text-align:center;font-size:38px;">Questions?</h2>
+          <p class="body-text dark" style="margin-top:16px;text-align:center;">The full TVM toolkit is now yours:<br><strong style="color:var(--paper);">=PV() · =FV() · =PMT()</strong><br>Signs matter. Periods must match rates. pmt=0 for lump sums.</p>
+          <div style="display:flex;gap:32px;justify-content:center;margin-top:32px;">
+            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Office Hours</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Canvas · TBD</div></div>
+            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Email</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">bevitts@endicott.edu</div></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<div class="nav-controls">
+  <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
+  <span class="slide-counter" id="counter">1 / 18</span>
+  <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
+  <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
+</div>
+<div class="notes-overlay" id="notes-overlay">
+  <div class="notes-label">Speaker Notes</div>
+  <p id="notes-text"></p>
+</div>
+<script>
+  const slides=Array.from(document.querySelectorAll('.slide'));
+  const TOTAL=slides.length; let current=0,notesVisible=false;
+  const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
+  const W=960,H=560;
+  function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}
+  window.addEventListener('resize',rescale);rescale();
+  function goTo(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(TOTAL-1,n));slides[current].classList.add('active');document.getElementById('counter').textContent=`${current+1} / ${TOTAL}`;updateTabs();if(notesVisible)showNotes();}
+  function nextSlide(){goTo(current+1);}function prevSlide(){goTo(current-1);}
+  function jumpSection(sec){const idx=slides.findIndex(s=>parseInt(s.dataset.section)===sec);if(idx!==-1)goTo(idx);}
+  const tabBtns=Array.from(document.querySelectorAll('.tab-btn'));
+  function updateTabs(){const sec=parseInt(slides[current].dataset.section);tabBtns.forEach(btn=>{btn.className='tab-btn';const bSec=parseInt(btn.dataset.section);if(bSec===sec){if(sec===1)btn.classList.add('active-sage');else if(sec===2)btn.classList.add('active-gold');else if(sec===3)btn.classList.add('active-terra');else btn.classList.add('active-neutral');}});}updateTabs();
+  function showNotes(){document.getElementById('notes-text').textContent=notesData[current]||'';}
+  function toggleNotes(){notesVisible=!notesVisible;document.getElementById('notes-overlay').classList.toggle('visible',notesVisible);if(notesVisible)showNotes();}
+  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide();}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}if(e.key==='Home')goTo(0);if(e.key==='End')goTo(TOTAL-1);if(e.key==='n'||e.key==='N')toggleNotes();});
+  document.getElementById('viewport').addEventListener('click',e=>{const vw=document.getElementById('viewport').clientWidth;if(e.clientX<48+vw/3)prevSlide();else if(e.clientX>vw-vw/3)nextSlide();});
+</script>
+</body>
+</html>

@@ -25,12 +25,13 @@ const slug = (value) =>
 const trackById = new Map(data.tracks.map((track) => [track.id, track]));
 
 const materialGroups = [
+  { id: "start", label: "Start here", types: new Set(["Syllabus", "Infographic"]) },
   { id: "before", label: "Before class", types: new Set(["Reading", "Pre-reading"]) },
   { id: "class", label: "In class", types: new Set(["Slides", "Company Profiles"]) },
   { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
 ];
 
-const materialFilters = ["Slides", "Reading", "Starter Workbook", "Interactive Practice", "Activity Instructions"];
+const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Interactive Practice", "Activity Instructions"];
 const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 
 function validateCourseMap() {
@@ -306,8 +307,13 @@ const html = `<!DOCTYPE html>
     <section class="hero">
       <div class="shell">
         <div class="eyebrow">${esc(data.course.term)}</div>
-        <h1>Find the right BUS123 materials quickly.</h1>
-        <p>This course map is the student-facing source for live lesson slides, readings, workbooks, and practice materials.</p>
+        <h1>BUS123 Course Hub</h1>
+        <p>Start with the current class, check the week ahead, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
+        <div class="hero-points" aria-label="Course rhythm">
+          <span>Microsoft 365 + Excel</span>
+          <span>Case-based business math</span>
+          <span>Canvas deadlines</span>
+        </div>
         ${courseResourcesHtml}
         <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
           <div class="week-ahead-header">

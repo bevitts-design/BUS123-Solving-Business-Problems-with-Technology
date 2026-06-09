@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
 </head>
-<body>
+<body class="printable-submission">
   <header class="top">
     <div class="shell">
       <p class="eyebrow">BUS123 · MATH M12 · Harborside Medical Center</p>
       <h1>Staffing Shift Puzzle</h1>
-      <p>Place nurse coverage chips across the week. Try to reduce wait-time variation without simply overstaffing every day.</p>
+      <p>Assign limited weekly staff blocks across the clinic schedule. The objective is to lower the average wait time and make waits more consistent.</p>
     </div>
   </header>
 
@@ -22,89 +22,196 @@
     <section class="grid">
       <aside class="panel">
         <h2>Operations rule</h2>
-        <p>Select a staff chip, then click a day cell to place it. Each day can hold up to three chips. Your goal is to cover high-volume days and keep projected wait times consistent.</p>
+        <p>Select a staff member, then click a day cell to assign one available shift block. Staff can work multiple days, but each person has a finite number of blocks for the week and each day can hold up to three added blocks.</p>
+        <div class="note">
+          <strong>Objective:</strong> Hit both targets: average projected wait time at or below 15.5 minutes and sample standard deviation at or below 4.0 minutes.
+        </div>
+        <div class="note">
+          <strong>Role context:</strong> RNs handle clinical assessment, triage, medication questions, and patient escalation. MAs room patients, take vitals, prep charts, and keep visits moving. The Float can cover either role, but should be saved for bottleneck days.
+        </div>
+        <div class="note">
+          <strong>Hours context:</strong> Full-time clinical staff usually work 36-40 hours across the week. Adding coverage to a day means shifting available hours, not creating unlimited labor.
+        </div>
         <div class="note" id="feedback">Start by covering Monday and Friday, the highest-volume days.</div>
       </aside>
       <section>
         <div class="metric-row">
           <div class="metric"><span class="metric-label">Avg wait</span><strong id="avgWait">0</strong></div>
           <div class="metric"><span class="metric-label">Std dev</span><strong id="sdWait">0</strong></div>
-          <div class="metric"><span class="metric-label">Chips used</span><strong id="used">0</strong></div>
+          <div class="metric"><span class="metric-label">Blocks used</span><strong id="used">0</strong></div>
         </div>
         <div class="board">
           <h2>Coverage board</h2>
+          <div class="two-col" style="margin-bottom:16px;">
+            <div class="tile">
+              <h3>Role guide</h3>
+              <p><strong>RN blocks</strong> reduce clinical bottlenecks most on high-acuity days. <strong>MA blocks</strong> reduce rooming and prep delays on steady clinic days. <strong>Float</strong> is flexible coverage for the week&apos;s biggest mismatch.</p>
+            </div>
+            <div class="tile">
+              <h3>Targets</h3>
+              <p>Success means <strong>average wait <= 15.5 minutes</strong> and <strong>standard deviation <= 4.0 minutes</strong>. A low average with a high standard deviation still means some days are painful for patients.</p>
+            </div>
+          </div>
           <div class="stack" style="margin-bottom:16px;">
             <div class="pill-row" id="chipRack"></div>
           </div>
           <div class="shift-grid" id="grid"></div>
           <div class="actions" style="margin-top:16px;">
             <button class="action" id="checkBtn" type="button">Check schedule</button>
+            <button class="ghost" id="printBtn" type="button">Print / Save PDF</button>
             <button class="ghost" id="resetBtn" type="button">Reset</button>
           </div>
         </div>
       </section>
     </section>
+    <section class="print-summary" id="printSummary">
+      <p class="eyebrow">BUS123 · MATH M12</p>
+      <h2>Staffing Shift Puzzle Submission</h2>
+      <div class="print-lines">
+        <span>Name: ______________________________</span>
+        <span>Date: ______________________________</span>
+      </div>
+      <p id="printMeta"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>Clinic context</th>
+            <th>Assigned coverage</th>
+            <th>Projected wait</th>
+          </tr>
+        </thead>
+        <tbody id="printRows"></tbody>
+      </table>
+      <p id="printReflection"></p>
+    </section>
   </main>
 
   <script>
+    const targetAverage = 15.5;
+    const targetSd = 4.0;
+    const maxBlocksPerDay = 3;
     const days = [
-      { day: "Mon", base: 34, volume: "High" },
-      { day: "Tue", base: 21, volume: "Medium" },
-      { day: "Wed", base: 18, volume: "Medium" },
-      { day: "Thu", base: 24, volume: "Medium" },
-      { day: "Fri", base: 38, volume: "High" }
+      { day: "Mon", base: 34, volume: "High", context: "Weekend backlog and more triage calls." },
+      { day: "Tue", base: 21, volume: "Medium", context: "Steady visit flow; rooming speed matters." },
+      { day: "Wed", base: 18, volume: "Medium", context: "Most predictable clinic day." },
+      { day: "Thu", base: 24, volume: "Medium", context: "Procedure prep creates short bottlenecks." },
+      { day: "Fri", base: 38, volume: "High", context: "End-of-week compression and refill calls." }
     ];
-    const chips = ["RN A", "RN B", "RN C", "MA A", "MA B", "Float"];
-    const placed = {};
+    const staff = [
+      { id: "RN A", role: "RN", blocks: 2, hours: "Two 10-hour clinical blocks", responsibility: "Triage, assessment, escalation" },
+      { id: "RN B", role: "RN", blocks: 2, hours: "Two 8-hour clinical blocks", responsibility: "Medication questions and complex visits" },
+      { id: "RN C", role: "RN", blocks: 1, hours: "One 8-hour support block", responsibility: "Backlog relief and patient follow-up" },
+      { id: "MA A", role: "MA", blocks: 2, hours: "Two 8-hour clinic blocks", responsibility: "Vitals, rooming, chart prep" },
+      { id: "MA B", role: "MA", blocks: 2, hours: "Two 6-hour peak blocks", responsibility: "Room turnover and supply prep" },
+      { id: "Float", role: "Flexible", blocks: 1, hours: "One 6-hour flex block", responsibility: "Can support RN or MA bottlenecks" }
+    ];
+    const chips = staff.map(person => person.id);
+    const assignments = [];
     let selected = "";
     const rack = document.getElementById("chipRack");
     const grid = document.getElementById("grid");
-    chips.forEach(chip => placed[chip] = "");
+    const totalBlocks = staff.reduce((sum, person) => sum + person.blocks, 0);
+    function assignedCount(staffId) {
+      return assignments.filter(assignment => assignment.staffId === staffId).length;
+    }
+    function remainingBlocks(person) {
+      return person.blocks - assignedCount(person.id);
+    }
+    function reductionFor(person, day) {
+      if (person.role === "RN") return day.volume === "High" ? 8 : 6;
+      if (person.role === "MA") return day.volume === "High" ? 5 : 5;
+      return day.volume === "High" ? 7 : 6;
+    }
     function waitFor(day) {
-      const count = Object.values(placed).filter(value => value === day.day).length;
-      return Math.max(8, day.base - count * 7);
+      const reduction = assignments
+        .filter(assignment => assignment.day === day.day)
+        .reduce((sum, assignment) => {
+          const person = staff.find(item => item.id === assignment.staffId);
+          return sum + reductionFor(person, day);
+        }, 0);
+      return Math.max(8, day.base - reduction);
     }
     function sd(values) {
       const mean = values.reduce((a, b) => a + b, 0) / values.length;
       return Math.sqrt(values.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / (values.length - 1));
     }
+    function scheduleMetrics() {
+      const waits = days.map(waitFor);
+      const mean = waits.reduce((a, b) => a + b, 0) / waits.length;
+      const spread = sd(waits);
+      return { waits, mean, spread, good: mean <= targetAverage && spread <= targetSd };
+    }
+    function assignmentsForDay(day) {
+      return assignments
+        .filter(assignment => assignment.day === day.day)
+        .map(assignment => assignment.staffId)
+        .join(", ") || "No added coverage";
+    }
+    function updatePrintableSummary() {
+      const { waits, mean, spread, good } = scheduleMetrics();
+      document.getElementById("printMeta").textContent =
+        `Average projected wait: ${mean.toFixed(1)} minutes. Sample standard deviation: ${spread.toFixed(1)} minutes. Blocks used: ${assignments.length}/${totalBlocks}. Target met: ${good ? "Yes" : "No"}.`;
+      document.getElementById("printRows").innerHTML = days.map((day, index) => `<tr>
+        <td>${day.day}</td>
+        <td>${day.context}</td>
+        <td>${assignmentsForDay(day)}</td>
+        <td>${waits[index]} minutes</td>
+      </tr>`).join("");
+      document.getElementById("printReflection").textContent =
+        "Submission note: explain why this schedule balances shorter waits with more consistent patient experience.";
+    }
     function render() {
-      rack.innerHTML = chips.map(chip => `<button class="staff-chip ${selected === chip ? "selected" : ""}" data-chip="${chip}" type="button">${chip}${placed[chip] ? `: ${placed[chip]}` : ""}</button>`).join("");
+      rack.innerHTML = staff.map(person => `<button class="staff-chip ${selected === person.id ? "selected" : ""}" data-chip="${person.id}" type="button" title="${person.role}: ${person.responsibility}; ${person.hours}">${person.id} (${remainingBlocks(person)}/${person.blocks})</button>`).join("");
       document.querySelectorAll("[data-chip]").forEach(button => button.addEventListener("click", () => { selected = button.dataset.chip; render(); }));
       grid.innerHTML = `<div class="shift-head">Day</div>${days.map(day => `<div class="shift-head">${day.day}<br><span class="soft">${day.volume}</span></div>`).join("")}
-        <div class="shift-head">Coverage</div>${days.map(day => `<button class="shift-cell" data-day="${day.day}" type="button">${chips.filter(chip => placed[chip] === day.day).map(chip => `<span class="staff-chip">${chip}</span>`).join("") || "<span class='soft'>Click to place</span>"}</button>`).join("")}
+        <div class="shift-head">Context</div>${days.map(day => `<div class="shift-cell"><span class="soft">${day.context}</span></div>`).join("")}
+        <div class="shift-head">Coverage</div>${days.map(day => `<button class="shift-cell" data-day="${day.day}" type="button">${assignments.filter(assignment => assignment.day === day.day).map(assignment => {
+          const person = staff.find(item => item.id === assignment.staffId);
+          return `<span class="staff-chip" title="${person.responsibility}; ${person.hours}">${person.id}</span>`;
+        }).join("") || "<span class='soft'>Click to place</span>"}</button>`).join("")}
         <div class="shift-head">Projected wait</div>${days.map(day => `<div class="shift-cell"><strong>${waitFor(day)} min</strong></div>`).join("")}`;
       document.querySelectorAll("[data-day]").forEach(cell => cell.addEventListener("click", () => {
         const day = cell.dataset.day;
         if (!selected) return;
-        const already = chips.filter(chip => placed[chip] === day).length;
-        if (placed[selected] === day) placed[selected] = "";
-        else if (already < 3) placed[selected] = day;
+        const existingIndex = assignments.findIndex(assignment => assignment.staffId === selected && assignment.day === day);
+        if (existingIndex >= 0) {
+          assignments.splice(existingIndex, 1);
+        } else {
+          const person = staff.find(item => item.id === selected);
+          const dayBlocks = assignments.filter(assignment => assignment.day === day).length;
+          if (remainingBlocks(person) > 0 && dayBlocks < maxBlocksPerDay) {
+            assignments.push({ staffId: selected, day });
+          }
+        }
         render();
       }));
-      const waits = days.map(waitFor);
-      const mean = waits.reduce((a, b) => a + b, 0) / waits.length;
+      const { mean, spread } = scheduleMetrics();
       document.getElementById("avgWait").textContent = `${mean.toFixed(1)} min`;
-      document.getElementById("sdWait").textContent = `${sd(waits).toFixed(1)}`;
-      document.getElementById("used").textContent = Object.values(placed).filter(Boolean).length;
+      document.getElementById("sdWait").textContent = `${spread.toFixed(1)}`;
+      document.getElementById("used").textContent = `${assignments.length}/${totalBlocks}`;
+      updatePrintableSummary();
     }
     document.getElementById("resetBtn").addEventListener("click", () => {
-      chips.forEach(chip => placed[chip] = "");
+      assignments.splice(0, assignments.length);
       selected = "";
       document.getElementById("feedback").className = "note";
       document.getElementById("feedback").textContent = "Start by covering Monday and Friday, the highest-volume days.";
       render();
     });
     document.getElementById("checkBtn").addEventListener("click", () => {
-      const waits = days.map(waitFor);
-      const highCovered = ["Mon", "Fri"].every(day => Object.values(placed).filter(value => value === day).length >= 2);
-      const good = sd(waits) <= 5 && highCovered && Object.values(placed).filter(Boolean).length <= 6;
+      const { mean, spread, good } = scheduleMetrics();
       const feedback = document.getElementById("feedback");
       feedback.className = good ? "note good" : "note warn";
       feedback.textContent = good
-        ? "Balanced schedule. You reduced variation by covering high-volume days without maxing out every shift."
-        : "Keep working. The best schedule gives Monday and Friday extra coverage and brings the standard deviation below 5.";
+        ? `Balanced schedule. Average wait is ${mean.toFixed(1)} minutes and standard deviation is ${spread.toFixed(1)}, so both targets are met.`
+        : `Keep working. Current average is ${mean.toFixed(1)} minutes and standard deviation is ${spread.toFixed(1)}. Targets: average <= ${targetAverage} and standard deviation <= ${targetSd}.`;
     });
+    document.getElementById("printBtn").addEventListener("click", () => {
+      updatePrintableSummary();
+      window.print();
+    });
+    window.addEventListener("beforeprint", updatePrintableSummary);
     render();
   </script>
 </body>

@@ -6,6 +6,7 @@ const data = JSON.parse(await fs.readFile(path.join(root, "course-map.json"), "u
 
 const allowedStatuses = new Set(["Live", "Coming Soon", "In Progress", "Canvas Only", "Not Released"]);
 const privatePathPattern = /(^|[/_-])(instructor|answer[-_ ]?key|solutions?|grading|qti)([/_.-]|$)|\.zip$/i;
+const validationWarnings = [];
 
 const esc = (value) =>
   String(value ?? "")
@@ -107,7 +108,7 @@ function validatePublicLink(item, issues, context) {
   if (!/^https?:\/\//i.test(item.path)) {
     const itemPath = path.join(root, item.path);
     if (!awaitFileExists(itemPath)) {
-      issues.push(`${context} is missing ${item.type}: ${item.path}`);
+      validationWarnings.push(`${context} is unavailable until rebuilt or committed: ${item.path}`);
     }
   }
 }
@@ -134,6 +135,10 @@ await Promise.all(publicLinks
   }));
 
 validateCourseMap();
+
+if (validationWarnings.length) {
+  console.warn(`Course map warnings:\n- ${validationWarnings.join("\n- ")}`);
+}
 
 const orderedLessons = (lessons) =>
   lessons
@@ -165,11 +170,26 @@ const materialIcon = (type) => {
   return icons[type] ?? "M";
 };
 
-const materialLink = (material, options = {}) =>
-  `<a class="${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}" href="${esc(material.path)}">
+const materialIsAvailable = (material) => {
+  if (!material?.path || material.path === "#") return false;
+  if (/^https?:\/\//i.test(material.path)) return true;
+  return awaitFileExists(path.join(root, material.path));
+};
+
+const materialLink = (material, options = {}) => {
+  const label = material.label ?? material.type;
+  const classes = `${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}`;
+  if (!materialIsAvailable(material)) {
+    return `<span class="${classes} is-unavailable" aria-disabled="true" title="${esc(label)} is not available yet">
     <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
-    <span>${esc(material.label ?? material.type)}</span>
+    <span>${esc(label)} unavailable</span>
+  </span>`;
+  }
+  return `<a class="${classes}" href="${esc(material.path)}">
+    <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
+    <span>${esc(label)}</span>
   </a>`;
+};
 
 const groupMaterials = (materials) =>
   materialGroups.map((group) => ({
@@ -178,7 +198,8 @@ const groupMaterials = (materials) =>
   })).filter((group) => group.materials.length);
 
 const primaryMaterial = (lesson) =>
-  (lesson.materials ?? []).find((material) => material.type === "Slides") ?? (lesson.materials ?? [])[0];
+  (lesson.materials ?? []).find((material) => material.type === "Slides" && materialIsAvailable(material)) ??
+  (lesson.materials ?? []).find((material) => materialIsAvailable(material));
 
 const effectiveStatus = (lesson) =>
   lesson.id === data.course.currentLessonId ? "Current" : lesson.status;
@@ -376,6 +397,6 @@ const html = `<!DOCTYPE html>
 </html>
 `;
 
-await fs.writeFile(path.join(root, "index.html"), html);
+await fs.writeFile(path.join(root, "index.html"), html.replace(/^[ \t]+$/gm, ""));
 
 console.log(`Built index.html from course-map.json (${data.lessons.length} lessons, current: ${current.id}).`);

@@ -614,29 +614,6 @@
       "displayOrder": 170
     },
     {
-      "id": "excel-m01-l02",
-      "track": "excel",
-      "module": "M01",
-      "lesson": "L02",
-      "title": "Aggregate Functions and Data Analysis",
-      "status": "In Progress",
-      "caseStudy": "Anchor & Oak Events",
-      "skillFocus": [
-        "Aggregate functions",
-        "Cell references",
-        "Business data analysis"
-      ],
-      "materials": [
-        {
-          "type": "Starter Workbook",
-          "path": "EXCEL/M01/bus123-excel-m01-l02-starter.xlsx"
-        }
-      ],
-      "moduleType": "Excel",
-      "moduleLabel": "Excel M03",
-      "displayOrder": 180
-    },
-    {
       "id": "excel-m03-l01",
       "track": "excel",
       "module": "M03",

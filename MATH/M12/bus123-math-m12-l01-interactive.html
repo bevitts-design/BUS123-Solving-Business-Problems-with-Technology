@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M12 · Correlation Courtroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/decision-lab/decision-lab.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell top-grid">
+      <div>
+        <p class="eyebrow" id="kicker"></p>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+      <div class="progress-card">
+        <span class="meta-label">Case progress</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-copy"><span id="progressCount">0/0</span><span id="progressPercent">0%</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="lab-grid">
+      <aside class="panel">
+        <h2 id="panelTitle"></h2>
+        <p id="panelIntro"></p>
+        <div class="step-list" id="stepList"></div>
+        <div class="actions" style="margin-top:16px;">
+          <button class="secondary" id="resetBtn" type="button">Reset activity</button>
+        </div>
+      </aside>
+
+      <div>
+        <section class="workspace">
+          <div class="workspace-head">
+            <div>
+              <p class="step-kicker" id="stepKicker"></p>
+              <h2 id="stepTitle"></h2>
+            </div>
+            <div class="scenario-badge">
+              <strong id="scenarioName"></strong>
+              <span id="scenarioCopy"></span>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <div class="brief">
+              <div class="brief-card">
+                <h3 id="briefTitle"></h3>
+                <div id="briefCopy"></div>
+              </div>
+              <div class="brief-card">
+                <h3 id="taskTitle"></h3>
+                <div id="taskCopy"></div>
+              </div>
+            </div>
+
+            <section>
+              <p class="section-label" id="evidenceLabel"></p>
+              <div class="evidence-grid" id="evidenceGrid"></div>
+            </section>
+
+            <section>
+              <p class="section-label" id="choiceLabel"></p>
+              <div class="choice-grid" id="choiceGrid"></div>
+            </section>
+
+            <div class="reflection">
+              <label for="reflection" id="reflectionLabel"></label>
+              <textarea id="reflection"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="primary" id="checkBtn" type="button">Check verdict</button>
+              <button class="secondary" id="nextBtn" type="button">Next round</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="feedback" id="feedback">
+          <h2 id="feedbackTitle"></h2>
+          <p id="feedbackCopy"></p>
+          <div class="score-strip">
+            <div class="score-card"><span class="score-label">Selected</span><strong id="scoreA">0</strong></div>
+            <div class="score-card"><span class="score-label">Round</span><strong id="scoreB">Open</strong></div>
+            <div class="score-card"><span class="score-label">Memo</span><strong id="scoreC">0 chars</strong></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.BUS123_DECISION_LAB = {
+      storageKey: "bus123-math-m12-correlation-courtroom-v1",
+      meta: {
+        pageTitle: "BUS123 MATH M12 · Correlation Courtroom",
+        kicker: "BUS123 · MATH M12 · Harborside Medical Center",
+        title: "Correlation Courtroom",
+        subtitle: "Put a hospital data claim on trial before management makes a staffing decision.",
+        panelTitle: "Courtroom Rounds",
+        panelIntro: "Weigh the evidence, challenge the causal claim, and write a verdict that management can use.",
+        scenarioName: "Scenario",
+        scenarioCopy: "Harborside found r = -0.94 between patient wait time and satisfaction scores."
+      },
+      steps: [
+        {
+          id: "claim",
+          mode: "single",
+          name: "Evaluate the claim",
+          short: "Does correlation prove the cause?",
+          briefTitle: "The Claim",
+          brief: [
+            "Average daily wait time and satisfaction scores have a strong negative correlation.",
+            "A manager says, 'This proves that cutting waits will definitely raise satisfaction.'",
+            "The proposed fix is a costly staffing increase next month."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Choose the most statistically responsible response.",
+            "Use correlation strength without overstating causation."
+          ],
+          evidenceLabel: "Evidence cards",
+          evidence: [
+            { id: "strong-r", title: "Strong relationship", copy: "The coefficient is close to -1, so waits and satisfaction move in opposite directions.", tags: ["correlation"] },
+            { id: "mechanism", title: "Possible mechanism", copy: "Patients may rate visits lower when they spend more time waiting.", tags: ["plausible"] },
+            { id: "not-proof", title: "Not proof", copy: "The data alone does not isolate wait time from other factors.", tags: ["caution"] }
+          ],
+          choiceLabel: "Court response",
+          choices: [
+            { id: "prove", title: "Causation proven", copy: "The coefficient is strong, so the manager is definitely right." },
+            { id: "reject", title: "Ignore the result", copy: "Correlation is never useful for business decisions." },
+            { id: "investigate", title: "Strong signal, investigate cause", copy: "Treat the relationship as important but test possible drivers before promising results." }
+          ],
+          required: ["investigate"],
+          reflectionLabel: "Opening statement",
+          reflectionPlaceholder: "Explain what the correlation does and does not prove.",
+          success: "Correct. The correlation is a strong signal, not a courtroom confession.",
+          coach: "A strong r value is useful, but it does not remove the need to check alternative explanations."
+        },
+        {
+          id: "confounders",
+          mode: "multi",
+          name: "Find the confounders",
+          short: "Identify what else could be driving satisfaction.",
+          briefTitle: "Additional Evidence",
+          brief: [
+            "Mondays have the longest waits and the lowest scores.",
+            "Monday patients also have higher acuity and more complex visits.",
+            "Some low-wait days have unusually high staffing."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Select the cards that could weaken a simple wait-time-causes-satisfaction claim.",
+            "Then choose the next analysis step."
+          ],
+          evidenceLabel: "Potential confounders",
+          evidence: [
+            { id: "acuity", title: "Patient acuity", copy: "Sicker patients may wait longer and rate the visit lower for reasons beyond the wait.", tags: ["third factor"] },
+            { id: "weekday", title: "Day of week", copy: "Monday operations may differ from weekend operations.", tags: ["context"] },
+            { id: "staffing", title: "Staffing level", copy: "More staff may reduce waits and improve experience at the same time.", tags: ["third factor"] },
+            { id: "zip", title: "Patient zip code", copy: "Zip code was recorded but shows no relationship to wait or score.", tags: ["weak"] },
+            { id: "room-color", title: "Lobby paint color", copy: "The lobby color did not change during the measurement period.", tags: ["weak"] }
+          ],
+          choiceLabel: "Next analysis step",
+          choices: [
+            { id: "segment", title: "Segment and compare", copy: "Compare similar days or patient groups before recommending action." },
+            { id: "announce", title: "Announce the result", copy: "Tell staff that wait time is the proven cause." },
+            { id: "discard", title: "Discard the data", copy: "Reject the dataset because it is not a perfect experiment." }
+          ],
+          required: ["acuity", "weekday", "staffing", "segment"],
+          reflectionLabel: "Cross-examination note",
+          reflectionPlaceholder: "Name at least two confounders and the comparison you would want next.",
+          success: "Good cross-examination. You found the factors that could explain both wait time and satisfaction.",
+          coach: "Look for variables that could affect both sides of the relationship. Those are the cards management needs before claiming causation."
+        },
+        {
+          id: "verdict",
+          mode: "single",
+          name: "Write the verdict",
+          short: "Turn statistics into a management recommendation.",
+          briefTitle: "Management Decision",
+          brief: [
+            "Reducing wait time may improve satisfaction, but the current dataset cannot prove it alone.",
+            "A pilot test can compare similar clinics or shifts with different staffing levels.",
+            "Management needs a recommendation that is careful but still useful."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Choose the verdict you would deliver to Harborside's leadership team.",
+            "Balance caution with action."
+          ],
+          evidenceLabel: "Verdict evidence",
+          evidence: [
+            { id: "pilot", title: "Pilot test", copy: "Run a controlled staffing pilot on comparable days or units.", tags: ["action"] },
+            { id: "measure", title: "Measure before/after", copy: "Track wait time, satisfaction, acuity, volume, and staffing together.", tags: ["data"] },
+            { id: "claim", title: "Careful language", copy: "Say 'associated with' until stronger causal evidence exists.", tags: ["communication"] }
+          ],
+          choiceLabel: "Final verdict",
+          choices: [
+            { id: "pilot-verdict", title: "Recommend a measured pilot", copy: "Use the correlation as a reason to test a targeted operational change." },
+            { id: "guarantee-verdict", title: "Guarantee satisfaction gains", copy: "Promise higher scores because r is strongly negative." },
+            { id: "no-action", title: "No action", copy: "Do nothing because correlation is not causation." }
+          ],
+          required: ["pilot-verdict"],
+          reflectionLabel: "Verdict for leadership",
+          reflectionPlaceholder: "Write a two-sentence verdict using the phrase 'associated with' or similar cautious wording.",
+          success: "That is leadership-ready: it respects the statistical limit and still proposes a practical next step.",
+          coach: "The best verdict does not overclaim, but it also does not freeze. Use the correlation to justify a better test."
+        }
+      ]
+    };
+  </script>
+  <script src="../../activities/templates/decision-lab/decision-lab.js"></script>
+</body>
+</html>

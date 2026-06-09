@@ -424,20 +424,30 @@
       "displayOrder": 120
     },
     {
-      "id": "math-m10-roadmap-l01",
+      "id": "math-m10-l01",
       "track": "math",
       "module": "M10",
       "lesson": "L01",
       "title": "Stocks, Bonds and Mutual Funds",
       "status": "Coming Soon",
-      "caseStudy": null,
+      "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Stocks",
         "Bonds",
         "Mutual funds",
         "Investment vocabulary"
       ],
-      "materials": [],
+      "materials": [
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M10/bus123-math-m10-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "IPO Investment Committee",
+          "path": "MATH/M10/bus123-math-m10-l01-interactive.html"
+        }
+      ],
       "moduleType": "Math",
       "moduleLabel": "Math M10",
       "displayOrder": 130
@@ -456,15 +466,29 @@
         "Balance sheet",
         "Business analysis"
       ],
-      "materials": [],
+      "materials": [
+        {
+          "type": "Slides",
+          "path": "MATH/M11/bus123-math-m11-l01-slides.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "MATH/M11/bus123-math-m11-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Hospital Board Crisis Briefing",
+          "path": "MATH/M11/bus123-math-m11-l01-interactive.html"
+        }
+      ],
       "moduleType": "Math",
       "moduleLabel": "Math M11",
       "displayOrder": 140
     },
     {
-      "id": "math-m10-l01",
+      "id": "math-m12-l01",
       "track": "math",
-      "module": "M10",
+      "module": "M12",
       "lesson": "L01",
       "title": "Business Statistics",
       "status": "Coming Soon",
@@ -478,15 +502,16 @@
       "materials": [
         {
           "type": "Slides",
-          "path": "MATH/M10/bus123-math-m10-l01-slides.html"
-        },
-        {
-          "type": "Reading",
-          "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf"
+          "path": "MATH/M12/bus123-math-m12-l01-slides.html"
         },
         {
           "type": "Starter Workbook",
-          "path": "MATH/M10/bus123-math-m10-l01-starter.xlsx"
+          "path": "MATH/M12/bus123-math-m12-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Correlation Courtroom",
+          "path": "MATH/M12/bus123-math-m12-l01-interactive.html"
         }
       ],
       "moduleType": "Math",

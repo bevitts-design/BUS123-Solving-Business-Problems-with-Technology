@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M11 · Hospital Board Crisis Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/decision-lab/decision-lab.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell top-grid">
+      <div>
+        <p class="eyebrow" id="kicker"></p>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+      <div class="progress-card">
+        <span class="meta-label">Board prep</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-copy"><span id="progressCount">0/0</span><span id="progressPercent">0%</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="lab-grid">
+      <aside class="panel">
+        <h2 id="panelTitle"></h2>
+        <p id="panelIntro"></p>
+        <div class="step-list" id="stepList"></div>
+        <div class="actions" style="margin-top:16px;">
+          <button class="secondary" id="resetBtn" type="button">Reset activity</button>
+        </div>
+      </aside>
+
+      <div>
+        <section class="workspace">
+          <div class="workspace-head">
+            <div>
+              <p class="step-kicker" id="stepKicker"></p>
+              <h2 id="stepTitle"></h2>
+            </div>
+            <div class="scenario-badge">
+              <strong id="scenarioName"></strong>
+              <span id="scenarioCopy"></span>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <div class="brief">
+              <div class="brief-card">
+                <h3 id="briefTitle"></h3>
+                <div id="briefCopy"></div>
+              </div>
+              <div class="brief-card">
+                <h3 id="taskTitle"></h3>
+                <div id="taskCopy"></div>
+              </div>
+            </div>
+
+            <section>
+              <p class="section-label" id="evidenceLabel"></p>
+              <div class="evidence-grid" id="evidenceGrid"></div>
+            </section>
+
+            <section>
+              <p class="section-label" id="choiceLabel"></p>
+              <div class="choice-grid" id="choiceGrid"></div>
+            </section>
+
+            <div class="reflection">
+              <label for="reflection" id="reflectionLabel"></label>
+              <textarea id="reflection"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="primary" id="checkBtn" type="button">Check briefing</button>
+              <button class="secondary" id="nextBtn" type="button">Next round</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="feedback" id="feedback">
+          <h2 id="feedbackTitle"></h2>
+          <p id="feedbackCopy"></p>
+          <div class="score-strip">
+            <div class="score-card"><span class="score-label">Selected</span><strong id="scoreA">0</strong></div>
+            <div class="score-card"><span class="score-label">Round</span><strong id="scoreB">Open</strong></div>
+            <div class="score-card"><span class="score-label">Memo</span><strong id="scoreC">0 chars</strong></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.BUS123_DECISION_LAB = {
+      storageKey: "bus123-math-m11-board-briefing-v1",
+      meta: {
+        pageTitle: "BUS123 MATH M11 · Hospital Board Crisis Briefing",
+        kicker: "BUS123 · MATH M11 · Harborside Medical Center",
+        title: "Hospital Board Crisis Briefing",
+        subtitle: "Read the statements like a manager: profitable on paper, but under pressure in cash.",
+        panelTitle: "Briefing Rounds",
+        panelIntro: "Use statement evidence to identify the real issue and recommend a board action.",
+        scenarioName: "Scenario",
+        scenarioCopy: "Harborside shows positive net income while cash is tightening before payroll and equipment payments."
+      },
+      steps: [
+        {
+          id: "red-flag",
+          mode: "single",
+          name: "Find the red flag",
+          short: "Profit is not the whole story.",
+          briefTitle: "Dashboard Snapshot",
+          brief: [
+            "Net income is positive at $450,000.",
+            "Cash is only $412,000 after a major equipment purchase.",
+            "Accounts receivable has climbed to $680,000 from insurance billing delays."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Pick the most urgent financial red flag for the board.",
+            "Use more than the income statement before making the call."
+          ],
+          evidenceLabel: "Statement evidence",
+          evidence: [
+            { id: "profit", title: "Positive profit", copy: "The income statement says Harborside earned money this year.", tags: ["income"] },
+            { id: "ar", title: "Receivables buildup", copy: "Patient services were billed, but cash has not arrived from insurers yet.", tags: ["balance sheet"] },
+            { id: "cash", title: "Cash pressure", copy: "Cash fell after equipment spending and could become tight before payroll.", tags: ["cash flow"] }
+          ],
+          choiceLabel: "Most urgent red flag",
+          choices: [
+            { id: "profit-only", title: "Profit is too low", copy: "Focus only on increasing net income next year." },
+            { id: "cash-ar", title: "Cash timing and receivables", copy: "Profit exists, but collections and cash flow could create an operating problem." },
+            { id: "equipment", title: "Equipment is always bad", copy: "Avoid all long-term asset purchases because cash declined." }
+          ],
+          required: ["cash-ar"],
+          reflectionLabel: "Board note",
+          reflectionPlaceholder: "Explain why profit and cash can tell different stories.",
+          success: "Exactly. The board needs to see that a profitable hospital can still face a cash squeeze.",
+          coach: "Look across statements. The red flag is not just whether Harborside earned income, but whether billed revenue has turned into usable cash."
+        },
+        {
+          id: "board-action",
+          mode: "single",
+          name: "Choose the board action",
+          short: "Recommend the first operational move.",
+          briefTitle: "Management Options",
+          brief: [
+            "Payroll is due every two weeks.",
+            "The new MRI loan already increased financing activity.",
+            "The billing team says several insurers are taking more than 60 days to pay."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Choose the first board action that best addresses the financial statement evidence.",
+            "Avoid moves that make a different statement look better while worsening the real issue."
+          ],
+          evidenceLabel: "Decision evidence",
+          evidence: [
+            { id: "collections", title: "Collections delay", copy: "Accounts receivable is high because payments are slow, not because patient demand disappeared.", tags: ["operating"] },
+            { id: "loan", title: "Existing debt", copy: "Long-term borrowing already helped fund equipment.", tags: ["financing"] },
+            { id: "staff", title: "Service capacity", copy: "Cutting clinical staff could reduce care quality and future revenue.", tags: ["operations"] }
+          ],
+          choiceLabel: "Recommended action",
+          choices: [
+            { id: "collections-action", title: "Tighten collections process", copy: "Prioritize insurer follow-up, denial cleanup, and cash forecasting." },
+            { id: "more-debt", title: "Borrow more immediately", copy: "Use another loan before addressing why cash is delayed." },
+            { id: "staff-cut", title: "Cut clinical staffing", copy: "Reduce expenses even if patient service capacity falls." }
+          ],
+          required: ["collections-action"],
+          reflectionLabel: "Board recommendation",
+          reflectionPlaceholder: "Write the action you would recommend and which statement evidence supports it.",
+          success: "Strong board call. Collections work targets the operating cash problem without adding debt or weakening patient service.",
+          coach: "The first action should address the source of the cash gap. More debt or staff cuts may create new problems before fixing collections."
+        },
+        {
+          id: "statement-use",
+          mode: "multi",
+          name: "Build the briefing",
+          short: "Choose what belongs in the board packet.",
+          briefTitle: "Board Packet",
+          brief: [
+            "The board has five minutes for the issue.",
+            "They need a concise explanation, not every account balance.",
+            "The goal is to connect statement evidence to a decision."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Select the evidence that belongs in the board packet.",
+            "Then choose the communication style that best supports action."
+          ],
+          evidenceLabel: "Packet evidence",
+          evidence: [
+            { id: "income-cash-gap", title: "Income/cash gap", copy: "Net income is positive while closing cash is lower than expected.", tags: ["compare"] },
+            { id: "ar-trend", title: "AR trend", copy: "Accounts receivable has increased enough to affect liquidity.", tags: ["balance sheet"] },
+            { id: "payroll-risk", title: "Payroll timing", copy: "Cash constraints matter because payroll and suppliers require actual dollars.", tags: ["cash flow"] },
+            { id: "all-details", title: "Every account", copy: "List every balance sheet account line by line.", tags: ["avoid"] },
+            { id: "profit-only", title: "Profit only", copy: "Show net income and skip cash flow because profit is positive.", tags: ["avoid"] }
+          ],
+          choiceLabel: "Briefing style",
+          choices: [
+            { id: "decision-brief", title: "Decision brief", copy: "State the issue, cite the statement evidence, and recommend next action." },
+            { id: "data-dump", title: "Data dump", copy: "Show all numbers with no interpretation." },
+            { id: "optimistic", title: "Optimistic update", copy: "Emphasize profit and avoid uncomfortable cash questions." }
+          ],
+          required: ["income-cash-gap", "ar-trend", "payroll-risk", "decision-brief"],
+          reflectionLabel: "Executive summary",
+          reflectionPlaceholder: "Write the two-sentence summary you would put at the top of the board packet.",
+          success: "That is a usable board packet: statement evidence, cash implications, and a decision-focused recommendation.",
+          coach: "Boards need signal, not clutter. Select evidence that connects statements to the action they need to take."
+        }
+      ]
+    };
+  </script>
+  <script src="../../activities/templates/decision-lab/decision-lab.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M10 · IPO Investment Committee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/decision-lab/decision-lab.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell top-grid">
+      <div>
+        <p class="eyebrow" id="kicker"></p>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </div>
+      <div class="progress-card">
+        <span class="meta-label">Committee progress</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-copy"><span id="progressCount">0/0</span><span id="progressPercent">0%</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="lab-grid">
+      <aside class="panel">
+        <h2 id="panelTitle"></h2>
+        <p id="panelIntro"></p>
+        <div class="step-list" id="stepList"></div>
+        <div class="actions" style="margin-top:16px;">
+          <button class="secondary" id="resetBtn" type="button">Reset activity</button>
+        </div>
+      </aside>
+
+      <div>
+        <section class="workspace">
+          <div class="workspace-head">
+            <div>
+              <p class="step-kicker" id="stepKicker"></p>
+              <h2 id="stepTitle"></h2>
+            </div>
+            <div class="scenario-badge">
+              <strong id="scenarioName"></strong>
+              <span id="scenarioCopy"></span>
+            </div>
+          </div>
+
+          <div class="workspace-body">
+            <div class="brief">
+              <div class="brief-card">
+                <h3 id="briefTitle"></h3>
+                <div id="briefCopy"></div>
+              </div>
+              <div class="brief-card">
+                <h3 id="taskTitle"></h3>
+                <div id="taskCopy"></div>
+              </div>
+            </div>
+
+            <section>
+              <p class="section-label" id="evidenceLabel"></p>
+              <div class="evidence-grid" id="evidenceGrid"></div>
+            </section>
+
+            <section>
+              <p class="section-label" id="choiceLabel"></p>
+              <div class="choice-grid" id="choiceGrid"></div>
+            </section>
+
+            <div class="reflection">
+              <label for="reflection" id="reflectionLabel"></label>
+              <textarea id="reflection"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="primary" id="checkBtn" type="button">Check decision</button>
+              <button class="secondary" id="nextBtn" type="button">Next round</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="feedback" id="feedback">
+          <h2 id="feedbackTitle"></h2>
+          <p id="feedbackCopy"></p>
+          <div class="score-strip">
+            <div class="score-card"><span class="score-label">Selected</span><strong id="scoreA">0</strong></div>
+            <div class="score-card"><span class="score-label">Round</span><strong id="scoreB">Open</strong></div>
+            <div class="score-card"><span class="score-label">Memo</span><strong id="scoreC">0 chars</strong></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.BUS123_DECISION_LAB = {
+      storageKey: "bus123-math-m10-ipo-committee-v1",
+      meta: {
+        pageTitle: "BUS123 MATH M10 · IPO Investment Committee",
+        kicker: "BUS123 · MATH M10 · Meridian Advisory Group",
+        title: "IPO Investment Committee",
+        subtitle: "Advise three clients on a high-profile IPO without getting swept up by market hype.",
+        panelTitle: "Committee Rounds",
+        panelIntro: "Use the evidence, make a recommendation, and write the memo you would be willing to send to a client.",
+        scenarioName: "Scenario",
+        scenarioCopy: "A private AI infrastructure firm is preparing an IPO. Meridian must decide who, if anyone, should buy at launch."
+      },
+      steps: [
+        {
+          id: "client-fit",
+          mode: "single",
+          name: "Match the client",
+          short: "Choose whose portfolio could handle IPO risk.",
+          briefTitle: "Client Profiles",
+          brief: [
+            "Rowan is retired and relies on portfolio income for living expenses.",
+            "Kai is 21, has emergency savings, and is investing for a 40-year horizon.",
+            "Maya wants a balanced portfolio for a home down payment in four years."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Decide which client is the best fit for a small speculative IPO position.",
+            "Use risk tolerance, time horizon, and liquidity needs before thinking about return."
+          ],
+          evidenceLabel: "Client evidence",
+          evidence: [
+            { id: "income", title: "Income need", copy: "Rowan needs predictable cash flow and cannot absorb a large short-term drawdown.", tags: ["risk"] },
+            { id: "horizon", title: "Long horizon", copy: "Kai can wait through volatility and has no near-term need to sell.", tags: ["time"] },
+            { id: "downpayment", title: "Near-term goal", copy: "Maya expects to use this money for a home down payment in four years.", tags: ["liquidity"] }
+          ],
+          choiceLabel: "Best client fit",
+          choices: [
+            { id: "rowan", title: "Rowan", copy: "Prioritize income and capital preservation." },
+            { id: "kai", title: "Kai", copy: "Allow a small speculative allocation inside a long-term portfolio." },
+            { id: "maya", title: "Maya", copy: "Keep funds stable for the down payment timeline." }
+          ],
+          required: ["kai"],
+          reflectionLabel: "Advisor memo",
+          reflectionPlaceholder: "Explain why this client's time horizon and risk profile fit the IPO better than the others.",
+          success: "Yes. The IPO belongs, if anywhere, in Kai's long-term portfolio and only as a small allocation.",
+          coach: "Revisit the client's time horizon and need for stability. IPO volatility is a poor fit for income needs or near-term spending goals."
+        },
+        {
+          id: "launch-call",
+          mode: "single",
+          name: "Make the launch call",
+          short: "Buy, watchlist, or pass?",
+          briefTitle: "IPO Snapshot",
+          brief: [
+            "Expected IPO price: $48 per share.",
+            "Company is growing quickly but has not yet reported positive net income.",
+            "Analysts disagree on valuation because comparable public firms trade at lower P/E multiples."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Pick the most responsible launch-day recommendation for Meridian's client committee.",
+            "Separate investment discipline from excitement about the company."
+          ],
+          evidenceLabel: "Market evidence",
+          evidence: [
+            { id: "valuation", title: "Valuation pressure", copy: "The IPO implies a premium above public peers, even before retail demand pushes price higher.", tags: ["valuation"] },
+            { id: "profit", title: "No net income yet", copy: "Revenue is rising, but profits are still negative and future earnings are uncertain.", tags: ["risk"] },
+            { id: "access", title: "Limited allocation", copy: "Most small investors will buy in the open market after initial demand is known.", tags: ["execution"] }
+          ],
+          choiceLabel: "Committee recommendation",
+          choices: [
+            { id: "buy", title: "Buy at launch", copy: "Enter immediately because the company is famous and growth is exciting." },
+            { id: "watch", title: "Add to watchlist", copy: "Track post-IPO pricing, first earnings reports, and valuation before buying." },
+            { id: "pass", title: "Permanent pass", copy: "Never consider the company because IPOs are always too risky." }
+          ],
+          required: ["watch"],
+          reflectionLabel: "Committee note",
+          reflectionPlaceholder: "Explain why your call balances opportunity, valuation, and risk.",
+          success: "Good discipline. A watchlist decision keeps the opportunity alive without treating hype as analysis.",
+          coach: "A good committee call is not just bullish or bearish. It should match uncertainty with a measured next step."
+        },
+        {
+          id: "memo-evidence",
+          mode: "multi",
+          name: "Build the memo",
+          short: "Select the evidence that belongs in the client note.",
+          briefTitle: "Client Communication",
+          brief: [
+            "The client asked, 'Should I buy because everyone is talking about this IPO?'",
+            "Meridian needs a short response that teaches investment vocabulary and explains the recommendation."
+          ],
+          taskTitle: "Your task",
+          task: [
+            "Select the three evidence cards that should appear in the memo.",
+            "Avoid unsupported hype, guaranteed-return language, or formula-only thinking."
+          ],
+          evidenceLabel: "Memo evidence",
+          evidence: [
+            { id: "allocation", title: "Small allocation", copy: "If purchased later, it should be a small satellite position, not the core portfolio.", tags: ["portfolio"] },
+            { id: "dividend", title: "No dividend income", copy: "The return would depend on price appreciation, not dividend yield.", tags: ["income"] },
+            { id: "spread", title: "Trading cost", copy: "Bid-ask spread and volatility can make immediate execution expensive.", tags: ["market"] },
+            { id: "guarantee", title: "Guaranteed winner", copy: "The brand is exciting, so the stock will definitely outperform.", tags: ["avoid"] },
+            { id: "nav", title: "NAV only", copy: "Mutual fund NAV is the only calculation needed to evaluate the IPO.", tags: ["avoid"] }
+          ],
+          choiceLabel: "Memo stance",
+          choices: [
+            { id: "balanced", title: "Balanced advisory memo", copy: "Explain upside, risks, fit, and timing in plain language." },
+            { id: "hype", title: "Hype memo", copy: "Lead with headlines and fear of missing out." },
+            { id: "formula", title: "Formula-only memo", copy: "Give calculations with no client-specific recommendation." }
+          ],
+          required: ["allocation", "dividend", "spread", "balanced"],
+          reflectionLabel: "Final recommendation",
+          reflectionPlaceholder: "Write two sentences you would send to Kai.",
+          success: "That memo is client-ready: it links portfolio fit, income expectations, execution cost, and a measured recommendation.",
+          coach: "A client memo should include decision evidence and avoid claims that sound certain, hype-driven, or unrelated to the security."
+        }
+      ]
+    };
+  </script>
+  <script src="../../activities/templates/decision-lab/decision-lab.js"></script>
+</body>
+</html>

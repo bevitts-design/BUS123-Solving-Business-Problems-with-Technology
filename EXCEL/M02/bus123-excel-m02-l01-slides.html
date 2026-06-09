@@ -1,5 +1,1018 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUS123 · EXCEL-M01-L02 · Formatting and Organizing Worksheets</title>
-<style>:root{--ink:#0C1A2E;--storm:#1B2E48;--gold:#D4A052;--terra:#BE6B4A;--sage:#7AAB8C;--linen:#DDE8F0;--white:#fff;--cell:#ffffff;--alt:#f7f8fa;--cream:#fffbf0;--navy:#0a3d6b;--green:#1a6b3c}
-*{box-sizing:border-box;margin:0;padding:0}body{background:#050910;color:var(--linen);font-family:Georgia,serif;overflow:hidden}.deck{width:100vw;height:100vh;position:relative}.slide{position:absolute;inset:0;display:none;flex-direction:column;background:var(--ink)}.slide.active{display:flex}.bar{height:6px;background:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));flex:none}.title{justify-content:center;padding:7vw}.title h1{font-size:clamp(2.4rem,5vw,4.8rem);color:var(--white);font-family:Georgia,serif;line-height:1.05;max-width:1050px}.title p{font-size:clamp(1.1rem,2vw,1.6rem);font-style:italic;margin-top:1rem;max-width:900px}.eyebrow{font-family:monospace;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1rem}.header{display:flex;justify-content:space-between;align-items:center;background:var(--storm);padding:1.2rem 2.6rem;border-bottom:1px solid rgba(212,160,82,.35)}.header h2{font-size:clamp(1.4rem,2.8vw,2.2rem);color:var(--white)}.header span{font-family:monospace;color:var(--gold)}.body{flex:1;padding:3rem;display:flex;align-items:center;gap:2rem}.body p,.body li{font-size:clamp(1.35rem,2.7vw,2.25rem);line-height:1.35;max-width:1050px}.body ul{display:grid;gap:1rem;list-style-position:inside}.formula{background:#07101d;border-left:5px solid var(--gold);border-radius:8px;padding:2rem;width:100%;font-size:clamp(1.5rem,2.8vw,2.5rem)}code{font-family:"DM Mono","Courier New",monospace;color:var(--sage)}.mistake{background:#24120d}.mistake .header{background:rgba(190,107,74,.34)}.sheet{width:min(1000px,92vw);border-collapse:collapse;background:var(--cell);color:#111827;font-family:Arial,sans-serif;font-size:clamp(.85rem,1.4vw,1.1rem);box-shadow:0 18px 44px rgba(0,0,0,.26)}.sheet th{background:#1a1a2e;color:#fff;border:2px solid #c9a084;padding:.75rem;text-align:left}.sheet td{padding:.7rem;border:1px solid #d5dae3}.sheet tr:nth-child(even) td{background:var(--alt)}.sheet .result td{background:var(--cream);border-left:5px solid #c9a084;color:var(--green);font-weight:700}.sheet .input{color:var(--navy);font-weight:700}.controls{position:fixed;right:1.5rem;bottom:1.2rem;display:flex;gap:.5rem;z-index:10}button{font-family:monospace;color:var(--gold);background:rgba(27,46,72,.92);border:1px solid rgba(212,160,82,.45);border-radius:5px;padding:.45rem .8rem;cursor:pointer}#counter{font-family:monospace;color:var(--linen);padding:.45rem}@media(max-width:760px){.body{padding:1.4rem;align-items:flex-start}.header{padding:1rem}.sheet{font-size:.78rem}.sheet td,.sheet th{padding:.45rem}.controls{right:.7rem;bottom:.7rem}}</style></head><body><main class="deck"><section class='slide title active'><div class='bar'></div><div class='eyebrow'>BUS123 · EXCEL-M01-L02 · Gerrish School of Business</div><h1>Formatting and Organizing Worksheets</h1><p>Making worksheet data readable, consistent, and decision-ready</p><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Warm-Up</h2><span>02</span></div><div class='body'><p>Which worksheet would you trust faster: one with correct numbers only, or one with correct numbers and a clear structure?</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Current Business Context</h2><span>03</span></div><div class='body'><p>Tidal Goods Co. has a working worksheet, but managers need it cleaned up before they can scan it quickly in a meeting.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Learning Objectives</h2><span>04</span></div><div class='body'><ul><li>I can format labels, values, and totals so a worksheet is readable.</li><li>I can organize rows and columns without changing the meaning of the data.</li><li>I can use simple checks to make a formatted worksheet easier to audit.</li><li>I can prepare a worksheet for another business user.</li></ul></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Formatting Is Communication</h2><span>05</span></div><div class='body'><p>Formatting should guide attention. It tells a reader where to start, what to compare, and which numbers matter most.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Format The Header Row</h2><span>06</span></div><div class='body'><p>Use bold text, a dark fill, and strong contrast for column labels so the table structure is obvious.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Align By Meaning</h2><span>07</span></div><div class='body'><p>Text is usually easiest to scan left-aligned. Numbers are usually easiest to compare right-aligned or currency-formatted.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Use Consistent Number Formats</h2><span>08</span></div><div class='body'><p>A column should use one format. Mixing $8.5, 8.50, and eight dollars makes the data feel less reliable.</p></div><div class='bar'></div></section><section class='slide mistake'><div class='bar'></div><div class='header'><h2>Common Mistake</h2><span>09</span></div><div class='body'><p>Do not use color just to decorate. Every color should have a job: input, header, warning, result, or emphasis.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Worked Example</h2><span>10</span></div><div class='body'><p>Tidal Goods Co. wants a manager-ready inventory summary with clear headers, consistent currency, and a visible total row.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Before And After</h2><span>11</span></div><div class='body'><table class="sheet"><thead><tr><th>Product</th><th>Units</th><th>Unit Cost</th><th>Total Cost</th></tr></thead><tbody><tr><td>Canvas Tote</td><td>24</td><td>8.5</td><td>204</td></tr><tr><td>Travel Mug</td><td>36</td><td>6.25</td><td>225</td></tr><tr><td>Desk Tray</td><td>18</td><td>11</td><td>198</td></tr><tr class="result"><td>Total</td><td></td><td></td><td>$627.00</td></tr></tbody></table></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Organize The Table</h2><span>12</span></div><div class='body'><p>Keep one row per product, freeze the header if the list is long, and leave formulas in a consistent final column.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Excel Syntax</h2><span>13</span></div><div class='body'><div class="formula"><code>=C5*D5</code></div></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Manual Check</h2><span>14</span></div><div class='body'><p>Manual check: one row at a time, units times unit cost should match the formatted total cost.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Total Row Formatting</h2><span>15</span></div><div class='body'><p>A total row should stand apart from detail rows without overwhelming the worksheet.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Excel Syntax</h2><span>16</span></div><div class='body'><div class="formula"><code>=SUM(E5:E8)</code></div></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Manual Check</h2><span>17</span></div><div class='body'><p>Manual check: the total row should equal the sum of the product-level totals above it.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Audit-Friendly Design</h2><span>18</span></div><div class='body'><p>A well-formatted sheet makes it easier to notice missing labels, odd values, and formulas that were copied incorrectly.</p></div><div class='bar'></div></section><section class='slide mistake'><div class='bar'></div><div class='header'><h2>Common Mistake</h2><span>19</span></div><div class='body'><p>Do not merge cells inside a data table. Merged cells can make sorting, filtering, and formula copying harder later.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Student Practice</h2><span>20</span></div><div class='body'><p>Open the starter workbook and make the worksheet manager-ready by completing the yellow cells and checking the summary.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Challenge</h2><span>21</span></div><div class='body'><p>Use the Challenge tab to create a clean summary area that highlights the most important inventory number.</p></div><div class='bar'></div></section><section class='slide'><div class='bar'></div><div class='header'><h2>Wrap-Up</h2><span>22</span></div><div class='body'><p>Today is about making a worksheet readable and reusable: clear headers, consistent formats, organized data, and visible checks.</p></div><div class='bar'></div></section></main><nav class="controls"><button id="prev">Prev</button><span id="counter">1 / 22</span><button id="next">Next</button></nav><script>const slides=[...document.querySelectorAll('.slide')];let i=0;const counter=document.getElementById('counter');function show(n){slides[i].classList.remove('active');i=Math.max(0,Math.min(slides.length-1,n));slides[i].classList.add('active');counter.textContent=`${i+1} / ${slides.length}`;}document.getElementById('prev').onclick=()=>show(i-1);document.getElementById('next').onclick=()=>show(i+1);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(i+1);if(e.key==='ArrowLeft')show(i-1);});</script></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUS123 · EXCEL-M02-L01 · Formatting and Organizing Worksheets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1116;
+  --paper:#FAF8F3;
+  --paper-2:#F2EEE5;
+  --white:#FFFFFF;
+  --text:#1A1F2C;
+  --text-soft:#4A5567;
+  --muted:#7A8290;
+  --border:#E5E1D6;
+  --sage:#4A7C5E;
+  --gold:#B8843D;
+  --terra:#9C4A2B;
+  --steel:#355773;
+  --formula-bg:#EAF3EC;
+  --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+  --serif:"Bodoni Moda",serif;
+  --sans:"DM Sans",sans-serif;
+  --mono:"JetBrains Mono",monospace;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);font-family:var(--sans);color:var(--text)}
+button{font:inherit}
+
+.deck-shell{
+  position:absolute;
+  left:0;
+  top:0;
+  width:1280px;
+  height:720px;
+  transform-origin:top left;
+  display:grid;
+  grid-template-columns:84px 1196px;
+  background:var(--ink);
+}
+
+.tab-strip{
+  background:var(--ink);
+  border-right:1px solid rgba(255,255,255,.08);
+  padding:22px 12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+.home-dot{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:0;
+  background:var(--gradient);
+  box-shadow:0 0 0 5px rgba(255,255,255,.06);
+  cursor:pointer;
+}
+
+.tab-label{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--mono);
+  font-size:16px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  margin:4px 0 8px;
+}
+
+.tab-btn{
+  width:48px;
+  height:96px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:7px;
+  background:transparent;
+  color:var(--paper);
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.tab-btn span{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  font-family:var(--mono);
+  font-size:16px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.tab-btn[data-target="1"]{border-color:color-mix(in srgb,var(--sage) 72%,transparent)}
+.tab-btn[data-target="2"]{border-color:color-mix(in srgb,var(--gold) 72%,transparent)}
+.tab-btn[data-target="3"]{border-color:color-mix(in srgb,var(--terra) 72%,transparent)}
+.tab-btn[data-target="4"]{border-color:color-mix(in srgb,var(--steel) 72%,transparent)}
+.tab-btn.active{background:var(--paper);color:var(--ink)}
+.tab-btn.active::after{
+  content:"";
+  position:absolute;
+  right:7px;
+  top:8px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--sage);
+}
+.tab-btn[data-target="2"].active::after{background:var(--gold)}
+.tab-btn[data-target="3"].active::after{background:var(--terra)}
+.tab-btn[data-target="4"].active::after{background:var(--steel)}
+
+.stage{
+  position:relative;
+  padding:24px 28px 24px 30px;
+  background:var(--ink);
+}
+
+.slide{
+  display:none;
+  width:1138px;
+  height:672px;
+  background:var(--paper);
+  border-radius:7px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 28px 70px rgba(0,0,0,.38);
+  position:relative;
+}
+.slide.active{display:flex;flex-direction:column}
+.slide.dark{background:var(--ink);color:var(--white);border-color:rgba(255,255,255,.16)}
+.slide.terra{background:var(--terra);color:var(--white)}
+
+.accent-bar{height:7px;background:var(--gradient);flex:0 0 auto}
+.slide-header{
+  height:76px;
+  padding:0 54px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.slide.dark .slide-header,.slide.terra .slide-header{border-bottom:1px solid rgba(255,255,255,.16)}
+.slide-header h2{
+  margin:0;
+  font-family:var(--serif);
+  font-size:46px;
+  line-height:1;
+  font-weight:700;
+  color:var(--text);
+}
+.slide.dark .slide-header h2,.slide.terra .slide-header h2{color:var(--white)}
+.badge,.eyebrow{
+  font-family:var(--mono);
+  font-size:16px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.slide.dark .badge,.slide.terra .badge,.slide.dark .eyebrow,.slide.terra .eyebrow{color:var(--gold)}
+
+.body{
+  flex:1;
+  padding:40px 54px 46px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:22px;
+}
+.body.top{justify-content:flex-start}
+.body.split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch}
+.body.three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+
+h1{
+  margin:0;
+  font-family:var(--serif);
+  font-size:72px;
+  line-height:.98;
+  font-weight:900;
+  max-width:870px;
+}
+.title-sub{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:30px;
+  line-height:1.25;
+  color:var(--paper-2);
+  max-width:720px;
+}
+.kicker{
+  font-family:var(--mono);
+  font-size:16px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.lead{
+  margin:0;
+  font-size:24px;
+  line-height:1.38;
+  color:var(--text);
+}
+.slide.dark .lead,.slide.terra .lead{color:var(--paper)}
+.lead strong,.body-text strong{font-weight:700;color:var(--text)}
+.slide.dark .lead strong,.slide.terra .lead strong,.slide.dark .body-text strong,.slide.terra .body-text strong{color:var(--white)}
+.body-text{
+  margin:0;
+  font-size:20px;
+  line-height:1.42;
+  color:var(--text-soft);
+}
+
+.agenda-list,.num-list,.bullet-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.agenda-list li,.num-list li,.bullet-list li{
+  position:relative;
+  font-size:20px;
+  line-height:1.35;
+  color:var(--text);
+}
+.agenda-list li{padding:20px 24px 20px 70px;background:var(--white);border:1px solid var(--border);border-radius:7px}
+.agenda-list .n,.num-list .n{
+  position:absolute;
+  left:22px;
+  top:18px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--sage);
+  color:var(--white);
+  font-family:var(--mono);
+  font-size:16px;
+  font-weight:700;
+}
+.num-list li{padding-left:54px}
+.num-list .n{left:0;top:0}
+.bullet-list li{padding-left:28px}
+.bullet-list li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:12px;
+  width:11px;
+  height:4px;
+  border-radius:4px;
+  background:var(--sage);
+}
+.slide.dark .bullet-list li,.slide.terra .bullet-list li{color:var(--paper)}
+
+.card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:22px;
+}
+.card.recessed{background:var(--paper-2)}
+.card-title{
+  margin:0 0 10px;
+  font-family:var(--serif);
+  font-size:30px;
+  line-height:1.05;
+  color:var(--text);
+}
+.card p{margin:0;color:var(--text-soft);font-size:20px;line-height:1.35}
+.callout{
+  background:var(--formula-bg);
+  border-left:4px solid var(--sage);
+  border-radius:7px;
+  padding:18px 22px;
+}
+.callout.gold{background:var(--paper-2);border-left-color:var(--gold)}
+.callout.terra{background:var(--paper-2);border-left-color:var(--terra)}
+.callout p{margin:0;color:var(--text);font-size:20px;line-height:1.35}
+
+.section-break{
+  justify-content:center;
+  padding:70px 78px;
+  gap:22px;
+}
+.section-break h2{
+  margin:0;
+  font-family:var(--serif);
+  font-size:72px;
+  line-height:.98;
+  color:var(--white);
+  max-width:850px;
+}
+.section-break p{margin:0;max-width:700px;color:var(--paper-2);font-size:24px;line-height:1.35}
+
+.decision-flow{
+  display:grid;
+  grid-template-columns:1fr 48px 1fr 48px 1fr;
+  gap:12px;
+  align-items:center;
+}
+.flow-node{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-top:5px solid var(--sage);
+  border-radius:7px;
+  padding:22px 20px;
+  min-height:138px;
+}
+.flow-node strong{display:block;font-family:var(--serif);font-size:28px;color:var(--text);margin-bottom:8px}
+.flow-node span{display:block;font-size:19px;line-height:1.3;color:var(--text-soft)}
+.flow-arrow{
+  height:4px;
+  background:var(--gold);
+  position:relative;
+}
+.flow-arrow::after{
+  content:"";
+  position:absolute;
+  right:-2px;
+  top:-6px;
+  border-left:13px solid var(--gold);
+  border-top:8px solid transparent;
+  border-bottom:8px solid transparent;
+}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.compare-card{background:var(--white);border:1px solid var(--border);border-radius:7px;overflow:hidden}
+.compare-card .label{padding:12px 18px;background:var(--paper-2);font-family:var(--mono);font-size:16px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-soft)}
+.compare-card.good .label{color:var(--sage)}
+.compare-card.bad .label{color:var(--terra)}
+.compare-card .inner{padding:18px}
+
+.ws{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--white);
+  border:1px solid var(--border);
+  font-family:var(--sans);
+  font-size:16px;
+}
+.ws th{
+  background:var(--ink);
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:8px 10px;
+  text-align:left;
+  font-weight:700;
+}
+.ws td{
+  border:1px solid var(--border);
+  padding:8px 10px;
+  color:var(--steel);
+}
+.ws .row-even td{background:var(--paper-2)}
+.ws .row-result td{
+  background:var(--paper-2);
+  border-left:3px solid var(--gold);
+  color:var(--sage);
+  font-weight:700;
+}
+.ws .muted-cell{color:var(--muted);font-style:italic}
+.ws.small{font-size:16px}
+.ws .warning{background:color-mix(in srgb,var(--terra) 16%,var(--white));color:var(--terra)}
+.ws .input{background:color-mix(in srgb,var(--gold) 18%,var(--white));color:var(--text)}
+.ws .formula{background:color-mix(in srgb,var(--sage) 16%,var(--white));color:var(--sage);font-weight:700}
+
+.format-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.format-token{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:7px;
+  padding:16px;
+  min-height:106px;
+}
+.format-token span{display:block;font-family:var(--mono);font-size:16px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.format-token strong{display:block;font-family:var(--mono);font-size:24px;color:var(--text)}
+
+.formula-panel{
+  background:var(--formula-bg);
+  color:var(--ink);
+  border-left:4px solid var(--sage);
+  border-radius:7px;
+  padding:22px 26px;
+  font-family:var(--mono);
+  font-size:18px;
+  font-weight:500;
+  line-height:1.35;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+.formula-panel .fn{
+  font-size:22px;
+  font-weight:700;
+  color:var(--steel);
+  display:block;
+  margin-bottom:14px;
+}
+.formula-panel .comment{display:block;color:var(--sage)}
+.formula-panel .result{display:block;color:var(--ink)}
+
+.stat-panel{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:32px;
+  align-items:center;
+}
+.stat-number{
+  font-family:var(--serif);
+  font-size:140px;
+  line-height:.85;
+  color:var(--terra);
+}
+.stat-copy{
+  font-family:var(--serif);
+  font-size:34px;
+  line-height:1.15;
+  color:var(--text);
+}
+.mini-legend{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.legend-item{
+  padding:16px;
+  border-radius:7px;
+  border:1px solid var(--border);
+  background:var(--white);
+  font-size:18px;
+  line-height:1.25;
+}
+.legend-swatch{width:100%;height:18px;border-radius:4px;margin-bottom:10px;background:var(--paper-2)}
+.legend-item:nth-child(1) .legend-swatch{background:color-mix(in srgb,var(--gold) 30%,var(--white))}
+.legend-item:nth-child(2) .legend-swatch{background:color-mix(in srgb,var(--sage) 28%,var(--white))}
+.legend-item:nth-child(3) .legend-swatch{background:color-mix(in srgb,var(--terra) 25%,var(--white))}
+.legend-item:nth-child(4) .legend-swatch{background:color-mix(in srgb,var(--steel) 24%,var(--white))}
+
+.mistake-board{
+  display:grid;
+  grid-template-columns:1fr 64px 1fr;
+  gap:18px;
+  align-items:start;
+}
+.mistake-call{
+  background:rgba(255,255,255,.12);
+  border-left:4px solid var(--white);
+  border-radius:7px;
+  padding:20px 24px;
+}
+.mistake-call h3{
+  margin:0 0 8px;
+  font-family:var(--serif);
+  font-size:32px;
+  color:var(--white);
+}
+.mistake-call p{margin:0;color:var(--paper);font-size:20px;line-height:1.35}
+.swap-arrow{display:grid;place-items:center;color:var(--white);font-family:var(--serif);font-size:58px}
+
+.discussion-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.question-card{
+  min-height:250px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-top:6px solid var(--sage);
+  border-radius:7px;
+  padding:28px;
+}
+.question-card:nth-child(2){border-top-color:var(--gold)}
+.question-card h3{margin:0;font-family:var(--serif);font-size:36px;line-height:1.05;color:var(--text)}
+.question-card p{margin:18px 0 0;font-size:20px;line-height:1.35;color:var(--text-soft)}
+
+.up-next{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+  align-items:stretch;
+}
+.next-card{
+  border-radius:7px;
+  padding:26px;
+  border:1px solid var(--border);
+  background:var(--white);
+}
+.next-card h3{margin:0 0 12px;font-family:var(--serif);font-size:34px;color:var(--text)}
+.next-card p{margin:0;font-size:20px;line-height:1.35;color:var(--text-soft)}
+
+.controls{
+  position:absolute;
+  right:46px;
+  bottom:34px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  z-index:10;
+}
+.controls button{
+  border:1px solid var(--border);
+  background:var(--white);
+  color:var(--text);
+  border-radius:7px;
+  min-width:44px;
+  min-height:38px;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:16px;
+}
+.counter{
+  min-width:76px;
+  color:var(--muted);
+  text-align:center;
+  font-family:var(--mono);
+  font-size:16px;
+}
+.notes-panel{
+  position:absolute;
+  left:114px;
+  right:56px;
+  bottom:34px;
+  z-index:20;
+  display:none;
+  padding:18px 22px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:var(--ink);
+  color:var(--paper);
+  box-shadow:0 18px 48px rgba(0,0,0,.34);
+}
+.notes-panel.visible{display:block}
+.notes-panel .notes-label{font-family:var(--mono);font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.notes-panel p{margin:0;font-size:18px;line-height:1.35}
+
+.close-wrap{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:24px;
+  padding:92px 78px;
+  height:100%;
+}
+.close-wrap h2{
+  margin:0;
+  font-family:var(--serif);
+  font-size:72px;
+  line-height:.95;
+}
+.office{font-size:24px;color:var(--paper-2);line-height:1.35;max-width:720px}
+</style>
+</head>
+<body>
+<main class="deck-shell" aria-label="BUS123 EXCEL-M02-L01 slide deck">
+  <aside class="tab-strip" aria-label="Section navigation">
+    <button class="home-dot" type="button" aria-label="Go to title slide" data-slide="0"></button>
+    <div class="tab-label">BUS123</div>
+    <button class="tab-btn" type="button" data-target="1" data-slide="4"><span>Part 1</span></button>
+    <button class="tab-btn" type="button" data-target="2" data-slide="8"><span>Part 2</span></button>
+    <button class="tab-btn" type="button" data-target="3" data-slide="13"><span>Part 3</span></button>
+    <button class="tab-btn" type="button" data-target="4" data-slide="18"><span>Wrap</span></button>
+  </aside>
+
+  <section class="stage">
+    <article class="slide dark active" data-section="0">
+      <div class="accent-bar"></div>
+      <div class="body">
+        <div class="kicker">BUS123 · EXCEL-M02-L01 · Gerrish School of Business</div>
+        <h1>Formatting and Organizing Worksheets</h1>
+        <p class="title-sub">Making data readable, consistent, and decision-ready, one format at a time.</p>
+      </div>
+      <div class="accent-bar"></div>
+    </article>
+
+    <article class="slide" data-section="0">
+      <header class="slide-header"><h2>Agenda</h2><span class="badge">EXCEL-M02-L01 · 02</span></header>
+      <div class="body top">
+        <p class="lead">Today we turn a raw Anchor &amp; Oak Events worksheet into something a manager can read in 30 seconds.</p>
+        <ol class="agenda-list">
+          <li><span class="n">1</span><strong>Readability first:</strong> why formatting is business communication, not decoration.</li>
+          <li><span class="n">2</span><strong>Format the worksheet:</strong> numbers, dates, totals, headers, and alignment.</li>
+          <li><span class="n">3</span><strong>Audit the handoff:</strong> banding, freeze panes, color rules, and common mistakes.</li>
+          <li><span class="n">4</span><strong>Practice:</strong> apply the five-point audit to the starter workbook.</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="slide" data-section="0">
+      <header class="slide-header"><h2>Learning Objectives</h2><span class="badge">EXCEL-M02-L01 · 03</span></header>
+      <div class="body top">
+        <div class="kicker">I Can Statements</div>
+        <ol class="num-list">
+          <li><span class="n">1</span>I can apply number, currency, percentage, and date formats so a worksheet communicates clearly.</li>
+          <li><span class="n">2</span>I can format headers, totals, rows, and columns to guide a reader's eye through data.</li>
+          <li><span class="n">3</span>I can use consistent alignment and color rules without decorating for decoration's sake.</li>
+          <li><span class="n">4</span>I can identify and fix common formatting choices that break sorting, filtering, or trust.</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="slide" data-section="0">
+      <header class="slide-header"><h2>Recap Bridge</h2><span class="badge">EXCEL-M02-L01 · 04</span></header>
+      <div class="body split">
+        <div class="compare-card bad">
+          <div class="label">Raw export</div>
+          <div class="inner">
+            <table class="ws small">
+              <thead><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+              <tbody>
+                <tr><td>spring gala</td><td>4800</td><td>1820</td><td>2980</td></tr>
+                <tr class="row-even"><td>corp retreat</td><td>3200</td><td>1210</td><td>1990</td></tr>
+                <tr><td>summer wedding</td><td>9500</td><td>3990</td><td>5510</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card recessed">
+          <h3 class="card-title">Same numbers, different reader experience.</h3>
+          <p>Last lesson focused on entering and editing data. Today asks the professional question: can someone else understand the worksheet quickly enough to make a decision?</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide dark" data-section="1">
+      <div class="accent-bar"></div>
+      <div class="section-break">
+        <div class="kicker">Part 1 of 3</div>
+        <h2>Formatting Is Communication</h2>
+        <p>Before we touch the ribbon, we need a standard for what a good worksheet does for its reader.</p>
+      </div>
+    </article>
+
+    <article class="slide" data-section="1">
+      <header class="slide-header"><h2>Why Formatting Matters</h2><span class="badge">EXCEL-M02-L01 · 06</span></header>
+      <div class="body">
+        <div class="decision-flow">
+          <div class="flow-node"><strong>Guide attention</strong><span>Headers, totals, and spacing tell the reader where to start.</span></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><strong>Signal reliability</strong><span>Consistent formats make the data feel handled with care.</span></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><strong>Speed decisions</strong><span>A manager can compare, scan, and act without decoding the sheet first.</span></div>
+        </div>
+        <div class="callout gold"><p><strong>Formatting is not cosmetic.</strong> It is the difference between data someone can act on and data someone has to interpret.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="1">
+      <header class="slide-header"><h2>Number Formats</h2><span class="badge">EXCEL-M02-L01 · 07</span></header>
+      <div class="body top">
+        <p class="lead">A number's format tells the reader what kind of business fact they are looking at.</p>
+        <div class="format-strip">
+          <div class="format-token"><span>Raw</span><strong>4800</strong></div>
+          <div class="format-token"><span>Currency</span><strong>$4,800</strong></div>
+          <div class="format-token"><span>Accounting</span><strong>$ 4,800</strong></div>
+          <div class="format-token"><span>Percent</span><strong>15%</strong></div>
+          <div class="format-token"><span>Date</span><strong>15-Mar-26</strong></div>
+        </div>
+        <div class="callout terra"><p><strong>The percentage trap:</strong> raw value 0.15 displays as 15%. Raw value 15 displays as 1500%.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="1">
+      <header class="slide-header"><h2>Headers And Alignment</h2><span class="badge">EXCEL-M02-L01 · 08</span></header>
+      <div class="body split">
+        <div class="compare-card bad">
+          <div class="label">Hard to decode</div>
+          <div class="inner">
+            <table class="ws small">
+              <thead><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+              <tbody>
+                <tr><td>Spring Gala</td><td>4800</td><td>1820</td><td>2980</td></tr>
+                <tr class="row-even"><td>Corp Retreat</td><td>3200</td><td>1210</td><td>1990</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="compare-card good">
+          <div class="label">Manager ready</div>
+          <div class="inner">
+            <table class="ws small">
+              <thead><tr><th>Event</th><th>Revenue</th><th>Cost</th><th>Net</th></tr></thead>
+              <tbody>
+                <tr><td>Spring Gala</td><td>$4,800</td><td>$1,820</td><td>$2,980</td></tr>
+                <tr class="row-even"><td>Corp Retreat</td><td>$3,200</td><td>$1,210</td><td>$1,990</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide dark" data-section="2">
+      <div class="accent-bar"></div>
+      <div class="section-break">
+        <div class="kicker">Part 2 of 3</div>
+        <h2>Format The Worksheet</h2>
+        <p>Now we apply the rules to Anchor &amp; Oak's booking summary and build a readable total row.</p>
+      </div>
+    </article>
+
+    <article class="slide" data-section="2">
+      <header class="slide-header"><h2>Raw Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 10</span></header>
+      <div class="body top">
+        <p class="lead">The data is correct. The handoff is not ready.</p>
+        <table class="ws">
+          <thead><tr><th>Event</th><th>Date</th><th>Guests</th><th>Revenue</th><th>Catering</th><th>Staffing</th><th>Net</th></tr></thead>
+          <tbody>
+            <tr><td>Spring Gala</td><td>3/15/2026</td><td>120</td><td>4800</td><td>1820</td><td>0</td><td>2980</td></tr>
+            <tr class="row-even"><td>Corporate Retreat</td><td>5/8/2026</td><td>55</td><td>3200</td><td>1210</td><td>0</td><td>1990</td></tr>
+            <tr><td>Summer Wedding</td><td>6/21/2026</td><td>200</td><td>9500</td><td>3100</td><td>890</td><td>5510</td></tr>
+            <tr class="row-even"><td>Fall Gala</td><td>10/4/2026</td><td>95</td><td>5200</td><td>1400</td><td>510</td><td>3290</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><p>Ask students: which two changes would make this worksheet easier to scan immediately?</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="2">
+      <header class="slide-header"><h2>Formatted Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 11</span></header>
+      <div class="body top">
+        <p class="lead">Same data, clearer story: readable dates, currency, alignment, and a distinct total row.</p>
+        <table class="ws">
+          <thead><tr><th>Event</th><th>Date</th><th>Guests</th><th>Revenue</th><th>Catering</th><th>Staffing</th><th>Net Profit</th></tr></thead>
+          <tbody>
+            <tr><td>Spring Gala</td><td>15-Mar-26</td><td>120</td><td>$4,800</td><td>$1,820</td><td>$0</td><td>$2,980</td></tr>
+            <tr class="row-even"><td>Corporate Retreat</td><td>08-May-26</td><td>55</td><td>$3,200</td><td>$1,210</td><td>$0</td><td>$1,990</td></tr>
+            <tr><td>Summer Wedding</td><td>21-Jun-26</td><td>200</td><td>$9,500</td><td>$3,100</td><td>$890</td><td>$5,510</td></tr>
+            <tr class="row-even"><td>Fall Gala</td><td>04-Oct-26</td><td>95</td><td>$5,200</td><td>$1,400</td><td>$510</td><td>$3,290</td></tr>
+            <tr class="row-result"><td colspan="3">Total</td><td>$22,700</td><td>$7,530</td><td>$1,400</td><td>$13,770</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="slide" data-section="2">
+      <header class="slide-header"><h2>Excel Syntax: Formats</h2><span class="badge">EXCEL-M02-L01 · 12</span></header>
+      <div class="body top">
+        <p class="lead"><strong>Step 1:</strong> select the cells you want to format. Excel cannot format what you have not selected.</p>
+        <div class="formula-panel">
+          <span class="fn">Home tab - Number group - dropdown - Currency or Accounting</span>
+          <span class="comment">// Keyboard shortcut for Currency format:</span>
+          <span class="result">Ctrl + Shift + $</span>
+          <span class="comment">// Keyboard shortcut for Percent format:</span>
+          <span class="result">Ctrl + Shift + %</span>
+          <span class="comment">// Keyboard shortcut for Comma / Number format:</span>
+          <span class="result">Ctrl + Shift + !</span>
+        </div>
+        <div class="callout gold"><p><strong>Currency vs. Accounting:</strong> Currency places the symbol next to the number. Accounting aligns symbols and negatives for financial statement readability.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="2">
+      <header class="slide-header"><h2>Excel Syntax: Dates And Totals</h2><span class="badge">EXCEL-M02-L01 · 13</span></header>
+      <div class="body split">
+        <div class="formula-panel">
+          <span class="fn">Ctrl + Shift + #</span>
+          <span class="comment">// Applies the default short date format.</span>
+          <span class="result">3/15/2026 - March 15, 2026 - 15-Mar-26</span>
+        </div>
+        <div class="formula-panel">
+          <span class="fn">=SUM(D2:D5)</span>
+          <span class="comment">// Sum all revenue rows before checking manually.</span>
+          <span class="result">Manual check: $4,800 + $3,200 + $9,500 + $5,200 = $22,700</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide dark" data-section="3">
+      <div class="accent-bar"></div>
+      <div class="section-break">
+        <div class="kicker">Part 3 of 3</div>
+        <h2>Audit The Handoff</h2>
+        <p>Professional worksheets stay useful after the first screen, first scroll, and first sort.</p>
+      </div>
+    </article>
+
+    <article class="slide" data-section="3">
+      <header class="slide-header"><h2>Banded Rows</h2><span class="badge">EXCEL-M02-L01 · 15</span></header>
+      <div class="body split">
+        <div>
+          <p class="lead">Banding helps the eye track across wide tables. Use it quietly, then reserve stronger emphasis for totals.</p>
+          <ul class="bullet-list">
+            <li>Detail rows use subtle alternation.</li>
+            <li>Total rows use stronger border and weight.</li>
+            <li>Headers stay consistent across the workbook.</li>
+          </ul>
+        </div>
+        <table class="ws">
+          <thead><tr><th>Event</th><th>Guests</th><th>Revenue</th><th>Net</th></tr></thead>
+          <tbody>
+            <tr><td>Spring Gala</td><td>120</td><td>$4,800</td><td>$2,980</td></tr>
+            <tr class="row-even"><td>Corporate Retreat</td><td>55</td><td>$3,200</td><td>$1,990</td></tr>
+            <tr><td>Summer Wedding</td><td>200</td><td>$9,500</td><td>$5,510</td></tr>
+            <tr class="row-even"><td>Fall Gala</td><td>95</td><td>$5,200</td><td>$3,290</td></tr>
+            <tr class="row-result"><td>Total</td><td>470</td><td>$22,700</td><td>$13,770</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="slide" data-section="3">
+      <header class="slide-header"><h2>Freeze Panes</h2><span class="badge">EXCEL-M02-L01 · 16</span></header>
+      <div class="body top">
+        <p class="lead">Anchor &amp; Oak tracks 80 events a year. When students scroll to row 60, the labels should still be visible.</p>
+        <div class="formula-panel">
+          <span class="fn">View tab - Freeze Panes - Freeze Top Row</span>
+          <span class="comment">// Locks row 1 while you scroll down.</span>
+          <span class="result">Click cell B2, then View - Freeze Panes - Freeze Panes to freeze both row 1 and column A.</span>
+        </div>
+        <div class="callout gold"><p><strong>Unfreeze:</strong> same menu. The option changes to "Unfreeze Panes" once a freeze is active.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="3">
+      <header class="slide-header"><h2>Color With Purpose</h2><span class="badge">EXCEL-M02-L01 · 17</span></header>
+      <div class="body top">
+        <div class="stat-panel">
+          <div class="stat-number">1</div>
+          <div class="stat-copy">Every color in a worksheet should have one job. If students cannot name the job, remove the color.</div>
+        </div>
+        <div class="mini-legend">
+          <div class="legend-item"><div class="legend-swatch"></div><strong>Input</strong><br>Student enters data.</div>
+          <div class="legend-item"><div class="legend-swatch"></div><strong>Formula</strong><br>Calculated result.</div>
+          <div class="legend-item"><div class="legend-swatch"></div><strong>Warning</strong><br>Needs attention.</div>
+          <div class="legend-item"><div class="legend-swatch"></div><strong>Reference</strong><br>Lookup or note.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide terra" data-section="3">
+      <header class="slide-header"><h2>Common Mistake</h2><span class="badge">EXCEL-M02-L01 · 18</span></header>
+      <div class="body top">
+        <div class="mistake-call">
+          <h3>Do not merge cells inside a data table.</h3>
+          <p>Merged cells look tidy on screen but break sorting, filtering, and copy-paste. Use Center Across Selection when the label needs to span columns visually.</p>
+        </div>
+        <div class="mistake-board">
+          <div class="compare-card">
+            <div class="label">Merged header breaks sort</div>
+            <div class="inner">
+              <table class="ws small">
+                <thead><tr><th colspan="2">Spring Events 2026</th><th>Net</th></tr></thead>
+                <tbody><tr><td>Spring Gala</td><td>$4,800</td><td>$2,980</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="swap-arrow">→</div>
+          <div class="compare-card">
+            <div class="label">Label above keeps table intact</div>
+            <div class="inner">
+              <table class="ws small">
+                <thead><tr><th>Event</th><th>Revenue</th><th>Net</th></tr></thead>
+                <tbody>
+                  <tr><td class="muted-cell" colspan="3">Spring Events 2026 - Q1</td></tr>
+                  <tr><td>Spring Gala</td><td>$4,800</td><td>$2,980</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="4">
+      <header class="slide-header"><h2>Discussion</h2><span class="badge">EXCEL-M02-L01 · 19</span></header>
+      <div class="body top">
+        <div class="discussion-grid">
+          <div class="question-card">
+            <h3>What makes a worksheet feel trustworthy?</h3>
+            <p>Name one formatting choice that builds trust and one that makes you doubt the data.</p>
+          </div>
+          <div class="question-card">
+            <h3>Which format would help a manager fastest?</h3>
+            <p>Choose the first two edits you would make on the Activity tab before anyone reviews it.</p>
+          </div>
+        </div>
+        <div class="callout"><p><strong>Practice handoff:</strong> use the five-point audit on the starter workbook, then have a neighbor decide whether the sheet is readable in 30 seconds.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-section="4">
+      <header class="slide-header"><h2>Key Takeaways</h2><span class="badge">EXCEL-M02-L01 · 20</span></header>
+      <div class="body top">
+        <ol class="agenda-list">
+          <li><span class="n">1</span><strong>Formatting communicates meaning.</strong> It tells the reader what kind of fact each value represents.</li>
+          <li><span class="n">2</span><strong>Consistency creates trust.</strong> Headers, totals, alignment, dates, and money columns should follow one visible logic.</li>
+          <li><span class="n">3</span><strong>Good worksheets survive use.</strong> They scroll, sort, filter, and update without breaking the reader's confidence.</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="slide" data-section="4">
+      <header class="slide-header"><h2>Up Next</h2><span class="badge">EXCEL-M02-L01 · 21</span></header>
+      <div class="body">
+        <div class="up-next">
+          <div class="next-card">
+            <h3>Challenge tab</h3>
+            <p>Fix mixed formats, incorrect alignment, and a merged header. Add conditional formatting for Net Profit below $2,000 using a warning color.</p>
+          </div>
+          <div class="next-card">
+            <h3>EXCEL-M03-L01</h3>
+            <p>Aggregate Functions and Data Analysis: SUM, AVERAGE, COUNT, MIN, MAX, and SUMIF applied to Anchor &amp; Oak booking data.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="slide dark" data-section="0">
+      <div class="accent-bar"></div>
+      <div class="close-wrap">
+        <div class="kicker">BUS123 · EXCEL-M02-L01</div>
+        <h2>Questions?</h2>
+        <p class="office">Formatting never changes the numbers. It changes how quickly and confidently someone else can use them.</p>
+        <p class="office">Office hours and course help are the right place to bring workbook cleanup questions before they become bad habits.</p>
+      </div>
+    </article>
+
+    <div class="notes-panel" id="notes-panel" aria-live="polite">
+      <div class="notes-label">Speaker Notes</div>
+      <p id="notes-text"></p>
+    </div>
+
+    <nav class="controls" aria-label="Slide controls">
+      <button type="button" id="btn-prev" aria-label="Previous slide">‹</button>
+      <span class="counter" id="counter">1 / 22</span>
+      <button type="button" id="btn-next" aria-label="Next slide">›</button>
+      <button type="button" id="btn-notes" aria-label="Toggle speaker notes">N</button>
+    </nav>
+  </section>
+</main>
+
+<script type="application/json" id="speaker-notes">
+[
+  "Welcome to Excel M02. This lesson is about making worksheets readable. Formatting is a professional communication skill, not decoration.",
+  "Preview the class flow. The throughline is Anchor and Oak Events: a correct but messy booking worksheet that needs to become manager-ready.",
+  "Keep these objectives short. Students should hear that the goal is not memorizing every ribbon command; it is making the worksheet communicate.",
+  "Bridge from prior Excel basics. The same values can create very different reader experiences depending on headers, number formats, and structure.",
+  "Frame Part 1 around judgment. Before students use the ribbon, they need to know what good formatting is trying to accomplish.",
+  "Use the flow from attention to reliability to decisions. A manager reads the worksheet differently when the design guides them.",
+  "Pause on the percentage trap. Raw value 0.15 formatted as percent gives 15 percent; raw value 15 formatted as percent gives 1500 percent.",
+  "Compare the two mini tables. Ask students what column B means in the left version. The discomfort is the point.",
+  "Set up Part 2 as application. We are going to take the Anchor and Oak booking summary from raw export to readable handoff.",
+  "Ask students what they would fix first before showing the formatted version. Listen for dates, currency, totals, and headers.",
+  "Walk through the formatted version in order: readable dates, currency columns, right alignment, and the total row.",
+  "Drill the shortcuts briefly. Students do not need to memorize all of them today, but they should recognize the Number group and Format Cells dialog.",
+  "Excel syntax comes first, then the manual check. Reinforce that formulas update while typed totals go stale.",
+  "Part 3 moves from making the sheet look good to making it hold up when someone uses it.",
+  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster.",
+  "Demo freeze panes live if possible. Scroll down with row 1 unlocked, then freeze the top row and scroll again.",
+  "Color with purpose is the professional rule. Every color should have exactly one job students can name.",
+  "Common mistake: merged cells. Explain that merged headers are attractive until sorting and filtering fail. Center Across Selection is the safe substitute.",
+  "Use the two discussion questions before practice. Students should name the first two fixes they would make on the Activity tab.",
+  "Summarize the takeaways as communication, consistency, and durability. These are the standards students can apply beyond this one file.",
+  "Preview the Challenge tab and next lesson. Conditional formatting is a bridge into M03 aggregate functions and analysis.",
+  "Close by repeating the core insight: formatting never changes the numbers; it changes how quickly and confidently someone else can use them."
+]
+</script>
+
+<script>
+(function(){
+  var W=1280, H=720, deck=document.querySelector('.deck-shell');
+  function fit(){
+    var s=Math.min(window.innerWidth/W, window.innerHeight/H);
+    deck.style.transform='translate('+((innerWidth-W*s)/2)+'px,'+((innerHeight-H*s)/2)+'px) scale('+s+')';
+  }
+  window.addEventListener('resize',fit); fit();
+
+  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter=document.getElementById('counter');
+  var notes=JSON.parse(document.getElementById('speaker-notes').textContent);
+  var notesPanel=document.getElementById('notes-panel');
+  var notesText=document.getElementById('notes-text');
+  var tabButtons=Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
+  var current=0;
+
+  function show(n){
+    slides[current].classList.remove('active');
+    current=Math.max(0,Math.min(slides.length-1,n));
+    slides[current].classList.add('active');
+    counter.textContent=(current+1)+' / '+slides.length;
+    notesText.textContent=notes[current] || '';
+    updateTabs();
+  }
+
+  function updateTabs(){
+    var section=slides[current].getAttribute('data-section');
+    tabButtons.forEach(function(btn){
+      btn.classList.toggle('active',btn.getAttribute('data-target')===section);
+    });
+  }
+
+  document.getElementById('btn-prev').addEventListener('click',function(){show(current-1)});
+  document.getElementById('btn-next').addEventListener('click',function(){show(current+1)});
+  document.getElementById('btn-notes').addEventListener('click',function(){
+    notesPanel.classList.toggle('visible');
+  });
+  document.querySelector('.home-dot').addEventListener('click',function(){show(0)});
+  tabButtons.forEach(function(btn){
+    btn.addEventListener('click',function(){show(Number(btn.getAttribute('data-slide')))});
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight' || e.key==='ArrowDown' || e.key==='PageDown') show(current+1);
+    if(e.key==='ArrowLeft' || e.key==='ArrowUp' || e.key==='PageUp') show(current-1);
+    if(e.key==='n' || e.key==='N') notesPanel.classList.toggle('visible');
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>

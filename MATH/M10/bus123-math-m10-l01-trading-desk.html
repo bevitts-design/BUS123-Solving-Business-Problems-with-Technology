@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M10 · Trading Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · MATH M10 · Meridian Advisory Group</p>
+      <h1>Trading Desk: Bid, Ask, or Wait</h1>
+      <p>Work through a quote tape. Decide whether to buy at the ask, place a patient limit order, or wait.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="grid">
+      <aside class="panel">
+        <h2>Desk rule</h2>
+        <p>Buying immediately means paying the ask. A limit order is more disciplined but may not fill. Waiting protects the client when the spread or story is not attractive.</p>
+        <div class="note" id="feedback">Round 1 is loaded. Read the quote before choosing.</div>
+      </aside>
+      <section>
+        <div class="metric-row">
+          <div class="metric"><span class="metric-label">Round</span><strong id="round">1/4</strong></div>
+          <div class="metric"><span class="metric-label">Score</span><strong id="score">0</strong></div>
+          <div class="metric"><span class="metric-label">Spread</span><strong id="spread">$0.00</strong></div>
+        </div>
+        <div class="board">
+          <h2 id="symbol">MAGH</h2>
+          <div class="three-col">
+            <div class="tile"><span class="metric-label">Bid</span><strong id="bid">$0.00</strong><p>Highest current buyer offer.</p></div>
+            <div class="tile"><span class="metric-label">Ask</span><strong id="ask">$0.00</strong><p>Lowest current seller offer.</p></div>
+            <div class="tile"><span class="metric-label">Last</span><strong id="last">$0.00</strong><p>Most recent trade price.</p></div>
+          </div>
+          <div class="note" id="headline"></div>
+          <div class="three-col" style="margin-top:16px;">
+            <button class="choice" data-choice="market" type="button">Buy at ask</button>
+            <button class="choice" data-choice="limit" type="button">Place limit order</button>
+            <button class="choice" data-choice="wait" type="button">Wait</button>
+          </div>
+          <div class="actions" style="margin-top:16px;">
+            <button class="action" id="nextBtn" type="button">Next quote</button>
+            <button class="ghost" id="resetBtn" type="button">Reset tape</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const quotes = [
+      { symbol: "MAGH", bid: 39.55, ask: 39.68, last: 39.62, headline: "Normal spread on a familiar holding with a long-term client order.", best: "market", reason: "The spread is modest. A marketable order is reasonable for a long-term buy." },
+      { symbol: "NOVA IPO", bid: 47.10, ask: 49.85, last: 48.00, headline: "Launch-day demand is chaotic and the spread is unusually wide.", best: "wait", reason: "The spread is too wide for a careful client trade. Waiting protects against poor execution." },
+      { symbol: "BOND 4%", bid: 995.40, ask: 996.00, last: 995.90, headline: "Bond quote is stable near par and the client cares about yield.", best: "limit", reason: "A limit order near the bid/last can protect price while still giving a reasonable fill chance." },
+      { symbol: "AI ETF", bid: 61.20, ask: 61.26, last: 61.23, headline: "Liquid ETF, narrow spread, but client already owns a lot of technology exposure.", best: "wait", reason: "Execution looks fine, but portfolio concentration makes waiting the disciplined call." }
+    ];
+    let idx = 0;
+    let score = 0;
+    const money = value => `$${value.toFixed(2)}`;
+    document.querySelectorAll("[data-choice]").forEach(button => button.addEventListener("click", () => choose(button.dataset.choice)));
+    document.getElementById("nextBtn").addEventListener("click", () => { idx = Math.min(idx + 1, quotes.length - 1); render(); });
+    document.getElementById("resetBtn").addEventListener("click", () => { idx = 0; score = 0; render("Round 1 is loaded. Read the quote before choosing."); });
+    function render(message) {
+      const q = quotes[idx];
+      document.getElementById("round").textContent = `${idx + 1}/${quotes.length}`;
+      document.getElementById("score").textContent = score;
+      document.getElementById("symbol").textContent = q.symbol;
+      document.getElementById("bid").textContent = money(q.bid);
+      document.getElementById("ask").textContent = money(q.ask);
+      document.getElementById("last").textContent = money(q.last);
+      document.getElementById("spread").textContent = money(q.ask - q.bid);
+      document.getElementById("headline").textContent = q.headline;
+      const feedback = document.getElementById("feedback");
+      feedback.className = "note";
+      feedback.textContent = message || "Quote loaded. Make your trading call.";
+    }
+    function choose(choice) {
+      const q = quotes[idx];
+      const correct = choice === q.best;
+      if (correct) score += 1;
+      const feedback = document.getElementById("feedback");
+      feedback.className = correct ? "note good" : "note warn";
+      feedback.textContent = correct ? `Good desk call. ${q.reason}` : `Reconsider the quote. ${q.reason}`;
+      document.getElementById("score").textContent = score;
+    }
+    render();
+  </script>
+</body>
+</html>

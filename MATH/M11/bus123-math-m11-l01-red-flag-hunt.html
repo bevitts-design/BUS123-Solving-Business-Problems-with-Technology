@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M11 · Financial Red Flag Hunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · MATH M11 · Harborside Medical Center</p>
+      <h1>Financial Red Flag Hunt</h1>
+      <p>Scan three mini financial profiles. Click the numbers that should worry the board, then name the company with the most urgent issue.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="grid">
+      <aside class="panel">
+        <h2>Board lens</h2>
+        <p>A red flag is not always a loss. Sometimes the risk is cash timing, weak margins, or too much debt.</p>
+        <div class="note" id="feedback">Click suspicious metric cells in the table.</div>
+      </aside>
+      <section class="board">
+        <h2>Mini profiles</h2>
+        <table id="hunt">
+          <thead><tr><th>Company</th><th>Current ratio</th><th>Profit margin</th><th>Debt/assets</th><th>Operating cash flow</th></tr></thead>
+          <tbody>
+            <tr><td>Harborside</td><td data-flag="no">2.43</td><td data-flag="no">10.6%</td><td data-flag="no">43%</td><td data-flag="yes">Only $85K after $600K profit</td></tr>
+            <tr><td>North Shore Labs</td><td data-flag="yes">0.82</td><td data-flag="no">13.1%</td><td data-flag="yes">78%</td><td data-flag="no">$410K positive</td></tr>
+            <tr><td>Seaside Supply</td><td data-flag="no">1.95</td><td data-flag="yes">1.8%</td><td data-flag="no">39%</td><td data-flag="no">$230K positive</td></tr>
+          </tbody>
+        </table>
+        <div class="two-col" style="margin-top:18px;">
+          <button class="choice" data-company="Harborside" type="button">Most urgent: Harborside</button>
+          <button class="choice" data-company="North Shore Labs" type="button">Most urgent: North Shore Labs</button>
+          <button class="choice" data-company="Seaside Supply" type="button">Most urgent: Seaside Supply</button>
+          <button class="action" id="checkBtn" type="button">Check hunt</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    let company = "";
+    document.querySelectorAll("#hunt td[data-flag]").forEach(cell => {
+      cell.addEventListener("click", () => cell.classList.toggle("selected"));
+    });
+    document.querySelectorAll("[data-company]").forEach(button => {
+      button.addEventListener("click", () => {
+        company = button.dataset.company;
+        document.querySelectorAll("[data-company]").forEach(item => item.classList.toggle("selected", item === button));
+      });
+    });
+    document.getElementById("checkBtn").addEventListener("click", () => {
+      const selected = [...document.querySelectorAll("#hunt td.selected")];
+      const trueFlags = [...document.querySelectorAll('#hunt td[data-flag="yes"]')];
+      const rightCells = selected.filter(cell => cell.dataset.flag === "yes").length;
+      const falseCells = selected.filter(cell => cell.dataset.flag !== "yes").length;
+      const feedback = document.getElementById("feedback");
+      const solved = rightCells === trueFlags.length && falseCells === 0 && company === "North Shore Labs";
+      feedback.className = solved ? "note good" : "note warn";
+      feedback.textContent = solved
+        ? "Correct. North Shore Labs has both liquidity pressure and high leverage, making it the most urgent board risk."
+        : `You found ${rightCells}/${trueFlags.length} real red flags. The most urgent profile is the one with both short-term liquidity pressure and heavy debt.`;
+    });
+  </script>
+</body>
+</html>

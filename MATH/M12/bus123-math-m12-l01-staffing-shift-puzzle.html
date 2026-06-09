@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M12 · Staffing Shift Puzzle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · MATH M12 · Harborside Medical Center</p>
+      <h1>Staffing Shift Puzzle</h1>
+      <p>Place nurse coverage chips across the week. Try to reduce wait-time variation without simply overstaffing every day.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="grid">
+      <aside class="panel">
+        <h2>Operations rule</h2>
+        <p>Select a staff chip, then click a day cell to place it. Each day can hold up to three chips. Your goal is to cover high-volume days and keep projected wait times consistent.</p>
+        <div class="note" id="feedback">Start by covering Monday and Friday, the highest-volume days.</div>
+      </aside>
+      <section>
+        <div class="metric-row">
+          <div class="metric"><span class="metric-label">Avg wait</span><strong id="avgWait">0</strong></div>
+          <div class="metric"><span class="metric-label">Std dev</span><strong id="sdWait">0</strong></div>
+          <div class="metric"><span class="metric-label">Chips used</span><strong id="used">0</strong></div>
+        </div>
+        <div class="board">
+          <h2>Coverage board</h2>
+          <div class="stack" style="margin-bottom:16px;">
+            <div class="pill-row" id="chipRack"></div>
+          </div>
+          <div class="shift-grid" id="grid"></div>
+          <div class="actions" style="margin-top:16px;">
+            <button class="action" id="checkBtn" type="button">Check schedule</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const days = [
+      { day: "Mon", base: 34, volume: "High" },
+      { day: "Tue", base: 21, volume: "Medium" },
+      { day: "Wed", base: 18, volume: "Medium" },
+      { day: "Thu", base: 24, volume: "Medium" },
+      { day: "Fri", base: 38, volume: "High" }
+    ];
+    const chips = ["RN A", "RN B", "RN C", "MA A", "MA B", "Float"];
+    const placed = {};
+    let selected = "";
+    const rack = document.getElementById("chipRack");
+    const grid = document.getElementById("grid");
+    chips.forEach(chip => placed[chip] = "");
+    function waitFor(day) {
+      const count = Object.values(placed).filter(value => value === day.day).length;
+      return Math.max(8, day.base - count * 7);
+    }
+    function sd(values) {
+      const mean = values.reduce((a, b) => a + b, 0) / values.length;
+      return Math.sqrt(values.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / (values.length - 1));
+    }
+    function render() {
+      rack.innerHTML = chips.map(chip => `<button class="staff-chip ${selected === chip ? "selected" : ""}" data-chip="${chip}" type="button">${chip}${placed[chip] ? `: ${placed[chip]}` : ""}</button>`).join("");
+      document.querySelectorAll("[data-chip]").forEach(button => button.addEventListener("click", () => { selected = button.dataset.chip; render(); }));
+      grid.innerHTML = `<div class="shift-head">Day</div>${days.map(day => `<div class="shift-head">${day.day}<br><span class="soft">${day.volume}</span></div>`).join("")}
+        <div class="shift-head">Coverage</div>${days.map(day => `<button class="shift-cell" data-day="${day.day}" type="button">${chips.filter(chip => placed[chip] === day.day).map(chip => `<span class="staff-chip">${chip}</span>`).join("") || "<span class='soft'>Click to place</span>"}</button>`).join("")}
+        <div class="shift-head">Projected wait</div>${days.map(day => `<div class="shift-cell"><strong>${waitFor(day)} min</strong></div>`).join("")}`;
+      document.querySelectorAll("[data-day]").forEach(cell => cell.addEventListener("click", () => {
+        const day = cell.dataset.day;
+        if (!selected) return;
+        const already = chips.filter(chip => placed[chip] === day).length;
+        if (placed[selected] === day) placed[selected] = "";
+        else if (already < 3) placed[selected] = day;
+        render();
+      }));
+      const waits = days.map(waitFor);
+      const mean = waits.reduce((a, b) => a + b, 0) / waits.length;
+      document.getElementById("avgWait").textContent = `${mean.toFixed(1)} min`;
+      document.getElementById("sdWait").textContent = `${sd(waits).toFixed(1)}`;
+      document.getElementById("used").textContent = Object.values(placed).filter(Boolean).length;
+    }
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      chips.forEach(chip => placed[chip] = "");
+      selected = "";
+      document.getElementById("feedback").className = "note";
+      document.getElementById("feedback").textContent = "Start by covering Monday and Friday, the highest-volume days.";
+      render();
+    });
+    document.getElementById("checkBtn").addEventListener("click", () => {
+      const waits = days.map(waitFor);
+      const highCovered = ["Mon", "Fri"].every(day => Object.values(placed).filter(value => value === day).length >= 2);
+      const good = sd(waits) <= 5 && highCovered && Object.values(placed).filter(Boolean).length <= 6;
+      const feedback = document.getElementById("feedback");
+      feedback.className = good ? "note good" : "note warn";
+      feedback.textContent = good
+        ? "Balanced schedule. You reduced variation by covering high-volume days without maxing out every shift."
+        : "Keep working. The best schedule gives Monday and Friday extra coverage and brings the standard deviation below 5.";
+    });
+    render();
+  </script>
+</body>
+</html>

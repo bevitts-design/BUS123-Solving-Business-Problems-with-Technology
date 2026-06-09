@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M12 · Outlier Detective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · MATH M12 · Harborside Medical Center</p>
+      <h1>Outlier Detective</h1>
+      <p>Click the suspicious wait-time day, compare the mean and median, and decide which statistic belongs in the management summary.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="grid">
+      <aside class="panel">
+        <h2>Case file</h2>
+        <p>Harborside tracked ER wait times for ten days. One day may distort the story. Your job is to find it and report honestly.</p>
+        <div class="note" id="feedback">Click a point in the plot to mark the suspected outlier.</div>
+      </aside>
+      <section>
+        <div class="metric-row">
+          <div class="metric"><span class="metric-label">Mean</span><strong id="mean">0</strong></div>
+          <div class="metric"><span class="metric-label">Median</span><strong id="median">0</strong></div>
+          <div class="metric"><span class="metric-label">Range</span><strong id="range">0</strong></div>
+        </div>
+        <div class="board">
+          <h2>Wait-time plot</h2>
+          <div class="plot" id="plot" aria-label="Wait-time scatter plot"></div>
+          <div class="three-col" style="margin-top:16px;">
+            <button class="choice" data-report="mean" type="button">Report the mean</button>
+            <button class="choice" data-report="median" type="button">Report the median</button>
+            <button class="choice" data-report="both" type="button">Report both plus context</button>
+          </div>
+          <div class="actions" style="margin-top:16px;">
+            <button class="action" id="checkBtn" type="button">Check report</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const waits = [12, 14, 16, 13, 15, 18, 11, 17, 62, 14];
+    let suspect = -1;
+    let report = "";
+    const plot = document.getElementById("plot");
+    const avg = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+    const med = arr => {
+      const sorted = [...arr].sort((a, b) => a - b);
+      const mid = Math.floor(sorted.length / 2);
+      return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+    };
+    function render() {
+      document.getElementById("mean").textContent = `${avg(waits).toFixed(1)} min`;
+      document.getElementById("median").textContent = `${med(waits).toFixed(1)} min`;
+      document.getElementById("range").textContent = `${Math.max(...waits) - Math.min(...waits)} min`;
+      plot.innerHTML = waits.map((value, index) => {
+        const x = 8 + index * 9.2;
+        const y = 8 + (value / 70) * 82;
+        return `<button class="point ${suspect === index ? "selected" : ""}" style="left:${x}%;bottom:${y}%;" data-day="${index}" type="button">${index + 1}</button>`;
+      }).join("");
+      document.querySelectorAll("[data-day]").forEach(button => button.addEventListener("click", () => {
+        suspect = Number(button.dataset.day);
+        render();
+      }));
+    }
+    document.querySelectorAll("[data-report]").forEach(button => {
+      button.addEventListener("click", () => {
+        report = button.dataset.report;
+        document.querySelectorAll("[data-report]").forEach(item => item.classList.toggle("selected", item === button));
+      });
+    });
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      suspect = -1;
+      report = "";
+      document.querySelectorAll("[data-report]").forEach(item => item.classList.remove("selected"));
+      document.getElementById("feedback").className = "note";
+      document.getElementById("feedback").textContent = "Click a point in the plot to mark the suspected outlier.";
+      render();
+    });
+    document.getElementById("checkBtn").addEventListener("click", () => {
+      const feedback = document.getElementById("feedback");
+      const solved = suspect === 8 && report === "both";
+      feedback.className = solved ? "note good" : "note warn";
+      feedback.textContent = solved
+        ? "Good detective work. Day 9 is the outlier, and the honest summary reports both mean and median with context."
+        : "Look for the point that stretches the range. A manager should see both the average and the more typical wait.";
+    });
+    render();
+  </script>
+</body>
+</html>

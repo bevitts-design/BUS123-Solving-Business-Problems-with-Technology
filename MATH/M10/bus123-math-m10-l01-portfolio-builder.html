@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 MATH M10 · Client Portfolio Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../activities/templates/variety-labs/variety-labs.css">
+</head>
+<body>
+  <header class="top">
+    <div class="shell">
+      <p class="eyebrow">BUS123 · MATH M10 · Meridian Advisory Group</p>
+      <h1>Client Portfolio Builder</h1>
+      <p>Use a $10,000 client budget to build a diversified portfolio. Add investments, watch the mix change, and defend the tradeoffs.</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="grid">
+      <aside class="panel">
+        <h2>Client brief</h2>
+        <p>Kai is 21, has emergency savings, and is investing for a long-term goal. Build a portfolio with at least three asset types, keep single-stock exposure below half the portfolio, and leave less than $500 idle.</p>
+        <div class="note" id="feedback">Start by adding a mix of assets. This is about portfolio fit, not chasing one exciting investment.</div>
+      </aside>
+
+      <section>
+        <div class="metric-row">
+          <div class="metric"><span class="metric-label">Budget used</span><strong id="used">$0</strong></div>
+          <div class="metric"><span class="metric-label">Idle cash</span><strong id="cash">$10,000</strong></div>
+          <div class="metric"><span class="metric-label">Diversification</span><strong id="diversity">0 types</strong></div>
+        </div>
+        <div class="board">
+          <h2>Investment shelf</h2>
+          <div class="budget-bar"><div class="fill" id="budgetFill"></div></div>
+          <div class="three-col" id="assetShelf"></div>
+        </div>
+        <div class="board" style="margin-top:18px;">
+          <h2>Client portfolio</h2>
+          <div class="two-col">
+            <div>
+              <table>
+                <thead><tr><th>Holding</th><th>Qty</th><th>Value</th><th></th></tr></thead>
+                <tbody id="portfolioRows"></tbody>
+              </table>
+            </div>
+            <div class="stack" id="mixRows"></div>
+          </div>
+          <div class="actions" style="margin-top:16px;">
+            <button class="action" id="checkBtn" type="button">Check portfolio</button>
+            <button class="ghost" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const assets = [
+      { id: "growth", name: "Growth Stock", type: "Common stock", cost: 1800, risk: 8, note: "High upside, no dividend." },
+      { id: "preferred", name: "Preferred Shares", type: "Preferred stock", cost: 1200, risk: 5, note: "Priority dividend, lower upside." },
+      { id: "bond", name: "Corporate Bond", type: "Bond", cost: 1000, risk: 3, note: "Interest income and lower volatility." },
+      { id: "balanced", name: "Balanced Mutual Fund", type: "Mutual fund", cost: 1500, risk: 4, note: "Pooled stock and bond exposure." },
+      { id: "market", name: "Broad Market ETF", type: "ETF", cost: 1250, risk: 5, note: "Instant exposure across many companies." },
+      { id: "sector", name: "AI Sector ETF", type: "ETF", cost: 1600, risk: 7, note: "Diversified within one sector only." }
+    ];
+    const picks = Object.fromEntries(assets.map(asset => [asset.id, 0]));
+    const fmt = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const budget = 10000;
+    const shelf = document.getElementById("assetShelf");
+    const rows = document.getElementById("portfolioRows");
+    const mixRows = document.getElementById("mixRows");
+    const feedback = document.getElementById("feedback");
+
+    shelf.innerHTML = assets.map(asset => `
+      <article class="tile">
+        <div class="pill-row"><span class="pill">${asset.type}</span><span class="pill">Risk ${asset.risk}/10</span></div>
+        <h3>${asset.name}</h3>
+        <p>${asset.note}</p>
+        <p class="mono" style="margin-top:10px;">${fmt.format(asset.cost)}</p>
+        <button class="action" type="button" data-add="${asset.id}">Add</button>
+      </article>
+    `).join("");
+
+    document.querySelectorAll("[data-add]").forEach(button => button.addEventListener("click", () => {
+      const asset = assets.find(item => item.id === button.dataset.add);
+      if (total() + asset.cost <= budget) picks[asset.id] += 1;
+      render();
+    }));
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      Object.keys(picks).forEach(id => picks[id] = 0);
+      feedback.className = "note";
+      feedback.textContent = "Start by adding a mix of assets. This is about portfolio fit, not chasing one exciting investment.";
+      render();
+    });
+    document.getElementById("checkBtn").addEventListener("click", check);
+
+    function total() {
+      return assets.reduce((sum, asset) => sum + asset.cost * picks[asset.id], 0);
+    }
+    function render() {
+      const used = total();
+      const cash = budget - used;
+      const selected = assets.filter(asset => picks[asset.id] > 0);
+      const types = new Set(selected.map(asset => asset.type));
+      document.getElementById("used").textContent = fmt.format(used);
+      document.getElementById("cash").textContent = fmt.format(cash);
+      document.getElementById("diversity").textContent = `${types.size} types`;
+      document.getElementById("budgetFill").style.width = `${Math.min(used / budget * 100, 100)}%`;
+      rows.innerHTML = selected.length ? selected.map(asset => `
+        <tr><td>${asset.name}</td><td>${picks[asset.id]}</td><td>${fmt.format(asset.cost * picks[asset.id])}</td><td><button class="ghost" type="button" data-remove="${asset.id}">Remove</button></td></tr>
+      `).join("") : `<tr><td colspan="4">No holdings yet.</td></tr>`;
+      document.querySelectorAll("[data-remove]").forEach(button => button.addEventListener("click", () => {
+        picks[button.dataset.remove] = Math.max(0, picks[button.dataset.remove] - 1);
+        render();
+      }));
+      const byType = {};
+      selected.forEach(asset => byType[asset.type] = (byType[asset.type] || 0) + asset.cost * picks[asset.id]);
+      mixRows.innerHTML = Object.entries(byType).map(([type, value]) => `
+        <div>
+          <div class="mono" style="display:flex;justify-content:space-between;"><span>${type}</span><span>${Math.round(value / used * 100)}%</span></div>
+          <div class="track" style="height:12px;"><div class="fill" style="width:${value / used * 100}%"></div></div>
+        </div>
+      `).join("") || `<p class="soft">Portfolio mix will appear here.</p>`;
+    }
+    function check() {
+      const used = total();
+      const cash = budget - used;
+      const selected = assets.filter(asset => picks[asset.id] > 0);
+      const types = new Set(selected.map(asset => asset.type));
+      const singleStock = (picks.growth * 1800 + picks.preferred * 1200) / Math.max(used, 1);
+      const messages = [];
+      if (cash >= 500) messages.push("Too much idle cash remains.");
+      if (types.size < 3) messages.push("Add at least three asset types.");
+      if (singleStock > .5) messages.push("Single-stock exposure is too high for a balanced long-term recommendation.");
+      feedback.className = messages.length ? "note warn" : "note good";
+      feedback.textContent = messages.length ? messages.join(" ") : "Portfolio is client-ready: diversified, mostly invested, and not overly dependent on one stock category.";
+    }
+    render();
+  </script>
+</body>
+</html>

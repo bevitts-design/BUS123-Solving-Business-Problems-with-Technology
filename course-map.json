@@ -446,6 +446,16 @@
           "type": "Interactive Practice",
           "label": "IPO Investment Committee",
           "path": "MATH/M10/bus123-math-m10-l01-interactive.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Client Portfolio Builder",
+          "path": "MATH/M10/bus123-math-m10-l01-portfolio-builder.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Trading Desk",
+          "path": "MATH/M10/bus123-math-m10-l01-trading-desk.html"
         }
       ],
       "moduleType": "Math",
@@ -479,6 +489,16 @@
           "type": "Interactive Practice",
           "label": "Hospital Board Crisis Briefing",
           "path": "MATH/M11/bus123-math-m11-l01-interactive.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Statement Sorting Relay",
+          "path": "MATH/M11/bus123-math-m11-l01-statement-sorting-relay.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Financial Red Flag Hunt",
+          "path": "MATH/M11/bus123-math-m11-l01-red-flag-hunt.html"
         }
       ],
       "moduleType": "Math",
@@ -512,6 +532,16 @@
           "type": "Interactive Practice",
           "label": "Correlation Courtroom",
           "path": "MATH/M12/bus123-math-m12-l01-interactive.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Outlier Detective",
+          "path": "MATH/M12/bus123-math-m12-l01-outlier-detective.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Staffing Shift Puzzle",
+          "path": "MATH/M12/bus123-math-m12-l01-staffing-shift-puzzle.html"
         }
       ],
       "moduleType": "Math",

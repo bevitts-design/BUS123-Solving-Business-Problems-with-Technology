@@ -194,6 +194,10 @@
         {
           "type": "Starter Workbook",
           "path": "MATH/M03/bus123-math-m03-l01-starter.xlsx"
+        },
+        {
+          "type": "Closer Workbook",
+          "path": "MATH/M03/bus123-math-m03-closer-student.xlsx"
         }
       ],
       "moduleType": "Math",

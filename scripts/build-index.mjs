@@ -29,10 +29,10 @@ const materialGroups = [
   { id: "start", label: "Start here", types: new Set(["Syllabus", "Infographic"]) },
   { id: "before", label: "Before class", types: new Set(["Reading", "Pre-reading"]) },
   { id: "class", label: "In class", types: new Set(["Slides", "Company Profiles"]) },
-  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
+  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
 ];
 
-const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Interactive Practice", "Activity Instructions"];
+const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions"];
 const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 
 function validateCourseMap() {
@@ -160,6 +160,7 @@ const materialIcon = (type) => {
     "Reading": "R",
     "Pre-reading": "R",
     "Starter Workbook": "W",
+    "Closer Workbook": "C",
     "Interactive Practice": "P",
     "Activity Instructions": "A",
     "Homework": "H",

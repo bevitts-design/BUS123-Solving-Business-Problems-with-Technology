@@ -370,7 +370,12 @@
         {
           "type": "Interactive Practice",
           "label": "Business Finance Toolkit",
-          "path": "MATH/shared/bus123-tvm-toolkit.html"
+          "path": "MATH/M08/bus123-math-m08-l01-interactive.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Cash Flow Timeline",
+          "path": "MATH/M08/bus123-math-m08-l01-cashflow-timeline.html"
         },
         {
           "type": "Activity Instructions",
@@ -622,12 +627,15 @@
       "track": "excel",
       "module": "M03",
       "lesson": "L01",
-      "title": "Charts and Data Visualization",
+      "title": "Aggregate Functions and Data Analysis",
       "status": "Live",
-      "caseStudy": "Tidal Goods Co.",
+      "caseStudy": "Anchor & Oak Events",
       "skillFocus": [
-        "Charts",
-        "Data visualization"
+        "SUM",
+        "AVERAGE",
+        "MAX and MIN",
+        "COUNT and COUNTA",
+        "Data analysis"
       ],
       "materials": [
         {
@@ -635,8 +643,36 @@
           "path": "EXCEL/M03/bus123-excel-m03-l01-slides.html"
         },
         {
+          "type": "Reading",
+          "path": "EXCEL/M03/bus123-excel-m03-pre-reading.pdf"
+        },
+        {
           "type": "Starter Workbook",
           "path": "EXCEL/M03/bus123-excel-m03-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Excel",
+      "moduleLabel": "Excel M03",
+      "displayOrder": 180
+    },
+    {
+      "id": "excel-m04-l01",
+      "track": "excel",
+      "module": "M04",
+      "lesson": "L01",
+      "title": "Getting Data, Charts, and Visualization",
+      "status": "Coming Soon",
+      "caseStudy": "Harborside Medical Center",
+      "skillFocus": [
+        "Data import",
+        "Data cleaning",
+        "Chart selection",
+        "Data visualization"
+      ],
+      "materials": [
+        {
+          "type": "Starter Workbook",
+          "path": "EXCEL/M04/bus123-excel-m04-l01-starter.xlsx"
         }
       ],
       "moduleType": "Excel",

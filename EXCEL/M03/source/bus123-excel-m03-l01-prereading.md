@@ -1,167 +1,259 @@
 ---
-title: "BUS 123 — EXCEL-M03-L01 — Essential Functions: SUM, AVERAGE, MAX, MIN, COUNT"
+title: "Excel Functions for Business Analysis"
 lesson: "EXCEL-M03-L01"
 kind: "Pre-Reading"
 status: "published"
-output: "EXCEL/M03/bus123-excel-m03-l01-prereading.md"
+output: "EXCEL/M03/bus123-excel-m03-l01-prereading.pdf"
 ---
 
-<!--
-  FORMATTING NOTE FOR INSTRUCTORS
-  ─────────────────────────────────────────────────────────────────────────────
-  This file is written in standard Markdown. To preserve all formatting:
+# Excel Functions for Business Analysis
 
-  • Do NOT copy-paste into a plain text editor — use a Markdown-aware tool
-    (VS Code, Typora, GitHub, Notion, or the Canvas rich-text editor in
-    source/HTML mode).
+**Course:** BUS123 - Solving Business Problems with Technology
+**Track:** Excel
+**Module:** M03
+**Lesson:** L01
 
-  • All tables use the standard Markdown pipe-table format. GitHub, Canvas,
-    and most LMS platforms render them as formatted tables automatically.
+This lesson is about using Excel functions to turn messy business data into useful answers. You do not need to memorize hundreds of functions. The goal is to understand the patterns behind the functions that handle most everyday business analysis work.
 
-  • Callout blocks (> blockquote lines) render as indented/highlighted panels
-    in most Markdown viewers and GitHub Pages.
+By the end of this reading, you should be able to explain what a function does, recognize when a formula should spill into multiple cells, and choose a useful function based on the business question.
 
-  • To push to the public GitHub repo, place this file at:
-    EXCEL/M03/bus123-excel-m03-l01-prereading.md
-    GitHub Pages will render it correctly with no additional configuration.
-  ─────────────────────────────────────────────────────────────────────────────
--->
+## 1. From Basic Formulas to Functions
 
-# BUS 123 · EXCEL-M03-L01 · Essential Functions: SUM, AVERAGE, MAX, MIN, COUNT
+Excel formulas always begin with an equals sign. A basic formula can use arithmetic operators:
 
-**Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** EXCEL · **Module:** M03 · **Lesson:** L01
-**Case Study Company:** Anchor & Oak Events
+| Operator | Meaning | Example |
+| --- | --- | --- |
+| `+` | Add | `=B2+C2` |
+| `-` | Subtract | `=B2-C2` |
+| `*` | Multiply | `=B2*C2` |
+| `/` | Divide | `=B2/C2` |
+| `^` | Exponent | `=B2^2` |
 
----
+For example, Tidal Goods Co. can calculate product revenue with:
 
-## 1 · Connect to Prior Knowledge
+`=Units_Sold*Unit_Price`
 
-Last class you built the three skills that every Excel user needs: navigating the interface, applying formatting that communicates clearly, and writing formulas with relative and absolute cell references. Today those skills become the platform for something more powerful.
+Functions are named formulas that perform a specific task. Instead of writing a long manual formula like:
 
-Excel **functions** are pre-built formulas that answer specific business questions — and they use the exact same reference rules you learned in M02. If you understand that `B3` moves when copied and `$B$1` stays locked, you already understand how ranges work inside functions. The only new thing today is the function name that wraps around the range. That is a much smaller learning lift than it looks.
+`=B2+B3+B4+B5+B6+B7+B8+B9+B10+B11+B12+B13`
 
----
+you can use:
 
-## 2 · Core Concepts
+`=SUM(B2:B13)`
 
-### Part A — What a Function Is
+The function version is shorter, easier to read, and safer when rows are inserted inside the range.
 
-A function is a named, pre-built formula stored inside Excel. Instead of writing:
+> **Key Idea**
+> A function is not magic. It is a named formula that takes one or more inputs, called arguments, and returns an answer.
 
-```
-=B2+B3+B4+B5+B6+B7+B8+B9+B10+B11+B12+B13
-```
+## 2. The Core Summary Functions
 
-to total twelve months of revenue, you write:
+Many business questions begin with summary functions.
 
-```
-=SUM(B2:B13)
-```
+| Function | Syntax | Business Question |
+| --- | --- | --- |
+| `SUM` | `=SUM(range)` | What is the total? |
+| `AVERAGE` | `=AVERAGE(range)` | What is typical? |
+| `MAX` | `=MAX(range)` | What is the highest value? |
+| `MIN` | `=MIN(range)` | What is the lowest value? |
+| `COUNT` | `=COUNT(range)` | How many cells contain numbers? |
+| `COUNTA` | `=COUNTA(range)` | How many cells contain anything? |
 
-Both produce the same result — but the function version has a critical advantage: if you insert a new row inside the range, Excel automatically expands the range to include it. The manual formula **silently misses the new row** with no error message.
+Anchor & Oak Events might use these functions to summarize monthly event revenue. `SUM` answers total annual revenue. `AVERAGE` gives a typical month. `MAX` and `MIN` identify the strongest and weakest months. `COUNT` and `COUNTA` help check whether the data is complete.
 
-Every function follows the same pattern:
+> **Common Mistake**
+> Do not start a numeric range on a header row. `=COUNT(F6:F18)` may look close, but if row 6 is a header, the formula is asking Excel to count the wrong range. Start on the first data row: `=COUNT(F7:F18)`.
 
-> **function name** → **opening parenthesis** → **one or more arguments** → **closing parenthesis**
+## 3. The Great Shift: Dynamic Arrays and Spilling
 
-Learn this pattern once and you can use any function in Excel.
+Older Excel often followed a "one formula, one cell" mindset. If you needed a formula to fill ten rows, you wrote it once and dragged it down.
 
----
+Modern Excel can work differently. A dynamic array formula can return many values from one formula. The results automatically fill nearby empty cells. This is called **spilling**.
 
-### Part B — The Five Functions and When to Use Each
+| Feature | Traditional Calculation | Modern Dynamic Arrays |
+| --- | --- | --- |
+| Output | One formula returns one result. | One formula can return many results. |
+| Manual work | Often requires dragging or copying. | Results spill automatically. |
+| Range behavior | Static ranges can miss new data. | Spilled results can grow or shrink. |
+| Error risk | Copying errors are common. | One formula controls the full output. |
 
-Anchor & Oak Events is a boutique event planning company that handles weddings, corporate events, and private parties. Their monthly revenue data illustrates all five functions.
+Spilling matters because it makes workbooks faster, cleaner, and easier to maintain. If a source table changes, a dynamic array result can update automatically instead of forcing the user to re-copy formulas.
 
-**`SUM`** totals every number in a range. For Anchor & Oak, `=SUM(B2:B13)` gives the annual revenue across all twelve months. This is the most commonly used function in any business spreadsheet.
+## 4. The Spill Range and the Hash Sign
 
-**`AVERAGE`** calculates the arithmetic mean of a range. `=AVERAGE(B2:B13)` reveals what a typical month looks like — the benchmark against which every other month can be compared. A month below average is not necessarily bad, but knowing how far below matters.
+When a dynamic array formula spills, the first cell is the formula cell. The cells around it are spill results.
 
-**`MAX`** returns the single highest value in a range. `=MAX(B2:B13)` identifies Anchor & Oak's peak revenue month — June, at $89,500 — driven by wedding season.
+If the formula starts in `E2`, the whole spilled range can be referenced as:
 
-**`MIN`** returns the single lowest value. `=MIN(B2:B13)` reveals January at $18,400, the deepest slow-season point. Together, MAX and MIN define the full range of the data.
+`=E2#`
 
-**`COUNT`** counts cells that contain numbers. **`COUNTA`** counts cells that contain any content — numbers, text, or dates. If `=COUNT(B2:B13)` returns 10 in a 12-row range, two months have no revenue data entered. This makes COUNT a **data-quality check**, not just a counter.
+The hash sign tells Excel to use the entire spilled result, even if it grows or shrinks later.
 
-> ⚠️ **Watch Out — Never Start Your Range on a Header Row**
->
-> `=COUNT(B1:B13)` may include or exclude the header depending on whether it contains text or a number — and the behavior changes silently if the header is later edited. Always start on the first data row: `=COUNT(B2:B13)`.
+| Reference Type | Meaning |
+| --- | --- |
+| `$A$1:$A$10` | A fixed range. It does not automatically follow a spill. |
+| `E2` | Only the first cell of the spill. |
+| `E2#` | The full spilled range that starts in E2. |
 
----
+This is one of the most important ideas in modern Excel. A formula can create a live list, and another formula can refer to the full list with `#`.
 
-### Part C — References Inside Functions Follow the Same Rules
+> **Why It Matters**
+> If a `UNIQUE` list grows from five departments to seven departments, `E2#` grows with it. A downstream formula or drop-down list can stay synced without manual editing.
 
-The range inside a function argument is a cell reference, and it obeys the same relative and absolute rules as any other reference.
+## 5. UNIQUE, SORT, and FILTER
 
-- `=SUM(B2:B13)` uses a **relative range** — copy it one column right and it becomes `=SUM(C2:C13)`. That is usually exactly what you want when applying the same function to multiple columns of data.
+Three dynamic array functions do a lot of everyday data organization work.
 
-- When a formula needs to compare each row to a **single fixed value** — such as a budget target stored in one cell — that reference must be absolute.
+| Function | Core Purpose | Typical Spill Direction |
+| --- | --- | --- |
+| `UNIQUE` | Extracts distinct values from a list. | Down rows or across columns. |
+| `SORT` | Reorders data alphabetically or numerically. | Same shape as the source. |
+| `FILTER` | Extracts records that meet criteria. | Across columns and down rows. |
 
-**Example:** If Anchor & Oak's annual budget target is in cell `E1`, the formula `=B2-$E$1` uses:
-- A **relative** reference for `B2` — so it shifts down each row when copied
-- An **absolute** reference for `$E$1` — so it always reads the same budget target
+`UNIQUE` is useful for cleaning repeated categories. `SORT` makes the result organized. Together, they can replace a lot of manual sorting and duplicate removal.
 
-> ✅ **Tip:** Press **F4** after typing a cell address inside any function argument to cycle through reference modes: `$A$1` → `A$1` → `$A1` → `A1`.
+`=SORT(UNIQUE(Department_Column))`
 
----
+`FILTER` extracts rows that meet a condition. Harborside Medical Center could use it to pull patient billing records above a threshold:
 
-## 3 · Formula Reference
+`=FILTER(A2:F200,F2:F200>500,"No matches")`
 
-| Function    | Syntax              | Business Question Answered                              |
-|-------------|---------------------|---------------------------------------------------------|
-| **SUM**     | `=SUM(range)`       | What is the total of all values in this range?          |
-| **AVERAGE** | `=AVERAGE(range)`   | What is the typical (mean) value in this range?         |
-| **MAX**     | `=MAX(range)`       | What is the highest value in this range?                |
-| **MIN**     | `=MIN(range)`       | What is the lowest value in this range?                 |
-| **COUNT**   | `=COUNT(range)`     | How many cells in this range contain numbers?           |
-| **COUNTA**  | `=COUNTA(range)`    | How many cells in this range contain any content?       |
+The key is the include argument. Excel evaluates each row as TRUE or FALSE. Rows that evaluate to TRUE spill into the result.
 
----
+## 6. Logic: IF, AND, and OR
 
-## 4 · Check Your Understanding
+Functions can also make decisions. The `IF` function checks a condition and returns one result if the condition is true and another if the condition is false.
 
-Answer all seven questions before class. Answers appear at the end of this document.
+`=IF(logical_test,value_if_true,value_if_false)`
 
-1. What advantage does `=SUM(B2:B13)` have over the manual formula `=B2+B3+B4+...+B13` when rows are inserted into the range?
+Meridian Advisory Group might flag payroll records like this:
 
-2. Anchor & Oak Events has 12 months of revenue data in cells `B2:B13`. Write the formula that calculates the average monthly revenue.
+`=IF([@[Hours Worked]]>40,"Overtime","Regular")`
 
-3. What does `=MAX(B2:B13)` return, and what business question does it answer for Anchor & Oak?
+Sometimes one condition is not enough.
 
-4. The formula `=COUNT(B2:B13)` returns 9 in a 12-row range. What does this tell you?
+| Function | Use When | Example Pattern |
+| --- | --- | --- |
+| `AND` | Every condition must be true. | `=AND([@Department]="Nursing",[@Hours]>40)` |
+| `OR` | At least one condition must be true. | `=OR([@Priority]="High",[@Priority]="Critical")` |
 
-5. What is the difference between COUNT and COUNTA?
+A common beginner mistake is writing:
 
-6. You write `=SUM(B2:B13)` in cell `B14` and copy it to `C14`. What formula does Excel place in `C14`, and why?
+`=OR([@Priority]="Critical","High")`
 
-7. Anchor & Oak's budget target is in cell `E1`. You want to compare each monthly revenue (in `B2:B13`) to that target in a formula copied down 12 rows. Write the formula for `C2` using the correct reference types.
+Excel cannot guess that "High" should also be compared to `[@Priority]`. You must repeat the full condition:
 
----
+`=OR([@Priority]="Critical",[@Priority]="High")`
 
-### Answer Key · Check Your Understanding
+## 7. Conditional Reporting with SUMIFS and COUNTIFS
 
-| # | Answer |
-|---|--------|
-| **1** | SUM automatically expands to include any rows inserted inside the range. The manual formula silently misses new rows with no error or warning. |
-| **2** | `=AVERAGE(B2:B13)` |
-| **3** | `MAX(B2:B13)` returns the highest monthly revenue value — the peak month. For Anchor & Oak this answers: "What was our best month?" |
-| **4** | Three of the twelve cells in the range contain no numeric data — those months have not had revenue entered yet. COUNT is showing incomplete data. |
-| **5** | COUNT counts only cells with numbers. COUNTA counts cells with any content, including text and dates. Use COUNT for numeric completeness checks; use COUNTA to count rows that have labels or any entries. |
-| **6** | `=SUM(C2:C13)`. Because `B2:B13` is a relative range, copying one column right shifts both column letters from B to C. |
-| **7** | `=B2-$E$1`. `B2` is relative so it shifts to `B3`, `B4`, etc. as the formula is copied down. `$E$1` is absolute so it always references the budget target in `E1` regardless of which row the formula is in. |
+Business reporting often asks questions with conditions:
 
----
+- What is total revenue for one region?
+- How many records are late?
+- What is the total for one department and one status?
 
-## 5 · Key Vocabulary
+The plural `IFS` functions are usually the best default because they can handle one condition or many.
 
-| Term         | Definition                                                                                                                       |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **Function** | A named, pre-built formula in Excel that performs a specific calculation on a range of cells or values.                          |
-| **Argument** | The input(s) a function requires, placed inside the parentheses (e.g., the range in `=SUM(B2:B13)`).                           |
-| **Range**    | A rectangular block of cells referenced by their start and end addresses, separated by a colon (e.g., `B2:B13`).               |
-| **SUM**      | A function that adds all numeric values in a specified range.                                                                    |
-| **AVERAGE**  | A function that calculates the arithmetic mean (total ÷ count) of a range.                                                      |
-| **MAX**      | A function that returns the highest numeric value in a range.                                                                    |
-| **MIN**      | A function that returns the lowest numeric value in a range.                                                                     |
-| **COUNT**    | A function that counts the number of cells in a range that contain numeric values.                                               |
-| **COUNTA**   | A function that counts the number of cells in a range that contain any non-empty content (numbers, text, or dates).             |
+| Function | Use It To | Example |
+| --- | --- | --- |
+| `SUMIFS` | Add values that meet one or more criteria. | `=SUMIFS(Sales,Region,"North",Category,"Kitchen")` |
+| `COUNTIFS` | Count rows that meet one or more criteria. | `=COUNTIFS(Status,"Late",Department,"Nursing")` |
+| `AVERAGEIFS` | Average values that meet one or more criteria. | `=AVERAGEIFS(Sales,Region,"North")` |
+
+Tidal Goods Co. might use `SUMIFS` to total sales for a category and region. Harborside Medical Center might use `COUNTIFS` to count late timesheets by department.
+
+> **Better Practice**
+> Link criteria to input cells when possible. A report that uses `=SUMIFS(Sales,Region,C9)` is easier to update than a formula that hard-codes `"North"` in every cell.
+
+## 8. XLOOKUP: The Modern Connector
+
+`XLOOKUP` connects tables. It finds a lookup value in one range and returns a matching value from another range.
+
+`=XLOOKUP(lookup_value,lookup_array,return_array,if_not_found)`
+
+Meridian Advisory Group might use `XLOOKUP` to find an hourly rate based on an employee ID:
+
+`=XLOOKUP(A2,EmployeeTable[Employee ID],EmployeeTable[Hourly Rate],"Check ID")`
+
+Compared with older lookup functions, XLOOKUP is more flexible. It can look left or right, can return more than one column, and includes a built-in not-found message.
+
+## 9. Date and Schedule Helpers
+
+Excel dates are numbers behind the scenes, which means functions can calculate schedules.
+
+| Function | Purpose | Example |
+| --- | --- | --- |
+| `EOMONTH` | Returns the last day of a month. | `=EOMONTH(A2,0)` |
+| `WORKDAY.INTL` | Returns a workday while skipping custom weekends or holidays. | `=WORKDAY.INTL(A2,10,"0000011")` |
+| `SEQUENCE` | Generates a list of numbers. | `=SEQUENCE(12)` |
+
+`SEQUENCE` becomes especially useful when paired with date functions. A monthly report can generate month numbers or month-end dates without typing each row manually.
+
+`=EOMONTH(Start_Date,SEQUENCE(12)-1)`
+
+## 10. Troubleshooting Function Errors
+
+Most Excel errors are clues. Read the clue before changing the formula.
+
+| Error | Likely Meaning |
+| --- | --- |
+| `#######` | The column is too narrow to display the value. |
+| `#NAME?` | Excel does not recognize text in the formula, often because of a typo. |
+| `#VALUE!` | One or more arguments are the wrong type. |
+| `#DIV/0!` | The formula is dividing by zero or a blank denominator. |
+| `#REF!` | The formula refers to a deleted or invalid cell. |
+| `#SPILL!` | The spill range is blocked or cannot expand. |
+
+When a formula does not work, ask these questions:
+
+1. Does the formula start with `=`?
+2. Are all parentheses closed?
+3. Are text criteria inside quotation marks?
+4. Does the range start on the first data row?
+5. Does the formula need an absolute reference?
+6. Is the spill range empty?
+7. Does the answer match the business question?
+
+## 11. The 80/20 Function Toolkit
+
+Excel has hundreds of functions, but a small toolkit handles most early business analysis work:
+
+| Toolkit Area | Functions |
+| --- | --- |
+| Basic summaries | `SUM`, `AVERAGE`, `MAX`, `MIN`, `COUNT`, `COUNTA` |
+| Logic | `IF`, `AND`, `OR` |
+| Conditional reporting | `SUMIFS`, `COUNTIFS`, `AVERAGEIFS` |
+| Lookup | `XLOOKUP` |
+| Dynamic arrays | `FILTER`, `SORT`, `UNIQUE`, `SEQUENCE` |
+| Text cleanup | `TEXTJOIN` |
+| Dates | `EOMONTH`, `WORKDAY.INTL` |
+| Multi-row math | `SUMPRODUCT` |
+
+This lesson skips custom function building with `LAMBDA`. That is a powerful advanced tool, but it is not the first priority for BUS123. The first priority is choosing the right built-in function for the business question.
+
+## Check Your Understanding
+
+Answer these before class.
+
+1. What is the main difference between a traditional formula copied down a column and a dynamic array formula?
+2. What does the `#` symbol do when placed after the first cell of a spilled result?
+3. Which function would return a clean list of unique department names?
+4. Which function would extract all rows where a balance is greater than `$500`?
+5. Why is `=OR([@Priority]="Critical","High")` incorrect?
+6. When would you use `SUMIFS` instead of `SUM`?
+7. What does `#SPILL!` usually mean?
+8. Why is `XLOOKUP` generally better than older lookup tools for new Excel work?
+
+## Key Vocabulary
+
+| Term | Meaning |
+| --- | --- |
+| Function | A named formula that performs a specific task. |
+| Argument | An input a function needs inside its parentheses. |
+| Dynamic Array | A formula result that can return multiple values. |
+| Spill | The behavior where dynamic array results fill neighboring cells. |
+| Spill Range | The full output range created by a dynamic array formula. |
+| Hash Reference | A reference like `E2#` that points to the full spill range. |
+| Criteria | A rule or condition used by a function. |
+| Structured Reference | A table-based reference that uses column names instead of cell coordinates. |

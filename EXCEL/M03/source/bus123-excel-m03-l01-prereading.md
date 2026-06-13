@@ -8,10 +8,12 @@ output: "EXCEL/M03/bus123-excel-m03-l01-prereading.pdf"
 
 # Excel Functions for Business Analysis
 
-**Course:** BUS123 - Solving Business Problems with Technology
-**Track:** Excel
-**Module:** M03
-**Lesson:** L01
+| Field | Details |
+| --- | --- |
+| Course | BUS123 - Solving Business Problems with Technology |
+| Track | Excel |
+| Module | M03 |
+| Lesson | L01 |
 
 This lesson is about using Excel functions to turn messy business data into useful answers. You do not need to memorize hundreds of functions. The goal is to understand the patterns behind the functions that handle most everyday business analysis work.
 

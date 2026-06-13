@@ -76,7 +76,7 @@ async function renderWeekAhead(src) {
     const grouped = groupWeekAheadItems(items);
     weekAheadList.replaceChildren(...grouped.map(renderWeekAheadDay));
   } catch (error) {
-    renderWeekAheadEmpty("Canvas week-ahead dates are unavailable right now.");
+    renderWeekAheadUnavailable();
     if (weekAheadUpdated) {
       weekAheadUpdated.textContent = "Could not load latest dates";
     }
@@ -182,6 +182,22 @@ function renderWeekAheadEmpty(message) {
   const empty = document.createElement("p");
   empty.className = "week-ahead-empty";
   empty.textContent = message;
+  weekAheadList.replaceChildren(empty);
+}
+
+function renderWeekAheadUnavailable() {
+  const empty = document.createElement("p");
+  empty.className = "week-ahead-empty";
+  empty.append("Canvas week-ahead dates are unavailable right now. ");
+
+  const canvasLink = weekAhead?.querySelector(".week-ahead-actions a");
+  if (canvasLink) {
+    const link = document.createElement("a");
+    link.href = canvasLink.href;
+    link.textContent = "Check assignments directly in Canvas.";
+    empty.append(link);
+  }
+
   weekAheadList.replaceChildren(empty);
 }
 

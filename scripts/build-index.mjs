@@ -156,19 +156,19 @@ const displayLabel = (lesson, track) =>
 
 const materialIcon = (type) => {
   const icons = {
-    "Slides": "S",
-    "Reading": "R",
-    "Pre-reading": "R",
-    "Starter Workbook": "W",
-    "Closer Workbook": "C",
-    "Interactive Practice": "P",
-    "Activity Instructions": "A",
-    "Homework": "H",
-    "Company Profiles": "C",
-    "Syllabus": "S",
-    "Infographic": "I"
+    "Slides": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="9" rx="1"/><path d="M8 11.5v2M5.5 14.5h5"/></svg>',
+    "Reading": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3.5C6.5 2.3 4.2 2.2 2 2.8v10c2.2-.6 4.5-.5 6 .7 1.5-1.2 3.8-1.3 6-.7v-10c-2.2-.6-4.5-.5-6 .7z"/><path d="M8 3.5v10"/></svg>',
+    "Pre-reading": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3.5C6.5 2.3 4.2 2.2 2 2.8v10c2.2-.6 4.5-.5 6 .7 1.5-1.2 3.8-1.3 6-.7v-10c-2.2-.6-4.5-.5-6 .7z"/><path d="M8 3.5v10"/></svg>',
+    "Starter Workbook": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M2 6.5h12M6.5 2v12"/></svg>',
+    "Closer Workbook": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M2 6.5h12M6.5 6.5V14"/><path d="M8.5 10.5l1.5 1.5 2.5-3"/></svg>',
+    "Interactive Practice": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M6.5 5.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg>',
+    "Activity Instructions": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h9M5 8h9M5 12h9"/><circle cx="2.2" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="12" r="1" fill="currentColor" stroke="none"/></svg>',
+    "Homework": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1.5h8v13H4z"/><path d="M6 5h4M6 8h4M6 11h2"/></svg>',
+    "Company Profiles": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14V3.5L8 1.5l6 2V14M2 14h12M5.5 6h1M5.5 9h1M9.5 6h1M9.5 9h1M7 14v-2.5h2V14"/></svg>',
+    "Syllabus": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1.5h6l3 3v10H4z"/><path d="M10 1.5v3h3M6 8h5M6 10.5h5"/></svg>',
+    "Infographic": '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14h12M4 14V8M8 14V4M12 14v-4"/></svg>'
   };
-  return icons[type] ?? "M";
+  return icons[type] ?? '<svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><path d="M5.5 6h5M5.5 8.5h5M5.5 11h3"/></svg>';
 };
 
 const materialIsAvailable = (material) => {
@@ -180,14 +180,15 @@ const materialIsAvailable = (material) => {
 const materialLink = (material, options = {}) => {
   const label = material.label ?? material.type;
   const classes = `${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}`;
+  const unavailablePath = material?.path && material.path !== "#" ? ` data-href="${esc(material.path)}"` : "";
   if (!materialIsAvailable(material)) {
-    return `<span class="${classes} is-unavailable" aria-disabled="true" title="${esc(label)} is not available yet">
-    <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
+    return `<span class="${classes} is-unavailable"${unavailablePath} aria-disabled="true" title="${esc(label)} is not available yet">
+    <span class="material-icon" aria-hidden="true">${materialIcon(material.type)}</span>
     <span>${esc(label)} unavailable</span>
   </span>`;
   }
   return `<a class="${classes}" href="${esc(material.path)}">
-    <span class="material-icon" aria-hidden="true">${esc(materialIcon(material.type))}</span>
+    <span class="material-icon" aria-hidden="true">${materialIcon(material.type)}</span>
     <span>${esc(label)}</span>
   </a>`;
 };
@@ -309,8 +310,10 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/index.css">
+  <meta name="description" content="${esc(data.course.code)} course hub: slides, readings, workbooks, and practice files for ${esc(data.course.title)} at Endicott College.">
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#">
@@ -325,7 +328,7 @@ const html = `<!DOCTYPE html>
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="shell">
         <div class="eyebrow">${esc(data.course.term)}</div>
@@ -371,7 +374,7 @@ const html = `<!DOCTYPE html>
     </section>
 
     <section class="shell controls" aria-label="Search and filter">
-      <input class="search" type="search" placeholder="Search by title, skill, track, module, material, or case company" data-search>
+      <input class="search" type="search" aria-label="Search lessons by title, skill, track, module, material, or case company" placeholder="Search by title, skill, track, module, material, or case company" data-search>
       <div class="filter-panel">
         <div class="filters" aria-label="Track filters">
           ${filterButton("track", "all", "All", true)}

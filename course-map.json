@@ -314,7 +314,7 @@
       "module": "M07",
       "lesson": "L01",
       "title": "Sales, Excise, and Property Taxes",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Tidal Goods Co. · Meridian Advisory Group",
       "skillFocus": [
         "Sales tax",
@@ -346,7 +346,7 @@
       "module": "M08",
       "lesson": "L01",
       "title": "Simple Interest, Discounting and Present Value",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Simple interest",
@@ -392,7 +392,7 @@
       "module": "M09",
       "lesson": "L01-L02",
       "title": "Compounding, Future Value, PMT, and Annuities",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Compound interest",
@@ -438,7 +438,7 @@
       "module": "M10",
       "lesson": "L01",
       "title": "Stocks, Bonds and Mutual Funds",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Stocks",
@@ -477,7 +477,7 @@
       "module": "M11",
       "lesson": "L01",
       "title": "Financial Statement Introduction",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": null,
       "skillFocus": [
         "Financial statements",
@@ -520,7 +520,7 @@
       "module": "M12",
       "lesson": "L01",
       "title": "Business Statistics",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Harborside Medical Center",
       "skillFocus": [
         "Business statistics",
@@ -661,7 +661,7 @@
       "module": "M04",
       "lesson": "L01",
       "title": "Getting Data, Charts, and Visualization",
-      "status": "Coming Soon",
+      "status": "Live",
       "caseStudy": "Harborside Medical Center",
       "skillFocus": [
         "Data import",

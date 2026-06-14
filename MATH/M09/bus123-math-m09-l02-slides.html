@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MATH-M09-L02 · PMT Function &amp; Annuities</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/json" id="speaker-notes">
 [
   "Welcome to M09-L02. Everything from L01 applies — same sign convention, same period-matching rule. New concept: the pmt argument. Instead of investing once and walking away, money flows in or out every single period. Mortgages, car loans, retirement contributions — all annuities.",
@@ -25,9 +27,12 @@
   "Discussion. Computational: for the mortgage, what is the total interest cost? Conceptual: why does a longer loan term lower the monthly payment but increase total interest paid? Applied: a client asks whether to make a $50,000 lump sum investment today or $500 per month for 10 years at 6%. Which produces more FV?",
   "Key takeaways. PMT: =PMT(rate,nper,pv,0) — result is negative, read as absolute value. FV with payments: =FV(rate,nper,pmt,pv) — pmt and pv both negative for regular investing. PV with payments: =PV(rate,nper,pmt,0) — pmt positive for received payments. Rate and nper always match the payment period.",
   "Module 09 is complete. You now have the full TVM toolkit: =PV(), =FV(), =PMT() — forward and backward, lump sum and annuity. These three functions underlie every mortgage, bond, retirement plan, and business valuation you will ever encounter.",
-  "Questions? bevitts@endicott.edu or Canvas. Next module: financial statements and business statistics."
+  "Questions? bevitts@endicott.edu or Canvas. Next module: financial statements and business statistics.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-</script>
+  </script>
 <style>
   /* ============================================================
      BUS123 v2 Hybrid Design System — MATH-M09-L01
@@ -35,20 +40,27 @@
      ============================================================ */
 
   :root {
-    --ink:      #0E1116;
-    --paper:    #FAF8F3;
-    --paper-2:  #F2EEE5;
-    --white:    #FFFFFF;
-    --text:     #1A1F2C;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
     --text-soft:#4A5567;
-    --muted:    #7A8290;
-    --border:   #E5E1D6;
-    --sage:     #4A7C5E;
-    --gold:     #B8843D;
-    --terra:    #9C4A2B;
-    --gradient: linear-gradient(90deg, #B8843D, #9C4A2B, #4A7C5E);
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
 
-    /* Excel replica */
     --xls-header-bg:   #1a1a2e;
     --xls-header-text: #c9a84c;
     --xls-header-border:#c9a84c;
@@ -128,8 +140,8 @@
 
   /* ── Slide Scaler ── */
   .slide-scaler {
-    width: 960px;
-    height: 560px;
+    width: 1280px;
+    height: 720px;
     position: relative;
     transform-origin: center center;
   }
@@ -137,8 +149,8 @@
   /* ── Slide Base ── */
   .slide {
     display: none;
-    width: 960px;
-    height: 560px;
+    width: 1280px;
+    height: 720px;
     position: absolute;
     top: 0; left: 0;
     overflow: hidden;
@@ -762,6 +774,95 @@
   .takeaway-card .tc-label { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; }
   .takeaway-card .tc-formula { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; color:var(--text); }
   .takeaway-card p { font-size:12px; color:var(--text-soft); line-height:1.5; }
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
 </style>
 </head>
 <body>
@@ -777,7 +878,7 @@
     <div class="slide-scaler" id="scaler">
 
       <!-- SLIDE 0 · Title -->
-      <section class="slide dark active" data-index="0" data-section="0">
+      <section class="slide dark active" data-section="0" data-slide="1" data-index="0">
         <div class="slide-inner">
           <div class="gradient-bar"></div>
           <div class="eyebrow gold anim-1">MATH-M09 · L02 &nbsp;·&nbsp; Meridian Advisory Group</div>
@@ -793,7 +894,7 @@
       </section>
 
       <!-- SLIDE 1 · Agenda -->
-      <section class="slide paper" data-index="1" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="2" data-index="1">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Today's Plan</div>
           <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
@@ -808,7 +909,7 @@
       </section>
 
       <!-- SLIDE 2 · I Can Statements -->
-      <section class="slide paper" data-index="2" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="3" data-index="2">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Learning Objectives</div>
           <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
@@ -823,7 +924,7 @@
       </section>
 
       <!-- SLIDE 3 · What is an annuity -->
-      <section class="slide paper" data-index="3" data-section="1">
+      <section class="slide paper" data-section="1" data-slide="4" data-index="3">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Part 1 · Annuities</div>
           <div class="header-row anim-2"><h2 class="slide-title">What Is an Annuity?</h2></div>
@@ -848,7 +949,7 @@
       </section>
 
       <!-- SLIDE 4 · pmt sign convention -->
-      <section class="slide paper" data-index="4" data-section="1">
+      <section class="slide paper" data-section="1" data-slide="5" data-index="4">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 1 · Sign Convention</div>
           <div class="header-row anim-2"><h2 class="slide-title">The pmt Sign Rule — Same Logic as pv</h2></div>
@@ -867,7 +968,7 @@
       </section>
 
       <!-- SLIDE 5 · =PMT() section break -->
-      <section class="slide dark" data-index="5" data-section="2">
+      <section class="slide dark" data-section="2" data-slide="6" data-index="5">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · =PMT() Function</div>
           <h2 class="section-title anim-2" style="color:var(--gold);">What Payment Is Required?</h2>
@@ -883,7 +984,7 @@
       </section>
 
       <!-- SLIDE 6 · Mortgage worked example -->
-      <section class="slide paper" data-index="6" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="7" data-index="6">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — $320,000 Mortgage at 6.5% for 30 Years</h2></div>
@@ -913,7 +1014,7 @@
       </section>
 
       <!-- SLIDE 7 · =FV() with pmt -->
-      <section class="slide paper" data-index="7" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="8" data-index="7">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · =FV() with Payments</div>
           <div class="header-row anim-2"><h2 class="slide-title">Monthly Savings — Building a Retirement Account</h2></div>
@@ -935,7 +1036,7 @@
       </section>
 
       <!-- SLIDE 8 · =PV() with pmt -->
-      <section class="slide paper" data-index="8" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="9" data-index="8">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · =PV() with Payments</div>
           <div class="header-row anim-2"><h2 class="slide-title">Valuing a Payment Stream — What Is It Worth Today?</h2></div>
@@ -946,7 +1047,7 @@
               <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=PV(5%/12, 10*12, <span class="val">1500</span>, 0)</span><span class="comment">// pmt positive = payments received</span><span class="comment">// Returns: −$141,799</span><span class="comment">// Negative = cost to acquire this stream today</span></code></div>
             </div>
             <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
-              <h4 class="gold">Interpreting the Result</h4>
+              <h4 class="gold">DM Sanspreting the Result</h4>
               <p class="body-text" style="font-size:13px;">The stream pays out $1,500 × 120 = <strong>$180,000</strong> total. But in today's dollars at 5%, it is only worth <strong>$141,799</strong>.</p>
               <p class="body-text" style="font-size:13px;">The negative means <em>outflow</em> — what you would pay today to acquire this stream. If someone offers to sell the stream for $130,000, it's a good deal. At $155,000, it's overpriced.</p>
               <div class="highlight-box sage" style="margin-top:4px;"><p><strong>Compare to DCF from M08:</strong> In M08 we discounted individual payments and summed them. =PV() with pmt does the same calculation in one step — but only for <em>equal</em> payments.</p></div>
@@ -956,7 +1057,7 @@
       </section>
 
       <!-- SLIDE 9 · Ordinary vs annuity due -->
-      <section class="slide paper" data-index="9" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="10" data-index="9">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Payment Timing</div>
           <div class="header-row anim-2"><h2 class="slide-title">Ordinary Annuity vs. Annuity Due</h2></div>
@@ -976,7 +1077,7 @@
       </section>
 
       <!-- SLIDE 10 · Total interest calculation -->
-      <section class="slide paper" data-index="10" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="11" data-index="10">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Total Cost of Borrowing</div>
           <div class="header-row anim-2"><h2 class="slide-title">Total Interest — The True Cost of a Loan</h2></div>
@@ -1004,7 +1105,7 @@
       </section>
 
       <!-- SLIDE 11 · Combined example -->
-      <section class="slide paper" data-index="11" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="12" data-index="11">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Combining L01 and L02</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Two Simultaneous Goals</h2></div>
@@ -1029,7 +1130,7 @@
       </section>
 
       <!-- SLIDE 12 · COMMON MISTAKE -->
-      <section class="slide dark" data-index="12" data-section="3" style="background:#1a0a05;">
+      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="13" data-index="12">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
           <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Annual Rate and Annual nper for a Monthly Payment Problem</h2>
@@ -1047,7 +1148,7 @@
       </section>
 
       <!-- SLIDE 13 · Student Practice -->
-      <section class="slide paper" data-index="13" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="14" data-index="13">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Student Practice · 10 Minutes</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Activity — Three Problems</h2></div>
@@ -1061,7 +1162,7 @@
       </section>
 
       <!-- SLIDE 14 · Discussion -->
-      <section class="slide paper" data-index="14" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="15" data-index="14">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
@@ -1075,7 +1176,7 @@
       </section>
 
       <!-- SLIDE 15 · Key Takeaways -->
-      <section class="slide paper" data-index="15" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="16" data-index="15">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -1090,7 +1191,7 @@
       </section>
 
       <!-- SLIDE 16 · Module Complete -->
-      <section class="slide paper" data-index="16" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Module 09 Complete</div>
           <div class="header-row anim-2"><h2 class="slide-title">The Full TVM Toolkit</h2></div>
@@ -1103,8 +1204,61 @@
         </div>
       </section>
 
+      <!-- RETROFIT SLIDE · PMT Sensitivity -->
+      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Sensitivity Check</div>
+          <div class="header-row anim-2"><h2 class="slide-title">What Moves a Payment the Most?</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div class="formula-panel"><div class="label">Excel Syntax</div><code><span class="fn">=PMT(rate, nper, pv)</span><span class="comment">Change one input at a time.</span><span class="comment">Record whether the payment rises or falls.</span></code></div>
+            <div class="card"><h4 class="sage">Decision Prompt</h4><p class="body-text">For a borrower, compare a lower rate, longer term, and smaller principal. Which helps monthly cash flow most, and what tradeoff appears?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RETROFIT SLIDE · Discussion -->
+      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Discussion</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Payment Affordable, Loan Expensive?</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="card"><h4 class="gold">Question 1</h4><p class="body-text">Why can a lower monthly payment still be a worse financial decision?</p></div>
+            <div class="card tinted"><h4 class="terra">Question 2</h4><p class="body-text">What would you show a client who focuses only on the payment and ignores total interest?</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RETROFIT SLIDE · Key Takeaways Extension -->
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Key Takeaways</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Three Checks Before You Trust PMT</h2></div>
+          <div class="title-rule"></div>
+          <div class="takeaway-grid anim-3">
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--sage);">01</div><div class="tc-formula">Match periods</div><p>Monthly payments need monthly rates and monthly nper.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--gold);">02</div><div class="tc-formula">Read signs</div><p>Negative payment usually means cash leaving the client.</p></div>
+            <div class="takeaway-card"><div class="tc-label" style="color:var(--terra);">03</div><div class="tc-formula">Check total cost</div><p>Monthly affordability and total interest are different questions.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RETROFIT SLIDE · Up Next -->
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
+        <div class="slide-inner">
+          <div class="eyebrow gold anim-1">Up Next</div>
+          <div class="header-row anim-2"><h2 class="slide-title">From TVM Functions to Integrated Models</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="card"><h4 class="gold">What Carries Forward</h4><p class="body-text">PV, FV, and PMT become reusable model components whenever a business decision has timing, risk, or recurring cash flows.</p></div>
+            <div class="card tinted"><h4 class="sage">Student Prep</h4><p class="body-text">Bring one real payment decision to class: loan, subscription, savings goal, or invoice stream. We will map the inputs before opening Excel.</p></div>
+          </div>
+        </div>
+      </section>
+
       <!-- SLIDE 17 · Close -->
-      <section class="slide dark" data-index="17" data-section="4">
+      <section class="slide dark" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L02 · Meridian Advisory Group</div>
@@ -1122,7 +1276,7 @@
 </div>
 <div class="nav-controls">
   <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 18</span>
+  <span class="slide-counter" id="counter">1 / 22</span>
   <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
   <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
 </div>
@@ -1134,7 +1288,7 @@
   const slides=Array.from(document.querySelectorAll('.slide'));
   const TOTAL=slides.length; let current=0,notesVisible=false;
   const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
-  const W=960,H=560;
+  const W=1280,H=720;
   function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}
   window.addEventListener('resize',rescale);rescale();
   function goTo(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(TOTAL-1,n));slides[current].classList.add('active');document.getElementById('counter').textContent=`${current+1} / ${TOTAL}`;updateTabs();if(notesVisible)showNotes();}

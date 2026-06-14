@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MATH-M08-L01 · Simple Interest, Discounting &amp; Present Value</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <script type="application/json" id="speaker-notes">
 [
@@ -33,23 +35,32 @@
   "Coming up in MATH-M09-L01: compound interest and future value. The key difference — instead of I=PRT growing linearly, FV grows exponentially. One rate, applied repeatedly, produces dramatically different results over long time horizons. We will also meet the Rule of 72 and the =FV function.",
   "That is MATH-M08. Questions before we close? Key formula: PV = FV divided by the discount factor. In Excel: =PV(rate, nper, 0, fv) — and read the sign carefully. Office hours, Canvas, or email for follow-up."
 ]
-</script>
+  </script>
 
 <style>
   /* BUS123 v2 Hybrid Design System — MATH-M08-L01 */
   :root {
-    --ink:      #0E1116;
-    --paper:    #FAF8F3;
-    --paper-2:  #F2EEE5;
-    --white:    #FFFFFF;
-    --text:     #1A1F2C;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
     --text-soft:#4A5567;
-    --muted:    #7A8290;
-    --border:   #E5E1D6;
-    --sage:     #4A7C5E;
-    --gold:     #B8843D;
-    --terra:    #9C4A2B;
-    --gradient: linear-gradient(90deg, #B8843D, #9C4A2B, #4A7C5E);
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
+
     --xls-header-bg:   #1a1a2e;
     --xls-header-text: #c9a84c;
     --xls-header-border:#c9a84c;
@@ -72,8 +83,8 @@
   .tab-btn.active-terra { background: rgba(156,74,43,0.18);  color: var(--terra); border-left: 2px solid var(--terra); }
   .tab-btn.active-neutral { background: #1e2128; color: #c8cdd5; border-left: 2px solid #5a6270; }
   .slide-viewport { flex: 1; display: flex; align-items: center; justify-content: center; background: #111318; overflow: hidden; position: relative; }
-  .slide-scaler { width: 960px; height: 560px; position: relative; transform-origin: top left; }
-  .slide { display: none; width: 960px; height: 560px; position: absolute; top: 0; left: 0; overflow: hidden; border-radius: 6px; }
+  .slide-scaler { width: 1280px; height: 720px; position: relative; transform-origin: top left; }
+  .slide { display: none; width: 1280px; height: 720px; position: absolute; top: 0; left: 0; overflow: hidden; border-radius: 6px; }
   .slide.active { display: block; }
   .slide.paper { background: var(--paper); color: var(--text); }
   .slide.paper .slide-inner { padding: 44px 52px 32px 52px; height: 100%; display: flex; flex-direction: column; position: relative; z-index: 1; }
@@ -196,6 +207,95 @@
   .dcf-table tr:nth-child(even) td { background: var(--xls-alt-row); }
   .dcf-table tr.total-row td { background: var(--xls-result-bg); border-top: 2px solid var(--xls-header-border); color: var(--xls-result-text); font-weight: 700; }
   .dcf-table td.formula-cell { color: var(--xls-formula); font-style: italic; font-size: 11px; }
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
 </style>
 </head>
 <body>
@@ -215,7 +315,7 @@
     <div class="slide-scaler" id="scaler">
 
       <!-- SLIDE 0 · Title -->
-      <section class="slide dark active" data-index="0" data-section="0">
+      <section class="slide dark active" data-section="0" data-slide="1" data-index="0">
         <div class="slide-inner">
           <div class="gradient-bar"></div>
           <div class="eyebrow gold anim-1">MATH-M08 · L01 &nbsp;·&nbsp; Meridian Advisory Group</div>
@@ -231,7 +331,7 @@
       </section>
 
       <!-- SLIDE 1 · Agenda -->
-      <section class="slide paper" data-index="1" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="2" data-index="1">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Today's Plan</div>
           <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
@@ -258,7 +358,7 @@
       </section>
 
       <!-- SLIDE 2 · I Can Statements -->
-      <section class="slide paper" data-index="2" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="3" data-index="2">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Learning Objectives</div>
           <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
@@ -285,7 +385,7 @@
       </section>
 
       <!-- SLIDE 3 · TVM Hook — $10K decision -->
-      <section class="slide dark" data-index="3" data-section="1">
+      <section class="slide dark" data-section="1" data-slide="4" data-index="3">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Part 1 · Why Time Affects Value</div>
           <h2 class="section-title anim-2" style="color:var(--gold);">$10,000 Today<br>or $10,500 in One Year?</h2>
@@ -306,7 +406,7 @@
       </section>
 
       <!-- SLIDE 4 · Three Forces -->
-      <section class="slide paper" data-index="4" data-section="1">
+      <section class="slide paper" data-section="1" data-slide="5" data-index="4">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 1 · Why Time Affects Value</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Forces Work Against Future Cash</h2></div>
@@ -332,7 +432,7 @@
       </section>
 
       <!-- SLIDE 5 · Rate decomposition -->
-      <section class="slide dark" data-index="5" data-section="1">
+      <section class="slide dark" data-section="1" data-slide="6" data-index="5">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 1 · The Discount Rate</div>
           <h2 class="section-title anim-2" style="font-size:32px;color:var(--paper);">The Rate We Use Has Three Parts</h2>
@@ -359,7 +459,7 @@
       </section>
 
       <!-- SLIDE 6 · I = PRT formula -->
-      <section class="slide dark" data-index="6" data-section="2">
+      <section class="slide dark" data-section="2" data-slide="7" data-index="6">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Simple Interest</div>
           <h2 class="section-title anim-2" style="color:var(--sage);">I = P × R × T</h2>
@@ -390,7 +490,7 @@
       </section>
 
       <!-- SLIDE 7 · Day-Count Methods -->
-      <section class="slide paper" data-index="7" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="8" data-index="7">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 2 · Simple Interest</div>
           <div class="header-row anim-2"><h2 class="slide-title">Day-Count Methods</h2></div>
@@ -425,7 +525,7 @@
       </section>
 
       <!-- SLIDE 8 · FV = P(1+RT) -->
-      <section class="slide paper" data-index="8" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="9" data-index="8">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 2 · Future Value</div>
           <div class="header-row anim-2"><h2 class="slide-title">Moving Money Forward — FV = P × (1 + R × T)</h2></div>
@@ -453,7 +553,7 @@
       </section>
 
       <!-- SLIDE 9 · Worked Example: Meridian note -->
-      <section class="slide paper" data-index="9" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="10" data-index="9">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Short-Term Corporate Note</h2></div>
@@ -483,7 +583,7 @@
       </section>
 
       <!-- SLIDE 10 · Solving for Unknowns -->
-      <section class="slide paper" data-index="10" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="11" data-index="10">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 2 · Simple Interest</div>
           <div class="header-row anim-2"><h2 class="slide-title">Solving for the Unknown Variable</h2></div>
@@ -521,7 +621,7 @@
       </section>
 
       <!-- SLIDE 11 · Excel worksheet demo -->
-      <section class="slide paper" data-index="11" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="12" data-index="11">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Excel Setup</div>
           <div class="header-row anim-2"><h2 class="slide-title">Building the Simple Interest Model in Excel</h2></div>
@@ -554,7 +654,7 @@
       </section>
 
       <!-- SLIDE 12 · Discounting intro — dark section break -->
-      <section class="slide dark" data-index="12" data-section="3">
+      <section class="slide dark" data-section="3" data-slide="13" data-index="12">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · Present Value</div>
           <h2 class="section-title anim-2" style="font-size:38px;">What is a future<br>amount worth <em style="color:var(--gold);">today?</em></h2>
@@ -573,7 +673,7 @@
       </section>
 
       <!-- SLIDE 13 · Manual PV formula -->
-      <section class="slide paper" data-index="13" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="14" data-index="13">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Present Value</div>
           <div class="header-row anim-2"><h2 class="slide-title">PV = FV ÷ (1 + R × T) — The Discount Factor</h2></div>
@@ -602,7 +702,7 @@
       </section>
 
       <!-- SLIDE 14 · =PV() function syntax -->
-      <section class="slide paper" data-index="14" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="15" data-index="14">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · Excel PV Function</div>
           <div class="header-row anim-2"><h2 class="slide-title">The =PV() Function — Syntax First</h2></div>
@@ -640,7 +740,7 @@
       </section>
 
       <!-- SLIDE 15 · Sign convention -->
-      <section class="slide paper" data-index="15" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="16" data-index="15">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Excel PV Function</div>
           <div class="header-row anim-2"><h2 class="slide-title">The Sign Convention — What the Negative Means</h2></div>
@@ -671,7 +771,7 @@
       </section>
 
       <!-- SLIDE 16 · PV over time — discount table -->
-      <section class="slide paper" data-index="16" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="17" data-index="16">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Present Value</div>
           <div class="header-row anim-2"><h2 class="slide-title">Present Value of $100 at Different Rates &amp; Times</h2></div>
@@ -707,7 +807,7 @@
       </section>
 
       <!-- SLIDE 17 · FV ↔ PV Two directions -->
-      <section class="slide paper" data-index="17" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="18" data-index="17">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Putting It Together</div>
           <div class="header-row anim-2"><h2 class="slide-title">FV and PV — Two Directions, One Logic</h2></div>
@@ -747,7 +847,7 @@
       </section>
 
       <!-- SLIDE 18 · COMMON MISTAKE (terra, position 18) -->
-      <section class="slide dark" data-index="18" data-section="3" style="background:#1a0a05;">
+      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="18" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
           <h2 class="section-title anim-2" style="color:var(--terra);font-size:34px;margin-bottom:16px;">The Negative PV Panic</h2>
@@ -777,7 +877,7 @@
       </section>
 
       <!-- SLIDE 19 · DCF Stream Activity -->
-      <section class="slide paper" data-index="19" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Activity · Meridian DCF Model</div>
           <div class="header-row anim-2"><h2 class="slide-title">Valuing a Stream of Future Receivables</h2></div>
@@ -810,7 +910,7 @@
       </section>
 
       <!-- SLIDE 20 · Discussion Questions -->
-      <section class="slide paper" data-index="20" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Two Questions · Think First, Then Share</h2></div>
@@ -831,7 +931,7 @@
       </section>
 
       <!-- SLIDE 21 · Key Takeaways -->
-      <section class="slide paper" data-index="21" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -860,7 +960,7 @@
       </section>
 
       <!-- SLIDE 22 · Next lesson preview -->
-      <section class="slide paper" data-index="22" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="23" data-index="22">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L01</div>
           <div class="header-row anim-2"><h2 class="slide-title">Next: Compound Interest &amp; Future Value</h2></div>
@@ -891,7 +991,7 @@
       </section>
 
       <!-- SLIDE 23 · Close -->
-      <section class="slide dark" data-index="23" data-section="4">
+      <section class="slide dark" data-section="4" data-slide="24" data-index="23">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M08-L01 · Meridian Advisory Group</div>
@@ -929,7 +1029,7 @@
   let notesVisible = false;
   const notesData = JSON.parse(document.getElementById('speaker-notes').textContent);
 
-  const W = 960, H = 560;
+  const W = 1280, H = 720;
   function rescale() {
     const vw = document.getElementById('viewport').clientWidth;
     const vh = document.getElementById('viewport').clientHeight;

@@ -5,82 +5,86 @@
   <title>BUS123 · MATH-M07 · L01 — Sales, Excise &amp; Property Taxes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script type="application/json" id="speaker-notes">
-  [
-    "Welcome to Module 7. Today we're covering three taxes every business manager encounters: sales, excise, and property. By the end of class you'll be able to calculate all three and explain the strategic 'so what' behind each one.",
-    "Let's warm up. Think about the last time you bought something online and saw an unexpected tax charge at checkout — maybe you almost abandoned the cart. That's a real business problem. Businesses that don't handle tax mechanics correctly lose sales, face legal liability, and misread their own revenue. Tax literacy is a competitive edge.",
-    "Here are today's three learning objectives. Notice we're not just computing — we're also asking why it matters strategically.",
-    "Last lesson we worked through trade discounts, markups, and markdowns. Today we go one layer deeper: after you price something, you have to handle taxes correctly. The order of operations matters enormously.",
-    "Part 1 of 3 — Sales Tax. This is the tax most students already know from everyday shopping. But the business perspective is completely different from the consumer perspective.",
-    "As a consumer, you pay sales tax. As a merchant, you collect it and hold it temporarily — it's not your money. Think of it as a liability on your books. Misclassifying collected tax as revenue is an accounting error that creates real legal exposure.",
-    "Here's the critical order of operations for sales tax. Trade discounts come off first — before tax is calculated. Shipping gets added after. If you flip that order, your tax calculation is wrong. Let's walk through Tidal Goods Co. step by step.",
-    "Now let's move this to Excel. The formula structure mirrors the manual math exactly — but Excel lets us change any input and recalculate instantly. Show students: change the trade discount and watch the tax recalculate automatically.",
-    "What if you already have the total and need to back out actual sales? This is the 'reverse sales tax' problem. A retailer's register might show $40,000 in receipts but that includes the tax they collected. The formula isolates actual revenue. Use =B1 divided by (1 + B2) in Excel.",
-    "Part 2 of 3 — Excise Tax. This is the one most students have never heard of, even though they've paid it hundreds of times. It's baked into the price before they see it.",
-    "Excise tax is levied upstream — manufacturers and wholesalers pay it, so it's embedded in the sticker price by the time a consumer sees the product. Fuel, alcohol, tobacco, and some high-end appliances. For a retailer, this means the excise tax directly raises inventory cost.",
-    "When both sales tax and excise tax apply to the same item, they are NOT compounded. Both are calculated on the base cost. This is a common student error — thinking you apply one tax first, then apply the second tax to the already-taxed amount. That's wrong. Both percentages hit the original base.",
-    "Meridian Advisory Group just equipped their new office with commercial appliances for a client hospitality suite. Let's calculate the total cost including both taxes. Watch how we handle the two-tax scenario in Excel.",
-    "Part 3 of 3 — Property Tax. This one affects every business that owns or leases space. And for anyone in a Triple Net Lease, it directly affects monthly rent.",
-    "Property tax is calculated in three steps. Step 1: assessed value. Step 2: tax rate. Step 3: annual tax due. Each step feeds the next. The key rule: always round the tax rate to four decimal places — the ten-thousandths place. That precision matters when you multiply against large property values.",
-    "The tax rate is set by dividing the town's budget need by the total assessed value of all taxable property in town. Your individual property's share of the total determines your bill. This is why a town that approves a bigger budget raises everyone's property tax — the denominator doesn't grow, only the numerator.",
-    "Now let's connect the three steps. Meridian Advisory Group is evaluating office space in a municipality. Let's walk through the full calculation: assessed value, tax rate, annual tax due. This is exactly what a finance team does during location analysis.",
-    "Common mistake alert. Two big ones here. First: applying tax before subtracting the trade discount. Second: compounding sales and excise taxes instead of calculating both from the base. Both errors produce wrong totals and wrong revenue figures on financial statements.",
-    "Your turn. Two practice problems — one sales tax, one property tax. Work through them in Excel using the formulas we built today. I'll circulate. You have 8 minutes.",
-    "Three takeaways from today. Sales tax: merchant collects, doesn't own — order of operations matters. Excise tax: baked in upstream, both taxes hit the base separately. Property tax: three-step chain, rate rounded to four decimal places.",
-    "Next lesson we go deeper on payroll taxes — FICA, federal and state withholding. Same structure: understand who pays what, then calculate it in Excel. Pre-reading is posted. Questions before we close?"
-  ]
+[
+  "Welcome to Module 7. Today we're covering three taxes every business manager encounters: sales, excise, and property. By the end of class you'll be able to calculate all three and explain the strategic 'so what' behind each one.",
+  "Let's warm up. Think about the last time you bought something online and saw an unexpected tax charge at checkout — maybe you almost abandoned the cart. That's a real business problem. Businesses that don't handle tax mechanics correctly lose sales, face legal liability, and misread their own revenue. Tax literacy is a competitive edge.",
+  "Here are today's three learning objectives. Notice we're not just computing — we're also asking why it matters strategically.",
+  "Last lesson we worked through trade discounts, markups, and markdowns. Today we go one layer deeper: after you price something, you have to handle taxes correctly. The order of operations matters enormously.",
+  "Part 1 of 3 — Sales Tax. This is the tax most students already know from everyday shopping. But the business perspective is completely different from the consumer perspective.",
+  "As a consumer, you pay sales tax. As a merchant, you collect it and hold it temporarily — it's not your money. Think of it as a liability on your books. Misclassifying collected tax as revenue is an accounting error that creates real legal exposure.",
+  "Here's the critical order of operations for sales tax. Trade discounts come off first — before tax is calculated. Shipping gets added after. If you flip that order, your tax calculation is wrong. Let's walk through Tidal Goods Co. step by step.",
+  "Now let's move this to Excel. The formula structure mirrors the manual math exactly — but Excel lets us change any input and recalculate instantly. Show students: change the trade discount and watch the tax recalculate automatically.",
+  "What if you already have the total and need to back out actual sales? This is the 'reverse sales tax' problem. A retailer's register might show $40,000 in receipts but that includes the tax they collected. The formula isolates actual revenue. Use =B1 divided by (1 + B2) in Excel.",
+  "Part 2 of 3 — Excise Tax. This is the one most students have never heard of, even though they've paid it hundreds of times. It's baked into the price before they see it.",
+  "Excise tax is levied upstream — manufacturers and wholesalers pay it, so it's embedded in the sticker price by the time a consumer sees the product. Fuel, alcohol, tobacco, and some high-end appliances. For a retailer, this means the excise tax directly raises inventory cost.",
+  "When both sales tax and excise tax apply to the same item, they are NOT compounded. Both are calculated on the base cost. This is a common student error — thinking you apply one tax first, then apply the second tax to the already-taxed amount. That's wrong. Both percentages hit the original base.",
+  "Meridian Advisory Group just equipped their new office with commercial appliances for a client hospitality suite. Let's calculate the total cost including both taxes. Watch how we handle the two-tax scenario in Excel.",
+  "Part 3 of 3 — Property Tax. This one affects every business that owns or leases space. And for anyone in a Triple Net Lease, it directly affects monthly rent.",
+  "Property tax is calculated in three steps. Step 1: assessed value. Step 2: tax rate. Step 3: annual tax due. Each step feeds the next. The key rule: always round the tax rate to four decimal places — the ten-thousandths place. That precision matters when you multiply against large property values.",
+  "The tax rate is set by dividing the town's budget need by the total assessed value of all taxable property in town. Your individual property's share of the total determines your bill. This is why a town that approves a bigger budget raises everyone's property tax — the denominator doesn't grow, only the numerator.",
+  "Now let's connect the three steps. Meridian Advisory Group is evaluating office space in a municipality. Let's walk through the full calculation: assessed value, tax rate, annual tax due. This is exactly what a finance team does during location analysis.",
+  "Common mistake alert. Two big ones here. First: applying tax before subtracting the trade discount. Second: compounding sales and excise taxes instead of calculating both from the base. Both errors produce wrong totals and wrong revenue figures on financial statements.",
+  "Your turn. Two practice problems — one sales tax, one property tax. Work through them in Excel using the formulas we built today. I'll circulate. You have 8 minutes.",
+  "Three takeaways from today. Sales tax: merchant collects, doesn't own — order of operations matters. Excise tax: baked in upstream, both taxes hit the base separately. Property tax: three-step chain, rate rounded to four decimal places.",
+  "Next lesson we go deeper on payroll taxes — FICA, federal and state withholding. Same structure: understand who pays what, then calculate it in Excel. Pre-reading is posted. Questions before we close?",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
+]
   </script>
 
   <style>
     :root {
-      --ink:       #0E1116;
-      --paper:     #FAF8F3;
-      --paper-2:   #F2EEE5;
-      --white:     #FFFFFF;
-      --text:      #1A1F2C;
-      --text-soft: #4A5567;
-      --muted:     #7A8290;
-      --border:    #E5E1D6;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
+    --text-soft:#4A5567;
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
 
-      --sage:  #4A7C5E;
-      --gold:  #B8843D;
-      --terra: #9C4A2B;
-      --steel: #355773;
-
-      --accent: var(--sage);
-
-      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
-
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body:    'Geist', system-ui, sans-serif;
-      --font-mono:    'JetBrains Mono', 'Courier New', monospace;
-
-      --scale: 1;
-      --type-display:  calc(112px * var(--scale));
-      --type-title:    calc(72px  * var(--scale));
-      --type-subtitle: calc(44px  * var(--scale));
-      --type-lead:     calc(34px  * var(--scale));
-      --type-body:     calc(28px  * var(--scale));
-      --type-small:    calc(24px  * var(--scale));
-      --type-eyebrow:  calc(24px  * var(--scale));
-      --type-mono:     calc(24px  * var(--scale));
-      --type-stat:     calc(180px * var(--scale));
-
-      --pad-x:      128px;
-      --pad-top:    104px;
-      --pad-bottom: 96px;
-      --gap-title:  56px;
-      --gap-item:   32px;
-    }
+    --accent: var(--sage);
+    --scale: .6667;
+    --type-display:  calc(112px * var(--scale));
+    --type-title:    calc(72px  * var(--scale));
+    --type-subtitle: calc(44px  * var(--scale));
+    --type-lead:     calc(34px  * var(--scale));
+    --type-body:     calc(28px  * var(--scale));
+    --type-small:    calc(24px  * var(--scale));
+    --type-eyebrow:  calc(24px  * var(--scale));
+    --type-mono:     calc(24px  * var(--scale));
+    --type-stat:     calc(180px * var(--scale));
+    --pad-x:      128px;
+    --pad-top:    104px;
+    --pad-bottom: 96px;
+    --gap-title:  56px;
+    --gap-item:   32px;
+  }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #111; font-family: var(--font-body); }
 
     .slide {
-      width: 1920px;
-      height: 1080px;
+      width: 1280px;
+      height: 720px;
       overflow: hidden;
       flex-direction: column;
     }
@@ -551,13 +555,102 @@
       line-height: 1.55;
       color: var(--text-soft);
     }
-  </style>
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
+</style>
 </head>
 <body>
-<deck-stage width="1920" height="1080" no-rail>
+<deck-stage width="1280" height="720" class="deck-shell" no-rail>
 
   <!-- ① TITLE -->
-  <section class="slide dark" data-label="01 Title">
+  <section class="slide dark" data-label="01 Title" data-section="0" data-slide="1" data-index="0">
     <div class="grad-bar"></div>
     <div class="title-content">
       <div class="title-eyebrow">BUS123 · MATH-M07 · L01 &nbsp;|&nbsp; Fall 2026</div>
@@ -581,7 +674,7 @@
   </section>
 
   <!-- ② HOOK -->
-  <section class="slide cream" data-label="02 Hook">
+  <section class="slide cream" data-label="02 Hook" data-section="0" data-slide="2" data-index="1">
     <div class="header-row">
       <div class="eyebrow">Real-World Hook</div>
       <div class="slide-title">The Cart Abandonment Problem</div>
@@ -612,7 +705,7 @@
   </section>
 
   <!-- ③ LEARNING OBJECTIVES -->
-  <section class="slide cream" data-label="03 Objectives">
+  <section class="slide cream" data-label="03 Objectives" data-section="0" data-slide="3" data-index="2">
     <div class="header-row">
       <div class="eyebrow">Learning Objectives</div>
       <div class="slide-title">I Can Statements</div>
@@ -635,7 +728,7 @@
   </section>
 
   <!-- ④ RECAP / BRIDGE -->
-  <section class="slide cream" data-label="04 Bridge">
+  <section class="slide cream" data-label="04 Bridge" data-section="0" data-slide="4" data-index="3">
     <div class="header-row">
       <div class="eyebrow">Connecting Prior Learning</div>
       <div class="slide-title">From Pricing to Taxes</div>
@@ -661,7 +754,7 @@
   </section>
 
   <!-- ⑤ SECTION BREAK: PART 1 -->
-  <section class="slide dark" data-label="05 Part 1">
+  <section class="slide dark" data-label="05 Part 1" data-section="1" data-slide="5" data-index="4">
     <div class="grad-bar"></div>
     <div class="section-break-content">
       <div class="part-label">Part 1 of 3</div>
@@ -671,7 +764,7 @@
   </section>
 
   <!-- ⑥ SALES TAX: CONCEPT -->
-  <section class="slide cream" data-label="06 Sales Tax Role">
+  <section class="slide cream" data-label="06 Sales Tax Role" data-section="1" data-slide="6" data-index="5">
     <div class="header-row">
       <div class="eyebrow">Sales Tax · Concept</div>
       <div class="slide-title">The Merchant Is a Collection Agent</div>
@@ -696,7 +789,7 @@
   </section>
 
   <!-- ⑦ SALES TAX: ORDER OF OPS + EXAMPLE -->
-  <section class="slide cream" data-label="07 Sales Tax Calculation">
+  <section class="slide cream" data-label="07 Sales Tax Calculation" data-section="1" data-slide="7" data-index="6">
     <div class="header-row">
       <div class="eyebrow">Sales Tax · Tidal Goods Co.</div>
       <div class="slide-title">Order of Operations</div>
@@ -727,7 +820,7 @@
         </div>
       </div>
       <div class="col" style="flex:1;">
-        <div class="dark-panel">
+        <div class="formula-panel">
           <div class="comment">// Tidal Goods Co. — wholesale order</div>
           <br>
           Retail price:     $480.00<br>
@@ -746,7 +839,7 @@
   </section>
 
   <!-- ⑧ SALES TAX: EXCEL -->
-  <section class="slide cream" data-label="08 Sales Tax Excel">
+  <section class="slide cream" data-label="08 Sales Tax Excel" data-section="1" data-slide="8" data-index="7">
     <div class="header-row">
       <div class="eyebrow">Sales Tax · Excel</div>
       <div class="slide-title">Building the Formula Chain</div>
@@ -754,7 +847,7 @@
     </div>
     <div class="body" style="flex-direction:row; gap:56px;">
       <div class="col" style="flex:1.1;">
-        <div class="dark-panel">
+        <div class="formula-panel">
           <span class="comment">// Excel structure — Tidal Goods Co.</span><br><br>
           B1 = 480          <span class="comment">// Retail price</span><br>
           B2 = 80           <span class="comment">// Trade discount</span><br>
@@ -777,7 +870,7 @@
   </section>
 
   <!-- ⑨ BACK-CALCULATING ACTUAL SALES -->
-  <section class="slide cream" data-label="09 Reverse Sales Tax">
+  <section class="slide cream" data-label="09 Reverse Sales Tax" data-section="2" data-slide="9" data-index="8">
     <div class="header-row">
       <div class="eyebrow">Sales Tax · Reverse Calculation</div>
       <div class="slide-title">What Were the Actual Sales?</div>
@@ -786,7 +879,7 @@
     <div class="body" style="flex-direction:row; gap:56px;">
       <div class="col" style="flex:1.1;">
         <p class="lead">Tidal Goods Co.'s register shows <strong>$52,000</strong> in total receipts for the day. The store collects <strong>6.5% sales tax</strong>. What was the actual pre-tax revenue?</p>
-        <div style="margin-top: 32px;" class="dark-panel">
+        <div style="margin-top: 32px;" class="formula-panel">
           <span class="comment">// Formula</span><br><br>
           Actual Sales = Total Sales ÷ (1 + Tax Rate)<br><br>
           <span class="fn">=B1/(1+B2)</span><br><br>
@@ -806,7 +899,7 @@
   </section>
 
   <!-- ⑩ SECTION BREAK: PART 2 -->
-  <section class="slide dark" data-label="10 Part 2">
+  <section class="slide dark" data-label="10 Part 2" data-section="2" data-slide="10" data-index="9">
     <div class="grad-bar"></div>
     <div class="section-break-content">
       <div class="part-label">Part 2 of 3</div>
@@ -816,7 +909,7 @@
   </section>
 
   <!-- ⑪ EXCISE TAX: CONCEPT -->
-  <section class="slide cream" data-label="11 Excise Tax Concept">
+  <section class="slide cream" data-label="11 Excise Tax Concept" data-section="2" data-slide="11" data-index="10">
     <div class="header-row">
       <div class="eyebrow">Excise Tax · Concept</div>
       <div class="slide-title">Upstream, Embedded, Invisible to Consumers</div>
@@ -851,7 +944,7 @@
   </section>
 
   <!-- ⑫ EXCISE TAX: BOTH TAXES + EXAMPLE -->
-  <section class="slide cream" data-label="12 Excise Tax Calculation">
+  <section class="slide cream" data-label="12 Excise Tax Calculation" data-section="2" data-slide="12" data-index="11">
     <div class="header-row">
       <div class="eyebrow">Excise Tax · Meridian Advisory Group</div>
       <div class="slide-title">When Both Taxes Apply — Never Compound Them</div>
@@ -859,7 +952,7 @@
     </div>
     <div class="body" style="flex-direction:row; gap:56px;">
       <div class="col" style="flex:1.1;">
-        <div class="dark-panel">
+        <div class="formula-panel">
           <span class="comment">// Meridian Advisory — commercial appliance</span><br>
           <span class="comment">// Base cost: $6,200 | Sales tax: 7% | Excise: 8%</span><br><br>
           Sales Tax  = <span class="fn">$6,200 × 0.07</span> = $434.00<br>
@@ -883,7 +976,7 @@
   </section>
 
   <!-- ⑬ EXCISE TAX: EXCEL -->
-  <section class="slide cream" data-label="13 Excise Tax Excel">
+  <section class="slide cream" data-label="13 Excise Tax Excel" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
       <div class="eyebrow">Excise Tax · Excel</div>
       <div class="slide-title">Two Approaches, One Answer</div>
@@ -891,7 +984,7 @@
     </div>
     <div class="body" style="flex-direction:row; gap:56px;">
       <div class="col">
-        <div class="dark-panel">
+        <div class="formula-panel">
           <span class="comment">// Approach 1 — Separate calculations</span><br><br>
           B1 = 6200    <span class="comment">// Base cost</span><br>
           B2 = 0.07    <span class="comment">// Sales tax rate</span><br>
@@ -902,7 +995,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="dark-panel">
+        <div class="formula-panel">
           <span class="comment">// Approach 2 — Combined rate shortcut</span><br><br>
           B1 = 6200    <span class="comment">// Base cost</span><br>
           B2 = 0.07    <span class="comment">// Sales tax rate</span><br>
@@ -915,7 +1008,7 @@
   </section>
 
   <!-- ⑭ SECTION BREAK: PART 3 -->
-  <section class="slide dark" data-label="14 Part 3">
+  <section class="slide dark" data-label="14 Part 3" data-section="3" data-slide="14" data-index="13">
     <div class="grad-bar"></div>
     <div class="section-break-content">
       <div class="part-label">Part 3 of 3</div>
@@ -925,7 +1018,7 @@
   </section>
 
   <!-- ⑮ PROPERTY TAX: CONCEPT + TRIPLE NET -->
-  <section class="slide cream" data-label="15 Property Tax Concept">
+  <section class="slide cream" data-label="15 Property Tax Concept" data-section="3" data-slide="15" data-index="14">
     <div class="header-row">
       <div class="eyebrow">Property Tax · Concept</div>
       <div class="slide-title">The Asset-Owner's Obligation</div>
@@ -961,7 +1054,7 @@
   </section>
 
   <!-- ⑯ PROPERTY TAX: THREE STEPS -->
-  <section class="slide cream" data-label="16 Property Tax Steps">
+  <section class="slide cream" data-label="16 Property Tax Steps" data-section="3" data-slide="16" data-index="15">
     <div class="header-row">
       <div class="eyebrow">Property Tax · Protocol</div>
       <div class="slide-title">Three Steps, Always in This Order</div>
@@ -994,7 +1087,7 @@
   </section>
 
   <!-- ⑰ PROPERTY TAX: FULL WORKED EXAMPLE -->
-  <section class="slide cream" data-label="17 Property Tax Worked Example">
+  <section class="slide cream" data-label="17 Property Tax Worked Example" data-section="3" data-slide="17" data-index="16">
     <div class="header-row">
       <div class="eyebrow">Property Tax · Meridian Advisory Group</div>
       <div class="slide-title">Full Three-Step Walkthrough</div>
@@ -1013,7 +1106,7 @@
         </div>
       </div>
       <div class="col" style="flex:1.2;">
-        <div class="dark-panel" style="font-size:calc(22px * var(--scale));">
+        <div class="formula-panel" style="font-size:calc(22px * var(--scale));">
           <span class="comment">// Step 1 — Assessed Value</span><br>
           <span class="fn">= 0.40 × $820,000</span>   →  <span style="color:#6EE7B7;">$328,000</span><br><br>
           <span class="comment">// Step 2 — Tax Rate (round to 4 decimals)</span><br>
@@ -1027,7 +1120,7 @@
   </section>
 
   <!-- ⑱ COMMON MISTAKE -->
-  <section class="slide cream" data-label="18 Common Mistakes">
+  <section class="slide cream" data-label="18 Common Mistakes" data-section="3" data-slide="18" data-index="17">
     <div class="header-row">
       <div class="eyebrow">Watch Out</div>
       <div class="slide-title">Two Mistakes That Show Up Every Exam</div>
@@ -1056,7 +1149,7 @@
   </section>
 
   <!-- ⑲ PRACTICE -->
-  <section class="slide cream" data-label="19 Practice">
+  <section class="slide cream" data-label="19 Practice" data-section="4" data-slide="19" data-index="18">
     <div class="header-row">
       <div class="eyebrow">In-Class Practice</div>
       <div class="slide-title">Your Turn — 8 Minutes</div>
@@ -1081,7 +1174,7 @@
   </section>
 
   <!-- ⑳ KEY TAKEAWAYS -->
-  <section class="slide cream" data-label="20 Takeaways">
+  <section class="slide cream" data-label="20 Takeaways" data-section="4" data-slide="20" data-index="19">
     <div class="header-row">
       <div class="eyebrow">Key Takeaways</div>
       <div class="slide-title">What to Carry Forward</div>
@@ -1109,7 +1202,7 @@
   </section>
 
   <!-- ㉑ UP NEXT -->
-  <section class="slide dark" data-label="21 Up Next">
+  <section class="slide dark" data-label="21 Up Next" data-section="4" data-slide="21" data-index="20">
     <div class="grad-bar"></div>
     <div class="section-break-content">
       <div class="part-label">Coming Up · MATH-M07-L02</div>
@@ -1119,7 +1212,7 @@
   </section>
 
   <!-- ㉒ CLOSE -->
-  <section class="slide dark" data-label="22 Close">
+  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
     <div class="grad-bar"></div>
     <div class="section-break-content" style="align-items:center; text-align:center;">
       <div class="section-title" style="font-style:italic;">Questions?</div>
@@ -1276,5 +1369,69 @@
   customElements.define('image-slot', ImageSlot);
 })();
 </script>
+
+<script>
+(function(){
+  function currentDeck(){ return document.querySelector('deck-stage'); }
+  function ensureDeckController(deck){
+    if(!deck || deck._slidesReady) return;
+    deck._slidesReady=true;
+    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
+    deck._idx=0;
+    deck._notes=[];
+    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
+    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
+    var notes=document.createElement('div');
+    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
+    document.body.appendChild(notes);
+    deck._notes_el=notes;
+    deck._go=function(n){
+      n=Math.max(0,Math.min(n,deck._slides.length-1));
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
+      deck._idx=n;
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
+    };
+    deck._toggleNotes=function(){
+      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
+    };
+    if(!window.__bus123RetrofitKeys){
+      window.__bus123RetrofitKeys=true;
+      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
+    }
+    deck._go(0);
+  }
+  function goToSection(section){
+    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
+    var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
+    if(target>=0) deck._go(target);
+  }
+  function addTabs(){
+    if(document.querySelector('.retrofit-tab-strip')) return;
+    var deck=currentDeck(); if(!deck) return;
+    ensureDeckController(deck);
+    var strip=document.createElement('nav');
+    strip.className='retrofit-tab-strip tab-strip';
+    strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';
+    document.body.appendChild(strip);
+    strip.querySelector('.retrofit-home-dot').addEventListener('click',function(){ if(deck._go) deck._go(0); });
+    strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.addEventListener('click',function(){ goToSection(btn.getAttribute('data-section')); }); });
+    var notesBtn=strip.querySelector('.retrofit-notes-btn');
+    if(notesBtn) notesBtn.addEventListener('click',function(){ var d=currentDeck(); if(d && d._toggleNotes) d._toggleNotes(); });
+    function sync(){
+      if(!deck._slides) return;
+      var active=deck._slides[deck._idx];
+      var sec=active && active.getAttribute('data-section');
+      strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-section')===sec); });
+      requestAnimationFrame(sync);
+    }
+    sync();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(addTabs,0); });
+  else setTimeout(addTabs,0);
+})();
+</script>
+
 </body>
 </html>

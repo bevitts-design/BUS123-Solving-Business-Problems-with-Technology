@@ -5,82 +5,86 @@
   <title>BUS123 · MATH-M01 · L01 — Whole Numbers, Fractions &amp; Percents</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script type="application/json" id="speaker-notes">
-  [
-    "Welcome to Math Module 1. This is the foundation of every quantitative skill in the course — and it's worth pausing here even for students who think they know this material. Business math has specific quirks that trip up even strong students. Let's build those instincts today.",
-    "Quick look at what we're covering today. Three parts: whole number operations applied to business, fractions in context, and percent calculations — which will show up in almost every module from here on.",
-    "By the end of today you should be able to do all five of these without a calculator on a napkin. These aren't abstract math goals — every one maps to something Meridian Advisory Group does in real life.",
-    "Think about the last time you split a check, calculated a tip, or estimated a sale price. You were doing business math. Today we make those instincts precise and give you Excel shortcuts that professionals actually use.",
-    "Part 1 starts here. Whole numbers are the building blocks. In business, whole numbers show up in quantities, headcounts, transaction counts, and budgets rounded to the dollar.",
-    "The four operations applied to business. Addition: summing revenue across accounts. Subtraction: calculating net after expenses. Multiplication: scaling unit price by volume. Division: finding per-unit or per-person figures. Meridian uses all four in every client engagement.",
-    "Here is how you enter this in Excel. =SUM for addition ranges, simple arithmetic operators for everything else. The key habit: always use cell references, never type numbers into formulas. That way, when one input changes, everything recalculates.",
-    "Meridian Advisory has 48 client accounts. Last quarter they added 12 and lost 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. 57 × $4,200 = $239,400 in quarterly fee revenue. In Excel: one formula chain, no hardcoded values.",
-    "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares — if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
-    "Part 2 now. Fractions in business show up more than students expect — mostly as ratios, allocations, and proportional splits.",
-    "A fraction is a part of a whole. In business contexts we're almost always asking: what fraction of total revenue, total staff, or total clients does this segment represent? The denominator is always 'the whole thing' — make sure you know what the whole is before you calculate.",
-    "Excel doesn't love fractions as fractions — it prefers decimals. The key conversion: divide the numerator by the denominator. 3/4 becomes =3/4 which Excel shows as 0.75. Format as a fraction only when the display specifically calls for it.",
-    "Meridian allocates its 6-person advisory team across three service lines: 2 on tax, 2 on estate planning, 2 on investment management. Each service line gets 2/6 = 1/3 of total staff capacity. Now — if they hire 3 more advisors, all in tax: what fraction does tax now represent? Walk through it: 5 tax out of 9 total = 5/9.",
-    "Part 3 — Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
-    "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole (what is 15% of $80,000?), percent change (revenue went from $200K to $230K — what's the change?), and expressing a ratio as a percent (4 out of 25 clients renewed — what rate is that?). Each has a distinct formula structure.",
-    "=PERCENTAGE calculations in Excel. Top row: percent of a whole — just multiply. Middle row: percent change — (New - Old) / Old. Bottom row: part to percent — part divided by whole. Memorize these three. Format the result cell as Percentage. Do not multiply by 100 manually — Excel's format handles that.",
-    "Meridian had $1.2M in AUM fees last year. This year they project a 7.5% increase. What's the projected fee revenue? In Excel: =1200000 * (1 + 0.075) = $1,290,000. Now reverse it: if actual fees came in at $1,255,000, what was the actual percent change? =(1255000 - 1200000) / 1200000 = 4.58%. Note: the base is always the older number.",
-    "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. Students mix these up constantly. If someone says 'revenue grew by 20%' that's change. If someone says 'that client represents 20% of our book' that's a ratio. Know which one you're computing.",
-    "Two minutes — with a partner or solo. Use Meridian's numbers on the slide. Show your Excel formula approach, not just the arithmetic answer. We'll discuss in 90 seconds.",
-    "Three things to carry out of today. Align your units before any calculation. Excel formulas: SUM for addition, cell references always, Percentage format for percent output. Percent change and percent of total are different formulas — don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
-    "Questions? Office hours are Tuesday and Thursday 2–4 PM, or email me. Next lesson: MATH-M01 L02 — Markup, Markdown, and Margin. We'll use Tidal Goods Co. and start building your first Meridian scenario workbook."
-  ]
+[
+  "Welcome to Math Module 1. This is the foundation of every quantitative skill in the course — and it's worth pausing here even for students who think they know this material. Business math has specific quirks that trip up even strong students. Let's build those instincts today.",
+  "Quick look at what we're covering today. Three parts: whole number operations applied to business, fractions in context, and percent calculations — which will show up in almost every module from here on.",
+  "By the end of today you should be able to do all five of these without a calculator on a napkin. These aren't abstract math goals — every one maps to something Meridian Advisory Group does in real life.",
+  "Think about the last time you split a check, calculated a tip, or estimated a sale price. You were doing business math. Today we make those instincts precise and give you Excel shortcuts that professionals actually use.",
+  "Part 1 starts here. Whole numbers are the building blocks. In business, whole numbers show up in quantities, headcounts, transaction counts, and budgets rounded to the dollar.",
+  "The four operations applied to business. Addition: summing revenue across accounts. Subtraction: calculating net after expenses. Multiplication: scaling unit price by volume. Division: finding per-unit or per-person figures. Meridian uses all four in every client engagement.",
+  "Here is how you enter this in Excel. =SUM for addition ranges, simple arithmetic operators for everything else. The key habit: always use cell references, never type numbers into formulas. That way, when one input changes, everything recalculates.",
+  "Meridian Advisory has 48 client accounts. Last quarter they added 12 and lost 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. 57 × $4,200 = $239,400 in quarterly fee revenue. In Excel: one formula chain, no hardcoded values.",
+  "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares — if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
+  "Part 2 now. Fractions in business show up more than students expect — mostly as ratios, allocations, and proportional splits.",
+  "A fraction is a part of a whole. In business contexts we're almost always asking: what fraction of total revenue, total staff, or total clients does this segment represent? The denominator is always 'the whole thing' — make sure you know what the whole is before you calculate.",
+  "Excel doesn't love fractions as fractions — it prefers decimals. The key conversion: divide the numerator by the denominator. 3/4 becomes =3/4 which Excel shows as 0.75. Format as a fraction only when the display specifically calls for it.",
+  "Meridian allocates its 6-person advisory team across three service lines: 2 on tax, 2 on estate planning, 2 on investment management. Each service line gets 2/6 = 1/3 of total staff capacity. Now — if they hire 3 more advisors, all in tax: what fraction does tax now represent? Walk through it: 5 tax out of 9 total = 5/9.",
+  "Part 3 — Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
+  "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole (what is 15% of $80,000?), percent change (revenue went from $200K to $230K — what's the change?), and expressing a ratio as a percent (4 out of 25 clients renewed — what rate is that?). Each has a distinct formula structure.",
+  "=PERCENTAGE calculations in Excel. Top row: percent of a whole — just multiply. Middle row: percent change — (New - Old) / Old. Bottom row: part to percent — part divided by whole. Memorize these three. Format the result cell as Percentage. Do not multiply by 100 manually — Excel's format handles that.",
+  "Meridian had $1.2M in AUM fees last year. This year they project a 7.5% increase. What's the projected fee revenue? In Excel: =1200000 * (1 + 0.075) = $1,290,000. Now reverse it: if actual fees came in at $1,255,000, what was the actual percent change? =(1255000 - 1200000) / 1200000 = 4.58%. Note: the base is always the older number.",
+  "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. Students mix these up constantly. If someone says 'revenue grew by 20%' that's change. If someone says 'that client represents 20% of our book' that's a ratio. Know which one you're computing.",
+  "Two minutes — with a partner or solo. Use Meridian's numbers on the slide. Show your Excel formula approach, not just the arithmetic answer. We'll discuss in 90 seconds.",
+  "Three things to carry out of today. Align your units before any calculation. Excel formulas: SUM for addition, cell references always, Percentage format for percent output. Percent change and percent of total are different formulas — don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
+  "Questions? Office hours are Tuesday and Thursday 2–4 PM, or email me. Next lesson: MATH-M01 L02 — Markup, Markdown, and Margin. We'll keep using Meridian Advisory Group scenarios as we turn percent skills into pricing and planning decisions.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
+]
   </script>
 
   <style>
     :root {
-      --ink:       #0E1116;
-      --paper:     #FAF8F3;
-      --paper-2:   #F2EEE5;
-      --white:     #FFFFFF;
-      --text:      #1A1F2C;
-      --text-soft: #4A5567;
-      --muted:     #7A8290;
-      --border:    #E5E1D6;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
+    --text-soft:#4A5567;
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
 
-      --sage:  #4A7C5E;
-      --gold:  #B8843D;
-      --terra: #9C4A2B;
-      --steel: #355773;
-
-      --accent: var(--sage);
-
-      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
-
-      --font-display: 'Instrument Serif', serif;
-      --font-body:    'Geist', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
-
-      --scale: 1;
-      --type-display:  calc(112px * var(--scale));
-      --type-title:    calc(72px  * var(--scale));
-      --type-subtitle: calc(44px  * var(--scale));
-      --type-lead:     calc(34px  * var(--scale));
-      --type-body:     calc(28px  * var(--scale));
-      --type-small:    calc(24px  * var(--scale));
-      --type-eyebrow:  calc(24px  * var(--scale));
-      --type-mono:     calc(24px  * var(--scale));
-      --type-stat:     calc(220px * var(--scale));
-
-      --pad-x:      128px;
-      --pad-top:    104px;
-      --pad-bottom: 96px;
-      --gap-title:  56px;
-      --gap-item:   32px;
-    }
+    --accent: var(--sage);
+    --scale: .6667;
+    --type-display:  calc(112px * var(--scale));
+    --type-title:    calc(72px  * var(--scale));
+    --type-subtitle: calc(44px  * var(--scale));
+    --type-lead:     calc(34px  * var(--scale));
+    --type-body:     calc(28px  * var(--scale));
+    --type-small:    calc(24px  * var(--scale));
+    --type-eyebrow:  calc(24px  * var(--scale));
+    --type-mono:     calc(24px  * var(--scale));
+    --type-stat:     calc(220px * var(--scale));
+    --pad-x:      128px;
+    --pad-top:    104px;
+    --pad-bottom: 96px;
+    --gap-title:  56px;
+    --gap-item:   32px;
+  }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #111; font-family: var(--font-body); }
 
     .slide {
-      width: 1920px;
-      height: 1080px;
+      width: 1280px;
+      height: 720px;
       overflow: hidden;
       flex-direction: column;
     }
@@ -388,13 +392,102 @@
     }
     .takeaway-text { font-size: var(--type-lead); line-height: 1.4; color: var(--text); }
 
-  </style>
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
+</style>
 </head>
 <body>
-<deck-stage width="1920" height="1080" no-rail>
+<deck-stage width="1280" height="720" class="deck-shell" no-rail>
 
   <!-- ── 01 TITLE ── -->
-  <section class="slide dark" data-label="01 Title">
+  <section class="slide dark" data-label="01 Title" data-section="0" data-slide="1" data-index="0">
     <div class="grad-bar"></div>
     <div style="display:flex; flex-direction:column; justify-content:center; flex:1; padding: 0 var(--pad-x) var(--pad-bottom);">
       <div class="eyebrow" style="margin-bottom:32px;">BUS 123 &nbsp;·&nbsp; MATH-M01 &nbsp;·&nbsp; L01</div>
@@ -414,7 +507,7 @@
   </section>
 
   <!-- ── 02 AGENDA ── -->
-  <section class="slide cream" data-label="02 Agenda">
+  <section class="slide cream" data-label="02 Agenda" data-section="0" data-slide="2" data-index="1">
     <div class="header-row">
       <span class="eyebrow">Today's Plan</span>
       <div class="rule"></div>
@@ -437,7 +530,7 @@
   </section>
 
   <!-- ── 03 LEARNING OBJECTIVES ── -->
-  <section class="slide cream" data-label="03 Learning Objectives">
+  <section class="slide cream" data-label="03 Learning Objectives" data-section="0" data-slide="3" data-index="2">
     <div class="header-row">
       <span class="eyebrow">Learning Objectives</span>
       <div class="rule"></div>
@@ -468,7 +561,7 @@
   </section>
 
   <!-- ── 04 RECAP / BRIDGE ── -->
-  <section class="slide cream" data-label="04 Bridge">
+  <section class="slide cream" data-label="04 Bridge" data-section="0" data-slide="4" data-index="3">
     <div class="header-row">
       <span class="eyebrow">Starting Point</span>
       <div class="rule"></div>
@@ -488,7 +581,7 @@
   </section>
 
   <!-- ── 05 SECTION BREAK 1 ── -->
-  <section class="slide dark" data-label="05 Part 1 Break">
+  <section class="slide dark" data-label="05 Part 1 Break" data-section="1" data-slide="5" data-index="4">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="section-label">Part 1 of 3</div>
@@ -498,7 +591,7 @@
   </section>
 
   <!-- ── 06 WHOLE NUMBERS IN BUSINESS ── -->
-  <section class="slide cream" data-label="06 Whole Numbers">
+  <section class="slide cream" data-label="06 Whole Numbers" data-section="1" data-slide="6" data-index="5">
     <div class="header-row">
       <span class="eyebrow">Part 1 · Whole Numbers</span>
       <div class="rule"></div>
@@ -527,7 +620,7 @@
   </section>
 
   <!-- ── 07 EXCEL SYNTAX — WHOLE NUMBERS ── -->
-  <section class="slide cream" data-label="07 Excel Whole Numbers">
+  <section class="slide cream" data-label="07 Excel Whole Numbers" data-section="1" data-slide="7" data-index="6">
     <div class="header-row">
       <span class="eyebrow">Excel First</span>
       <div class="rule"></div>
@@ -582,7 +675,7 @@
   </section>
 
   <!-- ── 08 WORKED EXAMPLE — MERIDIAN ── -->
-  <section class="slide cream" data-label="08 Meridian Whole Numbers">
+  <section class="slide cream" data-label="08 Meridian Whole Numbers" data-section="1" data-slide="8" data-index="7">
     <div class="header-row">
       <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
       <div class="rule"></div>
@@ -612,7 +705,7 @@
   </section>
 
   <!-- ── 09 COMMON MISTAKE 1 ── -->
-  <section class="slide dark" data-label="09 Mistake 1 Units">
+  <section class="slide dark" data-label="09 Mistake 1 Units" data-section="2" data-slide="9" data-index="8">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="mistake-panel">
         <div class="mistake-label">⚠ Common Mistake #1</div>
@@ -628,7 +721,7 @@
   </section>
 
   <!-- ── 10 SECTION BREAK 2 ── -->
-  <section class="slide dark" data-label="10 Part 2 Break">
+  <section class="slide dark" data-label="10 Part 2 Break" data-section="2" data-slide="10" data-index="9">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="section-label">Part 2 of 3</div>
@@ -638,7 +731,7 @@
   </section>
 
   <!-- ── 11 FRACTIONS IN BUSINESS ── -->
-  <section class="slide cream" data-label="11 Fractions">
+  <section class="slide cream" data-label="11 Fractions" data-section="2" data-slide="11" data-index="10">
     <div class="header-row">
       <span class="eyebrow">Part 2 · Fractions</span>
       <div class="rule"></div>
@@ -675,7 +768,7 @@
   </section>
 
   <!-- ── 12 MERIDIAN FRACTIONS ── -->
-  <section class="slide cream" data-label="12 Meridian Fractions">
+  <section class="slide cream" data-label="12 Meridian Fractions" data-section="2" data-slide="12" data-index="11">
     <div class="header-row">
       <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
       <div class="rule"></div>
@@ -705,7 +798,7 @@
   </section>
 
   <!-- ── 13 STAT BRIDGE ── -->
-  <section class="slide dark" data-label="13 Stat Bridge">
+  <section class="slide dark" data-label="13 Stat Bridge" data-section="2" data-slide="13" data-index="12">
     <div style="flex:1; display:flex; align-items:center; gap:96px; padding: 0 var(--pad-x);">
       <div>
         <div class="big-stat">3</div>
@@ -720,7 +813,7 @@
   </section>
 
   <!-- ── 14 SECTION BREAK 3 ── -->
-  <section class="slide dark" data-label="14 Part 3 Break">
+  <section class="slide dark" data-label="14 Part 3 Break" data-section="3" data-slide="14" data-index="13">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="section-label">Part 3 of 3</div>
@@ -730,7 +823,7 @@
   </section>
 
   <!-- ── 15 THREE PERCENT CASES ── -->
-  <section class="slide cream" data-label="15 Three Percent Cases">
+  <section class="slide cream" data-label="15 Three Percent Cases" data-section="3" data-slide="15" data-index="14">
     <div class="header-row">
       <span class="eyebrow">Part 3 · Percents</span>
       <div class="rule"></div>
@@ -761,7 +854,7 @@
   </section>
 
   <!-- ── 16 EXCEL PERCENT SYNTAX ── -->
-  <section class="slide cream" data-label="16 Excel Percents">
+  <section class="slide cream" data-label="16 Excel Percents" data-section="3" data-slide="16" data-index="15">
     <div class="header-row">
       <span class="eyebrow">Excel First · Percent Formulas</span>
       <div class="rule"></div>
@@ -813,7 +906,7 @@
   </section>
 
   <!-- ── 17 MERIDIAN PERCENTS ── -->
-  <section class="slide cream" data-label="17 Meridian Percents">
+  <section class="slide cream" data-label="17 Meridian Percents" data-section="3" data-slide="17" data-index="16">
     <div class="header-row">
       <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
       <div class="rule"></div>
@@ -849,7 +942,7 @@
   </section>
 
   <!-- ── 18 COMMON MISTAKE 2 ── -->
-  <section class="slide dark" data-label="18 Mistake 2 Percent">
+  <section class="slide dark" data-label="18 Mistake 2 Percent" data-section="3" data-slide="18" data-index="17">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="mistake-panel">
         <div class="mistake-label">⚠ Common Mistake #2</div>
@@ -875,7 +968,7 @@
   </section>
 
   <!-- ── 19 STUDENT PRACTICE ── -->
-  <section class="slide cream" data-label="19 Practice">
+  <section class="slide cream" data-label="19 Practice" data-section="4" data-slide="19" data-index="18">
     <div class="header-row">
       <span class="eyebrow">Your Turn</span>
       <div class="rule"></div>
@@ -903,7 +996,7 @@
   </section>
 
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="20 Key Takeaways">
+  <section class="slide cream" data-label="20 Key Takeaways" data-section="4" data-slide="20" data-index="19">
     <div class="header-row">
       <span class="eyebrow">Key Takeaways</span>
       <div class="rule"></div>
@@ -928,19 +1021,19 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="21 Up Next">
+  <section class="slide dark" data-label="21 Up Next" data-section="4" data-slide="21" data-index="20">
     <div style="flex:1; display:flex; align-items:center; gap:80px; padding: 0 var(--pad-x);">
       <image-slot id="next-img" placeholder="Drop image: retail shelving, price tags, or product display" style="width:640px; height:680px; border-radius:18px; flex-shrink:0;"></image-slot>
       <div>
         <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:24px; letter-spacing:0.08em; text-transform:uppercase;">Up Next · MATH-M01 · L02</div>
         <div style="font-family:var(--font-display); font-size:var(--type-display); line-height:1.0; color:var(--white);">Markup,<br><span style="font-style:italic; color:var(--sage);">Markdown<br>&amp; Margin</span></div>
-        <p style="margin-top:40px; font-size:var(--type-lead); color:rgba(255,255,255,0.65); max-width:680px;">We take today's percent skills directly into pricing decisions — cost-based markup, retail markdown, and gross margin. Featuring Tidal Goods Co.</p>
+        <p style="margin-top:40px; font-size:var(--type-lead); color:rgba(255,255,255,0.65); max-width:680px;">We take today's percent skills directly into pricing decisions — cost-based markup, retail markdown, and gross margin. Featuring Meridian Advisory Group.</p>
       </div>
     </div>
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="22 Close">
+  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 0 var(--pad-x);">
       <div style="font-family:var(--font-display); font-size:var(--type-display); color:var(--white);">Questions?</div>
@@ -1090,5 +1183,69 @@
   customElements.define('image-slot', ImageSlot);
 })();
 </script>
+
+<script>
+(function(){
+  function currentDeck(){ return document.querySelector('deck-stage'); }
+  function ensureDeckController(deck){
+    if(!deck || deck._slidesReady) return;
+    deck._slidesReady=true;
+    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
+    deck._idx=0;
+    deck._notes=[];
+    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
+    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
+    var notes=document.createElement('div');
+    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
+    document.body.appendChild(notes);
+    deck._notes_el=notes;
+    deck._go=function(n){
+      n=Math.max(0,Math.min(n,deck._slides.length-1));
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
+      deck._idx=n;
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
+    };
+    deck._toggleNotes=function(){
+      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
+    };
+    if(!window.__bus123RetrofitKeys){
+      window.__bus123RetrofitKeys=true;
+      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
+    }
+    deck._go(0);
+  }
+  function goToSection(section){
+    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
+    var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
+    if(target>=0) deck._go(target);
+  }
+  function addTabs(){
+    if(document.querySelector('.retrofit-tab-strip')) return;
+    var deck=currentDeck(); if(!deck) return;
+    ensureDeckController(deck);
+    var strip=document.createElement('nav');
+    strip.className='retrofit-tab-strip tab-strip';
+    strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';
+    document.body.appendChild(strip);
+    strip.querySelector('.retrofit-home-dot').addEventListener('click',function(){ if(deck._go) deck._go(0); });
+    strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.addEventListener('click',function(){ goToSection(btn.getAttribute('data-section')); }); });
+    var notesBtn=strip.querySelector('.retrofit-notes-btn');
+    if(notesBtn) notesBtn.addEventListener('click',function(){ var d=currentDeck(); if(d && d._toggleNotes) d._toggleNotes(); });
+    function sync(){
+      if(!deck._slides) return;
+      var active=deck._slides[deck._idx];
+      var sec=active && active.getAttribute('data-section');
+      strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-section')===sec); });
+      requestAnimationFrame(sync);
+    }
+    sync();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(addTabs,0); });
+  else setTimeout(addTabs,0);
+})();
+</script>
+
 </body>
 </html>

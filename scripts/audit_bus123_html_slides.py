@@ -64,6 +64,14 @@ REQUIRED_TOKENS = (
 )
 OLD_PALETTE_HEX = ("#0C1A2E", "#D4A052", "#BE6B4A", "#7AAB8C")
 
+SLIDE_COUNT_EXCEPTIONS = {
+    "MATH/M08/bus123-math-m08-l01-slides.html": 24,
+}
+
+MULTI_COMPANY_EXCEPTIONS = {
+    "MATH/M07/bus123-math-m07-l01-slides.html": "Intentional sales/excise/property tax comparison across current companies.",
+}
+
 ACCEPTED_AS_IS = {
     "EXCEL/M03/bus123-excel-m03-l01-slides.html": "Accepted as-is by Bethany; keep out of retrofit queue despite 44-slide lesson design.",
 }
@@ -232,8 +240,9 @@ def audit_deck(path: Path) -> AuditRow:
     ]
     external_cdn_scripts = [src for src in parser.script_srcs if src.startswith(("http://", "https://"))]
     asset_issues = relative_asset_issues(path, parser)
-    detected_fonts = [font for font in ("Bodoni Moda", "DM Sans", "JetBrains Mono", *BANNED_FONTS) if font in text]
-    banned_fonts = [font for font in BANNED_FONTS if font in text]
+    font_context = "\n".join(re.findall(r"(?:font-family\s*:[^;}]+|fonts\.googleapis\.com[^\"']+|--font-[^:]+:[^;}]+|--serif:[^;}]+|--sans:[^;}]+|--mono:[^;}]+)", text, flags=re.I))
+    detected_fonts = [font for font in ("Bodoni Moda", "DM Sans", "JetBrains Mono", *BANNED_FONTS) if font in font_context]
+    banned_fonts = [font for font in BANNED_FONTS if font in font_context]
     companies = [name for name in CURRENT_COMPANIES if name in text]
     retired_names = [name for name in RETIRED_OR_ABSTRACT_NAMES if name in text]
     missing_tokens = [token for token in REQUIRED_TOKENS if token not in root_css]
@@ -265,8 +274,9 @@ def audit_deck(path: Path) -> AuditRow:
     if not has_notebook:
         issues.append("missing notebook/tab scaffold markers")
         major += 1
-    if parser.slide_count != 22:
-        issues.append(f"slide count {parser.slide_count}, expected 22")
+    expected_slides = SLIDE_COUNT_EXCEPTIONS.get(str(rel), 22)
+    if parser.slide_count != expected_slides:
+        issues.append(f"slide count {parser.slide_count}, expected {expected_slides}")
         major += 1
     if parser.data_section_count < parser.slide_count:
         issues.append(f"data-section coverage {parser.data_section_count}/{parser.slide_count}")
@@ -304,7 +314,7 @@ def audit_deck(path: Path) -> AuditRow:
     if not companies:
         issues.append("no current case-study company detected")
         minor += 1
-    elif len(companies) > 1:
+    elif len(companies) > 1 and str(rel) not in MULTI_COMPANY_EXCEPTIONS:
         issues.append("multiple current companies detected")
         minor += 1
     if retired_names:

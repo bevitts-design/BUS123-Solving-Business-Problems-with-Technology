@@ -5,79 +5,86 @@
   <title>BUS123 · MATH-M06 · L01 — Inventory, Overhead & COGS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script type="application/json" id="speaker-notes">
-  [
-    "Welcome to Module 6. Today we're tackling three of the most important numbers in any product-based business: inventory value, overhead costs, and cost of goods sold. By the end of class you'll be able to calculate all three — and you'll understand why getting them wrong can make a profitable business look like it's losing money.",
-    "Let's talk about what's happening in the real world right now. As of 2026, 95% of retail executives say they expect rising costs from global trade policies — and tariff-driven inventory decisions are headline news. This isn't abstract. These are the exact calculations every retail buyer, analyst, and manager is running right now.",
-    "Here's our roadmap for the 75 minutes. Three parts: inventory valuation methods, the COGS formula and pricing math, and overhead allocation. We'll weave in a real business — Tidal Goods Co. — throughout every part.",
-    "Quick bridge from last module. We've been working with revenue and markup math. Today we go one level deeper — into the cost side. Before you can price anything, you need to know exactly what it cost you to own that product. That's what COGS and inventory valuation tell you.",
-    "Part 1: Inventory Valuation. This is the question: when you sell a product from a mixed pile of stock bought at different prices, which cost do you record? The answer changes your profit. Let's explore how.",
-    "Tidal Goods Co. sells outdoor and coastal gear. They buy the same paddleboard model across three different purchase orders — $210, $230, and $250 — as supplier prices shift. When they sell one, which cost hits their books? This is the inventory valuation problem every retailer faces.",
-    "There are four methods. Specific ID traces the exact unit. FIFO assumes the oldest stock sells first. LIFO assumes the newest sells first. WAC blends all costs into one average. Each gives a different COGS — and a different profit number — from the same physical sale.",
-    "Let's run the numbers side by side. Tidal bought 3 paddleboards: $210, $230, $250. They sell 2. Under FIFO, COGS = $440. Under LIFO, COGS = $480. Under WAC, COGS = $460. Same two boards sold — $40 difference in profit depending on the method.",
-    "The FIFO vs LIFO strategic decision: During inflation, FIFO shows higher profit because old cheap costs go to COGS. LIFO shows lower profit — but lower taxes. Important note: LIFO is banned under IFRS, the international standard. US companies using LIFO cannot report under international rules without restating. That's a real constraint for global retailers.",
-    "Now let's connect inventory to the balance sheet. At Tidal, ending inventory under FIFO = $250 (the newest board). Under LIFO = $210 (the oldest). That changes total assets reported. Lenders and investors read this number — so the method choice has financial consequences far beyond the income statement.",
-    "Part 2: COGS and Pricing Strategy. COGS is not just a formula — it's the foundation of every pricing decision. Let's build it from scratch with Tidal.",
-    "The COGS formula in plain English: what you started with, plus what you bought, minus what's left. Beginning Inventory + Purchases − Ending Inventory = COGS. Simple structure, high stakes. An error in ending inventory flows directly into profit — and then into next period's beginning inventory. Errors compound.",
-    "Let's build Tidal's full COGS schedule. Beginning inventory $12,400. New purchases during the quarter: $38,600. Ending inventory after physical count: $9,800. COGS = $41,200. That number feeds directly into the income statement. Gross Profit = Revenue minus $41,200.",
-    "Now pricing — margin versus markup. This is one of the most confused topics in retail. Margin is profit as a percent of revenue. Markup is profit as a percent of cost. They look similar but they are not the same number — confusing them causes serious underpricing.",
-    "Tidal sells a surf bag for $80. They paid $48 for it. Markup = $32 / $48 = 66.7%. Margin = $32 / $80 = 40%. A buyer who says 'we mark up 100%' is saying margin is 50% — not 100%. Show the Excel formulas, then the manual math.",
-    "Common mistake slide — this one is critical. If ending inventory is OVERSTATED — say a physical count error adds $5,000 of phantom inventory — COGS is understated by $5,000. Net income is overstated by $5,000 this period. Next period, beginning inventory is now wrong too. The error cascades across two periods. Auditors look for this specifically.",
-    "Part 3: Overhead Allocation. Every business has costs that don't attach to a single product — rent, utilities, insurance. These still need to show up somewhere in the cost of doing business. Overhead allocation is how we distribute them fairly.",
-    "Tidal operates two departments: Surf Shop and Online Warehouse. Monthly rent is $9,000. The Surf Shop occupies 2,400 sq ft; the Warehouse 1,600 sq ft. Allocated by square footage: Surf Shop gets 60% = $5,400. Warehouse gets 40% = $3,600. The allocation base — square footage — is a management decision.",
-    "Overhead Rate formula: Total Overhead Costs divided by Revenue. At Tidal: $22,000 overhead on $110,000 revenue = 20% overhead rate. That means for every dollar of revenue, 20 cents goes to keeping the lights on before we even count COGS. Management watches this number closely.",
-    "Discussion: Two questions to work through with the person next to you. One: Tidal is considering switching from FIFO to WAC. What are the tradeoffs? Think tax impact, balance sheet presentation, and complexity. Two: Tidal's overhead rate just jumped from 18% to 24% in one quarter. What would you investigate first?",
-    "Three things to take away from today. One: inventory method choice is a strategic decision — it affects profit, taxes, and reported assets. Two: COGS errors compound across periods — get the ending inventory right. Three: overhead allocation requires choosing a fair base — and the choice matters for departmental profitability.",
-    "Coming up next — Excel Activity. You'll take Tidal's raw transaction data and build a formatted management report: COGS schedule, inventory valuation comparison, and overhead allocation table. The goal is turning a messy data dump into something a CFO can read in 30 seconds.",
-    "That's Module 6. Inventory, Overhead, and COGS — the math behind every product-based business's profitability story. Press N to toggle speaker notes. Questions?"
-  ]
+[
+  "Welcome to Module 6. Today we're tackling three of the most important numbers in any product-based business: inventory value, overhead costs, and cost of goods sold. By the end of class you'll be able to calculate all three — and you'll understand why getting them wrong can make a profitable business look like it's losing money.",
+  "Let's talk about what's happening in the real world right now. As of 2026, 95% of retail executives say they expect rising costs from global trade policies — and tariff-driven inventory decisions are headline news. This isn't abstract. These are the exact calculations every retail buyer, analyst, and manager is running right now.",
+  "Here's our roadmap for the 75 minutes. Three parts: inventory valuation methods, the COGS formula and pricing math, and overhead allocation. We'll weave in a real business — Tidal Goods Co. — throughout every part.",
+  "Quick bridge from last module. We've been working with revenue and markup math. Today we go one level deeper — into the cost side. Before you can price anything, you need to know exactly what it cost you to own that product. That's what COGS and inventory valuation tell you.",
+  "Part 1: Inventory Valuation. This is the question: when you sell a product from a mixed pile of stock bought at different prices, which cost do you record? The answer changes your profit. Let's explore how.",
+  "Tidal Goods Co. sells outdoor and coastal gear. They buy the same paddleboard model across three different purchase orders — $210, $230, and $250 — as supplier prices shift. When they sell one, which cost hits their books? This is the inventory valuation problem every retailer faces.",
+  "There are four methods. Specific ID traces the exact unit. FIFO assumes the oldest stock sells first. LIFO assumes the newest sells first. WAC blends all costs into one average. Each gives a different COGS — and a different profit number — from the same physical sale.",
+  "Let's run the numbers side by side. Tidal bought 3 paddleboards: $210, $230, $250. They sell 2. Under FIFO, COGS = $440. Under LIFO, COGS = $480. Under WAC, COGS = $460. Same two boards sold — $40 difference in profit depending on the method.",
+  "The FIFO vs LIFO strategic decision: During inflation, FIFO shows higher profit because old cheap costs go to COGS. LIFO shows lower profit — but lower taxes. Important note: LIFO is banned under IFRS, the international standard. US companies using LIFO cannot report under international rules without restating. That's a real constraint for global retailers.",
+  "Now let's connect inventory to the balance sheet. At Tidal, ending inventory under FIFO = $250 (the newest board). Under LIFO = $210 (the oldest). That changes total assets reported. Lenders and investors read this number — so the method choice has financial consequences far beyond the income statement.",
+  "Part 2: COGS and Pricing Strategy. COGS is not just a formula — it's the foundation of every pricing decision. Let's build it from scratch with Tidal.",
+  "The COGS formula in plain English: what you started with, plus what you bought, minus what's left. Beginning Inventory + Purchases − Ending Inventory = COGS. Simple structure, high stakes. An error in ending inventory flows directly into profit — and then into next period's beginning inventory. Errors compound.",
+  "Let's build Tidal's full COGS schedule. Beginning inventory $12,400. New purchases during the quarter: $38,600. Ending inventory after physical count: $9,800. COGS = $41,200. That number feeds directly into the income statement. Gross Profit = Revenue minus $41,200.",
+  "Now pricing — margin versus markup. This is one of the most confused topics in retail. Margin is profit as a percent of revenue. Markup is profit as a percent of cost. They look similar but they are not the same number — confusing them causes serious underpricing.",
+  "Tidal sells a surf bag for $80. They paid $48 for it. Markup = $32 / $48 = 66.7%. Margin = $32 / $80 = 40%. A buyer who says 'we mark up 100%' is saying margin is 50% — not 100%. Show the Excel formulas, then the manual math.",
+  "Common mistake slide — this one is critical. If ending inventory is OVERSTATED — say a physical count error adds $5,000 of phantom inventory — COGS is understated by $5,000. Net income is overstated by $5,000 this period. Next period, beginning inventory is now wrong too. The error cascades across two periods. Auditors look for this specifically.",
+  "Part 3: Overhead Allocation. Every business has costs that don't attach to a single product — rent, utilities, insurance. These still need to show up somewhere in the cost of doing business. Overhead allocation is how we distribute them fairly.",
+  "Tidal operates two departments: Surf Shop and Online Warehouse. Monthly rent is $9,000. The Surf Shop occupies 2,400 sq ft; the Warehouse 1,600 sq ft. Allocated by square footage: Surf Shop gets 60% = $5,400. Warehouse gets 40% = $3,600. The allocation base — square footage — is a management decision.",
+  "Overhead Rate formula: Total Overhead Costs divided by Revenue. At Tidal: $22,000 overhead on $110,000 revenue = 20% overhead rate. That means for every dollar of revenue, 20 cents goes to keeping the lights on before we even count COGS. Management watches this number closely.",
+  "Discussion: Two questions to work through with the person next to you. One: Tidal is considering switching from FIFO to WAC. What are the tradeoffs? Think tax impact, balance sheet presentation, and complexity. Two: Tidal's overhead rate just jumped from 18% to 24% in one quarter. What would you investigate first?",
+  "Three things to take away from today. One: inventory method choice is a strategic decision — it affects profit, taxes, and reported assets. Two: COGS errors compound across periods — get the ending inventory right. Three: overhead allocation requires choosing a fair base — and the choice matters for departmental profitability.",
+  "Coming up next — Excel Activity. You'll take Tidal's raw transaction data and build a formatted management report: COGS schedule, inventory valuation comparison, and overhead allocation table. The goal is turning a messy data dump into something a CFO can read in 30 seconds."
+]
   </script>
 
   <style>
     :root {
-      --ink:       #0E1116;
-      --paper:     #FAF8F3;
-      --paper-2:   #F2EEE5;
-      --white:     #FFFFFF;
-      --text:      #1A1F2C;
-      --text-soft: #4A5567;
-      --muted:     #7A8290;
-      --border:    #E5E1D6;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
+    --text-soft:#4A5567;
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
 
-      --sage:  #4A7C5E;
-      --gold:  #B8843D;
-      --terra: #9C4A2B;
-      --steel: #355773;
-
-      --accent: var(--sage);
-      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
-
-      --scale: 1;
-      --type-display:  calc(112px * var(--scale));
-      --type-title:    calc(72px  * var(--scale));
-      --type-subtitle: calc(44px  * var(--scale));
-      --type-lead:     calc(34px  * var(--scale));
-      --type-body:     calc(28px  * var(--scale));
-      --type-small:    calc(24px  * var(--scale));
-      --type-eyebrow:  calc(24px  * var(--scale));
-      --type-mono:     calc(24px  * var(--scale));
-      --type-stat:     calc(200px * var(--scale));
-
-      --pad-x:      128px;
-      --pad-top:    104px;
-      --pad-bottom: 96px;
-      --gap-title:  56px;
-      --gap-item:   32px;
-    }
+    --accent: var(--sage);
+    --scale: .6667;
+    --type-display:  calc(112px * var(--scale));
+    --type-title:    calc(72px  * var(--scale));
+    --type-subtitle: calc(44px  * var(--scale));
+    --type-lead:     calc(34px  * var(--scale));
+    --type-body:     calc(28px  * var(--scale));
+    --type-small:    calc(24px  * var(--scale));
+    --type-eyebrow:  calc(24px  * var(--scale));
+    --type-mono:     calc(24px  * var(--scale));
+    --type-stat:     calc(200px * var(--scale));
+    --pad-x:      128px;
+    --pad-top:    104px;
+    --pad-bottom: 96px;
+    --gap-title:  56px;
+    --gap-item:   32px;
+  }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #111; font-family: 'Geist', sans-serif; }
+    body { background: #111; font-family: 'DM Sans', sans-serif; }
 
     .slide {
-      width: 1920px;
-      height: 1080px;
+      width: 1280px;
+      height: 720px;
       overflow: hidden;
       flex-direction: column;
       padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
@@ -117,14 +124,14 @@
     .rule.light { background: rgba(255,255,255,0.15); }
 
     h1 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: var(--type-display);
       font-weight: 400;
       line-height: 1.0;
       color: #fff;
     }
     h2 {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: var(--type-title);
       font-weight: 400;
       line-height: 1.1;
@@ -133,7 +140,7 @@
     h2.dark-txt { color: var(--text); }
 
     .subtitle {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-style: italic;
       font-size: var(--type-subtitle);
       color: rgba(255,255,255,0.65);
@@ -142,7 +149,7 @@
     .subtitle.cream { color: var(--text-soft); }
 
     p, li {
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: var(--type-body);
       line-height: 1.55;
       color: var(--text);
@@ -171,7 +178,7 @@
       margin-bottom: var(--gap-item);
     }
     .n {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-style: italic;
       font-size: calc(52px * var(--scale));
       color: var(--accent);
@@ -203,14 +210,14 @@
 
     /* ── STAT SLIDE ── */
     .stat-number {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-style: italic;
       font-size: var(--type-stat);
       color: var(--accent);
       line-height: 0.9;
     }
     .stat-label {
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: var(--type-lead);
       color: rgba(255,255,255,0.65);
       margin-top: 24px;
@@ -218,7 +225,7 @@
 
     /* ── SECTION BREAK LAYOUT ── */
     .section-num {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-style: italic;
       font-size: calc(200px * var(--scale));
       color: rgba(255,255,255,0.06);
@@ -277,7 +284,7 @@
     .data-table td {
       padding: 14px 20px;
       border-bottom: 1px solid var(--border);
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       color: var(--text);
     }
     .data-table tr:nth-child(even) td { background: #F7F4EE; }
@@ -324,7 +331,7 @@
       color: var(--text);
     }
     .bar-lbl {
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: calc(22px * var(--scale));
       color: var(--text-soft);
       text-align: center;
@@ -360,13 +367,13 @@
       text-transform: uppercase;
     }
     .flow-box .fb-val {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: calc(42px * var(--scale));
       color: var(--text);
       margin-top: 8px;
     }
     .flow-arrow {
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: calc(40px * var(--scale));
       color: var(--accent);
     }
@@ -391,7 +398,7 @@
       border: 1px solid rgba(74,124,94,0.3);
       border-radius: 40px;
       padding: 10px 28px;
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: var(--type-small);
       font-weight: 500;
     }
@@ -422,7 +429,7 @@
       min-width: 48px;
     }
     .agenda-text {
-      font-family: 'Geist', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: var(--type-lead);
       color: var(--text);
     }
@@ -478,7 +485,7 @@
       margin-bottom: 8px;
     }
     .method-val {
-      font-family: 'Instrument Serif', serif;
+      font-family: 'Bodoni Moda', serif;
       font-size: calc(56px * var(--scale));
       line-height: 1.1;
     }
@@ -509,15 +516,104 @@
     image-slot {
       display: block;
     }
-  </style>
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
+</style>
 </head>
 <body>
 
-<deck-stage width="1920" height="1080" no-rail>
+<deck-stage width="1280" height="720" class="deck-shell" no-rail>
 
   <!-- ═══════════════════════════ SLIDE 01 — TITLE ═══════════════════════════ -->
   <section class="slide dark" data-label="01 Title"
-    style="justify-content: flex-end; padding-bottom: 112px;">
+    style="justify-content: flex-end; padding-bottom: 112px;" data-section="0" data-slide="1" data-index="0">
     <div class="grad-bar"></div>
     <div style="margin-top: auto;">
       <div class="eyebrow light" style="margin-bottom: 24px;">BUS123 · MATH-M06 · L01</div>
@@ -525,14 +621,14 @@
       <p class="subtitle">The math behind every product's true cost</p>
     </div>
     <div style="margin-top: 64px; display:flex; align-items:center; gap: 40px;">
-      <div style="font-family:'Geist',sans-serif; font-size:var(--type-small); color:rgba(255,255,255,0.4);">
+      <div style="font-family:'DM Sans',sans-serif; font-size:var(--type-small); color:rgba(255,255,255,0.4);">
         Tidal Goods Co. · Fall 2026 · Gerrish School of Business
       </div>
     </div>
   </section>
 
   <!-- ═══════════════════════════ SLIDE 02 — REAL WORLD HOOK ═══════════════════════════ -->
-  <section class="slide dark" data-label="02 Hook">
+  <section class="slide dark" data-label="02 Hook" data-section="0" data-slide="2" data-index="1">
     <div class="grad-bar"></div>
     <div class="header-row">
       <span class="eyebrow light">Right Now · Spring 2026</span>
@@ -572,7 +668,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 03 — AGENDA ═══════════════════════════ -->
-  <section class="slide cream" data-label="03 Agenda">
+  <section class="slide cream" data-label="03 Agenda" data-section="0" data-slide="3" data-index="2">
     <div class="header-row">
       <span class="eyebrow">Today's Class</span>
     </div>
@@ -604,7 +700,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 04 — OBJECTIVES ═══════════════════════════ -->
-  <section class="slide cream" data-label="04 Objectives">
+  <section class="slide cream" data-label="04 Objectives" data-section="0" data-slide="4" data-index="3">
     <div class="header-row">
       <span class="eyebrow">Learning Objectives</span>
     </div>
@@ -632,7 +728,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 05 — BRIDGE ═══════════════════════════ -->
-  <section class="slide cream" data-label="05 Bridge">
+  <section class="slide cream" data-label="05 Bridge" data-section="1" data-slide="5" data-index="4">
     <div class="header-row">
       <span class="eyebrow">Connecting the Dots</span>
     </div>
@@ -671,7 +767,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 06 — SECTION BREAK 1 ═══════════════════════════ -->
-  <section class="slide dark" data-label="06 Part 1">
+  <section class="slide dark" data-label="06 Part 1" data-section="1" data-slide="6" data-index="5">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
       <div class="eyebrow light" style="margin-bottom: 24px;">Part 1 of 3</div>
@@ -686,7 +782,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 07 — THE PROBLEM ═══════════════════════════ -->
-  <section class="slide cream" data-label="07 The Problem">
+  <section class="slide cream" data-label="07 The Problem" data-section="1" data-slide="7" data-index="6">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · The Inventory Problem</span>
     </div>
@@ -702,17 +798,17 @@
         <div class="grid-3" style="max-width: 780px;">
           <div class="card" style="text-align:center; background: rgba(74,124,94,0.07); border-color: rgba(74,124,94,0.25);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-1 · Feb</div>
-            <div style="font-family:'Instrument Serif',serif; font-size: calc(52px * var(--scale)); color: var(--sage);">$210</div>
+            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--sage);">$210</div>
             <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
           </div>
           <div class="card" style="text-align:center; background: rgba(184,132,61,0.08); border-color: rgba(184,132,61,0.3);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-2 · Mar</div>
-            <div style="font-family:'Instrument Serif',serif; font-size: calc(52px * var(--scale)); color: var(--gold);">$230</div>
+            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--gold);">$230</div>
             <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
           </div>
           <div class="card" style="text-align:center; background: rgba(156,74,43,0.08); border-color: rgba(156,74,43,0.25);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-3 · Apr</div>
-            <div style="font-family:'Instrument Serif',serif; font-size: calc(52px * var(--scale)); color: var(--terra);">$250</div>
+            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--terra);">$250</div>
             <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
           </div>
         </div>
@@ -725,7 +821,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 08 — FOUR METHODS ═══════════════════════════ -->
-  <section class="slide cream" data-label="08 Four Methods">
+  <section class="slide cream" data-label="08 Four Methods" data-section="1" data-slide="8" data-index="7">
     <div class="header-row">
       <span class="eyebrow">Inventory Valuation · Four Methods</span>
     </div>
@@ -764,7 +860,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 09 — SIDE BY SIDE CALC ═══════════════════════════ -->
-  <section class="slide cream" data-label="09 Method Comparison">
+  <section class="slide cream" data-label="09 Method Comparison" data-section="2" data-slide="9" data-index="8">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · Same Sale, Three Results</span>
     </div>
@@ -809,7 +905,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="dark-panel">
+        <div class="formula-panel">
           WAC unit cost: (10×$210 + 10×$230 + 10×$250) / 30 = $230.00<br>
           COGS (WAC): 20 × $230.00 = $4,600
         </div>
@@ -818,12 +914,12 @@
       <div style="display:flex; flex-direction:column; gap:24px; justify-content:center; height:100%;">
         <div style="background: rgba(74,124,94,0.08); border-radius:12px; padding:28px 32px; border:1px solid rgba(74,124,94,0.2);">
           <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:8px;">FIFO PROFIT</div>
-          <div style="font-family:'Instrument Serif',serif; font-size: calc(60px * var(--scale)); color:var(--sage);">Higher</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size: calc(60px * var(--scale)); color:var(--sage);">Higher</div>
           <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Better looking financials — higher taxes</p>
         </div>
         <div style="background: rgba(156,74,43,0.08); border-radius:12px; padding:28px 32px; border:1px solid rgba(156,74,43,0.2);">
           <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--terra); margin-bottom:8px;">LIFO PROFIT</div>
-          <div style="font-family:'Instrument Serif',serif; font-size: calc(60px * var(--scale)); color:var(--terra);">Lower</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size: calc(60px * var(--scale)); color:var(--terra);">Lower</div>
           <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Lower taxes — but banned under IFRS</p>
         </div>
       </div>
@@ -831,7 +927,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 10 — ANIMATED BAR CHART ═══════════════════════════ -->
-  <section class="slide cream" data-label="10 COGS Comparison Chart">
+  <section class="slide cream" data-label="10 COGS Comparison Chart" data-section="2" data-slide="10" data-index="9">
     <div class="header-row">
       <span class="eyebrow">Visualizing the Impact · Tidal Goods Co.</span>
     </div>
@@ -859,15 +955,15 @@
 
       <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:24px;">
         <div class="card">
-          <h3 style="font-family:'Geist',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px;">The $400 swing</h3>
+          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px;">The $400 swing</h3>
           <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
             FIFO reports $400 less in COGS than LIFO on 20 units — meaning $400 more in gross profit. That's not a rounding error; that's a management decision showing up on the income statement.
           </p>
         </div>
         <div class="card" style="background: rgba(74,124,94,0.06); border-color: rgba(74,124,94,0.2);">
-          <h3 style="font-family:'Geist',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px; color:var(--sage);">IFRS note</h3>
+          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px; color:var(--sage);">IFRS note</h3>
           <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            LIFO is prohibited under International Financial Reporting Standards. Any US retailer planning to operate globally or go public internationally must use FIFO or WAC.
+            LIFO is prohibited under DM Sansnational Financial Reporting Standards. Any US retailer planning to operate globally or go public internationally must use FIFO or WAC.
           </p>
         </div>
       </div>
@@ -875,7 +971,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 11 — SECTION BREAK 2 ═══════════════════════════ -->
-  <section class="slide dark" data-label="11 Part 2">
+  <section class="slide dark" data-label="11 Part 2" data-section="2" data-slide="11" data-index="10">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
       <div class="eyebrow light" style="margin-bottom: 24px;">Part 2 of 3</div>
@@ -890,7 +986,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 12 — COGS FORMULA ═══════════════════════════ -->
-  <section class="slide cream" data-label="12 COGS Formula">
+  <section class="slide cream" data-label="12 COGS Formula" data-section="2" data-slide="12" data-index="11">
     <div class="header-row">
       <span class="eyebrow">The COGS Formula · Step by Step</span>
     </div>
@@ -929,7 +1025,7 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:24px;">
-        <div class="dark-panel">
+        <div class="formula-panel">
           =SUMPRODUCT or manual:<br>
           Beg_Inv + Purchases − End_Inv<br>
           = 12400 + 38600 − 9800<br>
@@ -945,7 +1041,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 13 — MARGIN VS MARKUP ═══════════════════════════ -->
-  <section class="slide cream" data-label="13 Margin vs Markup">
+  <section class="slide cream" data-label="13 Margin vs Markup" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
       <span class="eyebrow">Pricing Math · Margin vs. Markup</span>
     </div>
@@ -960,13 +1056,13 @@
         <div class="grid-2" style="gap:24px; max-width:780px;">
           <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.25);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">MARGIN</div>
-            <div style="font-family:'Instrument Serif',serif; font-size:calc(64px * var(--scale)); color:var(--sage);">40%</div>
+            <div style="font-family:'Bodoni Moda',serif; font-size:calc(64px * var(--scale)); color:var(--sage);">40%</div>
             <div style="font-size:var(--type-small); color:var(--text-soft); margin-top:12px; font-family:'JetBrains Mono',monospace;">$32 / $80 revenue</div>
             <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Profit ÷ Revenue. Used by investors and finance teams.</p>
           </div>
           <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.3);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--gold); margin-bottom:12px;">MARKUP</div>
-            <div style="font-family:'Instrument Serif',serif; font-size:calc(64px * var(--scale)); color:var(--gold);">66.7%</div>
+            <div style="font-family:'Bodoni Moda',serif; font-size:calc(64px * var(--scale)); color:var(--gold);">66.7%</div>
             <div style="font-size:var(--type-small); color:var(--text-soft); margin-top:12px; font-family:'JetBrains Mono',monospace;">$32 / $48 cost</div>
             <p style="font-size:var(--text-soft); font-size:var(--type-small); margin-top:8px;">Profit ÷ Cost. Used by buyers to set prices from known costs.</p>
           </div>
@@ -974,7 +1070,7 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:24px; justify-content:center;">
-        <div class="dark-panel">
+        <div class="formula-panel">
           Margin  = (Revenue − Cost) / Revenue<br>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (80 − 48) / 80 = <span style="color:#fff;">40%</span><br><br>
           Markup  = (Revenue − Cost) / Cost<br>
@@ -991,7 +1087,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 14 — COMMON MISTAKE ═══════════════════════════ -->
-  <section class="slide cream" data-label="14 Common Mistake">
+  <section class="slide cream" data-label="14 Common Mistake" data-section="3" data-slide="14" data-index="13">
     <div class="header-row">
       <span class="eyebrow">Watch Out For This</span>
     </div>
@@ -1001,7 +1097,7 @@
       <div style="flex:1;">
         <div class="mistake-box">
           <div class="mistake-label">⚠ Common Mistake — Inventory Overstatement</div>
-          <h3 style="font-family:'Geist',sans-serif; font-size:var(--type-lead); font-weight:700; margin-bottom:20px; color:var(--terra);">
+          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:700; margin-bottom:20px; color:var(--terra);">
             An inflated ending inventory count destroys two periods of accurate reporting
           </h3>
           <p style="font-size:var(--type-body); line-height:1.6; color:var(--text);">
@@ -1018,13 +1114,13 @@
       <div style="width:500px; display:flex; flex-direction:column; gap:24px;">
         <div class="card">
           <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">Period 1 — phantom $5K</div>
-          <div style="font-family:'Instrument Serif',serif; font-size:calc(48px * var(--scale)); color:var(--terra);">COGS ↓</div>
-          <div style="font-family:'Instrument Serif',serif; font-size:calc(48px * var(--scale)); color:var(--sage); margin-top:4px;">Profit ↑</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--terra);">COGS ↓</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--sage); margin-top:4px;">Profit ↑</div>
         </div>
         <div class="card">
           <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">Period 2 — correction cascades</div>
-          <div style="font-family:'Instrument Serif',serif; font-size:calc(48px * var(--scale)); color:var(--sage);">COGS ↑</div>
-          <div style="font-family:'Instrument Serif',serif; font-size:calc(48px * var(--scale)); color:var(--terra); margin-top:4px;">Profit ↓</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--sage);">COGS ↑</div>
+          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--terra); margin-top:4px;">Profit ↓</div>
         </div>
         <p style="font-size:var(--type-small); color:var(--muted); text-align:center;">Auditors look for exactly this pattern</p>
       </div>
@@ -1032,7 +1128,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 15 — SECTION BREAK 3 ═══════════════════════════ -->
-  <section class="slide dark" data-label="15 Part 3">
+  <section class="slide dark" data-label="15 Part 3" data-section="3" data-slide="15" data-index="14">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
       <div class="eyebrow light" style="margin-bottom: 24px;">Part 3 of 3</div>
@@ -1047,7 +1143,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 16 — OVERHEAD INTRO ═══════════════════════════ -->
-  <section class="slide cream" data-label="16 Overhead Intro">
+  <section class="slide cream" data-label="16 Overhead Intro" data-section="3" data-slide="16" data-index="15">
     <div class="header-row">
       <span class="eyebrow">Overhead · The Invisible Costs</span>
     </div>
@@ -1073,7 +1169,7 @@
             <p style="font-size:var(--type-small); font-weight:600; margin-top:8px;">Indirect Labor</p>
           </div>
         </div>
-        <div class="dark-panel" style="margin-top:32px;">
+        <div class="formula-panel" style="margin-top:32px;">
           Overhead Rate = Total Overhead ÷ Revenue<br>
           Tidal: $22,000 ÷ $110,000 = <span style="color:#fff;">20%</span>
         </div>
@@ -1083,7 +1179,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 17 — OVERHEAD ALLOCATION ═══════════════════════════ -->
-  <section class="slide cream" data-label="17 Overhead Allocation">
+  <section class="slide cream" data-label="17 Overhead Allocation" data-section="3" data-slide="17" data-index="16">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · Department Allocation</span>
     </div>
@@ -1145,8 +1241,8 @@
               <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1s" fill="freeze"/>
               <animate attributeName="stroke-dasharray" from="0 628.32" to="251.33 628.32" dur="0.8s" begin="1s" fill="freeze" calcMode="ease"/>
             </circle>
-            <text x="140" y="132" text-anchor="middle" font-family="Instrument Serif, serif" font-size="36" fill="var(--text)">$9,000</text>
-            <text x="140" y="162" text-anchor="middle" font-family="Geist, sans-serif" font-size="18" fill="var(--muted)">Monthly Rent</text>
+            <text x="140" y="132" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="36" fill="var(--text)">$9,000</text>
+            <text x="140" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="18" fill="var(--muted)">Monthly Rent</text>
           </svg>
         </div>
         <div style="display:flex; gap:16px; justify-content:center;">
@@ -1159,7 +1255,7 @@
             <span style="font-size:var(--type-small);">Warehouse 40%</span>
           </div>
         </div>
-        <div class="dark-panel" style="margin-top:8px;">
+        <div class="formula-panel" style="margin-top:8px;">
           Dept % = Dept Sq Ft ÷ Total Sq Ft<br>
           Surf: 2400 ÷ 4000 = <span style="color:#fff;">60%</span><br>
           Alloc: 60% × $9,000 = <span style="color:#fff;">$5,400</span>
@@ -1169,7 +1265,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 18 — OVERHEAD RATE ANIMATED ═══════════════════════════ -->
-  <section class="slide cream" data-label="18 Overhead Rate">
+  <section class="slide cream" data-label="18 Overhead Rate" data-section="3" data-slide="18" data-index="17">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · Overhead Rate Trend</span>
     </div>
@@ -1216,9 +1312,9 @@
       <div style="display:flex; flex-direction:column; align-items:center; gap:32px;">
         <div style="text-align:center;">
           <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">CURRENT RATE</div>
-          <div style="font-family:'Instrument Serif',serif; font-style:italic; font-size:calc(140px * var(--scale)); color:var(--sage); line-height:0.9;">20%</div>
+          <div style="font-family:'Bodoni Moda',serif; font-style:italic; font-size:calc(140px * var(--scale)); color:var(--sage); line-height:0.9;">20%</div>
         </div>
-        <div class="dark-panel">
+        <div class="formula-panel">
           Overhead Rate =<br>
           Total Overhead ÷ Revenue<br>
           = $22,000 ÷ $110,000<br>
@@ -1229,7 +1325,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 19 — DISCUSSION ═══════════════════════════ -->
-  <section class="slide dark" data-label="19 Discussion">
+  <section class="slide dark" data-label="19 Discussion" data-section="4" data-slide="19" data-index="18">
     <div class="grad-bar"></div>
     <div class="header-row">
       <span class="eyebrow light">Turn & Talk · 5 Minutes</span>
@@ -1254,7 +1350,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 20 — KEY TAKEAWAYS ═══════════════════════════ -->
-  <section class="slide cream" data-label="20 Takeaways">
+  <section class="slide cream" data-label="20 Takeaways" data-section="4" data-slide="20" data-index="19">
     <div class="header-row">
       <span class="eyebrow">Key Takeaways · Module 06</span>
     </div>
@@ -1278,7 +1374,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 21 — EXCEL PREVIEW ═══════════════════════════ -->
-  <section class="slide cream" data-label="21 Excel Preview">
+  <section class="slide cream" data-label="21 Excel Preview" data-section="4" data-slide="21" data-index="20">
     <div class="header-row">
       <span class="eyebrow">Coming Up · Excel Activity</span>
     </div>
@@ -1320,7 +1416,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 22 — CLOSE ═══════════════════════════ -->
-  <section class="slide dark" data-label="22 Close">
+  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
       <div class="eyebrow light" style="margin-bottom:24px;">BUS123 · MATH-M06</div>
@@ -1476,6 +1572,70 @@
     }
   }
   customElements.define('image-slot', ImageSlot);
+})();
+</script>
+
+
+<script>
+(function(){
+  function currentDeck(){ return document.querySelector('deck-stage'); }
+  function ensureDeckController(deck){
+    if(!deck || deck._slidesReady) return;
+    deck._slidesReady=true;
+    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
+    deck._idx=0;
+    deck._notes=[];
+    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
+    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
+    var notes=document.createElement('div');
+    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
+    document.body.appendChild(notes);
+    deck._notes_el=notes;
+    deck._go=function(n){
+      n=Math.max(0,Math.min(n,deck._slides.length-1));
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
+      deck._idx=n;
+      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
+    };
+    deck._toggleNotes=function(){
+      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
+      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
+    };
+    if(!window.__bus123RetrofitKeys){
+      window.__bus123RetrofitKeys=true;
+      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
+    }
+    deck._go(0);
+  }
+  function goToSection(section){
+    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
+    var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
+    if(target>=0) deck._go(target);
+  }
+  function addTabs(){
+    if(document.querySelector('.retrofit-tab-strip')) return;
+    var deck=currentDeck(); if(!deck) return;
+    ensureDeckController(deck);
+    var strip=document.createElement('nav');
+    strip.className='retrofit-tab-strip tab-strip';
+    strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';
+    document.body.appendChild(strip);
+    strip.querySelector('.retrofit-home-dot').addEventListener('click',function(){ if(deck._go) deck._go(0); });
+    strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.addEventListener('click',function(){ goToSection(btn.getAttribute('data-section')); }); });
+    var notesBtn=strip.querySelector('.retrofit-notes-btn');
+    if(notesBtn) notesBtn.addEventListener('click',function(){ var d=currentDeck(); if(d && d._toggleNotes) d._toggleNotes(); });
+    function sync(){
+      if(!deck._slides) return;
+      var active=deck._slides[deck._idx];
+      var sec=active && active.getAttribute('data-section');
+      strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-section')===sec); });
+      requestAnimationFrame(sync);
+    }
+    sync();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(addTabs,0); });
+  else setTimeout(addTabs,0);
 })();
 </script>
 

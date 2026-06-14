@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MATH-M09-L01 · Compound Interest &amp; Future Value</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/json" id="speaker-notes">
 [
   "Welcome back. Last module we moved money forward and backward with simple interest — linear growth. Today: compound interest. Same logic, one change: the interest earns interest. That changes everything over long horizons.",
@@ -26,9 +28,11 @@
   "Discussion. Computational: dollar difference between annual and monthly on $25,000 at 6% over 5 years. Conceptual: why exponential vs linear. Applied: 4% annual vs 3.8% monthly on $100,000 over 10 years — which wins?",
   "Three takeaways. The exponent FV=PV(1+i)^n. The function =FV(rate,nper,0,-pv). Rule of 72. Next: PMT and annuities — the pmt argument we left at zero today becomes the main event.",
   "Preview of M09-L02. Money goes in or out every period. Mortgages, car loans, retirement contributions. =PMT() calculates the required payment. Same TVM logic, new variable.",
-  "That is MATH-M09-L01. Questions? Key insight: interest earns interest. Same rate, exponentially more money the longer time passes. =FV() handles the exponent. Signs matter. Periods must match rates."
+  "That is MATH-M09-L01. Questions? Key insight: interest earns interest. Same rate, exponentially more money the longer time passes. =FV() handles the exponent. Signs matter. Periods must match rates.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
+  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-</script>
+  </script>
 <style>
   /* ============================================================
      BUS123 v2 Hybrid Design System — MATH-M09-L01
@@ -36,20 +40,27 @@
      ============================================================ */
 
   :root {
-    --ink:      #0E1116;
-    --paper:    #FAF8F3;
-    --paper-2:  #F2EEE5;
-    --white:    #FFFFFF;
-    --text:     #1A1F2C;
+    --ink:#0E1116;
+    --paper:#FAF8F3;
+    --paper-2:#F2EEE5;
+    --white:#FFFFFF;
+    --text:#1A1F2C;
     --text-soft:#4A5567;
-    --muted:    #7A8290;
-    --border:   #E5E1D6;
-    --sage:     #4A7C5E;
-    --gold:     #B8843D;
-    --terra:    #9C4A2B;
-    --gradient: linear-gradient(90deg, #B8843D, #9C4A2B, #4A7C5E);
+    --muted:#7A8290;
+    --border:#E5E1D6;
+    --sage:#4A7C5E;
+    --gold:#B8843D;
+    --terra:#9C4A2B;
+    --steel:#355773;
+    --formula-bg:#EAF3EC;
+    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+    --serif:"Bodoni Moda",serif;
+    --sans:"DM Sans",sans-serif;
+    --mono:"JetBrains Mono",monospace;
+    --font-display:var(--serif);
+    --font-body:var(--sans);
+    --font-mono:var(--mono);
 
-    /* Excel replica */
     --xls-header-bg:   #1a1a2e;
     --xls-header-text: #c9a84c;
     --xls-header-border:#c9a84c;
@@ -129,8 +140,8 @@
 
   /* ── Slide Scaler ── */
   .slide-scaler {
-    width: 960px;
-    height: 560px;
+    width: 1280px;
+    height: 720px;
     position: relative;
     transform-origin: center center;
   }
@@ -138,8 +149,8 @@
   /* ── Slide Base ── */
   .slide {
     display: none;
-    width: 960px;
-    height: 560px;
+    width: 1280px;
+    height: 720px;
     position: absolute;
     top: 0; left: 0;
     overflow: hidden;
@@ -758,6 +769,95 @@
   .r72-rate { font-family: 'Bodoni Moda',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
   .r72-years { font-family: 'DM Sans',sans-serif; font-size: 13px; color: var(--text-soft); }
   .r72-years strong { color: var(--text); }
+
+
+  /* BUS123 high-priority retrofit overrides */
+  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
+  .tab-strip { background: var(--ink); }
+  .formula-panel {
+    background: var(--formula-bg) !important;
+    border: 0 !important;
+    border-left: 4px solid var(--sage) !important;
+    border-radius: 0 8px 8px 0 !important;
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .label {
+    color: var(--steel) !important;
+    font-family: var(--mono) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+  }
+  .formula-panel code {
+    color: var(--ink) !important;
+    font-family: var(--mono) !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+  }
+  .formula-panel .fn,
+  .formula-panel code .fn {
+    color: var(--steel) !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    margin-bottom: 14px !important;
+  }
+  .formula-panel .comment,
+  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
+  .formula-panel .result,
+  .formula-panel code .result,
+  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
+  .formula-panel code .arg { color: var(--steel) !important; }
+  .formula-panel code .neg { color: var(--terra) !important; }
+  .retrofit-tab-strip {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 84px;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 9997;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .retrofit-home-dot {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--gradient);
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .retrofit-tab-strip .tab-btn {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.62);
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 12px 7px;
+    text-transform: uppercase;
+  }
+  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
+  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
+  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
+  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
 </style>
 </head>
 <body>
@@ -773,7 +873,7 @@
     <div class="slide-scaler" id="scaler">
 
       <!-- SLIDE 0 · Title -->
-      <section class="slide dark active" data-index="0" data-section="0">
+      <section class="slide dark active" data-section="0" data-slide="1" data-index="0">
         <div class="slide-inner">
           <div class="gradient-bar"></div>
           <div class="eyebrow gold anim-1">MATH-M09 · L01 &nbsp;·&nbsp; Meridian Advisory Group</div>
@@ -789,7 +889,7 @@
       </section>
 
       <!-- SLIDE 1 · Agenda -->
-      <section class="slide paper" data-index="1" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="2" data-index="1">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Today's Plan</div>
           <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
@@ -804,7 +904,7 @@
       </section>
 
       <!-- SLIDE 2 · I Can Statements -->
-      <section class="slide paper" data-index="2" data-section="0">
+      <section class="slide paper" data-section="0" data-slide="3" data-index="2">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Learning Objectives</div>
           <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
@@ -819,7 +919,7 @@
       </section>
 
       <!-- SLIDE 3 · Bridge from M08 -->
-      <section class="slide paper" data-index="3" data-section="1">
+      <section class="slide paper" data-section="1" data-slide="4" data-index="3">
         <div class="slide-inner">
           <div class="eyebrow sage anim-1">Part 1 · Building on M08</div>
           <div class="header-row anim-2"><h2 class="slide-title">From Simple to Compound — One Change, Exponential Impact</h2></div>
@@ -843,7 +943,7 @@
       </section>
 
       <!-- SLIDE 4 · $1,000 comparison table -->
-      <section class="slide paper" data-index="4" data-section="1">
+      <section class="slide paper" data-section="1" data-slide="5" data-index="4">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 1 · The Snowball Effect</div>
           <div class="header-row anim-2"><h2 class="slide-title">$1,000 at 5% — Simple vs. Compound</h2></div>
@@ -872,7 +972,7 @@
       </section>
 
       <!-- SLIDE 5 · Section break FV formula -->
-      <section class="slide dark" data-index="5" data-section="2">
+      <section class="slide dark" data-section="2" data-slide="6" data-index="5">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Future Value</div>
           <h2 class="section-title anim-2" style="color:var(--gold);">FV = PV × (1 + i)ⁿ</h2>
@@ -887,7 +987,7 @@
       </section>
 
       <!-- SLIDE 6 · =FV() Syntax -->
-      <section class="slide paper" data-index="6" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="7" data-index="6">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Excel =FV() Function</div>
           <div class="header-row anim-2"><h2 class="slide-title">The =FV() Function — Syntax First</h2></div>
@@ -915,7 +1015,7 @@
       </section>
 
       <!-- SLIDE 7 · Sign convention -->
-      <section class="slide paper" data-index="7" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="8" data-index="7">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 2 · Sign Convention</div>
           <div class="header-row anim-2"><h2 class="slide-title">Why pv Must Be Negative</h2></div>
@@ -934,7 +1034,7 @@
       </section>
 
       <!-- SLIDE 8 · Worked example -->
-      <section class="slide paper" data-index="8" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="9" data-index="8">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — $40,000 at 4% for 3 Years</h2></div>
@@ -958,7 +1058,7 @@
       </section>
 
       <!-- SLIDE 9 · Excel model annual -->
-      <section class="slide paper" data-index="9" data-section="2">
+      <section class="slide paper" data-section="2" data-slide="10" data-index="9">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 2 · Excel Setup</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian FV Model — Annual Compounding</h2></div>
@@ -986,7 +1086,7 @@
       </section>
 
       <!-- SLIDE 10 · Section break non-annual -->
-      <section class="slide dark" data-index="10" data-section="3">
+      <section class="slide dark" data-section="3" data-slide="11" data-index="10">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · Compounding Frequency</div>
           <h2 class="section-title anim-2" style="color:var(--terra);">Frequency Matters</h2>
@@ -999,7 +1099,7 @@
       </section>
 
       <!-- SLIDE 11 · Frequency table -->
-      <section class="slide paper" data-index="11" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="12" data-index="11">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Non-Annual Compounding</div>
           <div class="header-row anim-2"><h2 class="slide-title">$25,000 at 6% for 5 Years — What Frequency Does</h2></div>
@@ -1026,7 +1126,7 @@
       </section>
 
       <!-- SLIDE 12 · Rule of 72 -->
-      <section class="slide paper" data-index="12" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="13" data-index="12">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Mental Math Shortcut</div>
           <div class="header-row anim-2"><h2 class="slide-title">The Rule of 72 — Doubling Time Estimate</h2></div>
@@ -1050,7 +1150,7 @@
       </section>
 
       <!-- SLIDE 13 · Quarterly compounding worked example -->
-      <section class="slide paper" data-index="13" data-section="3">
+      <section class="slide paper" data-section="3" data-slide="14" data-index="13">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · Non-Annual Compounding</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Quarterly Compounding</h2></div>
@@ -1080,7 +1180,7 @@
       </section>
 
       <!-- SLIDE 14 · COMMON MISTAKE -->
-      <section class="slide dark" data-index="14" data-section="3" style="background:#1a0a05;">
+      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="15" data-index="14">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
           <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Adjusting nper but Forgetting to Adjust rate</h2>
@@ -1098,7 +1198,7 @@
       </section>
 
       <!-- SLIDE 15 · Student Practice -->
-      <section class="slide paper" data-index="15" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="16" data-index="15">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Student Practice · 8 Minutes</div>
           <div class="header-row anim-2"><h2 class="slide-title">Your Turn — Build the Meridian FV Model</h2></div>
@@ -1112,7 +1212,7 @@
       </section>
 
       <!-- SLIDE 16 · Discussion -->
-      <section class="slide paper" data-index="16" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
@@ -1126,7 +1226,7 @@
       </section>
 
       <!-- SLIDE 17 · Key Takeaways -->
-      <section class="slide paper" data-index="17" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -1141,7 +1241,7 @@
       </section>
 
       <!-- SLIDE 18 · Next lesson preview -->
-      <section class="slide paper" data-index="18" data-section="4">
+      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L02</div>
           <div class="header-row anim-2"><h2 class="slide-title">Next: PMT Function &amp; Annuities</h2></div>
@@ -1153,8 +1253,34 @@
         </div>
       </section>
 
+      <!-- RETROFIT SLIDE · Discussion -->
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Discussion</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Which Assumption Changes the Client Recommendation?</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div class="card"><h4 class="sage">Question 1</h4><p class="body-text">If Meridian changes only the compounding frequency, when does the answer change enough to matter for a real client?</p></div>
+            <div class="card tinted"><h4 class="gold">Question 2</h4><p class="body-text">Which input should you stress-test first: rate, years, or present value? Explain the business reason before calculating.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RETROFIT SLIDE · Interpretation Check -->
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
+        <div class="slide-inner">
+          <div class="eyebrow anim-1">Interpretation Check</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Turn the Formula Output Into Advice</h2></div>
+          <div class="title-rule gold"></div>
+          <div class="two-col anim-3">
+            <div class="formula-panel"><div class="label">Excel Syntax</div><code><span class="fn">=FV(rate, nper, pmt, pv)</span><span class="comment">Start with the function result.</span><span class="comment">Then explain what the sign and timing mean.</span></code></div>
+            <div class="card"><h4 class="terra">Client Language</h4><p class="body-text">Avoid saying “Excel says.” Say: “If the client invests this amount today at this rate, the expected balance is...”</p></div>
+          </div>
+        </div>
+      </section>
+
       <!-- SLIDE 19 · Close -->
-      <section class="slide dark" data-index="19" data-section="4">
+      <section class="slide dark" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L01 · Meridian Advisory Group</div>
@@ -1172,7 +1298,7 @@
 </div>
 <div class="nav-controls">
   <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 20</span>
+  <span class="slide-counter" id="counter">1 / 22</span>
   <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
   <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
 </div>
@@ -1184,7 +1310,7 @@
   const slides=Array.from(document.querySelectorAll('.slide'));
   const TOTAL=slides.length; let current=0,notesVisible=false;
   const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
-  const W=960,H=560;
+  const W=1280,H=720;
   function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}
   window.addEventListener('resize',rescale);rescale();
   function goTo(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(TOTAL-1,n));slides[current].classList.add('active');document.getElementById('counter').textContent=`${current+1} / ${TOTAL}`;updateTabs();if(notesVisible)showNotes();}

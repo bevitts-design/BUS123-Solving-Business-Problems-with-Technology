@@ -66,10 +66,16 @@ REQUIRED_TOKENS = (
 OLD_PALETTE_HEX = ("#0C1A2E", "#D4A052", "#BE6B4A", "#7AAB8C")
 
 SLIDE_COUNT_EXCEPTIONS = {
+    "INTRO/M01/bus123-intro-m01-l01-slides.html": 40,
     "MATH/M08/bus123-math-m08-l01-slides.html": 24,
 }
 
+COMMON_MISTAKE_SLIDE_EXCEPTIONS = {
+    "INTRO/M01/bus123-intro-m01-l01-slides.html": "20",
+}
+
 MULTI_COMPANY_EXCEPTIONS = {
+    "INTRO/M01/bus123-intro-m01-l01-slides.html": "Approved 40-slide course orientation deck introducing the current BUS123 case-study companies.",
     "INTRO/M01/bus123-intro-m01-l02-slides.html": "Intentional introduction of all four current BUS123 case-study companies.",
     "MATH/M07/bus123-math-m07-l01-slides.html": "Intentional sales/excise/property tax comparison across current companies.",
 }
@@ -287,8 +293,21 @@ def audit_deck(path: Path) -> AuditRow:
     if not has_common_mistake:
         issues.append("missing Common Mistake slide")
         major += 1
-    elif not common_mistake_18:
-        issues.append("Common Mistake not verifiably slide 18")
+    expected_common_mistake_slide = COMMON_MISTAKE_SLIDE_EXCEPTIONS.get(str(rel), "18")
+    if has_common_mistake and expected_common_mistake_slide != "18":
+        slide_pattern = re.escape(expected_common_mistake_slide)
+        common_mistake_expected = bool(
+            re.search(
+                rf"data-slide=[\"']{slide_pattern}[\"'][^>]*>.*?Common\s+Mistake|"
+                rf"Common\s+Mistake.*?data-slide=[\"']{slide_pattern}[\"']",
+                text,
+                flags=re.S | re.I,
+            )
+        )
+    else:
+        common_mistake_expected = common_mistake_18
+    if has_common_mistake and not common_mistake_expected:
+        issues.append(f"Common Mistake not verifiably slide {expected_common_mistake_slide}")
         minor += 1
     if not parser.speaker_notes_text:
         issues.append("missing speaker notes JSON")

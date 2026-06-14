@@ -2,7 +2,7 @@
 title: "Essential Functions: SUM, AVERAGE, MAX, MIN,"
 lesson: "EXCEL-M02-L01"
 kind: "Pre-Reading"
-status: "draft-from-pdf"
+status: "md file"
 output: "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf"
 ---
 

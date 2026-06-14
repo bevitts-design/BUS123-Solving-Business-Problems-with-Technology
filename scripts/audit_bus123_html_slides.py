@@ -11,6 +11,7 @@ import csv
 import json
 import re
 from dataclasses import dataclass
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Iterable
@@ -69,6 +70,7 @@ SLIDE_COUNT_EXCEPTIONS = {
 }
 
 MULTI_COMPANY_EXCEPTIONS = {
+    "INTRO/M01/bus123-intro-m01-l02-slides.html": "Intentional introduction of all four current BUS123 case-study companies.",
     "MATH/M07/bus123-math-m07-l01-slides.html": "Intentional sales/excise/property tax comparison across current companies.",
 }
 
@@ -232,6 +234,7 @@ def audit_deck(path: Path) -> AuditRow:
     notes_count = parse_notes_count(parser)
     root_css = root_block(text)
     body_text = re.sub(r"<style.*?</style>", "", text, flags=re.S | re.I)
+    decoded_text = unescape(text)
 
     external_scaffold = [
         src
@@ -243,8 +246,8 @@ def audit_deck(path: Path) -> AuditRow:
     font_context = "\n".join(re.findall(r"(?:font-family\s*:[^;}]+|fonts\.googleapis\.com[^\"']+|--font-[^:]+:[^;}]+|--serif:[^;}]+|--sans:[^;}]+|--mono:[^;}]+)", text, flags=re.I))
     detected_fonts = [font for font in ("Bodoni Moda", "DM Sans", "JetBrains Mono", *BANNED_FONTS) if font in font_context]
     banned_fonts = [font for font in BANNED_FONTS if font in font_context]
-    companies = [name for name in CURRENT_COMPANIES if name in text]
-    retired_names = [name for name in RETIRED_OR_ABSTRACT_NAMES if name in text]
+    companies = [name for name in CURRENT_COMPANIES if name in decoded_text]
+    retired_names = [name for name in RETIRED_OR_ABSTRACT_NAMES if name in decoded_text]
     missing_tokens = [token for token in REQUIRED_TOKENS if token not in root_css]
     old_palette = [hex_value for hex_value in OLD_PALETTE_HEX if hex_value.lower() in text.lower()]
 

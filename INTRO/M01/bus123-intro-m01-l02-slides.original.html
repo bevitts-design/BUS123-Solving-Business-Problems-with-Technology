@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>BUS123 · M01 · L02 — Technology in Everyday Life and Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/json" id="speaker-notes">
+[
+  "Alright, this is the lesson where we step back and ask why we're spending a whole semester on Microsoft 365. The honest answer is: because the gap between people who can use these tools casually and people who can wield them professionally is one of the biggest career-differentiators in early business careers. By the end of class today you'll know exactly what that gap looks like, where you fall on it right now, and where this course will move you to.",
+  "Let me start by counting tech with you. Be honest — before you walked into this room, how many separate technologies did you already use today? Alarm. Banking app. Maps. Email or Canvas. Music or podcast. An online order maybe. Probably six, easily, in the first hour of your day. Every one of those is built and maintained by someone who understood both the business problem AND the tool. That intersection is exactly what this course is about.",
+  "Four learning objectives. I'll come back to these at the end. Note objective two — the difference between a passive user and a professional operator. That distinction is the single most important idea in today's class. Listen for it.",
+  "One number to anchor the conversation. Eighty percent. Of U.S. job postings — across business roles — require at least intermediate spreadsheet skills before they'll even look at your application. Not bonus. Not nice-to-have. Required. This is the floor — and it's where most students enter BUS123 already.",
+  "Here's the distinction I want you to write down. On the left: passive user. Someone who opens spreadsheets others built. Types numbers in. Calls IT when something breaks. On the right: professional operator. Builds the spreadsheet from scratch. Writes the formulas. Troubleshoots first. The whole semester is moving you from left to right.",
+  "Part one. Let's look at where technology actually shows up in business — across industries, not just one.",
+  "Whatever your career path, this course matters. Finance: Excel models. Retail and operations: inventory systems. Marketing: dashboards. Healthcare: scheduling and billing. Consulting: PowerPoint and Word. Law and HR: documents and tables. The specific tools vary, but the underlying skills — building, organizing, communicating with data — are the same.",
+  "Four businesses you'll meet again and again this semester. Tidal Goods, a boutique retailer. Meridian, a financial advisory firm. Anchor and Oak, an event planning company. Harborside, a medical center. Each one has real, specific technology problems we'll solve in Excel. Get familiar with them — they're the recurring case studies for the whole course.",
+  "Part two. Now: where do you fit on the spectrum, and what does it cost you to stay where you are?",
+  "Employers think about digital skills in layers. Basic literacy and file management — those are expected for ANY job. Spreadsheet use — most roles. Formula building — this is the differentiating tier, and where BUS123 takes you. Above that — data analysis, modeling, automation — those are rare and pay a premium. We're not making you a data scientist. We're putting you firmly in the differentiating tier before you graduate.",
+  "Quick honest moment. The most common mistake students make at the start of this course is confusing 'I've used Excel' with 'I know Excel.' Typing numbers into a spreadsheet someone else built is not the same as building one. Making a slide deck for a class project is not the same as producing a client deliverable. Be honest about where you actually are. That self-honesty is how you grow this semester.",
+  "Here's a bigger frame for why this matters. Technology doesn't just execute business decisions — it changes which decisions are even possible. Before spreadsheets, pricing was gut feel. Inventory was a physical count. Cash flow took weeks to model. With modern tools? Dynamic pricing, real-time inventory, twelve-month cash flow in an afternoon. The business that understands its data outcompetes the one that doesn't.",
+  "Four ways this skill set pays off concretely in your career. Hiring — candidates who can demonstrate Excel proficiency advance further in interviews. First 90 days — digital fluency means less administrative drag, more visible work. Promotions — the ability to BUILD something others use is a consistent driver of early promotion. And entrepreneurship — if you ever start your own business, Excel is the first tool you'll need.",
+  "Part three. What do we actually do about all of this?",
+  "Quick honest take on AI. AI tools are real — Copilot is in Excel now. It's good at suggesting formulas you can describe clearly, drafting first versions, summarizing data. It's NOT good at knowing your business's context, catching errors it wasn't told to look for, or making judgment calls. The people who use AI most effectively are the ones who understand the underlying work well enough to verify what it produces. That's the professional operator. That's what we're building.",
+  "Four habits that will compound over the semester and your career. Name files so others can find them — not just you, today. Save and back up before you edit. Document your formulas — leave notes so future-you doesn't have to reverse-engineer it. And verify before you present — open the file somewhere other than where you built it.",
+  "Activity. Eight minutes individual, then share with the person next to you. Walk through these four steps for your own career path. Don't worry if you're not sure what your field is yet — best guess is fine. The point is to start the habit of connecting a real problem to a specific tool.",
+  "Quick recap of the module. Lesson 1: you got Microsoft 365 set up and learned the course structure. Lesson 2 — today — you understand WHY this work matters and how the case study businesses connect to the tools. Next module, EXCEL-M01, we start actually building. Blank sheets, real formulas.",
+  "One exit ticket question before you leave. Name one technology problem you'll face in your intended career — and which Microsoft 365 app would solve it. Write it on a notecard or post in Canvas, whichever the syllabus says. No wrong answers. Just start the habit.",
+  "Next class is EXCEL-M01: Creating and Editing Worksheets. Blank cell. First formula. The semester of building starts here. Complete any outstanding homework before next class. See you Wednesday."
+]
+</script>
+
+<style>
+  :root {
+    --ink:       #0E1116;
+    --paper:     #FAF8F3;
+    --paper-2:   #F2EEE5;
+    --white:     #FFFFFF;
+    --text:      #1A1F2C;
+    --text-soft: #4A5567;
+    --muted:     #7A8290;
+    --border:    #E5E1D6;
+    --border-strong: #D4CFC0;
+
+    --sage:  #4A7C5E;
+    --gold:  #B8843D;
+    --terra: #9C4A2B;
+    --steel: #355773;
+
+    --accent: var(--sage);
+    --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+
+    --scale: 1;
+    --type-display:  calc(112px * var(--scale));
+    --type-title:    calc(72px  * var(--scale));
+    --type-subtitle: calc(44px  * var(--scale));
+    --type-lead:     calc(34px  * var(--scale));
+    --type-body:     calc(28px  * var(--scale));
+    --type-small:    calc(24px  * var(--scale));
+    --type-eyebrow:  calc(24px  * var(--scale));
+    --type-mono:     calc(24px  * var(--scale));
+    --type-stat:     calc(280px * var(--scale));
+
+    --pad-x:       128px;
+    --pad-top:     104px;
+    --pad-bottom:  96px;
+    --gap-title:   56px;
+    --gap-item:    32px;
+
+    --font-display: "Instrument Serif", "Source Serif 4", Georgia, serif;
+    --font-sans:    "Geist", "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono:    "JetBrains Mono", "DM Mono", ui-monospace, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; color: var(--text); }
+  body { font-family: var(--font-sans); font-feature-settings: "ss01", "cv11"; }
+  deck-stage:not(:defined) { visibility: hidden; }
+  * { box-sizing: border-box; }
+
+  .slide {
+    background: var(--paper);
+    color: var(--text);
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide.dark    { background: var(--ink);  color: var(--paper); }
+  .slide.cream   { background: var(--paper); color: var(--text); }
+  .slide.mistake { background: #1A0E0A;     color: var(--paper); }
+
+  .gradient-bar {
+    position: absolute; left: 0; right: 0; height: 6px; background: var(--gradient);
+  }
+  .gradient-bar.top    { top: 0; }
+  .gradient-bar.bottom { bottom: 0; }
+
+  .display {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: var(--type-display); line-height: 1.02; letter-spacing: -0.01em; margin: 0;
+  }
+  .title {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: var(--type-title); line-height: 1.05; letter-spacing: -0.005em; margin: 0;
+  }
+  .subtitle {
+    font-family: var(--font-display); font-style: italic; font-weight: 400;
+    font-size: var(--type-subtitle); line-height: 1.2; color: var(--text-soft); margin: 0;
+  }
+  .lead {
+    font-family: var(--font-sans); font-size: var(--type-lead); line-height: 1.4;
+    letter-spacing: -0.01em; margin: 0;
+  }
+  .body {
+    font-family: var(--font-sans); font-size: var(--type-body); line-height: 1.5; margin: 0;
+  }
+  .small {
+    font-size: var(--type-small); line-height: 1.45; color: var(--text-soft);
+  }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: var(--type-eyebrow); font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin: 0;
+  }
+  .mono {
+    font-family: var(--font-mono); font-size: var(--type-mono); letter-spacing: 0.02em;
+  }
+
+  .dark .subtitle, .mistake .subtitle { color: rgba(250,248,243,0.7); }
+  .dark .small,    .mistake .small    { color: rgba(250,248,243,0.65); }
+
+  .slide-num {
+    position: absolute; top: 40px; right: 56px;
+    font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.12em; color: var(--muted);
+  }
+  .dark .slide-num, .mistake .slide-num { color: rgba(250,248,243,0.5); }
+
+  .course-tag {
+    font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent);
+  }
+
+  .rule { height: 1px; background: var(--border); border: 0; width: 100%; margin: 0; }
+  .dark .rule, .mistake .rule { background: rgba(250,248,243,0.15); }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 40px;
+  }
+  .card .card-label {
+    font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  }
+  .card .card-title {
+    font-family: var(--font-display); font-size: 36px; line-height: 1.1; margin: 0 0 12px;
+  }
+  .card .card-body {
+    font-size: var(--type-body); line-height: 1.45; color: var(--text-soft); margin: 0;
+  }
+  .dark .card, .mistake .card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--paper);
+  }
+  .dark .card .card-body, .mistake .card .card-body { color: rgba(250,248,243,0.75); }
+  .dark .card .card-title, .mistake .card .card-title { color: var(--paper); }
+
+  .numbered {
+    display: grid; grid-template-columns: 96px 1fr; gap: 32px; align-items: baseline;
+  }
+  .numbered .n {
+    font-family: var(--font-display); font-style: italic; font-size: 96px; line-height: 1; color: var(--accent);
+  }
+  .numbered .n-body {
+    font-family: var(--font-sans); font-size: var(--type-lead); line-height: 1.35; color: var(--text);
+  }
+  .dark .numbered .n-body, .mistake .numbered .n-body { color: var(--paper); }
+
+  .pill-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .pill {
+    background: var(--white); border: 1px solid var(--border); border-radius: 999px;
+    padding: 24px 36px; font-size: var(--type-body); text-align: center;
+  }
+  .pill .sub {
+    display: block; font-family: var(--font-mono); font-size: 24px; color: var(--muted);
+    margin-top: 6px; letter-spacing: 0.04em;
+  }
+  .dark .pill { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); color: var(--paper); }
+
+  image-slot {
+    border: 1px dashed var(--border-strong);
+    background:
+      repeating-linear-gradient(135deg, rgba(122,130,144,0.04) 0 18px, transparent 18px 36px),
+      var(--paper-2);
+    color: var(--muted); font-family: var(--font-mono); font-size: 24px;
+  }
+
+  .brand-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 56px;
+    flex: 1; min-height: 0;
+  }
+  .brand-tile {
+    --brand: var(--sage);
+    --brand-soft: rgba(74,124,94,0.1);
+    position: relative; overflow: hidden; min-height: 620px;
+    border: 1px solid color-mix(in srgb, var(--brand) 38%, var(--border));
+    border-radius: 14px; background: var(--white);
+    display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(14,17,22,0.06);
+  }
+  .brand-tile::before {
+    content: ""; position: absolute; inset: 0 0 auto; height: 270px;
+    background:
+      radial-gradient(circle at 24% 18%, rgba(255,255,255,0.8), transparent 34%),
+      linear-gradient(135deg, var(--brand-soft), rgba(255,255,255,0.82));
+  }
+  .brand-hero {
+    position: relative; height: 230px; display: grid; place-items: center; padding: 34px;
+  }
+  .brand-hero img {
+    width: 150px; height: 150px; object-fit: contain;
+    filter: drop-shadow(0 14px 18px rgba(14,17,22,0.14));
+  }
+  .brand-content {
+    position: relative; display: flex; flex-direction: column; gap: 18px;
+    padding: 28px 28px 30px; flex: 1;
+  }
+  .brand-label {
+    width: fit-content; margin: 0; padding: 9px 13px; border-radius: 999px;
+    background: var(--brand-soft); color: var(--brand);
+    font-family: var(--font-mono); font-size: 19px; letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 600;
+  }
+  .brand-name {
+    margin: 0; font-family: var(--font-display); font-size: 34px; line-height: 1.04; color: var(--text);
+  }
+  .brand-work {
+    margin: 0; color: var(--text-soft); font-size: 23px; line-height: 1.35;
+  }
+  .brand-chips {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto;
+  }
+  .brand-chip {
+    border: 1px solid color-mix(in srgb, var(--brand) 40%, var(--border));
+    color: var(--text-soft); border-radius: 999px; padding: 8px 12px;
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.02em;
+    background: rgba(255,255,255,0.68);
+  }
+
+  .fluency-motion {
+    position: relative; margin-top: 48px; flex: 1; min-height: 0; overflow: hidden;
+    border: 1px solid var(--border); border-radius: 18px; background:
+      linear-gradient(180deg, rgba(255,255,255,0.75), rgba(242,238,229,0.92)),
+      var(--paper-2);
+    padding: 42px 48px 42px 54px;
+  }
+  .fluency-motion::before {
+    content: ""; position: absolute; inset: 38px 42px;
+    background-image:
+      linear-gradient(rgba(122,130,144,0.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(122,130,144,0.1) 1px, transparent 1px);
+    background-size: 100% 82px, 116px 100%;
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .fluency-track {
+    position: relative; display: grid; grid-template-rows: repeat(6, 1fr); gap: 16px; height: 100%;
+  }
+  .tier {
+    --w: 50%;
+    --delay: 0s;
+    position: relative; display: grid; grid-template-columns: 360px 1fr 160px; align-items: center; gap: 26px;
+    transform: translateX(-32px); opacity: 0;
+    animation: tierIn 720ms cubic-bezier(.18,.82,.22,1) forwards;
+    animation-delay: var(--delay);
+  }
+  .tier-label {
+    margin: 0; font-family: var(--font-display); font-size: 34px; line-height: 1.05;
+    color: var(--text);
+  }
+  .tier-sub {
+    display: block; margin-top: 5px; font-family: var(--font-mono); font-size: 15px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  .tier-bar-wrap {
+    position: relative; height: 56px; border-radius: 999px;
+    background: rgba(255,255,255,0.7); border: 1px solid rgba(212,207,192,0.9);
+    overflow: hidden;
+  }
+  .tier-bar {
+    position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit;
+    background: linear-gradient(90deg, var(--sage), #77A889);
+    box-shadow: 0 0 24px rgba(74,124,94,0.28);
+    transform-origin: left center; transform: scaleX(0);
+    animation: barGrow 760ms cubic-bezier(.2,.85,.18,1) forwards;
+    animation-delay: calc(var(--delay) + 180ms);
+  }
+  .tier-bar::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 1.8s ease-in-out infinite;
+    animation-delay: calc(var(--delay) + 860ms);
+  }
+  .tier-muted .tier-bar {
+    background: linear-gradient(90deg, #9DA4AF, #C0C5CC);
+    box-shadow: none;
+  }
+  .tier-tag {
+    margin: 0; justify-self: start; min-width: 136px; text-align: center;
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--sage); border: 1px solid rgba(74,124,94,0.28); background: rgba(74,124,94,0.08);
+    border-radius: 999px; padding: 10px 12px;
+  }
+  .tier-muted .tier-tag {
+    color: var(--muted); border-color: rgba(122,130,144,0.28); background: rgba(122,130,144,0.08);
+  }
+  .bus-range {
+    position: absolute; right: 184px; top: 264px; bottom: 48px; width: 34px;
+    border: 5px solid var(--sage); border-left: 0; border-radius: 0 24px 24px 0;
+    opacity: 0; animation: rangePop 620ms ease-out 1.45s forwards;
+  }
+  .bus-range span {
+    position: absolute; right: 52px; top: 50%; transform: translate(0, -50%);
+    white-space: nowrap; font-family: var(--font-mono); font-size: 20px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--sage); background: var(--paper); padding: 12px 14px;
+    border-radius: 999px; border: 1px solid rgba(74,124,94,0.22);
+  }
+  @keyframes tierIn {
+    to { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes barGrow {
+    to { transform: scaleX(1); }
+  }
+  @keyframes shimmer {
+    0%, 38% { transform: translateX(-100%); }
+    70%, 100% { transform: translateX(120%); }
+  }
+  @keyframes rangePop {
+    from { transform: scaleY(0.72); opacity: 0; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tier, .tier-bar, .tier-bar::after, .bus-range { animation: none; opacity: 1; transform: none; }
+    .tier-bar { transform: scaleX(1); }
+  }
+
+  .stat-num {
+    font-family: var(--font-display); font-style: italic;
+    font-size: var(--type-stat); line-height: 0.95; letter-spacing: -0.03em; color: var(--accent); margin: 0;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .section-num {
+    font-family: var(--font-display); font-style: italic; font-size: 280px;
+    line-height: 1; color: var(--accent); opacity: 0.85;
+  }
+
+  .header-row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 32px;
+    margin-bottom: var(--gap-title);
+  }
+  .header-row .title { max-width: 1300px; }
+  .header-row .eyebrow { white-space: nowrap; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; flex: 1; min-height: 0; }
+  .two-col-asym { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; flex: 1; min-height: 0; }
+  .stack { display: flex; flex-direction: column; gap: var(--gap-item); }
+  .stack-lg { display: flex; flex-direction: column; gap: 56px; }
+
+  .tweaks-host { position: fixed; bottom: 0; right: 0; z-index: 10000; }
+
+  /* Mistake banner — terra accent only for this slide type */
+  .mistake-banner {
+    display: inline-flex; align-items: baseline; gap: 16px;
+    background: var(--terra); color: var(--paper);
+    padding: 18px 28px; border-radius: 10px;
+    font-family: var(--font-mono); font-size: 24px;
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 32px;
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080" no-rail>
+
+  <!-- 01 · TITLE -->
+  <section class="slide dark" data-label="01 Title">
+    <span class="gradient-bar top"></span>
+    <span class="gradient-bar bottom"></span>
+    <span class="slide-num">01</span>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; max-width:1500px;">
+      <p class="course-tag" style="margin-bottom: 40px;">BUS 123 · Introduction to Business · M01 · L02</p>
+      <h1 class="display">Technology in everyday<br/>life and business.</h1>
+      <p class="subtitle" style="margin-top: 40px; max-width: 1200px;">Why digital fluency is no longer optional — and how it shapes every career path.</p>
+    </div>
+    <p class="small" style="font-family: var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;">Prof. Evitts · Gerrish School of Business · Endicott College</p>
+  </section>
+
+  <!-- 02 · HOOK — A DAY IN YOUR LIFE -->
+  <section class="slide cream" data-label="02 Hook · Day in Your Life">
+    <span class="slide-num">02</span>
+    <div class="header-row">
+      <h2 class="title">Before this class, you've already used six.</h2>
+      <p class="eyebrow">A day in your life</p>
+    </div>
+    <hr class="rule" />
+    <p class="lead" style="color: var(--text-soft); margin-top: 40px; max-width: 1400px;">Every one of these is built and maintained by someone who understands both the business problem <em>and</em> the tool.</p>
+    <div class="pill-grid" style="margin-top: 56px;">
+      <div class="pill" style="background-color: #DAF4DE">Alarm app<span class="sub">cloud-synced</span></div>
+      <div class="pill" style="background-color: #F4E6CC">Banking app<span class="sub">balance · payments</span></div>
+      <div class="pill" style="background-color: #F2D9CE">Maps<span class="sub">real-time routing</span></div>
+      <div class="pill" style="background-color: #D6E2EE">Canvas · email<span class="sub">notifications</span></div>
+      <div class="pill" style="background-color: #DAF4DE">Streaming<span class="sub">algorithmic feed</span></div>
+      <div class="pill" style="background-color: #F4E6CC">Online order<span class="sub">automated logistics</span></div>
+    </div>
+  </section>
+
+  <!-- 03 · LEARNING OBJECTIVES -->
+  <section class="slide cream" data-label="03 Learning Objectives">
+    <span class="slide-num">03</span>
+    <div class="header-row">
+      <h2 class="title">By the end of class, you'll be able to&hellip;</h2>
+      <p class="eyebrow">Learning Objectives</p>
+    </div>
+    <hr class="rule" />
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 40px 80px; margin-top: 64px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body">Navigate Microsoft 365's core apps — Word, Excel, PowerPoint.</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body">Distinguish a passive user from a professional operator.</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body">Identify three ways technology shapes decisions in a real industry.</div></div>
+      <div class="numbered"><div class="n">04</div><div class="n-body">Connect a Microsoft 365 app to a workflow in your intended career.</div></div>
+    </div>
+  </section>
+
+  <!-- 04 · BIG STAT -->
+  <section class="slide dark" data-label="04 Stat · 80 percent">
+    <span class="slide-num">04</span>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <p class="eyebrow" style="color: var(--gold); margin-bottom: 32px;">U.S. job postings · 2025</p>
+      <p class="stat-num" style="color: var(--gold);">80%</p>
+      <p class="lead" style="color: var(--paper); max-width: 1400px; margin-top: 40px; font-family: var(--font-display); font-style: italic; font-size: 56px; line-height: 1.18;">require intermediate-or-better spreadsheet skills before an employer will even look at your application.</p>
+      <p class="small" style="margin-top: 36px; color: rgba(250,248,243,0.6);">Not bonus. Not nice-to-have. Required.</p>
+    </div>
+  </section>
+
+  <!-- 05 · PASSIVE vs PROFESSIONAL OPERATOR -->
+  <section class="slide cream" data-label="05 Passive vs Professional">
+    <span class="slide-num">05</span>
+    <div class="header-row">
+      <h2 class="title">The shift this course is built around.</h2>
+      <p class="eyebrow">Core distinction</p>
+    </div>
+    <hr class="rule" />
+    <div class="two-col" style="margin-top: 56px;">
+      <div class="card">
+        <p class="card-label" style="color: var(--terra);">Passive user</p>
+        <p class="card-title">Uses what others configured.</p>
+        <p class="card-body">Opens spreadsheets someone else built. Types numbers into cells with formulas already in place. Saves files wherever they land. Calls IT when something breaks. Asks: <em>"What does this button do?"</em></p>
+      </div>
+      <div class="card">
+        <p class="card-label">Professional operator</p>
+        <p class="card-title">Builds tools to solve problems.</p>
+        <p class="card-body">Designs the spreadsheet from a blank sheet. Writes formulas — and knows what they calculate. Names files so a team can navigate them. Troubleshoots first. Asks: <em>"Which tool is right for this problem?"</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · SECTION 1 -->
+  <section class="slide dark" data-label="06 Section · Part 1">
+    <span class="gradient-bar top"></span>
+    <span class="gradient-bar bottom"></span>
+    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <p class="section-eyebrow" style="margin-bottom: 24px;">Part 1 of 3</p>
+        <h2 class="display" style="color: var(--paper);">Where tech<br/>meets business.</h2>
+        <p class="subtitle" style="margin-top:36px;">Every industry. Every role. Every decision.</p>
+      </div>
+      <div style="text-align:right;"><span class="section-num">I</span></div>
+    </div>
+  </section>
+
+  <!-- 07 · SECTORS -->
+  <section class="slide cream" data-label="07 Across Sectors">
+    <span class="slide-num">07</span>
+    <div class="header-row">
+      <h2 class="title">Whatever your path, the tools are the same.</h2>
+      <p class="eyebrow">Tech across sectors</p>
+    </div>
+    <hr class="rule" />
+    <div class="pill-grid" style="grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 64px;">
+      <div class="pill" style="background-color: #F4E6CC">Finance &amp; accounting<span class="sub">models · dashboards · TVM</span></div>
+      <div class="pill" style="background-color: #DAF4DE">Retail &amp; operations<span class="sub">inventory · POS · payroll</span></div>
+      <div class="pill" style="background-color: #F2D9CE">Marketing<span class="sub">campaign · segments · A/B</span></div>
+      <div class="pill" style="background-color: #D6E2EE">Healthcare<span class="sub">scheduling · billing · compliance</span></div>
+      <div class="pill" style="background-color: #DAF4DE">Management &amp; consulting<span class="sub">decks · reports · analysis</span></div>
+      <div class="pill" style="background-color: #F2D9CE">Law &amp; HR<span class="sub">contracts · payroll · tracking</span></div>
+    </div>
+    <p class="small" style="margin-top: 48px; text-align: center; max-width: 60ch; align-self: center;">The specific tools vary by industry. The underlying skills — build, organize, communicate with data — don't.</p>
+  </section>
+
+  <!-- 08 · FOUR CASE STUDIES -->
+  <section class="slide cream" data-label="08 Four Case Studies">
+    <span class="slide-num">08</span>
+    <div class="header-row">
+      <h2 class="title">Four businesses you'll meet all semester.</h2>
+      <p class="eyebrow">Case study companies</p>
+    </div>
+    <hr class="rule" />
+    <div class="brand-grid">
+      <div class="brand-tile" style="--brand: var(--sage); --brand-soft: rgba(74,124,94,0.12);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/tidal-goods/tidal-goods-icon-badge.png" alt="Tidal Goods Co. logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Retail</p>
+          <p class="brand-name">Tidal Goods Co.</p>
+          <p class="brand-work">Inventory, markup, COGS, and margin analysis.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Inventory</span>
+            <span class="brand-chip">COGS</span>
+            <span class="brand-chip">Margins</span>
+          </div>
+        </div>
+      </div>
+      <div class="brand-tile" style="--brand: var(--gold); --brand-soft: rgba(184,132,61,0.14);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-icon-badge.png" alt="Meridian Advisory Group logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Advisory</p>
+          <p class="brand-name">Meridian Advisory</p>
+          <p class="brand-work">TVM, taxes, payroll, and loan amortization.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">TVM</span>
+            <span class="brand-chip">Loans</span>
+            <span class="brand-chip">Payroll</span>
+          </div>
+        </div>
+      </div>
+      <div class="brand-tile" style="--brand: var(--terra); --brand-soft: rgba(156,74,43,0.13);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-icon-badge.png" alt="Anchor and Oak Events logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Events</p>
+          <p class="brand-name">Anchor &amp; Oak</p>
+          <p class="brand-work">Breakeven, cash flow, and scenario pricing.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Breakeven</span>
+            <span class="brand-chip">Cash flow</span>
+            <span class="brand-chip">Pricing</span>
+          </div>
+        </div>
+      </div>
+      <div class="brand-tile" style="--brand: var(--steel); --brand-soft: rgba(53,87,115,0.13);">
+        <div class="brand-hero">
+          <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical Center logo">
+        </div>
+        <div class="brand-content">
+          <p class="brand-label">Healthcare</p>
+          <p class="brand-name">Harborside Medical</p>
+          <p class="brand-work">Payer mix, payroll, and budget variance.</p>
+          <div class="brand-chips">
+            <span class="brand-chip">Payer mix</span>
+            <span class="brand-chip">Payroll</span>
+            <span class="brand-chip">Variance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · SECTION 2 -->
+  <section class="slide dark" data-label="09 Section · Part 2">
+    <span class="gradient-bar top"></span>
+    <span class="gradient-bar bottom"></span>
+    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <p class="section-eyebrow" style="margin-bottom: 24px;">Part 2 of 3</p>
+        <h2 class="display" style="color: var(--paper);">Where you fit<br/>on the spectrum.</h2>
+        <p class="subtitle" style="margin-top:36px;">And what it costs to stay where you are.</p>
+      </div>
+      <div style="text-align:right;"><span class="section-num">II</span></div>
+    </div>
+  </section>
+
+  <!-- 10 · FLUENCY SPECTRUM -->
+  <section class="slide cream" data-label="10 Digital Fluency Spectrum">
+    <span class="slide-num">10</span>
+    <div class="header-row">
+      <h2 class="title">Six layers. BUS123 lifts you through four.</h2>
+      <p class="eyebrow">Digital fluency spectrum</p>
+    </div>
+    <hr class="rule" />
+    <div class="fluency-motion" aria-label="Animated digital fluency spectrum from basic literacy through modeling and automation">
+      <div class="fluency-track">
+        <div class="tier tier-muted" style="--w: 48%; --delay: 0ms;">
+          <p class="tier-label">Modeling &amp; automation<span class="tier-sub">Rare skill</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">Premium pay</p>
+        </div>
+        <div class="tier tier-muted" style="--w: 58%; --delay: 120ms;">
+          <p class="tier-label">Data analysis<span class="tier-sub">Advanced</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">Next layer</p>
+        </div>
+        <div class="tier" style="--w: 72%; --delay: 240ms;">
+          <p class="tier-label">Formula building<span class="tier-sub">Differentiator</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 82%; --delay: 360ms;">
+          <p class="tier-label">Spreadsheet use<span class="tier-sub">Most business roles</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 91%; --delay: 480ms;">
+          <p class="tier-label">File management<span class="tier-sub">Expected</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+        <div class="tier" style="--w: 98%; --delay: 600ms;">
+          <p class="tier-label">Basic literacy<span class="tier-sub">Every job</span></p>
+          <div class="tier-bar-wrap"><span class="tier-bar"></span></div>
+          <p class="tier-tag">BUS123</p>
+        </div>
+      </div>
+      <div class="bus-range"><span>Course range</span></div>
+    </div>
+  </section>
+
+  <!-- 11 · COMMON MISTAKE -->
+  <section class="slide mistake" data-label="11 Common Mistake">
+    <span class="slide-num">11</span>
+    <p class="mistake-banner">⚠ Common mistake</p>
+    <h2 class="title" style="color: var(--paper); max-width: 1500px; margin-bottom: 48px;">Confusing "I've used it" with "I know it."</h2>
+    <hr class="rule" />
+    <div class="stack-lg" style="margin-top: 56px; max-width: 1500px;">
+      <p class="lead" style="color: rgba(250,248,243,0.85);"><strong style="color: var(--terra);">"I've typed in Excel"</strong> &nbsp;≠&nbsp; building a formula that calculates payroll for six employees with different pay structures.</p>
+      <p class="lead" style="color: rgba(250,248,243,0.85);"><strong style="color: var(--terra);">"I've made a slide deck"</strong> &nbsp;≠&nbsp; producing a presentation a client or executive will show their board.</p>
+      <p class="lead" style="color: rgba(250,248,243,0.85);"><strong style="color: var(--terra);">"I know how to save files"</strong> &nbsp;≠&nbsp; running a file system a team can navigate without your help.</p>
+    </div>
+  </section>
+
+  <!-- 12 · HOW TECH SHAPES DECISIONS -->
+  <section class="slide cream" data-label="12 Tech Shapes Decisions">
+    <span class="slide-num">12</span>
+    <div class="header-row">
+      <h2 class="title">Tech doesn't just execute decisions. <br/>It changes them.</h2>
+      <p class="eyebrow">Before / After</p>
+    </div>
+    <hr class="rule" />
+    <div class="two-col" style="margin-top: 56px;">
+      <div class="card">
+        <p class="card-label" style="color: var(--muted);">Before the spreadsheet era</p>
+        <ul style="margin: 16px 0 0; padding-left: 22px; color: var(--text-soft); font-size: var(--type-body); line-height: 1.55;">
+          <li style="margin-bottom: 12px;">Pricing by gut and experience.</li>
+          <li style="margin-bottom: 12px;">Inventory by physical count.</li>
+          <li style="margin-bottom: 12px;">Payroll by hand — slow, error-prone.</li>
+          <li>Cash flow took weeks to project.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="card-label">With modern tools</p>
+        <ul style="margin: 16px 0 0; padding-left: 22px; color: var(--text); font-size: var(--type-body); line-height: 1.55;">
+          <li style="margin-bottom: 12px;">Dynamic pricing in real time.</li>
+          <li style="margin-bottom: 12px;">Inventory tracked, alerts fire automatically.</li>
+          <li style="margin-bottom: 12px;">Payroll processed in minutes.</li>
+          <li>Twelve-month cash flow in an afternoon.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · CAREER PAYOFF -->
+  <section class="slide cream" data-label="13 Career Payoff">
+    <span class="slide-num">13</span>
+    <div class="header-row">
+      <h2 class="title">Four ways this pays off, concretely.</h2>
+      <p class="eyebrow">Career impact</p>
+    </div>
+    <hr class="rule" />
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px;">
+      <div class="card">
+        <p class="card-label">Hiring</p>
+        <p class="card-body">Candidates who demonstrate Excel proficiency in interviews advance further in finance, ops, and management roles.</p>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--gold);">First 90 days</p>
+        <p class="card-body">Digitally-fluent new hires spend less time on admin and more on visible, high-impact work. Managers notice.</p>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--terra);">Promotions</p>
+        <p class="card-body">Building something — a model, a report, a dashboard — that others use is a consistent driver of early promotion.</p>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--steel);">Entrepreneurship</p>
+        <p class="card-body">If you start your own business, Excel is the first tool you'll need. Budgets, pricing, payroll — all live there first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 · SECTION 3 -->
+  <section class="slide dark" data-label="14 Section · Part 3">
+    <span class="gradient-bar top"></span>
+    <span class="gradient-bar bottom"></span>
+    <div style="flex:1; display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <p class="section-eyebrow" style="margin-bottom: 24px;">Part 3 of 3</p>
+        <h2 class="display" style="color: var(--paper);">What to do<br/>about it.</h2>
+        <p class="subtitle" style="margin-top:36px;">Habits, the honest AI take, and activities before you leave.</p>
+      </div>
+      <div style="text-align:right;"><span class="section-num">III</span></div>
+    </div>
+  </section>
+
+  <!-- 15 · WHERE AI FITS -->
+  <section class="slide cream" data-label="15 Where AI Fits">
+    <span class="slide-num">15</span>
+    <div class="header-row">
+      <h2 class="title">Where AI fits — honestly.</h2>
+      <p class="eyebrow">AI fluency</p>
+    </div>
+    <hr class="rule" />
+    <div class="two-col" style="margin-top: 56px;">
+      <div class="card">
+        <p class="card-label">AI is good at</p>
+        <ul style="margin: 16px 0 0; padding-left: 22px; color: var(--text); font-size: var(--type-body); line-height: 1.55;">
+          <li style="margin-bottom: 12px;">Suggesting formulas you can describe clearly.</li>
+          <li style="margin-bottom: 12px;">Drafting first versions of docs and slides.</li>
+          <li style="margin-bottom: 12px;">Summarizing data in plain language.</li>
+          <li>Spotting patterns in data you give it.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--terra);">AI is not good at</p>
+        <ul style="margin: 16px 0 0; padding-left: 22px; color: var(--text); font-size: var(--type-body); line-height: 1.55;">
+          <li style="margin-bottom: 12px;">Knowing your business's specific context.</li>
+          <li style="margin-bottom: 12px;">Catching errors it wasn't told to check.</li>
+          <li style="margin-bottom: 12px;">Making judgment calls about meaning.</li>
+          <li>Building your credibility — you have to do that.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="small" style="margin-top: 40px; max-width: 70ch; font-style: italic; font-family: var(--font-display); font-size: 28px;">The people who use AI most effectively are the ones who understand the underlying work well enough to verify what it produces.</p>
+  </section>
+
+  <!-- 16 · HABITS THAT PAY OFF -->
+  <section class="slide cream" data-label="16 Habits That Pay Off">
+    <span class="slide-num">16</span>
+    <div class="header-row">
+      <h2 class="title">Four habits that compound.</h2>
+      <p class="eyebrow">Tech habits</p>
+    </div>
+    <hr class="rule" />
+    <div class="stack-lg" style="margin-top: 56px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body"><strong>Name files so others can find them</strong> — not just you, today.</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body"><strong>Save and back up before you edit.</strong> OneDrive versioning helps; the habit matters more.</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body"><strong>Document your formulas.</strong> A comment cell explaining the logic is a gift to future-you.</div></div>
+      <div class="numbered"><div class="n">04</div><div class="n-body"><strong>Verify before you present.</strong> Open the file on a different device first.</div></div>
+    </div>
+  </section>
+
+  <!-- 17 · ACTIVITY -->
+  <section class="slide cream" data-label="17 Activity">
+    <span class="slide-num">17</span>
+    <div class="header-row">
+      <h2 class="title" style="border-style: none">Map your career to a tool.</h2>
+      <p class="eyebrow">Activity · 8 min individual · share with partner</p>
+    </div>
+    <hr class="rule" />
+    <div class="stack-lg" style="margin-top: 56px;">
+      <div class="numbered"><div class="n">01</div><div class="n-body"><strong>Name your intended field.</strong> Finance? Marketing? Healthcare admin? Best guess is fine.</div></div>
+      <div class="numbered"><div class="n">02</div><div class="n-body"><strong>Name one tech problem</strong> someone in that role faces regularly.</div></div>
+      <div class="numbered"><div class="n">03</div><div class="n-body"><strong>Which Microsoft 365 app?</strong> Excel, Word, or PowerPoint — and why?</div></div>
+      <div class="numbered"><div class="n">04</div><div class="n-body"><strong>What's the output?</strong> Table, chart, report, deck. One sentence.</div></div>
+    </div>
+  </section>
+
+  <!-- 18 · MODULE WRAP-UP -->
+  <section class="slide cream" data-label="18 Module Wrap-Up">
+    <span class="slide-num">18</span>
+    <div class="header-row">
+      <h2 class="title">Three lessons. One module. Done.</h2>
+      <p class="eyebrow">Module 01 wrap-up</p>
+    </div>
+    <hr class="rule" />
+    <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px;">
+      <div class="card">
+        <p class="card-label">✓ L01</p>
+        <p class="card-title" style="font-size: 30px;">Software Essentials</p>
+        <p class="card-body" style="font-size: 24px;">Microsoft 365 installed. OneDrive synced. BUS123 folder structure live.</p>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--gold);">✓ L02</p>
+        <p class="card-title" style="font-size: 30px;">Course Introduction</p>
+        <p class="card-body" style="font-size: 24px;">Course structure: INTRO → EXCEL → MATH. Case study businesses introduced.</p>
+      </div>
+      <div class="card">
+        <p class="card-label" style="color: var(--terra);">✓ L02</p>
+        <p class="card-title" style="font-size: 30px;">Tech in Business</p>
+        <p class="card-body" style="font-size: 24px;">Passive user vs professional operator. Why digital fluency differentiates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 · EXIT TICKET -->
+  <section class="slide cream" data-label="19 Exit Ticket">
+    <span class="slide-num">19</span>
+    <div class="header-row">
+      <h2 class="title">One question before you leave.</h2>
+      <p class="eyebrow">Exit ticket · 3 min · notecard or Canvas</p>
+    </div>
+    <hr class="rule" />
+    <div style="margin-top: 80px; max-width: 1500px;">
+      <p class="lead" style="font-family: var(--font-display); font-style: italic; font-size: 52px; line-height: 1.2;">Name one technology problem you'll face in your intended career — and which Microsoft 365 app would solve it.</p>
+      <p class="small" style="margin-top: 36px;">There is no wrong answer. The point is starting the habit of connecting real problems to specific tools.</p>
+    </div>
+  </section>
+
+  <!-- 20 · UP NEXT -->
+  <section class="slide dark" data-label="20 Up Next · EXCEL-M01">
+    <span class="gradient-bar top"></span>
+    <span class="gradient-bar bottom"></span>
+    <span class="slide-num">20</span>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+      <p class="course-tag" style="color: var(--gold); margin-bottom: 36px;">Coming next · EXCEL-M01</p>
+      <h2 class="display" style="color: var(--paper);">Creating &amp; editing<br/>worksheets.</h2>
+      <p class="subtitle" style="margin-top: 36px; max-width: 1000px;">Blank sheet. Blank cell. Your first formula.<br/>The semester of building starts here.</p>
+      <p class="small" style="margin-top: 56px; font-family: var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;">Complete any outstanding homework before next class</p>
+    </div>
+  </section>
+
+</deck-stage>
+
+<div id="tweaks-root" class="tweaks-host"></div>
+
+<script src="../../deck-stage.js"></script>
+<script src="../../image-slot.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="../../tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+const DECK_TWEAKS = /*EDITMODE-BEGIN*/{
+  "typeScale": 1.15,
+  "accent": "sage"
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  sage:  "#4A7C5E",
+  gold:  "#B8843D",
+  terra: "#9C4A2B",
+  steel: "#355773"
+};
+
+function DeckTweaks() {
+  const [t, setTweak] = useTweaks(DECK_TWEAKS);
+  React.useEffect(() => {
+    document.documentElement.style.setProperty('--scale', String(t.typeScale));
+    document.documentElement.style.setProperty('--accent', ACCENTS[t.accent] || ACCENTS.sage);
+  }, [t.typeScale, t.accent]);
+
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection title="Type">
+        <TweakSlider label="Global type scale" value={t.typeScale} min={0.8} max={1.25} step={0.05}
+          onChange={(v) => setTweak('typeScale', v)} />
+      </TweakSection>
+      <TweakSection title="Course accent">
+        <TweakSelect label="Accent" value={t.accent}
+          options={[
+            { value: 'sage',  label: 'BUS123 · Sage' },
+            { value: 'gold',  label: 'BUS331 · Gold' },
+            { value: 'terra', label: 'BUS311 · Terra' },
+            { value: 'steel', label: 'BUS210 · Steel' }
+          ]}
+          onChange={(v) => setTweak('accent', v)} />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('tweaks-root'));
+root.render(<DeckTweaks />);
+</script>
+
+</body>
+</html>

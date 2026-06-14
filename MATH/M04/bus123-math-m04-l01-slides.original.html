@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BUS123 · MATH M04 · Markups, Markdowns, and Break-Even</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1116; --paper: #FAF8F3; --paper-2: #F2EEE5; --white: #FFFFFF;
+      --text: #1A1F2C; --text-soft: #4A5567; --muted: #7A8290; --border: #E5E1D6;
+      --sage: #4A7C5E; --gold: #B8843D; --terra: #9C4A2B; --steel: #355773;
+      --accent: var(--sage);
+      --gradient: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+      --font-display: 'Instrument Serif', serif; --font-body: 'Geist', sans-serif; --font-mono: 'JetBrains Mono', monospace;
+      --scale: 1; --type-display: calc(112px * var(--scale)); --type-title: calc(72px * var(--scale));
+      --type-subtitle: calc(44px * var(--scale)); --type-lead: calc(34px * var(--scale));
+      --type-body: calc(28px * var(--scale)); --type-small: calc(24px * var(--scale)); --type-mono: calc(24px * var(--scale));
+      --pad-x: 128px; --pad-top: 104px; --pad-bottom: 96px; --gap-title: 56px; --gap-item: 32px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #111; overflow: hidden; }
+    .slide { width: 1920px; height: 1080px; overflow: hidden; font-family: var(--font-body); }
+    .slide.dark { background: var(--ink); color: var(--white); }
+    .slide.cream { background: var(--paper); color: var(--text); }
+    .gradient-bar { height: 6px; background: var(--gradient); width: 100%; }
+    .slide-pad { padding: var(--pad-top) var(--pad-x) var(--pad-bottom); height: 100%; }
+    .dark .slide-pad { height: calc(100% - 6px); }
+    .eyebrow { font-family: var(--font-mono); font-size: var(--type-eyebrow); letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+    h1 { font-family: var(--font-display); font-size: var(--type-title); font-weight: 400; line-height: 1.06; margin: 0 0 var(--gap-title); }
+    .dark h1 { font-size: var(--type-display); max-width: 1300px; }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(520px, .95fr); gap: 64px; align-items: center; }
+    .dense-text { font-size: var(--type-body); line-height: 1.45; color: inherit; }
+    .dense-text br { line-height: 1.9; }
+    .kicker { margin-top: 36px; font-size: var(--type-lead); line-height: 1.32; color: var(--text-soft); }
+    .dark .kicker { color: rgba(255,255,255,.66); }
+    .visual { min-height: 520px; display: flex; align-items: center; justify-content: center; }
+    image-slot { width: 100%; height: 520px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); }
+    .diagram { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .diagram span { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 56px 24px; text-align: center; font-size: var(--type-lead); color: var(--text); }
+    .excel-card { width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 32px; }
+    .fx { font-family: var(--font-mono); font-size: var(--type-mono); color: var(--sage); margin-bottom: 20px; }
+    .grid-mini { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid #e2e8f0; }
+    .grid-mini span, .grid-mini b { padding: 24px; border: 1px solid #e2e8f0; font-size: var(--type-small); text-align: center; }
+    .grid-mini span { background: #1a1a2e; color: white; font-weight: 600; }
+    .grid-mini b { color: #1a6b3c; background: #fffbf0; }
+    .big-number { width: 100%; min-height: 420px; background: var(--ink); color: var(--white); border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .big-number span { font-family: var(--font-mono); font-size: 48px; color: var(--gold); }
+    .big-number strong { font-family: var(--font-display); font-size: 220px; line-height: .9; font-weight: 400; }
+    .big-number em { font-family: var(--font-display); font-size: var(--type-subtitle); color: rgba(255,255,255,.58); }
+    .flow {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .flow .node {
+      min-height: 168px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .dark .flow .node { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .flow strong { font-family: var(--font-display); font-size: 58px; font-weight: 400; line-height: 1; }
+    .flow span { font-size: var(--type-small); color: var(--text-soft); }
+    .dark .flow span { color: rgba(255,255,255,.68); }
+    .flow .arrow { font-size: 54px; color: var(--sage); }
+    .price-stack {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px;
+    }
+    .price-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 120px;
+      gap: 20px;
+      align-items: center;
+      margin: 22px 0;
+      font-size: var(--type-small);
+    }
+    .bar {
+      height: 46px;
+      border-radius: 8px;
+      background: var(--sage);
+    }
+    .bar.cost { width: 69%; background: var(--steel); }
+    .bar.markup { width: 31%; background: var(--gold); }
+    .bar.waste { width: 15%; background: var(--terra); }
+    .bar.sellable { width: 85%; background: var(--sage); }
+    .compare-card {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .compare-card .panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+      min-height: 320px;
+    }
+    .compare-card h3 {
+      font-family: var(--font-display);
+      font-size: var(--type-subtitle);
+      font-weight: 400;
+      margin: 0 0 20px;
+    }
+    .compare-card .percent {
+      font-family: var(--font-display);
+      font-size: 120px;
+      line-height: .9;
+      color: var(--sage);
+    }
+    .mistake-board {
+      width: 100%;
+      display: grid;
+      gap: 24px;
+    }
+    .mistake-board div {
+      border-radius: 14px;
+      padding: 32px;
+      font-size: var(--type-lead);
+      border: 2px solid var(--border);
+      background: var(--white);
+    }
+    .mistake-board .wrong { border-color: var(--terra); background: rgba(156,74,43,.12); }
+    .mistake-board .right { border-color: var(--sage); background: rgba(74,124,94,.12); }
+    .clock {
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      background: conic-gradient(var(--sage) 0 70%, var(--gold) 70% 88%, var(--terra) 88% 100%);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .clock::after {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      background: var(--paper);
+    }
+    .clock strong {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-size: 86px;
+      font-weight: 400;
+      text-align: center;
+      line-height: .95;
+    }
+    .markdown-meter {
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 40px;
+    }
+    .meter-track {
+      height: 80px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--terra) 0 25%, var(--gold) 25% 60%, var(--sage) 60% 100%);
+      position: relative;
+      margin: 28px 0;
+    }
+    .meter-pin {
+      position: absolute;
+      left: 25%;
+      top: -16px;
+      width: 10px;
+      height: 112px;
+      background: var(--ink);
+      border-radius: 99px;
+    }
+    .meter-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: var(--type-small);
+      color: var(--text-soft);
+    }
+    .be-chart {
+      width: 100%;
+      min-height: 470px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .axis {
+      position: absolute;
+      left: 76px;
+      bottom: 74px;
+      width: 610px;
+      height: 320px;
+      border-left: 4px solid var(--ink);
+      border-bottom: 4px solid var(--ink);
+    }
+    .line {
+      position: absolute;
+      left: 80px;
+      bottom: 104px;
+      width: 600px;
+      height: 5px;
+      transform-origin: left center;
+      border-radius: 99px;
+    }
+    .line.cost { background: var(--terra); transform: rotate(-19deg); }
+    .line.revenue { background: var(--sage); transform: rotate(-34deg); }
+    .break-dot {
+      position: absolute;
+      left: 398px;
+      bottom: 236px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 5px solid var(--ink);
+    }
+    .chart-note {
+      position: absolute;
+      right: 40px;
+      top: 42px;
+      font-size: var(--type-small);
+      color: var(--text-soft);
+      max-width: 250px;
+    }
+    .retail-terms-slide {
+      background: var(--paper);
+      color: var(--text);
+    }
+    .retail-terms-slide .slide-pad {
+      padding-top: 76px;
+      padding-bottom: 70px;
+    }
+    .retail-terms-slide h1 {
+      margin-bottom: 34px;
+      font-size: 70px;
+    }
+    .retail-terms-list {
+      display: grid;
+      gap: 17px;
+    }
+    .retail-term-row {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 26px;
+      align-items: center;
+      min-height: 128px;
+      padding: 22px 30px;
+      background: var(--paper-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .retail-term-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      background: var(--sage);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .retail-term-row p {
+      margin: 0;
+      font-size: 27px;
+      line-height: 1.32;
+      color: var(--text);
+    }
+    .retail-term-row strong {
+      font-weight: 700;
+    }
+    .be-terms-slide {
+      background: var(--paper);
+      color: var(--text);
+    }
+    .be-terms-slide .terms-header {
+      position: relative;
+      background: var(--ink);
+      color: var(--white);
+      padding: 62px var(--pad-x) 54px;
+      flex: 0 0 auto;
+    }
+    .be-terms-slide .terms-header .gradient-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .be-terms-slide .eyebrow {
+      margin: 0 0 18px;
+    }
+    .be-terms-slide h1 {
+      margin: 0;
+      color: var(--white);
+      font-size: 70px;
+    }
+    .terms-list {
+      display: grid;
+      gap: 18px;
+      padding: 42px var(--pad-x) 0;
+    }
+    .term-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 28px;
+      align-items: start;
+      min-height: 108px;
+      padding: 24px 30px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+    }
+    .term-row:nth-child(even) {
+      background: var(--paper-2);
+    }
+    .term-label {
+      color: var(--sage);
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .term-row p {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.32;
+      color: var(--text);
+    }
+    .term-row strong {
+      font-weight: 700;
+    }
+    .sensitivity {
+      width: 100%;
+      display: grid;
+      gap: 20px;
+    }
+    .sensitivity .scenario {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 180px 1fr 110px;
+      gap: 20px;
+      align-items: center;
+      font-size: var(--type-small);
+    }
+    .scenario .mini-bar {
+      height: 36px;
+      border-radius: 8px;
+      background: var(--sage);
+    }
+    .scenario:nth-child(1) .mini-bar { width: 86%; }
+    .scenario:nth-child(2) .mini-bar { width: 74%; background: var(--gold); }
+    .scenario:nth-child(3) .mini-bar { width: 58%; background: var(--terra); }
+    .decision-matrix {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .decision-matrix div {
+      min-height: 230px;
+      border-radius: 14px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 32px;
+      font-size: var(--type-lead);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .activity-card {
+      width: 100%;
+      border-radius: 14px;
+      background: var(--ink);
+      color: var(--white);
+      padding: 44px;
+      border: 1px solid var(--border);
+    }
+    .activity-card h3 {
+      font-family: var(--font-display);
+      font-size: 64px;
+      line-height: 1;
+      font-weight: 400;
+      margin: 0 0 24px;
+    }
+    .activity-card p {
+      font-size: var(--type-body);
+      line-height: 1.35;
+      margin: 0 0 28px;
+      color: rgba(255,255,255,.72);
+    }
+    .activity-card a {
+      color: var(--ink);
+      background: var(--gold);
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: var(--type-small);
+      display: inline-block;
+    }
+    </style>
+</head>
+<body>
+  <deck-stage width="1920" height="1080" no-rail>
+    
+        <section class="slide dark" data-label="01 Title">
+          <div class="gradient-bar"></div>
+          <div class="slide-pad">
+            <div class="eyebrow">BUS123 · MATH M04 · L01</div>
+            <h1>Markups, Markdowns, and Break-Even</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">From cost to price decisions at Anchor & Oak Events</div>
+                
+              </div>
+              <div class="visual"><image-slot src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-wide-simple.png" alt="Anchor & Oak Events brand visual"></image-slot></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="02 Agenda">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">BUS123 · MATH M04</div>
+            <h1>Today’s Map</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">1. Markup logic<br>2. Markdown and perishables<br>3. Break-even decisions</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>01</strong><span>Markup logic</span></div><div class="arrow">→</div><div class="node"><strong>02</strong><span>Markdown decisions</span></div><div class="arrow">→</div><div class="node"><strong>03</strong><span>Break-even risk</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="03 Objectives">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Learning Objectives</div>
+            <h1>I Can Statements</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">I can calculate markup on cost and selling price.<br>I can account for markdowns and spoilage in a pricing model.<br>I can use Excel to find break-even units and revenue.<br>I can explain the business risk behind a pricing choice.</div>
+                
+              </div>
+              <div class="visual"><div class="price-stack"><div class="price-row"><strong>Cost</strong><div class="bar cost"></div><span>$18.00</span></div><div class="price-row"><strong>Markup</strong><div class="bar markup"></div><span>$8.10</span></div><div class="price-row"><strong>Price</strong><div class="bar sellable"></div><span>$26.10</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="04 Bridge">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Recap</div>
+            <h1>Discounts Changed the Price; Markups Build the Price</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Last lesson: discounts moved list price down.<br>This lesson: markup moves cost up into a selling price.</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>List</strong><span>Discounts start here</span></div><div class="arrow">↓</div><div class="node"><strong>Net</strong><span>Last lesson</span></div><div class="arrow">↑</div><div class="node"><strong>Cost</strong><span>Today starts here</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide dark" data-label="05 Part 1">
+          <div class="gradient-bar"></div>
+          <div class="slide-pad">
+            <div class="eyebrow">Part 1 of 3</div>
+            <h1>Markup: Turning Cost Into Price</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">The first job is knowing what base the percentage is using.</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>$18</strong><span>Cost base</span></div><div class="arrow">+</div><div class="node"><strong>45%</strong><span>Markup rate</span></div><div class="arrow">=</div><div class="node"><strong>$26.10</strong><span>Selling price</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide retail-terms-slide" data-label="06 Terminology">
+          <div class="slide-pad">
+            <div class="eyebrow">BUS 123 &middot; M04 &middot; L01</div>
+            <h1>Terminology</h1>
+            <div class="retail-terms-list">
+              <div class="retail-term-row">
+                <div class="retail-term-icon">SP</div>
+                <p><strong>Selling price.</strong> The price retailers charge consumers.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">C</div>
+                <p><strong>Cost.</strong> The price retailers pay to a manufacturer or supplier to bring the goods into the store.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">GP</div>
+                <p><strong>Markup, margin, or gross profit.</strong> The difference between the cost of bringing the goods into the store and the selling price of the goods.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">OE</div>
+                <p><strong>Operating expenses or overhead.</strong> The regular expenses of doing business, such as rent, wages, utilities, insurance, and advertising.</p>
+              </div>
+              <div class="retail-term-row">
+                <div class="retail-term-icon">NI</div>
+                <p><strong>Net profit or net income.</strong> The profit remaining after subtracting the cost of bringing the goods into the store and the operating expenses from the sale of the goods, including any returns or adjustments.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="07 Bases">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Markup</div>
+            <h1>Markup Depends on the Base</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Markup on cost: profit ÷ cost<br>Markup on selling price: profit ÷ selling price</div>
+                
+              </div>
+              <div class="visual"><div class="compare-card"><div class="panel"><h3>On Cost</h3><div class="percent">45%</div><p>Profit ÷ cost</p></div><div class="panel"><h3>On Selling Price</h3><div class="percent">31%</div><p>Profit ÷ selling price</p></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="08 Formula">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Excel First</div>
+            <h1>Markup on Cost</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">=Cost * (1 + MarkupRate)<br><br>Manual check:<br>$18.00 × 1.45 = $26.10</div>
+                
+              </div>
+              <div class="visual"><div class="markdown-meter"><div class="meter-labels"><span>Cash recovery</span><span>Full margin</span></div><div class="meter-track"><div class="meter-pin"></div></div><div class="meter-labels"><span>$31.50</span><span>$42.00</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="09 Mistake">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Common Mistake</div>
+            <h1>Adding Percentages to Dollars</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Wrong: $18 + 45 = $63<br>Right: $18 + ($18 × 45%) = $26.10</div>
+                
+              </div>
+              <div class="visual"><div class="mistake-board"><div class="wrong">Wrong: treating 45% like $45</div><div class="right">Right: multiply the cost by 45%</div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide dark" data-label="10 Part 2">
+          <div class="gradient-bar"></div>
+          <div class="slide-pad">
+            <div class="eyebrow">Part 2 of 3</div>
+            <h1>Markdowns and Perishables</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Event businesses price for demand, timing, and waste.</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>Demand</strong><span>Will seats fill?</span></div><div class="arrow">×</div><div class="node"><strong>Timing</strong><span>How late?</span></div><div class="arrow">×</div><div class="node"><strong>Waste</strong><span>What expires?</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="11 Context">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Anchor &amp; Oak Events</div>
+            <h1>Perishable Capacity</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">A tasting plate, dessert box, or centerpiece has value today.<br>Tomorrow, some of that value disappears.</div>
+                
+              </div>
+              <div class="visual"><div class="clock"><strong>Today<br>has value</strong></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="12 Markdown">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Markdown</div>
+            <h1>Protect Cash, Not Pride</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">=OriginalPrice * (1 - MarkdownRate)<br><br>$42.00 × 0.75 = $31.50</div>
+                
+              </div>
+              <div class="visual"><div class="excel-card"><div class="fx">fx</div><div class="grid-mini"><span>Cost</span><span>Markup</span><span>Price</span><b>$18.00</b><b>45%</b><b>$26.10</b></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="13 Spoilage">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Perishables</div>
+            <h1>Spoilage Changes the Unit Economics</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Sellable units = Produced units × (1 - WasteRate)<br><br>Total target revenue must be earned by fewer sellable units.</div>
+                
+              </div>
+              <div class="visual"><div class="price-stack"><div class="price-row"><strong>Produced</strong><div class="bar sellable"></div><span>120</span></div><div class="price-row"><strong>Expected waste</strong><div class="bar waste"></div><span>15%</span></div><div class="price-row"><strong>Sellable</strong><div class="bar sellable"></div><span>102</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="14 Worked">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Worked Example</div>
+            <h1>Tasting Boxes</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Cost per box: $18.00<br>Markup on cost: 45%<br>Expected waste: 15%<br><br>Price per sellable box: $30.71</div>
+                
+              </div>
+              <div class="visual"><div class="price-stack"><div class="price-row"><strong>Total cost</strong><div class="bar cost"></div><span>$2,160</span></div><div class="price-row"><strong>Target revenue</strong><div class="bar sellable"></div><span>$3,132</span></div><div class="price-row"><strong>Price / sellable box</strong><div class="bar markup"></div><span>$30.71</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide dark" data-label="15 Part 3">
+          <div class="gradient-bar"></div>
+          <div class="slide-pad">
+            <div class="eyebrow">Part 3 of 3</div>
+            <h1>Break-Even</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">How many sales does it take before profit begins?</div>
+                
+              </div>
+              <div class="visual"><div class="be-chart"><div class="axis"></div><div class="line cost"></div><div class="line revenue"></div><div class="break-dot"></div><div class="chart-note">Revenue crosses total cost at break-even.</div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide be-terms-slide" data-label="16 Break-Even Terms">
+          <div class="terms-header">
+            <div class="gradient-bar"></div>
+            <div class="eyebrow">BUS123 · Break-Even</div>
+            <h1>Break-Even Analysis Terms</h1>
+          </div>
+          <div class="terms-list">
+            <div class="term-row">
+              <div class="term-label">FC</div>
+              <p><strong>Fixed costs (FC).</strong> Costs that do not change with increases or decreases in sales; they include payments for insurance, a business license, rent, a lease, utilities, labor, and so on.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">VC</div>
+              <p><strong>Variable costs (VC).</strong> Costs that do change in response to changes in the volume of sales; they include payments for material, some labor, and so on.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">S</div>
+              <p><strong>Selling price (S).</strong> In this unit we focus on manufacturers and suppliers who produce goods to sell in units.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">CM</div>
+              <p><strong>Contribution margin (CM).</strong> The difference between selling price (S) and variable costs (VC). This difference goes first to pay off total fixed costs (FC); when they are covered, profits or losses start to accumulate.</p>
+            </div>
+            <div class="term-row">
+              <div class="term-label">BE</div>
+              <p><strong>Breakeven point (BE).</strong> The point at which the seller has covered all expenses and costs of a unit and has not made any profit or suffered any loss. Every unit sold after the break-even point changes profit.</p>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="17 Equation">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Break-Even</div>
+            <h1>Contribution Margin First</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Contribution margin per unit = Selling price - Variable cost per unit<br><br>Break-even units = Fixed costs ÷ Contribution margin</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>$48</strong><span>Ticket price</span></div><div class="arrow">−</div><div class="node"><strong>$27</strong><span>Variable cost</span></div><div class="arrow">=</div><div class="node"><strong>$21</strong><span>Contribution</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="18 Excel BE">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Excel First</div>
+            <h1>Break-Even Units</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">=ROUNDUP(FixedCosts / (Price - VariableCost), 0)<br><br>$3,600 ÷ ($48 - $27) = 172 guests</div>
+                
+              </div>
+              <div class="visual"><div class="excel-card"><div class="fx">=ROUNDUP(3600/(48-27),0)</div><div class="grid-mini"><span>Fixed</span><span>Margin</span><span>Guests</span><b>$3,600</b><b>$21</b><b>172</b></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="19 Stat">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Pricing Sensitivity</div>
+            <h1>Small Price Changes Move Break-Even Fast</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">$3 price increase × 200 guests = $600 more contribution</div>
+                
+              </div>
+              <div class="visual"><div class="sensitivity"><div class="scenario"><strong>$51 ticket</strong><div class="mini-bar"></div><span>150 guests</span></div><div class="scenario"><strong>$48 ticket</strong><div class="mini-bar"></div><span>172 guests</span></div><div class="scenario"><strong>$45 ticket</strong><div class="mini-bar"></div><span>200 guests</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="20 Discuss">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Decision Check</div>
+            <h1>What Would You Do?</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Would you price lower to fill seats?<br>Would you price higher to protect margin?</div>
+                
+              </div>
+              <div class="visual"><div class="decision-matrix"><div>Lower price<br>fills seats</div><div>Higher price<br>protects margin</div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="21 Takeaways">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Key Takeaways</div>
+            <h1>Three Things to Remember</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">1. Markup percentages depend on the base.<br>2. Markdown decisions trade margin for cash recovery.<br>3. Break-even connects price, variable cost, and fixed cost.</div>
+                
+              </div>
+              <div class="visual"><div class="flow"><div class="node"><strong>Base</strong><span>Choose the denominator</span></div><div class="arrow">→</div><div class="node"><strong>Waste</strong><span>Sellable units matter</span></div><div class="arrow">→</div><div class="node"><strong>BE</strong><span>Find the risk line</span></div></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide cream" data-label="22 Next">
+          
+          <div class="slide-pad">
+            <div class="eyebrow">Next Lesson</div>
+            <h1>Depreciation and Payroll</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Costs that change across time and people.</div>
+                
+              </div>
+              <div class="visual"><div class="activity-card"><h3>Try the Pricing Lab</h3><p>Change price, waste, and cost assumptions before opening the workbook.</p><a href="bus123-math-m04-l01-interactive.html">Open interactive activity</a></div></div>
+            </div>
+          </div>
+        </section>
+        
+        <section class="slide dark" data-label="23 Close">
+          <div class="gradient-bar"></div>
+          <div class="slide-pad">
+            <div class="eyebrow">Questions?</div>
+            <h1>Office hours are posted on Canvas.</h1>
+            <div class="content-grid">
+              <div class="copy">
+                <div class="dense-text">Bring your workbook questions before the next lesson.</div>
+                
+              </div>
+              <div class="visual"><image-slot src="../../assets/case-study-companies/anchor-oak-events/anchor-oak-events-wide-simple.png" alt="Anchor & Oak Events brand visual"></image-slot></div>
+            </div>
+          </div>
+        </section>
+        
+  </deck-stage>
+  <script src="../../deck-stage.js"></script>
+  <script src="../../image-slot.js"></script>
+</body>
+</html>

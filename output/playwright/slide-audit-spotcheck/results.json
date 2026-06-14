@@ -1,0 +1,83 @@
+[
+  {
+    "deck": "EXCEL/M02/bus123-excel-m02-l01-slides.html",
+    "loaded": true,
+    "before": {
+      "visibleSlides": 1,
+      "slideCount": 22,
+      "notesLike": true,
+      "textSample": "BUS123 PART 1 PART 2 PART 3 WRAP BUS123 · EXCEL-M02-L01 · GERRISH SCHOOL OF BUSINESS Formatting and Organizing Worksheets Making data readable, consistent, and "
+    },
+    "after": {
+      "visibleSlides": 1,
+      "textLength": 621,
+      "notePanelVisible": true
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "screenshot": "output/playwright/slide-audit-spotcheck/EXCEL__M02__bus123-excel-m02-l01-slides.html.png"
+  },
+  {
+    "deck": "MATH/M01/bus123-math-m01-l01-slides.html",
+    "loaded": true,
+    "before": {
+      "visibleSlides": 1,
+      "slideCount": 22,
+      "notesLike": true,
+      "textSample": "BUS 123 · MATH-M01 · L01 Whole Numbers, Fractions & Percents The arithmetic that runs every business decision Gerrish School of Business Fall 2026 1 / 22 ← →"
+    },
+    "after": {
+      "visibleSlides": 1,
+      "textLength": 459,
+      "notePanelVisible": true
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "screenshot": "output/playwright/slide-audit-spotcheck/MATH__M01__bus123-math-m01-l01-slides.html.png"
+  },
+  {
+    "deck": "EXCEL/M01/bus123-excel-m01-l01-slides.html",
+    "loaded": true,
+    "before": {
+      "visibleSlides": 1,
+      "slideCount": 22,
+      "notesLike": true,
+      "textSample": "1 ENVIRONMENT 2 DATA & FORMULAS 3 TRUST EXCEL-M01 · LESSON 01 Foundations of Excel Building, navigating & trusting your first spreadsheets BUS123 · Solving Busi"
+    },
+    "after": {
+      "visibleSlides": 1,
+      "textLength": 634,
+      "notePanelVisible": true
+    },
+    "consoleErrors": [],
+    "pageErrors": [],
+    "screenshot": "output/playwright/slide-audit-spotcheck/EXCEL__M01__bus123-excel-m01-l01-slides.html.png"
+  },
+  {
+    "deck": "INTRO/M01/bus123-intro-m01-l02-slides.html",
+    "loaded": true,
+    "before": {
+      "visibleSlides": 1,
+      "slideCount": 20,
+      "notesLike": true,
+      "textSample": "01 BUS 123 · INTRODUCTION TO BUSINESS · M01 · L02 Technology in everyday life and business. Why digital fluency is no longer optional — and how it shapes every "
+    },
+    "after": {
+      "visibleSlides": 1,
+      "textLength": 344,
+      "notePanelVisible": false
+    },
+    "consoleErrors": [
+      "warning: You are using the in-browser Babel transformer. Be sure to precompile your scripts for production - https://babeljs.io/docs/setup/",
+      "error: Access to XMLHttpRequest at 'file:///Users/bethanyevittsair2/Documents/GitHub/BUS123-Solving-Business-Problems-with-Technology/tweaks-panel.jsx' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-extension, chrome-untrusted, data, http, https, isolated-app.",
+      "error: Failed to load resource: net::ERR_FAILED",
+      "error: The above error occurred in the <DeckTweaks> component:\n\n    at DeckTweaks (<anonymous>:20:20)\n\nConsider adding an error boundary to your tree to customize error handling behavior.\nVisit https://reactjs.org/link/error-boundaries to learn more about error boundaries."
+    ],
+    "pageErrors": [
+      "useTweaks is not defined",
+      "useTweaks is not defined",
+      "useTweaks is not defined"
+    ],
+    "screenshot": "output/playwright/slide-audit-spotcheck/INTRO__M01__bus123-intro-m01-l02-slides.html.png"
+  }
+]

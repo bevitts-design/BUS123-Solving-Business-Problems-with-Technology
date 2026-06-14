@@ -1,0 +1,74 @@
+[
+  {
+    "deck": "INTRO/M01/bus123-intro-m01-l02-slides.html",
+    "before": {
+      "slideCount": 22,
+      "active": "1",
+      "visibleSlides": 1,
+      "notesCount": 22,
+      "bodyText": "OPEN PART 1 PART 2 PART 3 WRAP BUS123 · INTRO-M01-L02 Technology in Everyday Life and Business Why digital fluency is no longer optional, and how it shapes every career path. PROF.",
+      "imageComplete": [
+        {
+          "src": "img/bus123-intro-m01-l02-tidal-goods-badge.png",
+          "complete": true,
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "img/bus123-intro-m01-l02-meridian-advisory-group-badge.png",
+          "complete": true,
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "img/bus123-intro-m01-l02-anchor-oak-events-badge.png",
+          "complete": true,
+          "width": 320,
+          "height": 320
+        },
+        {
+          "src": "img/bus123-intro-m01-l02-harborside-medical-center-badge.png",
+          "complete": true,
+          "width": 320,
+          "height": 320
+        }
+      ]
+    },
+    "after": {
+      "active": "2",
+      "visibleSlides": 1,
+      "notesVisible": "block",
+      "notesText": "Frame the agenda as a movement from daily technology to career value. The module starts broad on purpose before students"
+    },
+    "consoleMessages": [],
+    "pageErrors": [],
+    "shot": "output/playwright/critical-rebuild-check/INTRO__M01__bus123-intro-m01-l02-slides.html.png"
+  },
+  {
+    "deck": "MATH/M04/bus123-math-m04-l01-slides.html",
+    "before": {
+      "slideCount": 22,
+      "active": "1",
+      "visibleSlides": 1,
+      "notesCount": 22,
+      "bodyText": "OPEN PART 1 PART 2 PART 3 WRAP BUS123 · MATH-M04-L01 Markups, Markdowns, and Break-Even From cost to price decisions at Anchor & Oak Events. BUSINESS MATH ANCHOR & OAK EVENTS FALL ",
+      "imageComplete": [
+        {
+          "src": "img/bus123-math-m04-l01-anchor-oak-events-wide.png",
+          "complete": true,
+          "width": 1280,
+          "height": 720
+        }
+      ]
+    },
+    "after": {
+      "active": "2",
+      "visibleSlides": 1,
+      "notesVisible": "block",
+      "notesText": "Preview the three-part path: markup, markdown, and break-even. Keep the sequence simple because the formulas build on on"
+    },
+    "consoleMessages": [],
+    "pageErrors": [],
+    "shot": "output/playwright/critical-rebuild-check/MATH__M04__bus123-math-m04-l01-slides.html.png"
+  }
+]

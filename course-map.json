@@ -627,15 +627,15 @@
       "track": "excel",
       "module": "M03",
       "lesson": "L01",
-      "title": "Aggregate Functions and Data Analysis",
+      "title": "Excel Functions for Business Analysis",
       "status": "Live",
-      "caseStudy": "Anchor & Oak Events",
+      "caseStudy": "All BUS123 Companies",
       "skillFocus": [
-        "SUM",
-        "AVERAGE",
-        "MAX and MIN",
-        "COUNT and COUNTA",
-        "Data analysis"
+        "Basic formulas",
+        "Summary functions",
+        "Dynamic arrays",
+        "SUMIFS and COUNTIFS",
+        "XLOOKUP"
       ],
       "materials": [
         {
@@ -644,7 +644,7 @@
         },
         {
           "type": "Reading",
-          "path": "EXCEL/M03/bus123-excel-m03-pre-reading.pdf"
+          "path": "EXCEL/M03/bus123-excel-m03-l01-prereading.pdf"
         },
         {
           "type": "Starter Workbook",

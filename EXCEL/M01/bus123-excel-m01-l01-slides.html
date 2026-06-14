@@ -6,14 +6,15 @@
 <title>BUS123 · EXCEL-M01-L01 · Foundations of Excel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#0E1116; --paper:#FAF8F3; --paper-2:#F2EEE5; --white:#FFFFFF;
   --text:#1A1F2C; --text-soft:#4A5567; --muted:#7A8290; --border:#E5E1D6;
-  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B;
+  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773;
+  --formula-bg:#EAF3EC;
   --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
-  --serif:"Bodoni Moda",serif; --sans:"DM Sans",sans-serif;
+  --serif:"Bodoni Moda",serif; --sans:"DM Sans",sans-serif; --mono:"JetBrains Mono",monospace;
   --W:1280px; --H:720px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -154,7 +155,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
   <div class="stage" id="stage">
 
     <!-- 1 TITLE -->
-    <section class="slide dark" data-section="0">
+    <section class="slide dark" data-section="0" data-slide="1">
       <div class="geo c1"></div><div class="geo c2"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:40px"></div>
       <div class="reveal eyebrow">EXCEL-M01 · Lesson 01</div>
@@ -165,7 +166,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 2 AGENDA -->
-    <section class="slide" data-section="0">
+    <section class="slide" data-section="0" data-slide="2">
       <div class="reveal eyebrow">Today</div>
       <h2 class="reveal">Where we&rsquo;re headed</h2>
       <div class="reveal title-rule"></div>
@@ -179,7 +180,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 3 LEARNING OBJECTIVES -->
-    <section class="slide" data-section="0">
+    <section class="slide" data-section="0" data-slide="3">
       <div class="reveal eyebrow">Learning Objectives</div>
       <h2 class="reveal">By the end of this lesson&hellip;</h2>
       <div class="reveal title-rule"></div>
@@ -195,7 +196,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 4 RECAP / BRIDGE -->
-    <section class="slide" data-section="0">
+    <section class="slide" data-section="0" data-slide="4">
       <div class="reveal eyebrow">Picking up from last module</div>
       <h2 class="reveal">Your file is saved &mdash; now let&rsquo;s open it</h2>
       <div class="reveal title-rule"></div>
@@ -209,7 +210,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 5 SECTION BREAK PART 1 -->
-    <section class="slide dark" data-section="1">
+    <section class="slide dark" data-section="1" data-slide="5">
       <div class="geo c1"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 1</div>
@@ -218,7 +219,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 6 WORKBOOK VS WORKSHEET -->
-    <section class="slide" data-section="1">
+    <section class="slide" data-section="1" data-slide="6">
       <div class="reveal eyebrow">Macro-structure</div>
       <h2 class="reveal">Workbook vs. worksheet</h2>
       <div class="reveal title-rule"></div>
@@ -230,7 +231,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 7 THE GRID -->
-    <section class="slide" data-section="1">
+    <section class="slide" data-section="1" data-slide="7">
       <div class="reveal eyebrow">The grid system</div>
       <h2 class="reveal">Columns, rows &amp; the active cell</h2>
       <div class="reveal title-rule"></div>
@@ -257,7 +258,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 8 CONTROL CENTER + RANGES -->
-    <section class="slide" data-section="1">
+    <section class="slide" data-section="1" data-slide="8">
       <div class="reveal eyebrow">The control center</div>
       <h2 class="reveal">Name Box, Formula Bar &amp; the range</h2>
       <div class="reveal title-rule"></div>
@@ -273,7 +274,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 9 SECTION BREAK PART 2 -->
-    <section class="slide dark" data-section="2">
+    <section class="slide dark" data-section="2" data-slide="9">
       <div class="geo c2"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 2</div>
@@ -282,7 +283,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 10 DATA ENTRY + AUTOFILL -->
-    <section class="slide" data-section="2">
+    <section class="slide" data-section="2" data-slide="10">
       <div class="reveal eyebrow">Working faster</div>
       <h2 class="reveal">Data entry &amp; the Fill Handle</h2>
       <div class="reveal title-rule"></div>
@@ -300,7 +301,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 11 FORMULA VS FUNCTION + BIG FIVE -->
-    <section class="slide" data-section="2">
+    <section class="slide" data-section="2" data-slide="11">
       <div class="reveal eyebrow">The building blocks</div>
       <h2 class="reveal">Formula vs. function &mdash; the Big Five</h2>
       <div class="reveal title-rule"></div>
@@ -315,7 +316,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 12 SYNTAX FIRST: SUM -->
-    <section class="slide" data-section="2">
+    <section class="slide" data-section="2" data-slide="12">
       <div class="reveal eyebrow">Worked example &middot; Harborside Medical Center</div>
       <h2 class="reveal">Total monthly charges across departments</h2>
       <div class="reveal title-rule"></div>
@@ -347,7 +348,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 13 CELL REFERENCING -->
-    <section class="slide" data-section="2">
+    <section class="slide" data-section="2" data-slide="13">
       <div class="reveal eyebrow">The engine of a smart sheet</div>
       <h2 class="reveal">Relative, absolute &amp; mixed references</h2>
       <div class="reveal title-rule"></div>
@@ -376,7 +377,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 14 SECTION BREAK PART 3 -->
-    <section class="slide dark" data-section="3">
+    <section class="slide dark" data-section="3" data-slide="14">
       <div class="geo c1"></div><div class="geo c2"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 3</div>
@@ -385,7 +386,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 15 FORMATTING -->
-    <section class="slide" data-section="3">
+    <section class="slide" data-section="3" data-slide="15">
       <div class="reveal eyebrow">Formatting for clarity</div>
       <h2 class="reveal">Turn a data dump into a story</h2>
       <div class="reveal title-rule"></div>
@@ -398,7 +399,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 16 ERRORS -->
-    <section class="slide" data-section="3">
+    <section class="slide" data-section="3" data-slide="16">
       <div class="reveal eyebrow">Error literacy</div>
       <h2 class="reveal">What the sheet is trying to tell you</h2>
       <div class="reveal title-rule"></div>
@@ -416,7 +417,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 17 GOLDEN RULES -->
-    <section class="slide" data-section="3">
+    <section class="slide" data-section="3" data-slide="17">
       <div class="reveal eyebrow">The golden rules</div>
       <h2 class="reveal">Habits of a trustworthy spreadsheet</h2>
       <div class="reveal title-rule"></div>
@@ -428,7 +429,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 18 COMMON MISTAKE -->
-    <section class="slide dark" data-section="3">
+    <section class="slide dark" data-section="3" data-slide="18">
       <div class="geo c3"></div><div class="geo grid"></div>
       <div class="reveal mistake-tag">Common Mistake</div>
       <h1 class="reveal" style="font-size:50px;margin:20px 0 8px">Hard-coding the rate inside the formula</h1>
@@ -441,7 +442,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 19 DISCUSSION -->
-    <section class="slide" data-section="4">
+    <section class="slide" data-section="4" data-slide="19">
       <div class="reveal eyebrow">Talk it through</div>
       <h2 class="reveal">Discussion</h2>
       <div class="reveal title-rule"></div>
@@ -454,7 +455,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 20 KEY TAKEAWAYS -->
-    <section class="slide" data-section="4">
+    <section class="slide" data-section="4" data-slide="20">
       <div class="reveal eyebrow">Key takeaways</div>
       <h2 class="reveal">What to carry forward</h2>
       <div class="reveal title-rule"></div>
@@ -467,7 +468,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 21 UP NEXT -->
-    <section class="slide" data-section="4">
+    <section class="slide" data-section="4" data-slide="21">
       <div class="reveal eyebrow">Up next</div>
       <h2 class="reveal">EXCEL-M01-L02 &mdash; Building a working worksheet</h2>
       <div class="reveal title-rule"></div>
@@ -481,7 +482,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 22 CLOSE -->
-    <section class="slide dark center" data-section="0">
+    <section class="slide dark center" data-section="0" data-slide="22">
       <div class="geo c1"></div><div class="geo c2"></div>
       <div class="reveal bar" style="margin:0 auto 32px"></div>
       <h1 class="reveal" style="font-size:60px">Questions?</h1>

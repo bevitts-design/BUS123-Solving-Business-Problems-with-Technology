@@ -64,6 +64,10 @@ REQUIRED_TOKENS = (
 )
 OLD_PALETTE_HEX = ("#0C1A2E", "#D4A052", "#BE6B4A", "#7AAB8C")
 
+ACCEPTED_AS_IS = {
+    "EXCEL/M03/bus123-excel-m03-l01-slides.html": "Accepted as-is by Bethany; keep out of retrofit queue despite 44-slide lesson design.",
+}
+
 
 class DeckParser(HTMLParser):
     def __init__(self) -> None:
@@ -193,6 +197,8 @@ def priority_band(severity: str, issues: list[str]) -> str:
 
 
 def action_for(priority: str, issues: list[str]) -> str:
+    if priority == "Accepted as-is":
+        return "No retrofit; keep as approved exception."
     if priority == "Ready":
         return "No immediate action beyond visual QA."
     if priority == "Minor cleanup":
@@ -316,6 +322,12 @@ def audit_deck(path: Path) -> AuditRow:
 
     severity = severity_for(critical, major, minor)
     priority = priority_band(severity, issues)
+    rel_key = str(rel)
+    accepted_note = ACCEPTED_AS_IS.get(rel_key)
+    if accepted_note:
+        severity = "None"
+        priority = "Accepted as-is"
+        issues = [accepted_note]
 
     return AuditRow(
         {
@@ -340,7 +352,7 @@ def write_csv(rows: Iterable[AuditRow]) -> None:
     OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     rows = list(rows)
     with OUT_CSV.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].data.keys()))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].data.keys()), lineterminator="\n")
         writer.writeheader()
         for row in rows:
             writer.writerow(row.data)

@@ -15,15 +15,18 @@
   --gold:       #B8843D;
   --terra:      #9C4A2B;
   --navy:       #355773;
+  --steel:      #355773;
   --white:      #FFFFFF;
   --text:       #1A1F2C;
   --text-soft:  #4A5567;
   --muted:      #7A8290;
   --border:     #E5E1D6;
   --sage-light: #EAF3EC;
-  --sage-mid:   #7AAB8C;
+  --formula-bg: #EAF3EC;
+  --sage-mid:   #4A7C5E;
   --ink-soft:   #1C2330;
   --paper-dim:  #F0EDE6;
+  --gradient:   linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
   --serif:      'Bodoni Moda', Georgia, serif;
   --sans:       'DM Sans', system-ui, sans-serif;
   --mono:       'JetBrains Mono', 'Courier New', monospace;
@@ -575,7 +578,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 01 · TITLE                                          -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="title">
+<section class="slide dark" data-section="title" data-slide="1">
   <div class="tab-strip">
     <div class="tab active-tab">M04</div>
     <div class="tab">L01</div>
@@ -597,7 +600,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 02 · WARM-UP HOOK                                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="hook">
+<section class="slide cream" data-section="hook" data-slide="2">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab t-gold">HOOK</div>
@@ -658,7 +661,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 03 · AGENDA                                         -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="agenda">
+<section class="slide cream" data-section="agenda" data-slide="3">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -708,7 +711,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 04 · LEARNING OBJECTIVES                            -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="objectives">
+<section class="slide cream" data-section="objectives" data-slide="4">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -746,7 +749,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 05 · RECAP / BRIDGE                                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="bridge">
+<section class="slide cream" data-section="bridge" data-slide="5">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -789,7 +792,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 06 · SECTION BREAK — PART 1                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part1-break">
+<section class="slide dark" data-section="part1-break" data-slide="6">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -809,7 +812,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 07 · THE EXCEL TABLE STRUCTURE                      -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="table-structure">
+<section class="slide cream" data-section="table-structure" data-slide="7">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -871,7 +874,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 08 · FLASH FILL & DATA CLEANING                    -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="flash-fill">
+<section class="slide cream" data-section="flash-fill" data-slide="8">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -930,7 +933,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 09 · TEXT TO COLUMNS & DATA FROM PICTURE            -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="import-tools">
+<section class="slide cream" data-section="import-tools" data-slide="9">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -981,7 +984,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 10 · SECTION BREAK — PART 2                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part2-break">
+<section class="slide dark" data-section="part2-break" data-slide="10">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1001,7 +1004,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 11 · THE CHART DECISION FRAMEWORK                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="chart-types">
+<section class="slide cream" data-section="chart-types" data-slide="11">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1063,7 +1066,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 12 · WORKED EXAMPLE — COLUMN CHART HARBORSIDE       -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="worked-example-column">
+<section class="slide cream" data-section="worked-example-column" data-slide="12">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1153,7 +1156,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 13 · LINE CHART — TREND OVER TIME                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="line-chart">
+<section class="slide cream" data-section="line-chart" data-slide="13">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1212,7 +1215,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 14 · SECTION BREAK — PART 3                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part3-break">
+<section class="slide dark" data-section="part3-break" data-slide="14">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1232,7 +1235,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 15 · PIE CHARTS & PROPORTIONAL DATA                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="pie-charts">
+<section class="slide cream" data-section="pie-charts" data-slide="15">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1295,7 +1298,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 16 · CONDITIONAL FORMATTING                         -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="conditional-formatting">
+<section class="slide cream" data-section="conditional-formatting" data-slide="16">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1356,7 +1359,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 17 · STAT SLIDE                                     -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="stat-slide">
+<section class="slide dark" data-section="stat-slide" data-slide="17">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1388,7 +1391,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 18 · COMMON MISTAKE — TERRA                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide" data-section="mistake" style="background:var(--terra);">
+<section class="slide" data-section="mistake" style="background:var(--terra);" data-slide="18">
   <div class="tab-strip" style="background:rgba(0,0,0,0.25);">
     <div class="tab active-tab" style="background:rgba(0,0,0,0.3); color:rgba(255,255,255,0.9);">⚠</div>
     <div class="tab" style="color:rgba(255,255,255,0.4);">M04</div>
@@ -1396,7 +1399,7 @@ p.light { color: rgba(255,255,255,0.75); }
   </div>
   <div class="slide-body" style="padding:40px 56px;">
     <div style="margin-bottom:8px;">
-      <div style="font-family:var(--mono); font-size:11px; letter-spacing:0.15em; color:rgba(255,255,255,0.6);">COMMON MISTAKE · EXCEL-M04-L01</div>
+      <div style="font-family:var(--mono); font-size:11px; letter-spacing:0.15em; color:rgba(255,255,255,0.6);">Common Mistake · EXCEL-M04-L01</div>
     </div>
     <div class="two-col" style="flex:1; gap:28px; align-items:center;">
       <div class="col">
@@ -1427,7 +1430,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 19 · DISCUSSION                                     -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="discussion">
+<section class="slide cream" data-section="discussion" data-slide="19">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab">L01</div>
@@ -1457,7 +1460,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 20 · KEY TAKEAWAYS                                  -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="takeaways">
+<section class="slide cream" data-section="takeaways" data-slide="20">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -1500,7 +1503,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 21 · UP NEXT                                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="upnext">
+<section class="slide dark" data-section="upnext" data-slide="21">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -1536,7 +1539,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 22 · CLOSE / Q&A                                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="close">
+<section class="slide dark" data-section="close" data-slide="22">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab">L01</div>

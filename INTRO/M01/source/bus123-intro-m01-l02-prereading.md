@@ -3,29 +3,8 @@ title: "BUS 123 — INTRO-M01-L02 — Essentials of Software Applications & OneD
 lesson: "INTRO-M01-L02"
 kind: "Pre-Reading"
 status: "published"
-output: "INTRO/M01/bus123-intro-m01-l02-prereading.md"
+output: "INTRO/M01/bus123-intro-m01-l02-prereading.pdf"
 ---
-
-<!--
-  FORMATTING NOTE FOR INSTRUCTORS
-  ─────────────────────────────────────────────────────────────────────────────
-  This file is written in standard Markdown. To preserve all formatting:
-
-  • Do NOT copy-paste into a plain text editor — use a Markdown-aware tool
-    (VS Code, Typora, GitHub, Notion, or the Canvas rich-text editor in
-    source/HTML mode).
-
-  • All tables use the standard Markdown pipe-table format. GitHub, Canvas,
-    and most LMS platforms render them as formatted tables automatically.
-
-  • Callout blocks (> blockquote lines) render as indented/highlighted panels
-    in most Markdown viewers and GitHub Pages.
-
-  • To push to the public GitHub repo, place this file at:
-    INTRO/M01/bus123-intro-m01-l02-prereading.md
-    GitHub Pages will render it correctly with no additional configuration.
-  ─────────────────────────────────────────────────────────────────────────────
--->
 
 # BUS 123 · INTRO-M01-L02 · Essentials of Software Applications & OneDrive
 
@@ -36,7 +15,7 @@ output: "INTRO/M01/bus123-intro-m01-l02-prereading.md"
 
 ## Connect to Prior Knowledge
 
-This is the first lesson of BUS123 — Solving Business Problems with Technology. You are beginning with a clean slate, which means the prior knowledge here is the everyday digital experience you already bring to the room: using a smartphone, saving files to a computer, logging into a school portal.
+This is the first reading lesson of BUS123 — Solving Business Problems with Technology. You are beginning with a clean slate, which means the prior knowledge here is the everyday digital experience you already bring to the room: using a smartphone, saving files to a computer, logging into a school portal.
 
 This lesson builds directly on that familiarity and asks a sharper question: **are you using these tools casually, or professionally?** By the end of this module, you will have the foundation to answer confidently.
 
@@ -80,7 +59,7 @@ If you have not already installed the desktop applications, follow these steps u
 2. Click **Install apps** in the top right corner and select **Microsoft 365 apps**.
 3. Run the downloaded installer and follow the on-screen prompts.
 4. Open any Office app (Excel, Word, or PowerPoint), go to **File → Account**, and confirm your Endicott email appears under **User Information**.
-5. If you see a different account, click **Sign Out**, then **Sign In** with your @endicott.edu address.
+5. If you see a different account, click **Sign Out**, then **Sign In** with your @mail.endicott.edu address.
 
 > ⚠️ **Common Mistake**
 >

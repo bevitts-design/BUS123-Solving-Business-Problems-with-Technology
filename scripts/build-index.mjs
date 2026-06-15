@@ -334,11 +334,6 @@ const html = `<!DOCTYPE html>
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>BUS123 Course Hub</h1>
         <p>Start with the current class, check the week ahead, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
-        <div class="hero-points" aria-label="Course rhythm">
-          <span>Microsoft 365 + Excel</span>
-          <span>Case-based business math</span>
-          <span>Canvas deadlines</span>
-        </div>
         ${courseResourcesHtml}
         <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
           <div class="week-ahead-header">

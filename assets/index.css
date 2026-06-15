@@ -131,24 +131,6 @@ h3 { font-size: 28px; }
 
 .hero p { max-width: 760px; color: var(--text-soft); font-size: 18px; }
 
-.hero-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 22px 0 18px;
-}
-
-.hero-points span {
-  border: 1px solid rgba(53, 87, 115, .16);
-  border-left: 4px solid var(--sage);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, .72);
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 700;
-  padding: 9px 12px;
-}
-
 .current {
   margin: 32px 0 16px;
   background: var(--ink);

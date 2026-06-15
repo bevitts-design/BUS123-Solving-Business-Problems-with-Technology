@@ -109,8 +109,10 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
 .good{background:rgba(74,124,94,.2);border:1px solid var(--sage);color:#CDE6D6}
 
 /* image slot */
-.image-slot{border:2px dashed var(--border);border-radius:14px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:24px;font-weight:500;letter-spacing:.04em;min-height:200px}
+.image-slot{border:2px dashed var(--border);border-radius:14px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:24px;font-weight:500;letter-spacing:.04em;min-height:200px;overflow:hidden}
 .image-slot span{opacity:.8}
+.image-slot.has-image{border:1px solid var(--border);background:var(--white);min-height:315px}
+.image-slot.has-image img{display:block;width:100%;height:100%;object-fit:cover}
 
 /* misc */
 .lo-num{font-family:var(--serif);font-weight:900;font-size:30px;color:var(--sage);margin-right:14px}
@@ -205,7 +207,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
           <p>In INTRO-M01 you installed Office 365, connected your Endicott OneDrive, and saved your first <b>workbook</b> to your BUS123 folder.</p>
           <p style="margin-top:20px">That blank grid looked like an ocean of rectangles. Today it becomes a tool you can read at a glance &mdash; the way an analyst does.</p>
         </div>
-        <div class="reveal image-slot"><span>screenshot: blank workbook in OneDrive</span></div>
+        <div class="reveal image-slot has-image"><img src="assets/onedrive_sync.png" alt="OneDrive sync status shown beside cloud file status icons"></div>
       </div>
     </section>
 
@@ -296,7 +298,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
           </ul>
           <p style="margin-top:18px">Typing <i>Jan</i> then dragging gives Feb, Mar, Apr&hellip; &mdash; Harborside&rsquo;s twelve reporting months in seconds.</p>
         </div>
-        <div class="reveal image-slot"><span>screenshot: fill handle dragging months</span></div>
+        <div class="reveal image-slot has-image"><img src="assets/fill-handle-demo.png" alt="Excel-style worksheet showing the fill handle dragging Jan into Feb, Mar, and Apr"></div>
       </div>
     </section>
 
@@ -477,7 +479,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
           <p>You&rsquo;ll take a full Harborside dataset and build a clean, formatted worksheet from scratch &mdash; functions, references, and number formats working together.</p>
           <p style="margin-top:18px"><span class="pill">Bring: your saved BUS123 OneDrive folder</span></p>
         </div>
-        <div class="reveal image-slot"><span>preview: finished Harborside worksheet</span></div>
+        <div class="reveal image-slot has-image"><img src="assets/team_laptops.png" alt="Business team collaborating around laptops and spreadsheet work"></div>
       </div>
     </section>
 

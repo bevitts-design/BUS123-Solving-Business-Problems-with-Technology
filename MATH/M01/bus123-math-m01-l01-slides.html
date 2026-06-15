@@ -278,6 +278,17 @@
       color: #7EC99A;
       border-color: rgba(74,124,94,0.5);
     }
+    .bridge-photo {
+      width: 560px;
+      height: 520px;
+      border-radius: 18px;
+      flex-shrink: 0;
+      object-fit: cover;
+      object-position: center 48%;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 60px rgba(14,17,22,0.16);
+      background: var(--white);
+    }
 
     /* ── Worksheet replica ── */
     .ws-wrap {
@@ -576,7 +587,7 @@
           <span class="pill">Sale price = percent change</span>
         </div>
       </div>
-      <image-slot id="bridge-img" placeholder="Drop image: person reviewing spreadsheet or receipt" style="width:560px; height:520px; border-radius:18px; flex-shrink:0;"></image-slot>
+      <img class="bridge-photo" src="assets/check-splitting-tip.png" alt="College-age adults splitting a restaurant check and leaving a tip">
     </div>
   </section>
 

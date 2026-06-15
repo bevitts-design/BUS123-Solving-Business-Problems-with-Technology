@@ -201,4 +201,4 @@ Answer each question before looking at the answer key below. Show your equation 
 
 > 📝 **Before Next Class**
 >
-> Work through the student workbook (Solving Equations tab). Write your equation setup before solving — graders and instructors check the setup, not just the final number.
+> During class, use the `Live You Try It` tab for the short Excel pauses after worked examples. Before the next checkpoint, complete the `Class Challenge` tab as the graded or next-level activity. Write your equation setup before solving so your process is visible, not just the final number.

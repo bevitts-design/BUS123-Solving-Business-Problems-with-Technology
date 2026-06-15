@@ -20,17 +20,17 @@
   "Part 1: One-Step Equations. These are the simplest version — one operation stands between you and the answer. Undo it.",
   "One-step equations use inverse operations. Addition undone by subtraction. Multiplication undone by division. The rule is always the same: whatever was done to the variable, do the opposite to both sides.",
   "Anchor and Oak budgeted $4,200 for floral arrangements across several events. After booking three weddings they have $1,650 remaining. How much did the three weddings cost? x + 1650 = 4200. Subtract 1650 from both sides. x = 2550. The weddings cost $2,550.",
-  "One more. Anchor and Oak charges a per-person catering rate. A 60-person event bill came to $4,080. What is the per-person rate? 60x = 4080. Divide both sides by 60. x = 68. The rate is $68 per person.",
+  "Live You Try It pause. Students open the workbook and use the exact catering numbers from this slide: 60 guests and a $4,080 bill. They should set up 60x = 4080 in Excel, enter the final answer, and use the feedback cell before we reveal the solution.",
   "Part 2: Two-Step Equations. Two operations to undo instead of one. The order matters — always undo addition and subtraction first, then multiplication and division.",
   "Why reverse order? Think of it like putting on shoes and socks. You put socks on before shoes, so you take shoes off before socks. In an equation, multiplication was applied last during building, so we undo it last during solving.",
-  "Anchor and Oak pays their event coordinators a base weekly pay plus an hourly overtime rate. One coordinator earned $1,240 in a week with $120 base pay and 8 overtime hours. What is the hourly overtime rate? 8x + 120 = 1240. Subtract 120 first: 8x = 1120. Divide by 8: x = 140. The overtime rate is $140 per hour.",
+  "Worked example plus Live You Try It. Students should model the payroll puzzle in Excel with total pay of $1,240, base pay of $120, and 8 overtime hours. The feedback cell confirms whether they isolated the hourly rate correctly.",
   "Part 3: Variables on Both Sides. When the unknown appears on both sides of the equal sign, your first job is to collect all the variable terms on one side. Then solve as a two-step.",
-  "Anchor and Oak is comparing two vendors for tent rentals. Vendor A charges $500 flat plus $25 per guest. Vendor B charges $200 flat plus $40 per guest. At how many guests do the costs break even? 500 + 25g = 200 + 40g. Subtract 25g from both sides: 500 = 200 + 15g. Subtract 200: 300 = 15g. Divide: g = 20. At exactly 20 guests, both vendors cost the same.",
+  "This is the variables-on-both-sides You Try It pause. Students use Vendor A at $500 plus $25 per guest and Vendor B at $200 plus $40 per guest. The Excel tab asks them to show the setup before entering 20 guests.",
   "Common Mistake: students often subtract the variable from the wrong side, creating a negative coefficient. Always move the smaller variable term so your coefficient stays positive. It reduces arithmetic errors.",
   "Part 4: Literal Equations and Formula Rearrangement. This is the highest-value skill in the course. A literal equation has multiple variables — like Profit = Revenue minus Cost. Solving for a specific variable means treating every other letter as if it were a number.",
   "The standard formula for break-even revenue is: Revenue = Variable Cost + Fixed Cost + Profit. If we set Profit to zero: R = VC + FC. We can solve for any piece. If we know target revenue and variable costs, solve for the maximum allowable fixed cost: FC = R minus VC.",
-  "Anchor and Oak is planning a corporate gala. They project $18,500 in revenue. Variable costs (catering, staffing, linens) run $11,200. How much fixed cost (venue, equipment, permits) can they absorb and still break even? FC = R minus VC. FC = 18500 minus 11200. FC = 7300. They can spend up to $7,300 on fixed costs.",
-  "Three questions. Take two minutes and write your setup — the equation — before solving. Question 1: Anchor and Oak charged $3,600 for an event. Labor was $95 per hour and the event ran 24 hours. What was the non-labor revenue? Question 2: Two photographers quote different pricing structures. At what number of hours do they charge the same? Question 3: The profit formula is P = R minus C. If P = $4,200 and C = $11,800, solve for R.",
+  "Literal equation You Try It. Students use the projected revenue of $18,500 and variable costs of $11,200 to calculate the fixed-cost ceiling. The hint reminds them that break-even means profit equals zero.",
+  "Now shift from self-graded practice to the Class Challenge tab. These are harder because they combine equation types and require students to choose the setup. Live You Try It is for feedback; Class Challenge is the graded or next-level activity.",
   "Three things to remember. One: equations are balanced scales — whatever you do to one side, do to both. Two: collect variable terms before solving. Three: literal equations are just formula rearrangements — treat other variables like numbers.",
   "Next lesson we move to percent equations and proportions — pricing markup, discount, and sales tax. All grounded in the same equation-solving logic you built today.",
   "Questions? Office hours are posted on Canvas. Bring the workbook to next class — we'll use it.",
@@ -914,10 +914,12 @@
             <span class="pill">Addition equation</span>
             <span class="pill">Subtract to isolate</span>
           </div>
+          <div class="timer-chip" style="margin-top:16px;">Open workbook · Live You Try It row 1</div>
         </div>
       </div>
       <div style="flex:1;">
         <div class="eq-panel">
+          <span class="comment">// Worked example, then self-check in Excel</span><br>
           x + 1650 = 4200<br><br>
           <span class="eq-step reveal-step"><span class="focus-op">− 1650</span> from both sides</span>
           <span class="reveal-step">x = 4200 − 1650</span>
@@ -928,10 +930,10 @@
     </div>
   </section>
 
-  <!-- ── 08 ONE-STEP EXAMPLE 2 ── -->
-  <section class="slide cream" data-label="08 One-Step Ex 2" data-section="1" data-slide="8" data-index="7">
-    <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
-    <h2 class="slide-title">Finding the Per-Person Catering Rate</h2>
+  <!-- ── 08 LIVE YOU TRY IT: ONE-STEP ── -->
+  <section class="slide cream" data-label="08 Live Try 1" data-section="1" data-slide="8" data-index="7">
+    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span><div class="rule"></div></div>
+    <h2 class="slide-title">You Try It: Finding the Per-Person Catering Rate</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
       <div style="flex:1;">
         <div class="scene-card">
@@ -943,11 +945,12 @@
             <div class="scene-stat"><span>Guests served</span><strong>60</strong></div>
             <div class="scene-stat"><span>Total bill</span><strong>$4,080</strong></div>
           </div>
-          <div class="timer-chip">60-second solo check</div>
+          <div class="timer-chip">Open workbook · Live You Try It row 2</div>
         </div>
       </div>
       <div style="flex:1;">
         <div class="eq-panel">
+          <span class="comment">// Type the setup and answer in Excel first</span><br>
           60x = 4080<br><br>
           <span class="eq-step reveal-step"><span class="focus-op">÷ 60</span> on both sides</span>
           <span class="reveal-step">x = 4080 ÷ 60</span>
@@ -1009,11 +1012,12 @@
             <div class="scene-stat"><span>Overtime hours</span><strong>8</strong></div>
             <div class="scene-stat"><span>Unknown</span><strong>Rate</strong></div>
           </div>
-          <div class="timer-chip">Partner solve · 90 seconds</div>
+          <div class="timer-chip">Open workbook · Live You Try It row 3</div>
         </div>
       </div>
       <div style="flex:1;">
         <div class="eq-panel">
+          <span class="comment">// Excel pause: setup first, answer second</span><br>
           8x + 120 = 1240<br><br>
           <span class="eq-step reveal-step">Step 1: <span class="focus-op">− 120</span> both sides</span>
           <span class="reveal-step">8x = 1120</span>
@@ -1088,10 +1092,12 @@
             <span class="choice-chip" style="color:var(--sage); border-color:rgba(74,124,94,0.35);">B</span>
             <span class="choice-chip" style="color:var(--sage); border-color:rgba(74,124,94,0.35);">Depends</span>
           </div>
+          <div class="timer-chip" style="margin-top:16px;">Open workbook · Live You Try It row 4</div>
         </div>
       </div>
       <div style="flex:1;">
         <div class="eq-panel">
+          <span class="comment">// Excel pause: show the break-even setup</span><br>
           500 + 25g = 200 + 40g<br><br>
           <span class="eq-step reveal-step"><span class="focus-op">− 25g</span> both sides</span>
           <span class="reveal-step">500 = 200 + 15g</span>
@@ -1178,10 +1184,12 @@
             <span class="pill">Break-even: P = 0</span>
             <span class="pill">Literal equation</span>
           </div>
+          <div class="timer-chip" style="margin-top:16px;">Open workbook · Live You Try It row 5</div>
         </div>
       </div>
       <div style="flex:1;">
         <div class="eq-panel">
+          <span class="comment">// Excel pause: calculate the ceiling</span><br>
           <span class="comment">// R = VC + FC, set P = 0</span><br>
           FC = R − VC<br><br>
           <span class="reveal-step">FC = 18,500 − 11,200</span>
@@ -1192,14 +1200,14 @@
     </div>
   </section>
 
-  <!-- ── 19 STUDENT PRACTICE ── -->
-  <section class="slide cream" data-label="19 Practice" data-section="4" data-slide="19" data-index="18">
-    <div class="header-row"><span class="eyebrow">Your Turn</span><div class="rule"></div></div>
+  <!-- ── 19 CLASS CHALLENGE ── -->
+  <section class="slide cream" data-label="19 Class Challenge" data-section="4" data-slide="19" data-index="18">
+    <div class="header-row"><span class="eyebrow">Class Challenge</span><div class="rule"></div></div>
     <h2 class="slide-title">Boss Level: Equation Sprint</h2>
     <div class="body-area" style="justify-content:flex-start; gap:28px;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div class="level-badge">Final Check · Setup first</div>
-        <div class="timer-chip">3 rounds · 2 minutes each</div>
+        <div class="level-badge">Graded / next-level tab · setup first</div>
+        <div class="timer-chip">Class Challenge tab · 3 rounds</div>
       </div>
       <div class="sprint-grid">
         <div class="sprint-card">

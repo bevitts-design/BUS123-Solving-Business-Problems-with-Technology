@@ -368,6 +368,11 @@ const html = `<!DOCTYPE html>
       </div>
     </section>
 
+    <div class="shell">
+      ${tracks}
+      <p class="empty" data-empty hidden>No matching lessons found.</p>
+    </div>
+
     <section class="shell controls" aria-label="Search and filter">
       <input class="search" type="search" aria-label="Search lessons by title, skill, track, module, material, or case company" placeholder="Search by title, skill, track, module, material, or case company" data-search>
       <div class="filter-panel">
@@ -385,13 +390,8 @@ const html = `<!DOCTYPE html>
         </div>
       </div>
     </section>
-
-    <div class="shell">
-      ${tracks}
-      <p class="empty" data-empty hidden>No matching lessons found.</p>
-    </div>
   </main>
-  <script src="assets/index.js"></script>
+  <script src="assets/index.js?v=20260615"></script>
 </body>
 </html>
 `;

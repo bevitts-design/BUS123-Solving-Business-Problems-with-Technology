@@ -237,18 +237,20 @@ h3 { font-size: 28px; }
 
 .week-ahead {
   margin: 16px 0;
+  max-width: 620px;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: var(--white);
-  padding: 22px;
+  background: rgba(255, 255, 255, .84);
+  padding: 16px;
+  box-shadow: 0 12px 28px rgba(53, 87, 115, .07);
 }
 
 .week-ahead-header {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 14px;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .week-ahead .meta {
@@ -262,13 +264,13 @@ h3 { font-size: 28px; }
 
 .week-ahead h2 {
   color: var(--ink);
-  font-size: 34px;
-  margin: 4px 0 8px;
+  font-size: 28px;
+  margin: 3px 0 5px;
 }
 
 .week-ahead p {
   color: var(--text-soft);
-  font-size: 15px;
+  font-size: 14px;
   margin: 0;
 }
 
@@ -276,9 +278,9 @@ h3 { font-size: 28px; }
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 9px;
+  gap: 7px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   text-align: right;
 }
 
@@ -293,12 +295,12 @@ h3 { font-size: 28px; }
 }
 
 .week-ahead-actions a {
-  padding: 7px 10px;
+  padding: 6px 9px;
 }
 
 .week-ahead-list {
   display: grid;
-  gap: 12px;
+  gap: 9px;
 }
 
 .week-ahead-day {
@@ -374,7 +376,8 @@ h3 { font-size: 28px; }
   border: 1px dashed var(--border);
   border-radius: 8px;
   background: var(--paper);
-  padding: 16px;
+  padding: 10px 12px;
+  font-size: 13px;
 }
 
 .controls {

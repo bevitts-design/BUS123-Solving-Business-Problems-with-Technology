@@ -1,4 +1,4 @@
-const searchInput = document.querySelector("[data-search]");
+const searchInput = document.querySelector("input[data-search]");
 const filterButtons = [...document.querySelectorAll("[data-filter-group]")];
 const lessons = [...document.querySelectorAll("[data-lesson]")];
 const emptyState = document.querySelector("[data-empty]");

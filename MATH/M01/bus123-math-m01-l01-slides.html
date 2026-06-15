@@ -1215,13 +1215,14 @@
       if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
       deck._idx=n;
       if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
+      if(deck._ctr) deck._ctr.textContent=(n+1)+' / '+deck._slides.length;
       if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
     };
     deck._toggleNotes=function(){
       deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
       if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
     };
-    if(!window.__bus123RetrofitKeys){
+    if(!deck._ctr && !window.__bus123RetrofitKeys){
       window.__bus123RetrofitKeys=true;
       document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
     }

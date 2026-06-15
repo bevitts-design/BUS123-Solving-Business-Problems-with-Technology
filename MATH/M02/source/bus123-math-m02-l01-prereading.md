@@ -3,7 +3,7 @@ title: "BUS 123 — MATH-M02-L01 — Solving Equations"
 lesson: "MATH-M02-L01"
 kind: "Pre-Reading"
 status: "published"
-output: "MATH/M02/bus123-math-m02-l01-prereading.md"
+output: "MATH/M02/bus123-math-m02-l01-prereading.pdf"
 ---
 
 <!--

@@ -13,28 +13,31 @@
 
   <script type="application/json" id="speaker-notes">
 [
-  "Welcome to Math Module 1. This is the foundation of every quantitative skill in the course — and it's worth pausing here even for students who think they know this material. Business math has specific quirks that trip up even strong students. Let's build those instincts today.",
-  "Quick look at what we're covering today. Three parts: whole number operations applied to business, fractions in context, and percent calculations — which will show up in almost every module from here on.",
-  "By the end of today you should be able to do all five of these without a calculator on a napkin. These aren't abstract math goals — every one maps to something Meridian Advisory Group does in real life.",
+  "Welcome to Math Module 1. This is the foundation of every quantitative skill in the course \u2014 and it's worth pausing here even for students who think they know this material. Business math has specific quirks that trip up even strong students. Let's build those instincts today.",
+  "Quick look at what we're covering today. Three parts: whole number operations applied to business, fractions in context, and percent calculations. We will also pause three times so students can type the same numbers into Excel while the example is fresh.",
+  "By the end of today you should be able to do all five of these without a calculator on a napkin. These aren't abstract math goals \u2014 every one maps to something Meridian Advisory Group does in real life.",
   "Think about the last time you split a check, calculated a tip, or estimated a sale price. You were doing business math. Today we make those instincts precise and give you Excel shortcuts that professionals actually use.",
   "Part 1 starts here. Whole numbers are the building blocks. In business, whole numbers show up in quantities, headcounts, transaction counts, and budgets rounded to the dollar.",
   "The four operations applied to business. Addition: summing revenue across accounts. Subtraction: calculating net after expenses. Multiplication: scaling unit price by volume. Division: finding per-unit or per-person figures. Meridian uses all four in every client engagement.",
   "Here is how you enter this in Excel. =SUM for addition ranges, simple arithmetic operators for everything else. The key habit: always use cell references, never type numbers into formulas. That way, when one input changes, everything recalculates.",
-  "Meridian Advisory has 48 client accounts. Last quarter they added 12 and lost 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. 57 × $4,200 = $239,400 in quarterly fee revenue. In Excel: one formula chain, no hardcoded values.",
-  "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares — if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
-  "Part 2 now. Fractions in business show up more than students expect — mostly as ratios, allocations, and proportional splits.",
-  "A fraction is a part of a whole. In business contexts we're almost always asking: what fraction of total revenue, total staff, or total clients does this segment represent? The denominator is always 'the whole thing' — make sure you know what the whole is before you calculate.",
-  "Excel doesn't love fractions as fractions — it prefers decimals. The key conversion: divide the numerator by the denominator. 3/4 becomes =3/4 which Excel shows as 0.75. Format as a fraction only when the display specifically calls for it.",
-  "Meridian allocates its 6-person advisory team across three service lines: 2 on tax, 2 on estate planning, 2 on investment management. Each service line gets 2/6 = 1/3 of total staff capacity. Now — if they hire 3 more advisors, all in tax: what fraction does tax now represent? Walk through it: 5 tax out of 9 total = 5/9.",
-  "Part 3 — Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
-  "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole (what is 15% of $80,000?), percent change (revenue went from $200K to $230K — what's the change?), and expressing a ratio as a percent (4 out of 25 clients renewed — what rate is that?). Each has a distinct formula structure.",
-  "=PERCENTAGE calculations in Excel. Top row: percent of a whole — just multiply. Middle row: percent change — (New - Old) / Old. Bottom row: part to percent — part divided by whole. Memorize these three. Format the result cell as Percentage. Do not multiply by 100 manually — Excel's format handles that.",
-  "Meridian had $1.2M in AUM fees last year. This year they project a 7.5% increase. What's the projected fee revenue? In Excel: =1200000 * (1 + 0.075) = $1,290,000. Now reverse it: if actual fees came in at $1,255,000, what was the actual percent change? =(1255000 - 1200000) / 1200000 = 4.58%. Note: the base is always the older number.",
-  "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. Students mix these up constantly. If someone says 'revenue grew by 20%' that's change. If someone says 'that client represents 20% of our book' that's a ratio. Know which one you're computing.",
-  "Two minutes — with a partner or solo. Use Meridian's numbers on the slide. Show your Excel formula approach, not just the arithmetic answer. We'll discuss in 90 seconds.",
-  "Three things to carry out of today. Align your units before any calculation. Excel formulas: SUM for addition, cell references always, Percentage format for percent output. Percent change and percent of total are different formulas — don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
-  "Questions? Office hours are Tuesday and Thursday 2–4 PM, or email me. Next lesson: MATH-M01 L02 — Markup, Markdown, and Margin. We'll keep using Meridian Advisory Group scenarios as we turn percent skills into pricing and planning decisions.",
-  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
+  "Meridian Advisory has 48 client accounts. Last quarter they added 12 and lost 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. 57 \u00d7 $4,200 = $239,400 in quarterly fee revenue. In Excel: one formula chain, no hardcoded values.",
+  "You Try It pause one. Have students open the Live You Try It tab and complete the whole-number block. They should use the 57 accounts from the worked example, subtract 4 lost accounts, then multiply by the $4,200 quarterly fee. Ask for formulas before answers.",
+  "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares \u2014 if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
+  "Part 2 now. Fractions in business show up more than students expect \u2014 mostly as ratios, allocations, and proportional splits.",
+  "A fraction is a part of a whole. In business contexts we're almost always asking: what fraction of total revenue, total staff, or total clients does this segment represent? The denominator is always 'the whole thing' \u2014 make sure you know what the whole is before you calculate.",
+  "Excel doesn't love fractions as fractions \u2014 it prefers decimals. The key conversion: divide the numerator by the denominator. 3/4 becomes =3/4 which Excel shows as 0.75. Format as a fraction only when the display specifically calls for it.",
+  "Meridian allocates its 6-person advisory team across three service lines: 2 on tax, 2 on estate planning, 2 on investment management. Each service line gets 2/6 = 1/3 of total staff capacity. After hiring 3 more advisors, all in tax, tax is 5 of 9 total advisors, or 5/9.",
+  "You Try It pause two. Students should complete the fraction block in Excel using 5 as the numerator and 9 as the denominator. Then have them format the same result as a percentage so they see that the formula stays the same while the display changes.",
+  "Part 3 \u2014 Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
+  "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole, percent change, and expressing a ratio as a percent. Each has a distinct formula structure.",
+  "=PERCENTAGE calculations in Excel. Top row: percent of a whole \u2014 just multiply. Middle row: percent change \u2014 (New - Old) / Old. Bottom row: part to percent \u2014 part divided by whole. Format the result cell as Percentage. Do not multiply by 100 manually.",
+  "Meridian had $1.2M in AUM fees last year. This year they project a 7.5% increase. In Excel: =1200000 * (1 + 0.075) = $1,290,000. If actual fees came in at $1,255,000, the actual percent change is =(1255000 - 1200000) / 1200000 = 4.58%.",
+  "You Try It pause three. Students use the same percent cases with the quarterly fee base: a 12% growth target from $239,400 and an actual change check from $239,400 to $268,200. Listen for whether they choose growth-by-rate versus percent-change formulas.",
+  "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. If someone says revenue grew by 20%, that's change. If someone says a client represents 20% of the book, that's a ratio.",
+  "Use this synthesis slide to make the ladder explicit: today's live practice is the first layer, the workbook records the formulas, and next class we turn those pieces into a multi-step challenge. Students who are moving quickly can preview the challenge, but it is designed for the next class workshop.",
+  "Three things to carry out of today. Align your units before any calculation. Use cell references in Excel. Percent change and percent of total are different formulas \u2014 don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
+  "Next lesson: MATH-M01 L02 \u2014 Markup, Markdown, and Margin. We'll keep using business math in pricing decisions and connect these percent habits to the next layer of Excel modeling.",
+  "Questions? Office hours are Tuesday and Thursday 2\u20134 PM, or email me. Remind students that the Live You Try It tab should be complete before the next class challenge."
 ]
   </script>
 
@@ -622,6 +625,67 @@
     font-size: var(--type-body);
     line-height: 1.32;
   }
+
+  .try-layout { display:flex; gap:44px; align-items:flex-start; margin-top:34px; }
+  .try-panel { flex:1; background:var(--white); border:1px solid var(--border); border-radius:8px; padding:28px; box-shadow:0 18px 42px rgba(14,17,22,0.08); }
+  .try-panel h3 { font-family:var(--font-display); font-size:calc(38px * var(--scale)); line-height:1.05; color:var(--text); margin-bottom:18px; }
+  .try-panel p { font-size:var(--type-body); color:var(--text-soft); line-height:1.45; margin-bottom:18px; }
+  .try-steps { width:420px; display:flex; flex-direction:column; gap:16px; }
+  .try-step { background:var(--paper-2); border-left:4px solid var(--sage); border-radius:8px; padding:18px 20px; }
+  .try-step strong { display:block; font-family:var(--font-mono); color:var(--steel); font-size:var(--type-small); margin-bottom:7px; }
+  .try-step span { display:block; color:var(--text); font-size:var(--type-body); line-height:1.32; }
+  .try-formula { font-family:var(--font-mono); color:var(--steel); background:var(--formula-bg); border-left:4px solid var(--sage); border-radius:8px; padding:18px 22px; font-size:var(--type-body); line-height:1.55; }
+  .try-meta { display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; }
+  .try-meta .pill { color:var(--text); border-color:var(--border); }
+  .slide[data-slide="9"] .content,
+  .slide[data-slide="14"] .content,
+  .slide[data-slide="20"] .content,
+  .slide[data-slide="22"] .content {
+    margin-top: 22px !important;
+    padding-bottom: 26px !important;
+  }
+  .slide[data-slide="9"] h2,
+  .slide[data-slide="14"] h2,
+  .slide[data-slide="20"] h2,
+  .slide[data-slide="22"] h2 {
+    padding: 0 !important;
+    margin-top: 0 !important;
+    font-size: 42px !important;
+  }
+  .slide[data-slide="9"] .try-layout,
+  .slide[data-slide="14"] .try-layout,
+  .slide[data-slide="20"] .try-layout { margin-top: 22px; }
+  .slide[data-slide="9"] .try-panel,
+  .slide[data-slide="14"] .try-panel,
+  .slide[data-slide="20"] .try-panel { padding: 22px; }
+  .slide[data-slide="9"] .try-panel p,
+  .slide[data-slide="14"] .try-panel p,
+  .slide[data-slide="20"] .try-panel p { line-height: 1.32; margin-bottom: 14px; }
+  .slide[data-slide="9"] .try-formula,
+  .slide[data-slide="14"] .try-formula,
+  .slide[data-slide="20"] .try-formula { padding: 14px 18px; line-height: 1.35; }
+  .slide[data-slide="9"] .try-steps,
+  .slide[data-slide="14"] .try-steps,
+  .slide[data-slide="20"] .try-steps { gap: 12px; }
+  .slide[data-slide="9"] .try-step,
+  .slide[data-slide="14"] .try-step,
+  .slide[data-slide="20"] .try-step { padding: 14px 18px; }
+  .slide[data-slide="9"] .try-meta,
+  .slide[data-slide="14"] .try-meta,
+  .slide[data-slide="20"] .try-meta { margin-top: 14px; gap: 10px; }
+  .slide[data-slide="22"] .disc-q { padding: 18px 22px; }
+  .slide[data-slide="22"] .disc-q p { font-size: var(--type-body); line-height: 1.32; }
+  .up-next-photo {
+    width: 640px;
+    height: 680px;
+    border-radius: 18px;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: left center;
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    background: var(--ink);
+  }
   .retrofit-tab-strip {
     position: fixed;
     left: 0;
@@ -888,8 +952,40 @@
     </div>
   </section>
 
+
+
+  <!-- ── 09 YOU TRY IT — WHOLE NUMBERS ── -->
+  <section class="slide cream" data-label="09 You Try Whole Numbers" data-section="1" data-slide="9" data-index="8">
+    <div class="header-row">
+      <span class="eyebrow">You Try It · Live Excel Pause</span>
+      <div class="rule"></div>
+    </div>
+    <div class="content">
+      <h2>Update the Fee Revenue</h2>
+      <div class="try-layout">
+        <div class="try-panel">
+          <h3>Use the same numbers from the worked example.</h3>
+          <p>Meridian ended the quarter with <strong>57 accounts</strong>. Before the next quarter closes, they lose <strong>4 accounts</strong>. The quarterly fee is still <strong>$4,200 per account</strong>.</p>
+          <div class="try-formula">
+            Live workbook tab: <strong>Live You Try It</strong><br>
+            Enter formulas in the yellow cells for Whole Numbers.
+          </div>
+          <div class="try-meta">
+            <span class="pill">Use cell references</span>
+            <span class="pill">Do not hardcode the answer</span>
+          </div>
+        </div>
+        <div class="try-steps">
+          <div class="try-step"><strong>Step 1</strong><span>New account count = 57 − 4</span></div>
+          <div class="try-step"><strong>Step 2</strong><span>New fee revenue = new accounts × $4,200</span></div>
+          <div class="try-step"><strong>Step 3</strong><span>Check whether the result is lower than $239,400.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── 09 COMMON MISTAKE 1 ── -->
-  <section class="slide dark" data-label="09 Mistake 1 Units" data-section="2" data-slide="9" data-index="8">
+  <section class="slide dark" data-label="10 Mistake 1 Units" data-section="2" data-slide="10" data-index="9">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="mistake-panel">
         <div class="mistake-label">⚠ Common Mistake #1</div>
@@ -905,7 +1001,7 @@
   </section>
 
   <!-- ── 10 SECTION BREAK 2 ── -->
-  <section class="slide dark" data-label="10 Part 2 Break" data-section="2" data-slide="10" data-index="9">
+  <section class="slide dark" data-label="11 Part 2 Break" data-section="2" data-slide="11" data-index="10">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="section-label">Part 2 of 3</div>
@@ -915,7 +1011,7 @@
   </section>
 
   <!-- ── 11 FRACTIONS IN BUSINESS ── -->
-  <section class="slide cream" data-label="11 Fractions" data-section="2" data-slide="11" data-index="10">
+  <section class="slide cream" data-label="12 Fractions" data-section="2" data-slide="12" data-index="11">
     <div class="header-row">
       <span class="eyebrow">Part 2 · Fractions</span>
       <div class="rule"></div>
@@ -952,7 +1048,7 @@
   </section>
 
   <!-- ── 12 MERIDIAN FRACTIONS ── -->
-  <section class="slide cream" data-label="12 Meridian Fractions" data-section="2" data-slide="12" data-index="11">
+  <section class="slide cream" data-label="13 Meridian Fractions" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
       <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
       <div class="rule"></div>
@@ -981,8 +1077,40 @@
     </div>
   </section>
 
+
+
+  <!-- ── 15 YOU TRY IT — FRACTIONS ── -->
+  <section class="slide cream" data-label="14 You Try Fractions" data-section="2" data-slide="14" data-index="13">
+    <div class="header-row">
+      <span class="eyebrow">You Try It · Live Excel Pause</span>
+      <div class="rule"></div>
+    </div>
+    <div class="content">
+      <h2>Show the Tax Team Share</h2>
+      <div class="try-layout">
+        <div class="try-panel">
+          <h3>The whole changed, so the denominator changes.</h3>
+          <p>After hiring, Meridian has <strong>5 Tax advisors</strong> out of <strong>9 total advisors</strong>. Use Excel to show Tax as a decimal and then as a percentage.</p>
+          <div class="try-formula">
+            Same formula both times: part ÷ whole<br>
+            The display changes when you format as Percentage.
+          </div>
+          <div class="try-meta">
+            <span class="pill">Numerator = 5</span>
+            <span class="pill">Denominator = 9</span>
+          </div>
+        </div>
+        <div class="try-steps">
+          <div class="try-step"><strong>Step 1</strong><span>Enter the part and whole in the Live You Try It tab.</span></div>
+          <div class="try-step"><strong>Step 2</strong><span>Write the decimal formula using cell references.</span></div>
+          <div class="try-step"><strong>Step 3</strong><span>Format the matching percent cell as Percentage.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── 13 STAT BRIDGE ── -->
-  <section class="slide dark" data-label="13 Stat Bridge" data-section="2" data-slide="13" data-index="12">
+  <section class="slide dark" data-label="15 Stat Bridge" data-section="2" data-slide="15" data-index="14">
     <div style="flex:1; display:flex; align-items:center; gap:96px; padding: 0 var(--pad-x);">
       <div>
         <div class="big-stat">3</div>
@@ -997,7 +1125,7 @@
   </section>
 
   <!-- ── 14 SECTION BREAK 3 ── -->
-  <section class="slide dark" data-label="14 Part 3 Break" data-section="3" data-slide="14" data-index="13">
+  <section class="slide dark" data-label="16 Part 3 Break" data-section="3" data-slide="16" data-index="15">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="section-label">Part 3 of 3</div>
@@ -1007,7 +1135,7 @@
   </section>
 
   <!-- ── 15 THREE PERCENT CASES ── -->
-  <section class="slide cream" data-label="15 Three Percent Cases" data-section="3" data-slide="15" data-index="14">
+  <section class="slide cream" data-label="17 Three Percent Cases" data-section="3" data-slide="17" data-index="16">
     <div class="header-row">
       <span class="eyebrow">Part 3 · Percents</span>
       <div class="rule"></div>
@@ -1038,7 +1166,7 @@
   </section>
 
   <!-- ── 16 EXCEL PERCENT SYNTAX ── -->
-  <section class="slide cream" data-label="16 Excel Percents" data-section="3" data-slide="16" data-index="15">
+  <section class="slide cream" data-label="18 Excel Percents" data-section="3" data-slide="18" data-index="17">
     <div class="header-row">
       <span class="eyebrow">Excel First · Percent Formulas</span>
       <div class="rule"></div>
@@ -1096,7 +1224,7 @@
   </section>
 
   <!-- ── 17 MERIDIAN PERCENTS ── -->
-  <section class="slide cream" data-label="17 Meridian Percents" data-section="3" data-slide="17" data-index="16">
+  <section class="slide cream" data-label="19 Meridian Percents" data-section="3" data-slide="19" data-index="18">
     <div class="header-row">
       <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
       <div class="rule"></div>
@@ -1131,8 +1259,40 @@
     </div>
   </section>
 
+
+
+  <!-- ── 20 YOU TRY IT — PERCENTS ── -->
+  <section class="slide cream" data-label="20 You Try Percents" data-section="3" data-slide="20" data-index="19">
+    <div class="header-row">
+      <span class="eyebrow">You Try It · Live Excel Pause</span>
+      <div class="rule"></div>
+    </div>
+    <div class="content">
+      <h2>Target Growth, Then Check Actual Growth</h2>
+      <div class="try-layout">
+        <div class="try-panel">
+          <h3>Use the quarterly fee base from the deck.</h3>
+          <p>Meridian's current quarterly fee revenue is <strong>$239,400</strong>. They want a <strong>12%</strong> increase next quarter. Actual fees later came in at <strong>$268,200</strong>.</p>
+          <div class="try-formula">
+            Target formula: base × (1 + rate)<br>
+            Actual change formula: (new − old) ÷ old
+          </div>
+          <div class="try-meta">
+            <span class="pill">Format % change as Percentage</span>
+            <span class="pill">Base = older number</span>
+          </div>
+        </div>
+        <div class="try-steps">
+          <div class="try-step"><strong>Step 1</strong><span>Calculate the 12% target from $239,400.</span></div>
+          <div class="try-step"><strong>Step 2</strong><span>Calculate actual % change from $239,400 to $268,200.</span></div>
+          <div class="try-step"><strong>Step 3</strong><span>Decide whether actual performance beat the 12% target.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── 18 COMMON MISTAKE 2 ── -->
-  <section class="slide dark" data-label="18 Mistake 2 Percent" data-section="3" data-slide="18" data-index="17">
+  <section class="slide dark" data-label="21 Mistake 2 Percent" data-section="3" data-slide="21" data-index="20">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
       <div class="mistake-panel">
         <div class="mistake-label">⚠ Common Mistake #2</div>
@@ -1157,36 +1317,36 @@
     </div>
   </section>
 
-  <!-- ── 19 STUDENT PRACTICE ── -->
-  <section class="slide cream" data-label="19 Practice" data-section="4" data-slide="19" data-index="18">
+
+  <!-- ── 22 SYNTHESIS ── -->
+  <section class="slide cream" data-label="22 Synthesis" data-section="4" data-slide="22" data-index="21">
     <div class="header-row">
-      <span class="eyebrow">Your Turn</span>
+      <span class="eyebrow">From Live Practice to Challenge</span>
       <div class="rule"></div>
     </div>
-    <div class="content" style="display:flex; align-items:center; gap:64px;">
+    <div class="content" style="display:flex; align-items:center; gap:56px;">
       <div style="flex:1;">
-        <h2>Meridian — Three Problems</h2>
-        <div style="margin-top:40px; display:flex; flex-direction:column; gap:24px;">
-          <div class="disc-q">
-            <p><strong>1.</strong> Meridian had 57 accounts generating $239,400 in quarterly fees. They lost 4 accounts next quarter. What is the new quarterly fee total? Write the Excel formula.</p>
-          </div>
-          <div class="disc-q">
-            <p><strong>2.</strong> Tax services generated $85,000 of Meridian's $239,400 total fees. What fraction — and what percent — of fees came from tax?</p>
-          </div>
-          <div class="disc-q">
-            <p><strong>3.</strong> Meridian is targeting a 12% increase in total AUM fees next year. Starting from $239,400/quarter, what's the quarterly fee target?</p>
-          </div>
+        <h2>Today Was the First Layer</h2>
+        <p style="margin-top:28px; max-width:720px;">The live practice tab captured the same formulas we used in the deck. Next class, the challenge tab asks you to connect those formulas into a small business model.</p>
+        <div style="margin-top:36px; display:flex; flex-direction:column; gap:18px;">
+          <div class="disc-q"><p><strong>Live You Try It:</strong> one formula at a time, matching the slide numbers.</p></div>
+          <div class="disc-q"><p><strong>Next Class Challenge:</strong> multi-quarter revenue, service-line mix, and interpretation.</p></div>
         </div>
       </div>
-      <div style="width:320px; flex-shrink:0; text-align:center;">
-        <div style="font-family:var(--font-display); font-style:italic; font-size:calc(90px * var(--scale)); color:var(--sage); line-height:1;">2<br>min</div>
-        <p style="font-size:var(--type-body); color:var(--text-soft); margin-top:16px;">Work solo or with a neighbor. Show the Excel formula — not just the arithmetic.</p>
+      <div style="width:360px; flex-shrink:0;">
+        <div class="formula-panel">
+          <span class="fn">Formula skill → model skill</span>
+          <span class="comment">First: get the math right.</span>
+          <span class="comment">Next: connect the steps.</span>
+          <span class="result">Then: explain the business meaning.</span>
+        </div>
       </div>
     </div>
   </section>
 
+
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="20 Key Takeaways" data-section="4" data-slide="20" data-index="19">
+  <section class="slide cream" data-label="23 Key Takeaways" data-section="4" data-slide="23" data-index="22">
     <div class="header-row">
       <span class="eyebrow">Key Takeaways</span>
       <div class="rule"></div>
@@ -1211,9 +1371,9 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="21 Up Next" data-section="4" data-slide="21" data-index="20">
+  <section class="slide dark" data-label="24 Up Next" data-section="4" data-slide="24" data-index="23">
     <div style="flex:1; display:flex; align-items:center; gap:80px; padding: 0 var(--pad-x);">
-      <image-slot id="next-img" placeholder="Drop image: retail shelving, price tags, or product display" style="width:640px; height:680px; border-radius:18px; flex-shrink:0;"></image-slot>
+      <img class="up-next-photo" src="assets/retail-markup-markdown.png" alt="Retail shelves with regular price, sale price, and markdown tags">
       <div>
         <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:24px; letter-spacing:0.08em; text-transform:uppercase;">Up Next · MATH-M01 · L02</div>
         <div style="font-family:var(--font-display); font-size:var(--type-display); line-height:1.0; color:var(--white);">Markup,<br><span style="font-style:italic; color:var(--sage);">Markdown<br>&amp; Margin</span></div>
@@ -1223,7 +1383,7 @@
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
+  <section class="slide dark" data-label="25 Close" data-section="4" data-slide="25" data-index="24">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 0 var(--pad-x);">
       <div style="font-family:var(--font-display); font-size:var(--type-display); color:var(--white);">Questions?</div>

@@ -22,7 +22,9 @@
   --gold:       #B8843D;
   --terra:      #9C4A2B;
   --steel:      #355773;
+  --formula-bg: #EAF3EC;
   --accent:     var(--sage);
+  --gradient:   linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
   --serif:      "Bodoni Moda", Georgia, serif;
   --sans:       "DM Sans", system-ui, sans-serif;
   --mono:       "JetBrains Mono", "Courier New", monospace;
@@ -58,7 +60,7 @@ html, body { width: 100%; height: 100%; background: #111; overflow: hidden; font
 .grad-bar {
   height: 6px;
   flex-shrink: 0;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--terra) 50%, var(--sage) 100%);
+  background: var(--gradient);
 }
 
 /* ─── Tab Strip (Notebook Tabs) ──────────────────────────── */
@@ -233,7 +235,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 
 /* ─── Formula Panel ──────────────────────────────────────── */
 .formula-panel {
-  background: #EAF3EC;
+  background: var(--formula-bg);
   border-left: 4px solid var(--sage);
   border-radius: 0 8px 8px 0;
   padding: 18px 22px;
@@ -659,7 +661,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 1 · TITLE
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark active" data-section="title" id="slide-1">
+<section class="slide dark active" data-slide="1" data-section="title" id="slide-1">
   <div class="grad-bar"></div>
   <div class="tab-layout">
     <div class="tab-strip">
@@ -690,7 +692,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 2 · AGENDA
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="agenda" id="slide-2">
+<section class="slide cream" data-slide="2" data-section="agenda" id="slide-2">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Agenda</span>
@@ -728,7 +730,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 3 · LEARNING OBJECTIVES
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="objectives" id="slide-3">
+<section class="slide cream" data-slide="3" data-section="objectives" id="slide-3">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Objectives</span>
@@ -754,7 +756,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
           <div class="obj-text">I can conduct a trend analysis by expressing financial data as a percentage of a base year.</div>
         </div>
       </div>
-      <div style="margin-top:14px; font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.06em;">⚠ I Can statements drafted — not yet confirmed in Notion. Verify before distribution.</div>
+      <div style="margin-top:14px; font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.06em;">These objectives guide today's financial-statement reading, ratio interpretation, and trend-analysis work.</div>
     </div>
   </div>
   <span class="slide-num">03 / 22</span>
@@ -763,7 +765,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 4 · RECAP / BRIDGE
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="bridge" id="slide-4">
+<section class="slide cream" data-slide="4" data-section="bridge" id="slide-4">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Bridge</span>
@@ -804,7 +806,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 5 · SECTION BREAK — PART 1
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part1" id="slide-5">
+<section class="slide dark" data-slide="5" data-section="part1" id="slide-5">
   <div class="grad-bar"></div>
   <div class="section-center">
     <div class="section-part">Part 1 of 3</div>
@@ -817,7 +819,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 6 · THE ACCOUNTING EQUATION
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part1" id="slide-6">
+<section class="slide cream" data-slide="6" data-section="part1" id="slide-6">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Equation</span>
@@ -853,7 +855,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 7 · THE BALANCE SHEET BREAKDOWN
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part1" id="slide-7">
+<section class="slide cream" data-slide="7" data-section="part1" id="slide-7">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Balance Sheet</span>
@@ -886,7 +888,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 8 · HARBORSIDE BALANCE SHEET EXAMPLE
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part1" id="slide-8">
+<section class="slide cream" data-slide="8" data-section="part1" id="slide-8">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Example</span>
@@ -926,7 +928,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 9 · SECTION BREAK — PART 2
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part2" id="slide-9">
+<section class="slide dark" data-slide="9" data-section="part2" id="slide-9">
   <div class="grad-bar"></div>
   <div class="section-center">
     <div class="section-part">Part 2 of 3</div>
@@ -939,7 +941,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 10 · THE INCOME STATEMENT
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part2" id="slide-10">
+<section class="slide cream" data-slide="10" data-section="part2" id="slide-10">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Income Stmt</span>
@@ -976,7 +978,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 11 · CASH IS KING
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part2" id="slide-11">
+<section class="slide cream" data-slide="11" data-section="part2" id="slide-11">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Cash vs Profit</span>
@@ -1012,7 +1014,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 12 · STATEMENT OF CASH FLOWS
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part2" id="slide-12">
+<section class="slide cream" data-slide="12" data-section="part2" id="slide-12">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Cash Flow</span>
@@ -1053,7 +1055,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 13 · CONNECTING THE THREE STATEMENTS
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part2" id="slide-13">
+<section class="slide cream" data-slide="13" data-section="part2" id="slide-13">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Connection</span>
@@ -1100,7 +1102,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 14 · SECTION BREAK — PART 3
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part3" id="slide-14">
+<section class="slide dark" data-slide="14" data-section="part3" id="slide-14">
   <div class="grad-bar"></div>
   <div class="section-center">
     <div class="section-part">Part 3 of 3</div>
@@ -1113,7 +1115,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 15 · TREND ANALYSIS
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part3" id="slide-15">
+<section class="slide cream" data-slide="15" data-section="part3" id="slide-15">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Trend Analysis</span>
@@ -1153,7 +1155,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 16 · RATIO ANALYSIS INTRO
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part3" id="slide-16">
+<section class="slide cream" data-slide="16" data-section="part3" id="slide-16">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Ratios</span>
@@ -1206,7 +1208,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 17 · WORKED RATIO EXAMPLE — HARBORSIDE
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="part3" id="slide-17">
+<section class="slide cream" data-slide="17" data-section="part3" id="slide-17">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Worked Example</span>
@@ -1251,7 +1253,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 18 · COMMON MISTAKE (TERRA)
 ═══════════════════════════════════════════════════════ -->
-<section class="slide terra-bg" data-section="mistake" id="slide-18">
+<section class="slide terra-bg" data-slide="18" data-section="mistake" id="slide-18">
   <div class="tab-layout">
     <div class="tab-strip" style="background:rgba(0,0,0,0.25);">
       <span class="tab-label" style="color:rgba(255,255,255,0.5);">⚠ Mistake</span>
@@ -1280,7 +1282,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 19 · DISCUSSION
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="discussion" id="slide-19">
+<section class="slide dark" data-slide="19" data-section="discussion" id="slide-19">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Discussion</span>
@@ -1305,7 +1307,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 20 · KEY TAKEAWAYS
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="takeaways" id="slide-20">
+<section class="slide cream" data-slide="20" data-section="takeaways" id="slide-20">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Takeaways</span>
@@ -1344,7 +1346,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 21 · UP NEXT
 ═══════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="upnext" id="slide-21">
+<section class="slide cream" data-slide="21" data-section="upnext" id="slide-21">
   <div class="tab-layout">
     <div class="tab-strip">
       <span class="tab-label">Up Next</span>
@@ -1377,7 +1379,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 <!-- ═══════════════════════════════════════════════════════
      SLIDE 22 · CLOSE / Q&A
 ═══════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="close" id="slide-22">
+<section class="slide dark" data-slide="22" data-section="close" id="slide-22">
   <div class="grad-bar"></div>
   <div class="tab-layout">
     <div class="tab-strip">
@@ -1416,7 +1418,7 @@ p.body-text.light { color: rgba(250,248,243,0.8); }
 [
   "Welcome to MATH-M11. Today we're learning to read financial statements — the three documents every business produces to tell its financial story. Our case study is Harborside Medical Center.",
   "We're covering three major areas: the balance sheet and accounting equation in Part 1, then income statements versus cash flow in Part 2, and finally trend and ratio analysis with Excel in Part 3.",
-  "These four I Can statements are drafted — they're not yet confirmed in Notion. Double-check before distributing. The core goals: identify the three statements, apply the accounting equation, calculate ratios in Excel, and run a trend analysis.",
+  "These four I Can statements frame the day: identify the three statements, apply the accounting equation, calculate ratios in Excel, and run a trend analysis.",
   "In M10 we looked at stocks and bonds — how investors put money into businesses. Today we flip the lens and learn to read financial health from the inside. Every business manager needs this skill.",
   "Part 1: The Language of Business. Accounting is often called the language of business because these numbers tell a story — where the money came from, where it went, and what's left over.",
   "The accounting equation: Assets equals Liabilities plus Equity. This is the DNA of every financial report. Every single transaction in any business — from a $10 purchase to a $10 million equipment buy — must keep this equation in balance. That's the double-entry principle.",

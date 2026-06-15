@@ -36,7 +36,7 @@
     :root {
       --ink:#0E1116; --paper:#FAF8F3; --paper-2:#F2EEE5; --white:#FFFFFF;
       --text:#1A1F2C; --text-soft:#4A5567; --muted:#7A8290; --border:#E5E1D6;
-      --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773;
+      --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773; --formula-bg:#EAF3EC;
       --accent:var(--sage);
       --gradient:linear-gradient(90deg,var(--gold) 0%,var(--terra) 50%,var(--sage) 100%);
       --serif:"Bodoni Moda",Georgia,serif;
@@ -94,9 +94,12 @@
     .visual{display:flex;align-items:center;justify-content:center;min-width:0;}
     /* --- FORMULA PANEL --- */
     .formula-panel{margin-top:20px;padding:18px 24px;border-radius:10px;
-      background:var(--ink);color:var(--gold);
+      background:var(--formula-bg);color:var(--ink);border-left:4px solid var(--sage);
       font:500 18px/1.55 var(--mono);white-space:pre-wrap;}
-    .cream .formula-panel{background:var(--ink);}
+    .cream .formula-panel{background:var(--formula-bg);}
+    .formula-panel .fn{display:block;color:var(--steel);font-size:22px;font-weight:700;margin-bottom:14px;}
+    .formula-panel .comment{display:block;color:var(--text-soft);font-size:14px;}
+    .formula-panel .result{display:block;color:var(--sage);font-weight:700;}
     /* --- FLOW NODES --- */
     .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:center;width:100%;}
     .node{min-height:140px;padding:20px;border:1.5px solid var(--border);border-radius:12px;
@@ -228,7 +231,7 @@
 <body>
 <!-- ===================== SLIDE 01 — TITLE ===================== -->
 <div id="stage">
-  <section class="slide dark active" data-section="title" data-label="01 Title">
+  <section class="slide dark active" data-slide="1" data-section="title" data-label="01 Title">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">
@@ -251,7 +254,7 @@
   </section>
 
 <!-- ===================== SLIDE 02 — AGENDA ===================== -->
-  <section class="slide cream" data-section="agenda" data-label="02 Agenda">
+  <section class="slide cream" data-slide="2" data-section="agenda" data-label="02 Agenda">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -285,7 +288,7 @@
   </section>
 
 <!-- ===================== SLIDE 03 — OBJECTIVES ===================== -->
-  <section class="slide cream" data-section="objectives" data-label="03 Objectives">
+  <section class="slide cream" data-slide="3" data-section="objectives" data-label="03 Objectives">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -319,7 +322,7 @@
   </section>
 
 <!-- ===================== SLIDE 04 — BRIDGE ===================== -->
-  <section class="slide cream" data-section="bridge" data-label="04 Bridge">
+  <section class="slide cream" data-slide="4" data-section="bridge" data-label="04 Bridge">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -352,7 +355,7 @@
   </section>
 
 <!-- ===================== SLIDE 05 — PART 1 SECTION BREAK ===================== -->
-  <section class="slide dark" data-section="part1" data-label="05 Part 1">
+  <section class="slide dark" data-slide="5" data-section="part1" data-label="05 Part 1">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">
@@ -370,7 +373,7 @@
   </section>
 
 <!-- ===================== SLIDE 06 — PAY TYPES ===================== -->
-  <section class="slide cream" data-section="part1" data-label="06 Pay Types">
+  <section class="slide cream" data-slide="6" data-section="part1" data-label="06 Pay Types">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -404,7 +407,7 @@
   </section>
 
 <!-- ===================== SLIDE 07 — PAY CYCLES ===================== -->
-  <section class="slide cream" data-section="part1" data-label="07 Pay Cycles">
+  <section class="slide cream" data-slide="7" data-section="part1" data-label="07 Pay Cycles">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -442,7 +445,7 @@ annual salary ÷ number of pay periods
   </section>
 
 <!-- ===================== SLIDE 08 — OVERTIME ===================== -->
-  <section class="slide cream" data-section="part1" data-label="08 Overtime">
+  <section class="slide cream" data-slide="8" data-section="part1" data-label="08 Overtime">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -472,7 +475,7 @@ Gross pay = $1,958</div>
   </section>
 
 <!-- ===================== SLIDE 09 — SCHEDULING ===================== -->
-  <section class="slide cream" data-section="part1" data-label="09 Scheduling">
+  <section class="slide cream" data-slide="9" data-section="part1" data-label="09 Scheduling">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -503,7 +506,7 @@ Gross pay = $1,958</div>
   </section>
 
 <!-- ===================== SLIDE 10 — PART 2 SECTION BREAK ===================== -->
-  <section class="slide dark" data-section="part2" data-label="10 Part 2">
+  <section class="slide dark" data-slide="10" data-section="part2" data-label="10 Part 2">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">
@@ -521,7 +524,7 @@ Gross pay = $1,958</div>
   </section>
 
 <!-- ===================== SLIDE 11 — REGISTER ===================== -->
-  <section class="slide cream" data-section="part2" data-label="11 Register">
+  <section class="slide cream" data-slide="11" data-section="part2" data-label="11 Register">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -553,7 +556,7 @@ Gross pay = $1,958</div>
   </section>
 
 <!-- ===================== SLIDE 12 — INCENTIVES ===================== -->
-  <section class="slide cream" data-section="part2" data-label="12 Incentives">
+  <section class="slide cream" data-slide="12" data-section="part2" data-label="12 Incentives">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -587,7 +590,7 @@ Gross pay = $1,958</div>
   </section>
 
 <!-- ===================== SLIDE 13 — WORKED PAYROLL ===================== -->
-  <section class="slide cream" data-section="part2" data-label="13 Worked Payroll">
+  <section class="slide cream" data-slide="13" data-section="part2" data-label="13 Worked Payroll">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -619,7 +622,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 14 — INTERACTIVE ACTIVITY ===================== -->
-  <section class="slide dark" data-section="part2" data-label="14 Activity">
+  <section class="slide dark" data-slide="14" data-section="part2" data-label="14 Activity">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -650,7 +653,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 15 — PART 3 SECTION BREAK ===================== -->
-  <section class="slide dark" data-section="part3" data-label="15 Part 3">
+  <section class="slide dark" data-slide="15" data-section="part3" data-label="15 Part 3">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">
@@ -668,7 +671,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 16 — DEPRECIATION CONCEPT ===================== -->
-  <section class="slide cream" data-section="part3" data-label="16 Concept">
+  <section class="slide cream" data-slide="16" data-section="part3" data-label="16 Concept">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -703,7 +706,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 17 — SL METHOD ===================== -->
-  <section class="slide cream" data-section="part3" data-label="17 Straight-Line">
+  <section class="slide cream" data-slide="17" data-section="part3" data-label="17 Straight-Line">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -740,7 +743,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 18 — COMMON MISTAKE ===================== -->
-  <section class="slide terra-bg" data-section="part3" data-label="18 Common Mistake">
+  <section class="slide terra-bg" data-slide="18" data-section="part3" data-label="18 Common Mistake">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -778,7 +781,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 19 — SCHEDULE ===================== -->
-  <section class="slide cream" data-section="part3" data-label="19 Schedule">
+  <section class="slide cream" data-slide="19" data-section="part3" data-label="19 Schedule">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -813,7 +816,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 20 — DISCUSSION ===================== -->
-  <section class="slide cream" data-section="discussion" data-label="20 Discussion">
+  <section class="slide cream" data-slide="20" data-section="discussion" data-label="20 Discussion">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -840,7 +843,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 21 — KEY TAKEAWAYS ===================== -->
-  <section class="slide dark" data-section="close" data-label="21 Takeaways">
+  <section class="slide dark" data-slide="21" data-section="close" data-label="21 Takeaways">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -861,7 +864,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
   </section>
 
 <!-- ===================== SLIDE 22 — CLOSE / Q&A ===================== -->
-  <section class="slide dark" data-section="close" data-label="22 Close">
+  <section class="slide dark" data-slide="22" data-section="close" data-label="22 Close">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">

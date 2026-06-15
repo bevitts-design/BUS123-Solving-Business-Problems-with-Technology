@@ -12,8 +12,9 @@
 :root{
   --ink:#0E1116; --paper:#FAF8F3; --paper-2:#F2EEE5; --white:#FFFFFF;
   --text:#1A1F2C; --text-soft:#4A5567; --muted:#7A8290; --border:#E5E1D6;
-  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773;
+  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773; --formula-bg:#EAF3EC;
   --accent:var(--sage);
+  --gradient:linear-gradient(90deg,var(--gold) 0%,var(--terra) 50%,var(--sage) 100%);
   --serif:"Bodoni Moda",Georgia,serif;
   --sans:"DM Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",monospace;
@@ -64,7 +65,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 /* ── GRADIENT BAR ── */
 .grad-bar{
   height:5px;width:100%;
-  background:linear-gradient(90deg,#B8843D 0%,#9C4A2B 50%,#4A7C5E 100%);
+  background:var(--gradient);
   flex-shrink:0;
 }
 
@@ -103,12 +104,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 
 /* ── FORMULA PANEL ── */
 .formula-panel{
-  background:#0a0e14;border:1px solid rgba(184,132,61,.4);border-radius:10px;
-  padding:16px 20px;font-family:var(--mono);font-size:15px;color:var(--gold);
-  line-height:1.7;
+  background:var(--formula-bg);border:0;border-left:4px solid var(--sage);border-radius:0 10px 10px 0;
+  padding:16px 20px;font-family:var(--mono);font-size:18px;color:var(--ink);
+  font-weight:500;line-height:1.7;
 }
-.formula-panel .comment{color:rgba(255,255,255,.35);font-size:13px;}
-.formula-panel .result{color:#7ec8a0;margin-top:4px;}
+.formula-panel .fn{display:block;color:var(--steel);font-size:22px;font-weight:700;margin-bottom:14px;}
+.formula-panel .comment{display:block;color:var(--text-soft);font-size:14px;}
+.formula-panel .result{display:block;color:var(--sage);font-weight:700;margin-top:4px;}
 
 /* ── SLIDE COUNTER ── */
 .slide-num{
@@ -230,7 +232,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 1 · TITLE
      ════════════════════════════════════════════════════ -->
-<section class="slide active bg-ink" data-section="title">
+<section class="slide active bg-ink" data-slide="1" data-section="title">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">M9</div>
@@ -256,7 +258,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 2 · AGENDA
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="agenda">
+<section class="slide bg-paper" data-slide="2" data-section="agenda">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -303,7 +305,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 3 · LEARNING OBJECTIVES
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="objectives">
+<section class="slide bg-paper" data-slide="3" data-section="objectives">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -327,7 +329,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 4 · RECAP / BRIDGE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="recap">
+<section class="slide bg-paper" data-slide="4" data-section="recap">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -365,7 +367,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 5 · SECTION BREAK — PART 1
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="break-1">
+<section class="slide bg-ink" data-slide="5" data-section="break-1">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -388,7 +390,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 6 · MEAN — CONCEPT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-1">
+<section class="slide bg-paper" data-slide="6" data-section="part-1">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -429,7 +431,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 7 · MEDIAN
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-1">
+<section class="slide bg-paper" data-slide="7" data-section="part-1">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -477,7 +479,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 8 · MODE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-1">
+<section class="slide bg-paper" data-slide="8" data-section="part-1">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -527,7 +529,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 9 · SECTION BREAK — PART 2
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="break-2">
+<section class="slide bg-ink" data-slide="9" data-section="break-2">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -551,7 +553,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 10 · WHY SPREAD MATTERS
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-2">
+<section class="slide bg-paper" data-slide="10" data-section="part-2">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -600,7 +602,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 11 · STDEV FORMULA + EXCEL SYNTAX
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-2">
+<section class="slide bg-paper" data-slide="11" data-section="part-2">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -648,7 +650,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 12 · STDEV WORKED EXAMPLE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-2">
+<section class="slide bg-paper" data-slide="12" data-section="part-2">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -698,7 +700,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 13 · SECTION BREAK — PART 3
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="break-3">
+<section class="slide bg-ink" data-slide="13" data-section="break-3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -723,7 +725,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 14 · CORRELATION CONCEPT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-3">
+<section class="slide bg-paper" data-slide="14" data-section="part-3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -768,7 +770,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 15 · CORREL WORKED EXAMPLE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-3">
+<section class="slide bg-paper" data-slide="15" data-section="part-3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -818,7 +820,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 16 · CORRELATION ≠ CAUSATION
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-3">
+<section class="slide bg-paper" data-slide="16" data-section="part-3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -854,7 +856,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 17 · INTERACTIVE EXPLORER
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="part-3">
+<section class="slide bg-paper" data-slide="17" data-section="part-3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -912,7 +914,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 18 · COMMON MISTAKE (terra)
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-terra" data-section="mistake">
+<section class="slide bg-terra" data-slide="18" data-section="mistake">
   <div class="nb-wrap">
     <div class="nb-tabs" style="background:#7a3520;border-right:1px solid rgba(255,255,255,.1);">
       <div class="nb-tab active-tab" style="background:rgba(255,255,255,.2);">!</div>
@@ -946,7 +948,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 19 · DISCUSSION
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="discussion">
+<section class="slide bg-ink" data-slide="19" data-section="discussion">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">?</div>
@@ -971,7 +973,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 20 · KEY TAKEAWAYS
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-section="takeaways">
+<section class="slide bg-paper" data-slide="20" data-section="takeaways">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -1011,7 +1013,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 21 · UP NEXT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="up-next">
+<section class="slide bg-ink" data-slide="21" data-section="up-next">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">→</div>
@@ -1037,7 +1039,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 22 · CLOSE / Q&A
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-section="close">
+<section class="slide bg-ink" data-slide="22" data-section="close">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">Q</div>

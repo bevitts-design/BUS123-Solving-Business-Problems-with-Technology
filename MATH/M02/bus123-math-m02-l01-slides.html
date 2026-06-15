@@ -73,10 +73,10 @@
     --type-mono:     calc(24px  * var(--scale));
     --type-stat:     calc(220px * var(--scale));
     --pad-x:      128px;
-    --pad-top:    104px;
-    --pad-bottom: 96px;
-    --gap-title:  56px;
-    --gap-item:   32px;
+    --pad-top:    78px;
+    --pad-bottom: 62px;
+    --gap-title:  34px;
+    --gap-item:   22px;
   }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -136,6 +136,7 @@
     /* ── Body area ── */
     .body-area {
       flex: 1;
+      min-height: 0;
       padding: var(--gap-item) var(--pad-x) var(--pad-bottom);
       display: flex;
       flex-direction: column;
@@ -148,7 +149,7 @@
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 36px 40px;
+      padding: 24px 28px;
       color: var(--text);
     }
     .slide.dark .card {
@@ -198,8 +199,8 @@
       border-radius: 0 8px 8px 0;
       font-family: var(--font-mono);
       font-size: 18px;
-      padding: 28px 36px;
-      line-height: 1.9;
+      padding: 22px 28px;
+      line-height: 1.7;
       color: #0E1116;
     }
     .eq-panel .fn {
@@ -472,8 +473,8 @@
       align-items: center;
       gap: 12px;
       width: fit-content;
-      margin-bottom: 18px;
-      padding: 10px 22px;
+      margin-bottom: 10px;
+      padding: 8px 18px;
       border-radius: 100px;
       border: 1px solid rgba(74,124,94,0.35);
       background: rgba(74,124,94,0.12);
@@ -492,7 +493,7 @@
       background: var(--ink);
       color: var(--white);
       border-radius: 14px;
-      padding: 32px 36px;
+      padding: 24px 28px;
       border: 1px solid rgba(255,255,255,0.12);
     }
     .activity-label {
@@ -501,13 +502,13 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .activity-prompt {
       font-family: var(--font-display);
       font-size: var(--type-subtitle);
       line-height: 1.12;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
     .choice-row {
       display: flex;
@@ -538,14 +539,14 @@
       text-transform: uppercase;
     }
     .scene-card {
-      min-height: 420px;
+      min-height: 340px;
       border-radius: 14px;
       border: 1px solid var(--border);
       background:
         linear-gradient(135deg, rgba(255,255,255,0.88), rgba(242,238,229,0.92)),
         radial-gradient(circle at 20% 18%, rgba(184,132,61,0.18), transparent 34%),
         radial-gradient(circle at 84% 75%, rgba(74,124,94,0.20), transparent 32%);
-      padding: 36px;
+      padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -554,13 +555,7 @@
       position: relative;
     }
     .scene-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -80px -80px auto;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      border: 36px solid rgba(74,124,94,0.12);
+      content: none;
     }
     .scene-label {
       font-family: var(--font-mono);
@@ -571,7 +566,7 @@
     }
     .scene-title {
       font-family: var(--font-display);
-      font-size: var(--type-subtitle);
+      font-size: var(--type-lead);
       line-height: 1.12;
       max-width: 620px;
       position: relative;
@@ -580,7 +575,7 @@
     .scene-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 14px;
       position: relative;
       z-index: 1;
     }
@@ -588,7 +583,7 @@
       background: rgba(255,255,255,0.76);
       border: 1px solid rgba(229,225,214,0.95);
       border-radius: 12px;
-      padding: 20px 22px;
+      padding: 16px 18px;
     }
     .scene-stat span {
       display: block;
@@ -607,14 +602,14 @@
     .vendor-board {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      margin-top: 26px;
+      gap: 16px;
+      margin-top: 18px;
     }
     .vendor-card {
       background: rgba(255,255,255,0.72);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 26px;
+      padding: 20px;
     }
     .vendor-card .vendor-name {
       font-family: var(--font-display);
@@ -629,17 +624,17 @@
     .sprint-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      gap: 18px;
     }
     .sprint-card {
-      min-height: 470px;
+      min-height: 0;
       background: rgba(74,124,94,0.10);
       border: 1px solid rgba(74,124,94,0.32);
       border-radius: 14px;
-      padding: 32px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
     }
     .sprint-round {
       font-family: var(--font-mono);
@@ -650,12 +645,12 @@
     }
     .sprint-title {
       font-family: var(--font-display);
-      font-size: var(--type-lead);
+      font-size: 21px;
       line-height: 1.1;
     }
     .sprint-q {
-      font-size: var(--type-body);
-      line-height: 1.45;
+      font-size: 17px;
+      line-height: 1.32;
       color: var(--text-soft);
     }
     .reveal-step {
@@ -822,7 +817,7 @@
   <section class="slide cream" data-label="04 Bridge" data-section="0" data-slide="4" data-index="3">
     <div class="header-row"><span class="eyebrow">Connection to Prior Work</span><div class="rule"></div></div>
     <h2 class="slide-title">Formulas Give Outputs — Today We Find Inputs for Anchor & Oak Events</h2>
-    <div class="body-area" style="flex-direction:row; align-items:center; gap:64px;">
+    <div class="body-area" style="flex-direction:row; align-items:center; gap:64px; padding-bottom:44px;">
       <div style="flex:1; display:flex; flex-direction:column; gap:28px;">
         <p class="lead">Last module: <em>Revenue = Price × Quantity</em><br>We plugged in numbers and got a result.</p>
         <p class="lead">Today: what if we know the result and need to find one of the inputs?</p>
@@ -865,8 +860,8 @@
   <section class="slide cream" data-label="06 One-Step Concept" data-section="1" data-slide="6" data-index="5">
     <div class="header-row"><span class="eyebrow">One-Step Equations</span><div class="rule"></div></div>
     <h2 class="slide-title">Undo the Operation — On Both Sides</h2>
-    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
-      <div style="flex:1; display:flex; flex-direction:column; gap:32px;">
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center; padding-top:16px; padding-bottom:16px;">
+      <div style="flex:1; display:flex; flex-direction:column; gap:18px;">
         <div class="level-badge">Level 1 · Choose the inverse</div>
         <div class="activity-card">
           <div class="activity-label">Cold Call / Poll</div>
@@ -1169,7 +1164,7 @@
   <section class="slide cream" data-label="18 Literal Ex" data-section="3" data-slide="18" data-index="17">
     <div class="header-row"><span class="eyebrow">Anchor &amp; Oak Events · Example</span><div class="rule"></div></div>
     <h2 class="slide-title">Maximum Allowable Fixed Cost for Break-Even</h2>
-    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
+    <div class="body-area" style="flex-direction:row; gap:64px; align-items:center; padding-top:16px; padding-bottom:28px;">
       <div style="flex:1;">
         <div class="scene-card">
           <div>
@@ -1204,7 +1199,7 @@
   <section class="slide cream" data-label="19 Class Challenge" data-section="4" data-slide="19" data-index="18">
     <div class="header-row"><span class="eyebrow">Class Challenge</span><div class="rule"></div></div>
     <h2 class="slide-title">Boss Level: Equation Sprint</h2>
-    <div class="body-area" style="justify-content:flex-start; gap:28px;">
+    <div class="body-area" style="justify-content:flex-start; gap:18px; padding-bottom:70px;">
       <div style="display:flex; justify-content:space-between; align-items:center;">
         <div class="level-badge">Graded / next-level tab · setup first</div>
         <div class="timer-chip">Class Challenge tab · 3 rounds</div>
@@ -1450,44 +1445,14 @@
 <script>
 (function(){
   function currentDeck(){ return document.querySelector('deck-stage'); }
-  function ensureDeckController(deck){
-    if(!deck || deck._slidesReady) return;
-    deck._slidesReady=true;
-    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
-    deck._idx=0;
-    deck._notes=[];
-    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
-    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
-    var notes=document.createElement('div');
-    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
-    document.body.appendChild(notes);
-    deck._notes_el=notes;
-    deck._go=function(n){
-      n=Math.max(0,Math.min(n,deck._slides.length-1));
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
-      deck._idx=n;
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
-    };
-    deck._toggleNotes=function(){
-      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
-    };
-    if(!window.__bus123RetrofitKeys){
-      window.__bus123RetrofitKeys=true;
-      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
-    }
-    deck._go(0);
-  }
   function goToSection(section){
-    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
+    var deck=currentDeck(); if(!deck || !deck._slides || !deck._go) return;
     var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
     if(target>=0) deck._go(target);
   }
   function addTabs(){
     if(document.querySelector('.retrofit-tab-strip')) return;
     var deck=currentDeck(); if(!deck) return;
-    ensureDeckController(deck);
     var strip=document.createElement('nav');
     strip.className='retrofit-tab-strip tab-strip';
     strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';

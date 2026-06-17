@@ -448,10 +448,10 @@
   .formula-panel .fn,
   .formula-panel code .fn {
     color: var(--steel) !important;
-    display: block !important;
+    display: inline !important;
     font-size: 22px !important;
     font-weight: 700 !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 0 !important;
   }
   .formula-panel .comment,
   .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
@@ -503,6 +503,85 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+  /* M03 sizing pass: keep dense slides inside the 1280 x 720 canvas. */
+  .slide[data-slide="4"] .slide-pad,
+  .slide[data-slide="21"] .slide-pad { padding-top: 48px; padding-bottom: 48px; }
+  .slide[data-slide="4"] img,
+  .slide[data-slide="21"] image-slot { height: 420px !important; }
+  .slide[data-slide="8"] .slide-pad,
+  .slide[data-slide="13"] .slide-pad,
+  .slide[data-slide="17"] .slide-pad { padding-top: 44px; padding-bottom: 44px; }
+  .slide[data-slide="8"] h2,
+  .slide[data-slide="13"] h2,
+  .slide[data-slide="17"] h2 { margin-bottom: 22px; }
+  .slide[data-slide="8"] h2::after,
+  .slide[data-slide="13"] h2::after,
+  .slide[data-slide="17"] h2::after { margin-top: 10px; }
+  .slide[data-slide="8"] .formula-panel,
+  .slide[data-slide="13"] .formula-panel,
+  .slide[data-slide="17"] .formula-panel { padding: 18px 24px; line-height: 1.45 !important; }
+  .slide[data-slide="8"] .excel-demo th,
+  .slide[data-slide="8"] .excel-demo td,
+  .slide[data-slide="13"] .excel-demo th,
+  .slide[data-slide="13"] .excel-demo td,
+  .slide[data-slide="17"] .excel-demo th,
+  .slide[data-slide="17"] .excel-demo td { padding: 8px 12px; }
+  .slide[data-slide="8"] .excel-demo .formula-bar,
+  .slide[data-slide="13"] .excel-demo .formula-bar,
+  .slide[data-slide="17"] .excel-demo .formula-bar { padding: 8px 12px; }
+  .slide[data-slide="9"] .slide-pad,
+  .slide[data-slide="14"] .slide-pad,
+  .slide[data-slide="18"] .slide-pad,
+  .slide[data-slide="19"] .slide-pad { padding-top: 46px; padding-bottom: 44px; }
+  .slide[data-slide="9"] h2,
+  .slide[data-slide="14"] h2,
+  .slide[data-slide="18"] h2,
+  .slide[data-slide="19"] h2 { margin-bottom: 22px; }
+  .slide[data-slide="9"] h2::after,
+  .slide[data-slide="14"] h2::after,
+  .slide[data-slide="18"] h2::after,
+  .slide[data-slide="19"] h2::after { margin-top: 10px; }
+  .slide[data-slide="9"] .try-layout,
+  .slide[data-slide="14"] .try-layout,
+  .slide[data-slide="18"] .try-layout,
+  .slide[data-slide="19"] .challenge-list { margin-top: 16px; gap: 22px; }
+  .slide[data-slide="9"] .try-panel,
+  .slide[data-slide="14"] .try-panel,
+  .slide[data-slide="18"] .try-panel { min-height: 0; padding: 20px 24px; }
+  .slide[data-slide="9"] .mistake-panel,
+  .slide[data-slide="18"] .mistake-panel { padding: 24px 30px; }
+  .slide[data-slide="14"] .card,
+  .slide[data-slide="19"] .card { padding: 24px 28px; }
+  .slide[data-slide="19"] .challenge-list .card { min-height: 160px; }
+  .slide[data-slide="6"] .slide-pad { padding-top: 44px; padding-bottom: 44px; }
+  .slide[data-slide="6"] h2 { margin-bottom: 22px; }
+  .slide[data-slide="6"] h2::after { margin-top: 10px; }
+  .slide[data-slide="6"] .two-col { gap: 34px; align-items: stretch; }
+  .supply-chain-visual {
+    width: 100%;
+    height: 315px;
+    border-radius: 14px;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 28px rgba(14,17,22,0.08);
+  }
+  .trade-terms-card { padding: 30px 34px; }
+  .trade-terms-card .terms-heading {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .trade-terms-card .term-line {
+    font-size: 22px;
+    line-height: 1.35;
+    margin-bottom: 20px;
+  }
+  .trade-terms-card .term-line strong {
+    color: var(--accent);
+    font-size: 24px;
+  }
+
 </style>
 </head>
 <body>
@@ -538,7 +617,7 @@
         <div style="display:flex; flex-direction:column; gap:var(--gap-item);">
           <div class="numbered"><div class="n">01</div><div class="n-body">Calculate a net price from a list price and a single trade discount</div></div>
           <div class="numbered"><div class="n">02</div><div class="n-body">Apply chain discounts to find the final net price</div></div>
-          <div class="numbered"><div class="n">03</div><div class="n-body">DM Sanspret cash discount terms (e.g., 2/10 net 30) and calculate the discounted payment</div></div>
+          <div class="numbered"><div class="n">03</div><div class="n-body">Interpret cash discount terms (e.g., 2/10 net 30) and calculate the discounted payment</div></div>
           <div class="numbered"><div class="n">04</div><div class="n-body">Use Excel formulas to compute trade, chain, and cash discounts</div></div>
         </div>
       </div>
@@ -553,7 +632,7 @@
             <h2 style="margin-bottom:24px;">Percentages Are the Foundation</h2>
             <p class="lead">Last class we converted between decimals and percents, found percentage change, and calculated amounts from percentages. Today we put those skills to work on real pricing problems.</p>
           </div>
-          <image-slot id="slide-4-img" placeholder="Drop image: percentage chart or calculator" style="width:100%; height:480px; border-radius:18px;"></image-slot>
+          <img src="img/bus123-math-m03-l01-percentage-chart.png" alt="Abstract percentage chart showing part-to-whole, percentage-of-amount bars, and percent-change trend" style="width:100%; height:480px; border-radius:18px; object-fit:cover; display:block;">
         </div>
       </div>
     </section>
@@ -575,18 +654,19 @@
         <h2>What Is a Trade Discount?</h2>
         <div class="two-col">
           <div>
-            <p class="lead" style="margin-bottom:32px;">A reduction from the list price offered to buyers in the supply chain — retailers, wholesalers, or preferred accounts.</p>
-            <div class="pill-row">
+            <p class="lead" style="margin-bottom:18px;">A reduction from the list price offered to buyers in the supply chain — retailers, wholesalers, or preferred accounts.</p>
+            <img src="img/bus123-math-m03-l01-trade-discount-supply-chain.png" alt="Illustrated supply chain showing goods moving from supplier to distributor to retailer" class="supply-chain-visual">
+            <div class="pill-row" style="margin-top:18px;">
               <div class="pill">Volume-based</div>
               <div class="pill">Role-based</div>
               <div class="pill">Relationship-based</div>
             </div>
           </div>
-          <div class="card">
-            <p style="font-size:var(--type-body); margin-bottom:20px;"><strong>Key terms</strong></p>
-            <p style="margin-bottom:12px;"><strong style="color:var(--accent);">List Price</strong> — the published catalog price</p>
-            <p style="margin-bottom:12px;"><strong style="color:var(--accent);">Discount Rate</strong> — the percentage off list</p>
-            <p><strong style="color:var(--accent);">Net Price</strong> — what the buyer actually pays</p>
+          <div class="card trade-terms-card">
+            <p class="terms-heading"><strong>Key terms</strong></p>
+            <p class="term-line"><strong>List Price</strong><br>the published catalog price</p>
+            <p class="term-line"><strong>Discount Rate</strong><br>the percentage off list</p>
+            <p class="term-line"><strong>Net Price</strong><br>what the buyer actually pays</p>
           </div>
         </div>
       </div>
@@ -1032,44 +1112,14 @@
 <script>
 (function(){
   function currentDeck(){ return document.querySelector('deck-stage'); }
-  function ensureDeckController(deck){
-    if(!deck || deck._slidesReady) return;
-    deck._slidesReady=true;
-    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
-    deck._idx=0;
-    deck._notes=[];
-    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
-    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
-    var notes=document.createElement('div');
-    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
-    document.body.appendChild(notes);
-    deck._notes_el=notes;
-    deck._go=function(n){
-      n=Math.max(0,Math.min(n,deck._slides.length-1));
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
-      deck._idx=n;
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
-    };
-    deck._toggleNotes=function(){
-      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
-    };
-    if(!window.__bus123RetrofitKeys){
-      window.__bus123RetrofitKeys=true;
-      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
-    }
-    deck._go(0);
-  }
   function goToSection(section){
-    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
+    var deck=currentDeck(); if(!deck || !deck._slides || !deck._go) return;
     var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
     if(target>=0) deck._go(target);
   }
   function addTabs(){
     if(document.querySelector('.retrofit-tab-strip')) return;
     var deck=currentDeck(); if(!deck) return;
-    ensureDeckController(deck);
     var strip=document.createElement('nav');
     strip.className='retrofit-tab-strip tab-strip';
     strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';

@@ -165,4 +165,4 @@ Your instructor may ask:
 
 ## Optional Extension
 
-Use the stock valuation dashboard from Math M11 to compare the workbook's recommendation with a live-market-style valuation view. Explain whether the external tool supports or challenges your repaired workbook.
+Use the stock valuation dashboard from Math M10 to compare the workbook's recommendation with a live-market-style valuation view. Explain whether the external tool supports or challenges your repaired workbook.

@@ -449,7 +449,8 @@
         "Stocks",
         "Bonds",
         "Mutual funds",
-        "Investment vocabulary"
+        "Investment vocabulary",
+        "Stock valuation"
       ],
       "materials": [
         {
@@ -470,6 +471,11 @@
           "type": "Interactive Practice",
           "label": "Trading Desk",
           "path": "MATH/M10/bus123-math-m10-l01-trading-desk.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Stock Valuation Dashboard",
+          "path": "MATH/M10/bus123-math-m10-l01-stock-valuation-dashboard.html"
         }
       ],
       "moduleType": "Math",
@@ -488,8 +494,7 @@
         "Financial statements",
         "Income statement",
         "Balance sheet",
-        "Business analysis",
-        "Stock valuation"
+        "Business analysis"
       ],
       "materials": [
         {
@@ -514,11 +519,6 @@
           "type": "Interactive Practice",
           "label": "Financial Red Flag Hunt",
           "path": "MATH/M11/bus123-math-m11-l01-red-flag-hunt.html"
-        },
-        {
-          "type": "Interactive Practice",
-          "label": "Stock Valuation Dashboard",
-          "path": "MATH/M11/bus123-math-m11-l01-stock-valuation-dashboard.html"
         }
       ],
       "moduleType": "Math",

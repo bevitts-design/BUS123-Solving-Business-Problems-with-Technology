@@ -3,24 +3,26 @@ course: BUS123
 track: capstone
 module: M01
 lesson: L01
-title: Northstar Bike Studio Finance Capstone
+title: Northstar Athletic Studio Finance Capstone
 status: example
 student_facing: true
 ---
 
-# Northstar Bike Studio Finance Capstone
+# Northstar Athletic Studio Finance Capstone
 
 ## Business Scenario
 
-Northstar Bike Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.
+Northstar Athletic Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.
 
 Your role is to build an Excel model that helps the founder answer this question:
 
-> Which financing option gives Northstar Bike Studio the best chance of surviving its first year?
+> Which financing option gives Northstar Athletic Studio the best chance of surviving its first year?
 
 Your recommendation should use numbers from your workbook and explain the tradeoff between monthly cash flow, ownership, fixed payments, and membership growth assumptions.
 
 This is both a formatting project and a calculation project. The starter workbook gives you the case data, but you are responsible for building the model tabs, adding row labels, adding column headers, formatting tables, writing formulas, creating charts, and designing the final dashboard.
+
+You may use approved course resources, Excel help, and your own notes, but you must be able to explain every formula, formatting choice, chart, and recommendation in your workbook. Work that cannot be explained may lose credit even if the final workbook appears complete.
 
 ## Financing Options
 
@@ -140,6 +142,12 @@ Use Excel's `PMT` function to calculate the bank loan and equipment financing pa
 
 For investor funding, the monthly fixed payment should be $0. The investor payment will be calculated later as a share of positive monthly operating profit.
 
+Course skill reminder:
+
+- PMT was covered in the time value of money lesson. Use the same monthly rate and monthly period logic here.
+- Break-even was covered in the pricing lesson. Use contribution logic: what amount is available each month to cover the costs that still need to be paid?
+- For the investor payment, remember the same guardrail logic used in overtime formulas: use a function such as `MAX` when a value should not drop below zero. Your job is to adapt that idea to positive monthly operating profit without typing the calculated answer manually.
+
 Formatting requirements:
 
 - Format APR and profit share as percentages.
@@ -245,9 +253,63 @@ Address:
 
 Write a short business recommendation that answers:
 
-> Based on your model, which financing option gives Northstar Bike Studio the best chance of surviving its first year?
+> Based on your model, which financing option gives Northstar Athletic Studio the best chance of surviving its first year?
 
 Your answer should use numbers from your workbook and explain the tradeoff between risk, ownership, monthly cash flow, and growth assumptions.
+
+## Process Evidence and Checkpoints
+
+Because this project assesses how you build a spreadsheet model, you must submit evidence of your process in addition to the finished workbook.
+
+### Build Log
+
+Create a `Build Log` section in your `Recommendation` tab or add a separate `Build Log` tab. Write 5-8 short bullets that explain how you built the workbook.
+
+Include:
+
+- Which tabs you created first and why.
+- One formatting choice that made the workbook easier to read.
+- One formula or model section you had to revise.
+- One check you used to make sure the model was reasonable.
+- One decision you made about the dashboard layout.
+
+### Formula Explanations
+
+Explain at least four formulas in plain English. Your explanations should be specific enough that someone could understand what the formula is doing without reading the formula itself.
+
+Required explanations:
+
+1. Bank loan monthly payment formula.
+2. Equipment financing monthly payment formula.
+3. Investor payment formula.
+4. Break-even members formula.
+
+### In-Class Checkpoint
+
+During class, be prepared to show one partially built section of your workbook. Your instructor may ask to see:
+
+- Your startup budget table.
+- Your financing model table.
+- Your cash flow model skeleton.
+- Your first dashboard layout draft.
+
+### Version Evidence
+
+If you work in OneDrive or Excel online, keep your version history available. Your instructor may ask you to show how the workbook developed over time. Version history does not replace understanding, but it helps document your process.
+
+### Short Defense
+
+Be ready for a 2-3 minute explanation of your work. You may be asked:
+
+- Walk me through your cash flow model.
+- Explain how your investor payment formula works.
+- Why did you recommend this financing option?
+- What would change if expected membership was 10% lower?
+- Which formatting choice made your workbook easier for a manager to read?
+
+### Individual Variation
+
+Your instructor may give you or your group one changed assumption, such as a different APR, rent amount, investor percentage, or membership forecast. If assigned, update your model and explain whether your recommendation changes.
 
 ## Deliverables
 
@@ -255,7 +317,9 @@ Submit:
 
 1. Completed Excel workbook.
 2. Short recommendation brief, either in the workbook or as a separate document.
-3. 3-5 slide or 3-minute walkthrough explaining your recommendation.
+3. Build log and formula explanations.
+4. Version evidence if requested.
+5. 3-5 slide or 3-minute walkthrough explaining your recommendation.
 
 ## Rubric
 
@@ -265,11 +329,12 @@ Submit:
 | Startup Budget | 10 | Startup costs are organized, linked from assumptions, total funding needed is correct, and assumptions are clearly labeled. |
 | Financing Calculations | 15 | PMT is used correctly, APR and term logic are accurate, and fixed payments are separated from investor funding. |
 | Investor Profit-Share Logic | 10 | Investor payment is modeled as 18% of positive operating profit and does not create negative payments. |
-| Revenue Forecast | 15 | Membership, drop-in, and event revenue are calculated correctly across all scenarios using linked formulas. |
+| Revenue Forecast | 10 | Membership, drop-in, and event revenue are calculated correctly across all scenarios using linked formulas. |
 | Cash Flow Model | 15 | Operating costs and financing costs are subtracted correctly, 12 months are modeled, and all three financing options are compared. |
 | Break-Even Analysis | 10 | Break-even membership levels are calculated and interpreted in business terms. |
 | Dashboard and Charts | 10 | Key results are presented clearly with useful charts, labels, summary metrics, and professional formatting. |
 | Business Recommendation | 10 | Recommendation is clear, supported by evidence, and explains risk, ownership, and cash flow tradeoffs. |
+| Process Evidence and Defense Readiness | 5 | Build log, formula explanations, checkpoint participation, and ability to explain the submitted workbook. |
 | Total | 100 |  |
 
 ## Optional Extension

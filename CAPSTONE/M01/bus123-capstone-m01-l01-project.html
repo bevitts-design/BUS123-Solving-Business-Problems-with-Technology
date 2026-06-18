@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BUS123 Capstone: Northstar Bike Studio</title>
+  <title>BUS123 Capstone: Northstar Athletic Studio</title>
   <style>
     :root {
       --ink: #172033;
@@ -257,7 +257,7 @@
   <header>
     <div class="header-inner">
       <p class="eyebrow">BUS123 Example Capstone Project</p>
-      <h1>Northstar Bike Studio Finance Decision</h1>
+      <h1>Northstar Athletic Studio Finance Decision</h1>
       <p class="lede">Build an Excel model from a data packet, format it professionally, compare financing options, and recommend the launch plan most likely to keep a new business alive in its first year.</p>
       <div class="button-row">
         <button type="button" onclick="window.print()">Print / Save PDF</button>
@@ -269,12 +269,13 @@
   <main>
     <section>
       <h2>Business Scenario</h2>
-      <p>Northstar Bike Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.</p>
-      <div class="question">Which financing option gives Northstar Bike Studio the best chance of surviving its first year?</div>
+      <p>Northstar Athletic Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.</p>
+      <div class="question">Which financing option gives Northstar Athletic Studio the best chance of surviving its first year?</div>
       <p>Your recommendation should use numbers from your workbook and explain the tradeoff between monthly cash flow, ownership, fixed payments, and membership growth assumptions. The starter workbook gives you the case data, but you are responsible for creating the model tabs, row labels, column headers, formulas, formatting, charts, dashboard, and recommendation section.</p>
+      <p>You may use approved course resources, Excel help, and your own notes, but you must be able to explain every formula, formatting choice, chart, and recommendation in your workbook. Work that cannot be explained may lose credit even if the final workbook appears complete.</p>
       <div class="deliverables">
         <div class="deliverable"><strong>Excel model</strong>Student-built tabs, tables, formulas, formats, charts, dashboard, and recommendation section.</div>
-        <div class="deliverable"><strong>Recommendation brief</strong>A short business recommendation using evidence from your model.</div>
+        <div class="deliverable"><strong>Process evidence</strong>Build log, formula explanations, checkpoint participation, and version evidence if requested.</div>
         <div class="deliverable"><strong>Walkthrough</strong>3-5 slides or a 3-minute explanation of the decision and risks.</div>
       </div>
     </section>
@@ -406,6 +407,14 @@
       <h3>3. Build the Financing Model</h3>
       <p>Create a table comparing the bank loan, equipment financing, and investor funding options. Include amount financed, APR, term, monthly fixed payment, profit-share percentage, and notes about risk or ownership.</p>
       <p>Use Excel's <strong>PMT</strong> function for the bank loan and equipment financing payments. APR is annual, but payments are monthly, so divide APR by 12 and multiply years by 12.</p>
+      <div class="callout">
+        <strong>Course skill reminder:</strong>
+        <ul>
+          <li>PMT was covered in the time value of money lesson. Use the same monthly rate and monthly period logic here.</li>
+          <li>Break-even was covered in the pricing lesson. Use contribution logic: what amount is available each month to cover the costs that still need to be paid?</li>
+          <li>For the investor payment, remember the same guardrail logic used in overtime formulas: use a function such as <strong>MAX</strong> when a value should not drop below zero. Your job is to adapt that idea to positive monthly operating profit without typing the calculated answer manually.</li>
+        </ul>
+      </div>
 
       <h3>4. Build the Revenue Forecast</h3>
       <p>Create a 12-month forecast. For each month, calculate membership revenue, drop-in revenue, private event revenue, and total revenue. Use the membership counts and revenue assumptions from the Assumptions tab.</p>
@@ -427,9 +436,39 @@
     <section>
       <h2>Recommendation Prompt</h2>
       <div class="callout">
-        Based on your model, which financing option gives Northstar Bike Studio the best chance of surviving its first year?
+        Based on your model, which financing option gives Northstar Athletic Studio the best chance of surviving its first year?
       </div>
       <p>Your answer should use numbers from your workbook and explain the tradeoff between risk, ownership, monthly cash flow, and growth assumptions.</p>
+    </section>
+
+    <section>
+      <h2>Process Evidence</h2>
+      <p>Because this project assesses how you build a spreadsheet model, you must submit evidence of your process in addition to the finished workbook.</p>
+
+      <h3>Build Log</h3>
+      <p>Create a <strong>Build Log</strong> section in your Recommendation tab or add a separate Build Log tab. Write 5-8 short bullets explaining how you built the workbook.</p>
+      <ul>
+        <li>Which tabs you created first and why.</li>
+        <li>One formatting choice that made the workbook easier to read.</li>
+        <li>One formula or model section you had to revise.</li>
+        <li>One check you used to make sure the model was reasonable.</li>
+        <li>One decision you made about the dashboard layout.</li>
+      </ul>
+
+      <h3>Formula Explanations</h3>
+      <p>Explain at least four formulas in plain English: bank loan monthly payment, equipment financing monthly payment, investor payment, and break-even members.</p>
+
+      <h3>In-Class Checkpoint</h3>
+      <p>During class, be prepared to show one partially built section of your workbook, such as your startup budget table, financing model table, cash flow model skeleton, or first dashboard layout draft.</p>
+
+      <h3>Version Evidence</h3>
+      <p>If you work in OneDrive or Excel online, keep your version history available. Your instructor may ask you to show how the workbook developed over time.</p>
+
+      <h3>Short Defense</h3>
+      <p>Be ready for a 2-3 minute explanation of your work. You may be asked to walk through your cash flow model, explain the investor payment formula, defend your recommendation, update an assumption, or explain a formatting choice.</p>
+
+      <h3>Individual Variation</h3>
+      <p>Your instructor may give you or your group one changed assumption, such as a different APR, rent amount, investor percentage, or membership forecast. If assigned, update your model and explain whether your recommendation changes.</p>
     </section>
 
     <section>
@@ -447,11 +486,12 @@
           <tr><td>Startup Budget</td><td>10</td><td>Startup costs are organized, linked from assumptions, total funding needed is correct, and assumptions are clearly labeled.</td></tr>
           <tr><td>Financing Calculations</td><td>15</td><td>PMT is used correctly, APR and term logic are accurate, and fixed payments are separated from investor funding.</td></tr>
           <tr><td>Investor Profit-Share Logic</td><td>10</td><td>Investor payment is modeled as 18% of positive operating profit and does not create negative payments.</td></tr>
-          <tr><td>Revenue Forecast</td><td>15</td><td>Membership, drop-in, and event revenue are calculated correctly across all scenarios using linked formulas.</td></tr>
+          <tr><td>Revenue Forecast</td><td>10</td><td>Membership, drop-in, and event revenue are calculated correctly across all scenarios using linked formulas.</td></tr>
           <tr><td>Cash Flow Model</td><td>15</td><td>Operating costs and financing costs are subtracted correctly, 12 months are modeled, and all three financing options are compared.</td></tr>
           <tr><td>Break-Even Analysis</td><td>10</td><td>Break-even membership levels are calculated and interpreted in business terms.</td></tr>
           <tr><td>Dashboard and Charts</td><td>10</td><td>Key results are presented clearly with useful charts, labels, summary metrics, and professional formatting.</td></tr>
           <tr><td>Business Recommendation</td><td>10</td><td>Recommendation is clear, supported by evidence, and explains risk, ownership, and cash flow tradeoffs.</td></tr>
+          <tr><td>Process Evidence and Defense Readiness</td><td>5</td><td>Build log, formula explanations, checkpoint participation, and ability to explain the submitted workbook.</td></tr>
           <tr class="total-row"><td>Total</td><td>100</td><td></td></tr>
         </tbody>
       </table>

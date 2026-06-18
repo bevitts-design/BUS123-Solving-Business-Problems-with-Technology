@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUS123 Capstone: Northstar Bike Studio</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #536173;
+      --navy: #17365d;
+      --blue: #2d6f9f;
+      --line: #cad6e2;
+      --soft: #eef5f9;
+      --cream: #fff8e8;
+      --green: #e7f3e5;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Aptos, Calibri, Arial, sans-serif;
+      line-height: 1.5;
+      background: #f6f8fb;
+    }
+
+    header {
+      color: var(--white);
+      background: linear-gradient(135deg, #17365d, #2d6f9f);
+      padding: 42px 24px 32px;
+    }
+
+    .header-inner,
+    main {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      opacity: 0.86;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .lede {
+      max-width: 760px;
+      margin: 18px 0 0;
+      font-size: 1.1rem;
+      color: #e8f4f7;
+    }
+
+    main {
+      padding: 28px 0 56px;
+    }
+
+    section {
+      margin: 0 0 28px;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 1.45rem;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      color: var(--navy);
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .question {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-left: 5px solid var(--blue);
+      background: var(--soft);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .deliverable {
+      min-height: 120px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .deliverable strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 22px;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 9px 10px;
+      border: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--white);
+      background: var(--navy);
+      font-weight: 700;
+    }
+
+    td:last-child,
+    th:last-child {
+      text-align: right;
+    }
+
+    .rubric td:nth-child(3),
+    .rubric th:nth-child(3),
+    .scenario td:first-child,
+    .scenario th:first-child,
+    .left td:last-child,
+    .left th:last-child {
+      text-align: left;
+    }
+
+    .total-row {
+      background: var(--green);
+      font-weight: 700;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .callout {
+      padding: 16px 18px;
+      border: 1px solid #e0c36a;
+      border-radius: 8px;
+      background: var(--cream);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    button,
+    .download {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border: 1px solid var(--navy);
+      border-radius: 6px;
+      color: var(--white);
+      background: var(--navy);
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .download {
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    ol,
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 820px) {
+      .deliverables,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 18px;
+      }
+    }
+
+    @media print {
+      body {
+        background: var(--white);
+      }
+
+      header {
+        padding: 28px 0 20px;
+      }
+
+      main {
+        width: 100%;
+        padding: 18px 0 0;
+      }
+
+      section {
+        break-inside: avoid;
+        border-color: #9fb0c0;
+        box-shadow: none;
+      }
+
+      .button-row {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <p class="eyebrow">BUS123 Example Capstone Project</p>
+      <h1>Northstar Bike Studio Finance Decision</h1>
+      <p class="lede">Build an Excel model that compares financing options and recommends the launch plan most likely to keep a new business alive in its first year.</p>
+      <div class="button-row">
+        <button type="button" onclick="window.print()">Print / Save PDF</button>
+        <a class="download" href="bus123-capstone-m01-l01-starter.xlsx">Open Starter Workbook</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Business Scenario</h2>
+      <p>Northstar Bike Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.</p>
+      <div class="question">Which financing option gives Northstar Bike Studio the best chance of surviving its first year?</div>
+      <p>Your recommendation should use numbers from your workbook and explain the tradeoff between monthly cash flow, ownership, fixed payments, and membership growth assumptions.</p>
+      <div class="deliverables">
+        <div class="deliverable"><strong>Excel model</strong>Startup budget, financing comparison, revenue forecast, cash flow, break-even analysis, dashboard, and checks.</div>
+        <div class="deliverable"><strong>Recommendation brief</strong>A short business recommendation using evidence from your model.</div>
+        <div class="deliverable"><strong>Walkthrough</strong>3-5 slides or a 3-minute explanation of the decision and risks.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Financing Choices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Terms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bank loan</td>
+            <td>$85,000 borrowed, 8.25% APR, 5-year term, monthly payments</td>
+          </tr>
+          <tr>
+            <td>Equipment financing</td>
+            <td>$50,500 financed, 10.5% APR, 4-year term; owner funds the rest</td>
+          </tr>
+          <tr>
+            <td>Investor funding</td>
+            <td>Investor contributes $85,000 and receives 18% of positive monthly operating profit for 5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Data Packet</h2>
+      <div class="two-col">
+        <div>
+          <h3>Startup Costs</h3>
+          <table>
+            <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Studio bikes</td><td>$42,000</td></tr>
+              <tr><td>Sound system and lighting</td><td>$8,500</td></tr>
+              <tr><td>Renovation and flooring</td><td>$16,000</td></tr>
+              <tr><td>Booking/payment software setup</td><td>$2,500</td></tr>
+              <tr><td>Opening marketing campaign</td><td>$6,000</td></tr>
+              <tr><td>Permits, legal, insurance deposits</td><td>$4,000</td></tr>
+              <tr><td>Initial cash cushion</td><td>$6,000</td></tr>
+              <tr class="total-row"><td>Total funding needed</td><td>$85,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Monthly Operating Costs</h3>
+          <table>
+            <thead><tr><th>Expense</th><th>Monthly Cost</th></tr></thead>
+            <tbody>
+              <tr><td>Rent</td><td>$5,200</td></tr>
+              <tr><td>Instructor payroll</td><td>$7,800</td></tr>
+              <tr><td>Front desk/admin payroll</td><td>$2,400</td></tr>
+              <tr><td>Utilities</td><td>$850</td></tr>
+              <tr><td>Insurance</td><td>$650</td></tr>
+              <tr><td>Software subscription</td><td>$375</td></tr>
+              <tr><td>Cleaning and supplies</td><td>$500</td></tr>
+              <tr><td>Marketing after launch</td><td>$1,200</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3>Revenue Assumptions</h3>
+      <table>
+        <thead><tr><th>Revenue Source</th><th>Assumption</th></tr></thead>
+        <tbody>
+          <tr><td>Monthly membership price</td><td>$119</td></tr>
+          <tr><td>Average drop-in class price</td><td>$22</td></tr>
+          <tr><td>Drop-in visits per month</td><td>140</td></tr>
+          <tr><td>Private event revenue per month</td><td>$600</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Membership Scenarios</h3>
+      <table class="scenario">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Conservative Members</th>
+            <th>Expected Members</th>
+            <th>Optimistic Members</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>80</td><td>110</td><td>135</td></tr>
+          <tr><td>2</td><td>90</td><td>125</td><td>155</td></tr>
+          <tr><td>3</td><td>100</td><td>140</td><td>175</td></tr>
+          <tr><td>4</td><td>108</td><td>155</td><td>195</td></tr>
+          <tr><td>5</td><td>115</td><td>165</td><td>210</td></tr>
+          <tr><td>6</td><td>120</td><td>175</td><td>225</td></tr>
+          <tr><td>7-12</td><td>Hold Month 6 level</td><td>Hold Month 6 level</td><td>Hold Month 6 level</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Workbook Requirements</h2>
+      <ol>
+        <li><strong>Startup Budget:</strong> organize launch costs and confirm total funding needed.</li>
+        <li><strong>Financing Model:</strong> calculate debt payments using PMT and model investor funding as a profit share.</li>
+        <li><strong>Revenue Forecast:</strong> calculate monthly revenue under conservative, expected, and optimistic membership scenarios.</li>
+        <li><strong>Cash Flow Analysis:</strong> compare monthly first-year cash flow for all three financing options.</li>
+        <li><strong>Break-Even Analysis:</strong> estimate the members needed to cover monthly costs and financing obligations.</li>
+        <li><strong>Dashboard:</strong> summarize the decision with charts, key metrics, and a student recommendation.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Recommendation Prompt</h2>
+      <div class="callout">
+        Based on your model, which financing option gives Northstar Bike Studio the best chance of surviving its first year?
+      </div>
+      <p>Your answer should use numbers from your workbook and explain the tradeoff between risk, ownership, monthly cash flow, and growth assumptions.</p>
+    </section>
+
+    <section>
+      <h2>Rubric</h2>
+      <table class="rubric">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Points</th>
+            <th>What Strong Work Includes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Startup Budget</td><td>10</td><td>Startup costs are organized, total funding needed is correct, and assumptions are clearly labeled.</td></tr>
+          <tr><td>Financing Calculations</td><td>20</td><td>PMT is used correctly, investor profit share is modeled accurately, and fixed debt payments are separated from variable investor payments.</td></tr>
+          <tr><td>Revenue Forecast</td><td>15</td><td>Membership, drop-in, and event revenue are calculated correctly across all scenarios.</td></tr>
+          <tr><td>Cash Flow Model</td><td>20</td><td>Operating costs and financing costs are subtracted correctly, 12 months are modeled, and all three financing options are compared.</td></tr>
+          <tr><td>Break-Even Analysis</td><td>10</td><td>Break-even membership levels are calculated and interpreted in business terms.</td></tr>
+          <tr><td>Dashboard and Charts</td><td>10</td><td>Key results are presented clearly with useful charts, labels, summary metrics, and professional formatting.</td></tr>
+          <tr><td>Business Recommendation</td><td>10</td><td>Recommendation is clear, supported by evidence, and explains risk, ownership, and cash flow tradeoffs.</td></tr>
+          <tr><td>Workbook Design and Professionalism</td><td>5</td><td>Workbook is organized, readable, consistently formatted, and easy to follow.</td></tr>
+          <tr class="total-row"><td>Total</td><td>100</td><td></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Optional Extension</h2>
+      <p>Run a stress test. Reduce expected members by 10% and explain whether your recommendation changes.</p>
+    </section>
+  </main>
+</body>
+</html>

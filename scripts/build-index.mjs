@@ -32,7 +32,7 @@ const materialGroups = [
   { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
 ];
 
-const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions"];
+const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"];
 const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 
 function validateCourseMap() {

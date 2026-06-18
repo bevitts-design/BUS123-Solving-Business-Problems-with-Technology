@@ -21,6 +21,11 @@
       "id": "math",
       "label": "Business Math",
       "folder": "MATH"
+    },
+    {
+      "id": "capstone",
+      "label": "Capstone",
+      "folder": "CAPSTONE"
     }
   ],
   "lessons": [
@@ -483,7 +488,8 @@
         "Financial statements",
         "Income statement",
         "Balance sheet",
-        "Business analysis"
+        "Business analysis",
+        "Stock valuation"
       ],
       "materials": [
         {
@@ -508,6 +514,11 @@
           "type": "Interactive Practice",
           "label": "Financial Red Flag Hunt",
           "path": "MATH/M11/bus123-math-m11-l01-red-flag-hunt.html"
+        },
+        {
+          "type": "Interactive Practice",
+          "label": "Stock Valuation Dashboard",
+          "path": "MATH/M11/bus123-math-m11-l01-stock-valuation-dashboard.html"
         }
       ],
       "moduleType": "Math",
@@ -682,6 +693,36 @@
       "moduleType": "Excel",
       "moduleLabel": "Excel M04",
       "displayOrder": 190
+    },
+    {
+      "id": "capstone-m01-l01",
+      "track": "capstone",
+      "module": "M01",
+      "lesson": "L01",
+      "title": "Finance Capstone: Northstar Athletic Studio",
+      "status": "Live",
+      "caseStudy": "Northstar Athletic Studio",
+      "skillFocus": [
+        "Financial modeling",
+        "PMT function",
+        "Break-even analysis",
+        "Revenue forecasting",
+        "Dashboard design"
+      ],
+      "materials": [
+        {
+          "type": "Homework",
+          "label": "Project Handout",
+          "path": "CAPSTONE/M01/bus123-capstone-m01-l01-project.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "path": "CAPSTONE/M01/bus123-capstone-m01-l01-starter.xlsx"
+        }
+      ],
+      "moduleType": "Capstone",
+      "moduleLabel": "Capstone M01",
+      "displayOrder": 200
     }
   ]
 }

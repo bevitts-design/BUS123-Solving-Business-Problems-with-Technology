@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUS123 Capstone: AI-Assisted Investment Model Audit</title>
+  <style>
+    :root {
+      --ink: #1f2a33;
+      --muted: #5d6874;
+      --paper: #f7f4ed;
+      --white: #ffffff;
+      --sage: #4a7c5e;
+      --gold: #b8843d;
+      --terra: #9c4a2b;
+      --steel: #355773;
+      --line: #d8d0c2;
+      --wash: #eef3ec;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 44px 24px 36px;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #d9c097;
+      font-weight: 700;
+    }
+    h1, h2, h3 { line-height: 1.12; margin: 0; }
+    h1 { font-size: clamp(34px, 6vw, 62px); margin-top: 14px; max-width: 900px; }
+    .lede { max-width: 760px; font-size: 20px; color: #e7e1d7; margin: 18px 0 0; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .download {
+      display: inline-block;
+      color: var(--ink);
+      background: #d9c097;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 11px 16px;
+      border-radius: 8px;
+    }
+    main { padding: 28px 24px 52px; }
+    section {
+      max-width: 1040px;
+      margin: 18px auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px;
+    }
+    h2 { font-size: 27px; margin-bottom: 14px; color: var(--steel); }
+    h3 { font-size: 19px; margin-top: 22px; margin-bottom: 8px; color: var(--ink); }
+    p { margin: 0 0 12px; }
+    ul, ol { margin-top: 8px; padding-left: 24px; }
+    li { margin: 5px 0; }
+    .question {
+      background: var(--wash);
+      border-left: 6px solid var(--sage);
+      padding: 18px 20px;
+      margin: 18px 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfaf6;
+    }
+    .card strong { display: block; color: var(--steel); margin-bottom: 4px; }
+    .callout {
+      background: #fff7e6;
+      border: 1px solid #e8cf98;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .warning {
+      background: #f9ece8;
+      border-color: #d6a08f;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+    th {
+      background: var(--steel);
+      color: var(--white);
+      text-align: left;
+      padding: 10px;
+    }
+    td {
+      border: 1px solid var(--line);
+      padding: 10px;
+      vertical-align: top;
+    }
+    td:nth-child(2) { text-align: right; font-weight: 700; white-space: nowrap; }
+    .total-row td { background: var(--wash); font-weight: 700; }
+    code {
+      background: #eef1f4;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+    footer {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px 44px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media print {
+      body { background: white; }
+      header { padding: 26px 20px; }
+      main { padding: 10px 0; }
+      section { break-inside: avoid; border-radius: 0; margin: 10px 0; }
+      .download { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">BUS123 · Capstone 2 · AI + Investment Analysis</div>
+      <h1>AI-Assisted Investment Model Audit</h1>
+      <p class="lede">Audit a flawed AI-assisted workbook, repair the calculations and formatting, document your AI use, and defend a client recommendation with evidence.</p>
+      <div class="actions">
+        <a class="download" href="bus123-capstone-m02-l01-starter.xlsx">Open Starter Workbook</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Business Scenario</h2>
+      <p>Meridian Advisory Group is preparing a short investment recommendation for a client who is considering whether to buy shares of <strong>Evergreen Fitness Technologies (EFT)</strong>, a fictional public company that sells connected fitness equipment and subscription software.</p>
+      <p>An analyst used AI to help assemble an Excel workbook. The workbook looks useful at first glance, but it contains calculation errors, formatting problems, weak chart choices, and AI-generated claims that need to be verified.</p>
+      <div class="question">Can you turn a flawed AI-assisted investment workbook into a reliable client recommendation?</div>
+      <p>Your role is not to blindly accept or reject AI. Your role is to use AI like a junior assistant: ask for help, check the work, repair the model, and explain what you trusted, changed, or rejected.</p>
+    </section>
+
+    <section>
+      <h2>What You Receive</h2>
+      <div class="grid">
+        <div class="card"><strong>AI Draft Notes</strong>AI-generated advice that may include overconfident or incomplete claims.</div>
+        <div class="card"><strong>Stock Snapshot</strong>Quote, dividend, market, and valuation inputs for EFT.</div>
+        <div class="card"><strong>Investment Return</strong>ROI calculations that need to be checked and repaired.</div>
+        <div class="card"><strong>Bond Check</strong>Bond quote conversion and current yield calculations.</div>
+        <div class="card"><strong>Fund NAV</strong>Mutual fund net asset value calculations.</div>
+        <div class="card"><strong>Financial Statements</strong>Income statement, balance sheet, trend, and ratio information.</div>
+        <div class="card"><strong>Dashboard</strong>A weak summary page that needs a better client-facing view.</div>
+        <div class="card"><strong>Prompt Log</strong>Your required record of AI prompts, checks, and decisions.</div>
+      </div>
+      <div class="callout warning"><strong>Important:</strong> The workbook is intentionally flawed. Some errors are obvious. Some are subtle. Some AI suggestions sound confident but are financially wrong.</div>
+    </section>
+
+    <section>
+      <h2>Learning Goal</h2>
+      <p>This capstone is designed to prove that AI does not replace the skills from BUS123. AI can help you work faster, but you still need Excel, business math, formatting judgment, and finance vocabulary to know whether the answer is correct.</p>
+      <ul>
+        <li><strong>Excel M01-M04:</strong> formulas, references, formatting, functions, charts, and visualization.</li>
+        <li><strong>Math M10:</strong> stock quotes, bid-ask spread, dividend yield, ROI, bond quote conversion, current yield, and NAV.</li>
+        <li><strong>Math M11:</strong> income statement logic, balance sheet logic, ratio analysis, trend analysis, and business interpretation.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>AI Use Rules</h2>
+      <p>You may use approved AI tools for diagnosis, formula suggestions, formatting ideas, finance-term explanations, and recommendation drafting support. You may not submit AI output without checking it.</p>
+      <h3>Required AI Evidence</h3>
+      <ol>
+        <li>Record <strong>5-8 meaningful prompts</strong> in the Prompt Log.</li>
+        <li>For each major accepted fix, explain what AI suggested, what course skill or formula you used to verify it, and what you changed.</li>
+        <li>Include at least <strong>two AI suggestions you rejected or revised</strong>.</li>
+        <li>Be ready to defend one formula fix, one formatting fix, one chart/dashboard choice, and one AI suggestion you did not fully trust.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Required Work</h2>
+      <h3>1. Audit Before AI</h3>
+      <p>Before asking AI for help, review the workbook yourself. On the Prompt Log tab, write at least five issues you notice during your own audit.</p>
+
+      <h3>2. Use AI as a Diagnostic Assistant</h3>
+      <p>Ask AI to reason through specific parts of the workbook. Avoid prompts that simply ask for the final answer.</p>
+
+      <h3>3. Repair the Workbook</h3>
+      <p>Correct formulas for stock return, dividend yield, bond dollar price, current yield, NAV, income statement subtotals, and financial ratios. Improve number formatting, labels, chart choices, and dashboard readability.</p>
+
+      <h3>4. Improve the Dashboard</h3>
+      <p>Make the dashboard show whether the stock return calculation is positive or negative, whether key ratios support the recommendation, at least one useful chart or visual comparison, and a short evidence-based recommendation.</p>
+
+      <h3>5. Write the Client Recommendation</h3>
+      <p>Answer: should the client buy, watch, or avoid EFT based on the repaired model? Mention evidence, risk, and how AI helped or needed correction.</p>
+    </section>
+
+    <section>
+      <h2>Deliverables and Defense</h2>
+      <ol>
+        <li>Corrected Excel workbook.</li>
+        <li>Completed Prompt Log tab.</li>
+        <li>Short client recommendation in the workbook.</li>
+        <li>2-3 minute defense if requested.</li>
+      </ol>
+      <h3>Possible Defense Questions</h3>
+      <ul>
+        <li>Which formula error mattered most and why?</li>
+        <li>Which AI suggestion did you reject or revise?</li>
+        <li>How did you verify the corrected ROI, bond, NAV, or ratio formula?</li>
+        <li>What formatting change made the workbook more trustworthy?</li>
+        <li>Why is your chart better than the original dashboard chart?</li>
+        <li>What would you tell a client about the limits of this analysis?</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Rubric</h2>
+      <table>
+        <thead>
+          <tr><th>Category</th><th>Points</th><th>What Strong Work Includes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Workbook Audit and Error Identification</td><td>15</td><td>Important formula, formatting, chart, and AI-claim issues identified before and during repair.</td></tr>
+          <tr><td>Corrected Calculations and Formulas</td><td>25</td><td>Stock, bond, NAV, income statement, ratio, and trend calculations are corrected and formula-driven.</td></tr>
+          <tr><td>Formatting, Structure, and Chart Quality</td><td>15</td><td>Workbook is readable, consistently formatted, and uses a visual that supports the decision.</td></tr>
+          <tr><td>AI Prompt Log and Verification Evidence</td><td>20</td><td>Prompt log includes meaningful prompts, accepted fixes, rejected/revised suggestions, and verification notes tied to course skills.</td></tr>
+          <tr><td>Client Recommendation</td><td>10</td><td>Recommendation is clear, evidence-based, and appropriately cautious about risk and uncertainty.</td></tr>
+          <tr><td>Defense Readiness</td><td>10</td><td>Student can explain formula choices, AI use, workbook repairs, and dashboard decisions.</td></tr>
+          <tr><td>Professional Submission Quality</td><td>5</td><td>File is complete, polished, named correctly, and ready for review.</td></tr>
+          <tr class="total-row"><td>Total</td><td>100</td><td></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Optional Extension</h2>
+      <p>Use the stock valuation dashboard from Math M11 to compare the workbook's recommendation with a live-market-style valuation view. Explain whether the external tool supports or challenges your repaired workbook.</p>
+    </section>
+  </main>
+
+  <footer>
+    BUS123 · Solving Business Problems with Technology · Gerrish School of Business · Endicott College
+  </footer>
+</body>
+</html>

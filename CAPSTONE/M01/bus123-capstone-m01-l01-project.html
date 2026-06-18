@@ -258,7 +258,7 @@
     <div class="header-inner">
       <p class="eyebrow">BUS123 Example Capstone Project</p>
       <h1>Northstar Bike Studio Finance Decision</h1>
-      <p class="lede">Build an Excel model that compares financing options and recommends the launch plan most likely to keep a new business alive in its first year.</p>
+      <p class="lede">Build an Excel model from a data packet, format it professionally, compare financing options, and recommend the launch plan most likely to keep a new business alive in its first year.</p>
       <div class="button-row">
         <button type="button" onclick="window.print()">Print / Save PDF</button>
         <a class="download" href="bus123-capstone-m01-l01-starter.xlsx">Open Starter Workbook</a>
@@ -271,9 +271,9 @@
       <h2>Business Scenario</h2>
       <p>Northstar Bike Studio is a new indoor cycling studio preparing to open near a college town. The founder needs financing for bikes, sound equipment, renovation, booking software, launch marketing, and an initial cash cushion.</p>
       <div class="question">Which financing option gives Northstar Bike Studio the best chance of surviving its first year?</div>
-      <p>Your recommendation should use numbers from your workbook and explain the tradeoff between monthly cash flow, ownership, fixed payments, and membership growth assumptions.</p>
+      <p>Your recommendation should use numbers from your workbook and explain the tradeoff between monthly cash flow, ownership, fixed payments, and membership growth assumptions. The starter workbook gives you the case data, but you are responsible for creating the model tabs, row labels, column headers, formulas, formatting, charts, dashboard, and recommendation section.</p>
       <div class="deliverables">
-        <div class="deliverable"><strong>Excel model</strong>Startup budget, financing comparison, revenue forecast, cash flow, break-even analysis, dashboard, and checks.</div>
+        <div class="deliverable"><strong>Excel model</strong>Student-built tabs, tables, formulas, formats, charts, dashboard, and recommendation section.</div>
         <div class="deliverable"><strong>Recommendation brief</strong>A short business recommendation using evidence from your model.</div>
         <div class="deliverable"><strong>Walkthrough</strong>3-5 slides or a 3-minute explanation of the decision and risks.</div>
       </div>
@@ -376,15 +376,52 @@
     </section>
 
     <section>
-      <h2>Workbook Requirements</h2>
+      <h2>Workbook Build Requirements</h2>
+      <p>Your starter workbook includes only <strong>START HERE</strong> and <strong>Assumptions</strong>. You must create the remaining tabs, rows, columns, formulas, charts, and formatting yourself.</p>
       <ol>
-        <li><strong>Startup Budget:</strong> organize launch costs and confirm total funding needed.</li>
-        <li><strong>Financing Model:</strong> calculate debt payments using PMT and model investor funding as a profit share.</li>
-        <li><strong>Revenue Forecast:</strong> calculate monthly revenue under conservative, expected, and optimistic membership scenarios.</li>
-        <li><strong>Cash Flow Analysis:</strong> compare monthly first-year cash flow for all three financing options.</li>
+        <li><strong>Startup Budget:</strong> create a table, organize launch costs, link costs from assumptions, and confirm total funding needed.</li>
+        <li><strong>Financing Model:</strong> create a financing comparison table, calculate debt payments using PMT, and model investor funding as a profit share.</li>
+        <li><strong>Revenue Forecast:</strong> build 12-month revenue tables for conservative, expected, and optimistic scenarios.</li>
+        <li><strong>Cash Flow Model:</strong> create a first-year cash flow comparison for all three financing options.</li>
         <li><strong>Break-Even Analysis:</strong> estimate the members needed to cover monthly costs and financing obligations.</li>
-        <li><strong>Dashboard:</strong> summarize the decision with charts, key metrics, and a student recommendation.</li>
+        <li><strong>Dashboard:</strong> design a clear summary with key metrics, charts, and a recommendation.</li>
+        <li><strong>Recommendation:</strong> write a short evidence-backed business recommendation.</li>
       </ol>
+    </section>
+
+    <section>
+      <h2>Construction Instructions</h2>
+      <h3>1. Create Your Tabs</h3>
+      <p>Create new worksheet tabs in a logical order. A strong order is: START HERE, Assumptions, Startup Budget, Financing Model, Revenue Forecast, Cash Flow Model, Break-Even Analysis, Dashboard, Recommendation.</p>
+
+      <h3>2. Build the Startup Budget</h3>
+      <p>Create a clean table with startup cost item and cost columns. Link the cost values from the Assumptions tab instead of retyping them. Add a total row for total funding needed.</p>
+      <ul>
+        <li>Use a bold title at the top.</li>
+        <li>Format dollar amounts as currency.</li>
+        <li>Use a distinct fill color for the table header.</li>
+        <li>Use a border or shading to make the total row stand out.</li>
+      </ul>
+
+      <h3>3. Build the Financing Model</h3>
+      <p>Create a table comparing the bank loan, equipment financing, and investor funding options. Include amount financed, APR, term, monthly fixed payment, profit-share percentage, and notes about risk or ownership.</p>
+      <p>Use Excel's <strong>PMT</strong> function for the bank loan and equipment financing payments. APR is annual, but payments are monthly, so divide APR by 12 and multiply years by 12.</p>
+
+      <h3>4. Build the Revenue Forecast</h3>
+      <p>Create a 12-month forecast. For each month, calculate membership revenue, drop-in revenue, private event revenue, and total revenue. Use the membership counts and revenue assumptions from the Assumptions tab.</p>
+
+      <h3>5. Build the Cash Flow Model</h3>
+      <p>Create a 12-month expected-scenario cash flow comparison for all three financing options. Calculate expected revenue, operating costs, financing costs, and monthly cash flow.</p>
+      <p>The investor receives 18% of positive monthly operating profit. If operating profit is negative, the investor payment should be $0. Use a formula such as <strong>MAX</strong> to prevent negative investor payments.</p>
+
+      <h3>6. Build the Break-Even Analysis</h3>
+      <p>Estimate the number of members needed each month to cover operating costs and financing obligations under each option. Round member counts appropriately and add a short interpretation.</p>
+
+      <h3>7. Build the Dashboard</h3>
+      <p>Design a dashboard with monthly fixed financing cost, lowest monthly cash flow, total first-year cash flow, break-even members, at least one financing comparison chart, at least one cash-flow-over-time chart, and a clear recommended option.</p>
+
+      <h3>8. Build the Recommendation Section</h3>
+      <p>Write a short recommendation that names the option you recommend, explains why the numbers support it, identifies the risk that could change your answer, and discusses the tradeoff between cash, control, and flexibility.</p>
     </section>
 
     <section>
@@ -406,14 +443,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Startup Budget</td><td>10</td><td>Startup costs are organized, total funding needed is correct, and assumptions are clearly labeled.</td></tr>
-          <tr><td>Financing Calculations</td><td>20</td><td>PMT is used correctly, investor profit share is modeled accurately, and fixed debt payments are separated from variable investor payments.</td></tr>
-          <tr><td>Revenue Forecast</td><td>15</td><td>Membership, drop-in, and event revenue are calculated correctly across all scenarios.</td></tr>
-          <tr><td>Cash Flow Model</td><td>20</td><td>Operating costs and financing costs are subtracted correctly, 12 months are modeled, and all three financing options are compared.</td></tr>
+          <tr><td>Workbook Structure and Formatting</td><td>15</td><td>Student-created tabs, row labels, column headers, readable layout, consistent formatting, and professional table design.</td></tr>
+          <tr><td>Startup Budget</td><td>10</td><td>Startup costs are organized, linked from assumptions, total funding needed is correct, and assumptions are clearly labeled.</td></tr>
+          <tr><td>Financing Calculations</td><td>15</td><td>PMT is used correctly, APR and term logic are accurate, and fixed payments are separated from investor funding.</td></tr>
+          <tr><td>Investor Profit-Share Logic</td><td>10</td><td>Investor payment is modeled as 18% of positive operating profit and does not create negative payments.</td></tr>
+          <tr><td>Revenue Forecast</td><td>15</td><td>Membership, drop-in, and event revenue are calculated correctly across all scenarios using linked formulas.</td></tr>
+          <tr><td>Cash Flow Model</td><td>15</td><td>Operating costs and financing costs are subtracted correctly, 12 months are modeled, and all three financing options are compared.</td></tr>
           <tr><td>Break-Even Analysis</td><td>10</td><td>Break-even membership levels are calculated and interpreted in business terms.</td></tr>
           <tr><td>Dashboard and Charts</td><td>10</td><td>Key results are presented clearly with useful charts, labels, summary metrics, and professional formatting.</td></tr>
           <tr><td>Business Recommendation</td><td>10</td><td>Recommendation is clear, supported by evidence, and explains risk, ownership, and cash flow tradeoffs.</td></tr>
-          <tr><td>Workbook Design and Professionalism</td><td>5</td><td>Workbook is organized, readable, consistently formatted, and easy to follow.</td></tr>
           <tr class="total-row"><td>Total</td><td>100</td><td></td></tr>
         </tbody>
       </table>

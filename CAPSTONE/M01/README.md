@@ -5,7 +5,7 @@ This folder contains a draft example capstone project for BUS123.
 ## Student-facing files
 
 - `bus123-capstone-m01-l01-project.html`: printable project handout with the scenario, data packet, deliverables, and rubric.
-- `bus123-capstone-m01-l01-starter.xlsx`: starter workbook for the Northstar Bike Studio financing model.
+- `bus123-capstone-m01-l01-starter.xlsx`: assumptions-only starter workbook for the Northstar Bike Studio financing model. Students create the model tabs, rows, columns, formulas, formatting, charts, dashboard, and recommendation section themselves.
 
 ## Editable source
 

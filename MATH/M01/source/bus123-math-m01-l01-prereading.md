@@ -1,36 +1,15 @@
 ---
-title: "BUS 123 — MATH-M01-L01 — Whole Numbers, Fractions & Percents"
-lesson: "MATH-M01-L01"
+title: "BUS 123 — MATH-M01— Whole Numbers, Fractions & Percents"
+lesson: "MATH-M01"
 kind: "Pre-Reading"
 status: "published"
 output: "MATH/M01/bus123-math-m01-l01-prereading.pdf"
 ---
 
-<!--
-  FORMATTING NOTE FOR INSTRUCTORS
-  ─────────────────────────────────────────────────────────────────────────────
-  This file is written in standard Markdown. To preserve all formatting:
-
-  • Do NOT copy-paste into a plain text editor — use a Markdown-aware tool
-    (VS Code, Typora, GitHub, Notion, or the Canvas rich-text editor in
-    source/HTML mode).
-
-  • All tables use the standard Markdown pipe-table format. GitHub, Canvas,
-    and most LMS platforms render them as formatted tables automatically.
-
-  • Callout blocks (> blockquote lines) render as indented/highlighted panels
-    in most Markdown viewers and GitHub Pages.
-
-  • To push to the public GitHub repo, place this file at:
-    MATH/M01/bus123-math-m01-l01-prereading.md
-    GitHub Pages will render it correctly with no additional configuration.
-  ─────────────────────────────────────────────────────────────────────────────
--->
-
 # BUS 123 · MATH-M01-L01 · Whole Numbers, Fractions & Percents
 
 **Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** MATH · **Module:** M01 · **Lesson:** L01
+**Track:** MATH · **Module:** M01 ·
 
 ---
 
@@ -38,7 +17,7 @@ output: "MATH/M01/bus123-math-m01-l01-prereading.pdf"
 
 This module is the mathematical foundation for everything that follows in BUS 123. Every formula you will build — markup percentages, payroll calculations, breakeven analysis, and loan math — starts with the skills you'll practice here: whole number operations, fraction-to-decimal conversion, and percent calculations.
 
-Some of this should feel very familiar; for this class pay close attention to the **business context** and the **Excel approach**, which add layers that go beyond a standard algebra class.
+This should feel very familiar; for this class pay close attention to the **business context** and the **Excel approach**, which add layers that go beyond a standard algebra class.
 
 Our case study company for this module is **Meridian Advisory Group**, a wealth management firm whose day-to-day operations generate exactly the kinds of arithmetic problems we will solve.
 

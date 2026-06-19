@@ -69,8 +69,7 @@ If you have not already installed the desktop applications, follow these steps u
 
 ## Setting Up Your BUS123 Folder Structure in OneDrive
 
-Consistent folder organization is a professional habit, not a preference. In BUS123, all files must be saved inside a specific folder structure in your Endicott OneDrive so that instructors can access and verify your work.
-
+Consistent folder organization is a professional habit, not a preference. In BUS123, all files should be saved inside a specific folder structure in your Endicott OneDrive to allow you to find and upload assignments easily. A recommended folder structure, that aligns with the class modules in Canvas is listed below:
 | Folder Level       | Name                      | What Goes Here                          |
 |--------------------|---------------------------|-----------------------------------------|
 | 1 — Top level      | `BUS123`                  | Everything for this course              |
@@ -81,7 +80,7 @@ Consistent folder organization is a professional habit, not a preference. In BUS
 
 ## File Naming Convention
 
-Every file you save in BUS123 must follow the course naming convention. This makes it easy to identify, sort, and share your work without confusion.
+Every file you save/upload in BUS123 must follow the course naming convention. This makes it easy to identify, sort, and share your work without confusion.
 
 **Format:** `LastName_FirstName_BUS123_ModuleN.xlsx`
 
@@ -89,7 +88,7 @@ Every file you save in BUS123 must follow the course naming convention. This mak
 
 > ✅ **Why This Matters**
 >
-> Instructors receive dozens of files with names like `homework.xlsx` or `final_FINAL_v3.xlsx`. A properly named file tells your instructor exactly who submitted it and what it contains — before it is even opened. This is a professional habit that carries into every workplace.
+> I receive dozens of files with names like `homework.xlsx` or `final_FINAL_v3.xlsx`. A properly named file tells me exactly who submitted it and what it contains — before it is even opened. This is a professional habit that carries into every workplace. Get in that habit now.
 
 ---
 

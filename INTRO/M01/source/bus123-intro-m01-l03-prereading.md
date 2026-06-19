@@ -3,29 +3,8 @@ title: "BUS 123 — INTRO-M01-L03 — Technology in Business"
 lesson: "INTRO-M01-L03"
 kind: "Pre-Reading"
 status: "published"
-output: "INTRO/M01/bus123-intro-m01-l03-prereading.md"
+output: "INTRO/M01/bus123-intro-m01-l03-prereading.pdf"
 ---
-
-<!--
-  FORMATTING NOTE FOR INSTRUCTORS
-  ─────────────────────────────────────────────────────────────────────────────
-  This file is written in standard Markdown. To preserve all formatting:
-
-  • Do NOT copy-paste into a plain text editor — use a Markdown-aware tool
-    (VS Code, Typora, GitHub, Notion, or the Canvas rich-text editor in
-    source/HTML mode).
-
-  • All tables use the standard Markdown pipe-table format. GitHub, Canvas,
-    and most LMS platforms render them as formatted tables automatically.
-
-  • Callout blocks (> blockquote lines) render as indented/highlighted panels
-    in most Markdown viewers and GitHub Pages.
-
-  • To push to the public GitHub repo, place this file at:
-    INTRO/M01/bus123-intro-m01-l03-prereading.md
-    GitHub Pages will render it correctly with no additional configuration.
-  ─────────────────────────────────────────────────────────────────────────────
--->
 
 # BUS 123 · INTRO-M01-L03 · Technology in Business
 
@@ -36,7 +15,7 @@ output: "INTRO/M01/bus123-intro-m01-l03-prereading.md"
 
 ## Connect to Prior Knowledge
 
-In the first two lessons of BUS123 you installed Microsoft 365, set up your OneDrive folder structure, and learned what this course is and how it works. You now have the tools and the expectations.
+In the first lessons of BUS123 you installed Microsoft 365, set up your OneDrive folder structure, and learned what this course is and how it works. You now have the tools and the expectations.
 
 This lesson asks a sharper question: **why does any of it matter?** Before you learn how to build a payroll model or analyze inventory data, it helps to understand the larger context — how technology actually functions inside a business, and what separates someone who uses it casually from someone who uses it professionally.
 
@@ -103,7 +82,7 @@ This is the core reason BUS123 exists: **technology does not replace business ju
 
 ## Where AI Fits In
 
-AI tools, including tools like Microsoft Copilot built into Excel and Word, are increasingly present in business workflows. It is worth being honest about what they do and do not change.
+AI tools, including tools like Microsoft Copilot, Claude and ChaptGPT in Excel and Word, are increasingly present in business workflows. It is worth being honest about what they do and do not change.
 
 | AI Is Good At                                     | AI Is Not Good At                                                        |
 |---------------------------------------------------|--------------------------------------------------------------------------|

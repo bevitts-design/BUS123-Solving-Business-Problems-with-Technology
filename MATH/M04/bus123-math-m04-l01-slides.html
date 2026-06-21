@@ -15,16 +15,16 @@
   "Start part one by naming the central question: if we know cost and markup, can we set a price that makes sense?",
   "Walk through the terms slowly. Cost, selling price, and gross profit are not interchangeable. The formulas only work when the base is clear.",
   "Show Excel syntax first, then the manual math. This models the course pattern: spreadsheet function or formula first, then the calculation logic underneath.",
-  "Use the mini worksheet to make markup feel like a workbook row. Ask students what would change if the markup rate changed.",
+  "Pause for a short Live You Try It. Students should enter the same cost and markup from the worked example, then use the workbook hint to self-check the 26 dollars and 10 cents result.",
   "Transition to markdowns. The business reason changes: now the issue is demand, timing, and inventory that may lose value.",
   "Anchor markdowns in event decisions. Unsold seats, perishable supplies, and late promotions all turn time into a pricing pressure.",
   "Again, show the Excel expression first. Then show the manual selling price after the markdown. Emphasize that markdown is taken from the original selling price.",
-  "Use this comparison to separate markup from markdown. One begins with cost and builds up. The other begins with price and moves down.",
+  "Pause for the markdown Live You Try It. Students should use the exact 52 dollar original price and 20 percent markdown from the slide, then check that the sale price moves down to 41 dollars and 60 cents.",
   "This is the student decision prompt. Let them vote before revealing the logic. The point is not a single right instinct; it is naming the tradeoff.",
   "Move to break-even. This is the moment where pricing and cost structure meet.",
   "Define fixed cost, variable cost, selling price, and contribution margin. These terms will come back in later workbook work.",
   "Show the contribution margin formula first, then break-even units. Students need to see how price and variable cost connect before solving for volume.",
-  "Use the chart as the visual anchor. Break-even is the point where revenue catches total cost. Everything before it is pressure; everything after it creates profit.",
+  "Pause for the break-even Live You Try It. Students should calculate contribution margin first, then round the fixed-cost division up to 172 guests before moving into the harder class challenge.",
   "Pause on the required common mistake. Students often mix percent bases or divide by price when the formula needs contribution margin.",
   "Use these questions to make the lesson conversational. The best answer should mention both math and business context.",
   "Close with three durable takeaways. Keep markup, markdown, and break-even separate in their minds.",
@@ -185,8 +185,8 @@ h3{font:700 var(--type-subtitle)/1.08 var(--serif);letter-spacing:0}
 </section><section class="slide" data-section="1" data-slide="7" data-label="Markup Formula">
 <div class="header-row"><div class="eyebrow">Excel first</div><div class="rule"></div></div><h2>Markup builds up from cost.</h2><div class="formula-panel"><span class="fn">=Cost*(1+MarkupRate)</span>Cost $18.00; markup rate 45%; selling price <span class="result">$26.10</span>.</div><p class="lead">Manual math: $18.00 + ($18.00 x 45%) = $18.00 + $8.10 = $26.10.</p>
 <div class="slide-number">07 / 22</div>
-</section><section class="slide" data-section="1" data-slide="8" data-label="Markup Worksheet">
-<div class="header-row"><div class="eyebrow">Worksheet row</div><div class="rule"></div></div><h2>A pricing model makes the base visible.</h2><div class="two-col" style="margin-top:28px"><div class="mini-sheet"><div class="sheet-grid"><span class="head">Item</span><span class="head">Cost</span><span class="head">Markup</span><span class="head">Price</span><span>Dessert cup</span><span>$18.00</span><span>45%</span><span class="result">$26.10</span><span class="alt">Table favor</span><span class="alt">$6.50</span><span class="alt">55%</span><span class="result">$10.08</span></div></div><div><p class="lead">The formula is not the whole decision. Anchor & Oak still has to ask whether customers will accept the price.</p></div></div>
+</section><section class="slide" data-section="1" data-slide="8" data-label="Live You Try It Markup">
+<div class="header-row"><div class="eyebrow">Live You Try It</div><div class="rule"></div></div><h2>Build the markup formula from the same numbers.</h2><div class="two-col" style="margin-top:28px"><div class="mini-sheet"><div class="sheet-grid"><span class="head">Item</span><span class="head">Cost</span><span class="head">Markup</span><span class="head">Price</span><span>Dessert cup</span><span>$18.00</span><span>45%</span><span class="result">?</span><span class="alt">Self-check</span><span class="alt">Use cost as base</span><span class="alt">1 + rate</span><span class="result">$26.10</span></div></div><div><p class="lead">In the starter workbook, use the Live You Try It tab. Enter the cost and markup rate, then build the price formula before checking the feedback cell.</p></div></div>
 <div class="slide-number">08 / 22</div>
 </section><section class="slide dark section" data-section="2" data-slide="9" data-label="Part 2">
 <div class="eyebrow">Part 2 of 3</div><h1>Markdowns and Perishables</h1><p class="subtitle">Event businesses price for demand, timing, and waste.</p>
@@ -197,8 +197,8 @@ h3{font:700 var(--type-subtitle)/1.08 var(--serif);letter-spacing:0}
 </section><section class="slide" data-section="2" data-slide="11" data-label="Markdown Formula">
 <div class="header-row"><div class="eyebrow">Excel first</div><div class="rule"></div></div><h2>Markdown moves down from the original price.</h2><div class="formula-panel"><span class="fn">=OriginalPrice*(1-MarkdownRate)</span>Original price $52.00; markdown rate 20%; sale price <span class="result">$41.60</span>.</div><p class="lead">Manual math: $52.00 - ($52.00 x 20%) = $52.00 - $10.40 = $41.60.</p>
 <div class="slide-number">11 / 22</div>
-</section><section class="slide" data-section="2" data-slide="12" data-label="Markup vs Markdown">
-<div class="header-row"><div class="eyebrow">Do not mix the bases</div><div class="rule"></div></div><h2>Markup and markdown point in opposite directions.</h2><div class="grid-2" style="margin-top:32px"><div class="card"><strong>Markup</strong><p>Starts with cost and builds up to selling price.</p></div><div class="card"><strong>Markdown</strong><p>Starts with selling price and moves down to a sale price.</p></div></div>
+</section><section class="slide" data-section="2" data-slide="12" data-label="Live You Try It Markdown">
+<div class="header-row"><div class="eyebrow">Live You Try It</div><div class="rule"></div></div><h2>Now move down from original price.</h2><div class="grid-3" style="margin-top:30px"><div class="card"><strong>Original price</strong><p>$52.00</p></div><div class="card"><strong>Markdown rate</strong><p>20%</p></div><div class="card"><strong>Self-check</strong><p>Sale price should be $41.60.</p></div></div><p class="lead" style="margin-top:28px">Use the Live You Try It tab again. The feedback should remind you that markdown uses the original selling price as the base.</p>
 <div class="slide-number">12 / 22</div>
 </section><section class="slide" data-section="2" data-slide="13" data-label="Decision Prompt">
 <div class="header-row"><div class="eyebrow">Decision prompt</div><div class="rule"></div></div><h2>Should Anchor &amp; Oak discount empty seats?</h2><div class="grid-3" style="margin-top:30px"><div class="card"><strong>Option A</strong><p>Hold price and protect brand position.</p></div><div class="card"><strong>Option B</strong><p>Discount late and recover some contribution.</p></div><div class="card"><strong>Option C</strong><p>Bundle extras instead of lowering the ticket.</p></div></div>
@@ -212,8 +212,8 @@ h3{font:700 var(--type-subtitle)/1.08 var(--serif);letter-spacing:0}
 </section><section class="slide" data-section="3" data-slide="16" data-label="Break-Even Formula">
 <div class="header-row"><div class="eyebrow">Excel first</div><div class="rule"></div></div><h2>Break-even divides fixed cost by contribution margin.</h2><div class="formula-panel"><span class="fn">=FixedCosts/(SellingPrice-VariableCost)</span>Fixed costs $3,600; selling price $48; variable cost $27; break-even <span class="result">172 guests</span>.</div><p class="lead">Manual math: $3,600 / ($48 - $27) = $3,600 / $21 = 171.4, rounded up to 172 guests.</p>
 <div class="slide-number">16 / 22</div>
-</section><section class="slide" data-section="3" data-slide="17" data-label="Break-Even Chart">
-<div class="header-row"><div class="eyebrow">Visual anchor</div><div class="rule"></div></div><h2>Revenue crosses total cost at break-even.</h2><div class="two-col" style="margin-top:28px"><div class="chart"><div class="axis"></div><div class="line cost"></div><div class="line rev"></div><div class="be-dot"></div></div><div><p class="lead">Before the crossing point, each sale reduces the loss. After the crossing point, each additional guest contributes to profit.</p></div></div>
+</section><section class="slide" data-section="3" data-slide="17" data-label="Live You Try It Break-Even">
+<div class="header-row"><div class="eyebrow">Live You Try It</div><div class="rule"></div></div><h2>Find contribution margin before break-even.</h2><div class="grid-4" style="margin-top:30px"><div class="card"><strong>Fixed costs</strong><p>$3,600</p></div><div class="card"><strong>Selling price</strong><p>$48</p></div><div class="card"><strong>Variable cost</strong><p>$27</p></div><div class="card"><strong>Self-check</strong><p>Break-even is 172 guests.</p></div></div><p class="lead" style="margin-top:28px">Use the workbook hint to calculate contribution margin first. Then round up because Anchor & Oak cannot sell part of a guest.</p>
 <div class="slide-number">17 / 22</div>
 </section><section class="slide terra" data-section="3" data-slide="18" data-label="Common Mistake">
 <div class="eyebrow">Common Mistake</div><h2>Using the wrong base for the percentage.</h2><div class="grid-2" style="margin-top:36px"><div class="card"><strong>Wrong move</strong><p>Apply markdown to cost, or divide fixed costs by selling price instead of contribution margin.</p></div><div class="card"><strong>Better move</strong><p>Name the base first: cost, original selling price, or contribution margin.</p></div></div>

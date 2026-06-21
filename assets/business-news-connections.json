@@ -1,0 +1,14 @@
+{
+  "updatedAt": "2026-06-21T12:00:00-04:00",
+  "items": [
+    {
+      "week": "Week 1",
+      "title": "Why spreadsheet skills still matter when AI tools are everywhere",
+      "businessQuestion": "If a manager can ask AI for an answer, what still needs to be checked in the spreadsheet before making a business decision?",
+      "connection": "This connects to the first BUS123 theme: technology can speed up work, but people still need to understand the data, formulas, and business tradeoffs behind the output.",
+      "discussionPrompt": "Find one business decision from your job, campus life, sports, or a company you follow. What data would you want in a spreadsheet before you trusted the recommendation?",
+      "relatedLessonId": "intro-m01-l01",
+      "sourceLabel": "Instructor weekly connection"
+    }
+  ]
+}

@@ -296,6 +296,37 @@ const courseResourcesHtml = courseResources.length
           ${courseResources.map((resource) => materialLink(resource, { resource: true })).join("")}
         </div>`
   : "";
+const nextStepCards = [
+  {
+    label: "Before class",
+    title: "Open the reading",
+    detail: "Skim the key terms and bring one question.",
+    material: (current.materials ?? []).find((material) => ["Reading", "Pre-reading"].includes(material.type))
+  },
+  {
+    label: "In class",
+    title: "Launch the lesson",
+    detail: "Use slides and activities during class.",
+    material: primary
+  },
+  {
+    label: "Practice",
+    title: "Use the workbook",
+    detail: "Save your file where you can find it again.",
+    material: (current.materials ?? []).find((material) => ["Starter Workbook", "Interactive Practice", "Homework"].includes(material.type))
+  }
+];
+const nextStepsHtml = nextStepCards.map((step) => {
+  const action = step.material
+    ? materialLink(step.material)
+    : `<span class="material-chip is-unavailable" aria-disabled="true"><span class="material-icon" aria-hidden="true">${materialIcon("Activity Instructions")}</span><span>Not posted yet</span></span>`;
+  return `<article class="next-step">
+              <span>${esc(step.label)}</span>
+              <strong>${esc(step.title)}</strong>
+              <p>${esc(step.detail)}</p>
+              ${action}
+            </article>`;
+}).join("");
 
 const filterButton = (group, value, label, active = false) =>
   `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
@@ -310,6 +341,7 @@ const html = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/index.css">
+  <link rel="icon" href="data:,">
   <meta name="description" content="${esc(data.course.code)} course hub: slides, readings, workbooks, and practice files for ${esc(data.course.title)} at Endicott College.">
 </head>
 <body>
@@ -322,6 +354,7 @@ const html = `<!DOCTYPE html>
       </a>
       <nav class="nav" aria-label="Course sections">
         ${orderedTracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
+        <a href="#business-news">News</a>
         ${courseResources.map((resource) => `<a href="${esc(resource.path)}">${esc(resource.label ?? resource.type)}</a>`).join("")}
         ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Canvas</a>` : ""}
       </nav>
@@ -335,22 +368,45 @@ const html = `<!DOCTYPE html>
         <h1>BUS123 Course Hub</h1>
         <p>Start with the current class, check the week ahead, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
         ${courseResourcesHtml}
-        <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
-          <div class="week-ahead-header">
-            <div>
-              <div class="meta">Canvas</div>
-              <h2 id="week-ahead-title">Week Ahead</h2>
-              <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
+        <div class="command-center" aria-label="Course command center">
+          <section class="next-steps" aria-labelledby="next-steps-title">
+            <div class="panel-heading">
+              <div class="meta">What should I do next?</div>
+              <h2 id="next-steps-title">Start here</h2>
             </div>
-            <div class="week-ahead-actions">
-              <span data-week-ahead-updated>Checking Canvas dates...</span>
-              ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Open Canvas</a>` : ""}
-            </div>
+            <div class="next-step-grid">${nextStepsHtml}</div>
+          </section>
+          <div class="command-column">
+            <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
+              <div class="week-ahead-header">
+                <div>
+                  <div class="meta">Canvas</div>
+                  <h2 id="week-ahead-title">Week Ahead</h2>
+                  <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
+                </div>
+                <div class="week-ahead-actions">
+                  <span data-week-ahead-updated>Checking Canvas dates...</span>
+                  ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Open Canvas</a>` : ""}
+                </div>
+              </div>
+              <div class="week-ahead-list" data-week-ahead-list>
+                <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
+              </div>
+            </section>
+            <section id="business-news" class="business-news" aria-labelledby="business-news-title" data-business-news data-business-news-src="assets/business-news-connections.json">
+              <div class="business-news-header">
+                <div>
+                  <div class="meta">Business news</div>
+                  <h2 id="business-news-title">Weekly Connection</h2>
+                </div>
+                <span data-business-news-week>Loading...</span>
+              </div>
+              <div class="business-news-body" data-business-news-body>
+                <p class="week-ahead-empty">Loading this week's business connection...</p>
+              </div>
+            </section>
           </div>
-          <div class="week-ahead-list" data-week-ahead-list>
-            <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
-          </div>
-        </section>
+        </div>
         <div class="current">
           <div class="current-copy">
             <div class="meta">Current · ${esc(displayLabel(current, currentTrack))}</div>
@@ -391,7 +447,7 @@ const html = `<!DOCTYPE html>
       </div>
     </section>
   </main>
-  <script src="assets/index.js?v=20260615"></script>
+  <script src="assets/index.js?v=20260621"></script>
 </body>
 </html>
 `;

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/index.css">
+  <link rel="icon" href="data:,">
   <meta name="description" content="BUS123 course hub: slides, readings, workbooks, and practice files for Solving Business Problems with Technology at Endicott College.">
 </head>
 <body>
@@ -20,6 +21,7 @@
       </a>
       <nav class="nav" aria-label="Course sections">
         <a href="#intro">Intro</a><a href="#math">Business Math</a><a href="#excel">Excel</a><a href="#capstone">Capstone</a>
+        <a href="#business-news">News</a>
 
         <a href="https://endicott.instructure.com/courses/58218">Canvas</a>
       </nav>
@@ -33,22 +35,63 @@
         <h1>BUS123 Course Hub</h1>
         <p>Start with the current class, check the week ahead, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
 
-        <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
-          <div class="week-ahead-header">
-            <div>
-              <div class="meta">Canvas</div>
-              <h2 id="week-ahead-title">Week Ahead</h2>
-              <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
+        <div class="command-center" aria-label="Course command center">
+          <section class="next-steps" aria-labelledby="next-steps-title">
+            <div class="panel-heading">
+              <div class="meta">What should I do next?</div>
+              <h2 id="next-steps-title">Start here</h2>
             </div>
-            <div class="week-ahead-actions">
-              <span data-week-ahead-updated>Checking Canvas dates...</span>
-              <a href="https://endicott.instructure.com/courses/58218">Open Canvas</a>
-            </div>
+            <div class="next-step-grid"><article class="next-step">
+              <span>Before class</span>
+              <strong>Open the reading</strong>
+              <p>Skim the key terms and bring one question.</p>
+              <span class="material-chip is-unavailable" aria-disabled="true"><span class="material-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h9M5 8h9M5 12h9"/><circle cx="2.2" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span><span>Not posted yet</span></span>
+            </article><article class="next-step">
+              <span>In class</span>
+              <strong>Launch the lesson</strong>
+              <p>Use slides and activities during class.</p>
+              <a class="material-chip material-slides" href="INTRO/M01/bus123-intro-m01-l01-slides.html">
+    <span class="material-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="9" rx="1"/><path d="M8 11.5v2M5.5 14.5h5"/></svg></span>
+    <span>Slides</span>
+  </a>
+            </article><article class="next-step">
+              <span>Practice</span>
+              <strong>Use the workbook</strong>
+              <p>Save your file where you can find it again.</p>
+              <span class="material-chip is-unavailable" aria-disabled="true"><span class="material-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h9M5 8h9M5 12h9"/><circle cx="2.2" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="2.2" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span><span>Not posted yet</span></span>
+            </article></div>
+          </section>
+          <div class="command-column">
+            <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
+              <div class="week-ahead-header">
+                <div>
+                  <div class="meta">Canvas</div>
+                  <h2 id="week-ahead-title">Week Ahead</h2>
+                  <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
+                </div>
+                <div class="week-ahead-actions">
+                  <span data-week-ahead-updated>Checking Canvas dates...</span>
+                  <a href="https://endicott.instructure.com/courses/58218">Open Canvas</a>
+                </div>
+              </div>
+              <div class="week-ahead-list" data-week-ahead-list>
+                <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
+              </div>
+            </section>
+            <section id="business-news" class="business-news" aria-labelledby="business-news-title" data-business-news data-business-news-src="assets/business-news-connections.json">
+              <div class="business-news-header">
+                <div>
+                  <div class="meta">Business news</div>
+                  <h2 id="business-news-title">Weekly Connection</h2>
+                </div>
+                <span data-business-news-week>Loading...</span>
+              </div>
+              <div class="business-news-body" data-business-news-body>
+                <p class="week-ahead-empty">Loading this week's business connection...</p>
+              </div>
+            </section>
           </div>
-          <div class="week-ahead-list" data-week-ahead-list>
-            <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
-          </div>
-        </section>
+        </div>
         <div class="current">
           <div class="current-copy">
             <div class="meta">Current · Intro M01-L01</div>
@@ -606,6 +649,6 @@
       </div>
     </section>
   </main>
-  <script src="assets/index.js?v=20260615"></script>
+  <script src="assets/index.js?v=20260621"></script>
 </body>
 </html>

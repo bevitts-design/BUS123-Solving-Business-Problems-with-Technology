@@ -5,6 +5,9 @@ const emptyState = document.querySelector("[data-empty]");
 const weekAhead = document.querySelector("[data-week-ahead]");
 const weekAheadList = document.querySelector("[data-week-ahead-list]");
 const weekAheadUpdated = document.querySelector("[data-week-ahead-updated]");
+const businessNews = document.querySelector("[data-business-news]");
+const businessNewsBody = document.querySelector("[data-business-news-body]");
+const businessNewsWeek = document.querySelector("[data-business-news-week]");
 
 const activeFilters = {
   track: "all",
@@ -57,6 +60,10 @@ if (weekAhead && weekAheadList) {
   renderWeekAhead(weekAhead.dataset.weekAheadSrc || "assets/canvas-week-ahead.json");
 }
 
+if (businessNews && businessNewsBody) {
+  renderBusinessNews(businessNews.dataset.businessNewsSrc || "assets/business-news-connections.json");
+}
+
 async function renderWeekAhead(src) {
   try {
     const response = await fetch(src, { cache: "no-store" });
@@ -81,6 +88,86 @@ async function renderWeekAhead(src) {
       weekAheadUpdated.textContent = "Could not load latest dates";
     }
   }
+}
+
+async function renderBusinessNews(src) {
+  try {
+    const response = await fetch(src, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`Could not load ${src}`);
+    }
+
+    const data = await response.json();
+    const items = Array.isArray(data.items) ? data.items : [];
+    const item = items[0];
+    if (!item) {
+      renderBusinessNewsEmpty("No weekly business connection is posted yet.");
+      return;
+    }
+
+    if (businessNewsWeek) {
+      businessNewsWeek.textContent = item.week || updatedLabel(data.updatedAt) || "This week";
+    }
+
+    businessNewsBody.replaceChildren(renderBusinessNewsItem(item));
+  } catch (error) {
+    renderBusinessNewsEmpty("The weekly business connection is unavailable right now.");
+    if (businessNewsWeek) {
+      businessNewsWeek.textContent = "Unavailable";
+    }
+  }
+}
+
+function renderBusinessNewsItem(item) {
+  const article = document.createElement("article");
+  article.className = "business-news-card";
+
+  const title = document.createElement("h3");
+  title.textContent = item.title || "Weekly business connection";
+
+  const source = document.createElement("span");
+  source.className = "business-news-source";
+  source.textContent = item.sourceLabel || "Course connection";
+
+  const question = document.createElement("p");
+  question.className = "business-question";
+  question.textContent = item.businessQuestion || "";
+
+  const connection = document.createElement("p");
+  connection.textContent = item.connection || "";
+
+  const prompt = document.createElement("div");
+  prompt.className = "business-prompt";
+  const promptLabel = document.createElement("strong");
+  promptLabel.textContent = "Discussion prompt";
+  const promptCopy = document.createElement("p");
+  promptCopy.textContent = item.discussionPrompt || "";
+  prompt.append(promptLabel, promptCopy);
+
+  article.append(source, title, question, connection, prompt);
+
+  if (item.sourceUrl) {
+    const link = document.createElement("a");
+    link.href = item.sourceUrl;
+    link.textContent = "Read source";
+    article.append(link);
+  }
+
+  return article;
+}
+
+function renderBusinessNewsEmpty(message) {
+  const empty = document.createElement("p");
+  empty.className = "week-ahead-empty";
+  empty.textContent = message;
+  businessNewsBody.replaceChildren(empty);
+}
+
+function updatedLabel(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return "";
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date);
 }
 
 function updateWeekAheadTimestamp(generatedAt, timezone) {

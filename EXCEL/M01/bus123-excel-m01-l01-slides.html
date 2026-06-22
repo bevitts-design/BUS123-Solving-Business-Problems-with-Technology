@@ -144,6 +144,17 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
 #notes{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:rgba(14,17,22,.96);color:#E7ECF2;padding:22px 28px;font-size:18px;line-height:1.5;border-top:3px solid var(--gold);display:none;z-index:60}
 #notes b{color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
 #hint{position:fixed;left:18px;bottom:14px;color:#6f7884;font-size:14px;letter-spacing:.06em;z-index:50}
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -157,7 +168,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
   <div class="stage" id="stage">
 
     <!-- 1 TITLE -->
-    <section class="slide dark" data-section="0" data-slide="1">
+    <section class="slide dark" data-section="0" data-slide="1" data-index="0">
       <div class="geo c1"></div><div class="geo c2"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:40px"></div>
       <div class="reveal eyebrow">EXCEL-M01 · Lesson 01</div>
@@ -168,7 +179,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 2 AGENDA -->
-    <section class="slide" data-section="0" data-slide="2">
+    <section class="slide" data-section="0" data-slide="2" data-index="1">
       <div class="reveal eyebrow">Today</div>
       <h2 class="reveal">Where we&rsquo;re headed</h2>
       <div class="reveal title-rule"></div>
@@ -182,7 +193,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 3 LEARNING OBJECTIVES -->
-    <section class="slide" data-section="0" data-slide="3">
+    <section class="slide" data-section="0" data-slide="3" data-index="2">
       <div class="reveal eyebrow">Learning Objectives</div>
       <h2 class="reveal">By the end of this lesson&hellip;</h2>
       <div class="reveal title-rule"></div>
@@ -198,7 +209,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 4 RECAP / BRIDGE -->
-    <section class="slide" data-section="0" data-slide="4">
+    <section class="slide" data-section="0" data-slide="4" data-index="3">
       <div class="reveal eyebrow">Picking up from last module</div>
       <h2 class="reveal">Your file is saved &mdash; now let&rsquo;s open it</h2>
       <div class="reveal title-rule"></div>
@@ -212,7 +223,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 5 SECTION BREAK PART 1 -->
-    <section class="slide dark" data-section="1" data-slide="5">
+    <section class="slide dark" data-section="1" data-slide="5" data-index="4">
       <div class="geo c1"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 1</div>
@@ -221,7 +232,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 6 WORKBOOK VS WORKSHEET -->
-    <section class="slide" data-section="1" data-slide="6">
+    <section class="slide" data-section="1" data-slide="6" data-index="5">
       <div class="reveal eyebrow">Macro-structure</div>
       <h2 class="reveal">Workbook vs. worksheet</h2>
       <div class="reveal title-rule"></div>
@@ -233,7 +244,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 7 THE GRID -->
-    <section class="slide" data-section="1" data-slide="7">
+    <section class="slide" data-section="1" data-slide="7" data-index="6">
       <div class="reveal eyebrow">The grid system</div>
       <h2 class="reveal">Columns, rows &amp; the active cell</h2>
       <div class="reveal title-rule"></div>
@@ -260,7 +271,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 8 CONTROL CENTER + RANGES -->
-    <section class="slide" data-section="1" data-slide="8">
+    <section class="slide" data-section="1" data-slide="8" data-index="7">
       <div class="reveal eyebrow">The control center</div>
       <h2 class="reveal">Name Box, Formula Bar &amp; the range</h2>
       <div class="reveal title-rule"></div>
@@ -276,7 +287,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 9 SECTION BREAK PART 2 -->
-    <section class="slide dark" data-section="2" data-slide="9">
+    <section class="slide dark" data-section="2" data-slide="9" data-index="8">
       <div class="geo c2"></div><div class="geo c3"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 2</div>
@@ -285,7 +296,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 10 DATA ENTRY + AUTOFILL -->
-    <section class="slide" data-section="2" data-slide="10">
+    <section class="slide" data-section="2" data-slide="10" data-index="9">
       <div class="reveal eyebrow">Working faster</div>
       <h2 class="reveal">Data entry &amp; the Fill Handle</h2>
       <div class="reveal title-rule"></div>
@@ -303,7 +314,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 11 FORMULA VS FUNCTION + BIG FIVE -->
-    <section class="slide" data-section="2" data-slide="11">
+    <section class="slide" data-section="2" data-slide="11" data-index="10">
       <div class="reveal eyebrow">The building blocks</div>
       <h2 class="reveal">Formula vs. function &mdash; the Big Five</h2>
       <div class="reveal title-rule"></div>
@@ -318,7 +329,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 12 SYNTAX FIRST: SUM -->
-    <section class="slide" data-section="2" data-slide="12">
+    <section class="slide" data-section="2" data-slide="12" data-index="11">
       <div class="reveal eyebrow">Worked example &middot; Harborside Medical Center</div>
       <h2 class="reveal">Total monthly charges across departments</h2>
       <div class="reveal title-rule"></div>
@@ -350,7 +361,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 13 CELL REFERENCING -->
-    <section class="slide" data-section="2" data-slide="13">
+    <section class="slide" data-section="2" data-slide="13" data-index="12">
       <div class="reveal eyebrow">The engine of a smart sheet</div>
       <h2 class="reveal">Relative, absolute &amp; mixed references</h2>
       <div class="reveal title-rule"></div>
@@ -379,7 +390,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 14 SECTION BREAK PART 3 -->
-    <section class="slide dark" data-section="3" data-slide="14">
+    <section class="slide dark" data-section="3" data-slide="14" data-index="13">
       <div class="geo c1"></div><div class="geo c2"></div>
       <div class="reveal bar" style="margin-bottom:36px"></div>
       <div class="reveal eyebrow">Part 3</div>
@@ -388,7 +399,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 15 FORMATTING -->
-    <section class="slide" data-section="3" data-slide="15">
+    <section class="slide" data-section="3" data-slide="15" data-index="14">
       <div class="reveal eyebrow">Formatting for clarity</div>
       <h2 class="reveal">Turn a data dump into a story</h2>
       <div class="reveal title-rule"></div>
@@ -401,7 +412,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 16 ERRORS -->
-    <section class="slide" data-section="3" data-slide="16">
+    <section class="slide" data-section="3" data-slide="16" data-index="15">
       <div class="reveal eyebrow">Error literacy</div>
       <h2 class="reveal">What the sheet is trying to tell you</h2>
       <div class="reveal title-rule"></div>
@@ -419,7 +430,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 17 GOLDEN RULES -->
-    <section class="slide" data-section="3" data-slide="17">
+    <section class="slide" data-section="3" data-slide="17" data-index="16">
       <div class="reveal eyebrow">The golden rules</div>
       <h2 class="reveal">Habits of a trustworthy spreadsheet</h2>
       <div class="reveal title-rule"></div>
@@ -431,7 +442,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 18 COMMON MISTAKE -->
-    <section class="slide dark" data-section="3" data-slide="18">
+    <section class="slide dark" data-section="3" data-slide="18" data-index="17">
       <div class="geo c3"></div><div class="geo grid"></div>
       <div class="reveal mistake-tag">Common Mistake</div>
       <h1 class="reveal" style="font-size:50px;margin:20px 0 8px">Hard-coding the rate inside the formula</h1>
@@ -444,7 +455,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 19 DISCUSSION -->
-    <section class="slide" data-section="4" data-slide="19">
+    <section class="slide" data-section="4" data-slide="19" data-index="18">
       <div class="reveal eyebrow">Talk it through</div>
       <h2 class="reveal">Discussion</h2>
       <div class="reveal title-rule"></div>
@@ -455,9 +466,18 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <div class="spacer"></div>
       <p class="reveal footer-meta">Turn to a neighbor &middot; 3 minutes &middot; one example, one safeguard.</p>
     </section>
+<section class="slide" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total a range</td><td class="pattern">=SUM(C2:C5)</td><td>Adds selected numbers into one total.</td><td class="watch">Use a range instead of typing each charge.</td></tr><tr><td>Average a range</td><td class="pattern">=AVERAGE(C2:C5)</td><td>Finds the typical value from several numbers.</td><td class="watch">Average is not the same as total.</td></tr><tr><td>Count numeric cells</td><td class="pattern">=COUNT(C2:C5)</td><td>Counts cells that contain numbers.</td><td class="watch">Text labels are ignored.</td></tr><tr><td>Percent of total</td><td class="pattern">=C2/$C$6</td><td>Shows one value as a share of the total.</td><td class="watch">Lock the total before copying.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
+</section>
 
     <!-- 20 KEY TAKEAWAYS -->
-    <section class="slide" data-section="4" data-slide="20">
+    <section class="slide" data-section="4" data-slide="21" data-index="20">
       <div class="reveal eyebrow">Key takeaways</div>
       <h2 class="reveal">What to carry forward</h2>
       <div class="reveal title-rule"></div>
@@ -470,7 +490,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 21 UP NEXT -->
-    <section class="slide" data-section="4" data-slide="21">
+    <section class="slide" data-section="4" data-slide="22" data-index="21">
       <div class="reveal eyebrow">Up next</div>
       <h2 class="reveal">EXCEL-M01-L02 &mdash; Building a working worksheet</h2>
       <div class="reveal title-rule"></div>
@@ -484,7 +504,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 22 CLOSE -->
-    <section class="slide dark center" data-section="0" data-slide="22">
+    <section class="slide dark center" data-section="0" data-slide="23" data-index="22">
       <div class="geo c1"></div><div class="geo c2"></div>
       <div class="reveal bar" style="margin:0 auto 32px"></div>
       <h1 class="reveal" style="font-size:60px">Questions?</h1>
@@ -499,30 +519,33 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
 <div id="hint">&larr; &rarr; navigate &middot; N = notes</div>
 <div id="notes"></div>
 
-<script type="application/json" id="speaker-notes">[
-"Title. Welcome them in. Frame the day: this is the first real Excel lesson \u2014 by the end the blank grid stops being intimidating. Mention every example is Harborside Medical Center, a hospital, so the data feels real.",
-"Agenda. Three parts: the environment, then making the sheet calculate, then making it trustworthy. Keep it to 30 seconds \u2014 it's a map, not a stop.",
-"Objectives. Read the I Can statements out loud; tell them these are exactly what the quiz and workbook will check. Note: these are my draft \u2014 replace with the official Notion statements before publishing.",
-"Bridge. Connect back to INTRO-M01: they already installed Office, connected OneDrive, saved a workbook. Today we open it and learn to read it. Validate that the grid looked overwhelming \u2014 that's normal.",
-"Section break \u2014 Part 1. Big idea: before you can calculate anything, you have to be able to describe where things are.",
-"Workbook vs worksheet. The binder analogy lands well. Show the sheet tabs at the bottom of a real file if projecting live. Workbook = the file you save.",
-"The grid. Columns are letters, rows are numbers, a cell is the intersection. Battleship comparison. Click around live and watch the Name Box change. Point out the active-cell border.",
-"Control center. Name Box = where am I / jump tool. Formula Bar = the real logic behind a displayed value. Ribbon = grouped tools. Then ranges: the colon means 'through' \u2014 C2:C5 is Harborside's four department totals. This sets up SUM.",
-"Section break \u2014 Part 2. Now we make the sheet do the work instead of a calculator.",
-"Data entry + autofill. Push the Tab/Enter habit hard \u2014 mouse-free is faster. Demo the fill handle with Jan\u2192Dec. Double-click trick when there's an adjacent filled column.",
-"Formula vs function. Everything starts with =. A formula is anything after it; a function is a named shortcut. Walk the Big Five quickly with a Harborside use for each.",
-"Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C2:C5) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it.",
-"References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in B1 is the perfect 'lock it' case. Copy =B2*$B$1 down and narrate what moves and what stays.",
-"Section break \u2014 Part 3. A sheet that calculates but can't be trusted is worse than no sheet. Now: clarity and safety.",
-"Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye.",
-"Errors. Reassure them: error codes are helpful labels, not failures. Walk #REF!, #DIV/0!, #NAME? with the hospital framing (visits = 0 causes DIV/0).",
-"Golden rules. Don't hard-code, save constantly, one source of truth. These three habits prevent most of the 88%.",
-"COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =B2*0.62 means hand-editing everything and missing one. =B2*$B$1 fixes the whole sheet from one cell. This is the slide they should remember.",
-"Discussion. Let them sit with the 88% stat. Push for a concrete hospital example AND the matching safeguard. Cold-call a couple of pairs.",
-"Takeaways. Quick recap mapped to the three parts. This is the 'what to study' slide.",
-"Up next. L02 builds a full Harborside worksheet. Remind them to bring their OneDrive folder.",
-"Close. Q&A. Thank them and point to the pre-reading PDF and workbook when those are posted."
-]</script>
+<script type="application/json" id="speaker-notes">
+[
+  "Title. Welcome them in. Frame the day: this is the first real Excel lesson \u2014 by the end the blank grid stops being intimidating. Mention every example is Harborside Medical Center, a hospital, so the data feels real.",
+  "Agenda. Three parts: the environment, then making the sheet calculate, then making it trustworthy. Keep it to 30 seconds \u2014 it's a map, not a stop.",
+  "Objectives. Read the I Can statements out loud; tell them these are exactly what the quiz and workbook will check. Note: these are my draft \u2014 replace with the official Notion statements before publishing.",
+  "Bridge. Connect back to INTRO-M01: they already installed Office, connected OneDrive, saved a workbook. Today we open it and learn to read it. Validate that the grid looked overwhelming \u2014 that's normal.",
+  "Section break \u2014 Part 1. Big idea: before you can calculate anything, you have to be able to describe where things are.",
+  "Workbook vs worksheet. The binder analogy lands well. Show the sheet tabs at the bottom of a real file if projecting live. Workbook = the file you save.",
+  "The grid. Columns are letters, rows are numbers, a cell is the intersection. Battleship comparison. Click around live and watch the Name Box change. Point out the active-cell border.",
+  "Control center. Name Box = where am I / jump tool. Formula Bar = the real logic behind a displayed value. Ribbon = grouped tools. Then ranges: the colon means 'through' \u2014 C2:C5 is Harborside's four department totals. This sets up SUM.",
+  "Section break \u2014 Part 2. Now we make the sheet do the work instead of a calculator.",
+  "Data entry + autofill. Push the Tab/Enter habit hard \u2014 mouse-free is faster. Demo the fill handle with Jan\u2192Dec. Double-click trick when there's an adjacent filled column.",
+  "Formula vs function. Everything starts with =. A formula is anything after it; a function is a named shortcut. Walk the Big Five quickly with a Harborside use for each.",
+  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C2:C5) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it.",
+  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in B1 is the perfect 'lock it' case. Copy =B2*$B$1 down and narrate what moves and what stays.",
+  "Section break \u2014 Part 3. A sheet that calculates but can't be trusted is worse than no sheet. Now: clarity and safety.",
+  "Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye.",
+  "Errors. Reassure them: error codes are helpful labels, not failures. Walk #REF!, #DIV/0!, #NAME? with the hospital framing (visits = 0 causes DIV/0).",
+  "Golden rules. Don't hard-code, save constantly, one source of truth. These three habits prevent most of the 88%.",
+  "COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =B2*0.62 means hand-editing everything and missing one. =B2*$B$1 fixes the whole sheet from one cell. This is the slide they should remember.",
+  "Discussion. Let them sit with the 88% stat. Push for a concrete hospital example AND the matching safeguard. Cold-call a couple of pairs.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Takeaways. Quick recap mapped to the three parts. This is the 'what to study' slide.",
+  "Up next. L02 builds a full Harborside worksheet. Remind them to bring their OneDrive folder.",
+  "Close. Q&A. Thank them and point to the pre-reading PDF and workbook when those are posted."
+]
+</script>
 
 <script>
 (function(){

@@ -223,6 +223,17 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 .comp-col-head{padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:600;}
 .comp-col-body{padding:14px 18px;}
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -232,7 +243,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 1 · TITLE
      ════════════════════════════════════════════════════ -->
-<section class="slide active bg-ink" data-slide="1" data-section="title">
+<section class="slide active bg-ink" data-slide="1" data-section="title" data-index="0">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">M9</div>
@@ -250,7 +261,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         </p>
       </div>
       <div class="grad-bar"></div>
-      <div class="slide-num">01 / 22</div>
+      <div class="slide-num">1 / 23</div>
     </div>
   </div>
 </section>
@@ -258,7 +269,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 2 · AGENDA
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="2" data-section="agenda">
+<section class="slide bg-paper" data-slide="2" data-section="agenda" data-index="1">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -297,7 +308,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">02 / 22</div>
+      <div class="slide-num-dark">2 / 23</div>
     </div>
   </div>
 </section>
@@ -305,7 +316,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 3 · LEARNING OBJECTIVES
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="3" data-section="objectives">
+<section class="slide bg-paper" data-slide="3" data-section="objectives" data-index="2">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -321,7 +332,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <li>Use Excel's CORREL function to measure the relationship between two numeric variables</li>
         <li>Distinguish between correlation and causation when analyzing business data</li>
       </ul>
-      <div class="slide-num-dark">03 / 22</div>
+      <div class="slide-num-dark">3 / 23</div>
     </div>
   </div>
 </section>
@@ -329,7 +340,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 4 · RECAP / BRIDGE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="4" data-section="recap">
+<section class="slide bg-paper" data-slide="4" data-section="recap" data-index="3">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">M9</div>
@@ -361,13 +372,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       </div>
     </div>
   </div>
-  <div class="slide-num-dark">04 / 22</div>
+  <div class="slide-num-dark">4 / 23</div>
 </section>
 
 <!-- ════════════════════════════════════════════════════
      SLIDE 5 · SECTION BREAK — PART 1
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="5" data-section="break-1">
+<section class="slide bg-ink" data-slide="5" data-section="break-1" data-index="4">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -382,7 +393,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <p class="t-subtitle" style="max-width:480px;text-align:center;">Mean · Median · Mode</p>
         <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
       </div>
-      <div class="slide-num">05 / 22</div>
+      <div class="slide-num">5 / 23</div>
     </div>
   </div>
 </section>
@@ -390,7 +401,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 6 · MEAN — CONCEPT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="6" data-section="part-1">
+<section class="slide bg-paper" data-slide="6" data-section="part-1" data-index="5">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -425,13 +436,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       </div>
     </div>
   </div>
-  <div class="slide-num-dark">06 / 22</div>
+  <div class="slide-num-dark">6 / 23</div>
 </section>
 
 <!-- ════════════════════════════════════════════════════
      SLIDE 7 · MEDIAN
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="7" data-section="part-1">
+<section class="slide bg-paper" data-slide="7" data-section="part-1" data-index="6">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -471,7 +482,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">07 / 22</div>
+      <div class="slide-num-dark">7 / 23</div>
     </div>
   </div>
 </section>
@@ -479,7 +490,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 8 · MODE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="8" data-section="part-1">
+<section class="slide bg-paper" data-slide="8" data-section="part-1" data-index="7">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">1</div>
@@ -521,7 +532,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">08 / 22</div>
+      <div class="slide-num-dark">8 / 23</div>
     </div>
   </div>
 </section>
@@ -529,7 +540,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 9 · SECTION BREAK — PART 2
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="9" data-section="break-2">
+<section class="slide bg-ink" data-slide="9" data-section="break-2" data-index="8">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -545,7 +556,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <p class="t-subtitle" style="max-width:520px;text-align:center;">Standard Deviation — measuring the spread of data</p>
         <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
       </div>
-      <div class="slide-num">09 / 22</div>
+      <div class="slide-num">9 / 23</div>
     </div>
   </div>
 </section>
@@ -553,7 +564,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 10 · WHY SPREAD MATTERS
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="10" data-section="part-2">
+<section class="slide bg-paper" data-slide="10" data-section="part-2" data-index="9">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -594,7 +605,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       <div class="card-gold" style="max-width:780px;">
         <p class="t-body-sm"><strong>Key insight:</strong> Both hospitals have the same mean wait time. But Hospital B's high standard deviation signals a serious process problem — some patients wait 2 minutes, others 35. The mean alone hides this.</p>
       </div>
-      <div class="slide-num-dark">10 / 22</div>
+      <div class="slide-num-dark">10 / 23</div>
     </div>
   </div>
 </section>
@@ -602,7 +613,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 11 · STDEV FORMULA + EXCEL SYNTAX
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="11" data-section="part-2">
+<section class="slide bg-paper" data-slide="11" data-section="part-2" data-index="10">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -644,13 +655,13 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       </div>
     </div>
   </div>
-  <div class="slide-num-dark">11 / 22</div>
+  <div class="slide-num-dark">11 / 23</div>
 </section>
 
 <!-- ════════════════════════════════════════════════════
      SLIDE 12 · STDEV WORKED EXAMPLE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="12" data-section="part-2">
+<section class="slide bg-paper" data-slide="12" data-section="part-2" data-index="11">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -692,7 +703,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">12 / 22</div>
+      <div class="slide-num-dark">12 / 23</div>
     </div>
   </div>
 </section>
@@ -700,7 +711,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 13 · SECTION BREAK — PART 3
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="13" data-section="break-3">
+<section class="slide bg-ink" data-slide="13" data-section="break-3" data-index="12">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -717,7 +728,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <p class="t-subtitle" style="max-width:520px;text-align:center;">Measuring relationships between two variables</p>
         <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
       </div>
-      <div class="slide-num">13 / 22</div>
+      <div class="slide-num">13 / 23</div>
     </div>
   </div>
 </section>
@@ -725,7 +736,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 14 · CORRELATION CONCEPT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="14" data-section="part-3">
+<section class="slide bg-paper" data-slide="14" data-section="part-3" data-index="13">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -762,7 +773,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <span class="comment">// Returns a coefficient between −1 and +1</span><br>
         <span class="comment">// Strong: |r| &gt; 0.7  ·  Moderate: 0.4–0.7  ·  Weak: &lt; 0.4</span>
       </div>
-      <div class="slide-num-dark">14 / 22</div>
+      <div class="slide-num-dark">14 / 23</div>
     </div>
   </div>
 </section>
@@ -770,7 +781,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 15 · CORREL WORKED EXAMPLE
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="15" data-section="part-3">
+<section class="slide bg-paper" data-slide="15" data-section="part-3" data-index="14">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -812,7 +823,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">15 / 22</div>
+      <div class="slide-num-dark">15 / 23</div>
     </div>
   </div>
 </section>
@@ -820,7 +831,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 16 · CORRELATION ≠ CAUSATION
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="16" data-section="part-3">
+<section class="slide bg-paper" data-slide="16" data-section="part-3" data-index="15">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -848,7 +859,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--sage);margin-bottom:6px;">Harborside Example</p>
         <p class="t-body-sm">We found r = −0.98 between wait time and satisfaction. We <strong>cannot</strong> conclude from this alone that reducing wait time <em>causes</em> higher satisfaction. Maybe low-severity cases (shorter waits) are inherently more satisfied regardless. Deeper analysis is needed before making a staffing investment decision.</p>
       </div>
-      <div class="slide-num-dark">16 / 22</div>
+      <div class="slide-num-dark">16 / 23</div>
     </div>
   </div>
 </section>
@@ -856,7 +867,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 17 · INTERACTIVE EXPLORER
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="17" data-section="part-3">
+<section class="slide bg-paper" data-slide="17" data-section="part-3" data-index="16">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -906,7 +917,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           </div>
         </div>
       </div>
-      <div class="slide-num-dark">17 / 22</div>
+      <div class="slide-num-dark">17 / 23</div>
     </div>
   </div>
 </section>
@@ -914,7 +925,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 18 · COMMON MISTAKE (terra)
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-terra" data-slide="18" data-section="mistake">
+<section class="slide bg-terra" data-slide="18" data-section="mistake" data-index="17">
   <div class="nb-wrap">
     <div class="nb-tabs" style="background:#7a3520;border-right:1px solid rgba(255,255,255,.1);">
       <div class="nb-tab active-tab" style="background:rgba(255,255,255,.2);">!</div>
@@ -940,7 +951,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           <p style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.45);">— Statistics instructor wisdom</p>
         </div>
       </div>
-      <div class="slide-num">18 / 22</div>
+      <div class="slide-num">18 / 23</div>
     </div>
   </div>
 </section>
@@ -948,7 +959,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 19 · DISCUSSION
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="19" data-section="discussion">
+<section class="slide bg-ink" data-slide="19" data-section="discussion" data-index="18">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">?</div>
@@ -965,15 +976,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           <p style="font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;line-height:1.4;">A new hospital CEO shows that hiring more nurses is highly correlated with lower infection rates. A board member says "great — let's hire 50 nurses and solve infections." What's wrong with that reasoning?</p>
         </div>
       </div>
-      <div class="slide-num">19 / 22</div>
+      <div class="slide-num">19 / 23</div>
     </div>
   </div>
+</section>
+<section class="slide bg-paper" data-section="takeaways" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>AVERAGE</td><td class="pattern">=AVERAGE(B2:B8)</td><td>Returns the arithmetic mean of a range.</td><td class="watch">Outliers can pull the mean.</td></tr><tr><td>MEDIAN</td><td class="pattern">=MEDIAN(B2:B8)</td><td>Returns the middle value when sorted.</td><td class="watch">Use when outliers distort the average.</td></tr><tr><td>MODE.SNGL</td><td class="pattern">=MODE.SNGL(B2:B8)</td><td>Returns the most frequent single value.</td><td class="watch">It errors if no value repeats.</td></tr><tr><td>STDEV.S</td><td class="pattern">=STDEV.S(B2:B8)</td><td>Measures spread for a sample.</td><td class="watch">Use for a sample from a larger population.</td></tr><tr><td>STDEV.P</td><td class="pattern">=STDEV.P(B2:B8)</td><td>Measures spread for a full population.</td><td class="watch">Use only when you have every observation.</td></tr><tr><td>CORREL</td><td class="pattern">=CORREL(A2:A8,B2:B8)</td><td>Returns direction and strength of a linear relationship.</td><td class="watch">Correlation does not prove causation.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
 </section>
 
 <!-- ════════════════════════════════════════════════════
      SLIDE 20 · KEY TAKEAWAYS
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-paper" data-slide="20" data-section="takeaways">
+<section class="slide bg-paper" data-slide="21" data-section="takeaways" data-index="20">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab done-tab">1</div>
@@ -1005,7 +1025,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           <p class="t-body"><strong>Correlation (CORREL)</strong> measures relationship strength from −1 to +1. Strong correlation is worth investigating — but it never proves causation. Always dig deeper before recommending action.</p>
         </div>
       </div>
-      <div class="slide-num-dark">20 / 22</div>
+      <div class="slide-num-dark">21 / 23</div>
     </div>
   </div>
 </section>
@@ -1013,7 +1033,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 21 · UP NEXT
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="21" data-section="up-next">
+<section class="slide bg-ink" data-slide="22" data-section="up-next" data-index="21">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">→</div>
@@ -1031,7 +1051,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <div style="padding:10px 18px;background:rgba(184,132,61,.15);border:1px solid rgba(184,132,61,.3);border-radius:8px;font-family:var(--mono);font-size:12px;color:var(--gold);">Scatter Plots</div>
         <div style="padding:10px 18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:8px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.5);">Histograms</div>
       </div>
-      <div class="slide-num">21 / 22</div>
+      <div class="slide-num">22 / 23</div>
     </div>
   </div>
 </section>
@@ -1039,7 +1059,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- ════════════════════════════════════════════════════
      SLIDE 22 · CLOSE / Q&A
      ════════════════════════════════════════════════════ -->
-<section class="slide bg-ink" data-slide="22" data-section="close">
+<section class="slide bg-ink" data-slide="23" data-section="close" data-index="22">
   <div class="nb-wrap">
     <div class="nb-tabs">
       <div class="nb-tab active-tab">Q</div>
@@ -1054,7 +1074,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         Office hours · Canvas · bevitts@endicott.edu
       </p>
       <div class="grad-bar" style="position:absolute;bottom:0;left:0;right:0;"></div>
-      <div class="slide-num">22 / 22</div>
+      <div class="slide-num">23 / 23</div>
     </div>
   </div>
 </section>
@@ -1071,28 +1091,29 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- SPEAKER NOTES (JSON) -->
 <script id="speaker-notes" type="application/json">
 [
-  "Welcome to Module 12 — Business Statistics. Today we connect Excel skills to real data analysis. Harborside Medical Center is our anchor company throughout.",
+  "Welcome to Module 12 \u2014 Business Statistics. Today we connect Excel skills to real data analysis. Harborside Medical Center is our anchor company throughout.",
   "Three clean parts today: central tendency, dispersion, then correlation. By the end students will be able to use AVERAGE, MEDIAN, MODE, STDEV.S, and CORREL in Excel with confidence.",
-  "Read through the I Can statements together. Emphasize that these are Excel-first objectives — we learn the function syntax before the manual math.",
+  "Read through the I Can statements together. Emphasize that these are Excel-first objectives \u2014 we learn the function syntax before the manual math.",
   "Quick bridge from M08. Financial math told us what numbers to calculate. Statistics now tell us what those numbers mean in context. Same tools, bigger questions.",
   "Part 1 break. Central tendency is about finding the center of a set of numbers. Three tools, three different definitions of center.",
   "Walk through the Harborside wait time example. Ask students: does 19.6 minutes feel like a fair average? Note how the 42-minute day drags it up. Use AVERAGE in Excel first, then show the manual formula.",
   "Now we sort the same data and find the middle. The median of 15 minutes is much more representative. Ask: when would you choose median over mean for a business report?",
-  "Mode is different — it's the most frequent value, and it works on text categories too. Diagnosis codes are a great example because they can't be averaged. Ask: what does knowing the mode tell Harborside's scheduling team?",
+  "Mode is different \u2014 it's the most frequent value, and it works on text categories too. Diagnosis codes are a great example because they can't be averaged. Ask: what does knowing the mode tell Harborside's scheduling team?",
   "Part 2 break. Standard deviation is the most important concept today. It's the thing that makes the mean meaningful.",
   "Show the two hospitals side by side. Same mean = 20 minutes. Hospital A is consistent; Hospital B is chaotic. Ask students which hospital they'd rather visit and why. The SD tells the whole story the mean hides.",
-  "Excel syntax first: STDEV.S for samples, STDEV.P only for full populations. The key teaching point is n-1 in the denominator — that adjustment is why we use .S in almost every business context.",
+  "Excel syntax first: STDEV.S for samples, STDEV.P only for full populations. The key teaching point is n-1 in the denominator \u2014 that adjustment is why we use .S in almost every business context.",
   "Walk through the nurse overtime table row by row. Students can follow along manually. Emphasize that the final step is always take the square root. Ask: is 3.16 hours a concerning spread for overtime?",
-  "Part 3 break. Correlation is about relationships — not just individual variables but how two things move together.",
-  "The three-cell grid is the whole concept in one view. Positive, zero, negative. CORREL returns one number. Spend time on the strength thresholds: above 0.7 is strong, 0.4–0.7 moderate, below 0.4 weak.",
+  "Part 3 break. Correlation is about relationships \u2014 not just individual variables but how two things move together.",
+  "The three-cell grid is the whole concept in one view. Positive, zero, negative. CORREL returns one number. Spend time on the strength thresholds: above 0.7 is strong, 0.4\u20130.7 moderate, below 0.4 weak.",
   "Work through the CORREL example. r = -0.98 is very close to perfect negative. Ask students to read that number: longer waits, lower scores, consistently. Walk through the CORREL Excel syntax and show where the two arrays go.",
-  "Critical thinking slide — this is the most important one. Correlation never proves causation. Both ice cream and hospitalizations go up in summer because of heat. Ask: what third variable might be driving Harborside's correlation?",
-  "Interactive slide — let students type in their own numbers. The three preset buttons are great for class demos. All same values → SD = 0. One outlier → mean vs median diverge sharply. Repeated values → mode appears.",
+  "Critical thinking slide \u2014 this is the most important one. Correlation never proves causation. Both ice cream and hospitalizations go up in summer because of heat. Ask: what third variable might be driving Harborside's correlation?",
+  "Interactive slide \u2014 let students type in their own numbers. The three preset buttons are great for class demos. All same values \u2192 SD = 0. One outlier \u2192 mean vs median diverge sharply. Repeated values \u2192 mode appears.",
   "Common mistake slide. Read the contrast aloud. The iceberg quote lands well. Ask: in a business presentation would you ever just report the mean? What would your manager ask next?",
-  "Discussion questions — give 3–4 minutes in pairs before opening to the room. Q1 is about interpreting a high SD on a financial metric. Q2 is the classic causation trap.",
-  "Takeaways — three numbered, not a bullet list. Ask students to pick the one that surprised them most.",
+  "Discussion questions \u2014 give 3\u20134 minutes in pairs before opening to the room. Q1 is about interpreting a high SD on a financial metric. Q2 is the classic causation trap.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Takeaways \u2014 three numbered, not a bullet list. Ask students to pick the one that surprised them most.",
   "Up next teaser: Excel for data visualization. We take today's numbers and make them charts. Scatter plots connect directly to the correlation work we did today.",
-  "Open for questions. Remind students the Excel workbook for this lesson is on Canvas — they should complete it before next class. Office hours info is on slide."
+  "Open for questions. Remind students the Excel workbook for this lesson is on Canvas \u2014 they should complete it before next class. Office hours info is on slide."
 ]
 </script>
 

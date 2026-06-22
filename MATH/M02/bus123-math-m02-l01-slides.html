@@ -13,30 +13,31 @@
 
   <script type="application/json" id="speaker-notes">
 [
-  "Welcome to Math Module 2. Today we're building the most important skill in this course — solving for unknowns. Every financial formula you'll use this semester is just an equation waiting to be rearranged. Once you understand that, the math stops being scary.",
+  "Welcome to Math Module 2. Today we're building the most important skill in this course \u2014 solving for unknowns. Every financial formula you'll use this semester is just an equation waiting to be rearranged. Once you understand that, the math stops being scary.",
   "Here's what we're covering today. Four types of equation solving, all grounded in real decisions that a business like Anchor and Oak Events would actually face. The thread connecting them all: isolate the variable.",
   "By the end of class you should be able to do these four things on your own without looking at notes. We'll test all four in the workbook.",
-  "Think about the last module — we built formulas. Revenue equals price times quantity. Cost equals rate times hours. Those formulas gave us outputs. Today we flip the question: what if I know the output and need to find the input? That's solving an equation.",
-  "Part 1: One-Step Equations. These are the simplest version — one operation stands between you and the answer. Undo it.",
+  "Think about the last module \u2014 we built formulas. Revenue equals price times quantity. Cost equals rate times hours. Those formulas gave us outputs. Today we flip the question: what if I know the output and need to find the input? That's solving an equation.",
+  "Part 1: One-Step Equations. These are the simplest version \u2014 one operation stands between you and the answer. Undo it.",
   "One-step equations use inverse operations. Addition undone by subtraction. Multiplication undone by division. The rule is always the same: whatever was done to the variable, do the opposite to both sides.",
   "Anchor and Oak budgeted $4,200 for floral arrangements across several events. After booking three weddings they have $1,650 remaining. How much did the three weddings cost? x + 1650 = 4200. Subtract 1650 from both sides. x = 2550. The weddings cost $2,550.",
   "Live You Try It pause. Students open the workbook and use the exact catering numbers from this slide: 60 guests and a $4,080 bill. They should set up 60x = 4080 in Excel, enter the final answer, and use the feedback cell before we reveal the solution.",
-  "Part 2: Two-Step Equations. Two operations to undo instead of one. The order matters — always undo addition and subtraction first, then multiplication and division.",
+  "Part 2: Two-Step Equations. Two operations to undo instead of one. The order matters \u2014 always undo addition and subtraction first, then multiplication and division.",
   "Why reverse order? Think of it like putting on shoes and socks. You put socks on before shoes, so you take shoes off before socks. In an equation, multiplication was applied last during building, so we undo it last during solving.",
   "Worked example plus Live You Try It. Students should model the payroll puzzle in Excel with total pay of $1,240, base pay of $120, and 8 overtime hours. The feedback cell confirms whether they isolated the hourly rate correctly.",
   "Part 3: Variables on Both Sides. When the unknown appears on both sides of the equal sign, your first job is to collect all the variable terms on one side. Then solve as a two-step.",
   "This is the variables-on-both-sides You Try It pause. Students use Vendor A at $500 plus $25 per guest and Vendor B at $200 plus $40 per guest. The Excel tab asks them to show the setup before entering 20 guests.",
   "Common Mistake: students often subtract the variable from the wrong side, creating a negative coefficient. Always move the smaller variable term so your coefficient stays positive. It reduces arithmetic errors.",
-  "Part 4: Literal Equations and Formula Rearrangement. This is the highest-value skill in the course. A literal equation has multiple variables — like Profit = Revenue minus Cost. Solving for a specific variable means treating every other letter as if it were a number.",
+  "Part 4: Literal Equations and Formula Rearrangement. This is the highest-value skill in the course. A literal equation has multiple variables \u2014 like Profit = Revenue minus Cost. Solving for a specific variable means treating every other letter as if it were a number.",
   "The standard formula for break-even revenue is: Revenue = Variable Cost + Fixed Cost + Profit. If we set Profit to zero: R = VC + FC. We can solve for any piece. If we know target revenue and variable costs, solve for the maximum allowable fixed cost: FC = R minus VC.",
   "Literal equation You Try It. Students use the projected revenue of $18,500 and variable costs of $11,200 to calculate the fixed-cost ceiling. The hint reminds them that break-even means profit equals zero.",
   "Now shift from self-graded practice to the Class Challenge tab. These are harder because they combine equation types and require students to choose the setup. Live You Try It is for feedback; Class Challenge is the graded or next-level activity.",
-  "Three things to remember. One: equations are balanced scales — whatever you do to one side, do to both. Two: collect variable terms before solving. Three: literal equations are just formula rearrangements — treat other variables like numbers.",
-  "Next lesson we move to percent equations and proportions — pricing markup, discount, and sales tax. All grounded in the same equation-solving logic you built today.",
-  "Questions? Office hours are posted on Canvas. Bring the workbook to next class — we'll use it.",
+  "Three things to remember. One: equations are balanced scales \u2014 whatever you do to one side, do to both. Two: collect variable terms before solving. Three: literal equations are just formula rearrangements \u2014 treat other variables like numbers.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Next lesson we move to percent equations and proportions \u2014 pricing markup, discount, and sales tax. All grounded in the same equation-solving logic you built today.",
+  "Questions? Office hours are posted on Canvas. Bring the workbook to next class \u2014 we'll use it.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-  </script>
+</script>
 
   <style>
     :root {
@@ -763,6 +764,17 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -1226,9 +1238,18 @@
       </div>
     </div>
   </section>
+<section class="slide cream" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>One-step add/subtract</td><td class="pattern">=4200-1650</td><td>Undo the constant to isolate the unknown.</td><td class="watch">Apply the same operation to both sides.</td></tr><tr><td>One-step multiply/divide</td><td class="pattern">=4080/60</td><td>Divide by the coefficient to solve for the unit amount.</td><td class="watch">Keep the rate or coefficient in the denominator.</td></tr><tr><td>Two-step equation</td><td class="pattern">=(1240-120)/8</td><td>Remove the fixed amount, then divide by the variable rate.</td><td class="watch">Undo addition or subtraction before division.</td></tr><tr><td>Variables both sides</td><td class="pattern">=(500-200)/(40-25)</td><td>Collect constants and divide by the difference in rates.</td><td class="watch">Subtract the smaller variable term first.</td></tr><tr><td>Literal equation</td><td class="pattern">=R-VC</td><td>Solve for the missing business measure using the known values.</td><td class="watch">Treat all other letters as constants.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
+</section>
 
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="20 Takeaways" data-section="4" data-slide="20" data-index="19">
+  <section class="slide cream" data-label="21 Takeaways" data-section="4" data-slide="21" data-index="20">
     <div class="header-row"><span class="eyebrow">Key Takeaways</span><div class="rule"></div></div>
     <h2 class="slide-title">Three Rules That Cover Everything</h2>
     <div class="body-area" style="justify-content:center; gap:40px;">
@@ -1239,7 +1260,7 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="21 Up Next" data-section="4" data-slide="21" data-index="20">
+  <section class="slide dark" data-label="22 Up Next" data-section="4" data-slide="22" data-index="21">
     <div class="grad-bar"></div>
     <div class="title-content">
       <div class="title-eyebrow">Next Lesson · M02 · L02</div>
@@ -1252,7 +1273,7 @@
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
+  <section class="slide dark" data-label="23 Close" data-section="4" data-slide="23" data-index="22">
     <div class="grad-bar"></div>
     <div class="title-content" style="align-items:center; text-align:center;">
       <div class="title-eyebrow">BUS123 · M02 · L01</div>

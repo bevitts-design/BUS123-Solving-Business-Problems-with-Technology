@@ -569,6 +569,17 @@ p.light { color: rgba(255,255,255,0.75); }
   font-family: var(--mono); font-size: 11px;
   color: rgba(255,255,255,0.3); z-index: 9999;
 }
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -578,7 +589,7 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 01 · TITLE                                          -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="title" data-slide="1">
+<section class="slide dark" data-section="title" data-slide="1" data-index="0">
   <div class="tab-strip">
     <div class="tab active-tab">M04</div>
     <div class="tab">L01</div>
@@ -594,13 +605,13 @@ p.light { color: rgba(255,255,255,0.75); }
       <div class="title-course">Solving Business Problems with Technology · Fall 2026 · Gerrish School of Business</div>
     </div>
   </div>
-  <div class="slide-num">01 / 22</div>
+  <div class="slide-num">1 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 02 · WARM-UP HOOK                                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="hook" data-slide="2">
+<section class="slide cream" data-section="hook" data-slide="2" data-index="1">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab t-gold">HOOK</div>
@@ -655,13 +666,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">02 / 22</div>
+  <div class="slide-num dark-num">2 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 03 · AGENDA                                         -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="agenda" data-slide="3">
+<section class="slide cream" data-section="agenda" data-slide="3" data-index="2">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -705,13 +716,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">03 / 22</div>
+  <div class="slide-num dark-num">3 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 04 · LEARNING OBJECTIVES                            -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="objectives" data-slide="4">
+<section class="slide cream" data-section="objectives" data-slide="4" data-index="3">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -743,13 +754,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">04 / 22</div>
+  <div class="slide-num dark-num">4 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 05 · RECAP / BRIDGE                                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="bridge" data-slide="5">
+<section class="slide cream" data-section="bridge" data-slide="5" data-index="4">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -786,13 +797,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">05 / 22</div>
+  <div class="slide-num dark-num">5 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 06 · SECTION BREAK — PART 1                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part1-break" data-slide="6">
+<section class="slide dark" data-section="part1-break" data-slide="6" data-index="5">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -806,13 +817,13 @@ p.light { color: rgba(255,255,255,0.75); }
       <div class="section-desc">Before you can chart anything, your data needs to be structured. Learn how to get data into Excel quickly — and fix messy data before it breaks your analysis.</div>
     </div>
   </div>
-  <div class="slide-num">06 / 22</div>
+  <div class="slide-num">6 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 07 · THE EXCEL TABLE STRUCTURE                      -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="table-structure" data-slide="7">
+<section class="slide cream" data-section="table-structure" data-slide="7" data-index="6">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -868,13 +879,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">07 / 22</div>
+  <div class="slide-num dark-num">7 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 08 · FLASH FILL & DATA CLEANING                    -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="flash-fill" data-slide="8">
+<section class="slide cream" data-section="flash-fill" data-slide="8" data-index="7">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -927,13 +938,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">08 / 22</div>
+  <div class="slide-num dark-num">8 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 09 · TEXT TO COLUMNS & DATA FROM PICTURE            -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="import-tools" data-slide="9">
+<section class="slide cream" data-section="import-tools" data-slide="9" data-index="8">
   <div class="tab-strip">
     <div class="tab t-gold active-tab">P 1</div>
     <div class="tab">P 2</div>
@@ -978,13 +989,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">09 / 22</div>
+  <div class="slide-num dark-num">9 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 10 · SECTION BREAK — PART 2                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part2-break" data-slide="10">
+<section class="slide dark" data-section="part2-break" data-slide="10" data-index="9">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -998,13 +1009,13 @@ p.light { color: rgba(255,255,255,0.75); }
       <div class="section-desc">The chart type is not an aesthetic choice — it's a logic choice. The wrong chart type misrepresents data. Here's the decision framework.</div>
     </div>
   </div>
-  <div class="slide-num">10 / 22</div>
+  <div class="slide-num">10 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 11 · THE CHART DECISION FRAMEWORK                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="chart-types" data-slide="11">
+<section class="slide cream" data-section="chart-types" data-slide="11" data-index="10">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1060,13 +1071,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </table>
     </div>
   </div>
-  <div class="slide-num dark-num">11 / 22</div>
+  <div class="slide-num dark-num">11 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 12 · WORKED EXAMPLE — COLUMN CHART HARBORSIDE       -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="worked-example-column" data-slide="12">
+<section class="slide cream" data-section="worked-example-column" data-slide="12" data-index="11">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1150,13 +1161,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">12 / 22</div>
+  <div class="slide-num dark-num">12 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 13 · LINE CHART — TREND OVER TIME                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="line-chart" data-slide="13">
+<section class="slide cream" data-section="line-chart" data-slide="13" data-index="12">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab t-gold active-tab">P 2</div>
@@ -1209,13 +1220,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">13 / 22</div>
+  <div class="slide-num dark-num">13 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 14 · SECTION BREAK — PART 3                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="part3-break" data-slide="14">
+<section class="slide dark" data-section="part3-break" data-slide="14" data-index="13">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1229,13 +1240,13 @@ p.light { color: rgba(255,255,255,0.75); }
       <div class="section-desc">Conditional formatting, pie charts, and the finishing touches that separate a classroom chart from a boardroom chart.</div>
     </div>
   </div>
-  <div class="slide-num">14 / 22</div>
+  <div class="slide-num">14 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 15 · PIE CHARTS & PROPORTIONAL DATA                 -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="pie-charts" data-slide="15">
+<section class="slide cream" data-section="pie-charts" data-slide="15" data-index="14">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1292,13 +1303,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">15 / 22</div>
+  <div class="slide-num dark-num">15 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 16 · CONDITIONAL FORMATTING                         -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="conditional-formatting" data-slide="16">
+<section class="slide cream" data-section="conditional-formatting" data-slide="16" data-index="15">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1353,13 +1364,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">16 / 22</div>
+  <div class="slide-num dark-num">16 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 17 · STAT SLIDE                                     -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="stat-slide" data-slide="17">
+<section class="slide dark" data-section="stat-slide" data-slide="17" data-index="16">
   <div class="tab-strip">
     <div class="tab">P 1</div>
     <div class="tab">P 2</div>
@@ -1385,13 +1396,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num">17 / 22</div>
+  <div class="slide-num">17 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 18 · COMMON MISTAKE — TERRA                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide" data-section="mistake" style="background:var(--terra);" data-slide="18">
+<section class="slide" data-section="mistake" style="background:var(--terra);" data-slide="18" data-index="17">
   <div class="tab-strip" style="background:rgba(0,0,0,0.25);">
     <div class="tab active-tab" style="background:rgba(0,0,0,0.3); color:rgba(255,255,255,0.9);">⚠</div>
     <div class="tab" style="color:rgba(255,255,255,0.4);">M04</div>
@@ -1424,13 +1435,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num" style="color:rgba(255,255,255,0.4);">18 / 22</div>
+  <div class="slide-num" style="color:rgba(255,255,255,0.4);">18 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 19 · DISCUSSION                                     -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="discussion" data-slide="19">
+<section class="slide cream" data-section="discussion" data-slide="19" data-index="18">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab">L01</div>
@@ -1454,13 +1465,22 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">19 / 22</div>
+  <div class="slide-num dark-num">19 / 23</div>
+</section>
+<section class="slide cream" data-section="takeaways" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Add up a range</td><td class="pattern">=SUM(range)</td><td>Totals the values behind a chart or summary.</td><td class="watch">Do not chart a hardcoded total.</td></tr><tr><td>Average of a range</td><td class="pattern">=AVERAGE(range)</td><td>Finds the typical value in a data series.</td><td class="watch">Check whether blanks should count.</td></tr><tr><td>Largest value</td><td class="pattern">=MAX(range)</td><td>Finds the highest value for a chart callout.</td><td class="watch">Verify the range matches the visible data.</td></tr><tr><td>Percent of total</td><td class="pattern">=Part/$Total$</td><td>Turns a category value into a share.</td><td class="watch">Lock the total before copying.</td></tr><tr><td>Percent change</td><td class="pattern">=(New-Old)/Old</td><td>Shows growth or decline from the starting value.</td><td class="watch">A small old value can make the percent look huge.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 20 · KEY TAKEAWAYS                                  -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide cream" data-section="takeaways" data-slide="20">
+<section class="slide cream" data-section="takeaways" data-slide="21" data-index="20">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -1497,13 +1517,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num dark-num">20 / 22</div>
+  <div class="slide-num dark-num">21 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 21 · UP NEXT                                        -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="upnext" data-slide="21">
+<section class="slide dark" data-section="upnext" data-slide="22" data-index="21">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab active-tab">L01</div>
@@ -1533,13 +1553,13 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num">21 / 22</div>
+  <div class="slide-num">22 / 23</div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════ -->
 <!-- SLIDE 22 · CLOSE / Q&A                                   -->
 <!-- ══════════════════════════════════════════════════════════ -->
-<section class="slide dark" data-section="close" data-slide="22">
+<section class="slide dark" data-section="close" data-slide="23" data-index="22">
   <div class="tab-strip">
     <div class="tab">M04</div>
     <div class="tab">L01</div>
@@ -1564,7 +1584,7 @@ p.light { color: rgba(255,255,255,0.75); }
       </div>
     </div>
   </div>
-  <div class="slide-num">22 / 22</div>
+  <div class="slide-num">23 / 23</div>
 </section>
 
 </div><!-- /scaler -->
@@ -1579,26 +1599,27 @@ p.light { color: rgba(255,255,255,0.75); }
 <!-- ── SPEAKER NOTES ────────────────────────────────────────── -->
 <script id="speaker-notes" type="application/json">
 [
-  "Welcome everyone to Module 4, Lesson 1. This is the capstone Excel skill — connecting everything we've built to charts and visualization. Remind students that this is what business leaders actually look at.",
-  "Open with this hook: Harborside's CFO just handed you 12 months of patient billing data and needs a visual answer by Friday. You now have the skills to do this — today we build that bridge from numbers to story.",
-  "Walk through the four agenda items. Emphasize that the in-class activity at the end is where they actually build a chart from data — not just watch you do it.",
+  "Welcome everyone to Module 4, Lesson 1. This is the capstone Excel skill \u2014 connecting everything we've built to charts and visualization. Remind students that this is what business leaders actually look at.",
+  "Open with this hook: Harborside's CFO just handed you 12 months of patient billing data and needs a visual answer by Friday. You now have the skills to do this \u2014 today we build that bridge from numbers to story.",
+  "Walk through the four agenda items. Emphasize that the in-class activity at the end is where they actually build a chart from data \u2014 not just watch you do it.",
   "Read the I Can statements together. Flag that choosing the RIGHT chart type is a logic skill, not just clicking buttons. That's the big idea today.",
-  "Quick M03 recap — they already know SUM, AVERAGE, tables, and sorting. Today is the next layer. The analogy: M03 gave them the ingredients, M04 is how to plate the dish.",
+  "Quick M03 recap \u2014 they already know SUM, AVERAGE, tables, and sorting. Today is the next layer. The analogy: M03 gave them the ingredients, M04 is how to plate the dish.",
   "Part 1 starts here. The whole premise: no clean data, no readable chart. Walk into this section slowly.",
-  "This is the foundational table rules slide. Step through the Harborside example row by row. Emphasize no blank rows — that's the most common structure mistake with charts.",
+  "This is the foundational table rules slide. Step through the Harborside example row by row. Emphasize no blank rows \u2014 that's the most common structure mistake with charts.",
   "Flash Fill demo moment. If possible, live-demo this in Excel: show the staff roster column, type one example first name, hit Ctrl+E, watch the column fill. Students love this.",
   "Text to Columns and Data from Picture. Show the real-world scenario: vendor sends a CSV, it pastes into one column. Text to Columns splits it in 20 seconds. Data from Picture is the magic trick for printed reports.",
   "Part 2 starts here. Big idea: chart type is not about what looks cool. It's about what the data structure requires.",
-  "This is the key decision framework. Walk each row slowly. Emphasize the Column vs Line distinction — they're the two most commonly confused. Ask: 'If I show Revenue by Payer Category over a Line chart, what does that communicate incorrectly?'",
-  "Live walkthrough of building the column chart step by step. Emphasize step 4 — removing clutter — because students always leave in too many gridlines and legends.",
+  "This is the key decision framework. Walk each row slowly. Emphasize the Column vs Line distinction \u2014 they're the two most commonly confused. Ask: 'If I show Revenue by Payer Category over a Line chart, what does that communicate incorrectly?'",
+  "Live walkthrough of building the column chart step by step. Emphasize step 4 \u2014 removing clutter \u2014 because students always leave in too many gridlines and legends.",
   "Line chart and the Line vs Scatter warning. Draw this on the board if helpful: X-axis labels equally spaced vs. values correctly spaced. The boiling water example from the readings makes this concrete.",
   "Part 3 starts here. Polishing and conditional formatting.",
   "Pie chart rules. Ask: 'How many slices can your brain actually compare in a pie chart?' Answer: 2-4. After that, switch to a bar chart.",
-  "Conditional formatting demo. Walk through the ICU example — $38,200 average bill stands out immediately in the color scale. The key concept: this is a visual audit, not just pretty colors.",
-  "Stat slide — let this breathe. 60,000 times faster. That's the business case for visualization. Don't over-explain it, just let it land.",
+  "Conditional formatting demo. Walk through the ICU example \u2014 $38,200 average bill stands out immediately in the color scale. The key concept: this is a visual audit, not just pretty colors.",
+  "Stat slide \u2014 let this breathe. 60,000 times faster. That's the business case for visualization. Don't over-explain it, just let it land.",
   "Common mistake slide. This is the one students will remember. Walk through both mistakes: too many pie slices, and the wrong chart type. Ask the class: 'Have you seen bad charts in the wild?'",
   "Discussion questions. Give 4-5 minutes. Walk around the room. For Q1: Medicare trend over time = line chart. Revenue by category = column chart. They might need two charts. Q2: Line chart for categories implies a trend or connection between the categories, which is misleading.",
-  "Three takeaways — clean data, logic over style, visual audit. Ask a student to explain each one back in their own words.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Three takeaways \u2014 clean data, logic over style, visual audit. Ask a student to explain each one back in their own words.",
   "Up next preview. PivotTables are where this gets really powerful. If time allows, show a 30-second teaser in Excel of what a PivotTable looks like.",
   "Questions slide. Remind students the workbook is in Canvas. If no questions, send them to open the workbook and start the in-class activity."
 ]

@@ -14,29 +14,30 @@
   <script type="application/json" id="speaker-notes">
 [
   "Welcome to Module 7. Today we're covering three taxes every business manager encounters: sales, excise, and property. By the end of class you'll be able to calculate all three and explain the strategic 'so what' behind each one.",
-  "Let's warm up. Think about the last time you bought something online and saw an unexpected tax charge at checkout — maybe you almost abandoned the cart. That's a real business problem. Businesses that don't handle tax mechanics correctly lose sales, face legal liability, and misread their own revenue. Tax literacy is a competitive edge.",
-  "Here are today's three learning objectives. Notice we're not just computing — we're also asking why it matters strategically.",
+  "Let's warm up. Think about the last time you bought something online and saw an unexpected tax charge at checkout \u2014 maybe you almost abandoned the cart. That's a real business problem. Businesses that don't handle tax mechanics correctly lose sales, face legal liability, and misread their own revenue. Tax literacy is a competitive edge.",
+  "Here are today's three learning objectives. Notice we're not just computing \u2014 we're also asking why it matters strategically.",
   "Last lesson we worked through trade discounts, markups, and markdowns. Today we go one layer deeper: after you price something, you have to handle taxes correctly. The order of operations matters enormously.",
-  "Part 1 of 3 — Sales Tax. This is the tax most students already know from everyday shopping. But the business perspective is completely different from the consumer perspective.",
-  "As a consumer, you pay sales tax. As a merchant, you collect it and hold it temporarily — it's not your money. Think of it as a liability on your books. Misclassifying collected tax as revenue is an accounting error that creates real legal exposure.",
-  "Here's the critical order of operations for sales tax. Trade discounts come off first — before tax is calculated. Shipping gets added after. If you flip that order, your tax calculation is wrong. Let's walk through Tidal Goods Co. step by step.",
-  "Now let's move this to Excel. The formula structure mirrors the manual math exactly — but Excel lets us change any input and recalculate instantly. Show students: change the trade discount and watch the tax recalculate automatically.",
+  "Part 1 of 3 \u2014 Sales Tax. This is the tax most students already know from everyday shopping. But the business perspective is completely different from the consumer perspective.",
+  "As a consumer, you pay sales tax. As a merchant, you collect it and hold it temporarily \u2014 it's not your money. Think of it as a liability on your books. Misclassifying collected tax as revenue is an accounting error that creates real legal exposure.",
+  "Here's the critical order of operations for sales tax. Trade discounts come off first \u2014 before tax is calculated. Shipping gets added after. If you flip that order, your tax calculation is wrong. Let's walk through Tidal Goods Co. step by step.",
+  "Now let's move this to Excel. The formula structure mirrors the manual math exactly \u2014 but Excel lets us change any input and recalculate instantly. Show students: change the trade discount and watch the tax recalculate automatically.",
   "What if you already have the total and need to back out actual sales? This is the 'reverse sales tax' problem. A retailer's register might show $40,000 in receipts but that includes the tax they collected. The formula isolates actual revenue. Use =B1 divided by (1 + B2) in Excel.",
-  "Part 2 of 3 — Excise Tax. This is the one most students have never heard of, even though they've paid it hundreds of times. It's baked into the price before they see it.",
-  "Excise tax is levied upstream — manufacturers and wholesalers pay it, so it's embedded in the sticker price by the time a consumer sees the product. Fuel, alcohol, tobacco, and some high-end appliances. For a retailer, this means the excise tax directly raises inventory cost.",
-  "When both sales tax and excise tax apply to the same item, they are NOT compounded. Both are calculated on the base cost. This is a common student error — thinking you apply one tax first, then apply the second tax to the already-taxed amount. That's wrong. Both percentages hit the original base.",
+  "Part 2 of 3 \u2014 Excise Tax. This is the one most students have never heard of, even though they've paid it hundreds of times. It's baked into the price before they see it.",
+  "Excise tax is levied upstream \u2014 manufacturers and wholesalers pay it, so it's embedded in the sticker price by the time a consumer sees the product. Fuel, alcohol, tobacco, and some high-end appliances. For a retailer, this means the excise tax directly raises inventory cost.",
+  "When both sales tax and excise tax apply to the same item, they are NOT compounded. Both are calculated on the base cost. This is a common student error \u2014 thinking you apply one tax first, then apply the second tax to the already-taxed amount. That's wrong. Both percentages hit the original base.",
   "Meridian Advisory Group just equipped their new office with commercial appliances for a client hospitality suite. Let's calculate the total cost including both taxes. Watch how we handle the two-tax scenario in Excel.",
-  "Part 3 of 3 — Property Tax. This one affects every business that owns or leases space. And for anyone in a Triple Net Lease, it directly affects monthly rent.",
-  "Property tax is calculated in three steps. Step 1: assessed value. Step 2: tax rate. Step 3: annual tax due. Each step feeds the next. The key rule: always round the tax rate to four decimal places — the ten-thousandths place. That precision matters when you multiply against large property values.",
-  "The tax rate is set by dividing the town's budget need by the total assessed value of all taxable property in town. Your individual property's share of the total determines your bill. This is why a town that approves a bigger budget raises everyone's property tax — the denominator doesn't grow, only the numerator.",
+  "Part 3 of 3 \u2014 Property Tax. This one affects every business that owns or leases space. And for anyone in a Triple Net Lease, it directly affects monthly rent.",
+  "Property tax is calculated in three steps. Step 1: assessed value. Step 2: tax rate. Step 3: annual tax due. Each step feeds the next. The key rule: always round the tax rate to four decimal places \u2014 the ten-thousandths place. That precision matters when you multiply against large property values.",
+  "The tax rate is set by dividing the town's budget need by the total assessed value of all taxable property in town. Your individual property's share of the total determines your bill. This is why a town that approves a bigger budget raises everyone's property tax \u2014 the denominator doesn't grow, only the numerator.",
   "Now let's connect the three steps. Meridian Advisory Group is evaluating office space in a municipality. Let's walk through the full calculation: assessed value, tax rate, annual tax due. This is exactly what a finance team does during location analysis.",
   "Common mistake alert. Two big ones here. First: applying tax before subtracting the trade discount. Second: compounding sales and excise taxes instead of calculating both from the base. Both errors produce wrong totals and wrong revenue figures on financial statements.",
-  "Your turn. Two practice problems — one sales tax, one property tax. Work through them in Excel using the formulas we built today. I'll circulate. You have 8 minutes.",
-  "Three takeaways from today. Sales tax: merchant collects, doesn't own — order of operations matters. Excise tax: baked in upstream, both taxes hit the base separately. Property tax: three-step chain, rate rounded to four decimal places.",
-  "Next lesson we go deeper on payroll taxes — FICA, federal and state withholding. Same structure: understand who pays what, then calculate it in Excel. Pre-reading is posted. Questions before we close?",
+  "Your turn. Two practice problems \u2014 one sales tax, one property tax. Work through them in Excel using the formulas we built today. I'll circulate. You have 8 minutes.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Three takeaways from today. Sales tax: merchant collects, doesn't own \u2014 order of operations matters. Excise tax: baked in upstream, both taxes hit the base separately. Property tax: three-step chain, rate rounded to four decimal places.",
+  "Next lesson we go deeper on payroll taxes \u2014 FICA, federal and state withholding. Same structure: understand who pays what, then calculate it in Excel. Pre-reading is posted. Questions before we close?",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-  </script>
+</script>
 
   <style>
     :root {
@@ -644,6 +645,17 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -1172,9 +1184,18 @@
       </div>
     </div>
   </section>
+<section class="slide cream" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Taxable subtotal</td><td class="pattern">=Price-Discount</td><td>Finds the amount subject to sales tax.</td><td class="watch">Apply discounts before tax.</td></tr><tr><td>Sales tax owed</td><td class="pattern">=Taxable*Rate</td><td>Calculates the tax on the taxable subtotal.</td><td class="watch">Use the tax rate as a decimal.</td></tr><tr><td>Total price</td><td class="pattern">=Taxable+Tax+Shipping</td><td>Adds taxable amount, tax, and shipping.</td><td class="watch">Shipping rules can vary by scenario.</td></tr><tr><td>Back-calculate sales</td><td class="pattern">=TotalReceipts/(1+Rate)</td><td>Finds sales before tax from total receipts.</td><td class="watch">Do not subtract the tax rate directly.</td></tr><tr><td>Combined excise shortcut</td><td class="pattern">=Base*(1+SalesRate+ExciseRate)</td><td>Combines sales and excise rates in one total.</td><td class="watch">Only use when both taxes share the same base.</td></tr><tr><td>Property tax rate</td><td class="pattern">=ROUND(Budget/TotalAV,4)</td><td>Rounds the town tax rate to four decimal places.</td><td class="watch">Round the rate before applying it.</td></tr><tr><td>Annual property tax</td><td class="pattern">=TaxRate*AssessedValue</td><td>Calculates the annual tax due on assessed value.</td><td class="watch">Assessed value is not always market value.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
+</section>
 
   <!-- ⑳ KEY TAKEAWAYS -->
-  <section class="slide cream" data-label="20 Takeaways" data-section="4" data-slide="20" data-index="19">
+  <section class="slide cream" data-label="21 Takeaways" data-section="4" data-slide="21" data-index="20">
     <div class="header-row">
       <div class="eyebrow">Key Takeaways</div>
       <div class="slide-title">What to Carry Forward</div>
@@ -1202,7 +1223,7 @@
   </section>
 
   <!-- ㉑ UP NEXT -->
-  <section class="slide dark" data-label="21 Up Next" data-section="4" data-slide="21" data-index="20">
+  <section class="slide dark" data-label="22 Up Next" data-section="4" data-slide="22" data-index="21">
     <div class="grad-bar"></div>
     <div class="section-break-content">
       <div class="part-label">Coming Up · MATH-M07-L02</div>
@@ -1212,7 +1233,7 @@
   </section>
 
   <!-- ㉒ CLOSE -->
-  <section class="slide dark" data-label="22 Close" data-section="4" data-slide="22" data-index="21">
+  <section class="slide dark" data-label="23 Close" data-section="4" data-slide="23" data-index="22">
     <div class="grad-bar"></div>
     <div class="section-break-content" style="align-items:center; text-align:center;">
       <div class="section-title" style="font-style:italic;">Questions?</div>

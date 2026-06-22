@@ -556,6 +556,17 @@ h1{
   line-height:.95;
 }
 .office{font-size:24px;color:var(--paper-2);line-height:1.35;max-width:720px}
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -570,7 +581,7 @@ h1{
   </aside>
 
   <section class="stage">
-    <article class="slide dark active" data-section="0">
+    <article class="slide dark active" data-section="0" data-slide="1" data-index="0">
       <div class="accent-bar"></div>
       <div class="body">
         <div class="kicker">BUS123 · EXCEL-M02-L01 · Gerrish School of Business</div>
@@ -580,7 +591,7 @@ h1{
       <div class="accent-bar"></div>
     </article>
 
-    <article class="slide" data-section="0">
+    <article class="slide" data-section="0" data-slide="2" data-index="1">
       <header class="slide-header"><h2>Agenda</h2><span class="badge">EXCEL-M02-L01 · 02</span></header>
       <div class="body top">
         <p class="lead">Today we turn a raw Anchor &amp; Oak Events worksheet into something a manager can read in 30 seconds.</p>
@@ -593,7 +604,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="0">
+    <article class="slide" data-section="0" data-slide="3" data-index="2">
       <header class="slide-header"><h2>Learning Objectives</h2><span class="badge">EXCEL-M02-L01 · 03</span></header>
       <div class="body top">
         <div class="kicker">I Can Statements</div>
@@ -606,7 +617,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="0">
+    <article class="slide" data-section="0" data-slide="4" data-index="3">
       <header class="slide-header"><h2>Recap Bridge</h2><span class="badge">EXCEL-M02-L01 · 04</span></header>
       <div class="body split">
         <div class="compare-card bad">
@@ -629,7 +640,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide dark" data-section="1">
+    <article class="slide dark" data-section="1" data-slide="5" data-index="4">
       <div class="accent-bar"></div>
       <div class="section-break">
         <div class="kicker">Part 1 of 3</div>
@@ -638,7 +649,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="1">
+    <article class="slide" data-section="1" data-slide="6" data-index="5">
       <header class="slide-header"><h2>Why Formatting Matters</h2><span class="badge">EXCEL-M02-L01 · 06</span></header>
       <div class="body">
         <div class="decision-flow">
@@ -652,7 +663,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="1">
+    <article class="slide" data-section="1" data-slide="7" data-index="6">
       <header class="slide-header"><h2>Number Formats</h2><span class="badge">EXCEL-M02-L01 · 07</span></header>
       <div class="body top">
         <p class="lead">A number's format tells the reader what kind of business fact they are looking at.</p>
@@ -667,7 +678,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="1">
+    <article class="slide" data-section="1" data-slide="8" data-index="7">
       <header class="slide-header"><h2>Headers And Alignment</h2><span class="badge">EXCEL-M02-L01 · 08</span></header>
       <div class="body split">
         <div class="compare-card bad">
@@ -697,7 +708,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide dark" data-section="2">
+    <article class="slide dark" data-section="2" data-slide="9" data-index="8">
       <div class="accent-bar"></div>
       <div class="section-break">
         <div class="kicker">Part 2 of 3</div>
@@ -706,7 +717,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="2">
+    <article class="slide" data-section="2" data-slide="10" data-index="9">
       <header class="slide-header"><h2>Raw Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 10</span></header>
       <div class="body top">
         <p class="lead">The data is correct. The handoff is not ready.</p>
@@ -723,7 +734,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="2">
+    <article class="slide" data-section="2" data-slide="11" data-index="10">
       <header class="slide-header"><h2>Formatted Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 11</span></header>
       <div class="body top">
         <p class="lead">Same data, clearer story: readable dates, currency, alignment, and a distinct total row.</p>
@@ -740,7 +751,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="2">
+    <article class="slide" data-section="2" data-slide="12" data-index="11">
       <header class="slide-header"><h2>Excel Syntax: Formats</h2><span class="badge">EXCEL-M02-L01 · 12</span></header>
       <div class="body top">
         <p class="lead"><strong>Step 1:</strong> select the cells you want to format. Excel cannot format what you have not selected.</p>
@@ -757,7 +768,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="2">
+    <article class="slide" data-section="2" data-slide="13" data-index="12">
       <header class="slide-header"><h2>Excel Syntax: Dates And Totals</h2><span class="badge">EXCEL-M02-L01 · 13</span></header>
       <div class="body split">
         <div class="formula-panel">
@@ -773,7 +784,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide dark" data-section="3">
+    <article class="slide dark" data-section="3" data-slide="14" data-index="13">
       <div class="accent-bar"></div>
       <div class="section-break">
         <div class="kicker">Part 3 of 3</div>
@@ -782,7 +793,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="3">
+    <article class="slide" data-section="3" data-slide="15" data-index="14">
       <header class="slide-header"><h2>Banded Rows</h2><span class="badge">EXCEL-M02-L01 · 15</span></header>
       <div class="body split">
         <div>
@@ -806,7 +817,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="3">
+    <article class="slide" data-section="3" data-slide="16" data-index="15">
       <header class="slide-header"><h2>Freeze Panes</h2><span class="badge">EXCEL-M02-L01 · 16</span></header>
       <div class="body top">
         <p class="lead">Anchor &amp; Oak tracks 80 events a year. When students scroll to row 60, the labels should still be visible.</p>
@@ -819,7 +830,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="3">
+    <article class="slide" data-section="3" data-slide="17" data-index="16">
       <header class="slide-header"><h2>Color With Purpose</h2><span class="badge">EXCEL-M02-L01 · 17</span></header>
       <div class="body top">
         <div class="stat-panel">
@@ -835,7 +846,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide terra" data-section="3">
+    <article class="slide terra" data-section="3" data-slide="18" data-index="17">
       <header class="slide-header"><h2>Common Mistake</h2><span class="badge">EXCEL-M02-L01 · 18</span></header>
       <div class="body top">
         <div class="mistake-call">
@@ -869,7 +880,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="4">
+    <article class="slide" data-section="4" data-slide="19" data-index="18">
       <header class="slide-header"><h2>Discussion</h2><span class="badge">EXCEL-M02-L01 · 19</span></header>
       <div class="body top">
         <div class="discussion-grid">
@@ -885,8 +896,17 @@ h1{
         <div class="callout"><p><strong>Practice handoff:</strong> use the five-point audit on the starter workbook, then have a neighbor decide whether the sheet is readable in 30 seconds.</p></div>
       </div>
     </article>
+<article class="slide" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total row</td><td class="pattern">=SUM(D2:D5)</td><td>Adds detail rows into one formatted total.</td><td class="watch">Do not hardcode totals.</td></tr><tr><td>Percent format</td><td class="pattern">=Part/Total</td><td>Shows a share of a whole as a rate.</td><td class="watch">0.15 displays as 15%; 15 displays as 1500%.</td></tr><tr><td>Error-safe formula</td><td class="pattern">=IFERROR(formula,&quot;&quot;)</td><td>Keeps the sheet readable when an input is missing.</td><td class="watch">Fix the base formula before hiding errors.</td></tr><tr><td>Locked total</td><td class="pattern">=$D$10</td><td>Keeps the total fixed when copying formulas.</td><td class="watch">Use F4 to toggle dollar signs.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
+</article>
 
-    <article class="slide" data-section="4">
+    <article class="slide" data-section="4" data-slide="21" data-index="20">
       <header class="slide-header"><h2>Key Takeaways</h2><span class="badge">EXCEL-M02-L01 · 20</span></header>
       <div class="body top">
         <ol class="agenda-list">
@@ -897,7 +917,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="4">
+    <article class="slide" data-section="4" data-slide="22" data-index="21">
       <header class="slide-header"><h2>Up Next</h2><span class="badge">EXCEL-M02-L01 · 21</span></header>
       <div class="body">
         <div class="up-next">
@@ -913,7 +933,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide dark" data-section="0">
+    <article class="slide dark" data-section="0" data-slide="23" data-index="22">
       <div class="accent-bar"></div>
       <div class="close-wrap">
         <div class="kicker">BUS123 · EXCEL-M02-L01</div>
@@ -958,6 +978,7 @@ h1{
   "Color with purpose is the professional rule. Every color should have exactly one job students can name.",
   "Common mistake: merged cells. Explain that merged headers are attractive until sorting and filtering fail. Center Across Selection is the safe substitute.",
   "Use the two discussion questions before practice. Students should name the first two fixes they would make on the Activity tab.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Summarize the takeaways as communication, consistency, and durability. These are the standards students can apply beyond this one file.",
   "Preview the Challenge tab and next lesson. Conditional formatting is a bridge into M03 aggregate functions and analysis.",
   "Close by repeating the core insight: formatting never changes the numbers; it changes how quickly and confidently someone else can use them."

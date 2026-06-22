@@ -9,30 +9,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/json" id="speaker-notes">
 [
-  "Welcome to M09-L02. Everything from L01 applies — same sign convention, same period-matching rule. New concept: the pmt argument. Instead of investing once and walking away, money flows in or out every single period. Mortgages, car loans, retirement contributions — all annuities.",
-  "Three parts. Part 1: what is an annuity and how does pmt fit into the TVM framework. Part 2: =PMT() — calculating required payments. Part 3: =FV() and =PV() with recurring payments. The activity runs a complete loan and savings analysis for a Meridian client.",
-  "Four I Can statements. All four require Excel. The sign rule from M08 and M09-L01 carries forward — pmt has a sign too, and it matters.",
-  "Annuity defined. Equal payments at equal intervals. Ordinary annuity: payments at end of each period — default in Excel. Annuity due: payments at beginning. Two types of problems: grow a savings goal with periodic deposits (FV + pmt), or pay down a loan with periodic payments (PV + pmt).",
-  "The pmt sign convention. Same logic as pv: money leaving your pocket is negative. For loans — you receive the principal today (positive pv) and make payments out each month (negative pmt). For savings — you invest each period (negative pmt) and receive the balance at the end (positive FV). Mixing up signs does not crash Excel — it just gives a wrong answer.",
-  "=PMT() syntax. Rate, nper, pv, fv, type. For loan payment problems: rate = period rate, nper = total periods, pv = loan amount as positive, fv = 0 (loan paid off). Result is negative — outflow, your monthly payment. Always read =PMT() result as an absolute value when communicating to clients.",
-  "Meridian client mortgage. $320,000 loan at 6.5% for 30 years, monthly payments. Rate = 6.5%/12. Nper = 30*12 = 360. =PMT(6.5%/12, 360, 320000) returns negative $2,023.13. That is the monthly payment. Manual check: multiply by 360 to get total paid — $728,326. Total interest = $408,326.",
-  "=FV() with recurring payments. Same =FV() function — just pmt is no longer zero. A Meridian client contributes $500 per month into a retirement account at 7% annual for 30 years. Rate=7%/12, nper=360, pmt=-500, pv=0. Monthly contribution leaves the pocket — negative. Result: $606,438. That is the power of regular investing.",
-  "=PV() with recurring payments. What is a stream of equal payments worth today? Meridian client will receive $1,500/month for 10 years. Discount rate 5% annual. Rate=5%/12, nper=120, pmt=1500, fv=0. Result: negative $141,799 — present cost of acquiring that stream. The sign means outflow to buy it today.",
-  "Ordinary annuity versus annuity due. Ordinary: payments at end of each period, type=0, Excel default. Annuity due: payments at beginning of each period, type=1. Annuity due always produces a slightly higher PV or FV because each payment earns one extra period of interest. Most loan and savings problems use ordinary annuity — type=0.",
+  "Welcome to M09-L02. Everything from L01 applies \u2014 same sign convention, same period-matching rule. New concept: the pmt argument. Instead of investing once and walking away, money flows in or out every single period. Mortgages, car loans, retirement contributions \u2014 all annuities.",
+  "Three parts. Part 1: what is an annuity and how does pmt fit into the TVM framework. Part 2: =PMT() \u2014 calculating required payments. Part 3: =FV() and =PV() with recurring payments. The activity runs a complete loan and savings analysis for a Meridian client.",
+  "Four I Can statements. All four require Excel. The sign rule from M08 and M09-L01 carries forward \u2014 pmt has a sign too, and it matters.",
+  "Annuity defined. Equal payments at equal intervals. Ordinary annuity: payments at end of each period \u2014 default in Excel. Annuity due: payments at beginning. Two types of problems: grow a savings goal with periodic deposits (FV + pmt), or pay down a loan with periodic payments (PV + pmt).",
+  "The pmt sign convention. Same logic as pv: money leaving your pocket is negative. For loans \u2014 you receive the principal today (positive pv) and make payments out each month (negative pmt). For savings \u2014 you invest each period (negative pmt) and receive the balance at the end (positive FV). Mixing up signs does not crash Excel \u2014 it just gives a wrong answer.",
+  "=PMT() syntax. Rate, nper, pv, fv, type. For loan payment problems: rate = period rate, nper = total periods, pv = loan amount as positive, fv = 0 (loan paid off). Result is negative \u2014 outflow, your monthly payment. Always read =PMT() result as an absolute value when communicating to clients.",
+  "Meridian client mortgage. $320,000 loan at 6.5% for 30 years, monthly payments. Rate = 6.5%/12. Nper = 30*12 = 360. =PMT(6.5%/12, 360, 320000) returns negative $2,023.13. That is the monthly payment. Manual check: multiply by 360 to get total paid \u2014 $728,326. Total interest = $408,326.",
+  "=FV() with recurring payments. Same =FV() function \u2014 just pmt is no longer zero. A Meridian client contributes $500 per month into a retirement account at 7% annual for 30 years. Rate=7%/12, nper=360, pmt=-500, pv=0. Monthly contribution leaves the pocket \u2014 negative. Result: $606,438. That is the power of regular investing.",
+  "=PV() with recurring payments. What is a stream of equal payments worth today? Meridian client will receive $1,500/month for 10 years. Discount rate 5% annual. Rate=5%/12, nper=120, pmt=1500, fv=0. Result: negative $141,799 \u2014 present cost of acquiring that stream. The sign means outflow to buy it today.",
+  "Ordinary annuity versus annuity due. Ordinary: payments at end of each period, type=0, Excel default. Annuity due: payments at beginning of each period, type=1. Annuity due always produces a slightly higher PV or FV because each payment earns one extra period of interest. Most loan and savings problems use ordinary annuity \u2014 type=0.",
   "Total interest calculation. Take the =PMT() result, multiply by nper for total paid, subtract original pv for total interest. For the mortgage: $2,023.13 times 360 = $728,326 total paid. $728,326 minus $320,000 = $408,326 in interest. This number is the cost of borrowing over 30 years.",
   "Impact of extra payments. One extra payment per year on that mortgage: the payoff period drops from 30 years to about 25 years and saves approximately $93,000 in interest. The math: recalculate with pmt increased by 1/12 of one payment. Small changes in pmt have large effects over long horizons.",
-  "Common mistake. Using annual rate and annual nper for a monthly payment problem. =PMT(6.5%, 30, 320000) returns -$27,006 per year — looks like a plausible annual number, not obviously wrong. But the actual monthly payment is $2,023. Always ask: what is the compounding period for this problem? Rate and nper must match.",
+  "Common mistake. Using annual rate and annual nper for a monthly payment problem. =PMT(6.5%, 30, 320000) returns -$27,006 per year \u2014 looks like a plausible annual number, not obviously wrong. But the actual monthly payment is $2,023. Always ask: what is the compounding period for this problem? Rate and nper must match.",
   "Worked example combining L01 and L02. Meridian client has two goals: pay off a $25,000 car loan at 4.9% over 5 years monthly, and simultaneously save $200/month in a 6% annual account. What is the monthly car payment? What is the savings account value at year 5? This is a real client scenario.",
-  "Student activity. Three parts. A: calculate monthly mortgage payment and total interest for a Meridian client purchase. B: build a retirement savings model — how much does a client need to contribute monthly to reach $500,000 in 25 years at 7%? C: what is the present value of a 10-year annuity at 5%?",
+  "Student activity. Three parts. A: calculate monthly mortgage payment and total interest for a Meridian client purchase. B: build a retirement savings model \u2014 how much does a client need to contribute monthly to reach $500,000 in 25 years at 7%? C: what is the present value of a 10-year annuity at 5%?",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Discussion. Computational: for the mortgage, what is the total interest cost? Conceptual: why does a longer loan term lower the monthly payment but increase total interest paid? Applied: a client asks whether to make a $50,000 lump sum investment today or $500 per month for 10 years at 6%. Which produces more FV?",
-  "Key takeaways. PMT: =PMT(rate,nper,pv,0) — result is negative, read as absolute value. FV with payments: =FV(rate,nper,pmt,pv) — pmt and pv both negative for regular investing. PV with payments: =PV(rate,nper,pmt,0) — pmt positive for received payments. Rate and nper always match the payment period.",
-  "Module 09 is complete. You now have the full TVM toolkit: =PV(), =FV(), =PMT() — forward and backward, lump sum and annuity. These three functions underlie every mortgage, bond, retirement plan, and business valuation you will ever encounter.",
+  "Key takeaways. PMT: =PMT(rate,nper,pv,0) \u2014 result is negative, read as absolute value. FV with payments: =FV(rate,nper,pmt,pv) \u2014 pmt and pv both negative for regular investing. PV with payments: =PV(rate,nper,pmt,0) \u2014 pmt positive for received payments. Rate and nper always match the payment period.",
+  "Module 09 is complete. You now have the full TVM toolkit: =PV(), =FV(), =PMT() \u2014 forward and backward, lump sum and annuity. These three functions underlie every mortgage, bond, retirement plan, and business valuation you will ever encounter.",
   "Questions? bevitts@endicott.edu or Canvas. Next module: financial statements and business statistics.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-  </script>
+</script>
 <style>
   /* ============================================================
      BUS123 v2 Hybrid Design System — MATH-M09-L01
@@ -863,6 +864,17 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -1174,9 +1186,18 @@
           </div>
         </div>
       </section>
+<section class="slide paper" data-section="4" data-slide="16" data-index="15" data-label="16 Formula Reference Card" id="slide-16">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Monthly loan payment</td><td class="pattern">=PMT(rate/12,years*12,pv,0)</td><td>Calculates the required monthly loan payment.</td><td class="watch">Result is usually negative because payment is an outflow.</td></tr><tr><td>Total paid</td><td class="pattern">=ABS(PMT)*Nper</td><td>Multiplies payment by the number of periods.</td><td class="watch">Use ABS so the comparison is positive.</td></tr><tr><td>Total interest</td><td class="pattern">=TotalPaid-PV</td><td>Shows borrowing cost above the original loan amount.</td><td class="watch">Use the original PV, not the future balance.</td></tr><tr><td>Savings required payment</td><td class="pattern">=PMT(rate/12,years*12,0,fv)</td><td>Finds the monthly deposit needed to reach a goal.</td><td class="watch">Use fv as the goal and pv as zero if starting from zero.</td></tr><tr><td>Future value with payments</td><td class="pattern">=FV(rate/12,years*12,-pmt,-pv)</td><td>Projects savings with repeated deposits.</td><td class="watch">Payments and starting balance are outflows.</td></tr><tr><td>Annuity present value</td><td class="pattern">=PV(rate/12,years*12,pmt,0)</td><td>Values a stream of equal payments today.</td><td class="watch">Use the sign convention consistently.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">16 / 23</div>
+</section>
 
       <!-- SLIDE 15 · Key Takeaways -->
-      <section class="slide paper" data-section="4" data-slide="16" data-index="15">
+      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -1191,7 +1212,7 @@
       </section>
 
       <!-- SLIDE 16 · Module Complete -->
-      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
+      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Module 09 Complete</div>
           <div class="header-row anim-2"><h2 class="slide-title">The Full TVM Toolkit</h2></div>
@@ -1205,7 +1226,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · PMT Sensitivity -->
-      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
+      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Sensitivity Check</div>
           <div class="header-row anim-2"><h2 class="slide-title">What Moves a Payment the Most?</h2></div>
@@ -1218,7 +1239,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Payment Affordable, Loan Expensive?</h2></div>
@@ -1231,7 +1252,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Key Takeaways Extension -->
-      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Checks Before You Trust PMT</h2></div>
@@ -1245,7 +1266,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Up Next -->
-      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
+      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Up Next</div>
           <div class="header-row anim-2"><h2 class="slide-title">From TVM Functions to Integrated Models</h2></div>
@@ -1258,7 +1279,7 @@
       </section>
 
       <!-- SLIDE 17 · Close -->
-      <section class="slide dark" data-section="4" data-slide="22" data-index="21">
+      <section class="slide dark" data-section="4" data-slide="23" data-index="22">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L02 · Meridian Advisory Group</div>

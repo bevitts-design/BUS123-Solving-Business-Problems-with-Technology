@@ -35,11 +35,12 @@
   "You Try It pause three. Students use the same percent cases with the quarterly fee base: a 12% growth target from $239,400 and an actual change check from $239,400 to $268,200. Listen for whether they choose growth-by-rate versus percent-change formulas.",
   "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. If someone says revenue grew by 20%, that's change. If someone says a client represents 20% of the book, that's a ratio.",
   "Use this synthesis slide to make the ladder explicit: today's live practice is the first layer, the workbook records the formulas, and the class challenge turns those pieces into a multi-step model. Students who are moving quickly can preview it if time allows.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Three things to carry out of today. Align your units before any calculation. Use cell references in Excel. Percent change and percent of total are different formulas \u2014 don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
   "Next lesson: MATH-M01 L02 \u2014 Markup, Markdown, and Margin. We'll keep using business math in pricing decisions and connect these percent habits to the next layer of Excel modeling.",
   "Questions? Office hours are Tuesday and Thursday 2\u20134 PM, or email me. Remind students that the Live You Try It tab should be complete before the class challenge."
 ]
-  </script>
+</script>
 
   <style>
     :root {
@@ -729,6 +730,17 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -1343,10 +1355,19 @@
       </div>
     </div>
   </section>
+<section class="slide cream" data-section="4" data-slide="23" data-index="22" data-label="23 Formula Reference Card" id="slide-23">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Addition range</td><td class="pattern">=SUM(B2:B10)</td><td>Adds a column or row of related numbers.</td><td class="watch">Do not type every number if a range exists.</td></tr><tr><td>Subtraction</td><td class="pattern">=B5-C5</td><td>Finds the difference between two cells.</td><td class="watch">Check that both cells use the same units.</td></tr><tr><td>Multiplication</td><td class="pattern">=B3*C3</td><td>Multiplies quantity by fee, rate, or price.</td><td class="watch">Check the time period before multiplying.</td></tr><tr><td>Division</td><td class="pattern">=B7/C7</td><td>Splits a total across a count or base.</td><td class="watch">The denominator cannot be zero.</td></tr><tr><td>Percent share</td><td class="pattern">=B2/C2</td><td>Shows a part as a share of the whole.</td><td class="watch">Format as percent instead of multiplying by 100.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">23 / 26</div>
+</section>
 
 
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="23 Key Takeaways" data-section="4" data-slide="23" data-index="22">
+  <section class="slide cream" data-label="24 Key Takeaways" data-section="4" data-slide="24" data-index="23">
     <div class="header-row">
       <span class="eyebrow">Key Takeaways</span>
       <div class="rule"></div>
@@ -1371,7 +1392,7 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="24 Up Next" data-section="4" data-slide="24" data-index="23">
+  <section class="slide dark" data-label="25 Up Next" data-section="4" data-slide="25" data-index="24">
     <div style="flex:1; display:flex; align-items:center; gap:80px; padding: 0 var(--pad-x);">
       <img class="up-next-photo" src="assets/retail-markup-markdown.png" alt="Retail shelves with regular price, sale price, and markdown tags">
       <div>
@@ -1383,7 +1404,7 @@
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="25 Close" data-section="4" data-slide="25" data-index="24">
+  <section class="slide dark" data-label="26 Close" data-section="4" data-slide="26" data-index="25">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding: 0 var(--pad-x);">
       <div style="font-family:var(--font-display); font-size:var(--type-display); color:var(--white);">Questions?</div>

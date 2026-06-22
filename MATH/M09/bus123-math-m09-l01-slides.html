@@ -9,30 +9,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script type="application/json" id="speaker-notes">
 [
-  "Welcome back. Last module we moved money forward and backward with simple interest — linear growth. Today: compound interest. Same logic, one change: the interest earns interest. That changes everything over long horizons.",
-  "Three parts. Part 1: simple vs compound comparison — same money, same rate, dramatically different outcomes. Part 2: FV equals PV times (1+i) to the n and the =FV() function. Part 3: non-annual compounding and Rule of 72.",
-  "Four I Can statements — all have an Excel component. The =FV() function is the star today. pmt stays zero — we add recurring payments in L02.",
-  "Bridge from M08. Simple interest: same dollar amount every period, linear. Compound interest: interest earns interest, exponential. The exponent n is the structural difference — that single change drives everything.",
-  "The $1,000 comparison. Year 1: identical. Year 2: compound pulls ahead by $2.50 — tiny. Year 30: compound has $4,321 vs simple interest $2,500. The gap is $1,821 on a $1,000 investment. Same rate, same principal.",
+  "Welcome back. Last module we moved money forward and backward with simple interest \u2014 linear growth. Today: compound interest. Same logic, one change: the interest earns interest. That changes everything over long horizons.",
+  "Three parts. Part 1: simple vs compound comparison \u2014 same money, same rate, dramatically different outcomes. Part 2: FV equals PV times (1+i) to the n and the =FV() function. Part 3: non-annual compounding and Rule of 72.",
+  "Four I Can statements \u2014 all have an Excel component. The =FV() function is the star today. pmt stays zero \u2014 we add recurring payments in L02.",
+  "Bridge from M08. Simple interest: same dollar amount every period, linear. Compound interest: interest earns interest, exponential. The exponent n is the structural difference \u2014 that single change drives everything.",
+  "The $1,000 comparison. Year 1: identical. Year 2: compound pulls ahead by $2.50 \u2014 tiny. Year 30: compound has $4,321 vs simple interest $2,500. The gap is $1,821 on a $1,000 investment. Same rate, same principal.",
   "The formula. FV = PV times (1+i)^n. Two things to remember: i is rate per compounding period, not annual rate. n is total periods, not years. If compounding is quarterly, i = annual/4 and n = years times 4.",
   "=FV() syntax. Rate, nper, pmt, pv. For lump sums: pmt = 0, pv = negative. Excel handles the exponent. Always show syntax first, then manual verification below.",
-  "Sign convention. PV negative because money leaves your pocket on day one. FV comes back positive. Entering PV as positive flips the sign — no error, just wrong meaning. Always sanity check: is FV larger than PV?",
-  "Worked example. $40,000 at 4% for 3 years. Excel: =FV(4%,3,0,-40000) = $44,994.56. Year by year: 41,600 then 43,264 then 44,994.56. Simple interest would give $44,800 — compound adds $194.56 over just 3 years.",
+  "Sign convention. PV negative because money leaves your pocket on day one. FV comes back positive. Entering PV as positive flips the sign \u2014 no error, just wrong meaning. Always sanity check: is FV larger than PV?",
+  "Worked example. $40,000 at 4% for 3 years. Excel: =FV(4%,3,0,-40000) = $44,994.56. Year by year: 41,600 then 43,264 then 44,994.56. Simple interest would give $44,800 \u2014 compound adds $194.56 over just 3 years.",
   "Excel worksheet demo. Each input in its own labeled cell. FV formula uses cell references. Manual verify row must match. Students should be able to trace every argument back to its source cell.",
-  "Section break. Non-annual compounding. Same principal, same annual rate, same years — different results. The rule: always adjust BOTH rate and nper to match the compounding period.",
+  "Section break. Non-annual compounding. Same principal, same annual rate, same years \u2014 different results. The rule: always adjust BOTH rate and nper to match the compounding period.",
   "Frequency table. $25,000 at 6% for 5 years. Annual: $33,455. Monthly: $33,725. Daily: $33,746. More frequent = higher FV. The gap between annual and daily is $290. At higher rates or longer horizons the difference is much larger.",
-  "Rule of 72. 72 divided by the annual rate gives approximate years to double. At 6%: 12 years. At 9%: 8 years. Quick estimation tool — not exact. Verify with =FV(). Use it for planning conversations.",
+  "Rule of 72. 72 divided by the annual rate gives approximate years to double. At 6%: 12 years. At 9%: 8 years. Quick estimation tool \u2014 not exact. Verify with =FV(). Use it for planning conversations.",
   "Quarterly worked example. Same $25,000, 6%, 5 years but quarterly. Rate = 6%/4 = 1.5%. Nper = 5*4 = 20. =FV(1.5%,20,0,-25000) = $33,672.54. The worksheet shows rate and nper cells calculated from the inputs.",
-  "Common mistake. Adjusting nper to 20 for quarterly but leaving rate at 6% instead of 1.5%. Returns $80,178 — wildly inflated. No error message. The fix: rate and nper must always refer to the same unit of time.",
-  "Student practice. Three problems. A: annual compounding with =FV(). B: same numbers monthly — adjust both. C: Rule of 72 estimate then verify with =FV(). 8 minutes.",
-  "Discussion. Computational: dollar difference between annual and monthly on $25,000 at 6% over 5 years. Conceptual: why exponential vs linear. Applied: 4% annual vs 3.8% monthly on $100,000 over 10 years — which wins?",
-  "Three takeaways. The exponent FV=PV(1+i)^n. The function =FV(rate,nper,0,-pv). Rule of 72. Next: PMT and annuities — the pmt argument we left at zero today becomes the main event.",
+  "Common mistake. Adjusting nper to 20 for quarterly but leaving rate at 6% instead of 1.5%. Returns $80,178 \u2014 wildly inflated. No error message. The fix: rate and nper must always refer to the same unit of time.",
+  "Student practice. Three problems. A: annual compounding with =FV(). B: same numbers monthly \u2014 adjust both. C: Rule of 72 estimate then verify with =FV(). 8 minutes.",
+  "Discussion. Computational: dollar difference between annual and monthly on $25,000 at 6% over 5 years. Conceptual: why exponential vs linear. Applied: 4% annual vs 3.8% monthly on $100,000 over 10 years \u2014 which wins?",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Three takeaways. The exponent FV=PV(1+i)^n. The function =FV(rate,nper,0,-pv). Rule of 72. Next: PMT and annuities \u2014 the pmt argument we left at zero today becomes the main event.",
   "Preview of M09-L02. Money goes in or out every period. Mortgages, car loans, retirement contributions. =PMT() calculates the required payment. Same TVM logic, new variable.",
   "That is MATH-M09-L01. Questions? Key insight: interest earns interest. Same rate, exponentially more money the longer time passes. =FV() handles the exponent. Signs matter. Periods must match rates.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
   "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
 ]
-  </script>
+</script>
 <style>
   /* ============================================================
      BUS123 v2 Hybrid Design System — MATH-M09-L01
@@ -858,6 +859,17 @@
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
+
 </style>
 </head>
 <body>
@@ -1224,9 +1236,18 @@
           </div>
         </div>
       </section>
+<section class="slide paper" data-section="4" data-slide="18" data-index="17" data-label="18 Formula Reference Card" id="slide-18">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Compound FV manual</td><td class="pattern">=PV*(1+Rate)^Nper</td><td>Applies interest on interest over multiple periods.</td><td class="watch">Rate and periods must use the same timing.</td></tr><tr><td>FV function</td><td class="pattern">=FV(rate,nper,0,pv)</td><td>Lets Excel calculate future value for a lump sum.</td><td class="watch">Use a negative pv for money invested today.</td></tr><tr><td>Rate per period</td><td class="pattern">=AnnualRate/PeriodsPerYear</td><td>Converts an annual rate to the compounding period.</td><td class="watch">Adjust the rate when compounding is not annual.</td></tr><tr><td>Total periods</td><td class="pattern">=Years*PeriodsPerYear</td><td>Converts years into total compounding periods.</td><td class="watch">Adjust nper whenever you adjust the rate.</td></tr><tr><td>Rule of 72</td><td class="pattern">=72/RatePercent</td><td>Estimates how many years it takes money to double.</td><td class="watch">It is an estimate; verify with FV.</td></tr><tr><td>Sanity check</td><td class="pattern">=ABS(FVResult)&gt;ABS(PV)</td><td>Confirms future value is larger than the starting investment.</td><td class="watch">If it fails, check signs and timing.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">18 / 23</div>
+</section>
 
       <!-- SLIDE 17 · Key Takeaways -->
-      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
+      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -1241,7 +1262,7 @@
       </section>
 
       <!-- SLIDE 18 · Next lesson preview -->
-      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L02</div>
           <div class="header-row anim-2"><h2 class="slide-title">Next: PMT Function &amp; Annuities</h2></div>
@@ -1254,7 +1275,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Which Assumption Changes the Client Recommendation?</h2></div>
@@ -1267,7 +1288,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Interpretation Check -->
-      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
+      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Interpretation Check</div>
           <div class="header-row anim-2"><h2 class="slide-title">Turn the Formula Output Into Advice</h2></div>
@@ -1280,7 +1301,7 @@
       </section>
 
       <!-- SLIDE 19 · Close -->
-      <section class="slide dark" data-section="4" data-slide="22" data-index="21">
+      <section class="slide dark" data-section="4" data-slide="23" data-index="22">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L01 · Meridian Advisory Group</div>

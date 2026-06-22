@@ -10,32 +10,33 @@
 
 <script type="application/json" id="speaker-notes">
 [
-  "Welcome everyone. Today we start one of the most important ideas in all of finance — money has a time dimension, and today we learn to measure it. Three parts: why time affects value, how to move money forward with simple interest, and how to discount future cash flows back to today.",
-  "Here is the road map. Part 1 is the economic logic — three forces that make future money worth less. Part 2 is simple interest and future value — the I=PRT family. Part 3 is discounting and present value — including the Excel PV function. Activity at the end ties all three parts together with a Meridian DCF model.",
-  "These are the four things students will be able to do by the end of class today. Notice that objectives 3 and 4 both say in Excel — every concept has a spreadsheet expression. Manual math first, then the function.",
-  "Let's start with a real decision. Meridian has a client who can take ten thousand dollars today or ten thousand five hundred in one year. Most students will say take the future money — bigger number. Walk them through the advisor's question: what can ten thousand earn right now? At 6% it grows to 10,600 — more than the offer. The instinct is wrong. This is why TVM matters.",
-  "Three economic forces explain why future money is always worth less. Inflation erodes purchasing power. Opportunity cost means idle money isn't growing. Risk means future promises can fail. All three pull in the same direction — down. The discount rate you use captures all three simultaneously.",
+  "Welcome everyone. Today we start one of the most important ideas in all of finance \u2014 money has a time dimension, and today we learn to measure it. Three parts: why time affects value, how to move money forward with simple interest, and how to discount future cash flows back to today.",
+  "Here is the road map. Part 1 is the economic logic \u2014 three forces that make future money worth less. Part 2 is simple interest and future value \u2014 the I=PRT family. Part 3 is discounting and present value \u2014 including the Excel PV function. Activity at the end ties all three parts together with a Meridian DCF model.",
+  "These are the four things students will be able to do by the end of class today. Notice that objectives 3 and 4 both say in Excel \u2014 every concept has a spreadsheet expression. Manual math first, then the function.",
+  "Let's start with a real decision. Meridian has a client who can take ten thousand dollars today or ten thousand five hundred in one year. Most students will say take the future money \u2014 bigger number. Walk them through the advisor's question: what can ten thousand earn right now? At 6% it grows to 10,600 \u2014 more than the offer. The instinct is wrong. This is why TVM matters.",
+  "Three economic forces explain why future money is always worth less. Inflation erodes purchasing power. Opportunity cost means idle money isn't growing. Risk means future promises can fail. All three pull in the same direction \u2014 down. The discount rate you use captures all three simultaneously.",
   "The interest rate we use in TVM formulas is not arbitrary. It is a sum: inflation rate plus real interest rate plus risk premium. Each component has economic meaning. A 7% discount rate might be 3% inflation, 2% real rate, 2% risk premium. Knowing this helps students pick appropriate rates later.",
-  "Now Part 1 — the formula family. I = P times R times T. Three variables. The critical rule: R is always annual, so T must always be in years. This is the single most common error. Six months is 0.5. Ninety days is 90 over 365 or 360 depending on method. Drill this now.",
-  "Two methods exist for day-based time. Exact interest divides by 365 — used by the Federal Reserve and US government. Ordinary interest divides by 360 — used by commercial banks, and it produces slightly more interest, which is intentional. The Meridian example shows the dollar difference is small on one loan but meaningful across a large portfolio.",
-  "Future value is just I = PRT rearranged. Add the interest back to principal. FV equals P times open paren 1 plus R times T close paren. The growth factor is the key insight — every dollar of principal becomes 1.04125 dollars at 5.5% for 9 months. No Excel function for simple interest FV — build the formula directly.",
+  "Now Part 1 \u2014 the formula family. I = P times R times T. Three variables. The critical rule: R is always annual, so T must always be in years. This is the single most common error. Six months is 0.5. Ninety days is 90 over 365 or 360 depending on method. Drill this now.",
+  "Two methods exist for day-based time. Exact interest divides by 365 \u2014 used by the Federal Reserve and US government. Ordinary interest divides by 360 \u2014 used by commercial banks, and it produces slightly more interest, which is intentional. The Meridian example shows the dollar difference is small on one loan but meaningful across a large portfolio.",
+  "Future value is just I = PRT rearranged. Add the interest back to principal. FV equals P times open paren 1 plus R times T close paren. The growth factor is the key insight \u2014 every dollar of principal becomes 1.04125 dollars at 5.5% for 9 months. No Excel function for simple interest FV \u2014 build the formula directly.",
   "Worked example with numbers. A Meridian client puts 8,000 in a corporate note at 5.5% for 9 months. Step one: convert time. 9 over 12 equals 0.75 years. Step two: I = 8000 times 0.055 times 0.75 = 330 dollars. Step three: FV = 8000 plus 330 = 8,330. Excel formula: =8000*(1+0.055*0.75). Walk through each step.",
   "The formula rearranges to solve for any one variable when the other two are known. Solve for principal, rate, or time. Meridian example: client paid 19.48 dollars in interest at 9.5% for 90 days ordinary. What was the principal? T = 0.25, P = 19.48 divided by (0.095 times 0.25) = 820.21 dollars. Real analysts solve for unknowns constantly.",
-  "Excel worksheet replica showing how to build the I=PRT model cleanly. Each input in its own cell with a label. Formula in F column uses cell references not hardcoded numbers. This makes the model auditable — anyone can trace every number. Point out the formula bar showing =C2*D2*E2.",
-  "Now Part 2 — running the math backward. Discounting asks: what is a future promise worth today? This is the reverse operation. PV equals FV divided by the discount factor. The discount factor is 1 plus R times T — always greater than 1, so PV is always less than FV. The economic meaning: present value is the fair price of waiting.",
-  "Meridian client example for manual PV. A corporate contract promises 25,000 in 18 months at 7% discount rate. Step one: convert time to 1.5 years. Step two: discount factor = 1 plus 0.07 times 1.5 = 1.105. Step three: PV = 25,000 divided by 1.105 = 22,624 dollars. The 2,376 dollar gap is the cost of waiting — that is what discounting measures.",
-  "Now the Excel PV function. Syntax: =PV(rate, nper, pmt, fv, type). For lump sum problems with simple interest: rate is the period rate, nper is periods, pmt is zero, fv is the future amount. Critical: the result comes back negative — it represents money you must pay out today. Sanity check: use =FV to verify the round trip.",
-  "Sign convention is the most common source of confusion. Excel treats outflows as negative and inflows as positive. When you discount a receivable, the PV is negative because you would need to invest that amount today. Entering FV as negative does not cause an error — it just flips the sign of the result, producing a positive PV that looks right but means the opposite.",
-  "Common mistake — the most important slide in Part 2. Students see a negative PV result, panic, and manually add a minus sign. Now the answer is doubly wrong. The correct approach: understand what the sign means. If you are valuing a receivable — money coming to you — the negative PV means the present cost of acquiring that future receipt. Do not flip it blindly.",
-  "The PV table shows how the same 100 dollars loses value the farther out it is. At 5%, a dollar in 10 years is worth only 61 cents today. Higher rates make the discount steeper — at 10%, that same dollar in 10 years is only 39 cents. This table builds intuition before students see the formula.",
-  "FV and PV are two directions of the same operation. FV grows money forward — multiply by the growth factor. PV discounts money back — divide by the discount factor. They are inverses. =PV(5%,3,0,115) returns negative 99.34. =FV(5%,3,0,-99.34) returns 115. That round trip is the verification students should run every time.",
-  "Now the activity — a multi-payment DCF model. Meridian client has a stream of five future receivables. Students discount each one back to today using manual PV formula and then the =PV function. Sum the present values. This is the foundation of every business valuation. The reflection question: should the client sell the stream for 75,000 today?",
+  "Excel worksheet replica showing how to build the I=PRT model cleanly. Each input in its own cell with a label. Formula in F column uses cell references not hardcoded numbers. This makes the model auditable \u2014 anyone can trace every number. Point out the formula bar showing =C2*D2*E2.",
+  "Now Part 2 \u2014 running the math backward. Discounting asks: what is a future promise worth today? This is the reverse operation. PV equals FV divided by the discount factor. The discount factor is 1 plus R times T \u2014 always greater than 1, so PV is always less than FV. The economic meaning: present value is the fair price of waiting.",
+  "Meridian client example for manual PV. A corporate contract promises 25,000 in 18 months at 7% discount rate. Step one: convert time to 1.5 years. Step two: discount factor = 1 plus 0.07 times 1.5 = 1.105. Step three: PV = 25,000 divided by 1.105 = 22,624 dollars. The 2,376 dollar gap is the cost of waiting \u2014 that is what discounting measures.",
+  "Now the Excel PV function. Syntax: =PV(rate, nper, pmt, fv, type). For lump sum problems with simple interest: rate is the period rate, nper is periods, pmt is zero, fv is the future amount. Critical: the result comes back negative \u2014 it represents money you must pay out today. Sanity check: use =FV to verify the round trip.",
+  "Sign convention is the most common source of confusion. Excel treats outflows as negative and inflows as positive. When you discount a receivable, the PV is negative because you would need to invest that amount today. Entering FV as negative does not cause an error \u2014 it just flips the sign of the result, producing a positive PV that looks right but means the opposite.",
+  "Common mistake \u2014 the most important slide in Part 2. Students see a negative PV result, panic, and manually add a minus sign. Now the answer is doubly wrong. The correct approach: understand what the sign means. If you are valuing a receivable \u2014 money coming to you \u2014 the negative PV means the present cost of acquiring that future receipt. Do not flip it blindly.",
+  "The PV table shows how the same 100 dollars loses value the farther out it is. At 5%, a dollar in 10 years is worth only 61 cents today. Higher rates make the discount steeper \u2014 at 10%, that same dollar in 10 years is only 39 cents. This table builds intuition before students see the formula.",
+  "FV and PV are two directions of the same operation. FV grows money forward \u2014 multiply by the growth factor. PV discounts money back \u2014 divide by the discount factor. They are inverses. =PV(5%,3,0,115) returns negative 99.34. =FV(5%,3,0,-99.34) returns 115. That round trip is the verification students should run every time.",
+  "Now the activity \u2014 a multi-payment DCF model. Meridian client has a stream of five future receivables. Students discount each one back to today using manual PV formula and then the =PV function. Sum the present values. This is the foundation of every business valuation. The reflection question: should the client sell the stream for 75,000 today?",
   "Discussion questions for the last ten minutes. Computational: which receivable loses the most value to discounting and why? Conceptual: in plain language, why does a higher discount rate always reduce present value? Applied: the client is offered 75,000 today for the stream. Based on your model at 6%, should they accept?",
-  "Three things to take from today. First: time erodes value — inflation, opportunity cost, and risk all work against future money. Second: I=PRT and FV=P(1+RT) move money forward — T must always be in years. Third: PV equals FV over the discount factor — and in Excel, =PV returns a negative result that means what you must invest today. Next module: compound interest, where interest earns interest.",
-  "Coming up in MATH-M09-L01: compound interest and future value. The key difference — instead of I=PRT growing linearly, FV grows exponentially. One rate, applied repeatedly, produces dramatically different results over long time horizons. We will also meet the Rule of 72 and the =FV function.",
-  "That is MATH-M08. Questions before we close? Key formula: PV = FV divided by the discount factor. In Excel: =PV(rate, nper, 0, fv) — and read the sign carefully. Office hours, Canvas, or email for follow-up."
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Three things to take from today. First: time erodes value \u2014 inflation, opportunity cost, and risk all work against future money. Second: I=PRT and FV=P(1+RT) move money forward \u2014 T must always be in years. Third: PV equals FV over the discount factor \u2014 and in Excel, =PV returns a negative result that means what you must invest today. Next module: compound interest, where interest earns interest.",
+  "Coming up in MATH-M09-L01: compound interest and future value. The key difference \u2014 instead of I=PRT growing linearly, FV grows exponentially. One rate, applied repeatedly, produces dramatically different results over long time horizons. We will also meet the Rule of 72 and the =FV function.",
+  "That is MATH-M08. Questions before we close? Key formula: PV = FV divided by the discount factor. In Excel: =PV(rate, nper, 0, fv) \u2014 and read the sign carefully. Office hours, Canvas, or email for follow-up."
 ]
-  </script>
+</script>
 
 <style>
   /* BUS123 v2 Hybrid Design System — MATH-M08-L01 */
@@ -295,6 +296,17 @@
   .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
   .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
+
+
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
+.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.formula-reference-table td.watch{background:var(--paper-2);}
 
 </style>
 </head>
@@ -847,7 +859,7 @@
       </section>
 
       <!-- SLIDE 18 · COMMON MISTAKE (terra, position 18) -->
-      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="18" data-index="18">
+      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="19" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
           <h2 class="section-title anim-2" style="color:var(--terra);font-size:34px;margin-bottom:16px;">The Negative PV Panic</h2>
@@ -929,9 +941,18 @@
           </div>
         </div>
       </section>
+<section class="slide paper" data-section="4" data-slide="22" data-index="21" data-label="22 Formula Reference Card" id="slide-22">
+  <div class="formula-reference-slide">
+    <div class="frc-eyebrow">Workbook Mirror</div>
+    <h2>Formula Reference Card</h2>
+    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Simple interest</td><td class="pattern">=Principal*Rate*Time</td><td>Calculates interest for one principal, rate, and time.</td><td class="watch">Time must be in years.</td></tr><tr><td>Ending balance / FV</td><td class="pattern">=Principal*(1+Rate*Time)</td><td>Adds simple interest back to principal.</td><td class="watch">The growth factor is 1 plus rate times time.</td></tr><tr><td>Months to years</td><td class="pattern">=Months/12</td><td>Converts months into a year fraction.</td><td class="watch">Use the same time basis as the rate.</td></tr><tr><td>Manual present value</td><td class="pattern">=FV/(1+Rate*Time)</td><td>Discounts a future amount back to today.</td><td class="watch">PV should be less than FV.</td></tr><tr><td>Excel PV function</td><td class="pattern">=PV(rate,nper,0,fv)</td><td>Uses Excel to discount one future value.</td><td class="watch">Excel may return a negative sign convention result.</td></tr><tr><td>DCF total</td><td class="pattern">=SUM(PVRange)</td><td>Adds present values from a stream of cash flows.</td><td class="watch">Discount each cash flow before summing.</td></tr></tbody></table>
+  </div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">22 / 25</div>
+</section>
 
       <!-- SLIDE 21 · Key Takeaways -->
-      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
+      <section class="slide paper" data-section="4" data-slide="23" data-index="22">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -960,7 +981,7 @@
       </section>
 
       <!-- SLIDE 22 · Next lesson preview -->
-      <section class="slide paper" data-section="4" data-slide="23" data-index="22">
+      <section class="slide paper" data-section="4" data-slide="24" data-index="23">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L01</div>
           <div class="header-row anim-2"><h2 class="slide-title">Next: Compound Interest &amp; Future Value</h2></div>
@@ -991,7 +1012,7 @@
       </section>
 
       <!-- SLIDE 23 · Close -->
-      <section class="slide dark" data-section="4" data-slide="24" data-index="23">
+      <section class="slide dark" data-section="4" data-slide="25" data-index="24">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M08-L01 · Meridian Advisory Group</div>

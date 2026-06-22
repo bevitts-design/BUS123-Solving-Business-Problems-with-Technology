@@ -15,19 +15,20 @@
     "Part one is the vocabulary of pay. The math is simple — the business risk comes from matching the wrong pay type to the wrong role.",
     "Harborside does not run on one pay type. Hourly staff cover variable patient flow. Salaried managers hold consistent responsibility. Commission can support outreach. Per-visit pay handles flexible specialist coverage.",
     "A 52,000-dollar salary costs the same annually no matter the pay period. What changes is the timing and size of each check. Weekly means 52 checks; biweekly means 26. Students often forget semimonthly is not the same as biweekly.",
-    "Overtime is where payroll stops feeling linear. Hours beyond 40 carry a 1.5x premium. In Excel, separating regular hours from overtime hours makes the model transparent and auditable.",
-    "A scheduling decision is hiding inside every overtime report. Is Harborside using overtime to solve a temporary patient surge, or is it masking a permanent staffing shortage? One nurse at 52 hours may look cheaper than hiring — until you model burnout, coverage risk, and turnover cost.",
+    "Overtime is where payroll stops feeling linear. Hours beyond 40 carry a 1.5x premium. In Excel, separating regular hours from overtime hours makes the model transparent and auditable. The worked example uses 43 hours and 44 dollars per hour.",
+    "Live You Try It pause one. Students open the Live You Try It tab and use the exact pay-cycle and overtime numbers from slides 7 and 8: 52,000 dollars, 52 weekly periods, 43 hours, 40 regular hours, and a 44-dollar hourly rate. The feedback cells are self-graded, so the goal is to revise until the formulas work.",
     "Part two moves from individual paychecks to the full payroll register. Gross pay is the starting line, not the finish line.",
     "A payroll register is a control document. It separates gross pay, deductions, and net pay by employee group so the clinic can explain every dollar in every period.",
     "Different pay structures create different incentives. Piece rate rewards volume. Commission rewards revenue. Salary rewards consistency. Salary plus commission blends stability and growth. Harborside needs to decide which incentive fits each role — not just which formula is easiest to calculate.",
     "Before the Excel activity, walk through this worked example together. Eight nurses, 43 hours each. The first 40 hours are regular; the last 3 are overtime at 1.5x. Ask students: which lever moves weekly payroll the most — more employees, more hours, or a higher rate?",
-    "The interactive console lets students test Harborside staffing choices before they open the Excel workbook. Change employee counts, hours, overtime thresholds, and pay rates — weekly and annual totals update in real time. Reference the interactive file bus123-math-m05-l01-interactive.html.",
+    "Live You Try It pause two. Students stay in the Live You Try It tab and model the nurse team from the worked example: 8 nurses, 43 hours each, 44 dollars per hour, and overtime at 1.5 times the regular rate. They should use the feedback to check team regular pay, team overtime pay, and team gross pay.",
     "Part three changes the time horizon completely. Payroll is a cash event this week. Depreciation is an accounting allocation that spreads the cost of long-lived equipment across the years of service it provides.",
     "Depreciation is not cash leaving the bank each year — the cash left when the asset was purchased. Depreciation is the accounting estimate of how much of that asset was consumed during the period. It helps match cost to the benefit received.",
     "Straight-line depreciation is the default for a reason: it is predictable, transparent, and easy to explain to a board or auditor. When an asset provides steady service — like a diagnostic imaging unit used daily — equal annual expense makes sense.",
     "This is our Common Mistake slide. Students often confuse depreciation expense with accumulated depreciation. Expense is what goes on the income statement this year. Accumulated depreciation is the running total of all prior expense. Book value is cost minus accumulated — not cost minus this year's expense alone.",
-    "The ultrasound unit schedule shows the pattern. Cost stays fixed at $84,000. Depreciation expense is $12,000 every year. Accumulated depreciation rises by $12,000 each year. Book value falls until it hits the $12,000 residual value after year 6.",
-    "Two management questions to close the discussion. If overtime keeps climbing, should Harborside hire or reschedule? If equipment book value is falling, when should replacement planning begin? These are the decisions behind the formulas.",
+    "Live You Try It pause three. Students use the exact ultrasound unit numbers from the depreciation worked example: 84,000 dollar cost, 12,000 dollar residual value, and 6 years. Their self-check should confirm annual depreciation of 12,000 dollars, year 3 accumulated depreciation of 36,000 dollars, and year 3 book value of 48,000 dollars.",
+    "Now shift from self-graded practice to the Class Challenge tab. Live You Try It gives hints and feedback one formula at a time; Class Challenge is the graded or next-level activity where students combine payroll, scheduling, depreciation, and business interpretation.",
+    "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each Excel pattern here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
     "Three things to carry out of today: pay type shapes behavior, overtime changes payroll quickly, and straight-line depreciation makes long-run asset cost predictable. The Excel activity will give you practice with all three.",
     "Questions? Office hours are posted on Canvas. Next lesson we go deeper into payroll deductions and tax withholding — bring your workbook."
   ]
@@ -61,19 +62,33 @@
     .grad-bar{height:5px;width:100%;background:var(--gradient);flex:0 0 auto;}
     /* --- NOTEBOOK TABS --- */
     .nb-wrap{display:flex;flex:1;overflow:hidden;}
-    .tabs{width:56px;display:flex;flex-direction:column;gap:0;background:rgba(0,0,0,.18);flex-shrink:0;}
-    .tab{flex:1;display:flex;align-items:center;justify-content:center;cursor:pointer;
-      font:500 11px/1 var(--mono);letter-spacing:.5px;writing-mode:vertical-rl;
-      text-orientation:mixed;padding:8px 0;color:rgba(255,255,255,.38);
-      transition:background .15s,color .15s;border-left:3px solid transparent;}
-    .tab.on{color:var(--white);border-left-color:var(--gold);background:rgba(255,255,255,.06);}
-    .cream .tabs{background:rgba(0,0,0,.06);}
-    .cream .tab{color:rgba(26,31,44,.28);}
-    .cream .tab.on{color:var(--text);border-left-color:var(--sage);background:rgba(74,124,94,.08);}
-    .terra-bg .tabs{background:rgba(0,0,0,.22);}
-    .terra-bg .tab{color:rgba(255,255,255,.4);}
-    .terra-bg .tab.on{color:var(--white);border-left-color:var(--gold);}
-    .body{flex:1;display:flex;flex-direction:column;padding:52px 64px 44px 56px;min-width:0;}
+    .tabs{width:96px;display:flex;flex-direction:column;gap:8px;background:var(--ink);
+      flex-shrink:0;padding:18px 10px;box-shadow:inset -1px 0 rgba(255,255,255,.08);}
+    .tab{--tab-color:var(--sage);appearance:none;border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;background:rgba(255,255,255,.045);color:rgba(255,255,255,.64);
+      cursor:pointer;display:flex;flex:1 1 0;min-height:0;width:100%;align-items:flex-start;
+      justify-content:center;flex-direction:column;gap:5px;padding:8px 8px 8px 12px;
+      text-align:left;font:700 10.5px/1.08 var(--sans);letter-spacing:.1px;
+      transition:background .15s,border-color .15s,color .15s,transform .15s;}
+    .tab:hover{background:rgba(255,255,255,.1);color:var(--white);transform:translateX(2px);}
+    .tab .dot{width:8px;height:8px;border-radius:50%;background:var(--tab-color);
+      box-shadow:0 0 0 3px rgba(255,255,255,.08);}
+    .tab.home .dot{background:var(--gradient);}
+    .tab .range{font:700 9px/1 var(--mono);letter-spacing:.5px;text-transform:uppercase;
+      color:rgba(255,255,255,.38);}
+    .tab.on{background:var(--paper);border-color:var(--paper);color:var(--ink);
+      box-shadow:0 10px 22px rgba(0,0,0,.22);}
+    .tab.on .range{color:var(--tab-color);}
+    .tab.part1{--tab-color:var(--sage);}
+    .tab.part2{--tab-color:var(--gold);}
+    .tab.part3{--tab-color:var(--terra);}
+    .tab.pre{--tab-color:var(--steel);}
+    .tab.discussion{--tab-color:var(--gold);}
+    .tab.close{--tab-color:var(--sage);}
+    .cream .tabs,.terra-bg .tabs{background:var(--ink);}
+    .cream .tab,.terra-bg .tab{color:rgba(255,255,255,.64);}
+    .cream .tab.on,.terra-bg .tab.on{color:var(--ink);}
+    .body{flex:1;display:flex;flex-direction:column;padding:52px 56px 44px 48px;min-width:0;}
     /* --- TYPE --- */
     .eyebrow{font:500 13px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;
       color:var(--accent);margin-bottom:16px;}
@@ -201,6 +216,41 @@
     .act-card p{font:400 18px/1.4 var(--sans);color:rgba(255,255,255,.7);margin-bottom:20px;}
     .act-card code{font:500 14px/1 var(--mono);color:var(--gold);
       background:rgba(184,132,61,.15);padding:6px 12px;border-radius:6px;}
+    /* --- LIVE EXCEL PAUSES --- */
+    .try-panel{width:100%;border:1.5px solid var(--border);border-radius:14px;
+      background:var(--white);padding:28px 30px;box-shadow:0 16px 32px rgba(14,17,22,.06);}
+    .try-panel h3{font:400 32px/1.08 var(--serif);color:var(--text);margin-bottom:12px;}
+    .try-panel p{font:400 18px/1.45 var(--sans);color:var(--text-soft);margin-bottom:18px;}
+    .timer-chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:7px;
+      background:var(--formula-bg);color:var(--sage);font:700 13px/1 var(--mono);}
+    .mini-sheet{width:100%;border:1.5px solid var(--border);border-radius:12px;
+      overflow:hidden;background:var(--white);}
+    .mini-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;}
+    .mini-row>div{padding:13px 14px;border-right:1px solid var(--border);
+      border-bottom:1px solid var(--border);font:400 15px/1.25 var(--sans);}
+    .mini-row:last-child>div{border-bottom:0;}
+    .mini-row>div:last-child{border-right:0;}
+    .mini-head>div{background:var(--ink);color:var(--white);font-weight:600;}
+    .mini-row .result{background:var(--formula-bg);color:var(--sage);font-family:var(--mono);font-weight:700;}
+    .challenge-list{display:grid;gap:14px;width:100%;}
+    .challenge-item{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start;
+      padding:18px 20px;border:1.5px solid var(--border);border-radius:12px;background:var(--white);}
+    .challenge-item b{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;
+      background:var(--ink);color:var(--gold);font:400 28px/1 var(--serif);}
+    .challenge-item span{font:400 18px/1.38 var(--sans);color:var(--text-soft);}
+    /* --- FORMULA REFERENCE CARD --- */
+    .formula-ref{width:100%;border:1.5px solid var(--border);border-radius:12px;
+      overflow:hidden;background:var(--white);box-shadow:0 14px 30px rgba(14,17,22,.06);}
+    .formula-ref-row{display:grid;grid-template-columns:1.05fr 1.2fr 1.42fr 1.42fr;}
+    .formula-ref-row>div{min-height:44px;padding:9px 11px;border-right:1px solid var(--border);
+      border-bottom:1px solid var(--border);font:400 12.5px/1.22 var(--sans);color:var(--text-soft);}
+    .formula-ref-row>div:last-child{border-right:0;}
+    .formula-ref-row:last-child>div{border-bottom:0;}
+    .formula-ref-head>div{min-height:34px;background:var(--ink);color:var(--white);
+      font:700 12px/1.1 var(--sans);text-transform:uppercase;letter-spacing:.4px;}
+    .formula-ref .label{font-weight:700;color:var(--text);}
+    .formula-ref .formula{background:var(--formula-bg);color:var(--steel);
+      font:700 12.5px/1.24 var(--mono);}
     /* --- MISTAKE CALLOUT --- */
     .mistake-box{background:rgba(255,255,255,.12);border-radius:14px;
       padding:28px 32px;border:2px solid rgba(255,255,255,.3);width:100%;}
@@ -423,7 +473,7 @@
             <div class="body-text">
               A $52,000 salary costs the same annually regardless of pay frequency.
             </div>
-            <div class="formula-panel">Salary per period =
+            <div class="formula-panel"><span class="fn">=AnnualSalary/PayPeriods</span>Salary per period =
 annual salary ÷ number of pay periods
 
 =52000/52  →  $1,000 weekly
@@ -459,7 +509,7 @@ annual salary ÷ number of pay periods
         <div class="two-col">
           <div class="copy">
             <div class="body-text">Regular pay = regular hours × rate<br>Overtime = OT hours × rate × 1.5</div>
-            <div class="formula-panel">=MIN(Hours,40)*Rate + MAX(Hours-40,0)*Rate*1.5
+            <div class="formula-panel"><span class="fn">=MIN(Hours,40)*Rate + MAX(Hours-40,0)*Rate*1.5</span>
 
 Manual:
 Regular: 40 × $44 = $1,760
@@ -474,8 +524,8 @@ Gross pay = $1,958</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 09 — SCHEDULING ===================== -->
-  <section class="slide cream" data-slide="9" data-section="part1" data-label="09 Scheduling">
+<!-- ===================== SLIDE 09 — LIVE YOU TRY IT: OVERTIME ===================== -->
+  <section class="slide cream" data-slide="9" data-section="part1" data-label="09 Live You Try It Overtime">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -484,20 +534,22 @@ Gross pay = $1,958</div>
         <div class="tab">03</div>
       </div>
       <div class="body">
-        <div class="eyebrow">Scheduling Decision</div>
-        <h1>One Person at 52 Hours or Two at 26?</h1>
+        <div class="eyebrow">Live You Try It · Excel Pause</div>
+        <h1>Use the Same Overtime Numbers</h1>
         <div class="two-col">
           <div class="copy">
-            <div class="body-text">
-              Overtime can solve a short staffing gap.<br><br>
-              It can also hide a permanent headcount problem.<br><br>
-              When you see sustained overtime every week, ask: is this a scheduling choice, or a capacity decision?
+            <div class="try-panel">
+              <h3>Open the workbook</h3>
+              <p>Go to <strong>Live You Try It</strong> and complete the first payroll pause using the exact slide numbers.</p>
+              <div class="timer-chip">Rows 5-7 · self-graded feedback</div>
             </div>
           </div>
           <div class="visual">
-            <div class="decision">
-              <div>High overtime<br>Fast coverage · Higher marginal cost · Burnout risk</div>
-              <div>More staff<br>Lower overtime · More fixed cost · More scheduling complexity</div>
+            <div class="mini-sheet">
+              <div class="mini-row mini-head"><div>Given</div><div>Build</div><div>Self-check</div></div>
+              <div class="mini-row"><div>$52,000 salary<br>52 weekly periods</div><div>weekly paycheck</div><div class="result">$1,000</div></div>
+              <div class="mini-row"><div>43 hours<br>$44 per hour</div><div>regular + overtime pay</div><div class="result">$1,958</div></div>
+              <div class="mini-row"><div>40-hour threshold<br>1.5x overtime</div><div>gross pay formula</div><div class="result">revise until green</div></div>
             </div>
           </div>
         </div>
@@ -604,7 +656,7 @@ Gross pay = $1,958</div>
         <div class="two-col">
           <div class="copy">
             <div class="body-text">Nurse team: 8 employees<br>Average hours: 43 per employee<br>Hourly rate: $44</div>
-            <div class="formula-panel">Regular: 8 × 40 × $44 = $14,080
+            <div class="formula-panel"><span class="fn">=8*(MIN(43,40)*44 + MAX(43-40,0)*44*1.5)</span>Regular: 8 × 40 × $44 = $14,080
 Overtime: 8 × 3 × $44 × 1.5 = $1,584
 ──────────────────────────────
 Gross: $14,080 + $1,584 = $15,664</div>
@@ -621,8 +673,8 @@ Gross: $14,080 + $1,584 = $15,664</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 14 — INTERACTIVE ACTIVITY ===================== -->
-  <section class="slide dark" data-slide="14" data-section="part2" data-label="14 Activity">
+<!-- ===================== SLIDE 14 — LIVE YOU TRY IT: TEAM PAYROLL ===================== -->
+  <section class="slide dark" data-slide="14" data-section="part2" data-label="14 Live You Try It Payroll">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -631,20 +683,20 @@ Gross: $14,080 + $1,584 = $15,664</div>
         <div class="tab">03</div>
       </div>
       <div class="body">
-        <div class="eyebrow">Interactive Practice</div>
-        <h1>Harborside Payroll Console</h1>
+        <div class="eyebrow">Live You Try It · Excel Pause</div>
+        <h1>Now Build the Team Payroll</h1>
         <div class="two-col">
           <div class="copy">
-            <div class="lead">Change employee counts, hours, and pay rates.<br>Watch weekly and annual payroll update instantly.</div>
-            <div style="margin-top:24px;" class="body-text" style="color:rgba(255,255,255,.7);">
-              Use the interactive file to test staffing choices before you explain the business impact in the Excel workbook.
+            <div class="lead">Use the exact nurse-team example from the slide before it.</div>
+            <div style="margin-top:24px;" class="body-text">
+              In <strong>Live You Try It</strong>, calculate team regular pay, team overtime pay, and team gross pay. The feedback is for revision, not grading.
             </div>
           </div>
           <div class="visual">
             <div class="act-card">
-              <h3>Payroll Management System</h3>
-              <p>Open the interactive file to test different headcount, overtime, and pay assumptions for Harborside Medical.</p>
-              <code>bus123-math-m05-l01-interactive.html</code>
+              <h3 style="font-size:32px;line-height:1.22;">8 nurses · 43 hours<br>$44/hr</h3>
+              <p>Model the 40 regular hours first, then isolate the 3 overtime hours at 1.5x.</p>
+              <code>Live You Try It rows 9-11</code>
             </div>
           </div>
         </div>
@@ -723,7 +775,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
               Spreads the depreciable cost evenly across useful life.<br><br>
               Useful when an asset provides steady service — like a diagnostic unit used at the same rate every month.
             </div>
-            <div class="formula-panel">Annual depreciation =
+            <div class="formula-panel"><span class="fn">=(84000-12000)/6</span>Annual depreciation =
 (cost − residual value) ÷ useful life
 
 =(84000-12000)/6  →  $12,000 per year</div>
@@ -780,8 +832,8 @@ Gross: $14,080 + $1,584 = $15,664</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 19 — SCHEDULE ===================== -->
-  <section class="slide cream" data-slide="19" data-section="part3" data-label="19 Schedule">
+<!-- ===================== SLIDE 19 — LIVE YOU TRY IT: DEPRECIATION ===================== -->
+  <section class="slide cream" data-slide="19" data-section="part3" data-label="19 Live You Try It Depreciation">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -790,24 +842,22 @@ Gross: $14,080 + $1,584 = $15,664</div>
         <div class="tab on">03</div>
       </div>
       <div class="body">
-        <div class="eyebrow">Depreciation Schedule</div>
-        <h1>The Pattern Should Be Boring</h1>
+        <div class="eyebrow">Live You Try It · Excel Pause</div>
+        <h1>Finish the Schedule in Excel</h1>
         <div class="two-col">
           <div class="copy">
-            <div class="body-text">
-              Cost stays fixed.<br>
-              Expense repeats.<br>
-              Accumulated rises.<br>
-              Book value falls to residual.
+            <div class="try-panel">
+              <h3>Same ultrasound numbers</h3>
+              <p>Use the diagnostic ultrasound example: $84,000 cost, $12,000 residual value, and 6-year useful life.</p>
+              <div class="timer-chip">Rows 13-15 · self-graded feedback</div>
             </div>
           </div>
           <div class="visual">
-            <div class="schedule">
-              <div class="sch-row sch-head"><div>Year</div><div>Cost</div><div>Expense</div><div>Accumulated</div><div>Book Value</div></div>
-              <div class="sch-row"><div>1</div><div>$84,000</div><div>$12,000</div><div>$12,000</div><div>$72,000</div></div>
-              <div class="sch-row"><div>2</div><div>$84,000</div><div>$12,000</div><div>$24,000</div><div>$60,000</div></div>
-              <div class="sch-row"><div>3</div><div>$84,000</div><div>$12,000</div><div>$36,000</div><div>$48,000</div></div>
-              <div class="sch-row"><div>6</div><div>$84,000</div><div>$12,000</div><div>$72,000</div><div>$12,000</div></div>
+            <div class="mini-sheet">
+              <div class="mini-row mini-head"><div>Given</div><div>Build</div><div>Self-check</div></div>
+              <div class="mini-row"><div>$84,000 - $12,000<br>over 6 years</div><div>annual depreciation</div><div class="result">$12,000</div></div>
+              <div class="mini-row"><div>Year 3<br>three years recorded</div><div>accumulated depreciation</div><div class="result">$36,000</div></div>
+              <div class="mini-row"><div>Cost minus accumulated</div><div>Year 3 book value</div><div class="result">$48,000</div></div>
             </div>
           </div>
         </div>
@@ -815,8 +865,8 @@ Gross: $14,080 + $1,584 = $15,664</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 20 — DISCUSSION ===================== -->
-  <section class="slide cream" data-slide="20" data-section="discussion" data-label="20 Discussion">
+<!-- ===================== SLIDE 20 — CLASS CHALLENGE ===================== -->
+  <section class="slide cream" data-slide="20" data-section="discussion" data-label="20 Class Challenge">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -825,16 +875,21 @@ Gross: $14,080 + $1,584 = $15,664</div>
         <div class="tab on">03</div>
       </div>
       <div class="body">
-        <div class="eyebrow">Discussion</div>
-        <h1>Management Questions</h1>
+        <div class="eyebrow">Class Challenge</div>
+        <h1>Now Level Up the Model</h1>
         <div class="two-col">
           <div class="copy">
-            <div class="body-text" style="color:var(--text-soft);">Think about both questions from the manager's perspective — not just the math answer.</div>
+            <div class="body-text" style="color:var(--text-soft);">
+              Live You Try It was self-graded practice with hints and feedback.<br><br>
+              The <strong>Class Challenge</strong> tab is the graded or next-level activity: build formulas, then explain the operating decision.
+            </div>
+            <div style="margin-top:24px;" class="timer-chip">Class Challenge tab · submit or complete together next class</div>
           </div>
           <div class="visual">
-            <div class="decision">
-              <div>If overtime keeps rising week over week, should Harborside hire additional staff or reschedule existing employees?</div>
-              <div>If equipment book value is falling steadily, when should replacement planning begin?</div>
+            <div class="challenge-list">
+              <div class="challenge-item"><b>1</b><span>Combine pay-cycle, overtime, and team payroll formulas without built-in feedback.</span></div>
+              <div class="challenge-item"><b>2</b><span>Extend the depreciation schedule into book value and replacement-planning questions.</span></div>
+              <div class="challenge-item"><b>3</b><span>Use the numbers to recommend a staffing or equipment decision for Harborside.</span></div>
             </div>
           </div>
         </div>
@@ -842,8 +897,38 @@ Gross: $14,080 + $1,584 = $15,664</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 21 — KEY TAKEAWAYS ===================== -->
-  <section class="slide dark" data-slide="21" data-section="close" data-label="21 Takeaways">
+<!-- ===================== SLIDE 21 — FORMULA REFERENCE CARD ===================== -->
+  <section class="slide cream" data-slide="21" data-section="discussion" data-label="21 Formula Reference Card">
+    <div class="nb-wrap">
+      <div class="tabs">
+        <div class="tab">TITLE</div>
+        <div class="tab">01</div>
+        <div class="tab">02</div>
+        <div class="tab on">03</div>
+      </div>
+      <div class="body">
+        <div class="eyebrow">Workbook Reference</div>
+        <h1 style="font-size:46px;margin-bottom:14px;">Formula Reference Card</h1>
+        <div class="body-text" style="font-size:17px;line-height:1.35;margin-bottom:16px;">
+          Payroll and depreciation syntax reminders. Use cell references whenever possible.
+        </div>
+        <div class="formula-ref">
+          <div class="formula-ref-row formula-ref-head"><div>Concept</div><div>Excel Pattern</div><div>Plain-English Meaning</div><div>Watch Out For</div></div>
+          <div class="formula-ref-row"><div class="label">Weekly salary pay</div><div class="formula">=AnnualSalary/52</div><div>Converts annual salary into weekly pay.</div><div>Pay frequency changes the check size, not total salary.</div></div>
+          <div class="formula-ref-row"><div class="label">Regular pay</div><div class="formula">=MIN(Hours,40)*Rate</div><div>Caps regular hours at 40.</div><div>Do not pay all 43 hours at regular rate when OT exists.</div></div>
+          <div class="formula-ref-row"><div class="label">Overtime pay</div><div class="formula">=MAX(Hours-40,0)*Rate*1.5</div><div>Pays only hours above threshold at premium rate.</div><div>MAX prevents negative overtime.</div></div>
+          <div class="formula-ref-row"><div class="label">Gross pay</div><div class="formula">=RegularPay+OvertimePay</div><div>Total before deductions.</div><div>Gross pay is not take-home pay.</div></div>
+          <div class="formula-ref-row"><div class="label">Team payroll</div><div class="formula">=Employees*GrossPayPerEmployee</div><div>Scales one-person pay to a team.</div><div>A small weekly difference compounds annually.</div></div>
+          <div class="formula-ref-row"><div class="label">Annual depreciation</div><div class="formula">=(Cost-ResidualValue)/UsefulLife</div><div>Spreads depreciable cost evenly.</div><div>Subtract residual value before dividing.</div></div>
+          <div class="formula-ref-row"><div class="label">Accumulated depreciation</div><div class="formula">=AnnualDepreciation*YearsRecorded</div><div>Running total of depreciation so far.</div><div>Accumulated is not the same as one-year expense.</div></div>
+          <div class="formula-ref-row"><div class="label">Book value</div><div class="formula">=Cost-AccumulatedDepreciation</div><div>Remaining recorded value.</div><div>Book value should fall to residual value, not zero.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ===================== SLIDE 22 — KEY TAKEAWAYS ===================== -->
+  <section class="slide dark" data-slide="22" data-section="close" data-label="22 Takeaways">
     <div class="nb-wrap">
       <div class="tabs">
         <div class="tab">TITLE</div>
@@ -863,8 +948,8 @@ Gross: $14,080 + $1,584 = $15,664</div>
     </div>
   </section>
 
-<!-- ===================== SLIDE 22 — CLOSE / Q&A ===================== -->
-  <section class="slide dark" data-slide="22" data-section="close" data-label="22 Close">
+<!-- ===================== SLIDE 23 — CLOSE / Q&A ===================== -->
+  <section class="slide dark" data-slide="23" data-section="close" data-label="23 Close">
     <div class="grad-bar"></div>
     <div class="nb-wrap">
       <div class="tabs">
@@ -901,6 +986,19 @@ Gross: $14,080 + $1,584 = $15,664</div>
   const nb=document.getElementById('notes-box');
   let idx=0;
   let notes=[];
+  const navItems=[
+    {key:'title', label:'Home', range:'01', target:0, style:'home pre'},
+    {key:'agenda', label:'Roadmap', range:'02-04', target:1, style:'pre'},
+    {key:'part1', label:'Pay Design', range:'05-09', target:4, style:'part1'},
+    {key:'part2', label:'Payroll Model', range:'10-14', target:9, style:'part2'},
+    {key:'part3', label:'Asset Cost', range:'15-19', target:14, style:'part3'},
+    {key:'discussion', label:'Challenge', range:'20-21', target:19, style:'discussion'},
+    {key:'close', label:'Wrap-Up', range:'22-23', target:21, style:'close'}
+  ];
+  const sectionMap={
+    title:'title',agenda:'agenda',objectives:'agenda',bridge:'agenda',
+    part1:'part1',part2:'part2',part3:'part3',discussion:'discussion',close:'close'
+  };
   try{const el=document.getElementById('speaker-notes');if(el)notes=JSON.parse(el.textContent);}catch(e){}
 
   function scale(){
@@ -909,12 +1007,37 @@ Gross: $14,080 + $1,584 = $15,664</div>
     const oy=(window.innerHeight-H*s)/2;
     stage.style.transform=`translate(${ox}px,${oy}px) scale(${s})`;
   }
+  function buildTabs(){
+    document.querySelectorAll('.tabs').forEach(tabWrap=>{
+      tabWrap.setAttribute('aria-label','Lesson sections');
+      tabWrap.innerHTML=navItems.map(item=>
+        `<button class="tab ${item.style}" type="button" data-key="${item.key}" data-target="${item.target}" aria-label="Jump to ${item.label}">
+          <span class="dot"></span><span>${item.label}</span><span class="range">${item.range}</span>
+        </button>`
+      ).join('');
+    });
+    document.querySelectorAll('.tab').forEach(tab=>{
+      tab.addEventListener('click',e=>{
+        e.stopPropagation();
+        go(Number(tab.dataset.target));
+      });
+    });
+  }
+  function syncTabs(){
+    const key=sectionMap[slides[idx].dataset.section]||slides[idx].dataset.section;
+    document.querySelectorAll('.tab').forEach(tab=>{
+      const on=tab.dataset.key===key;
+      tab.classList.toggle('on',on);
+      tab.setAttribute('aria-current',on?'true':'false');
+    });
+  }
   function go(n){
     n=Math.max(0,Math.min(n,slides.length-1));
     slides[idx].classList.remove('active');
     idx=n;
     slides[idx].classList.add('active');
     ctr.textContent=(idx+1)+' / '+slides.length;
+    syncTabs();
     if(nb.style.display==='block') nb.textContent=notes[idx]||'';
   }
   function toggleNotes(){
@@ -936,6 +1059,7 @@ Gross: $14,080 + $1,584 = $15,664</div>
     const x=e.clientX/window.innerWidth;
     if(x<.33) go(idx-1); else if(x>.67) go(idx+1);
   });
+  buildTabs();
   scale();
   window.addEventListener('resize',scale);
   go(0);

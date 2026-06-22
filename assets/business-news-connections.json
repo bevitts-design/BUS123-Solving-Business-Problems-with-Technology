@@ -1,14 +1,15 @@
 {
-  "updatedAt": "2026-06-21T12:00:00-04:00",
+  "updatedAt": "2026-06-22T08:01:05-04:00",
   "items": [
     {
-      "week": "Week 1",
-      "title": "Why spreadsheet skills still matter when AI tools are everywhere",
-      "businessQuestion": "If a manager can ask AI for an answer, what still needs to be checked in the spreadsheet before making a business decision?",
-      "connection": "This connects to the first BUS123 theme: technology can speed up work, but people still need to understand the data, formulas, and business tradeoffs behind the output.",
-      "discussionPrompt": "Find one business decision from your job, campus life, sports, or a company you follow. What data would you want in a spreadsheet before you trusted the recommendation?",
-      "relatedLessonId": "intro-m01-l01",
-      "sourceLabel": "Instructor weekly connection"
+      "week": "Week 2",
+      "title": "How companies use data to choose where to grow",
+      "businessQuestion": "If a company is choosing where to open a new facility, which data categories should matter most: cost, workforce, infrastructure, technology access, or quality of life?",
+      "connection": "This connects to Technology Orientation because business technology is not just software setup; it is the system of tools, data, and judgment managers use to compare options and make decisions.",
+      "discussionPrompt": "Choose one business you know, such as a retailer, restaurant, healthcare office, sports organization, or tech company. If that business were expanding to a new state, what three data points would you want in a spreadsheet before recommending a location?",
+      "relatedLessonId": "intro-m01-l02",
+      "sourceLabel": "CNBC",
+      "sourceUrl": "https://pressroom.versantmedia.com/cnbc/press-releases/cnbc-unveil-americas-top-states-business-wednesday-july-15"
     }
   ]
 }

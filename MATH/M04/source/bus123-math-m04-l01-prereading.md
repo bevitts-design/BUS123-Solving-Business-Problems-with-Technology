@@ -3,29 +3,9 @@ title: "BUS 123 — MATH-M04-L01 — Markup, Markdown & Break-Even"
 lesson: "MATH-M04-L01"
 kind: "Pre-Reading"
 status: "published"
-output: "MATH/M04/bus123-math-m04-l01-prereading.md"
+output: "MATH/M04/bus123-math-m04-l01-prereading.pdf"
 ---
 
-<!--
-  FORMATTING NOTE FOR INSTRUCTORS
-  ─────────────────────────────────────────────────────────────────────────────
-  This file is written in standard Markdown. To preserve all formatting:
-
-  • Do NOT copy-paste into a plain text editor — use a Markdown-aware tool
-    (VS Code, Typora, GitHub, Notion, or the Canvas rich-text editor in
-    source/HTML mode).
-
-  • All tables use the standard Markdown pipe-table format. GitHub, Canvas,
-    and most LMS platforms render them as formatted tables automatically.
-
-  • Callout blocks (> blockquote lines) render as indented/highlighted panels
-    in most Markdown viewers and GitHub Pages.
-
-  • To push to the public GitHub repo, place this file at:
-    MATH/M04/bus123-math-m04-l01-prereading.md
-    GitHub Pages will render it correctly with no additional configuration.
-  ─────────────────────────────────────────────────────────────────────────────
--->
 
 # BUS 123 · MATH-M04-L01 · Markup, Markdown & Break-Even
 

@@ -174,3 +174,9 @@ Answer each question before looking at the answer key below. Show your formula s
 | **Fixed Cost**             | Cost that does not change with production volume in the short run (e.g., venue rental, permits).                  |
 | **Contribution Margin**    | Selling price minus variable cost per unit. The amount each unit contributes toward covering fixed costs and profit. |
 | **Break-Even Point**       | The sales volume at which total revenue exactly equals total cost; zero profit, zero loss.                        |
+
+---
+
+> 📝 **Bring to Class**
+>
+> You will use the starter workbook to test the same pricing logic from this reading. Expect short **Live You Try It** pauses for markup, markdown, and break-even formulas before moving into the **Class Challenge**. The challenge is where you combine the formulas and explain whether Anchor & Oak's pricing decision is financially reasonable.

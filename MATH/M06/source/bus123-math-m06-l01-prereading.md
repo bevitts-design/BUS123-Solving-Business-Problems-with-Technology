@@ -17,7 +17,7 @@ output: "MATH/M06/bus123-math-m06-l01-prereading.pdf"
 
 ## 1 · Connect to Prior Knowledge
 
-In Module 05 you learned how retailers use markup to set selling prices from a known cost — how a 50% markup on a $40 item produces a $60 retail price. But markup math assumes you already know the cost of that item with precision.
+Earlier in the math track, you learned how retailers use markup to set selling prices from a known cost — how a 50% markup on a $40 item produces a $60 retail price. But markup math assumes you already know the cost of that item with precision.
 
 This module goes one level deeper: **what exactly is the cost of the item you just sold?** When a business carries hundreds of units bought at different prices across different weeks, the answer is not obvious. The method you choose — FIFO, LIFO, or Weighted Average Cost — changes your reported profit, your tax bill, and the asset value on your balance sheet.
 
@@ -239,3 +239,9 @@ Answer all seven questions before class. Answers appear at the end of this docum
 | **Overhead Allocation**       | The process of distributing shared overhead costs across departments using a practical basis such as square footage or revenue share.                    |
 | **Overhead Rate**             | Total overhead costs as a percentage of revenue. A rising rate signals cost control issues or falling revenue.                                          |
 | **Goods Available for Sale**  | Beginning Inventory + Purchases. The total inventory that could have been sold; COGS cannot exceed this figure.                                         |
+
+---
+
+> 📝 **Bring to Class**
+>
+> Be ready to turn Tidal Goods Co.'s raw transaction information into a management report. The class activity will ask you to build a COGS schedule, compare inventory methods, calculate margin versus markup, and allocate overhead in a way a manager could explain.

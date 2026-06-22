@@ -140,4 +140,6 @@ Answer these questions before class. Be ready to discuss your reasoning — not 
 
 > 📝 **Bring to Class**
 >
-> Be ready to use the payroll management system to test a staffing choice. Your goal is not only to calculate the new payroll amount, but also to explain whether the change is **operationally reasonable** for a medical practice.
+> Be ready to use the starter workbook as a payroll and depreciation management system. The **Live You Try It** pauses will use the same salary, overtime, team payroll, and ultrasound depreciation numbers from the slides so you can self-check each formula before moving on.
+>
+> The **Class Challenge** asks you to combine payroll cost, staffing pressure, depreciation, and business interpretation. Your goal is not only to calculate the new payroll or asset amount, but also to explain whether the decision is **operationally reasonable** for a medical practice.

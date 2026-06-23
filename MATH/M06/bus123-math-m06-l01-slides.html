@@ -22,15 +22,19 @@
   "There are four methods. Specific ID traces the exact unit. FIFO assumes the oldest stock sells first. LIFO assumes the newest sells first. WAC blends all costs into one average. Each gives a different COGS \u2014 and a different profit number \u2014 from the same physical sale.",
   "Let's run the numbers side by side. Tidal bought 3 paddleboards: $210, $230, $250. They sell 2. Under FIFO, COGS = $440. Under LIFO, COGS = $480. Under WAC, COGS = $460. Same two boards sold \u2014 $40 difference in profit depending on the method.",
   "The FIFO vs LIFO strategic decision: During inflation, FIFO shows higher profit because old cheap costs go to COGS. LIFO shows lower profit \u2014 but lower taxes. Important note: LIFO is banned under IFRS, the international standard. US companies using LIFO cannot report under international rules without restating. That's a real constraint for global retailers.",
+  "Live You Try It pause for inventory methods. Students should open the Live You Try It tab and complete rows 1 through 3 using the exact slide numbers: FIFO COGS from 10 boards at $210 and 10 at $230, WAC unit cost across all 30 boards, and WAC COGS for 20 units sold. The workbook feedback is self-checking, not graded.",
   "Now let's connect inventory to the balance sheet. At Tidal, ending inventory under FIFO = $250 (the newest board). Under LIFO = $210 (the oldest). That changes total assets reported. Lenders and investors read this number \u2014 so the method choice has financial consequences far beyond the income statement.",
   "Part 2: COGS and Pricing Strategy. COGS is not just a formula \u2014 it's the foundation of every pricing decision. Let's build it from scratch with Tidal.",
   "The COGS formula in plain English: what you started with, plus what you bought, minus what's left. Beginning Inventory + Purchases \u2212 Ending Inventory = COGS. Simple structure, high stakes. An error in ending inventory flows directly into profit \u2014 and then into next period's beginning inventory. Errors compound.",
+  "Live You Try It pause for the COGS formula. Students use beginning inventory of $12,400, purchases of $38,600, and ending inventory of $9,800 in row 4. The feedback cell should confirm $41,200 before you move on.",
   "Let's build Tidal's full COGS schedule. Beginning inventory $12,400. New purchases during the quarter: $38,600. Ending inventory after physical count: $9,800. COGS = $41,200. That number feeds directly into the income statement. Gross Profit = Revenue minus $41,200.",
+  "Live You Try It pause for margin versus markup. Students use the same $80 selling price and $48 cost from the worked example. Row 5 checks margin at 40 percent, and row 6 checks markup at 66.7 percent.",
   "Now pricing \u2014 margin versus markup. This is one of the most confused topics in retail. Margin is profit as a percent of revenue. Markup is profit as a percent of cost. They look similar but they are not the same number \u2014 confusing them causes serious underpricing.",
   "Tidal sells a surf bag for $80. They paid $48 for it. Markup = $32 / $48 = 66.7%. Margin = $32 / $80 = 40%. A buyer who says 'we mark up 100%' is saying margin is 50% \u2014 not 100%. Show the Excel formulas, then the manual math.",
   "Common mistake slide \u2014 this one is critical. If ending inventory is OVERSTATED \u2014 say a physical count error adds $5,000 of phantom inventory \u2014 COGS is understated by $5,000. Net income is overstated by $5,000 this period. Next period, beginning inventory is now wrong too. The error cascades across two periods. Auditors look for this specifically.",
   "Part 3: Overhead Allocation. Every business has costs that don't attach to a single product \u2014 rent, utilities, insurance. These still need to show up somewhere in the cost of doing business. Overhead allocation is how we distribute them fairly.",
   "Tidal operates two departments: Surf Shop and Online Warehouse. Monthly rent is $9,000. The Surf Shop occupies 2,400 sq ft; the Warehouse 1,600 sq ft. Allocated by square footage: Surf Shop gets 60% = $5,400. Warehouse gets 40% = $3,600. The allocation base \u2014 square footage \u2014 is a management decision.",
+  "Live You Try It pause for overhead. Students use row 7 to allocate $9,000 rent by square footage and row 8 to calculate the $22,000 divided by $110,000 overhead rate. Treat this as a quick self-check before discussion.",
   "Overhead Rate formula: Total Overhead Costs divided by Revenue. At Tidal: $22,000 overhead on $110,000 revenue = 20% overhead rate. That means for every dollar of revenue, 20 cents goes to keeping the lights on before we even count COGS. Management watches this number closely.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Discussion: Two questions to work through with the person next to you. One: Tidal is considering switching from FIFO to WAC. What are the tradeoffs? Think tax impact, balance sheet presentation, and complexity. Two: Tidal's overhead rate just jumped from 18% to 24% in one quarter. What would you investigate first?",
@@ -607,13 +611,13 @@
   .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
 
 
-.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
+.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;max-width:1060px;margin:0 auto;}
 .formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
-.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
-.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
-.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
-.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
-.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
+.formula-reference-slide h2{font-family:var(--serif);font-size:40px;line-height:1;margin:0;color:var(--text);}
+.formula-reference-slide .frc-note{font-size:17px;line-height:1.2;color:var(--text-soft);margin:0 0 2px 0;}
+.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:14px;line-height:1.15;}
+.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:14px;text-align:left;padding:6px 8px;border:1px solid var(--border);}
+.formula-reference-table td{border:1px solid var(--border);padding:5px 8px;vertical-align:top;color:var(--text);}
 .formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
 .formula-reference-table td.watch{background:var(--paper-2);}
 
@@ -937,9 +941,37 @@
       </div>
     </div>
   </section>
+  <section class="slide cream" data-label="10 Live You Try It Inventory" data-section="2" data-slide="10" data-index="9">
+    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
+    <div class="rule"></div>
+    <h2 dark-txt style="margin-bottom:28px;">Rows 1-3: rebuild the inventory method math in Excel.</h2>
+    <div class="grid-3" style="gap:24px; margin-bottom:28px;">
+      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 1 · FIFO COGS</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">10 units at $210 + 10 units at $230</p>
+        <div style="font-family:'Bodoni Moda',serif; font-size:calc(44px * var(--scale)); color:var(--sage); margin-top:14px;">$4,400</div>
+      </div>
+      <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 2 · WAC UNIT COST</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">10 each at $210, $230, and $250</p>
+        <div style="font-family:'Bodoni Moda',serif; font-size:calc(44px * var(--scale)); color:var(--gold); margin-top:14px;">$230.00</div>
+      </div>
+      <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.22);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--steel); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 3 · WAC COGS</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">20 units sold x $230.00 average cost</p>
+        <div style="font-family:'Bodoni Moda',serif; font-size:calc(44px * var(--scale)); color:var(--steel); margin-top:14px;">$4,600</div>
+      </div>
+    </div>
+    <div class="formula-panel">
+      <span class="fn">=10*210+10*230</span>
+      <span class="comment">Then test WAC with =((10*210)+(10*230)+(10*250))/30 and multiply by 20 units sold.</span>
+      <span class="result">Self-check: rows 1-3 should read $4,400, $230.00, and $4,600.</span>
+    </div>
+  </section>
+
 
   <!-- ═══════════════════════════ SLIDE 10 — ANIMATED BAR CHART ═══════════════════════════ -->
-  <section class="slide cream" data-label="10 COGS Comparison Chart" data-section="2" data-slide="10" data-index="9">
+  <section class="slide cream" data-label="11 COGS Comparison Chart" data-section="2" data-slide="11" data-index="10">
     <div class="header-row">
       <span class="eyebrow">Visualizing the Impact · Tidal Goods Co.</span>
     </div>
@@ -975,7 +1007,7 @@
         <div class="card" style="background: rgba(74,124,94,0.06); border-color: rgba(74,124,94,0.2);">
           <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px; color:var(--sage);">IFRS note</h3>
           <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            LIFO is prohibited under DM Sansnational Financial Reporting Standards. Any US retailer planning to operate globally or go public internationally must use FIFO or WAC.
+            LIFO is prohibited under International Financial Reporting Standards. Any US retailer planning to operate globally or go public internationally must use FIFO or WAC.
           </p>
         </div>
       </div>
@@ -983,7 +1015,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 11 — SECTION BREAK 2 ═══════════════════════════ -->
-  <section class="slide dark" data-label="11 Part 2" data-section="2" data-slide="11" data-index="10">
+  <section class="slide dark" data-label="12 Part 2" data-section="2" data-slide="12" data-index="11">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
       <div class="eyebrow light" style="margin-bottom: 24px;">Part 2 of 3</div>
@@ -998,7 +1030,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 12 — COGS FORMULA ═══════════════════════════ -->
-  <section class="slide cream" data-label="12 COGS Formula" data-section="2" data-slide="12" data-index="11">
+  <section class="slide cream" data-label="13 COGS Formula" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
       <span class="eyebrow">The COGS Formula · Step by Step</span>
     </div>
@@ -1051,9 +1083,33 @@
       </div>
     </div>
   </section>
+  <section class="slide cream" data-label="14 Live You Try It COGS" data-section="2" data-slide="14" data-index="13">
+    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
+    <div class="rule"></div>
+    <h2 dark-txt style="margin-bottom:32px;">Row 4: build the COGS formula before the answer feels obvious.</h2>
+    <div class="col-60-40" style="flex:1; align-items:center; gap:56px;">
+      <div class="mini-sheet" style="width:100%;">
+        <table class="data-table">
+          <thead><tr><th>Input</th><th>Slide Number</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td>Beginning inventory</td><td style="font-family:'JetBrains Mono',monospace;">$12,400</td><td>What Tidal started with</td></tr>
+            <tr><td>Purchases</td><td style="font-family:'JetBrains Mono',monospace;">$38,600</td><td>What Tidal bought</td></tr>
+            <tr><td>Ending inventory</td><td style="font-family:'JetBrains Mono',monospace;">$9,800</td><td>What is left after the count</td></tr>
+            <tr class="result"><td>COGS</td><td style="font-family:'JetBrains Mono',monospace;">?</td><td>Workbook row 4</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="formula-panel">
+        <span class="fn">=12400+38600-9800</span>
+        <span class="comment">Beginning Inventory + Purchases - Ending Inventory</span>
+        <span class="result">Self-check: $41,200</span>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ═══════════════════════════ SLIDE 13 — MARGIN VS MARKUP ═══════════════════════════ -->
-  <section class="slide cream" data-label="13 Margin vs Markup" data-section="2" data-slide="13" data-index="12">
+  <section class="slide cream" data-label="15 Margin vs Markup" data-section="2" data-slide="15" data-index="14">
     <div class="header-row">
       <span class="eyebrow">Pricing Math · Margin vs. Markup</span>
     </div>
@@ -1097,9 +1153,27 @@
       </div>
     </div>
   </section>
+  <section class="slide cream" data-label="16 Live You Try It Margin Markup" data-section="2" data-slide="16" data-index="15">
+    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
+    <div class="rule"></div>
+    <h2 dark-txt style="margin-bottom:34px;">Rows 5-6: same surf bag, two different denominators.</h2>
+    <div class="grid-2" style="gap:40px; flex:1; align-items:stretch;">
+      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 5 · MARGIN</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">Selling price $80, cost $48, profit $32.</p>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(80-48)/80</span><span class="result">Self-check: 40.0%</span></div>
+      </div>
+      <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 6 · MARKUP</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">Same profit, but divide by the $48 cost base.</p>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(80-48)/48</span><span class="result">Self-check: 66.7%</span></div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ═══════════════════════════ SLIDE 14 — COMMON MISTAKE ═══════════════════════════ -->
-  <section class="slide cream" data-label="14 Common Mistake" data-section="3" data-slide="14" data-index="13">
+  <section class="slide cream" data-label="17 Common Mistake" data-section="3" data-slide="17" data-index="16">
     <div class="header-row">
       <span class="eyebrow">Watch Out For This</span>
     </div>
@@ -1140,7 +1214,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 15 — SECTION BREAK 3 ═══════════════════════════ -->
-  <section class="slide dark" data-label="15 Part 3" data-section="3" data-slide="15" data-index="14">
+  <section class="slide dark" data-label="18 Part 3" data-section="3" data-slide="18" data-index="17">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
       <div class="eyebrow light" style="margin-bottom: 24px;">Part 3 of 3</div>
@@ -1155,7 +1229,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 16 — OVERHEAD INTRO ═══════════════════════════ -->
-  <section class="slide cream" data-label="16 Overhead Intro" data-section="3" data-slide="16" data-index="15">
+  <section class="slide cream" data-label="19 Overhead Intro" data-section="3" data-slide="19" data-index="18">
     <div class="header-row">
       <span class="eyebrow">Overhead · The Invisible Costs</span>
     </div>
@@ -1191,7 +1265,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 17 — OVERHEAD ALLOCATION ═══════════════════════════ -->
-  <section class="slide cream" data-label="17 Overhead Allocation" data-section="3" data-slide="17" data-index="16">
+  <section class="slide cream" data-label="20 Overhead Allocation" data-section="3" data-slide="20" data-index="19">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · Department Allocation</span>
     </div>
@@ -1277,7 +1351,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 18 — OVERHEAD RATE ANIMATED ═══════════════════════════ -->
-  <section class="slide cream" data-label="18 Overhead Rate" data-section="3" data-slide="18" data-index="17">
+  <section class="slide cream" data-label="21 Overhead Rate" data-section="3" data-slide="21" data-index="20">
     <div class="header-row">
       <span class="eyebrow">Tidal Goods Co. · Overhead Rate Trend</span>
     </div>
@@ -1335,9 +1409,27 @@
       </div>
     </div>
   </section>
+  <section class="slide cream" data-label="22 Live You Try It Overhead" data-section="3" data-slide="22" data-index="21">
+    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
+    <div class="rule"></div>
+    <h2 dark-txt style="margin-bottom:30px;">Rows 7-8: allocate the building, then read the overhead rate.</h2>
+    <div class="grid-2" style="gap:40px; flex:1; align-items:stretch;">
+      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 7 · SURF SHOP RENT</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">$9,000 rent x 2,400 sq ft / 4,000 total sq ft</p>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=9000*(2400/4000)</span><span class="result">Self-check: $5,400</span></div>
+      </div>
+      <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.22);">
+        <div style="font-family:'JetBrains Mono',monospace; color:var(--steel); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 8 · OVERHEAD RATE</div>
+        <p style="font-size:var(--type-small); color:var(--text-soft);">Total overhead $22,000 divided by revenue $110,000</p>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=22000/110000</span><span class="result">Self-check: 20.0%</span></div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- ═══════════════════════════ SLIDE 19 — DISCUSSION ═══════════════════════════ -->
-  <section class="slide dark" data-label="19 Discussion" data-section="4" data-slide="19" data-index="18">
+  <section class="slide dark" data-label="23 Discussion" data-section="4" data-slide="23" data-index="22">
     <div class="grad-bar"></div>
     <div class="header-row">
       <span class="eyebrow light">Turn & Talk · 5 Minutes</span>
@@ -1360,18 +1452,30 @@
       </div>
     </div>
   </section>
-<section class="slide cream" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
+<section class="slide cream" data-section="4" data-slide="24" data-index="23" data-label="24 Formula Reference Card" id="slide-20">
   <div class="formula-reference-slide">
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
     <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>COGS</td><td class="pattern">=BeginningInventory+Purchases-EndingInventory</td><td>Calculates product cost sold during the period.</td><td class="watch">Ending inventory is subtracted.</td></tr><tr><td>Gross profit</td><td class="pattern">=Revenue-COGS</td><td>Shows profit before overhead and operating costs.</td><td class="watch">Revenue and COGS must cover the same period.</td></tr><tr><td>Gross margin percent</td><td class="pattern">=GrossProfit/Revenue</td><td>Shows the percent of revenue left after product cost.</td><td class="watch">Margin divides by revenue.</td></tr><tr><td>Markup percent</td><td class="pattern">=(Revenue-Cost)/Cost</td><td>Shows profit as a percent of cost.</td><td class="watch">Markup divides by cost, not revenue.</td></tr><tr><td>WAC unit cost</td><td class="pattern">=TotalCostAvailable/TotalUnitsAvailable</td><td>Blends inventory purchases into one average unit cost.</td><td class="watch">Recalculate when new stock arrives.</td></tr><tr><td>Overhead allocated</td><td class="pattern">=TotalOverhead*DeptPercent</td><td>Assigns overhead to the department share.</td><td class="watch">The percent base must match the allocation driver.</td></tr></tbody></table>
+    <table class="formula-reference-table">
+      <thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead>
+      <tbody>
+        <tr><td>COGS</td><td class="pattern">=BeginningInventory+Purchases-EndingInventory</td><td>Calculates product cost sold during the period.</td><td class="watch">Ending inventory is subtracted.</td></tr>
+        <tr><td>Goods available for sale</td><td class="pattern">=BeginningInventory+Purchases</td><td>Shows total inventory cost available to sell.</td><td class="watch">COGS cannot exceed this amount.</td></tr>
+        <tr><td>Gross profit</td><td class="pattern">=Revenue-COGS</td><td>Shows profit before overhead and operating costs.</td><td class="watch">Revenue and COGS must cover the same period.</td></tr>
+        <tr><td>Gross margin percent</td><td class="pattern">=GrossProfit/Revenue</td><td>Shows percent of revenue left after product cost.</td><td class="watch">Margin divides by revenue.</td></tr>
+        <tr><td>Markup percent</td><td class="pattern">=(Revenue-Cost)/Cost</td><td>Shows profit as a percent of cost.</td><td class="watch">Markup divides by cost, not revenue.</td></tr>
+        <tr><td>WAC unit cost</td><td class="pattern">=TotalCostAvailable/TotalUnitsAvailable</td><td>Blends purchase layers into one average unit cost.</td><td class="watch">Recalculate when new stock arrives.</td></tr>
+        <tr><td>Overhead allocated</td><td class="pattern">=TotalOverhead*DeptPercent</td><td>Assigns shared overhead to the department share.</td><td class="watch">The percent base must match the allocation driver.</td></tr>
+        <tr><td>Overhead rate</td><td class="pattern">=TotalOverhead/Revenue</td><td>Shows overhead consumed by each revenue dollar.</td><td class="watch">Rising rates can mean cost creep or revenue pressure.</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">24 / 27</div>
 </section>
 
   <!-- ═══════════════════════════ SLIDE 20 — KEY TAKEAWAYS ═══════════════════════════ -->
-  <section class="slide cream" data-label="21 Takeaways" data-section="4" data-slide="21" data-index="20">
+  <section class="slide cream" data-label="25 Takeaways" data-section="4" data-slide="25" data-index="24">
     <div class="header-row">
       <span class="eyebrow">Key Takeaways · Module 06</span>
     </div>
@@ -1395,7 +1499,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 21 — EXCEL PREVIEW ═══════════════════════════ -->
-  <section class="slide cream" data-label="22 Excel Preview" data-section="4" data-slide="22" data-index="21">
+  <section class="slide cream" data-label="26 Excel Preview" data-section="4" data-slide="26" data-index="25">
     <div class="header-row">
       <span class="eyebrow">Coming Up · Excel Activity</span>
     </div>
@@ -1405,23 +1509,23 @@
       <div>
         <h2 dark-txt style="margin-bottom: 32px;">Raw data → Management-ready report</h2>
         <p style="margin-bottom:32px; max-width:760px;">
-          You'll receive Tidal's raw transaction export and build a formatted report that a CFO can read in 30 seconds — COGS schedule, inventory method comparison, and overhead allocation table.
+          You'll use the workbook in two passes: quick self-graded Live You Try It rows during the slides, then a 15-question Class Challenge that combines inventory methods, COGS, margin, markup, and overhead.
         </p>
         <div class="grid-3" style="max-width:820px; gap:24px;">
           <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.2);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:8px;">Tab 1</div>
-            <p style="font-size:var(--type-small); font-weight:600;">COGS Schedule</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Build the formula, format the output</p>
+            <p style="font-size:var(--type-small); font-weight:600;">Live You Try It</p>
+            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Self-graded rows with hints and feedback</p>
           </div>
           <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--gold); margin-bottom:8px;">Tab 2</div>
-            <p style="font-size:var(--type-small); font-weight:600;">Inventory Comparison</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">FIFO vs WAC side-by-side</p>
+            <p style="font-size:var(--type-small); font-weight:600;">Class Challenge</p>
+            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">15 next-level formula questions</p>
           </div>
           <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.2);">
             <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--steel); margin-bottom:8px;">Tab 3</div>
-            <p style="font-size:var(--type-small); font-weight:600;">Overhead Report</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Allocation by department</p>
+            <p style="font-size:var(--type-small); font-weight:600;">FormulaReferenceCard</p>
+            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Syntax reminders after choosing the method</p>
           </div>
         </div>
       </div>
@@ -1437,7 +1541,7 @@
   </section>
 
   <!-- ═══════════════════════════ SLIDE 22 — CLOSE ═══════════════════════════ -->
-  <section class="slide dark" data-label="23 Close" data-section="4" data-slide="23" data-index="22">
+  <section class="slide dark" data-label="27 Close" data-section="4" data-slide="27" data-index="26">
     <div class="grad-bar"></div>
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
       <div class="eyebrow light" style="margin-bottom:24px;">BUS123 · MATH-M06</div>
@@ -1602,6 +1706,10 @@
   function currentDeck(){ return document.querySelector('deck-stage'); }
   function ensureDeckController(deck){
     if(!deck || deck._slidesReady) return;
+    if(deck._ready && deck._slides && deck._go){
+      deck._slidesReady=true;
+      return;
+    }
     deck._slidesReady=true;
     deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
     deck._idx=0;

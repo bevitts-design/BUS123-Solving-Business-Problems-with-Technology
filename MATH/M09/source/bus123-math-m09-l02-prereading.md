@@ -1,3 +1,11 @@
+---
+title: "BUS 123 — MATH-M09-L02 — PMT Function & Annuities"
+lesson: "MATH-M09-L02"
+kind: "Pre-Reading"
+status: "published"
+output: "MATH/M09/bus123-math-m09-l02-prereading.pdf"
+---
+
 # BUS123 · MATH-M09 · L02 Pre-Reading
 ## PMT Function & Annuities
 
@@ -48,9 +56,7 @@ Both use `=PMT()`. The difference is which argument holds the target value.
 
 **Syntax:**
 
-```
-=PMT(rate, nper, pv, [fv], [type])
-```
+`=PMT(rate, nper, pv, [fv], [type])`
 
 | Argument | Meaning | For loan problems | For savings goal problems |
 |---|---|---|---|
@@ -65,19 +71,15 @@ The result is always **negative** — it represents money leaving your pocket ea
 **Worked Example — Meridian Advisory Group Mortgage:**
 A client purchases a home for $320,000 at 6.5% annual interest, 30-year term, monthly payments.
 
-```
-rate = 6.5% ÷ 12 = 0.5417% per month
-nper = 30 × 12 = 360 months
-=PMT(6.5%/12, 360, 320000, 0)  →  −$2,023.13/month
-```
+- `rate = 6.5% ÷ 12 = 0.5417% per month`
+- `nper = 30 × 12 = 360 months`
+- `=PMT(6.5%/12, 360, 320000, 0)` → `−$2,023.13/month`
 
 The client pays **$2,023.13 per month**. Over 30 years:
 
-```
-Total paid   = $2,023.13 × 360 = $728,326
-Original PV  = $320,000
-Total interest paid = $728,326 − $320,000 = $408,326
-```
+- `Total paid = $2,023.13 × 360 = $728,326`
+- `Original PV = $320,000`
+- `Total interest paid = $728,326 − $320,000 = $408,326`
 
 The client will pay more than $400,000 in interest over the life of the loan — more than the original principal. This is one of the most important numbers a financial advisor can show a client.
 
@@ -94,17 +96,13 @@ The client will pay more than $400,000 in interest over the life of the loan —
 **Worked Example — Retirement Goal:**
 A Meridian client wants $500,000 in 25 years. Their account earns 7% annual, compounded monthly. How much must they contribute each month?
 
-```
-=PMT(7%/12, 25*12, 0, 500000)  →  −$576.57/month
-```
+`=PMT(7%/12, 25*12, 0, 500000)` → `−$576.57/month`
 
 They must contribute **$576.57 per month**. Over 25 years:
 
-```
-Total contributed = $576.57 × 300 = $172,971
-Account balance at goal = $500,000
-Growth from compounding = $327,029
-```
+- `Total contributed = $576.57 × 300 = $172,971`
+- `Account balance at goal = $500,000`
+- `Growth from compounding = $327,029`
 
 They put in $172,971 and compounding nearly doubled it to $500,000. The gap — $327,029 — came entirely from interest earning interest over 25 years.
 
@@ -116,9 +114,7 @@ When a client makes regular monthly contributions, `=FV()` projects the ending b
 
 **Syntax (same as before, pmt now filled in):**
 
-```
-=FV(rate, nper, pmt, [pv], [type])
-```
+`=FV(rate, nper, pmt, [pv], [type])`
 
 For a savings account with monthly contributions and no starting balance:
 
@@ -130,9 +126,7 @@ For a savings account with monthly contributions and no starting balance:
 **Worked Example:**
 A Meridian client contributes $500/month to a retirement account earning 7% annual for 30 years.
 
-```
-=FV(7%/12, 30*12, −500, 0)  →  $606,438.29
-```
+`=FV(7%/12, 30*12, −500, 0)` → `$606,438.29`
 
 They contributed $500 × 360 = **$180,000** total. Compounding grew it to **$606,438** — the extra $426,438 is entirely from compound interest on prior contributions.
 
@@ -140,9 +134,7 @@ They contributed $500 × 360 = **$180,000** total. Compounding grew it to **$606
 
 If the client already has $10,000 saved and also contributes $500/month:
 
-```
-=FV(7%/12, 360, −500, −10000)  →  $674,843.64
-```
+`=FV(7%/12, 360, −500, −10000)` → `$674,843.64`
 
 Both `pmt` and `pv` are negative because both are outflows — money leaving the client's pocket.
 
@@ -155,9 +147,7 @@ Both `pmt` and `pv` are negative because both are outflows — money leaving the
 **Worked Example:**
 A Meridian client will receive $1,500/month for 10 years from a structured settlement. Discount rate: 5% annual. What is that stream worth in today's dollars?
 
-```
-=PV(5%/12, 10*12, 1500, 0)  →  −$141,799
-```
+`=PV(5%/12, 10*12, 1500, 0)` → `−$141,799`
 
 The stream pays out $1,500 × 120 = **$180,000** total in nominal dollars. In today's dollars at 5%, it is worth only **$141,799**. The difference — $38,201 — represents the time value eroded by 10 years of waiting and discounting.
 
@@ -249,7 +239,3 @@ Answer these questions before class. Show your work on questions 2–6.
 | **Structured Settlement** | A financial arrangement that pays a fixed amount at regular intervals — a real-world annuity commonly valued using =PV(). |
 
 ---
-
-*⚠ I Can statements for this lesson are pending Notion confirmation — verify before distributing to students.*
-
-*Pre-reading for in-class use only. Canvas quiz questions are separate.*

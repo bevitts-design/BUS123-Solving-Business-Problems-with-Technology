@@ -1,3 +1,11 @@
+---
+title: "BUS 123 — MATH-M09-L01 — Compound Interest & Future Value"
+lesson: "MATH-M09-L01"
+kind: "Pre-Reading"
+status: "published"
+output: "MATH/M09/bus123-math-m09-l01-prereading.pdf"
+---
+
 # BUS123 · MATH-M09 · L01 Pre-Reading
 ## Compound Interest & Future Value
 
@@ -48,7 +56,7 @@ Year 1: identical. Year 30: compound interest produces 73% more than simple inte
 
 ### Part B — The Compound Interest Formula
 
-$$FV = PV \times (1 + i)^n$$
+**Formula:** `FV = PV × (1 + i)^n`
 
 | Variable | Name | Definition |
 |---|---|---|
@@ -64,11 +72,9 @@ $$FV = PV \times (1 + i)^n$$
 **Worked Example — Meridian Advisory Group:**
 A client deposits $40,000 at 4% compounded annually for 3 years.
 
-```
-FV = $40,000 × (1.04)³
-FV = $40,000 × 1.124864
-FV = $44,994.56
-```
+- `FV = $40,000 × (1.04)³`
+- `FV = $40,000 × 1.124864`
+- `FV = $44,994.56`
 
 Simple interest over the same period: $40,000 × (1 + 0.04 × 3) = $44,800. Compound interest adds an extra $194.56 — earned entirely from interest-on-interest over three years.
 
@@ -103,9 +109,7 @@ Excel calculates Future Value automatically. You supply the inputs; Excel handle
 
 **Syntax:**
 
-```
-=FV(rate, nper, pmt, [pv], [type])
-```
+`=FV(rate, nper, pmt, [pv], [type])`
 
 | Argument | Meaning | For lump sum problems |
 |---|---|---|
@@ -118,10 +122,8 @@ Excel calculates Future Value automatically. You supply the inputs; Excel handle
 **The Sign Convention:**
 Excel's financial functions assign direction to every cash flow. When you invest $40,000, that money leaves your pocket — so PV = **−$40,000**. The FV result comes back positive, representing the money returning to you.
 
-```
-=FV(4%, 3, 0, −40000)   →   $44,994.56   ✓
-=FV(4%, 3, 0, 40000)    →  −$44,994.56   ✗  (wrong sign — confusing, not an error)
-```
+- `=FV(4%, 3, 0, −40000)` → `$44,994.56` ✓
+- `=FV(4%, 3, 0, 40000)` → `−$44,994.56` ✗ (wrong sign — confusing, not an error)
 
 Getting the sign wrong does not produce a formula error — it produces a plausible-looking answer with the wrong sign. Always sanity-check: FV should be **larger** than the absolute value of PV when the rate is positive.
 
@@ -133,7 +135,7 @@ Getting the sign wrong does not produce a formula error — it produces a plausi
 
 Before reaching for Excel, use this mental math shortcut to estimate how long it takes an investment to double:
 
-$$\text{Years to Double} \approx \frac{72}{\text{Annual Rate (\%)}}$$
+**Rule of 72:** `Years to Double ≈ 72 ÷ Annual Rate (%)`
 
 | Rate | Approximate doubling time |
 |---|---|
@@ -216,7 +218,3 @@ Answer these questions before class. Show your work on questions 2–6.
 | **Growth Factor** | The term (1 + i)ⁿ. Tells you how many times larger your principal becomes after n periods at rate i. |
 
 ---
-
-*⚠ I Can statements for this lesson are pending Notion confirmation — verify before distributing to students.*
-
-*Pre-reading for in-class use only. Canvas quiz questions are separate.*

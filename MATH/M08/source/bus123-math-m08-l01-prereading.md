@@ -250,6 +250,4 @@ Answer these questions before class. Show your work on questions 2–6.
 
 ---
 
-*⚠ I Can statements for this lesson are pending Notion confirmation — verify before distributing to students.*
 
-*Pre-reading for in-class use only. Canvas quiz questions are separate.*

@@ -1,3 +1,11 @@
+---
+title: "BUS 123 — MATH-M10-L01 — Foundations of Investing: Stocks, Bonds, Mutual Funds & ETFs"
+lesson: "MATH-M10-L01"
+kind: "Pre-Reading"
+status: "published"
+output: "MATH/M10/bus123-math-m10-l01-prereading.pdf"
+---
+
 # BUS123 · MATH-M10-L01 Pre-Reading
 ## Foundations of Investing: Stocks, Bonds, Mutual Funds & ETFs
 **Meridian Advisory Group Case Study**
@@ -7,7 +15,7 @@ Gerrish School of Business · Endicott College · Fall 2026
 
 ## Current Events Hook
 
-Three of the most anticipated IPOs in recent memory are circling the public markets: **SpaceX**, **Anthropic**, and **OpenAI**. Each represents a privately held company that has grown to a valuation of tens of billions of dollars — SpaceX at an estimated $350 billion, Anthropic near $60 billion, and OpenAI above $150 billion. If any of these companies lists on a stock exchange, millions of investors will face a question that has no easy answer: *Is this worth buying at the IPO price?*
+Three of the most anticipated IPOs in recent memory have gone public or are circling the public markets: **SpaceX**, **Anthropic**, and **OpenAI**. Each represents a privately held company that has grown/grew to a valuation of tens of billions of dollars — SpaceX at an estimated $350 billion, Anthropic near $60 billion, and OpenAI above $150 billion. If any of these companies lists on a stock exchange, millions of investors will face a question that has no easy answer: *Is this worth buying at the IPO price?*
 
 That question — *how do I decide whether a security is worth owning?* — is exactly what this module is about. By the time you finish MATH-M10, you will be able to read a stock quote, calculate the return on a bond, and determine the net asset value of a mutual fund. Those are the building blocks of every serious investment decision.
 
@@ -259,6 +267,3 @@ Answer these seven questions before class. Bring your work — these may be disc
 | **ETF** | Exchange-Traded Fund — a basket of securities that trades on an exchange like a stock |
 
 ---
-
-*BUS123 · Gerrish School of Business · Endicott College · Fall 2026*
-*Pre-reading for MATH-M10-L01 · bus123-math-m10-l01-prereading.md*

@@ -1,3 +1,11 @@
+---
+title: "BUS 123 — MATH-M11-L01 — Reading and Analyzing Financial Reports"
+lesson: "MATH-M11-L01"
+kind: "Pre-Reading"
+status: "published"
+output: "MATH/M11/bus123-math-m11-l01-prereading.pdf"
+---
+
 # BUS123 · MATH-M11-L01 · Pre-Reading
 ## Reading and Analyzing Financial Reports
 **Harborside Medical Center · Fall 2026**
@@ -16,9 +24,7 @@ In MATH-M10 we explored stocks and bonds — tools investors use to put capital 
 
 Every financial report ever produced is built on a single mathematical identity:
 
-```
-Assets  =  Liabilities  +  Owner's Equity
-```
+**Formula:** `Assets = Liabilities + Owner's Equity`
 
 This is the **Fundamental Accounting Equation**, and it never breaks. Think of it as a perfectly balanced scale. The left side represents everything a business *owns or controls*. The right side represents every *claim* against those things — either from outside lenders (liabilities) or from the owners themselves (equity).
 
@@ -42,9 +48,7 @@ The **Balance Sheet** is the formal statement that presents the accounting equat
 - *Long-term liabilities*: Bank loans, bonds — due after one year.
 
 **Owner's Equity** — the residual value left for owners after all debts are paid:
-```
-Owner's Equity  =  Assets  −  Liabilities
-```
+**Formula:** `Owner's Equity = Assets − Liabilities`
 Equity grows through two engines: owner contributions and **Retained Earnings** (profits kept in the business rather than paid out).
 
 > **Harborside Example:** At year-end, Harborside had total assets of $3,027,000, total liabilities of $1,305,000, and owner's equity of $1,722,000. Verify: $1,305,000 + $1,722,000 = $3,027,000 ✓
@@ -59,25 +63,21 @@ While the balance sheet is a *snapshot*, the **Income Statement** is a *motion p
 
 The basic structure for a **service business** like a hospital:
 
-```
-Net Revenue (Patient Services)
-   −  Cost of Services
-   =  Gross Profit
-   −  Operating Expenses
-   =  Net Income
-```
+**Income Statement structure:**
+
+- `Net Revenue (Patient Services)`
+- `− Cost of Services`
+- `= Gross Profit`
+- `− Operating Expenses`
+- `= Net Income`
 
 For a **retail business**, the COGS calculation includes inventory:
 
-```
-COGS  =  Beginning Inventory  +  Net Purchases  −  Ending Inventory
-```
+**Formula:** `COGS = Beginning Inventory + Net Purchases − Ending Inventory`
 
 **Net Sales** is calculated after removing returns and discounts:
 
-```
-Net Sales  =  Gross Sales  −  Sales Returns  −  Sales Discounts
-```
+**Formula:** `Net Sales = Gross Sales − Sales Returns − Sales Discounts`
 
 > **Harborside Example:** Gross patient service revenue was $4,680,000. After contractual adjustments of $430,000 (insurance discounts), net revenue = $4,250,000. After subtracting cost of services ($2,285,000) and operating expenses ($1,420,000), Harborside's net income = $545,000.
 
@@ -109,9 +109,7 @@ The net change in cash reconciles the opening and closing cash balances on the B
 
 A single year's numbers don't mean much without context. **Trend Analysis** solves this by expressing each year's amount as a percentage of a *base year*.
 
-```
-Trend %  =  Current Year Amount  ÷  Base Year Amount
-```
+**Formula:** `Trend % = Current Year Amount ÷ Base Year Amount`
 
 The base year is always 100%. Every other year shows whether performance improved or declined relative to that starting point.
 
@@ -172,5 +170,3 @@ Answer these five questions before class. Refer back to the sections above — t
 | **Return on Equity** | Net Income ÷ Owner's Equity — measures how effectively equity generates profit |
 
 ---
-
-*BUS123 — Solving Business Problems with Technology · Gerrish School of Business · Endicott College · Fall 2026*

@@ -16,17 +16,17 @@
   "Harborside does not run on one pay type. Hourly staff cover variable patient flow. Salaried managers hold consistent responsibility. Commission can support outreach. Per-visit pay handles flexible specialist coverage.",
   "A 52,000-dollar salary costs the same annually no matter the pay period. What changes is the timing and size of each check. Weekly means 52 checks; biweekly means 26. Students often forget semimonthly is not the same as biweekly.",
   "Overtime is where payroll stops feeling linear. Hours beyond 40 carry a 1.5x premium. In Excel, separating regular hours from overtime hours makes the model transparent and auditable. The worked example uses 43 hours and 44 dollars per hour.",
-  "Live You Try It pause one. Students open the Live You Try It tab and use the exact pay-cycle and overtime numbers from slides 7 and 8: 52,000 dollars, 52 weekly periods, 43 hours, 40 regular hours, and a 44-dollar hourly rate. The feedback cells are self-graded, so the goal is to revise until the formulas work.",
+  "Live You Try It pause one. Students open the Live You Try It tab and use rows 5 through 7. They type the exact pay-cycle and overtime givens from slides 7 and 8 into columns C through G first, then build formulas in column H by referencing those input cells. Column J is self-graded feedback for revision.",
   "Part two moves from individual paychecks to the full payroll register. Gross pay is the starting line, not the finish line.",
   "A payroll register is a control document. It separates gross pay, deductions, and net pay by employee group so the clinic can explain every dollar in every period.",
   "Different pay structures create different incentives. Piece rate rewards volume. Commission rewards revenue. Salary rewards consistency. Salary plus commission blends stability and growth. Harborside needs to decide which incentive fits each role \u2014 not just which formula is easiest to calculate.",
   "Before the Excel activity, walk through this worked example together. Eight nurses, 43 hours each. The first 40 hours are regular; the last 3 are overtime at 1.5x. Ask students: which lever moves weekly payroll the most \u2014 more employees, more hours, or a higher rate?",
-  "Live You Try It pause two. Students stay in the Live You Try It tab and model the nurse team from the worked example: 8 nurses, 43 hours each, 44 dollars per hour, and overtime at 1.5 times the regular rate. They should use the feedback to check team regular pay, team overtime pay, and team gross pay.",
+  "Live You Try It pause two. Students stay in the Live You Try It tab and use rows 9 through 11 for the nurse team from the worked example: 8 nurses, 43 hours each, 44 dollars per hour, and overtime at 1.5 times the regular rate. Have them type the givens in columns C through G before writing the formulas in column H.",
   "Part three changes the time horizon completely. Payroll is a cash event this week. Depreciation is an accounting allocation that spreads the cost of long-lived equipment across the years of service it provides.",
   "Depreciation is not cash leaving the bank each year \u2014 the cash left when the asset was purchased. Depreciation is the accounting estimate of how much of that asset was consumed during the period. It helps match cost to the benefit received.",
   "Straight-line depreciation is the default for a reason: it is predictable, transparent, and easy to explain to a board or auditor. When an asset provides steady service \u2014 like a diagnostic imaging unit used daily \u2014 equal annual expense makes sense.",
   "This is our Common Mistake slide. Students often confuse depreciation expense with accumulated depreciation. Expense is what goes on the income statement this year. Accumulated depreciation is the running total of all prior expense. Book value is cost minus accumulated \u2014 not cost minus this year's expense alone.",
-  "Live You Try It pause three. Students use the exact ultrasound unit numbers from the depreciation worked example: 84,000 dollar cost, 12,000 dollar residual value, and 6 years. Their self-check should confirm annual depreciation of 12,000 dollars, year 3 accumulated depreciation of 36,000 dollars, and year 3 book value of 48,000 dollars.",
+  "Live You Try It pause three. Students use rows 13 through 15 and type the exact ultrasound unit numbers from the depreciation worked example before writing formulas: 84,000 dollar cost, 12,000 dollar residual value, 6 years, and the year 3 values already shown in the deck. Their self-check should confirm annual depreciation, accumulated depreciation, and book value.",
   "Now shift from self-graded practice to the Class Challenge tab. Live You Try It gives hints and feedback one formula at a time; Class Challenge is the graded or next-level activity where students combine payroll, scheduling, depreciation, and business interpretation.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Three things to carry out of today: pay type shapes behavior, overtime changes payroll quickly, and straight-line depreciation makes long-run asset cost predictable. The Excel activity will give you practice with all three.",
@@ -551,16 +551,16 @@ Gross pay = $1,958</div>
           <div class="copy">
             <div class="try-panel">
               <h3>Open the workbook</h3>
-              <p>Go to <strong>Live You Try It</strong> and complete the first payroll pause using the exact slide numbers.</p>
+              <p>Go to <strong>Live You Try It</strong>. Type the slide givens into columns C-G first, then build formulas in column H.</p>
               <div class="timer-chip">Rows 5-7 · self-graded feedback</div>
             </div>
           </div>
           <div class="visual">
             <div class="mini-sheet">
               <div class="mini-row mini-head"><div>Given</div><div>Build</div><div>Self-check</div></div>
-              <div class="mini-row"><div>$52,000 salary<br>52 weekly periods</div><div>weekly paycheck</div><div class="result">$1,000</div></div>
-              <div class="mini-row"><div>43 hours<br>$44 per hour</div><div>regular + overtime pay</div><div class="result">$1,958</div></div>
-              <div class="mini-row"><div>40-hour threshold<br>1.5x overtime</div><div>gross pay formula</div><div class="result">revise until green</div></div>
+              <div class="mini-row"><div>Row 5 inputs<br>$52,000 and 52</div><div>H5 formula</div><div class="result">$1,000</div></div>
+              <div class="mini-row"><div>Row 6 inputs<br>40 and $44</div><div>H6 formula</div><div class="result">$1,760</div></div>
+              <div class="mini-row"><div>Row 7 inputs<br>43, 40, $44, 1.5x</div><div>H7 formula</div><div class="result">$1,958</div></div>
             </div>
           </div>
         </div>
@@ -700,14 +700,14 @@ Gross: $14,080 + $1,584 = $15,664</div>
           <div class="copy">
             <div class="lead">Use the exact nurse-team example from the slide before it.</div>
             <div style="margin-top:24px;" class="body-text">
-              In <strong>Live You Try It</strong>, calculate team regular pay, team overtime pay, and team gross pay. The feedback is for revision, not grading.
+              In <strong>Live You Try It</strong>, use rows 9-11. Type the givens in columns C-G, build formulas in column H, and use column J feedback for revision.
             </div>
           </div>
           <div class="visual">
             <div class="act-card">
               <h3 style="font-size:32px;line-height:1.22;">8 nurses · 43 hours<br>$44/hr</h3>
-              <p>Model the 40 regular hours first, then isolate the 3 overtime hours at 1.5x.</p>
-              <code>Live You Try It rows 9-11</code>
+              <p>Model the 40 regular hours first, then isolate the 3 overtime hours at 1.5x. Start with the input cells, not hard-coded answers.</p>
+              <code>Rows 9-11 · formulas in H</code>
             </div>
           </div>
         </div>
@@ -859,16 +859,16 @@ Gross: $14,080 + $1,584 = $15,664</div>
           <div class="copy">
             <div class="try-panel">
               <h3>Same ultrasound numbers</h3>
-              <p>Use the diagnostic ultrasound example: $84,000 cost, $12,000 residual value, and 6-year useful life.</p>
+              <p>Use the diagnostic ultrasound example. Type the givens first, then build formulas in column H.</p>
               <div class="timer-chip">Rows 13-15 · self-graded feedback</div>
             </div>
           </div>
           <div class="visual">
             <div class="mini-sheet">
               <div class="mini-row mini-head"><div>Given</div><div>Build</div><div>Self-check</div></div>
-              <div class="mini-row"><div>$84,000 - $12,000<br>over 6 years</div><div>annual depreciation</div><div class="result">$12,000</div></div>
-              <div class="mini-row"><div>Year 3<br>three years recorded</div><div>accumulated depreciation</div><div class="result">$36,000</div></div>
-              <div class="mini-row"><div>Cost minus accumulated</div><div>Year 3 book value</div><div class="result">$48,000</div></div>
+              <div class="mini-row"><div>Row 13 inputs<br>$84,000, $12,000, 6</div><div>H13 formula</div><div class="result">$12,000</div></div>
+              <div class="mini-row"><div>Row 14 inputs<br>$12,000 and 3</div><div>H14 formula</div><div class="result">$36,000</div></div>
+              <div class="mini-row"><div>Row 15 inputs<br>$84,000 and $36,000</div><div>H15 formula</div><div class="result">$48,000</div></div>
             </div>
           </div>
         </div>

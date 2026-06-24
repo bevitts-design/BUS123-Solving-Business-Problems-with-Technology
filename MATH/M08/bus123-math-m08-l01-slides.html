@@ -11,7 +11,7 @@
 <script type="application/json" id="speaker-notes">
 [
   "Welcome everyone. Today we start one of the most important ideas in all of finance \u2014 money has a time dimension, and today we learn to measure it. Three parts: why time affects value, how to move money forward with simple interest, and how to discount future cash flows back to today.",
-  "Here is the road map. Part 1 is the economic logic \u2014 three forces that make future money worth less. Part 2 is simple interest and future value \u2014 the I=PRT family. Part 3 is discounting and present value \u2014 including the Excel PV function. Activity at the end ties all three parts together with a Meridian DCF model.",
+  "Here is the road map. Part 1 is the economic logic \u2014 three forces that make future money worth less. Part 2 is simple interest and future value \u2014 the I=PRT family. Part 3 is discounting and present value \u2014 including the Excel PV function. Live You Try It pauses are self-check practice, and the Class Challenge is the next-level workbook task.",
   "These are the four things students will be able to do by the end of class today. Notice that objectives 3 and 4 both say in Excel \u2014 every concept has a spreadsheet expression. Manual math first, then the function.",
   "Let's start with a real decision. Meridian has a client who can take ten thousand dollars today or ten thousand five hundred in one year. Most students will say take the future money \u2014 bigger number. Walk them through the advisor's question: what can ten thousand earn right now? At 6% it grows to 10,600 \u2014 more than the offer. The instinct is wrong. This is why TVM matters.",
   "Three economic forces explain why future money is always worth less. Inflation erodes purchasing power. Opportunity cost means idle money isn't growing. Risk means future promises can fail. All three pull in the same direction \u2014 down. The discount rate you use captures all three simultaneously.",
@@ -21,15 +21,15 @@
   "Future value is just I = PRT rearranged. Add the interest back to principal. FV equals P times open paren 1 plus R times T close paren. The growth factor is the key insight \u2014 every dollar of principal becomes 1.04125 dollars at 5.5% for 9 months. No Excel function for simple interest FV \u2014 build the formula directly.",
   "Worked example with numbers. A Meridian client puts 8,000 in a corporate note at 5.5% for 9 months. Step one: convert time. 9 over 12 equals 0.75 years. Step two: I = 8000 times 0.055 times 0.75 = 330 dollars. Step three: FV = 8000 plus 330 = 8,330. Excel formula: =8000*(1+0.055*0.75). Walk through each step.",
   "The formula rearranges to solve for any one variable when the other two are known. Solve for principal, rate, or time. Meridian example: client paid 19.48 dollars in interest at 9.5% for 90 days ordinary. What was the principal? T = 0.25, P = 19.48 divided by (0.095 times 0.25) = 820.21 dollars. Real analysts solve for unknowns constantly.",
-  "Excel worksheet replica showing how to build the I=PRT model cleanly. Each input in its own cell with a label. Formula in F column uses cell references not hardcoded numbers. This makes the model auditable \u2014 anyone can trace every number. Point out the formula bar showing =C2*D2*E2.",
+  "Live You Try It pause. Have students open the Live You Try It tab and complete the rows for slide 10 and slide 11. They should type the slide givens into the yellow cells first, then build formulas from those cells. Reinforce that the feedback is self-check coaching, not grading.",
   "Now Part 2 \u2014 running the math backward. Discounting asks: what is a future promise worth today? This is the reverse operation. PV equals FV divided by the discount factor. The discount factor is 1 plus R times T \u2014 always greater than 1, so PV is always less than FV. The economic meaning: present value is the fair price of waiting.",
   "Meridian client example for manual PV. A corporate contract promises 25,000 in 18 months at 7% discount rate. Step one: convert time to 1.5 years. Step two: discount factor = 1 plus 0.07 times 1.5 = 1.105. Step three: PV = 25,000 divided by 1.105 = 22,624 dollars. The 2,376 dollar gap is the cost of waiting \u2014 that is what discounting measures.",
-  "Now the Excel PV function. Syntax: =PV(rate, nper, pmt, fv, type). For lump sum problems with simple interest: rate is the period rate, nper is periods, pmt is zero, fv is the future amount. Critical: the result comes back negative \u2014 it represents money you must pay out today. Sanity check: use =FV to verify the round trip.",
+  "Live You Try It pause for discounting. Students copy the 25,000 receivable, 7 percent rate, and 18-month term into the yellow cells, then build manual PV and =PV formulas. The point is to see the same business question solved two ways and to notice the negative =PV sign.",
   "Sign convention is the most common source of confusion. Excel treats outflows as negative and inflows as positive. When you discount a receivable, the PV is negative because you would need to invest that amount today. Entering FV as negative does not cause an error \u2014 it just flips the sign of the result, producing a positive PV that looks right but means the opposite.",
   "Common mistake \u2014 the most important slide in Part 2. Students see a negative PV result, panic, and manually add a minus sign. Now the answer is doubly wrong. The correct approach: understand what the sign means. If you are valuing a receivable \u2014 money coming to you \u2014 the negative PV means the present cost of acquiring that future receipt. Do not flip it blindly.",
   "The PV table shows how the same 100 dollars loses value the farther out it is. At 5%, a dollar in 10 years is worth only 61 cents today. Higher rates make the discount steeper \u2014 at 10%, that same dollar in 10 years is only 39 cents. This table builds intuition before students see the formula.",
   "FV and PV are two directions of the same operation. FV grows money forward \u2014 multiply by the growth factor. PV discounts money back \u2014 divide by the discount factor. They are inverses. =PV(5%,3,0,115) returns negative 99.34. =FV(5%,3,0,-99.34) returns 115. That round trip is the verification students should run every time.",
-  "Now the activity \u2014 a multi-payment DCF model. Meridian client has a stream of five future receivables. Students discount each one back to today using manual PV formula and then the =PV function. Sum the present values. This is the foundation of every business valuation. The reflection question: should the client sell the stream for 75,000 today?",
+  "Final Live You Try It pause. Students use rows 19 through 24 on the Live You Try It tab to enter the five DCF payments, discount each one at 6 percent, and total the present values. The Class Challenge tab then extends these same skills as the graded or next-level activity.",
   "Discussion questions for the last ten minutes. Computational: which receivable loses the most value to discounting and why? Conceptual: in plain language, why does a higher discount rate always reduce present value? Applied: the client is offered 75,000 today for the stream. Based on your model at 6%, should they accept?",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Three things to take from today. First: time erodes value \u2014 inflation, opportunity cost, and risk all work against future money. Second: I=PRT and FV=P(1+RT) move money forward \u2014 T must always be in years. Third: PV equals FV over the discount factor \u2014 and in Excel, =PV returns a negative result that means what you must invest today. Next module: compound interest, where interest earns interest.",
@@ -363,7 +363,7 @@
             </div>
             <div class="agenda-item">
               <div class="agenda-num" style="color:var(--muted);">4</div>
-              <div><div class="agenda-label">Meridian DCF Activity</div><div class="agenda-sub">Build a discounted cash flow model for a stream of receivables</div></div>
+              <div><div class="agenda-label">Live Pauses + Class Challenge</div><div class="agenda-sub">Self-check the slide examples, then level up with the workbook challenge</div></div>
             </div>
           </div>
         </div>
@@ -632,33 +632,36 @@
         </div>
       </section>
 
-      <!-- SLIDE 11 · Excel worksheet demo -->
+      <!-- SLIDE 11 · Live You Try It: Simple Interest -->
       <section class="slide paper" data-section="2" data-slide="12" data-index="11">
         <div class="slide-inner">
-          <div class="eyebrow gold anim-1">Part 2 · Excel Setup</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Building the Simple Interest Model in Excel</h2></div>
+          <div class="eyebrow gold anim-1">Live You Try It · Open the Workbook</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Pause 1–2: Build the Simple Interest Rows</h2></div>
           <div class="title-rule gold"></div>
           <div class="two-col wide-left anim-3">
             <div class="xls-wrap">
               <table class="xls-table">
-                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+                <thead><tr><th>Workbook Rows</th><th>Slide Givens to Type First</th><th>Formula to Build</th></tr></thead>
                 <tbody>
-                  <tr><td class="row-num">1</td><td style="font-weight:600;color:#1a1a2e;">Client</td><td style="font-weight:600;color:#1a1a2e;">Principal (P)</td><td style="font-weight:600;color:#1a1a2e;">Rate (R)</td><td style="font-weight:600;color:#1a1a2e;">Time (T yrs)</td><td style="font-weight:600;color:#1a1a2e;">Interest (I)</td><td style="font-weight:600;color:#1a1a2e;">FV</td></tr>
-                  <tr><td class="row-num">2</td><td>Loan A</td><td>5,000</td><td>0.06</td><td>2</td><td class="formula-cell">=B2*C2*D2</td><td class="formula-cell">=B2*(1+C2*D2)</td></tr>
-                  <tr><td class="row-num">3</td><td>Loan B</td><td>12,000</td><td>0.055</td><td>0.75</td><td class="formula-cell">=B3*C3*D3</td><td class="formula-cell">=B3*(1+C3*D3)</td></tr>
-                  <tr class="result-row"><td class="row-num">4</td><td>Loan C</td><td>30,000</td><td>0.072</td><td>0.5</td><td class="formula-cell">=B4*C4*D4</td><td class="formula-cell">=B4*(1+C4*D4)</td></tr>
+                  <tr><td>Live 6–8</td><td>$8,000 · 0.055 · 9 months</td><td class="formula-cell">=D7*E7*F7<br>=D8*(1+E8*F8)</td></tr>
+                  <tr><td>Live 10–11</td><td>$19.48 interest · 0.095 · 90 days · 360 basis</td><td class="formula-cell">=D10/E10<br>=D11/(E11*F11)</td></tr>
+                  <tr class="result-row"><td>Feedback</td><td>Yellow cells first</td><td>Then read the green feedback cells</td></tr>
                 </tbody>
               </table>
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;">
               <div class="card">
-                <h4 class="sage">Model Rules</h4>
+                <h4 class="sage">Self-Graded Practice</h4>
                 <ul class="bullet-list sage" style="font-size:13px;">
-                  <li>One input per cell — no combining P, R, T</li>
-                  <li>Rate always as decimal (0.06, not 6%)</li>
-                  <li>Time always in years before entry</li>
-                  <li>Formula column uses only cell references</li>
+                  <li>Type the slide numbers into the yellow input cells first</li>
+                  <li>Build the formula by clicking those input cells</li>
+                  <li>If feedback says check givens, fix the yellow cells before the formula</li>
+                  <li>This tab is practice only; it is not in the private rubric</li>
                 </ul>
+              </div>
+              <div class="card tinted">
+                <h4 class="gold">Class Challenge will use these slide worksheet rows</h4>
+                <p class="body-text" style="font-size:12px;">Loan B: 12,000 · 0.055 · 0.75<br>Loan C: 30,000 · 0.072 · 0.5</p>
               </div>
             </div>
           </div>
@@ -713,38 +716,31 @@
         </div>
       </section>
 
-      <!-- SLIDE 14 · =PV() function syntax -->
+      <!-- SLIDE 14 · Live You Try It: PV -->
       <section class="slide paper" data-section="3" data-slide="15" data-index="14">
         <div class="slide-inner">
-          <div class="eyebrow terra anim-1">Part 3 · Excel PV Function</div>
-          <div class="header-row anim-2"><h2 class="slide-title">The =PV() Function — Syntax First</h2></div>
+          <div class="eyebrow terra anim-1">Live You Try It · Present Value</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Pause 3: Discount the $25,000 Receivable Two Ways</h2></div>
           <div class="title-rule terra"></div>
-          <div class="anim-3">
-            <div class="formula-panel">
-              <div class="label">Excel Syntax</div>
-              <code><span class="fn">=PV(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, [<span class="arg">fv</span>], [<span class="arg">type</span>])</span></code>
-            </div>
-          </div>
-          <div class="two-col anim-4" style="grid-template-columns:1.6fr 1fr;margin-top:4px;">
+          <div class="two-col wide-left anim-3">
             <div class="xls-wrap">
               <table class="xls-table">
-                <thead><tr><th>Argument</th><th>Meaning</th><th>For Lump Sum</th></tr></thead>
+                <thead><tr><th>Workbook Rows</th><th>Slide Givens to Type First</th><th>Formula to Build</th></tr></thead>
                 <tbody>
-                  <tr><td style="font-weight:600;color:var(--sage);">rate</td><td>Interest rate per period</td><td>Annual rate (for 1-period)</td></tr>
-                  <tr><td style="font-weight:600;color:var(--gold);">nper</td><td>Total number of periods</td><td>Years (simple interest)</td></tr>
-                  <tr><td style="font-weight:600;color:var(--muted);">pmt</td><td>Recurring payment</td><td>Enter <strong>0</strong></td></tr>
-                  <tr><td style="font-weight:600;color:var(--terra);">fv</td><td>Future amount to discount</td><td>Enter as <strong>positive</strong></td></tr>
-                  <tr class="result-row"><td>Result</td><td>Present value today</td><td>Returns <strong>negative</strong></td></tr>
+                  <tr><td>Live 13</td><td>18 months · 12 months per year</td><td class="formula-cell">=D13/E13</td></tr>
+                  <tr><td>Live 14</td><td>0.07 rate · 1.5 years</td><td class="formula-cell">=1+D14*E14</td></tr>
+                  <tr><td>Live 15</td><td>$25,000 · 0.07 · 1.5</td><td class="formula-cell">=D15/(1+E15*F15)</td></tr>
+                  <tr class="result-row"><td>Live 16</td><td>0.07 · 1.5 · $25,000</td><td class="formula-cell">=PV(D16,E16,0,F16)</td></tr>
                 </tbody>
               </table>
             </div>
             <div style="display:flex;flex-direction:column;gap:10px;">
               <div class="formula-panel">
-                <div class="label">Meridian Example</div>
-                <code><span class="fn">=PV(7%, 1.5, 0, 25000)</span><span class="comment">// Returns: −$22,624.43</span><span class="comment">// Negative = amount to invest today</span></code>
+                <div class="label">Excel Syntax</div>
+                <code><span class="fn">=PV(rate, nper, 0, fv)</span><span class="comment">// Use 0 for pmt on a single future lump sum</span><span class="comment">// Positive fv returns a negative PV outflow</span></code>
               </div>
               <div class="highlight-box terra">
-                <p><strong>Verify:</strong> =FV(7%, 1.5, 0, −22624.43) → $25,000 ✓<br><span style="font-size:12px;">Always run the round trip.</span></p>
+                <p><strong>Stop and compare:</strong> manual PV and =PV should match in absolute value. If =PV is negative, that is Excel’s cash-flow sign convention, not a mistake.</p>
               </div>
             </div>
           </div>
@@ -888,21 +884,22 @@
         </div>
       </section>
 
-      <!-- SLIDE 19 · DCF Stream Activity -->
+      <!-- SLIDE 19 · Live You Try It: DCF Stream -->
       <section class="slide paper" data-section="4" data-slide="20" data-index="19">
         <div class="slide-inner">
-          <div class="eyebrow anim-1">Activity · Meridian DCF Model</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Valuing a Stream of Future Receivables</h2></div>
+          <div class="eyebrow anim-1">Live You Try It · Meridian DCF Model</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Pause 4: Value the Stream Before the Challenge</h2></div>
           <div class="title-rule sage"></div>
           <div class="two-col wide-right anim-3">
             <div class="card tinted" style="display:flex;flex-direction:column;gap:8px;">
-              <h4 class="sage">The Scenario</h4>
-              <p class="body-text" style="font-size:13px;">A Meridian corporate client holds a contract that pays five lump sums over 5 years. They want to know the total value of this stream in today's dollars at a <strong>6% discount rate</strong>. A buyer has offered $75,000 cash today. Should they accept?</p>
+              <h4 class="sage">Open Live You Try It · Rows 19–24</h4>
+              <p class="body-text" style="font-size:13px;">A Meridian corporate client holds a contract that pays five lump sums over 5 years. Type each payment, the <strong>6%</strong> discount rate, and the year into the yellow cells first. Then build one PV formula per row.</p>
               <div class="formula-panel" style="margin-top:8px;">
                 <div class="label">Your Formula for Each Row</div>
                 <code>=FV/(1+rate*years)<span class="comment">// Manual PV — one row per payment</span>=PV(rate, years, 0, FV)<span class="comment">// Excel function — same result</span>
-=SUM(G13:G17)<span class="comment">// Total present value</span></code>
+=SUM(G19:G23)<span class="comment">// Total present value in the Live tab</span></code>
               </div>
+              <p class="body-text" style="font-size:12px;">The <strong>Class Challenge</strong> tab is the graded or next-level activity. Live You Try It stays self-graded.</p>
             </div>
             <div class="xls-wrap">
               <table class="dcf-table">
@@ -1032,7 +1029,7 @@
 <!-- Nav Controls -->
 <div class="nav-controls">
   <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 24</span>
+  <span class="slide-counter" id="counter">1 / 25</span>
   <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
   <button class="nav-btn" onclick="toggleNotes()" title="Speaker Notes (N)" style="font-size:12px;">N</button>
 </div>

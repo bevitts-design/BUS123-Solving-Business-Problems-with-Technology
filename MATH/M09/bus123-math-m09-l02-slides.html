@@ -15,15 +15,17 @@
   "Annuity defined. Equal payments at equal intervals. Ordinary annuity: payments at end of each period \u2014 default in Excel. Annuity due: payments at beginning. Two types of problems: grow a savings goal with periodic deposits (FV + pmt), or pay down a loan with periodic payments (PV + pmt).",
   "The pmt sign convention. Same logic as pv: money leaving your pocket is negative. For loans \u2014 you receive the principal today (positive pv) and make payments out each month (negative pmt). For savings \u2014 you invest each period (negative pmt) and receive the balance at the end (positive FV). Mixing up signs does not crash Excel \u2014 it just gives a wrong answer.",
   "=PMT() syntax. Rate, nper, pv, fv, type. For loan payment problems: rate = period rate, nper = total periods, pv = loan amount as positive, fv = 0 (loan paid off). Result is negative \u2014 outflow, your monthly payment. Always read =PMT() result as an absolute value when communicating to clients.",
-  "Meridian client mortgage. $320,000 loan at 6.5% for 30 years, monthly payments. Rate = 6.5%/12. Nper = 30*12 = 360. =PMT(6.5%/12, 360, 320000) returns negative $2,023.13. That is the monthly payment. Manual check: multiply by 360 to get total paid \u2014 $728,326. Total interest = $408,326.",
-  "=FV() with recurring payments. Same =FV() function \u2014 just pmt is no longer zero. A Meridian client contributes $500 per month into a retirement account at 7% annual for 30 years. Rate=7%/12, nper=360, pmt=-500, pv=0. Monthly contribution leaves the pocket \u2014 negative. Result: $606,438. That is the power of regular investing.",
-  "=PV() with recurring payments. What is a stream of equal payments worth today? Meridian client will receive $1,500/month for 10 years. Discount rate 5% annual. Rate=5%/12, nper=120, pmt=1500, fv=0. Result: negative $141,799 \u2014 present cost of acquiring that stream. The sign means outflow to buy it today.",
+  "Meridian client mortgage. $320,000 loan at 6.5% for 30 years, monthly payments. Rate = 6.5%/12. Nper = 30*12 = 360. =PMT(6.5%/12, 360, 320000) returns negative $2,022.62. That is the monthly payment. Manual check: multiply by 360 to get total paid \u2014 $728,142. Total interest = $408,142.",
+  "Live You Try It pause. Students enter the $320,000 mortgage, 6.5% rate, and 30-year term into yellow cells, then build PMT, total paid, and total interest formulas.",
+  "=FV() with recurring payments. Same =FV() function \u2014 just pmt is no longer zero. A Meridian client contributes $500 per month into a retirement account at 7% annual for 30 years. Rate=7%/12, nper=360, pmt=-500, pv=0. Monthly contribution leaves the pocket \u2014 negative. Result: $609,985. That is the power of regular investing.",
+  "=PV() with recurring payments. What is a stream of equal payments worth today? Meridian client will receive $1,500/month for 10 years. Discount rate 5% annual. Rate=5%/12, nper=120, pmt=1500, fv=0. Result: negative $141,422 \u2014 present cost of acquiring that stream. The sign means outflow to buy it today.",
+  "Live You Try It pause. Students model the $500 monthly savings example and the $1,500 monthly payment stream using formulas that reference the input cells.",
   "Ordinary annuity versus annuity due. Ordinary: payments at end of each period, type=0, Excel default. Annuity due: payments at beginning of each period, type=1. Annuity due always produces a slightly higher PV or FV because each payment earns one extra period of interest. Most loan and savings problems use ordinary annuity \u2014 type=0.",
-  "Total interest calculation. Take the =PMT() result, multiply by nper for total paid, subtract original pv for total interest. For the mortgage: $2,023.13 times 360 = $728,326 total paid. $728,326 minus $320,000 = $408,326 in interest. This number is the cost of borrowing over 30 years.",
+  "Total interest calculation. Take the =PMT() result, multiply by nper for total paid, subtract original pv for total interest. For the mortgage: $2,022.62 times 360 = $728,142 total paid. $728,142 minus $320,000 = $408,142 in interest. This number is the cost of borrowing over 30 years.",
   "Impact of extra payments. One extra payment per year on that mortgage: the payoff period drops from 30 years to about 25 years and saves approximately $93,000 in interest. The math: recalculate with pmt increased by 1/12 of one payment. Small changes in pmt have large effects over long horizons.",
-  "Common mistake. Using annual rate and annual nper for a monthly payment problem. =PMT(6.5%, 30, 320000) returns -$27,006 per year \u2014 looks like a plausible annual number, not obviously wrong. But the actual monthly payment is $2,023. Always ask: what is the compounding period for this problem? Rate and nper must match.",
+  "Common mistake. Using annual rate and annual nper for a monthly payment problem. =PMT(6.5%, 30, 320000) returns -$24,505 per year \u2014 looks like a plausible annual number, not obviously wrong. But the actual monthly payment is $2,023. Always ask: what is the compounding period for this problem? Rate and nper must match.",
   "Worked example combining L01 and L02. Meridian client has two goals: pay off a $25,000 car loan at 4.9% over 5 years monthly, and simultaneously save $200/month in a 6% annual account. What is the monthly car payment? What is the savings account value at year 5? This is a real client scenario.",
-  "Student activity. Three parts. A: calculate monthly mortgage payment and total interest for a Meridian client purchase. B: build a retirement savings model \u2014 how much does a client need to contribute monthly to reach $500,000 in 25 years at 7%? C: what is the present value of a 10-year annuity at 5%?",
+  "Class Challenge setup. Students now use the Class Challenge tab for the formula-graded work: mortgage cost, monthly cash flow, payment streams, and the lump-sum versus monthly-investing comparison.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Discussion. Computational: for the mortgage, what is the total interest cost? Conceptual: why does a longer loan term lower the monthly payment but increase total interest paid? Applied: a client asks whether to make a $50,000 lump sum investment today or $500 per month for 10 years at 6%. Which produces more FV?",
   "Key takeaways. PMT: =PMT(rate,nper,pv,0) \u2014 result is negative, read as absolute value. FV with payments: =FV(rate,nper,pmt,pv) \u2014 pmt and pv both negative for regular investing. PV with payments: =PV(rate,nper,pmt,0) \u2014 pmt positive for received payments. Rate and nper always match the payment period.",
@@ -1003,8 +1005,8 @@
           <div class="title-rule gold"></div>
           <div class="two-col anim-3">
             <div>
-              <div class="formula-panel"><div class="label">Excel — Monthly Payment</div><code><span class="fn">=PMT(6.5%/12, 30*12, 320000)</span><span class="comment">// rate=6.5%/12  nper=360  pv=320,000</span><span class="comment">// Returns: −$2,023.13</span></code></div>
-              <div class="math-panel" style="margin-top:12px;"><div class="label">Total Cost Analysis</div><code>Monthly payment: <span class="result">$2,023.13</span><br>Total paid: 2,023.13 × 360 = <span class="result">$728,326</span><br>Original loan:             <span class="result">$320,000</span><br>Total interest:            <span class="result">$408,326</span></code></div>
+              <div class="formula-panel"><div class="label">Excel — Monthly Payment</div><code><span class="fn">=PMT(6.5%/12, 30*12, 320000)</span><span class="comment">// rate=6.5%/12  nper=360  pv=320,000</span><span class="comment">// Returns: −$2,022.62</span></code></div>
+              <div class="math-panel" style="margin-top:12px;"><div class="label">Total Cost Analysis</div><code>Monthly payment: <span class="result">$2,022.62</span><br>Total paid: 2,022.62 × 360 = <span class="result">$728,142</span><br>Original loan:             <span class="result">$320,000</span><br>Total interest:            <span class="result">$408,142</span></code></div>
             </div>
             <div class="xls-wrap">
               <table class="xls-table">
@@ -1025,8 +1027,35 @@
         </div>
       </section>
 
+
+      <!-- LIVE YOU TRY IT · Mortgage PMT pause -->
+      <section class="slide paper" data-section="2" data-slide="8" data-index="7">
+        <div class="slide-inner">
+          <div class="eyebrow sage anim-1">Live You Try It · 5 Minutes</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Rebuild the $320,000 Mortgage Model</h2></div>
+          <div class="title-rule sage"></div>
+          <div class="two-col anim-3">
+            <div class="xls-wrap">
+              <table class="xls-table">
+                <thead><tr><th>Input</th><th>From Slide</th><th>Why It Matters</th></tr></thead>
+                <tbody>
+                  <tr><td>Loan Amount</td><td>$320,000</td><td>PV for =PMT()</td></tr>
+                  <tr><td>Annual Rate</td><td>6.5%</td><td>Convert to monthly</td></tr>
+                  <tr><td>Years</td><td>30</td><td>Convert to 360 months</td></tr>
+                  <tr class="result-row"><td>Total Interest</td><td>$408,142</td><td>Formula output becomes client advice</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="card"><h4 class="sage">Workbook Move</h4><p class="body-text">In <strong>Live You Try It</strong>, type the givens first. Then calculate monthly PMT, total paid, and total interest from those input cells.</p></div>
+              <div class="formula-panel"><div class="label">Formula Skeleton</div><code><span class="fn">=PMT(E6/G6,F6*G6,D6,0)</span><span class="comment">// monthly rate · total months · loan amount</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SLIDE 7 · =FV() with pmt -->
-      <section class="slide paper" data-section="3" data-slide="8" data-index="7">
+      <section class="slide paper" data-section="3" data-slide="9" data-index="8">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">Part 3 · =FV() with Payments</div>
           <div class="header-row anim-2"><h2 class="slide-title">Monthly Savings — Building a Retirement Account</h2></div>
@@ -1034,12 +1063,12 @@
           <div class="two-col anim-3">
             <div>
               <div class="card" style="margin-bottom:12px;"><h4 class="terra">Meridian Client Scenario</h4><p class="body-text" style="font-size:14px;">A client contributes <strong>$500/month</strong> to a retirement account earning <strong>7% annual</strong> for <strong>30 years</strong>. How much will they have?</p></div>
-              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=FV(7%/12, 30*12, <span class="neg">−500</span>, 0)</span><span class="comment">// pmt negative = monthly deposit out</span><span class="comment">// Returns: $606,438.29</span></code></div>
-              <div class="math-panel" style="margin-top:12px;"><div class="label">What They Contributed</div><code>Total deposited: 500 × 360 = <span class="result">$180,000</span><br>Account value:              <span class="result">$606,438</span><br>Growth from compounding:    <span class="result">$426,438</span></code></div>
+              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=FV(7%/12, 30*12, <span class="neg">−500</span>, 0)</span><span class="comment">// pmt negative = monthly deposit out</span><span class="comment">// Returns: $609,985.50</span></code></div>
+              <div class="math-panel" style="margin-top:12px;"><div class="label">What They Contributed</div><code>Total deposited: 500 × 360 = <span class="result">$180,000</span><br>Account value:              <span class="result">$609,985</span><br>Growth from compounding:    <span class="result">$429,985</span></code></div>
             </div>
             <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
               <h4 class="gold">The Power of Regular Investing</h4>
-              <p class="body-text" style="font-size:13px;">The client put in $180,000 over 30 years. Compounding turned it into $606,438 — <strong>3.4× their total contributions.</strong></p>
+              <p class="body-text" style="font-size:13px;">The client put in $180,000 over 30 years. Compounding turned it into $609,985 — <strong>3.4× their total contributions.</strong></p>
               <div class="highlight-box sage"><p><strong>Key insight:</strong> The earlier the contributions start, the more compounding periods each dollar has. Missing the first 5 years of contributions costs far more than $30,000 in deposits.</p></div>
               <div class="formula-panel" style="margin-top:4px;"><div class="label">Starting with a Lump Sum</div><code><span class="fn">=FV(7%/12, 360, <span class="neg">−500</span>, <span class="neg">−10000</span>)</span><span class="comment">// pv=−10000 AND pmt=−500</span><span class="comment">// Both negative — both are outflows</span></code></div>
             </div>
@@ -1048,7 +1077,7 @@
       </section>
 
       <!-- SLIDE 8 · =PV() with pmt -->
-      <section class="slide paper" data-section="3" data-slide="9" data-index="8">
+      <section class="slide paper" data-section="3" data-slide="10" data-index="9">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · =PV() with Payments</div>
           <div class="header-row anim-2"><h2 class="slide-title">Valuing a Payment Stream — What Is It Worth Today?</h2></div>
@@ -1056,11 +1085,11 @@
           <div class="two-col anim-3">
             <div>
               <div class="card" style="margin-bottom:12px;"><h4 class="terra">Meridian Client Scenario</h4><p class="body-text" style="font-size:14px;">A client will receive <strong>$1,500/month</strong> for <strong>10 years</strong>. Discount rate <strong>5% annual</strong>. What is the stream worth today?</p></div>
-              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=PV(5%/12, 10*12, <span class="val">1500</span>, 0)</span><span class="comment">// pmt positive = payments received</span><span class="comment">// Returns: −$141,799</span><span class="comment">// Negative = cost to acquire this stream today</span></code></div>
+              <div class="formula-panel"><div class="label">Excel</div><code><span class="fn">=PV(5%/12, 10*12, <span class="val">1500</span>, 0)</span><span class="comment">// pmt positive = payments received</span><span class="comment">// Returns: −$141,422</span><span class="comment">// Negative = cost to acquire this stream today</span></code></div>
             </div>
             <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
               <h4 class="gold">DM Sanspreting the Result</h4>
-              <p class="body-text" style="font-size:13px;">The stream pays out $1,500 × 120 = <strong>$180,000</strong> total. But in today's dollars at 5%, it is only worth <strong>$141,799</strong>.</p>
+              <p class="body-text" style="font-size:13px;">The stream pays out $1,500 × 120 = <strong>$180,000</strong> total. But in today's dollars at 5%, it is only worth <strong>$141,422</strong>.</p>
               <p class="body-text" style="font-size:13px;">The negative means <em>outflow</em> — what you would pay today to acquire this stream. If someone offers to sell the stream for $130,000, it's a good deal. At $155,000, it's overpriced.</p>
               <div class="highlight-box sage" style="margin-top:4px;"><p><strong>Compare to DCF from M08:</strong> In M08 we discounted individual payments and summed them. =PV() with pmt does the same calculation in one step — but only for <em>equal</em> payments.</p></div>
             </div>
@@ -1068,8 +1097,30 @@
         </div>
       </section>
 
+
+      <!-- LIVE YOU TRY IT · Savings and PV pause -->
+      <section class="slide paper" data-section="3" data-slide="11" data-index="10">
+        <div class="slide-inner">
+          <div class="eyebrow terra anim-1">Live You Try It · 6 Minutes</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Two Payment Streams, Two Different Questions</h2></div>
+          <div class="title-rule terra"></div>
+          <div class="two-col anim-3">
+            <div class="card" style="border-left:3px solid var(--gold);">
+              <h4 class="gold">Future Value with Deposits</h4>
+              <p class="body-text">$500/month · 7% annual · 30 years. Build the =FV() formula from the yellow input cells, then calculate total contributed.</p>
+              <div class="formula-panel" style="margin-top:10px;"><div class="label">Target Structure</div><code><span class="fn">=FV(E9/G9,F9*G9,-D9,0)</span></code></div>
+            </div>
+            <div class="card" style="border-left:3px solid var(--terra);">
+              <h4 class="terra">Present Value of Payments</h4>
+              <p class="body-text">$1,500/month · 5% annual · 10 years. Build the =PV() formula and interpret why the result is negative.</p>
+              <div class="formula-panel" style="margin-top:10px;"><div class="label">Target Structure</div><code><span class="fn">=PV(E11/G11,F11*G11,D11,0)</span></code></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SLIDE 9 · Ordinary vs annuity due -->
-      <section class="slide paper" data-section="3" data-slide="10" data-index="9">
+      <section class="slide paper" data-section="3" data-slide="12" data-index="11">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Payment Timing</div>
           <div class="header-row anim-2"><h2 class="slide-title">Ordinary Annuity vs. Annuity Due</h2></div>
@@ -1089,7 +1140,7 @@
       </section>
 
       <!-- SLIDE 10 · Total interest calculation -->
-      <section class="slide paper" data-section="3" data-slide="11" data-index="10">
+      <section class="slide paper" data-section="3" data-slide="13" data-index="12">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Total Cost of Borrowing</div>
           <div class="header-row anim-2"><h2 class="slide-title">Total Interest — The True Cost of a Loan</h2></div>
@@ -1099,16 +1150,16 @@
               <table class="pmt-table">
                 <thead><tr><th>Loan Term</th><th>Monthly PMT</th><th>Total Paid</th><th>Total Interest</th></tr></thead>
                 <tbody>
-                  <tr><td class="key">10 years</td><td>$3,614</td><td>$433,714</td><td class="val">$113,714</td></tr>
-                  <tr><td class="key">15 years</td><td>$2,790</td><td>$502,178</td><td class="val">$182,178</td></tr>
-                  <tr><td class="key">20 years</td><td>$2,393</td><td>$574,221</td><td class="val">$254,221</td></tr>
-                  <tr><td class="key">30 years</td><td>$2,023</td><td>$728,326</td><td class="val">$408,326</td></tr>
+                  <tr><td class="key">10 years</td><td>$3,634</td><td>$436,024</td><td class="val">$116,024</td></tr>
+                  <tr><td class="key">15 years</td><td>$2,788</td><td>$501,758</td><td class="val">$181,758</td></tr>
+                  <tr><td class="key">20 years</td><td>$2,386</td><td>$572,600</td><td class="val">$252,600</td></tr>
+                  <tr><td class="key">30 years</td><td>$2,023</td><td>$728,142</td><td class="val">$408,142</td></tr>
                 </tbody>
               </table>
               <p style="font-size:11px;color:var(--muted);padding:6px 12px;font-style:italic;">$320,000 loan at 6.5% — all monthly</p>
             </div>
             <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card"><h4 class="terra">The Trade-Off</h4><p class="body-text" style="font-size:13px;">Longer term → lower monthly payment → much more total interest. The 30-year borrower pays <strong>$294,612 more</strong> than the 10-year borrower over the life of the loan.</p></div>
+              <div class="card"><h4 class="terra">The Trade-Off</h4><p class="body-text" style="font-size:13px;">Longer term → lower monthly payment → much more total interest. The 30-year borrower pays <strong>$292,118 more</strong> than the 10-year borrower over the life of the loan.</p></div>
               <div class="formula-panel"><div class="label">Total Interest Formula</div><code><span class="fn">Total Interest = ABS(PMT) × nper − PV</span><span class="comment">// In Excel: =ABS(B7)*B6-B2</span></code></div>
               <div class="highlight-box gold"><p>This is one of the most impactful calculations a financial advisor can show a client. A clear table like this drives real decisions.</p></div>
             </div>
@@ -1117,22 +1168,22 @@
       </section>
 
       <!-- SLIDE 11 · Combined example -->
-      <section class="slide paper" data-section="3" data-slide="12" data-index="11">
+      <section class="slide paper" data-section="3" data-slide="14" data-index="13">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Combining L01 and L02</div>
           <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Two Simultaneous Goals</h2></div>
           <div class="title-rule terra"></div>
           <div class="two-col anim-3">
             <div>
-              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Goal 1 — Car Loan</h4><p class="body-text" style="font-size:13px;">$25,000 at 4.9% for 5 years, monthly payments.</p><div class="formula-panel" style="margin-top:8px;"><div class="label">Excel</div><code><span class="fn">=PMT(4.9%/12, 60, 25000, 0)</span><span class="comment">// Returns: −$471.66/month</span></code></div></div>
+              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Goal 1 — Car Loan</h4><p class="body-text" style="font-size:13px;">$25,000 at 4.9% for 5 years, monthly payments.</p><div class="formula-panel" style="margin-top:8px;"><div class="label">Excel</div><code><span class="fn">=PMT(4.9%/12, 60, 25000, 0)</span><span class="comment">// Returns: −$470.64/month</span></code></div></div>
               <div class="card"><h4 class="gold">Goal 2 — Retirement Savings</h4><p class="body-text" style="font-size:13px;">$200/month at 6% annual for 5 years.</p><div class="formula-panel" style="margin-top:8px;"><div class="label">Excel</div><code><span class="fn">=FV(6%/12, 60, <span class="neg">−200</span>, 0)</span><span class="comment">// Returns: $13,954.01</span></code></div></div>
             </div>
             <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
               <h4>Summary — Monthly Cash Flow</h4>
               <table style="width:100%;border-collapse:collapse;font-size:13px;">
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Car payment</td><td style="padding:6px 0;font-weight:600;color:var(--terra);">−$471.66/mo</td></tr>
+                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Car payment</td><td style="padding:6px 0;font-weight:600;color:var(--terra);">−$470.64/mo</td></tr>
                 <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Retirement savings</td><td style="padding:6px 0;font-weight:600;color:var(--terra);">−$200.00/mo</td></tr>
-                <tr style="border-bottom:2px solid var(--border);"><td style="padding:6px 0;font-weight:500;color:var(--text);">Total monthly outflow</td><td style="padding:6px 0;font-weight:700;color:var(--text);">$671.66</td></tr>
+                <tr style="border-bottom:2px solid var(--border);"><td style="padding:6px 0;font-weight:500;color:var(--text);">Total monthly outflow</td><td style="padding:6px 0;font-weight:700;color:var(--text);">$670.64</td></tr>
                 <tr><td style="padding:6px 0;color:var(--text-soft);">Savings balance at 5 yrs</td><td style="padding:6px 0;font-weight:600;color:var(--sage);">$13,954</td></tr>
               </table>
               <div class="highlight-box gold" style="margin-top:4px;"><p>This is a real client conversation: two competing goals, one cash flow constraint. =PMT() and =FV() together give the complete picture in seconds.</p></div>
@@ -1142,39 +1193,39 @@
       </section>
 
       <!-- SLIDE 12 · COMMON MISTAKE -->
-      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="13" data-index="12">
+      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="15" data-index="14">
         <div class="slide-inner">
           <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
           <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Annual Rate and Annual nper for a Monthly Payment Problem</h2>
           <div class="two-col anim-3">
             <div>
               <div style="background:rgba(156,74,43,0.12);border:1px solid rgba(156,74,43,0.4);border-left:4px solid var(--terra);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">❌ The Mistake</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Using annual rate and years instead of monthly rate and months for a monthly payment calculation.</p></div>
-              <div class="formula-panel"><div class="label">Wrong Formula</div><code>=PMT(<span class="neg">6.5%</span>, <span class="neg">30</span>, 320000)<span class="comment">// rate=annual, nper=years</span><span class="comment">// Returns: −$27,006/year ← looks plausible</span><span class="comment">// But monthly payment is $2,023</span></code></div>
+              <div class="formula-panel"><div class="label">Wrong Formula</div><code>=PMT(<span class="neg">6.5%</span>, <span class="neg">30</span>, 320000)<span class="comment">// rate=annual, nper=years</span><span class="comment">// Returns: −$24,505/year ← looks plausible</span><span class="comment">// But monthly payment is $2,023</span></code></div>
             </div>
             <div>
               <div style="background:rgba(74,124,94,0.1);border:1px solid rgba(74,124,94,0.3);border-left:4px solid var(--sage);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">✓ Correct — Match Period to Payment Frequency</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">For monthly payments, use monthly rate and total months. Always ask: what is the payment frequency?</p></div>
-              <div class="formula-panel"><div class="label">Correct Formula</div><code>=PMT(<span class="val">6.5%/12</span>, <span class="val">30*12</span>, 320000)<span class="comment">// rate=monthly  nper=months</span><span class="comment">// Returns: −$2,023.13/month ✓</span></code></div>
+              <div class="formula-panel"><div class="label">Correct Formula</div><code>=PMT(<span class="val">6.5%/12</span>, <span class="val">30*12</span>, 320000)<span class="comment">// rate=monthly  nper=months</span><span class="comment">// Returns: −$2,022.62/month ✓</span></code></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- SLIDE 13 · Student Practice -->
-      <section class="slide paper" data-section="4" data-slide="14" data-index="13">
+      <section class="slide paper" data-section="4" data-slide="16" data-index="15">
         <div class="slide-inner">
-          <div class="eyebrow anim-1">Student Practice · 10 Minutes</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Meridian Activity — Three Problems</h2></div>
+          <div class="eyebrow anim-1">Class Challenge · Set Up</div>
+          <div class="header-row anim-2"><h2 class="slide-title">Class Challenge — Connect PMT, FV, and PV</h2></div>
           <div class="title-rule sage"></div>
           <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
-            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Part A — Mortgage Payment (3 min)</h4><p class="body-text" style="font-size:14px;">A Meridian client buys a home for $450,000 at 7.25% for 25 years, monthly payments. Calculate the monthly payment, total paid, and total interest. Build the model with cell references.</p></div>
-            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Part B — Retirement Goal (4 min)</h4><p class="body-text" style="font-size:14px;">A client wants $500,000 in 25 years. Their account earns 7% annual, compounded monthly. How much must they contribute per month? Use =PMT() — hint: pv=0, fv=500000, solve for pmt.</p></div>
-            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Part C — Annuity Valuation (3 min)</h4><p class="body-text" style="font-size:14px;">What is the present value of $2,000/month for 15 years at a 6% annual discount rate? Use =PV(). Is this stream worth more or less than its total nominal value?</p></div>
+            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Rows 1-6 — Mortgage Cost</h4><p class="body-text" style="font-size:14px;">Start with the $320,000 mortgage, then compare the 30-year and 10-year interest tradeoff from the slide table.</p></div>
+            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Rows 7-10 — Monthly Cash Flow</h4><p class="body-text" style="font-size:14px;">Connect the $25,000 car loan, $200/month savings goal, and $500,000 retirement target into one formula-based worksheet.</p></div>
+            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Rows 11-15 — Payment Streams</h4><p class="body-text" style="font-size:14px;">Value the $2,000/month stream and compare a $50,000 lump sum against $500/month invested for 10 years at 6%.</p></div>
           </div>
         </div>
       </section>
 
       <!-- SLIDE 14 · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="15" data-index="14">
+      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
@@ -1186,18 +1237,18 @@
           </div>
         </div>
       </section>
-<section class="slide paper" data-section="4" data-slide="16" data-index="15" data-label="16 Formula Reference Card" id="slide-16">
+<section class="slide paper" data-section="4" data-slide="18" data-index="17" data-label="18 Formula Reference Card" id="slide-18">
   <div class="formula-reference-slide">
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
     <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
     <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Monthly loan payment</td><td class="pattern">=PMT(rate/12,years*12,pv,0)</td><td>Calculates the required monthly loan payment.</td><td class="watch">Result is usually negative because payment is an outflow.</td></tr><tr><td>Total paid</td><td class="pattern">=ABS(PMT)*Nper</td><td>Multiplies payment by the number of periods.</td><td class="watch">Use ABS so the comparison is positive.</td></tr><tr><td>Total interest</td><td class="pattern">=TotalPaid-PV</td><td>Shows borrowing cost above the original loan amount.</td><td class="watch">Use the original PV, not the future balance.</td></tr><tr><td>Savings required payment</td><td class="pattern">=PMT(rate/12,years*12,0,fv)</td><td>Finds the monthly deposit needed to reach a goal.</td><td class="watch">Use fv as the goal and pv as zero if starting from zero.</td></tr><tr><td>Future value with payments</td><td class="pattern">=FV(rate/12,years*12,-pmt,-pv)</td><td>Projects savings with repeated deposits.</td><td class="watch">Payments and starting balance are outflows.</td></tr><tr><td>Annuity present value</td><td class="pattern">=PV(rate/12,years*12,pmt,0)</td><td>Values a stream of equal payments today.</td><td class="watch">Use the sign convention consistently.</td></tr></tbody></table>
   </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">16 / 23</div>
+  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">18 / 25</div>
 </section>
 
       <!-- SLIDE 15 · Key Takeaways -->
-      <section class="slide paper" data-section="4" data-slide="17" data-index="16">
+      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
@@ -1212,7 +1263,7 @@
       </section>
 
       <!-- SLIDE 16 · Module Complete -->
-      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
+      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Module 09 Complete</div>
           <div class="header-row anim-2"><h2 class="slide-title">The Full TVM Toolkit</h2></div>
@@ -1226,7 +1277,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · PMT Sensitivity -->
-      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
+      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Sensitivity Check</div>
           <div class="header-row anim-2"><h2 class="slide-title">What Moves a Payment the Most?</h2></div>
@@ -1239,7 +1290,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="20" data-index="19">
+      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Discussion</div>
           <div class="header-row anim-2"><h2 class="slide-title">Payment Affordable, Loan Expensive?</h2></div>
@@ -1252,7 +1303,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Key Takeaways Extension -->
-      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
+      <section class="slide paper" data-section="4" data-slide="23" data-index="22">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Key Takeaways</div>
           <div class="header-row anim-2"><h2 class="slide-title">Three Checks Before You Trust PMT</h2></div>
@@ -1266,7 +1317,7 @@
       </section>
 
       <!-- RETROFIT SLIDE · Up Next -->
-      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
+      <section class="slide paper" data-section="4" data-slide="24" data-index="23">
         <div class="slide-inner">
           <div class="eyebrow gold anim-1">Up Next</div>
           <div class="header-row anim-2"><h2 class="slide-title">From TVM Functions to Integrated Models</h2></div>
@@ -1279,7 +1330,7 @@
       </section>
 
       <!-- SLIDE 17 · Close -->
-      <section class="slide dark" data-section="4" data-slide="23" data-index="22">
+      <section class="slide dark" data-section="4" data-slide="25" data-index="24">
         <div class="slide-inner" style="align-items:center;text-align:center;">
           <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
           <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L02 · Meridian Advisory Group</div>
@@ -1297,7 +1348,7 @@
 </div>
 <div class="nav-controls">
   <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 22</span>
+  <span class="slide-counter" id="counter">1 / 25</span>
   <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
   <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
 </div>
@@ -1307,7 +1358,7 @@
 </div>
 <script>
   const slides=Array.from(document.querySelectorAll('.slide'));
-  const TOTAL=slides.length; let current=0,notesVisible=false;
+  const TOTAL=slides.length; let current=0,notesVisible=false; document.getElementById('counter').textContent=`1 / ${TOTAL}`;
   const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
   const W=1280,H=720;
   function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}

@@ -132,11 +132,15 @@ h3 { font-size: 28px; }
 .hero p { max-width: 760px; color: var(--text-soft); font-size: 18px; }
 
 .command-center {
+  position: relative;
+  left: 50%;
+  width: min(1320px, calc(100vw - 48px));
   margin: 22px 0 10px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   align-items: start;
+  transform: translateX(-50%);
 }
 
 .class-pack,
@@ -465,6 +469,11 @@ h3 { font-size: 28px; }
   .nav { justify-content: flex-start; }
   .hero::before { display: none; }
   .hero { padding: 38px 0 24px; }
+  .command-center {
+    left: auto;
+    width: 100%;
+    transform: none;
+  }
   h1 { font-size: 42px; }
   h2 { font-size: 34px; }
   h3 { font-size: 25px; }

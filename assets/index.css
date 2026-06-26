@@ -302,6 +302,14 @@ h3 { font-size: 28px; }
   gap: 8px;
 }
 
+.catch-up-section {
+  margin: 0 0 34px;
+}
+
+.catch-up-section .catch-up-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .catch-up-action {
   min-width: 0;
   min-height: 88px;
@@ -485,6 +493,7 @@ h3 { font-size: 28px; }
 
 @media (max-width: 900px) {
   .command-center, .controls { grid-template-columns: 1fr; }
+  .catch-up-section .catch-up-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .filters { justify-content: flex-start; }
 }
 

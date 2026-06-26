@@ -384,6 +384,16 @@ const catchUpHtml = [
   })
 ].join("");
 
+const catchUpSectionHtml = `<section class="catch-up catch-up-section" aria-labelledby="catch-up-title">
+        <div class="panel-heading compact">
+          <div>
+            <div class="meta">Need a shortcut?</div>
+            <h2 id="catch-up-title">Catch Up</h2>
+          </div>
+        </div>
+        <div class="catch-up-grid">${catchUpHtml}</div>
+      </section>`;
+
 const filterButton = (group, value, label, active = false) =>
   `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
 
@@ -449,15 +459,6 @@ const html = `<!DOCTYPE html>
                 ${sequenceSnapshotItem("Next up", sortedLessons[currentIndex + 1])}
               </div>
             </section>
-            <section class="catch-up" aria-labelledby="catch-up-title">
-              <div class="panel-heading compact">
-                <div>
-                  <div class="meta">Need a shortcut?</div>
-                  <h2 id="catch-up-title">Catch Up</h2>
-                </div>
-              </div>
-              <div class="catch-up-grid">${catchUpHtml}</div>
-            </section>
           </div>
         </div>
       </div>
@@ -465,6 +466,7 @@ const html = `<!DOCTYPE html>
 
     <div class="shell">
       ${tracks}
+      ${catchUpSectionHtml}
       <p class="empty" data-empty hidden>No matching lessons found.</p>
     </div>
 

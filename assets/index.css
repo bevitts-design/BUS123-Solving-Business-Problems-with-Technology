@@ -134,8 +134,8 @@ h3 { font-size: 28px; }
 .command-center {
   position: relative;
   left: 50%;
-  width: min(1320px, calc(100vw - 48px));
-  margin: 22px 0 10px;
+  width: min(1240px, calc(100vw - 64px));
+  margin: 18px 0 8px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
@@ -150,6 +150,10 @@ h3 { font-size: 28px; }
   background: rgba(255, 255, 255, .86);
   padding: 18px;
   box-shadow: 0 12px 28px rgba(53, 87, 115, .07);
+}
+
+.class-pack {
+  padding: 16px;
 }
 
 .panel-heading {
@@ -188,7 +192,7 @@ h3 { font-size: 28px; }
 .class-pack-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 9px;
 }
 
 .class-pack-step {
@@ -196,11 +200,11 @@ h3 { font-size: 28px; }
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--paper);
-  padding: 14px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  min-height: 218px;
+  gap: 7px;
+  min-height: 178px;
 }
 
 .class-pack-step > span {

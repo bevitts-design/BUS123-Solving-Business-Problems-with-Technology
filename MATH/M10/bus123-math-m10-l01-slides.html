@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATH-M10-L01 &middot; Stocks, Bonds, and Mutual Funds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0E1116;
+      --paper:#FAF8F3;
+      --paper-2:#F2EEE5;
+      --white:#FFFFFF;
+      --text:#1A1F2C;
+      --text-soft:#4A5567;
+      --muted:#7A8290;
+      --border:#E5E1D6;
+      --sage:#4A7C5E;
+      --gold:#B8843D;
+      --terra:#9C4A2B;
+      --steel:#355773;
+      --formula-bg:#EAF3EC;
+      --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+      --serif:"Bodoni Moda",serif;
+      --sans:"DM Sans",sans-serif;
+      --mono:"JetBrains Mono",monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);font-family:var(--sans);color:var(--text)}
+    .deck-shell{position:fixed;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;display:flex;background:var(--ink)}
+    .tab-strip{width:84px;background:var(--ink);padding:18px 12px;display:flex;flex-direction:column;gap:10px;border-right:1px solid rgba(250,248,243,.14)}
+    .home-dot{width:28px;height:28px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer;margin:0 auto 18px}
+    .tab{border:1px solid rgba(250,248,243,.18);background:transparent;color:rgba(250,248,243,.72);border-radius:8px;padding:12px 6px;font:700 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .tab.active{background:var(--paper);color:var(--ink)}
+    .stage{position:relative;width:1196px;height:720px;background:var(--ink);overflow:hidden}
+    .slide{position:absolute;inset:0;display:none;padding:48px 58px}
+    .slide.active{display:block}
+    .slide.dark{background:var(--ink);color:var(--paper)}
+    .slide.paper{background:var(--paper);color:var(--text)}
+    .slide.terra{background:var(--terra);color:var(--paper)}
+    .gradient-bar{height:8px;width:170px;background:var(--gradient);border-radius:99px;margin-bottom:28px}
+    .eyebrow{font:700 15px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+    .dark .eyebrow,.terra .eyebrow{color:var(--gold)}
+    h1,h2,h3,p{margin:0}
+    h1{font-family:var(--serif);font-size:72px;line-height:.93;max-width:880px}
+    h2{font-family:var(--serif);font-size:46px;line-height:1.02;margin-bottom:20px}
+    h3{font-size:24px;line-height:1.2;margin-bottom:10px}
+    p,.body{font-size:20px;line-height:1.42;color:var(--text-soft)}
+    .dark p,.terra p{color:rgba(250,248,243,.78)}
+    .subtitle{font-family:var(--serif);font-style:italic;font-size:30px;color:rgba(250,248,243,.8);margin-top:22px;max-width:780px}
+    .rule{height:3px;background:var(--sage);width:100%;margin:2px 0 28px}
+    .gold-rule{background:var(--gold)}
+    .terra-rule{background:var(--terra)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:22px;min-height:118px}
+    .card.tint{background:var(--paper-2)}
+    .card strong{color:var(--text)}
+    .num{font-family:var(--serif);font-size:72px;line-height:1;color:var(--sage);font-weight:900}
+    .big-stat{font-family:var(--serif);font-size:140px;line-height:.85;color:var(--gold);font-weight:900}
+    .formula-panel{background:var(--formula-bg);color:var(--ink);border-left:4px solid var(--sage);padding:20px 22px;border-radius:8px;font-family:var(--mono);font-size:18px;font-weight:500;line-height:1.45}
+    .formula-panel .fn{display:block;font-size:22px;font-weight:700;color:var(--steel);margin-bottom:14px}
+    .formula-panel .result{display:block;color:var(--sage);font-weight:700;margin-top:8px}
+    .formula-panel .comment{display:block;color:var(--text-soft)}
+    .mini-sheet{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--white)}
+    .mini-row{display:grid;grid-template-columns:repeat(6,1fr)}
+    .mini-row.cols-5{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr}
+    .mini-row div{padding:10px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:17px;min-height:42px}
+    .mini-row div:last-child{border-right:0}
+    .mini-head div{background:var(--ink);color:var(--gold);font-family:var(--mono);font-weight:700}
+    .mini-result div{background:var(--formula-bg);font-weight:700;color:var(--sage)}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .process .step{background:var(--white);border-left:5px solid var(--sage);padding:18px;border-radius:8px;min-height:120px}
+    .callout{background:var(--paper-2);border:1px solid var(--border);border-left:5px solid var(--gold);border-radius:8px;padding:20px}
+    .yellow-cell{display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--mono);font-weight:700;padding:3px 8px;border-radius:4px}
+    .nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:20}
+    .nav button{width:38px;height:38px;border:1px solid rgba(250,248,243,.22);border-radius:8px;background:var(--ink);color:var(--paper);font:700 16px var(--mono);cursor:pointer}
+    .counter{font:700 13px var(--mono);color:var(--paper);background:var(--ink);border:1px solid rgba(250,248,243,.22);border-radius:8px;padding:11px 14px}
+    .notes{position:fixed;left:104px;right:24px;bottom:70px;display:none;background:var(--ink);color:var(--paper);border:1px solid rgba(250,248,243,.2);border-radius:8px;padding:18px 20px;z-index:18}
+    .notes.visible{display:block}
+    .notes strong{display:block;color:var(--gold);font:700 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+  </style>
+</head>
+<body>
+  <div class="deck-shell">
+    <nav class="tab-strip" aria-label="Slide sections">
+      <button class="home-dot" onclick="goTo(0)" aria-label="Go to title slide"></button>
+      <button class="tab" data-section="1" onclick="jumpSection(1)">Stocks</button>
+      <button class="tab" data-section="2" onclick="jumpSection(2)">Returns</button>
+      <button class="tab" data-section="3" onclick="jumpSection(3)">Bonds Funds</button>
+    </nav>
+    <main class="stage">
+      <section class="slide dark active" data-section="0">
+        <div class="gradient-bar"></div>
+        <div class="eyebrow">MATH-M10-L01 &middot; Meridian Advisory Group</div>
+        <h1>Stocks, Bonds, and Mutual Funds</h1>
+        <p class="subtitle">Turning market data into Excel-backed investment decisions.</p>
+      </section>
+
+      <section class="slide paper" data-section="0">
+        <div class="eyebrow">Today&apos;s Desk</div>
+        <h2>Three Investment Math Moves</h2>
+        <div class="rule"></div>
+        <div class="grid-3">
+          <div class="card"><div class="num">1</div><h3>Read the stock quote</h3><p>Bid, ask, last price, dividend yield, and P/E interpretation.</p></div>
+          <div class="card"><div class="num">2</div><h3>Measure stock returns</h3><p>Dividend allocation and ROI after commissions and dividends.</p></div>
+          <div class="card"><div class="num">3</div><h3>Compare pooled choices</h3><p>Bond price, current yield, mutual fund NAV, and purchase cost.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="0">
+        <div class="eyebrow">I Can</div>
+        <h2>By the end, you can defend a recommendation</h2>
+        <div class="rule"></div>
+        <div class="grid-2">
+          <div class="card tint"><h3>Calculate</h3><p>Use Excel formulas for spreads, dividends, ROI, bond yield, and NAV.</p></div>
+          <div class="card"><h3>Interpret</h3><p>Explain what each result means to a Meridian client.</p></div>
+          <div class="card"><h3>Extract</h3><p>Pull inputs out of a scenario before touching the final answer cell.</p></div>
+          <div class="card tint"><h3>Check</h3><p>Use the Live You Try It feedback before moving into Class Challenge.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="0">
+        <div class="eyebrow">Bridge from M09</div>
+        <h2>Investment math still asks: what is this cash flow worth?</h2>
+        <div class="rule"></div>
+        <div class="grid-2">
+          <div class="callout"><h3>Stocks</h3><p>You pay today for a share of future profits and possible price appreciation.</p></div>
+          <div class="callout"><h3>Bonds</h3><p>You lend money today and receive interest plus principal later.</p></div>
+          <div class="callout"><h3>Mutual funds</h3><p>Your money is pooled into a basket; NAV prices one share of that basket.</p></div>
+          <div class="formula-panel"><span class="fn">Excel habit for today</span><span class="comment">Inputs first. Formulas second. Interpretation last.</span></div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-section="1">
+        <div class="gradient-bar"></div>
+        <div class="eyebrow">Part 1</div>
+        <h1>Reading the stock quote</h1>
+        <p class="subtitle">The quote is not the answer. It is the input map.</p>
+      </section>
+
+      <section class="slide paper" data-section="1">
+        <div class="eyebrow">MAGH Quote</div>
+        <h2>What do we know before we calculate?</h2>
+        <div class="rule"></div>
+        <div class="mini-sheet">
+          <div class="mini-row mini-head"><div>Symbol</div><div>Last</div><div>Bid</div><div>Ask</div><div>52-Wk Low</div><div>P/E</div></div>
+          <div class="mini-row"><div>MAGH</div><div>$39.62</div><div>$39.55</div><div>$39.68</div><div>$31.20</div><div>18.4</div></div>
+          <div class="mini-row mini-result"><div>Dividend/share</div><div>$1.21</div><div>Spread?</div><div>Above low?</div><div>Yield?</div><div>Interpret?</div></div>
+        </div>
+        <p style="margin-top:24px;">Students should identify which cells are inputs before building the formulas.</p>
+      </section>
+
+      <section class="slide paper" data-section="1">
+        <div class="eyebrow">Worked Example</div>
+        <h2>Three quick reads from the quote</h2>
+        <div class="rule"></div>
+        <div class="grid-2">
+          <div class="formula-panel"><span class="fn">=Ask - Bid</span><span class="comment">=$39.68 - $39.55</span><span class="result">Bid-ask spread = $0.13</span></div>
+          <div class="formula-panel"><span class="fn">=Last - 52WeekLow</span><span class="comment">=$39.62 - $31.20</span><span class="result">Above low = $8.42</span></div>
+          <div class="formula-panel"><span class="fn">=Dividend / Last</span><span class="comment">=$1.21 / $39.62</span><span class="result">Dividend yield = 3.05%</span></div>
+          <div class="card tint"><h3>P/E interpretation</h3><p>A P/E ratio of <strong>18.4</strong> means investors pay about <strong>$18.40</strong> for every $1 of earnings.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="1">
+        <div class="eyebrow">Live You Try It</div>
+        <h2>Pause 1: rebuild the stock quote formulas</h2>
+        <div class="rule"></div>
+        <div class="grid-2">
+          <div class="card"><h3>In the workbook</h3><p>Open <strong>Live You Try It</strong>. Enter $39.55, $39.68, $39.62, $31.20, and 18.4 into the yellow input cells.</p></div>
+          <div class="card tint"><h3>Then build formulas</h3><p>Use the yellow input cells to calculate spread, dollars above the low, and P/E interpretation. Watch the feedback cells.</p></div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-section="2">
+        <div class="gradient-bar"></div>
+        <div class="eyebrow">Part 2</div>
+        <h1>Dividends and ROI</h1>
+        <p class="subtitle">Returns are not just price changes.</p>
+      </section>
+
+      <section class="slide paper" data-section="2">
+        <div class="eyebrow">Worked Example</div>
+        <h2>Preferred shareholders get paid first</h2>
+        <div class="rule gold-rule"></div>
+        <div class="process">
+          <div class="step"><h3>1</h3><p>Preferred dividend/share: 8% &times; $50 = $4.00</p></div>
+          <div class="step"><h3>2</h3><p>Total preferred: $4.00 &times; 1,000 = $4,000</p></div>
+          <div class="step"><h3>3</h3><p>Remainder: $10,000 &minus; $4,000 = $6,000</p></div>
+          <div class="step"><h3>4</h3><p>Common dividend/share: $6,000 &divide; 4,000 = $1.50</p></div>
+        </div>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(TotalDiv - (Rate * Par * PreferredShares)) / CommonShares</span><span class="comment">Use inputs, not typed answer numbers.</span></div>
+      </section>
+
+      <section class="slide paper" data-section="2">
+        <div class="eyebrow">Live You Try It</div>
+        <h2>Pause 2: build the dividend waterfall</h2>
+        <div class="rule gold-rule"></div>
+        <div class="grid-2">
+          <div class="card tint"><h3>Enter the givens</h3><p>$10,000 dividends, 8% preferred rate, $50 par, 1,000 preferred shares, 4,000 common shares.</p></div>
+          <div class="card"><h3>Reference those cells</h3><p>Calculate preferred dividend/share, total preferred dividend, remainder, and common dividend/share.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="2">
+        <div class="eyebrow">Worked Example</div>
+        <h2>ROI includes commissions and dividends</h2>
+        <div class="rule gold-rule"></div>
+        <div class="mini-sheet">
+          <div class="mini-row cols-5 mini-head"><div>Input</div><div>Shares</div><div>Buy</div><div>Sell</div><div>Commission</div></div>
+          <div class="mini-row cols-5"><div>MAGH trade</div><div>200</div><div>$39.09</div><div>$41.10</div><div>1%</div></div>
+          <div class="mini-row cols-5 mini-result"><div>Dividend/share</div><div>$1.21</div><div>Total cost</div><div>$7,896.18</div><div>ROI 6.12%</div></div>
+        </div>
+        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(NetProceeds - TotalBuyCost + Dividends) / TotalBuyCost</span><span class="comment">=($8,137.80 - $7,896.18 + $242.00) / $7,896.18</span><span class="result">ROI = 6.12%</span></div>
+      </section>
+
+      <section class="slide paper" data-section="2">
+        <div class="eyebrow">Live You Try It</div>
+        <h2>Pause 3: make ROI formula-driven</h2>
+        <div class="rule gold-rule"></div>
+        <div class="grid-2">
+          <div class="card"><h3>Input cells</h3><p>200 shares, $39.09 buy price, $41.10 sale price, 1% commission, $1.21 dividend/share.</p></div>
+          <div class="card tint"><h3>Formula cells</h3><p>Build buy cost, buy commission, sale proceeds, sell commission, dividends, and ROI by referencing the input cells.</p></div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-section="3">
+        <div class="gradient-bar"></div>
+        <div class="eyebrow">Part 3</div>
+        <h1>Bonds and pooled investments</h1>
+        <p class="subtitle">Different products, same discipline: map inputs before formulas.</p>
+      </section>
+
+      <section class="slide paper" data-section="3">
+        <div class="eyebrow">Worked Example</div>
+        <h2>A bond quote is a percent of par</h2>
+        <div class="rule terra-rule"></div>
+        <div class="grid-2">
+          <div class="formula-panel"><span class="fn">=QuotedPrice / 100 * FaceValue</span><span class="comment">=99.59 / 100 * $1,000</span><span class="result">Dollar price = $995.90</span></div>
+          <div class="formula-panel"><span class="fn">=AnnualInterest / DollarPrice</span><span class="comment">=(4% * $1,000) / $995.90</span><span class="result">Current yield = 4.02%</span></div>
+          <div class="card tint"><h3>Total purchase cost</h3><p>$995.90 &times; 5 bonds = <strong>$4,979.50</strong></p></div>
+          <div class="card"><h3>Total annual interest</h3><p>$40 &times; 5 bonds = <strong>$200.00</strong></p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="3">
+        <div class="eyebrow">Live You Try It</div>
+        <h2>Pause 4: convert the bond quote</h2>
+        <div class="rule terra-rule"></div>
+        <div class="grid-2">
+          <div class="card tint"><h3>Enter the givens</h3><p>$1,000 face value, 4% stated interest, 99.59 quoted price, and 5 bonds.</p></div>
+          <div class="card"><h3>Build the formulas</h3><p>Calculate dollar price, total cost, annual interest, total annual interest, and current yield.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="3">
+        <div class="eyebrow">Worked Example</div>
+        <h2>NAV prices one share of the fund</h2>
+        <div class="rule terra-rule"></div>
+        <div class="grid-2">
+          <div class="formula-panel"><span class="fn">=(Holdings - Liabilities) / Shares</span><span class="comment">=($5,550,000 - $770,000) / 600,000</span><span class="result">NAV = $7.97/share</span></div>
+          <div class="formula-panel"><span class="fn">=NAV * SharesToBuy</span><span class="comment">=$7.97 * 80</span><span class="result">Purchase cost = $637.60</span></div>
+          <div class="card tint"><h3>What the number means</h3><p>One mutual fund share represents a claim on the fund&apos;s net assets after liabilities.</p></div>
+          <div class="card"><h3>Live You Try It Pause 5</h3><p>Enter $5,550,000, $770,000, 600,000 shares, and 80 purchase shares; then build NAV and purchase cost formulas.</p></div>
+        </div>
+      </section>
+
+      <section class="slide terra" data-section="3">
+        <div class="eyebrow">Common Mistake</div>
+        <h2>Do not treat a bond quote as dollars</h2>
+        <div class="grid-2" style="margin-top:34px;">
+          <div class="card"><h3>Incorrect</h3><p>A quote of <strong>99.59</strong> means the bond costs $99.59.</p></div>
+          <div class="card"><h3>Correct</h3><p>A quote of <strong>99.59</strong> means 99.59% of $1,000, or $995.90.</p></div>
+        </div>
+        <p style="margin-top:28px;">That conversion changes every downstream answer: total cost, current yield, and premium/discount classification.</p>
+      </section>
+
+      <section class="slide paper" data-section="4">
+        <div class="eyebrow">Class Challenge</div>
+        <h2>Now the scenarios stop handing you the setup</h2>
+        <div class="rule"></div>
+        <div class="grid-2">
+          <div class="card"><h3>What changes</h3><p>The scenario includes every given, but the <span class="yellow-cell">yellow cells</span> are blank. Extract inputs before calculating.</p></div>
+          <div class="card tint"><h3>What is graded</h3><p>Only the final answer cells on <strong>Class Challenge</strong>. Live You Try It is self-graded practice only.</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="4">
+        <div class="eyebrow">FormulaReferenceCard</div>
+        <h2>Use syntax as a checklist, not a crutch</h2>
+        <div class="rule"></div>
+        <div class="grid-3">
+          <div class="card tint"><h3>Stock quote</h3><p>=Ask - Bid<br>=Dividend / Price</p></div>
+          <div class="card"><h3>Stock return</h3><p>=(NetProceeds - Cost + Dividends) / Cost</p></div>
+          <div class="card tint"><h3>Bond and fund</h3><p>=Quote / 100 * Face<br>=(Holdings - Liabilities) / Shares</p></div>
+        </div>
+      </section>
+
+      <section class="slide paper" data-section="4">
+        <div class="eyebrow">Discussion</div>
+        <h2>What would make MAGH client-ready?</h2>
+        <div class="rule gold-rule"></div>
+        <div class="grid-2">
+          <div class="card"><h3>Question 1</h3><p>Is a 6.12% ROI automatically attractive? What else should Meridian compare it against?</p></div>
+          <div class="card tint"><h3>Question 2</h3><p>When would a lower-yielding bond or diversified fund be the smarter recommendation?</p></div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-section="4">
+        <div class="gradient-bar"></div>
+        <div class="eyebrow">Close</div>
+        <h1>Inputs first. Formulas second. Advice last.</h1>
+        <p class="subtitle">Next: connect investment math to financial statement analysis.</p>
+      </section>
+    </main>
+  </div>
+  <div class="nav">
+    <button onclick="prevSlide()" aria-label="Previous slide">&larr;</button>
+    <span class="counter" id="counter">1 / 22</span>
+    <button onclick="nextSlide()" aria-label="Next slide">&rarr;</button>
+    <button onclick="toggleNotes()" aria-label="Toggle speaker notes">N</button>
+  </div>
+  <aside class="notes" id="notes"><strong>Speaker Notes</strong><span id="notes-text"></span></aside>
+  <script type="application/json" id="speaker-notes">
+[
+  "Welcome students to MATH-M10-L01. Today Meridian Advisory Group is using Excel to turn investment data into a recommendation.",
+  "Frame the agenda around three moves: stock quote reading, return measurement, and product comparison.",
+  "The learning goals are practical. Students should leave with calculation skill and interpretation skill.",
+  "Connect this lesson back to time value of money. Investments are cash-flow decisions, not just vocabulary.",
+  "Part 1 starts with stocks. The key teaching point is that a stock quote is a map of inputs.",
+  "Ask students what each quote field means before calculating. Emphasize bid, ask, last price, low, P/E, and dividend per share.",
+  "Walk the three formulas in order. Say the Excel syntax before the arithmetic so students hear the spreadsheet habit first.",
+  "Pause for workbook work. Have students enter the exact slide givens first, then build formulas in yellow cells.",
+  "Part 2 moves from quote reading to return measurement. Preferred dividends and ROI are both order-of-operations problems.",
+  "Work the preferred dividend waterfall. Preferred shareholders are paid first, then common shareholders split the remainder.",
+  "Pause for workbook work. Students should reference the input cells, not type the final answer into formulas.",
+  "Walk ROI as a full transaction. Point out that both commissions and dividends matter.",
+  "Pause for workbook work. Encourage students to build helper formulas instead of one giant ROI formula first.",
+  "Part 3 changes the investment product, but the workflow stays the same: identify inputs, build formulas, interpret.",
+  "Stress that bond quotes are percentages of par. This is the most common calculation trap.",
+  "Pause for workbook work. Students convert the quote, compute cost, interest, and current yield.",
+  "Walk NAV as a per-share pricing formula. Connect mutual fund pricing to fund holdings, liabilities, and shares outstanding, then pause for students to complete the NAV Live You Try It block.",
+  "Use the common mistake slide to slow students down. A quote of 99.59 is not a dollar price.",
+  "Transition to Class Challenge. The live practice scaffold disappears: scenarios include givens, but students must extract them.",
+  "Point students to the FormulaReferenceCard as a syntax reminder after they know which formula fits.",
+  "Use discussion to push beyond arithmetic. A correct calculation still needs investment context.",
+  "Close by repeating the workflow: inputs first, formulas second, advice last."
+]
+  </script>
+  <script>
+    var W=1280,H=720,deck=document.querySelector('.deck-shell'),slides=Array.from(document.querySelectorAll('.slide')),current=0,notesOpen=false,notes=JSON.parse(document.getElementById('speaker-notes').textContent);
+    function fit(){var s=Math.min(window.innerWidth/W,window.innerHeight/H);deck.style.transform='translate('+((innerWidth-W*s)/2)+'px,'+((innerHeight-H*s)/2)+'px) scale('+s+')'}
+    function show(){slides.forEach(function(slide,index){slide.classList.toggle('active',index===current)});document.getElementById('counter').textContent=(current+1)+' / '+slides.length;updateTabs();if(notesOpen){document.getElementById('notes-text').textContent=notes[current]||''}}
+    function goTo(n){current=Math.max(0,Math.min(slides.length-1,n));show()}
+    function nextSlide(){goTo(current+1)}
+    function prevSlide(){goTo(current-1)}
+    function jumpSection(section){var index=slides.findIndex(function(slide){return Number(slide.dataset.section)===section});if(index>=0){goTo(index)}}
+    function updateTabs(){var section=Number(slides[current].dataset.section);document.querySelectorAll('.tab').forEach(function(tab){tab.classList.toggle('active',Number(tab.dataset.section)===section)})}
+    function toggleNotes(){notesOpen=!notesOpen;document.getElementById('notes').classList.toggle('visible',notesOpen);show()}
+    window.addEventListener('resize',fit);document.addEventListener('keydown',function(event){if(event.key==='ArrowRight'||event.key===' '){event.preventDefault();nextSlide()}if(event.key==='ArrowLeft'){event.preventDefault();prevSlide()}if(event.key==='n'||event.key==='N'){toggleNotes()}});fit();show();
+  </script>
+</body>
+</html>

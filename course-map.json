@@ -464,6 +464,10 @@
       ],
       "materials": [
         {
+          "type": "Slides",
+          "path": "MATH/M10/bus123-math-m10-l01-slides.html"
+        },
+        {
           "type": "Reading",
           "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf"
         },

@@ -217,6 +217,30 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 }
 .widget-btn:hover{background:#3d6b4f;}
 
+/* ── LIVE YOU TRY IT PAUSES ── */
+.live-pause{
+  background:var(--formula-bg);
+  border:1px solid rgba(74,124,94,.28);
+  border-left:6px solid var(--sage);
+  border-radius:0 10px 10px 0;
+  padding:14px 16px;
+}
+.live-pause .live-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--sage);
+  font-weight:700;
+  margin-bottom:6px;
+}
+.live-pause p:last-child{
+  font-family:var(--sans);
+  font-size:13px;
+  line-height:1.45;
+  color:var(--text);
+}
+
 /* ── COMPARISON BOARD ── */
 .comp-row{display:flex;gap:16px;width:100%;}
 .comp-col{flex:1;background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
@@ -432,6 +456,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
         <div class="card-terra">
           <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--terra);margin-bottom:4px;">⚠ Watch Out</p>
           <p class="t-body-sm">The 42-minute outlier pulls the mean up to 19.6. Most days were 11–18 min. The mean alone is misleading here.</p>
+        </div>
+        <div class="live-pause">
+          <p class="live-label">Live You Try It</p>
+          <p>Open the workbook. Enter <strong>12, 15, 18, 11, 42</strong> in the yellow wait-time cells, then build AVERAGE and MEDIAN from those input cells.</p>
         </div>
       </div>
     </div>
@@ -701,6 +729,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
             <p style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px;">DECISION USE</p>
             <p class="t-body-sm">If SD jumped to 8+ hours, HR would flag a scheduling problem and investigate workload fairness.</p>
           </div>
+          <div class="live-pause">
+            <p class="live-label">Live You Try It</p>
+            <p>Enter <strong>4, 6, 8, 10, 12</strong> in the overtime inputs, then build AVERAGE, STDEV.S, and STDEV.P from those cells.</p>
+          </div>
         </div>
       </div>
       <div class="slide-num-dark">12 / 23</div>
@@ -820,6 +852,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           <div class="card-gold">
             <p style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px;">MANAGEMENT ACTION</p>
             <p class="t-body-sm">Reducing average wait time by even 5 minutes is likely to produce a meaningful improvement in patient satisfaction scores.</p>
+          </div>
+          <div class="live-pause">
+            <p class="live-label">Live You Try It</p>
+            <p>Enter the seven wait times and satisfaction scores in the workbook, then build CORREL from the two input rows and read the sign.</p>
           </div>
         </div>
       </div>
@@ -1084,7 +1120,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
 <!-- NAV -->
 <div id="nav">
   <button onclick="prevSlide()">← Prev</button>
-  <span id="navCounter">1 / 22</span>
+  <span id="navCounter">1 / 23</span>
   <button onclick="nextSlide()">Next →</button>
 </div>
 
@@ -1096,16 +1132,16 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
   "Read through the I Can statements together. Emphasize that these are Excel-first objectives \u2014 we learn the function syntax before the manual math.",
   "Quick bridge from M08. Financial math told us what numbers to calculate. Statistics now tell us what those numbers mean in context. Same tools, bigger questions.",
   "Part 1 break. Central tendency is about finding the center of a set of numbers. Three tools, three different definitions of center.",
-  "Walk through the Harborside wait time example. Ask students: does 19.6 minutes feel like a fair average? Note how the 42-minute day drags it up. Use AVERAGE in Excel first, then show the manual formula.",
+  "Walk through the Harborside wait time example. Ask students: does 19.6 minutes feel like a fair average? Note how the 42-minute day drags it up. Then pause for Live You Try It: students enter 12, 15, 18, 11, and 42 in the workbook and build AVERAGE and MEDIAN from their input cells.",
   "Now we sort the same data and find the middle. The median of 15 minutes is much more representative. Ask: when would you choose median over mean for a business report?",
   "Mode is different \u2014 it's the most frequent value, and it works on text categories too. Diagnosis codes are a great example because they can't be averaged. Ask: what does knowing the mode tell Harborside's scheduling team?",
   "Part 2 break. Standard deviation is the most important concept today. It's the thing that makes the mean meaningful.",
   "Show the two hospitals side by side. Same mean = 20 minutes. Hospital A is consistent; Hospital B is chaotic. Ask students which hospital they'd rather visit and why. The SD tells the whole story the mean hides.",
   "Excel syntax first: STDEV.S for samples, STDEV.P only for full populations. The key teaching point is n-1 in the denominator \u2014 that adjustment is why we use .S in almost every business context.",
-  "Walk through the nurse overtime table row by row. Students can follow along manually. Emphasize that the final step is always take the square root. Ask: is 3.16 hours a concerning spread for overtime?",
+  "Walk through the nurse overtime table row by row. Students can follow along manually. Emphasize that the final step is always take the square root. Then pause for Live You Try It: students enter 4, 6, 8, 10, and 12 and build AVERAGE, STDEV.S, and STDEV.P from the input cells.",
   "Part 3 break. Correlation is about relationships \u2014 not just individual variables but how two things move together.",
   "The three-cell grid is the whole concept in one view. Positive, zero, negative. CORREL returns one number. Spend time on the strength thresholds: above 0.7 is strong, 0.4\u20130.7 moderate, below 0.4 weak.",
-  "Work through the CORREL example. r = -0.98 is very close to perfect negative. Ask students to read that number: longer waits, lower scores, consistently. Walk through the CORREL Excel syntax and show where the two arrays go.",
+  "Work through the CORREL example. r = -0.98 is very close to perfect negative. Ask students to read that number: longer waits, lower scores, consistently. Then pause for Live You Try It: students enter the seven paired wait-time and satisfaction values and build CORREL from the two input rows.",
   "Critical thinking slide \u2014 this is the most important one. Correlation never proves causation. Both ice cream and hospitalizations go up in summer because of heat. Ask: what third variable might be driving Harborside's correlation?",
   "Interactive slide \u2014 let students type in their own numbers. The three preset buttons are great for class demos. All same values \u2192 SD = 0. One outlier \u2192 mean vs median diverge sharply. Repeated values \u2192 mode appears.",
   "Common mistake slide. Read the contrast aloud. The iceberg quote lands well. Ask: in a business presentation would you ever just report the mean? What would your manager ask next?",

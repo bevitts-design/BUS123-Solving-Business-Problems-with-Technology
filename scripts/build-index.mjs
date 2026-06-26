@@ -25,13 +25,6 @@ const slug = (value) =>
 
 const trackById = new Map(data.tracks.map((track) => [track.id, track]));
 
-const materialGroups = [
-  { id: "start", label: "Start here", types: new Set(["Syllabus", "Infographic"]) },
-  { id: "before", label: "Before class", types: new Set(["Reading", "Pre-reading"]) },
-  { id: "class", label: "In class", types: new Set(["Slides", "Company Profiles"]) },
-  { id: "practice", label: "Workbook/Practice", types: new Set(["Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"]) }
-];
-
 const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"];
 const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
 
@@ -193,12 +186,6 @@ const materialLink = (material, options = {}) => {
   </a>`;
 };
 
-const groupMaterials = (materials) =>
-  materialGroups.map((group) => ({
-    ...group,
-    materials: (materials ?? []).filter((material) => group.types.has(material.type))
-  })).filter((group) => group.materials.length);
-
 const primaryMaterial = (lesson) =>
   (lesson.materials ?? []).find((material) => material.type === "Slides" && materialIsAvailable(material)) ??
   (lesson.materials ?? []).find((material) => materialIsAvailable(material));
@@ -269,64 +256,133 @@ const current = sortedLessons[currentIndex];
 const currentTrack = trackById.get(current.track);
 const primary = primaryMaterial(current);
 
-const sequenceItem = (label, lesson) => {
+const unavailableChip = (label = "Not posted yet", type = "Activity Instructions") =>
+  `<span class="material-chip is-unavailable" aria-disabled="true">
+    <span class="material-icon" aria-hidden="true">${materialIcon(type)}</span>
+    <span>${esc(label)}</span>
+  </span>`;
+
+const findMaterial = (lesson, types) =>
+  (lesson?.materials ?? []).find((material) => types.includes(material.type));
+
+const materialCountLabel = (lesson) => {
+  const count = (lesson?.materials ?? []).filter((material) => materialIsAvailable(material)).length;
+  return `${count} material${count === 1 ? "" : "s"} ready`;
+};
+
+const sequenceSnapshotItem = (label, lesson, isCurrent = false) => {
   if (!lesson) {
-    return `<div class="sequence-card is-empty">
+    return `<div class="snapshot-item is-empty">
       <span>${esc(label)}</span>
       <strong>None</strong>
     </div>`;
   }
   const track = trackById.get(lesson.track);
-  return `<a class="sequence-card" href="#${esc(lesson.id)}">
+  return `<a class="snapshot-item${isCurrent ? " is-current" : ""}" href="#${esc(lesson.id)}">
     <span>${esc(label)}</span>
     <strong>${esc(displayLabel(lesson, track))}</strong>
     <em>${esc(lesson.title)}</em>
+    <small>${esc(materialCountLabel(lesson))}</small>
   </a>`;
 };
 
-const secondaryCurrentMaterials = (current.materials ?? []).filter((material) => material !== primary);
-const currentGroups = groupMaterials(secondaryCurrentMaterials);
-const currentGroupsHtml = currentGroups.map((group) => `<div class="material-group">
-              <h3>${esc(group.label)}</h3>
-              <div class="materials">${group.materials.map((material) => materialLink(material)).join("")}</div>
-            </div>`).join("");
 const courseResources = data.course.resources ?? [];
 const courseResourcesHtml = courseResources.length
   ? `<div class="course-resources" aria-label="Course resources">
           ${courseResources.map((resource) => materialLink(resource, { resource: true })).join("")}
         </div>`
   : "";
-const nextStepCards = [
+
+const currentReading = findMaterial(current, ["Reading", "Pre-reading"]);
+const currentSlides = findMaterial(current, ["Slides"]);
+const currentWorkbook = findMaterial(current, ["Starter Workbook", "Closer Workbook"]);
+const currentPractice = findMaterial(current, ["Interactive Practice", "Activity Instructions", "Homework"]) ?? currentWorkbook;
+const currentLaunch = currentSlides ?? primary;
+const currentCase = current.caseStudy || "General course foundation";
+const currentSkills = (current.skillFocus ?? []).join(" · ");
+const currentContext = [displayLabel(current, currentTrack), currentCase, currentSkills].filter(Boolean).join(" · ");
+
+const classPackCards = [
   {
     label: "Before class",
-    title: "Open the reading",
-    detail: "Skim the key terms and bring one question.",
-    material: (current.materials ?? []).find((material) => ["Reading", "Pre-reading"].includes(material.type))
+    title: "Preview the lesson",
+    detail: "Skim the reading and bring one question or term to class.",
+    material: currentReading,
+    fallback: unavailableChip("Reading not posted yet", "Reading")
   },
   {
     label: "In class",
-    title: "Launch the lesson",
-    detail: "Use slides and activities during class.",
-    material: primary
+    title: "Launch the class materials",
+    detail: "Use the slides or primary activity while we work together.",
+    material: currentLaunch,
+    fallback: unavailableChip("Lesson materials not posted yet", "Slides")
   },
   {
     label: "Practice",
-    title: "Use the workbook",
-    detail: "Save your file where you can find it again.",
-    material: (current.materials ?? []).find((material) => ["Starter Workbook", "Interactive Practice", "Homework"].includes(material.type))
+    title: "Save your working file",
+    detail: "Download the workbook or practice file before you start editing.",
+    material: currentPractice,
+    fallback: unavailableChip("Practice not posted yet", "Starter Workbook")
   }
 ];
-const nextStepsHtml = nextStepCards.map((step) => {
-  const action = step.material
-    ? materialLink(step.material)
-    : `<span class="material-chip is-unavailable" aria-disabled="true"><span class="material-icon" aria-hidden="true">${materialIcon("Activity Instructions")}</span><span>Not posted yet</span></span>`;
-  return `<article class="next-step">
+const classPackHtml = classPackCards.map((step) => {
+  const action = step.material ? materialLink(step.material) : step.fallback;
+  return `<article class="class-pack-step">
               <span>${esc(step.label)}</span>
               <strong>${esc(step.title)}</strong>
               <p>${esc(step.detail)}</p>
               ${action}
             </article>`;
 }).join("");
+
+const quickAction = ({ label, title, detail, material, href, iconType }) => {
+  const target = material && materialIsAvailable(material) ? material.path : href;
+  const tag = target ? "a" : "span";
+  const hrefAttr = target ? ` href="${esc(target)}"` : ` aria-disabled="true"`;
+  const unavailableClass = target ? "" : " is-unavailable";
+  return `<${tag} class="catch-up-action${unavailableClass}"${hrefAttr}>
+    <span class="material-icon" aria-hidden="true">${materialIcon(iconType ?? material?.type ?? "Activity Instructions")}</span>
+    <span>
+      <small>${esc(label)}</small>
+      <strong>${esc(title)}</strong>
+      <em>${esc(detail)}</em>
+    </span>
+  </${tag}>`;
+};
+
+const catchUpHtml = [
+  quickAction({
+    label: "I missed class",
+    title: "Review today's lesson",
+    detail: currentSlides ? "Open the slides." : "Jump to the lesson card.",
+    material: currentSlides,
+    href: `#${current.id}`,
+    iconType: "Slides"
+  }),
+  quickAction({
+    label: "I need the workbook",
+    title: currentWorkbook ? "Download the workbook" : "Workbook not posted",
+    detail: currentWorkbook ? "Start from a clean copy." : "Check the lesson card below.",
+    material: currentWorkbook,
+    href: currentWorkbook ? undefined : `#${current.id}`,
+    iconType: "Starter Workbook"
+  }),
+  quickAction({
+    label: "I need practice",
+    title: currentPractice ? "Open practice materials" : "Practice not posted",
+    detail: currentPractice ? "Use the current activity file." : "Use the lesson card when posted.",
+    material: currentPractice,
+    href: currentPractice ? undefined : `#${current.id}`,
+    iconType: currentPractice?.type ?? "Interactive Practice"
+  }),
+  quickAction({
+    label: "I am looking around",
+    title: "Search by skill or material",
+    detail: "Use filters for track, status, and file type.",
+    href: "#course-controls",
+    iconType: "Infographic"
+  })
+].join("");
 
 const filterButton = (group, value, label, active = false) =>
   `<button ${active ? `class="active"` : ""} type="button" data-filter-group="${esc(group)}" data-filter-value="${esc(value)}" aria-pressed="${active ? "true" : "false"}">${esc(label)}</button>`;
@@ -356,7 +412,6 @@ const html = `<!DOCTYPE html>
         ${orderedTracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
         <a href="#business-news">News</a>
         ${courseResources.map((resource) => `<a href="${esc(resource.path)}">${esc(resource.label ?? resource.type)}</a>`).join("")}
-        ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Canvas</a>` : ""}
       </nav>
     </div>
   </header>
@@ -366,32 +421,43 @@ const html = `<!DOCTYPE html>
       <div class="shell">
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>BUS123 Course Hub</h1>
-        <p>Start with the current class, check the week ahead, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
+        <p>Open today's class materials, see where we are in the course sequence, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
         ${courseResourcesHtml}
         <div class="command-center" aria-label="Course command center">
-          <section class="next-steps" aria-labelledby="next-steps-title">
+          <section class="class-pack" aria-labelledby="class-pack-title">
             <div class="panel-heading">
-              <div class="meta">What should I do next?</div>
-              <h2 id="next-steps-title">Start here</h2>
+              <div>
+                <div class="meta">Today's class pack</div>
+                <h2 id="class-pack-title">${esc(current.title)}</h2>
+                <p>${esc(currentContext)}</p>
+              </div>
+              <span class="status current">Current</span>
             </div>
-            <div class="next-step-grid">${nextStepsHtml}</div>
+            <div class="class-pack-grid">${classPackHtml}</div>
           </section>
           <div class="command-column">
-            <section class="week-ahead" aria-labelledby="week-ahead-title" data-week-ahead data-week-ahead-src="assets/canvas-week-ahead.json">
-              <div class="week-ahead-header">
+            <section class="week-snapshot" aria-labelledby="week-snapshot-title">
+              <div class="panel-heading compact">
                 <div>
-                  <div class="meta">Canvas</div>
-                  <h2 id="week-ahead-title">Week Ahead</h2>
-                  <p>Upcoming BUS123 assignments and events for the next 7 days.</p>
-                </div>
-                <div class="week-ahead-actions">
-                  <span data-week-ahead-updated>Checking Canvas dates...</span>
-                  ${data.course.canvasUrl ? `<a href="${esc(data.course.canvasUrl)}">Open Canvas</a>` : ""}
+                  <div class="meta">Where are we?</div>
+                  <h2 id="week-snapshot-title">This Week Snapshot</h2>
+                  <p>Use the course sequence to catch the last class, today's class, or what is coming next.</p>
                 </div>
               </div>
-              <div class="week-ahead-list" data-week-ahead-list>
-                <p class="week-ahead-empty">Loading Canvas week-ahead dates...</p>
+              <div class="snapshot-list">
+                ${sequenceSnapshotItem("Previous", sortedLessons[currentIndex - 1])}
+                ${sequenceSnapshotItem("Today", current, true)}
+                ${sequenceSnapshotItem("Next up", sortedLessons[currentIndex + 1])}
               </div>
+            </section>
+            <section class="catch-up" aria-labelledby="catch-up-title">
+              <div class="panel-heading compact">
+                <div>
+                  <div class="meta">Need a shortcut?</div>
+                  <h2 id="catch-up-title">Catch Up</h2>
+                </div>
+              </div>
+              <div class="catch-up-grid">${catchUpHtml}</div>
             </section>
             <section id="business-news" class="business-news" aria-labelledby="business-news-title" data-business-news data-business-news-src="assets/business-news-connections.json">
               <div class="business-news-header">
@@ -402,24 +468,10 @@ const html = `<!DOCTYPE html>
                 <span data-business-news-week>Loading...</span>
               </div>
               <div class="business-news-body" data-business-news-body>
-                <p class="week-ahead-empty">Loading this week's business connection...</p>
+                <p class="panel-empty">Loading this week's business connection...</p>
               </div>
             </section>
           </div>
-        </div>
-        <div class="current">
-          <div class="current-copy">
-            <div class="meta">Current · ${esc(displayLabel(current, currentTrack))}</div>
-            <h2>${esc(current.title)}</h2>
-            <p>${esc(current.caseStudy || "General course foundation")} · ${esc((current.skillFocus ?? []).join(" · "))}</p>
-            ${primary ? `<div class="current-primary"><span class="launch-label">In class</span>${materialLink(primary, { primary: true })}</div>` : ""}
-          </div>
-          <div class="current-groups" aria-label="Current lesson materials">${currentGroupsHtml}</div>
-        </div>
-        <div class="sequence-strip" aria-label="Lesson sequence">
-          ${sequenceItem("Previous", sortedLessons[currentIndex - 1])}
-          ${sequenceItem("Current", current)}
-          ${sequenceItem("Next", sortedLessons[currentIndex + 1])}
         </div>
       </div>
     </section>
@@ -429,7 +481,7 @@ const html = `<!DOCTYPE html>
       <p class="empty" data-empty hidden>No matching lessons found.</p>
     </div>
 
-    <section class="shell controls" aria-label="Search and filter">
+    <section id="course-controls" class="shell controls" aria-label="Search and filter">
       <input class="search" type="search" aria-label="Search lessons by title, skill, track, module, material, or case company" placeholder="Search by title, skill, track, module, material, or case company" data-search>
       <div class="filter-panel">
         <div class="filters" aria-label="Track filters">
@@ -447,7 +499,7 @@ const html = `<!DOCTYPE html>
       </div>
     </section>
   </main>
-  <script src="assets/index.js?v=20260621"></script>
+  <script src="assets/index.js?v=20260626"></script>
 </body>
 </html>
 `;

@@ -134,18 +134,12 @@ h3 { font-size: 28px; }
 .command-center {
   margin: 22px 0 10px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
 
-.command-column {
-  display: grid;
-  gap: 16px;
-}
-
 .class-pack,
-.week-snapshot,
 .catch-up {
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -242,31 +236,6 @@ h3 { font-size: 28px; }
   box-shadow: 0 12px 26px rgba(74, 124, 94, .18);
 }
 
-.snapshot-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.snapshot-item {
-  min-width: 0;
-  min-height: 132px;
-  text-decoration: none;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--paper);
-  padding: 12px;
-  display: grid;
-  align-content: start;
-  gap: 3px;
-}
-
-.snapshot-item.is-current {
-  border-color: rgba(74, 124, 94, .32);
-  background: rgba(244, 248, 241, .98);
-}
-
-.snapshot-item span,
 .catch-up-action small {
   color: var(--muted);
   font-size: 12px;
@@ -275,7 +244,6 @@ h3 { font-size: 28px; }
   letter-spacing: .08em;
 }
 
-.snapshot-item strong,
 .catch-up-action strong {
   color: var(--text);
   font-family: "Geist", sans-serif;
@@ -284,16 +252,10 @@ h3 { font-size: 28px; }
   overflow-wrap: anywhere;
 }
 
-.snapshot-item em,
 .catch-up-action em {
   color: var(--text-soft);
   font-size: 13px;
   font-style: normal;
-}
-
-.snapshot-item small {
-  color: var(--muted);
-  font-size: 12px;
 }
 
 .catch-up-grid {
@@ -506,7 +468,7 @@ h3 { font-size: 28px; }
   h1 { font-size: 42px; }
   h2 { font-size: 34px; }
   h3 { font-size: 25px; }
-  .class-pack, .week-snapshot, .catch-up { padding: 16px; }
+  .class-pack, .catch-up { padding: 16px; }
   .class-pack-grid, .catch-up-grid { grid-template-columns: 1fr; }
   .class-pack-step, .catch-up-action { min-height: auto; }
   .panel-heading { flex-direction: column; }

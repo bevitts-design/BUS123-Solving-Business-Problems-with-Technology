@@ -251,8 +251,7 @@ const tracks = orderedTracks.map((track) => {
   </section>`;
 }).join("\n");
 
-const currentIndex = sortedLessons.findIndex((lesson) => lesson.id === data.course.currentLessonId);
-const current = sortedLessons[currentIndex];
+const current = sortedLessons.find((lesson) => lesson.id === data.course.currentLessonId);
 const currentTrack = trackById.get(current.track);
 const primary = primaryMaterial(current);
 
@@ -264,27 +263,6 @@ const unavailableChip = (label = "Not posted yet", type = "Activity Instructions
 
 const findMaterial = (lesson, types) =>
   (lesson?.materials ?? []).find((material) => types.includes(material.type));
-
-const materialCountLabel = (lesson) => {
-  const count = (lesson?.materials ?? []).filter((material) => materialIsAvailable(material)).length;
-  return `${count} material${count === 1 ? "" : "s"} ready`;
-};
-
-const sequenceSnapshotItem = (label, lesson, isCurrent = false) => {
-  if (!lesson) {
-    return `<div class="snapshot-item is-empty">
-      <span>${esc(label)}</span>
-      <strong>None</strong>
-    </div>`;
-  }
-  const track = trackById.get(lesson.track);
-  return `<a class="snapshot-item${isCurrent ? " is-current" : ""}" href="#${esc(lesson.id)}">
-    <span>${esc(label)}</span>
-    <strong>${esc(displayLabel(lesson, track))}</strong>
-    <em>${esc(lesson.title)}</em>
-    <small>${esc(materialCountLabel(lesson))}</small>
-  </a>`;
-};
 
 const courseResources = data.course.resources ?? [];
 const courseResourcesHtml = courseResources.length
@@ -430,7 +408,7 @@ const html = `<!DOCTYPE html>
       <div class="shell">
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>BUS123 Course Hub</h1>
-        <p>Open today's class materials, see where we are in the course sequence, and use the lesson cards below for slides, readings, workbooks, and practice files.</p>
+        <p>Open today's class materials, then use the lesson cards below for slides, readings, workbooks, and practice files.</p>
         ${courseResourcesHtml}
         <div class="command-center" aria-label="Course command center">
           <section class="class-pack" aria-labelledby="class-pack-title">
@@ -444,22 +422,6 @@ const html = `<!DOCTYPE html>
             </div>
             <div class="class-pack-grid">${classPackHtml}</div>
           </section>
-          <div class="command-column">
-            <section class="week-snapshot" aria-labelledby="week-snapshot-title">
-              <div class="panel-heading compact">
-                <div>
-                  <div class="meta">Where are we?</div>
-                  <h2 id="week-snapshot-title">This Week Snapshot</h2>
-                  <p>Use the course sequence to catch the last class, today's class, or what is coming next.</p>
-                </div>
-              </div>
-              <div class="snapshot-list">
-                ${sequenceSnapshotItem("Previous", sortedLessons[currentIndex - 1])}
-                ${sequenceSnapshotItem("Today", current, true)}
-                ${sequenceSnapshotItem("Next up", sortedLessons[currentIndex + 1])}
-              </div>
-            </section>
-          </div>
         </div>
       </div>
     </section>

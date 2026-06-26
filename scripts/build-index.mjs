@@ -410,7 +410,6 @@ const html = `<!DOCTYPE html>
       </a>
       <nav class="nav" aria-label="Course sections">
         ${orderedTracks.map((track) => `<a href="#${esc(track.id)}">${esc(track.label)}</a>`).join("")}
-        <a href="#business-news">News</a>
         ${courseResources.map((resource) => `<a href="${esc(resource.path)}">${esc(resource.label ?? resource.type)}</a>`).join("")}
       </nav>
     </div>
@@ -458,18 +457,6 @@ const html = `<!DOCTYPE html>
                 </div>
               </div>
               <div class="catch-up-grid">${catchUpHtml}</div>
-            </section>
-            <section id="business-news" class="business-news" aria-labelledby="business-news-title" data-business-news data-business-news-src="assets/business-news-connections.json">
-              <div class="business-news-header">
-                <div>
-                  <div class="meta">Business news</div>
-                  <h2 id="business-news-title">Weekly Connection</h2>
-                </div>
-                <span data-business-news-week>Loading...</span>
-              </div>
-              <div class="business-news-body" data-business-news-body>
-                <p class="panel-empty">Loading this week's business connection...</p>
-              </div>
             </section>
           </div>
         </div>

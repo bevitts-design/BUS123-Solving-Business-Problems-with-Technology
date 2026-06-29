@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-06-22T08:01:05-04:00",
+  "updatedAt": "2026-06-29T08:10:58-04:00",
   "items": [
     {
-      "week": "Week 2",
-      "title": "How companies use data to choose where to grow",
-      "businessQuestion": "If a company is choosing where to open a new facility, which data categories should matter most: cost, workforce, infrastructure, technology access, or quality of life?",
-      "connection": "This connects to Technology Orientation because business technology is not just software setup; it is the system of tools, data, and judgment managers use to compare options and make decisions.",
-      "discussionPrompt": "Choose one business you know, such as a retailer, restaurant, healthcare office, sports organization, or tech company. If that business were expanding to a new state, what three data points would you want in a spreadsheet before recommending a location?",
-      "relatedLessonId": "intro-m01-l02",
-      "sourceLabel": "CNBC",
-      "sourceUrl": "https://pressroom.versantmedia.com/cnbc/press-releases/cnbc-unveil-americas-top-states-business-wednesday-july-15"
+      "week": "Week 3",
+      "title": "What should businesses do when AI changes jobs?",
+      "businessQuestion": "When AI can automate parts of a job, should a business invest more in new technology, employee training, or redesigned roles?",
+      "connection": "This connects to the Course Introduction because BUS123 is about using technology thoughtfully, not just adopting tools. Students can see how business technology decisions affect workflows, skills, and people.",
+      "discussionPrompt": "Think about a job you have had, want, or know well. Name one task AI could help with, one skill a person would still need, and one decision a manager should make before using AI in that role.",
+      "relatedLessonId": "intro-m01-l01",
+      "sourceLabel": "AP News",
+      "sourceUrl": "https://apnews.com/article/ai-job-losses-education-training-929986c149d415cd2ef4dc3eaf66ca8c"
     }
   ]
 }

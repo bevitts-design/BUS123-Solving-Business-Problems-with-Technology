@@ -89,6 +89,10 @@ li.g::before{background:var(--gold)} li.t::before{background:var(--terra)}
 .manual .lab{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px}
 .manual code{font-family:var(--sans);font-weight:500;font-size:27px;color:var(--text);font-feature-settings:"tnum"}
 .flow{font-size:26px;color:var(--text-soft);margin-top:12px}
+.live-pause{margin-top:14px;background:var(--formula-bg);border:1px solid rgba(74,124,94,.35);border-left:6px solid var(--sage)}
+.live-pause .lab{color:var(--sage);font-size:18px;letter-spacing:.12em}
+.live-pause code{font-size:21px;color:var(--steel);font-family:var(--mono);font-weight:700}
+.live-pause .flow{font-size:20px;line-height:1.35;color:var(--text-soft)}
 
 /* Excel worksheet replica */
 table.xl{border-collapse:collapse;width:100%;font-size:24px;font-feature-settings:"tnum"}
@@ -356,6 +360,11 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
             <code>84,200 + 61,500 + 39,800 + 52,500</code>
             <div class="flow"><b>= $238,000</b> in monthly charges</div>
           </div>
+          <div class="manual live-pause">
+            <div class="lab">Live You Try It</div>
+            <code>Live You Try It!C8:C12</code>
+            <div class="flow">Enter 84,200, 61,500, 39,800, and 52,500 first. Then build the SUM formula from those input cells.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -385,6 +394,11 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
             </tbody>
           </table>
           <p style="font-size:24px;color:var(--muted);margin-top:10px">Copy down: B2&rarr;B3 shifts, $B$1 stays put.</p>
+          <div class="manual live-pause">
+            <div class="lab">Live You Try It</div>
+            <code>Live You Try It!C16:C20</code>
+            <div class="flow">Enter 0.62, 84,200, and 61,500. Build the two reimbursement formulas and lock the rate cell.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -409,6 +423,11 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
         <div class="card"><div class="k">Visual hierarchy</div><p>Bold headers, bottom borders, banded rows to guide the eye.</p></div>
       </div>
       <p class="reveal" style="margin-top:22px;color:var(--text-soft)">Harborside&rsquo;s payer mix &mdash; Medicare 41%, Medicaid 23%, Commercial 28%, Self-pay 8% &mdash; reads instantly when formatted as percentages with a clear header row.</p>
+      <div class="reveal manual live-pause" style="max-width:920px">
+        <div class="lab">Live You Try It</div>
+        <code>Live You Try It!C24:C29</code>
+        <div class="flow">Enter 41%, 23%, 28%, and 8%. Use SUM to verify 100%, then MAX to identify the largest payer share.</div>
+      </div>
     </section>
 
     <!-- 16 ERRORS -->
@@ -471,7 +490,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
     <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total a range</td><td class="pattern">=SUM(C2:C5)</td><td>Adds selected numbers into one total.</td><td class="watch">Use a range instead of typing each charge.</td></tr><tr><td>Average a range</td><td class="pattern">=AVERAGE(C2:C5)</td><td>Finds the typical value from several numbers.</td><td class="watch">Average is not the same as total.</td></tr><tr><td>Count numeric cells</td><td class="pattern">=COUNT(C2:C5)</td><td>Counts cells that contain numbers.</td><td class="watch">Text labels are ignored.</td></tr><tr><td>Percent of total</td><td class="pattern">=C2/$C$6</td><td>Shows one value as a share of the total.</td><td class="watch">Lock the total before copying.</td></tr></tbody></table>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total a range</td><td class="pattern">=SUM(C6:C10)</td><td>Adds selected numbers into one total.</td><td class="watch">Use a range instead of typing each charge.</td></tr><tr><td>Average a range</td><td class="pattern">=AVERAGE(C6:C10)</td><td>Finds the typical value from several numbers.</td><td class="watch">Average is not the same as total.</td></tr><tr><td>Count numeric cells</td><td class="pattern">=COUNT(C6:C10)</td><td>Counts cells that contain numbers.</td><td class="watch">Text labels are ignored.</td></tr><tr><td>Highest value</td><td class="pattern">=MAX(C6:C10)</td><td>Returns the largest value in a range.</td><td class="watch">MAX finds the biggest number, not the biggest label.</td></tr><tr><td>Lowest value</td><td class="pattern">=MIN(C6:C10)</td><td>Returns the smallest value in a range.</td><td class="watch">MIN finds the smallest number, not the smallest label.</td></tr><tr><td>Percent of total</td><td class="pattern">=C6/$C$10</td><td>Shows one value as a share of the total.</td><td class="watch">Lock the total before copying.</td></tr><tr><td>Absolute reference</td><td class="pattern">=$C$21 or $C$10</td><td>Locks a shared input so copied formulas keep using it.</td><td class="watch">Press F4 to toggle dollar signs.</td></tr><tr><td>Range notation</td><td class="pattern">C6:C10</td><td>Means cell C6 through cell C10.</td><td class="watch">Include only the cells you want calculated.</td></tr></tbody></table>
   </div>
   <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
 </section>
@@ -532,15 +551,15 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
   "Section break \u2014 Part 2. Now we make the sheet do the work instead of a calculator.",
   "Data entry + autofill. Push the Tab/Enter habit hard \u2014 mouse-free is faster. Demo the fill handle with Jan\u2192Dec. Double-click trick when there's an adjacent filled column.",
   "Formula vs function. Everything starts with =. A formula is anything after it; a function is a named shortcut. Walk the Big Five quickly with a Harborside use for each.",
-  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C2:C5) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it.",
-  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in B1 is the perfect 'lock it' case. Copy =B2*$B$1 down and narrate what moves and what stays.",
+  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C2:C5) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it. Then pause: students open Live You Try It and use rows 8 through 12, entering 84,200, 61,500, 39,800, and 52,500 before building the SUM formula.",
+  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in B1 is the perfect 'lock it' case. Copy =B2*$B$1 down and narrate what moves and what stays. Then pause for Live You Try It rows 16 through 20: enter 0.62, 84,200, and 61,500, then build the reimbursement formulas with the rate locked.",
   "Section break \u2014 Part 3. A sheet that calculates but can't be trusted is worse than no sheet. Now: clarity and safety.",
-  "Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye.",
+  "Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye. Quick self-check: Live You Try It rows 24 through 29 use the exact payer mix percentages on the slide, then SUM and MAX for feedback.",
   "Errors. Reassure them: error codes are helpful labels, not failures. Walk #REF!, #DIV/0!, #NAME? with the hospital framing (visits = 0 causes DIV/0).",
   "Golden rules. Don't hard-code, save constantly, one source of truth. These three habits prevent most of the 88%.",
   "COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =B2*0.62 means hand-editing everything and missing one. =B2*$B$1 fixes the whole sheet from one cell. This is the slide they should remember.",
   "Discussion. Let them sit with the 88% stat. Push for a concrete hospital example AND the matching safeguard. Cold-call a couple of pairs.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question. Live You Try It is self-graded only; Charge Analysis and Challenge - Payer Mix are the submitted activity tabs.",
   "Takeaways. Quick recap mapped to the three parts. This is the 'what to study' slide.",
   "Up next. L02 builds a full Harborside worksheet. Remind them to bring their OneDrive folder.",
   "Close. Q&A. Thank them and point to the pre-reading PDF and workbook when those are posted."

@@ -713,8 +713,16 @@
           "path": "EXCEL/M04/bus123-excel-m04-l01-slides.html"
         },
         {
+          "type": "Reading",
+          "path": "EXCEL/M04/bus123-excel-m04-l01-prereading.pdf"
+        },
+        {
           "type": "Starter Workbook",
           "path": "EXCEL/M04/bus123-excel-m04-l01-starter.xlsx"
+        },
+        {
+          "type": "Interactive Practice",
+          "path": "EXCEL/M04/bus123-excel-m04-l01-interactive.html"
         }
       ],
       "moduleType": "Excel",

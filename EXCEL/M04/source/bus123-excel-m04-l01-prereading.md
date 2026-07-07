@@ -1,141 +1,162 @@
-# BUS123 · EXCEL-M04-L01 Pre-Reading
-## Getting Data, Charts & Visualization
-
-*Solving Business Problems with Technology · Gerrish School of Business · Fall 2026*
-
+---
+title: "Excel Charts and PivotTables"
+lesson: "EXCEL-M04-L01"
+kind: "Pre-Reading"
+status: "published"
+output: "EXCEL/M04/bus123-excel-m04-l01-prereading.pdf"
 ---
 
-## Connect to What You Know
+# Excel Charts and PivotTables
 
-In Module 3 you learned to make Excel do the math for you — SUM, AVERAGE, COUNT, MIN, and MAX — and to organize data in proper Excel Tables with sorting and filtering. That gave you accurate numbers. But here's the problem: accurate numbers sitting in a grid don't communicate. When Harborside Medical Center's CFO asks "which insurance categories drove our revenue last quarter?", nobody wants to squint at four rows of seven-digit figures. They want to *see* the answer. This module is the bridge from calculation to communication: getting data into Excel cleanly, and turning it into charts that answer business questions at a glance.
+| Field | Details |
+| --- | --- |
+| Course | BUS123 - Solving Business Problems with Technology |
+| Track | Excel |
+| Module | M04 |
+| Lesson | L01 |
+| Case | Harborside Medical Center |
 
----
+This lesson is about turning rows of business data into visuals and summaries that help people make decisions. In Module 3, you practiced formulas and functions that calculate accurate numbers. In Module 4, those accurate numbers become charts and PivotTables that a manager can scan, question, and trust.
 
-## Part 1 · Getting Data In (and Getting It Clean)
+Harborside Medical Center will be our case. The hospital has monthly data about service lines, payer categories, visits, and revenue. A spreadsheet can store all of those records, but leaders do not want to read every row one at a time. They want to know which service line is strongest, whether visit volume is changing, and which payer mix needs attention.
 
-Real business data rarely arrives ready to use. It comes as printed reports, screenshots, CSV exports, and one giant column of text. Excel gives you three fast tools for turning that mess into a structured table.
+By the end of this reading, you should be able to choose a chart based on the business question, identify the habits that make charts trustworthy, and explain how a PivotTable summarizes a clean table.
 
-### The foundation: a clean table
+## 1. Start With the Business Question
 
-Before any chart can be built, your data must follow the structural rules you learned in M03:
+A chart is not decoration. A chart is an answer in visual form. Before you click Insert, pause and name the question you are trying to answer.
 
-- **Header row first.** Descriptive labels in Row 1, each starting with a letter (never a number), and each one unique.
-- **One data type per column.** Don't mix text and currency in the same field.
-- **No blank rows.** A blank row tells Excel your data is finished — anything below the gap gets ignored by sorting, filtering, and charting.
-- **Keep the table isolated.** Leave at least one blank row and column between your table and anything else on the worksheet, so Excel can find the table's boundaries automatically.
+| Business question | Better chart choice | Why it fits |
+| --- | --- | --- |
+| Which service line produced the most revenue? | Column or bar chart | Compares categories by height or length. |
+| Are visits rising or falling across months? | Line chart | Shows change over time. |
+| What share of revenue came from each payer? | Pie or donut chart | Shows parts of a whole when there are only a few pieces. |
+| Does higher visit volume connect with higher revenue? | Scatter chart | Compares two numeric variables. |
 
-### Tool 1 — Flash Fill (`Ctrl + E`)
+The mistake beginners make is choosing the chart they like, not the chart that fits the logic of the question. A line chart implies order and movement over time. A pie chart implies parts of one whole. A column chart implies comparison across categories. A scatter chart implies a relationship between two numeric measurements.
 
-Flash Fill is pattern recognition. Suppose Harborside's staff roster arrives with "Priya Nair" in one column, but payroll needs first and last names separated. Type **Priya** in the adjacent column, start typing the second name, and Excel shows a ghost preview of the whole column filled in. Press **Enter** (or `Ctrl + E`) and it's done — no formula required.
+> **Key Idea**
+> The business question chooses the chart type. Design choices come after that.
 
-**The catch:** Flash Fill follows the pattern it sees. If your data is inconsistent (some rows "Last, First" and some "First Last"), the pattern breaks. For messy data, text functions like LEFT, RIGHT, MID, and LEN give you logical precision that holds up no matter what new rows arrive.
+## 2. Clean Tables Come Before Good Charts
 
-### Tool 2 — Text to Columns
+Charts and PivotTables are only as trustworthy as the source table behind them. If Excel cannot understand the table boundaries, fields, or record structure, the output may look polished while still being wrong.
 
-When a CSV export dumps `Nair, Priya, RN, 40` into a single cell, the **Text to Columns** wizard (Data tab → Data Tools) splits it apart. You choose:
+A clean Excel table has:
 
-- **Delimited** — split wherever a specific character appears (comma, tab, semicolon)
-- **Fixed Width** — split at set positions when the data is aligned in columns
+- One header row with clear field names.
+- One record per row.
+- One kind of data in each column.
+- No blank rows inside the data range.
+- No manual total row mixed into the source table.
+- Consistent categories, spelling, dates, and number formats.
 
-### Tool 3 — Data from Picture
+For Harborside, a clean table might have columns such as Month, Service Line, Payer, Visits, Revenue, and Average Revenue per Visit. Each row should represent one service-line record for one month and payer. A row that says "Total" belongs in a summary area, not inside the raw source table.
 
-Got a *printed* report or a screenshot of a table? **Data → Get & Transform Data → From Picture** uses optical character recognition (OCR) to convert the image into editable cells. You can pull from a saved image file or directly from your clipboard after a screen capture. It requires a Microsoft 365 subscription — which you have through Endicott.
+## 3. Chart Selection Is a Logic Choice
 
-> **Why this matters:** every minute spent structuring data correctly saves five minutes of debugging a broken chart later. Dirty data — typos, mixed formats, blank rows — is a systemic toxin that quietly corrupts every calculation and chart built on top of it.
+Different chart types encode information in different ways.
 
----
+| Chart type | Use it when | Watch out for |
+| --- | --- | --- |
+| Column chart | You are comparing a small set of categories. | Long labels may be easier to read in a bar chart. |
+| Bar chart | You are comparing categories with longer text labels. | Sort the bars when ranking matters. |
+| Line chart | The x-axis is ordered time, such as months or quarters. | Do not use it for unrelated categories. |
+| Pie or donut chart | You have two to four pieces of one total. | Too many slices become unreadable fast. |
+| Scatter chart | Both axes are numeric measurements. | Do not use a line chart when numeric x-values are unevenly spaced. |
 
-## Part 2 · Choosing the Right Chart
+One common trap is the overloaded pie chart. If a chart has eight or nine slices, the reader has to compare tiny angles and colors. A sorted column chart is usually clearer. Another trap is using a line chart for categories such as Imaging, Lab, Urgent Care, and Therapy. Those service lines do not happen in a time sequence, so connecting them with a line creates a false story.
 
-The single most important idea in this lesson: **chart type is a logic choice, not a style choice.** Each chart type answers one kind of question. Pick the wrong one and you don't just look sloppy — you actively mislead your audience.
+## 4. Build the Chart, Then Remove Noise
 
-Before inserting anything, ask: **"What am I showing?"**
+Excel's default chart is a draft. It proves that the data can be charted, but it is rarely ready for a business audience.
 
-| What you're showing | Chart to use | Why it works |
-|---|---|---|
-| Comparing values across categories | **Column / Bar** | Height or length = magnitude; the eye reads it instantly. Use Bar (horizontal) when category labels are long. |
-| Change over time | **Line** | Connects the dots to reveal trend and momentum across months, quarters, or years. |
-| Parts of a whole (2–4 pieces) | **Pie / Donut** | Shows proportional contribution. Always add data labels — the eye can't judge arc sizes accurately. |
-| Relationship between two numeric variables | **XY Scatter** | The only chart that spaces the X-axis by actual numeric value, not equal intervals. |
-| Multi-level hierarchy | **Treemap** | Nested rectangles sized by value — far easier to compare than circular slices. |
+A finished chart should have:
 
-### Two warnings worth memorizing
+- A title that states the takeaway or question.
+- Axis labels when the units are not obvious.
+- Data labels when exact values matter.
+- A limited color palette with emphasis used intentionally.
+- No unused legend, heavy gridlines, 3D effects, or decorative clutter.
 
-**The pie chart trap.** Pie charts work for 2–4 slices, period. Nine payer sub-categories in a pie becomes a ring of unreadable wedges. Consolidate small categories into "Other," or switch to a column chart.
+For example, "Revenue by Service Line" is better than "Chart 1" because it tells the reader what they are looking at. "Urgent Care Leads Q3 Revenue" is even stronger when the chart is meant to support that exact message.
 
-**The line chart trap.** A line chart treats X-axis values as equally spaced *labels*, even when they aren't equally spaced *numbers*. Plot boiling times for 100ml, 200ml, 500ml, and 1000ml of water on a line chart and Excel spaces them evenly — visually lying about the rate of change. When your X-axis is numeric with unequal intervals, use an **XY Scatter** instead.
+> **Common Mistake**
+> Do not make a chart look more important than the data behind it. A clean source table, correct chart type, and honest title matter more than effects.
 
-### Not sure? Use the safety net
+## 5. PivotTables Summarize Many Rows Quickly
 
-**Insert → Recommended Charts** analyzes your selected data and suggests appropriate chart types. It's a good validation step: if your intended chart type isn't in the recommendations, double-check your logic.
+A PivotTable is a flexible summary engine. Instead of writing a separate formula for each possible view, you drag fields into areas and let Excel summarize the table.
 
----
+The basic PivotTable areas are:
 
-## Part 3 · Polishing — From Classroom Chart to Boardroom Chart
+| Area | What it controls | Harborside example |
+| --- | --- | --- |
+| Rows | The categories listed down the left side. | Service Line |
+| Columns | The categories listed across the top. | Payer |
+| Values | The numbers being summarized. | Sum of Revenue or Average of Visits |
+| Filters | The field used to narrow the summary. | Month |
 
-A default Excel chart is a draft, not a deliverable. Three finishing moves:
+A PivotTable can answer "total revenue by service line" by placing Service Line in Rows and Revenue in Values. If the CFO then asks for the same summary by payer, you can move Payer into Rows or Columns instead of rebuilding the report from scratch.
 
-1. **Title everything.** A chart title that states the takeaway ("Q3 Revenue by Payer Category") and a labeled value axis ("Revenue ($)").
-2. **Delete the clutter.** Remove gridlines, drop the legend when there's only one data series, and resist 3D effects entirely.
-3. **Let conditional formatting audit your data.** Apply a color scale to a numeric column *before* charting it. Outliers light up instantly — at Harborside, an average ICU bill of $38,200 against a hospital-wide range of $980–$12,400 jumps out in red, prompting a data-entry check before that number reaches the board. Find it at **Home → Styles → Conditional Formatting**.
+## 6. Values Need the Right Summary Setting
 
----
+Dragging a numeric field into Values is not the end of the decision. Excel must know how to summarize that field.
 
-## Formula & Tool Reference
+| Need | Value Field Setting |
+| --- | --- |
+| Total revenue | Sum |
+| Typical visits per month | Average |
+| Number of records | Count |
+| Largest single value | Max |
+| Smallest single value | Min |
 
-| Need | Excel approach (use this first) | Manual math (understanding only) |
-|---|---|---|
-| Total of a range | `=SUM(range)` | value₁ + value₂ + value₃ … |
-| Average of a range | `=AVERAGE(range)` | sum of values ÷ count of values |
-| Largest / smallest value | `=MAX(range)` / `=MIN(range)` | scan the list |
-| Average bill per visit | `=Revenue/Visits` | total revenue ÷ number of visits |
-| Percent of total | `=Part/$Total$` (lock the total) | category value ÷ grand total |
-| Percent change | `=(New-Old)/Old` | change amount ÷ starting value |
-| Split names by pattern | `Ctrl + E` (Flash Fill) | — |
-| Split a delimited column | Data → Text to Columns | — |
-| Image of a table → cells | Data → From Picture | — |
+Always check the Value Field Settings. If Revenue appears as Count of Revenue instead of Sum of Revenue, the PivotTable is counting records, not adding dollars. The output may still look neat, which makes this error easy to miss.
 
----
+## 7. Refresh, Slicers, and PivotCharts
+
+Regular formulas usually recalculate when source cells change. PivotTables behave differently. They use a cached snapshot of the source data, so you must refresh them after the source table changes.
+
+In Excel, use Data > Refresh All before presenting a PivotTable or PivotChart. This is especially important when rows have been added, deleted, or corrected.
+
+Slicers are clickable filters for PivotTables. They make it easier for a non-technical audience to switch between months, service lines, or payer categories. A PivotChart turns a PivotTable summary into a chart that responds to the same fields and slicers.
+
+## 8. What to Bring to Class
+
+In class, you will work with Harborside's service-line data. Be ready to:
+
+1. Inspect whether a dataset is clean enough for charting.
+2. Choose a chart type based on a CFO question.
+3. Build and polish a chart from the starter workbook.
+4. Plan a PivotTable by selecting Rows, Values, and Filters.
+5. Write a short recommendation supported by the visual.
+
+The goal is not to become an Excel chart designer in one class. The goal is to practice the decision path: question, table, visual, summary, recommendation.
 
 ## Check Your Understanding
 
-1. Harborside's CFO wants to compare Q3 revenue across four insurance categories. Which chart type should you build, and why?
-2. You receive a CSV where every row landed in column A as `"ED, 4812, 1820"`. Which tool splits this into three columns, and which option (Delimited or Fixed Width) applies?
-3. What happens to sorting, filtering, and charts when a blank row sits in the middle of your data?
-4. A classmate builds a pie chart with nine slices. Give two ways to fix it.
-5. Why is Flash Fill risky when source data is inconsistently formatted — and what's the more reliable alternative?
-6. You're plotting delivery cost against package weights of 1 lb, 5 lb, 20 lb, and 100 lb. Why is a line chart the wrong choice, and what should you use instead?
-7. What business purpose does conditional formatting serve *beyond* making a worksheet look nice?
+Answer these before class.
 
----
-
-## Answer Key
-
-1. **A column (or bar) chart** — the question compares discrete values across categories, and column height communicates magnitude instantly. A line chart would falsely imply a trend connecting the categories.
-2. **Text to Columns** (Data tab → Data Tools), using the **Delimited** option with comma as the delimiter.
-3. Excel treats the blank row as the end of the dataset — everything below the gap is excluded from sorts, filters, and chart ranges.
-4. Consolidate the smallest categories into a single "Other" slice to get down to 2–4 slices, **or** switch to a clustered column chart, which handles many categories cleanly. (Adding data labels helps but doesn't fix the core problem.)
-5. Flash Fill copies the pattern in your examples; inconsistent source rows break the pattern and produce silent errors. Text functions (LEFT, RIGHT, MID, LEN) apply explicit logic that works on every row regardless of inconsistency.
-6. A line chart spaces X-axis points equally even though 1, 5, 20, and 100 are not equal intervals — visually distorting the relationship. Use an **XY Scatter**, which positions points by their true numeric value.
-7. It acts as a **visual audit**: color scales and highlight rules surface outliers and data-entry errors instantly (an extra digit, a misplaced decimal) before flawed numbers flow into reports and decisions.
-
----
+1. Why should you choose the chart type before clicking Insert?
+2. Which chart type would you use to compare revenue across four service lines?
+3. Which chart type would you use to show visits by month?
+4. Why is a pie chart usually a poor choice for eight payer categories?
+5. What is the problem with leaving a manual total row inside the source data?
+6. In a PivotTable, where would you place Service Line if you want one row per service line?
+7. Why should you check Value Field Settings after dragging a number field into Values?
+8. What does Refresh All do for a PivotTable?
 
 ## Key Vocabulary
 
-| Term | Definition |
-|---|---|
-| **Flash Fill** | Pattern-recognition tool (`Ctrl + E`) that fills a column based on one or two typed examples. |
-| **Text to Columns** | Wizard that splits one column into several using a delimiter or fixed widths. |
-| **Data from Picture** | OCR feature that converts an image or screenshot of a table into editable cells. |
-| **Delimiter** | The character (comma, tab, semicolon) that separates values in a text file or cell. |
-| **Column chart** | Vertical chart comparing discrete values across categories by bar height. |
-| **Line chart** | Chart connecting data points to show change over time; spaces X-axis points equally. |
-| **XY Scatter** | Chart plotting two numeric variables with true numeric spacing on both axes. |
-| **Data labels** | Values printed directly on chart elements — required on every pie/donut chart. |
-| **Conditional formatting** | Rules that change a cell's appearance based on its value; used as a visual audit tool. |
-| **Recommended Charts** | Excel feature that analyzes selected data and suggests appropriate chart types. |
-
----
-
-*Bring questions to class — we'll build all three chart types live using Harborside Medical Center's Q3 data.*
+| Term | Meaning |
+| --- | --- |
+| Source table | The clean row-by-row data used to build charts, formulas, and PivotTables. |
+| Chart type | The visual form, such as column, line, pie, donut, bar, or scatter. |
+| Axis | A reference line that organizes chart values or categories. |
+| Data label | A value printed directly on a chart element. |
+| PivotTable | An Excel summary tool that rearranges fields into rows, columns, values, and filters. |
+| Values area | The PivotTable area where numbers are summarized. |
+| Value Field Settings | The menu that controls whether a PivotTable uses Sum, Average, Count, Max, Min, or another summary. |
+| Slicer | A clickable PivotTable filter. |
+| PivotChart | A chart connected to a PivotTable summary. |
+| Refresh All | The command that updates PivotTables and other data connections after source data changes. |

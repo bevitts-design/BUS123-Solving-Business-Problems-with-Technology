@@ -697,14 +697,15 @@
       "track": "excel",
       "module": "M04",
       "lesson": "L01",
-      "title": "Getting Data, Charts, and Visualization",
+      "title": "Excel Charts and PivotTables",
       "status": "Live",
       "caseStudy": "Harborside Medical Center",
       "skillFocus": [
-        "Data import",
-        "Data cleaning",
+        "Clean table structure",
         "Chart selection",
-        "Data visualization"
+        "Excel charting",
+        "PivotTables",
+        "Slicers and refresh"
       ],
       "materials": [
         {

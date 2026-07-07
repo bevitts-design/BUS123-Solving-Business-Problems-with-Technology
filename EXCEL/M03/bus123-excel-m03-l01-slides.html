@@ -84,24 +84,24 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
     <strong>Functions<br>that answer<br>business questions</strong>
   </div>
 </div>
-<div class="slide-number">1 / 45</div></section><section class="slide paper" data-section="0" data-slide="2" data-index="1"><div class="eyebrow">AGENDA</div>
+<div class="slide-number">1 / 49</div></section><section class="slide paper" data-section="0" data-slide="2" data-index="1"><div class="eyebrow">AGENDA</div>
 <div class="numbered-agenda">
   <div><b>1</b><span>Build the function mindset: operators, ranges, arguments, and references.</span></div>
   <div><b>2</b><span>Use core functions to summarize messy business data fast.</span></div>
   <div><b>3</b><span>Expand into analysis tools: IF, SUMIFS, COUNTIFS, XLOOKUP, FILTER, SORT, UNIQUE, TEXTJOIN, EOMONTH, SEQUENCE, and SUMPRODUCT.</span></div>
   <div><b>4</b><span>Choose the right function under pressure, using real company scenarios.</span></div>
 </div>
-<div class="slide-number">2 / 45</div></section><section class="slide paper" data-section="0" data-slide="3" data-index="2"><div class="eyebrow">I CAN</div>
+<div class="slide-number">2 / 49</div></section><section class="slide paper" data-section="0" data-slide="3" data-index="2"><div class="eyebrow">I CAN</div>
 <div class="objective-grid">
   <div class="objective"><span>I can</span><p>write formulas with arithmetic operators, functions, ranges, and cell references.</p></div>
   <div class="objective"><span>I can</span><p>summarize a dataset with SUM, AVERAGE, MAX, MIN, COUNT, and COUNTA.</p></div>
   <div class="objective"><span>I can</span><p>select analysis functions based on the business question, not the function name.</p></div>
   <div class="objective"><span>I can</span><p>audit formulas for logic, missing data, and wrong reference behavior.</p></div>
 </div>
-<div class="slide-number">3 / 45</div></section><section class="slide paper" data-section="0" data-slide="4" data-index="3"><div class="eyebrow">RECAP</div>
+<div class="slide-number">3 / 49</div></section><section class="slide paper" data-section="0" data-slide="4" data-index="3"><div class="eyebrow">RECAP</div>
 <div class="split">
   <div>
-    <h2>Functions are wrappers around references.</h2>
+    <h2>Functions are wrappers around references</h2>
     <p class="lead">If students understand relative and absolute references, they already understand the hardest part of function work.</p>
     <div class="formula-panel"><span class="fn">=SUM(B2:B13)</span><span class="comment">B2:B13 is the input range. It moves if copied unless you lock it.</span></div>
   </div>
@@ -112,15 +112,15 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
     <div><b>B$2</b><span>Mixed row</span></div>
   </div>
 </div>
-<div class="slide-number">4 / 45</div></section><section class="slide dark section-slide" data-section="1" data-slide="5" data-index="4">
+<div class="slide-number">4 / 49</div></section><section class="slide dark section-slide" data-section="1" data-slide="5" data-index="4">
 <div class="section-break"><div class="kicker">PART 1</div><h1>Think Like a Function Builder</h1><p>Before the big toolkit, students need the pattern every Excel formula follows.</p><div class="gradient-bar"></div></div>
-<div class="slide-number">5 / 45</div></section><section class="slide paper" data-section="1" data-slide="6" data-index="5"><div class="eyebrow">FUNCTION MINDSET</div>
+<div class="slide-number">5 / 49</div></section><section class="slide paper" data-section="1" data-slide="6" data-index="5"><div class="eyebrow">FUNCTION MINDSET</div>
 <div class="two-panels">
   <div class="panel warn"><h3>Manual formula</h3><div class="formula-panel"><span class="fn">=B2+B3+B4+B5+B6</span><span class="comment">Works, but row insertions can be missed silently.</span></div></div>
   <div class="panel good"><h3>Function formula</h3><div class="formula-panel"><span class="fn">=SUM(B2:B6)</span><span class="comment">Reads the range as one block and grows when rows are inserted inside it.</span></div></div>
 </div>
 <div class="bottom-callout">The function version is shorter, clearer, and easier to audit.</div>
-<div class="slide-number">6 / 45</div></section><section class="slide paper" data-section="1" data-slide="7" data-index="6"><div class="eyebrow">BASIC FORMULAS</div>
+<div class="slide-number">6 / 49</div></section><section class="slide paper" data-section="1" data-slide="7" data-index="6"><div class="eyebrow">BASIC FORMULAS</div>
 <div class="operator-board">
   <div><strong>+</strong><span>Add</span><code>=B2+C2</code></div>
   <div><strong>-</strong><span>Subtract</span><code>=B2-C2</code></div>
@@ -129,7 +129,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   <div><strong>^</strong><span>Exponent</span><code>=B2^2</code></div>
 </div>
 <div class="formula-panel"><span class="fn">=B2*C2</span><span class="comment">Tidal Goods Co.: units sold times price per unit equals revenue.</span></div>
-<div class="slide-number">7 / 45</div></section><section class="slide paper" data-section="1" data-slide="8" data-index="7"><div class="eyebrow">PEMDAS</div>
+<div class="slide-number">7 / 49</div></section><section class="slide paper" data-section="1" data-slide="8" data-index="7"><div class="eyebrow">PEMDAS</div>
 <div class="pemdas">
   <div><b>1</b><span>Parentheses</span><code>()</code></div>
   <div><b>2</b><span>Exponents</span><code>^</code></div>
@@ -137,7 +137,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   <div><b>4</b><span>Add / Subtract</span><code>+ -</code></div>
 </div>
 <div class="formula-panel"><span class="fn">=(B2+C2)*D2</span><span class="comment">Parentheses force Excel to add first, then multiply.</span></div>
-<div class="slide-number">8 / 45</div></section><section class="slide paper" data-section="1" data-slide="9" data-index="8"><div class="eyebrow">PATTERN</div>
+<div class="slide-number">8 / 49</div></section><section class="slide paper" data-section="1" data-slide="9" data-index="8"><div class="eyebrow">PATTERN</div>
 <div class="function-anatomy">
   <div class="formula-big">=AVERAGE(F7:F18)</div>
   <div class="labels"><span>function name</span><span>argument</span><span>range</span></div>
@@ -147,31 +147,31 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   <div><h3>Arguments</h3><p>The inputs Excel needs.</p></div>
   <div><h3>Result</h3><p>The answer Excel returns.</p></div>
 </div>
-<div class="slide-number">9 / 45</div></section><section class="slide paper" data-section="1" data-slide="10" data-index="9"><div class="eyebrow">CELL LOGIC</div>
+<div class="slide-number">9 / 49</div></section><section class="slide paper" data-section="1" data-slide="10" data-index="9"><div class="eyebrow">CELL LOGIC</div>
 <div class="split">
   <div>
-    <h2>Copying changes unlocked references.</h2>
+    <h2>Copying changes unlocked references</h2>
     <div class="formula-panel"><span class="fn">=SUM(B2:B13)</span><span class="comment">Copy right: =SUM(C2:C13)</span><span class="comment">Lock when needed: =$B$2 or $B$2</span></div>
   </div>
   <div><table class="mini-table"><thead><tr><th>Reference</th><th>Behavior</th></tr></thead><tbody><tr><td>B2</td><td>Moves when copied</td></tr><tr><td>$B$2</td><td>Always points to B2</td></tr><tr><td>$B2</td><td>Column stays B</td></tr><tr><td>B$2</td><td>Row stays 2</td></tr><tr><td>Sheet2!B2</td><td>Pulls from another sheet</td></tr></tbody></table></div>
 </div>
-<div class="slide-number">10 / 45</div></section><section class="slide paper" data-section="1" data-slide="11" data-index="10"><div class="eyebrow">FORMULAS TAB</div>
+<div class="slide-number">10 / 49</div></section><section class="slide paper" data-section="1" data-slide="11" data-index="10"><div class="eyebrow">FORMULAS TAB</div>
 <div class="audit-map">
   <div class="audit-cell active">F19<br><code>=SUM(F7:F18)</code></div>
   <div class="audit-arrow"></div>
   <div class="audit-list"><b>Trace Precedents</b><span>Shows the inputs.</span><b>Trace Dependents</b><span>Shows what relies on this cell.</span><b>Evaluate Formula</b><span>Steps through the math.</span></div>
 </div>
 <div class="bottom-callout">Auditing tools turn hidden logic into visible logic.</div>
-<div class="slide-number">11 / 45</div></section><section class="slide paper" data-section="1" data-slide="12" data-index="11"><div class="eyebrow">CLASS WORKFLOW</div>
+<div class="slide-number">11 / 49</div></section><section class="slide paper" data-section="1" data-slide="12" data-index="11"><div class="eyebrow">CLASS WORKFLOW</div>
 <div class="workbook-map">
   <div><h3>Raw Data</h3><p>Anchor & Oak revenue export. Students should reference it, not edit it.</p></div>
-  <div><h3>Event Revenue Analysis</h3><p>Build linked formulas, totals, averages, and business summaries.</p></div>
-  <div><h3>Challenge</h3><p>Stretch into absolute references and IF flags.</p></div>
+  <div><h3>Live You Try It</h3><p>Enter the slide givens into yellow cells, then build short formulas with references.</p></div>
+  <div><h3>Class Challenge</h3><p>Read scenario givens, fill blank inputs, and submit final numeric answers.</p></div>
   <div><h3>Reference Card</h3><p>Keep function syntax visible while working.</p></div>
 </div>
-<div class="slide-number">12 / 45</div></section><section class="slide dark section-slide" data-section="2" data-slide="13" data-index="12">
+<div class="slide-number">12 / 49</div></section><section class="slide dark section-slide" data-section="2" data-slide="13" data-index="12">
 <div class="section-break"><div class="kicker">PART 2</div><h1>Core Function Muscles</h1><p>Start with the functions that summarize business data before it becomes a decision.</p><div class="gradient-bar"></div></div>
-<div class="slide-number">13 / 45</div></section><section class="slide paper" data-section="2" data-slide="14" data-index="13"><div class="eyebrow">SUM</div>
+<div class="slide-number">13 / 49</div></section><section class="slide paper" data-section="2" data-slide="14" data-index="13"><div class="eyebrow">SUM</div>
 <div class="split">
   <div>
     <h2>Question</h2><p class="lead">What was Anchor & Oak's annual revenue?</p>
@@ -179,22 +179,33 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div><table class="sheet-table"><thead><tr><th>Month</th><th>Revenue</th></tr></thead><tbody><tr><td>Jan</td><td>$35,700</td></tr><tr><td>Feb</td><td>$21,400</td></tr><tr><td>Mar</td><td>$29,500</td></tr><tr><td>Apr</td><td>$43,300</td></tr><tr><td>May</td><td>$54,600</td></tr><tr><td>Jun</td><td>$67,200</td></tr><tr><td>...</td><td>...</td></tr><tr><td>Total</td><td>=SUM(F7:F18)</td></tr></tbody></table></div>
 </div>
-<div class="slide-number">14 / 45</div></section><section class="slide paper" data-section="2" data-slide="15" data-index="14"><div class="eyebrow">OPERATORS IN CONTEXT</div>
+<div class="slide-number">14 / 49</div></section><section data-slide="15" data-index="14" class="slide paper live-pause" data-section="2">
+<div class="eyebrow">LIVE YOU TRY IT</div>
+<div class="split">
+  <div>
+    <h2>Open Live You Try It: SUM</h2>
+    <p class="lead">In row 7, enter the six visible Anchor & Oak revenue values into the yellow cells first.</p>
+    <div class="formula-panel"><span class="fn">=SUM(D7:I7)</span><span class="comment">Reference the yellow cells. Do not type the numbers inside the formula.</span></div>
+    <div class="bottom-callout">Self-check only: this is not part of the private rubric.</div>
+  </div>
+  <div><table class="sheet-table"><thead><tr><th>Month</th><th>Revenue</th></tr></thead><tbody><tr><td>Jan</td><td>$35,700</td></tr><tr><td>Feb</td><td>$21,400</td></tr><tr><td>Mar</td><td>$29,500</td></tr><tr><td>Apr</td><td>$43,300</td></tr><tr><td>May</td><td>$54,600</td></tr><tr><td>Jun</td><td>$67,200</td></tr></tbody></table></div>
+</div>
+<div class="slide-number">15 / 49</div></section><section class="slide paper" data-section="2" data-slide="16" data-index="15"><div class="eyebrow">OPERATORS IN CONTEXT</div>
 <div class="two-panels">
   <div class="panel"><h3>Multiply</h3><div class="formula-panel"><span class="fn">=B2*C2</span><span class="comment">Tidal Goods Co.: units sold times unit price equals sales.</span></div></div>
   <div class="panel"><h3>Divide</h3><div class="formula-panel"><span class="fn">=B2/C2</span><span class="comment">Harborside: insured visits divided by total visits equals payer mix.</span></div></div>
 </div>
 <div class="bottom-callout">Functions help, but business models still depend on clean basic formulas.</div>
-<div class="slide-number">15 / 45</div></section><section class="slide paper" data-section="2" data-slide="16" data-index="15"><div class="eyebrow">AVERAGE</div>
+<div class="slide-number">16 / 49</div></section><section class="slide paper" data-section="2" data-slide="17" data-index="16"><div class="eyebrow">AVERAGE</div>
 <div class="big-stat"><span>$46.2K</span><p>Average monthly revenue is a benchmark, not a verdict.</p></div>
 <div class="formula-panel"><span class="fn">=AVERAGE(F7:F18)</span><span class="comment">Total revenue divided by number of numeric months.</span></div>
-<div class="slide-number">16 / 45</div></section><section class="slide paper" data-section="2" data-slide="17" data-index="16"><div class="eyebrow">MAX / MIN</div>
+<div class="slide-number">17 / 49</div></section><section class="slide paper" data-section="2" data-slide="18" data-index="17"><div class="eyebrow">MAX / MIN</div>
 <div class="edge-grid">
   <div class="edge high"><h3>Peak</h3><strong>=MAX(F7:F18)</strong><p>Best month to study for repeatable wins.</p></div>
   <div class="edge low"><h3>Low Point</h3><strong>=MIN(F7:F18)</strong><p>Slowest month to plan cash flow and staffing.</p></div>
 </div>
 <div class="sparkline"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-<div class="slide-number">17 / 45</div></section><section class="slide terra mistake-slide" data-section="3" data-slide="18" data-index="17"><div class="eyebrow">COMMON MISTAKE</div>
+<div class="slide-number">18 / 49</div></section><section class="slide terra mistake-slide" data-section="3" data-slide="19" data-index="18"><div class="eyebrow">COMMON MISTAKE</div>
 <div class="mistake-board">
   <div class="mistake-x">X</div>
   <h1>Counting the header row or hard-coding the total</h1>
@@ -204,30 +215,30 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
     <div><b>Better</b><code>=COUNT(F7:F18)</code><span>Starts on the first data row.</span></div>
   </div>
 </div>
-<div class="slide-number">18 / 45</div></section><section class="slide paper" data-section="2" data-slide="19" data-index="18"><div class="eyebrow">COUNT FAMILY</div>
+<div class="slide-number">19 / 49</div></section><section class="slide paper" data-section="2" data-slide="20" data-index="19"><div class="eyebrow">COUNT FAMILY</div>
 <div class="three-chunks">
   <div><h3>COUNT</h3><p>How many cells contain numbers?</p><code>=COUNT(F7:F18)</code></div>
   <div><h3>COUNTA</h3><p>How many cells contain anything?</p><code>=COUNTA(B7:B18)</code></div>
   <div><h3>COUNTBLANK</h3><p>How many cells are still empty?</p><code>=COUNTBLANK(F7:F18)</code></div>
 </div>
 <div class="bottom-callout">Counting is often a data-quality check before it is a calculation.</div>
-<div class="slide-number">19 / 45</div></section><section class="slide paper" data-section="2" data-slide="20" data-index="19"><div class="eyebrow">PRACTICE PAUSE</div>
+<div class="slide-number">20 / 49</div></section><section class="slide paper" data-section="2" data-slide="21" data-index="20"><div class="eyebrow">PRACTICE PAUSE</div>
 <div class="decision-ladder">
   <div><b>Question</b><span>How much revenue did we earn?</span><strong>SUM</strong></div>
   <div><b>Question</b><span>What is a normal month?</span><strong>AVERAGE</strong></div>
   <div><b>Question</b><span>Where did we peak?</span><strong>MAX</strong></div>
   <div><b>Question</b><span>Is data missing?</span><strong>COUNT / COUNTA</strong></div>
 </div>
-<div class="slide-number">20 / 45</div></section><section class="slide dark section-slide" data-section="3" data-slide="21" data-index="20">
+<div class="slide-number">21 / 49</div></section><section class="slide dark section-slide" data-section="3" data-slide="22" data-index="21">
 <div class="section-break"><div class="kicker">PART 3</div><h1>The 80/20 Data Analysis Toolkit</h1><p>These are the high-impact functions students will reuse in almost every business spreadsheet.</p><div class="gradient-bar"></div></div>
-<div class="slide-number">21 / 45</div></section><section class="slide paper" data-section="3" data-slide="22" data-index="21"><div class="eyebrow">IF</div>
+<div class="slide-number">22 / 49</div></section><section class="slide paper" data-section="3" data-slide="23" data-index="22"><div class="eyebrow">IF</div>
 <div class="flow">
   <div class="diamond">Revenue >= Target?</div>
   <div class="branch yes">Yes: Above target</div>
   <div class="branch no">No: Below target</div>
 </div>
 <div class="formula-panel"><span class="fn">=IF(F7&gt;=$H$28,&quot;Above target&quot;,&quot;Below target&quot;)</span><span class="comment">The logical test chooses which label appears.</span></div>
-<div class="slide-number">22 / 45</div></section><section class="slide paper" data-section="3" data-slide="23" data-index="22"><div class="eyebrow">SUMIFS</div>
+<div class="slide-number">23 / 49</div></section><section class="slide paper" data-section="3" data-slide="24" data-index="23"><div class="eyebrow">SUMIFS</div>
 <div class="split">
   <div>
     <p class="lead">Tidal Goods Co. wants category sales without manually filtering the table.</p>
@@ -235,24 +246,35 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div><table class="sheet-table"><thead><tr><th>Category</th><th>Region</th><th>Sales</th></tr></thead><tbody><tr><td>Kitchen</td><td>North</td><td>$8,400</td></tr><tr><td>Storage</td><td>North</td><td>$5,100</td></tr><tr><td>Kitchen</td><td>South</td><td>$3,900</td></tr><tr><td>Kitchen</td><td>North</td><td>$6,200</td></tr></tbody></table></div>
 </div>
-<div class="slide-number">23 / 45</div></section><section class="slide paper" data-section="3" data-slide="24" data-index="23"><div class="eyebrow">COUNTIFS</div>
+<div class="slide-number">24 / 49</div></section><section data-slide="25" data-index="24" class="slide paper live-pause" data-section="3">
+<div class="eyebrow">LIVE YOU TRY IT</div>
 <div class="split">
   <div>
-    <h2>Counting answers a different question than summing.</h2>
+    <h2>Open Live You Try It: SUMIFS</h2>
+    <p class="lead">In row 8, enter the four Tidal sales values from the slide. Then calculate Kitchen North sales.</p>
+    <div class="formula-panel"><span class="fn">=D8+G8</span><span class="comment">The first and fourth slide rows are both Kitchen and North.</span></div>
+    <div class="bottom-callout">The feedback cell checks the result; the goal is choosing the right rows.</div>
+  </div>
+  <div><table class="sheet-table"><thead><tr><th>Category</th><th>Region</th><th>Sales</th></tr></thead><tbody><tr><td>Kitchen</td><td>North</td><td>$8,400</td></tr><tr><td>Storage</td><td>North</td><td>$5,100</td></tr><tr><td>Kitchen</td><td>South</td><td>$3,900</td></tr><tr><td>Kitchen</td><td>North</td><td>$6,200</td></tr></tbody></table></div>
+</div>
+<div class="slide-number">25 / 49</div></section><section class="slide paper" data-section="3" data-slide="26" data-index="25"><div class="eyebrow">COUNTIFS</div>
+<div class="split">
+  <div>
+    <h2>Counting answers a different question than summing</h2>
     <div class="formula-panel"><span class="fn">=COUNTIFS(Status,&quot;Late&quot;,Department,&quot;Nursing&quot;)</span><span class="comment">Harborside: count late timesheets for one department.</span></div>
   </div>
   <div class="metric-tiles"><div><b>17</b><span>late records</span></div><div><b>4</b><span>departments affected</span></div><div><b>1</b><span>urgent pattern</span></div></div>
 </div>
-<div class="slide-number">24 / 45</div></section><section class="slide paper" data-section="3" data-slide="25" data-index="24"><div class="eyebrow">XLOOKUP</div>
+<div class="slide-number">26 / 49</div></section><section class="slide paper" data-section="3" data-slide="27" data-index="26"><div class="eyebrow">XLOOKUP</div>
 <div class="split image-split">
   <div>
-    <h2>Lookup means connect one table to another.</h2>
+    <h2>Lookup means connect one table to another</h2>
     <div class="formula-panel"><span class="fn">=XLOOKUP(A2,EmployeeID,PayRate,&quot;Not found&quot;)</span><span class="comment">Find an ID in one list and return the matching pay rate.</span></div>
     <p>Compared with legacy lookup tools, XLOOKUP is more flexible and less brittle.</p>
   </div>
   <img src="assets/bus123-excel-m03-l01/bus123-excel-m03-l01-efficiency-guide.png" alt="Excel 80/20 function guide showing XLOOKUP, FILTER, SORT, SUMIFS, IF, dates, and sequence functions">
 </div>
-<div class="slide-number">25 / 45</div></section><section class="slide paper" data-section="3" data-slide="26" data-index="25"><div class="eyebrow">XLOOKUP PRACTICE</div>
+<div class="slide-number">27 / 49</div></section><section class="slide paper" data-section="3" data-slide="28" data-index="27"><div class="eyebrow">XLOOKUP PRACTICE</div>
 <div class="split">
   <div><table class="sheet-table"><thead><tr><th>Employee ID</th><th>Name</th></tr></thead><tbody><tr><td>M101</td><td>Ari</td></tr><tr><td>M102</td><td>Blake</td></tr><tr><td>M103</td><td>Casey</td></tr></tbody></table></div>
   <div>
@@ -260,7 +282,18 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
     <div class="formula-panel"><span class="fn">=XLOOKUP(A2,RateTable[ID],RateTable[Hourly Rate],&quot;Check ID&quot;)</span><span class="comment">Lookup value, lookup array, return array, optional not-found message.</span></div>
   </div>
 </div>
-<div class="slide-number">26 / 45</div></section><section class="slide paper" data-section="3" data-slide="27" data-index="26"><div class="eyebrow">FILTER</div>
+<div class="slide-number">28 / 49</div></section><section data-slide="29" data-index="28" class="slide paper live-pause" data-section="3">
+<div class="eyebrow">LIVE YOU TRY IT</div>
+<div class="split">
+  <div>
+    <h2>Open Live You Try It: XLOOKUP</h2>
+    <p class="lead">In row 9, enter the employee IDs and names from the slide, then return the name for M102.</p>
+    <div class="formula-panel"><span class="fn">=XLOOKUP(F9,D9:H9,E9:I9,&quot;Check ID&quot;)</span><span class="comment">Lookup value first, lookup row second, return row third.</span></div>
+    <div class="bottom-callout">Check the returned label before moving on.</div>
+  </div>
+  <div><table class="sheet-table"><thead><tr><th>Employee ID</th><th>Name</th></tr></thead><tbody><tr><td>M101</td><td>Ari</td></tr><tr><td>M102</td><td>Blake</td></tr><tr><td>M103</td><td>Casey</td></tr></tbody></table></div>
+</div>
+<div class="slide-number">29 / 49</div></section><section class="slide paper" data-section="3" data-slide="30" data-index="29"><div class="eyebrow">FILTER</div>
 <div class="split">
   <div>
     <p class="lead">Harborside wants only records where payer type is Medicare and balance is above $500.</p>
@@ -268,15 +301,15 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div class="filter-funnel"><span>All rows</span><b>criteria</b><strong>matching rows</strong></div>
 </div>
-<div class="slide-number">27 / 45</div></section><section class="slide paper" data-section="3" data-slide="28" data-index="27"><div class="eyebrow">SORT / UNIQUE</div>
+<div class="slide-number">30 / 49</div></section><section class="slide paper" data-section="3" data-slide="31" data-index="30"><div class="eyebrow">SORT / UNIQUE</div>
 <div class="two-panels">
   <div class="panel"><h3>Unique values</h3><div class="formula-panel"><span class="fn">=UNIQUE(B2:B200)</span><span class="comment">Return each category once.</span></div></div>
   <div class="panel"><h3>Sorted values</h3><div class="formula-panel"><span class="fn">=SORT(UNIQUE(B2:B200))</span><span class="comment">Alphabetize the clean list.</span></div></div>
 </div>
 <div class="bottom-callout">Great for category lists, vendor names, departments, product lines, and event types.</div>
-<div class="slide-number">28 / 45</div></section><section class="slide dark section-slide" data-section="3" data-slide="29" data-index="28">
+<div class="slide-number">31 / 49</div></section><section class="slide dark section-slide" data-section="3" data-slide="32" data-index="31">
 <div class="section-break"><div class="kicker">PART 4</div><h1>Modern Add-Ons for Analysis</h1><p>Not every function is first-day essential, but a few unlock cleaner models and faster reporting.</p><div class="gradient-bar"></div></div>
-<div class="slide-number">29 / 45</div></section><section class="slide paper" data-section="3" data-slide="30" data-index="29"><div class="eyebrow">TEXTJOIN</div>
+<div class="slide-number">32 / 49</div></section><section class="slide paper" data-section="3" data-slide="33" data-index="32"><div class="eyebrow">TEXTJOIN</div>
 <div class="split">
   <div>
     <p class="lead">Anchor & Oak wants package labels that combine event type, city, and planner without awkward blanks.</p>
@@ -284,7 +317,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div class="textjoin-demo"><span>Wedding</span><span>Boston</span><span>Avery</span><b>Wedding - Boston - Avery</b></div>
 </div>
-<div class="slide-number">30 / 45</div></section><section class="slide paper" data-section="3" data-slide="31" data-index="30"><div class="eyebrow">EOMONTH</div>
+<div class="slide-number">33 / 49</div></section><section class="slide paper" data-section="3" data-slide="34" data-index="33"><div class="eyebrow">EOMONTH</div>
 <div class="split">
   <div>
     <p class="lead">Meridian Advisory Group closes payroll on the last day of each month.</p>
@@ -292,7 +325,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div class="calendar-card"><b>Jun 2026</b><span>Payroll close</span><strong>Jun 30</strong></div>
 </div>
-<div class="slide-number">31 / 45</div></section><section class="slide paper" data-section="3" data-slide="32" data-index="31"><div class="eyebrow">SEQUENCE</div>
+<div class="slide-number">34 / 49</div></section><section class="slide paper" data-section="3" data-slide="35" data-index="34"><div class="eyebrow">SEQUENCE</div>
 <div class="split">
   <div>
     <p class="lead">Harborside needs shift numbers 1 through 12 without typing each row.</p>
@@ -300,7 +333,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div class="sequence-grid"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
 </div>
-<div class="slide-number">32 / 45</div></section><section class="slide paper" data-section="3" data-slide="33" data-index="32"><div class="eyebrow">SUMPRODUCT</div>
+<div class="slide-number">35 / 49</div></section><section class="slide paper" data-section="3" data-slide="36" data-index="35"><div class="eyebrow">SUMPRODUCT</div>
 <div class="split">
   <div>
     <p class="lead">Tidal Goods Co. needs inventory value across products with different quantities and costs.</p>
@@ -308,35 +341,44 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <div><table class="sheet-table"><thead><tr><th>Item</th><th>Qty</th><th>Cost</th></tr></thead><tbody><tr><td>Tote</td><td>20</td><td>$18</td></tr><tr><td>Mug</td><td>45</td><td>$7</td></tr><tr><td>Apron</td><td>12</td><td>$22</td></tr><tr><td>Total</td><td></td><td>=SUMPRODUCT(...)</td></tr></tbody></table></div>
 </div>
-<div class="slide-number">33 / 45</div></section><section class="slide paper" data-section="3" data-slide="34" data-index="33"><div class="eyebrow">ROUND</div>
+<div class="slide-number">36 / 49</div></section><section class="slide paper" data-section="3" data-slide="37" data-index="36"><div class="eyebrow">ROUND</div>
 <div class="two-panels">
   <div class="panel"><h3>Messy</h3><div class="huge-number">13.746892</div></div>
   <div class="panel"><h3>Readable</h3><div class="formula-panel"><span class="fn">=ROUND(B2,2)</span><span class="comment">Return 13.75 for a two-decimal business report.</span></div></div>
 </div>
 <div class="bottom-callout">Formatting changes the display. ROUND changes the stored result.</div>
-<div class="slide-number">34 / 45</div></section><section class="slide paper" data-section="3" data-slide="35" data-index="34"><div class="eyebrow">REFERENCE VISUAL</div>
+<div class="slide-number">37 / 49</div></section><section data-slide="38" data-index="37" class="slide paper live-pause" data-section="3">
+<div class="eyebrow">LIVE YOU TRY IT</div>
+<h2>Open Live You Try It: modern add-ons</h2>
+<div class="three-chunks">
+  <div><h3>SEQUENCE</h3><p>Use 12 to total a generated 1-to-12 shift list.</p><code>=SUM(SEQUENCE(D10))</code></div>
+  <div><h3>SUMPRODUCT</h3><p>Use Tote 20 x $18, Mug 45 x $7, and Apron 12 x $22.</p><code>=D11*E11+F11*G11+H11*I11</code></div>
+  <div><h3>ROUND</h3><p>Use 13.746892 and 2 decimal places.</p><code>=ROUND(D12,E12)</code></div>
+</div>
+<div class="bottom-callout">Each row starts with yellow inputs and ends with a green feedback check.</div>
+<div class="slide-number">38 / 49</div></section><section class="slide paper" data-section="3" data-slide="39" data-index="38"><div class="eyebrow">REFERENCE VISUAL</div>
 <div class="image-focus">
   <img src="assets/bus123-excel-m03-l01/bus123-excel-m03-l01-analysis-roadmap.png" alt="Roadmap showing Excel analysis pillars including forecasting, PivotTables, conditional aggregation, XLOOKUP, TEXTJOIN, and SUMPRODUCT">
 </div>
-<div class="slide-number">35 / 45</div></section><section class="slide paper" data-section="3" data-slide="36" data-index="35"><div class="eyebrow">REFERENCE VISUAL</div>
+<div class="slide-number">39 / 49</div></section><section class="slide paper" data-section="3" data-slide="40" data-index="39"><div class="eyebrow">REFERENCE VISUAL</div>
 <div class="image-split split">
   <img src="assets/bus123-excel-m03-l01/bus123-excel-m03-l01-efficiency-guide.png" alt="Excel 80/20 guide with ten high-impact functions">
   <div>
-    <h2>We are skipping Lambda today.</h2>
+    <h2>We are skipping Lambda today</h2>
     <p class="lead">Reusable custom functions are powerful, but they are not the first 80 percent for BUS123.</p>
     <div class="bottom-callout">Focus first: lookup, filter, conditional math, logic, dates, text, and clean lists.</div>
   </div>
 </div>
-<div class="slide-number">36 / 45</div></section><section class="slide dark section-slide" data-section="4" data-slide="37" data-index="36">
+<div class="slide-number">40 / 49</div></section><section class="slide dark section-slide" data-section="4" data-slide="41" data-index="40">
 <div class="section-break"><div class="kicker">PART 5</div><h1>Decision Drills</h1><p>Now the question is not whether students can type formulas. It is whether they can choose the right tool.</p><div class="gradient-bar"></div></div>
-<div class="slide-number">37 / 45</div></section><section class="slide paper" data-section="4" data-slide="38" data-index="37"><div class="eyebrow">CASE MIX</div>
+<div class="slide-number">41 / 49</div></section><section class="slide paper" data-section="4" data-slide="42" data-index="41"><div class="eyebrow">CASE MIX</div>
 <div class="company-grid">
   <div><h3>Anchor & Oak Events</h3><p>Summarize monthly event revenue.</p><b>SUM / AVERAGE / MAX / MIN</b></div>
   <div><h3>Tidal Goods Co.</h3><p>Value inventory and category sales.</p><b>SUMIFS / SUMPRODUCT</b></div>
   <div><h3>Meridian Advisory Group</h3><p>Connect employees to rates and payroll dates.</p><b>XLOOKUP / EOMONTH</b></div>
   <div><h3>Harborside Medical Center</h3><p>Extract records and count exceptions.</p><b>FILTER / COUNTIFS</b></div>
 </div>
-<div class="slide-number">38 / 45</div></section><section class="slide paper" data-section="4" data-slide="39" data-index="38"><div class="eyebrow">CLASS CHECK</div>
+<div class="slide-number">42 / 49</div></section><section class="slide paper" data-section="4" data-slide="43" data-index="42"><div class="eyebrow">CLASS CHECK</div>
 <div class="quiz-card">
   <h2 id="quiz-question">Which function returns all Harborside patient rows where balance is above $500?</h2>
   <div class="quiz-buttons">
@@ -347,7 +389,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   </div>
   <p id="quiz-answer">Choose before revealing.</p>
 </div>
-<div class="slide-number">39 / 45</div></section><section class="slide paper" data-section="4" data-slide="40" data-index="39"><div class="eyebrow">DEBUGGING</div>
+<div class="slide-number">43 / 49</div></section><section class="slide paper" data-section="4" data-slide="44" data-index="43"><div class="eyebrow">DEBUGGING</div>
 <div class="checklist">
   <div><b>1</b><span>Does the formula start with =?</span></div>
   <div><b>2</b><span>Are ranges starting on the first data row?</span></div>
@@ -355,42 +397,41 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   <div><b>4</b><span>Did text criteria use quotation marks?</span></div>
   <div><b>5</b><span>Does the answer match the business question?</span></div>
 </div>
-<div class="slide-number">40 / 45</div></section><section class="slide paper" data-section="4" data-slide="41" data-index="40"><div class="eyebrow">TALK IT THROUGH</div>
+<div class="slide-number">44 / 49</div></section><section class="slide paper" data-section="4" data-slide="45" data-index="44"><div class="eyebrow">TALK IT THROUGH</div>
 <div class="discussion-grid">
   <div><h2>Question 1</h2><p>When would a perfectly typed formula still be a bad business answer?</p></div>
   <div><h2>Question 2</h2><p>Which function from today would save you the most manual work in another class or job?</p></div>
 </div>
-<div class="slide-number">41 / 45</div></section>
-<section class="slide paper" data-section="4" data-slide="42" data-index="41" data-label="42 Formula Reference Card" id="slide-42">
+<div class="slide-number">45 / 49</div></section><section class="slide paper" data-section="4" data-slide="46" data-index="45" data-label="42 Formula Reference Card" id="slide-42">
   <div class="formula-reference-slide">
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
     <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
     <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>SUM</td><td class="pattern">=SUM(range)</td><td>Adds numeric values in a range.</td><td class="watch">Confirm the range includes all rows.</td></tr><tr><td>AVERAGE</td><td class="pattern">=AVERAGE(range)</td><td>Returns the mean of a numeric range.</td><td class="watch">Blank cells are skipped.</td></tr><tr><td>IF</td><td class="pattern">=IF(test,value_if_true,value_if_false)</td><td>Returns one result when a test is true and another when false.</td><td class="watch">Write the test before choosing outputs.</td></tr><tr><td>COUNTIFS</td><td class="pattern">=COUNTIFS(criteria_range,criteria)</td><td>Counts rows that meet criteria.</td><td class="watch">Each criteria range must be the same size.</td></tr><tr><td>XLOOKUP</td><td class="pattern">=XLOOKUP(lookup_value,lookup_array,return_array)</td><td>Finds a matching record and returns the related value.</td><td class="watch">Lookup and return arrays must line up by row.</td></tr><tr><td>FILTER</td><td class="pattern">=FILTER(array,include)</td><td>Spills only the rows that meet the filter rule.</td><td class="watch">A spilled result needs empty cells below.</td></tr></tbody></table>
   </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">42 / 45</div>
-</section><section class="slide paper" data-section="4" data-slide="43" data-index="42"><div class="eyebrow">WRAP</div>
+  <div class="slide-number">46 / 49</div>
+</section><section class="slide paper" data-section="4" data-slide="47" data-index="46"><div class="eyebrow">WRAP</div>
 <div class="takeaways">
   <div><b>1</b><p>Functions are named formulas that turn ranges into answers.</p></div>
   <div><b>2</b><p>The business question should choose the function.</p></div>
   <div><b>3</b><p>Modern Excel rewards clean structure: tables, ranges, criteria, and spill results.</p></div>
 </div>
-<div class="slide-number">43 / 45</div></section><section class="slide paper" data-section="4" data-slide="44" data-index="43"><div class="eyebrow">NEXT LESSON</div>
+<div class="slide-number">47 / 49</div></section><section class="slide paper" data-section="4" data-slide="48" data-index="47"><div class="eyebrow">NEXT LESSON</div>
 <div class="split">
   <div>
-    <h2>Next we make analysis easier to read.</h2>
+    <h2>Next we make analysis easier to read</h2>
     <p class="lead">Once formulas produce answers, charts and visual structure help business users understand the story.</p>
   </div>
   <div class="next-visual"><span>Raw Data</span><b>Functions</b><strong>Insights</strong></div>
 </div>
-<div class="slide-number">44 / 45</div></section><section class="slide dark final-slide" data-section="0" data-slide="45" data-index="44">
+<div class="slide-number">48 / 49</div></section><section class="slide dark final-slide" data-section="0" data-slide="49" data-index="48">
 <div class="close-content">
   <h1>Questions?</h1>
   <p>Bring the workbook forward. We will practice choosing, writing, copying, and auditing functions.</p>
   <div class="gradient-bar"></div>
   <div class="office-hours">BUS123 - Solving Business Problems with Technology</div>
 </div>
-<div class="slide-number">45 / 45</div></section>
+<div class="slide-number">49 / 49</div></section>
   </main>
   <div class="notes-panel" aria-live="polite"></div>
   <div class="controls"><button class="prev">Prev</button><span class="counter"></span><button class="next">Next</button><button class="notes-toggle">Notes</button></div>
@@ -411,6 +452,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   "Tell students the deck and workbook talk to each other. The workbook gives them a place to try these ideas immediately.",
   "Transition into the first real function set.",
   "Do not just say SUM adds. Ask the business question first: annual revenue from monthly rows.",
+  "Pause on the workbook. Students should enter the six visible revenue values into Live You Try It row 7, then write a SUM formula that references those yellow cells.",
   "Keep basic operators alive. They are not lesser skills; they are the building blocks for every model.",
   "Explain that averages are useful but can hide seasonality. Anchor & Oak has busy and slow seasons, so average is a starting point.",
   "Emphasize that MAX and MIN are story-finders. They point students to the months worth investigating.",
@@ -420,9 +462,11 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   "Transition from core summaries into high-impact analysis functions.",
   "IF is the first function that makes Excel behave like a decision rule. The absolute target matters when copied down.",
   "The source deck introduces SUMIF. Here we emphasize SUMIFS because students will see multiple criteria in real analysis.",
+  "Use this as a quick transition from seeing SUMIFS to selecting rows. Students enter the four Tidal sales values and identify the two Kitchen North rows before calculating.",
   "Push students to ask whether they need a total amount or a count of cases.",
   "Use the provided guide as a visual anchor. Point out that Lambda appears in the image but this lesson is intentionally skipping it.",
   "Keep the XLOOKUP syntax clear: find this, in that column, return this other column.",
+  "Have students enter the three ID/name pairs exactly as shown, then use XLOOKUP to return Blake for M102. Keep the emphasis on lookup value, lookup range, and return range.",
   "Explain dynamic arrays gently. FILTER returns many rows, not just one value.",
   "Show how SORT and UNIQUE pair together. This is one of the easiest modern Excel wins.",
   "Transition into useful extras that extend the 80/20 toolkit without turning the lesson into a formula encyclopedia.",
@@ -431,6 +475,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   "SEQUENCE is small but powerful because it creates scaffolding for dates, periods, row numbers, and schedules.",
   "This comes directly from the source deck. Use it as the clean version of many repeated multiplication rows plus a SUM.",
   "ROUND is in the source deck. Keep the distinction between formatting and actual rounded values clear.",
+  "This short pause lets students try the modern add-ons without turning them into a graded task. They should use yellow inputs first, formulas second, and feedback third.",
   "Use the first provided PNG as a pause-and-orient slide. Ask students to identify which functions we already used and which ones are coming later in the semester.",
   "Call out the Lambda section explicitly so students do not feel responsible for it today.",
   "Move into synthesis. The final section turns function knowledge into judgment.",

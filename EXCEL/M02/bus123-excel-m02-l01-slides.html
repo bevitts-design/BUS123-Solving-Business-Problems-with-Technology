@@ -407,6 +407,37 @@ h1{
 .formula-panel .comment{display:block;color:var(--sage)}
 .formula-panel .result{display:block;color:var(--ink)}
 
+.try-pause{
+  display:grid;
+  grid-template-columns:190px 1fr;
+  gap:14px;
+  align-items:center;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-left:4px solid var(--gold);
+  border-radius:7px;
+  padding:14px 18px;
+}
+.try-pause .tag{
+  font-family:var(--mono);
+  font-size:16px;
+  font-weight:700;
+  color:var(--terra);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.try-pause p{
+  margin:0;
+  font-size:18px;
+  line-height:1.3;
+  color:var(--text);
+}
+.try-pause code{
+  font-family:var(--mono);
+  color:var(--steel);
+  font-weight:700;
+}
+
 .stat-panel{
   display:grid;
   grid-template-columns:360px 1fr;
@@ -748,6 +779,7 @@ h1{
             <tr class="row-result"><td colspan="3">Total</td><td>$22,700</td><td>$7,530</td><td>$1,400</td><td>$13,770</td></tr>
           </tbody>
         </table>
+        <div class="try-pause"><div class="tag">Live You Try It</div><p>In the workbook, enter <strong>4,800</strong>, <strong>1,820</strong>, and <strong>0</strong> into yellow cells, then build <code>=Revenue-Catering-Staffing</code> to check Spring Gala net profit.</p></div>
       </div>
     </article>
 
@@ -781,6 +813,7 @@ h1{
           <span class="comment">// Sum all revenue rows before checking manually.</span>
           <span class="result">Manual check: $4,800 + $3,200 + $9,500 + $5,200 = $22,700</span>
         </div>
+        <div class="try-pause"><div class="tag">Live You Try It</div><p>Enter the four revenue values from the slide, reference those yellow cells, and build one <code>SUM</code> formula that returns <strong>22,700</strong>.</p></div>
       </div>
     </article>
 
@@ -803,6 +836,7 @@ h1{
             <li>Total rows use stronger border and weight.</li>
             <li>Headers stay consistent across the workbook.</li>
           </ul>
+          <div class="try-pause"><div class="tag">Live You Try It</div><p>Use <strong>2,980</strong>, <strong>1,990</strong>, <strong>5,510</strong>, and <strong>3,290</strong> to build a total net profit formula, then compare it to <strong>13,770</strong>.</p></div>
         </div>
         <table class="ws">
           <thead><tr><th>Event</th><th>Guests</th><th>Revenue</th><th>Net</th></tr></thead>
@@ -969,11 +1003,11 @@ h1{
   "Compare the two mini tables. Ask students what column B means in the left version. The discomfort is the point.",
   "Set up Part 2 as application. We are going to take the Anchor and Oak booking summary from raw export to readable handoff.",
   "Ask students what they would fix first before showing the formatted version. Listen for dates, currency, totals, and headers.",
-  "Walk through the formatted version in order: readable dates, currency columns, right alignment, and the total row.",
+  "Walk through the formatted version in order: readable dates, currency columns, right alignment, and the total row. Then pause for Live You Try It: students enter 4800, 1820, and 0 in yellow cells and build the Spring Gala net profit formula from those inputs.",
   "Drill the shortcuts briefly. Students do not need to memorize all of them today, but they should recognize the Number group and Format Cells dialog.",
-  "Excel syntax comes first, then the manual check. Reinforce that formulas update while typed totals go stale.",
+  "Excel syntax comes first, then the manual check. Pause for Live You Try It: students enter 4800, 3200, 9500, and 5200 into yellow cells and build one SUM formula that returns 22700.",
   "Part 3 moves from making the sheet look good to making it hold up when someone uses it.",
-  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster.",
+  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster. Use the Live You Try It pause to have students total 2980, 1990, 5510, and 3290 before they compare to 13770.",
   "Demo freeze panes live if possible. Scroll down with row 1 unlocked, then freeze the top row and scroll again.",
   "Color with purpose is the professional rule. Every color should have exactly one job students can name.",
   "Common mistake: merged cells. Explain that merged headers are attractive until sorting and filtering fail. Center Across Selection is the safe substitute.",

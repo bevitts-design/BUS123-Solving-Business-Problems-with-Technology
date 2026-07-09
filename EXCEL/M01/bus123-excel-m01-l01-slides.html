@@ -102,9 +102,32 @@ table.xl .rownum{background:#1a1a2e;color:#c9a84c;text-align:center;font-weight:
 table.xl tbody tr:nth-child(even) td{background:#f7f8fa}
 table.xl td{background:#fff;color:#0a3d6b}
 table.xl tr.result td{background:#fffbf0;color:#1a6b3c;border-left:3px solid #c9a84c;font-weight:600}
-table.xl td.fml{color:#1a6b3c;font-weight:500}
-.fmlbar{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:24px;color:#1a6b3c;margin-bottom:12px;font-feature-settings:"tnum"}
-.fmlbar b{color:#0a3d6b;font-family:var(--sans)}
+	table.xl td.fml{color:#1a6b3c;font-weight:500}
+	.fmlbar{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:24px;color:#1a6b3c;margin-bottom:12px;font-feature-settings:"tnum"}
+	.fmlbar b{color:#0a3d6b;font-family:var(--sans)}
+	.slide.compact-example{padding:26px 52px}
+	.compact-example .title-rule{margin:8px 0 12px}
+	.compact-example p,.compact-example li{font-size:22px;line-height:1.35}
+	.compact-example ul{gap:10px}
+	.compact-example li::before{top:9px}
+	.compact-example .two{gap:24px}
+	.compact-example table.xl th,.compact-example table.xl td{padding:6px 8px}
+	.compact-example .fx{padding:14px 18px;border-radius:10px}
+	.compact-example .fx .lab{font-size:17px;margin-bottom:6px}
+	.compact-example .fx code{font-size:25px}
+	.compact-example .manual{padding:12px 16px;margin-top:9px;border-radius:10px}
+	.compact-example .manual .lab{font-size:17px;margin-bottom:6px}
+	.compact-example .manual code{font-size:21px}
+	.compact-example .flow{font-size:20px;line-height:1.25;margin-top:7px}
+	.compact-example .live-pause{margin-top:9px}
+	.compact-example .live-pause .lab{font-size:16px}
+	.compact-example .live-pause code{font-size:18px}
+	.compact-example .live-pause .flow{font-size:17px;line-height:1.25}
+	.compact-example .fmlbar{font-size:20px;margin-bottom:8px;padding:6px 10px}
+	.compact-example .card{padding:16px 18px;border-radius:10px}
+	.compact-example .card h3{font-size:23px;margin-bottom:5px}
+	.compact-example .card .k{font-size:17px;margin-bottom:5px}
+	.compact-example .card p{font-size:19px;line-height:1.3}
 
 /* mistake slide */
 .mistake-tag{display:inline-block;background:var(--terra);color:#fff;font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 18px;border-radius:8px}
@@ -208,8 +231,6 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
         <li class="t"><span class="lo-num">4</span>I can write the core functions (SUM, AVERAGE, COUNT, MIN, MAX) and explain how relative vs. absolute references change a formula.</li>
         <li class="t"><span class="lo-num">5</span>I can recognize common error codes and apply the golden rules that keep a spreadsheet trustworthy.</li>
       </ul>
-      <div class="spacer"></div>
-      <p class="reveal footer-meta" style="color:var(--muted)">Draft objectives &mdash; swap in the official &ldquo;I Can&rdquo; statements from the Notion task when ready.</p>
     </section>
 
     <!-- 4 RECAP / BRIDGE -->
@@ -281,12 +302,12 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <div class="reveal title-rule"></div>
       <div class="reveal cards c3">
         <div class="card"><div class="k">Name Box</div><h3>Where am I?</h3><p>Shows the active cell&rsquo;s address. Type <b>A100</b> and Enter to jump there.</p></div>
-        <div class="card"><div class="k">Formula Bar</div><h3>The real story</h3><p>The cell shows <b>238,000</b>; the bar shows the logic behind it, like <b>=SUM(C2:C5)</b>.</p></div>
+        <div class="card"><div class="k">Formula Bar</div><h3>The real story</h3><p>The cell shows <b>238,000</b>; the bar shows the logic behind it, like <b>=SUM(C8:C11)</b>.</p></div>
         <div class="card"><div class="k">Ribbon</div><h3>The toolbox</h3><p>Tabs (Home, Insert, Data) holding grouped tools.</p></div>
       </div>
       <div class="reveal fx" style="margin-top:22px;border-left-color:var(--sage)">
         <div class="lab" style="color:var(--sage)">A range = a group of cells &middot; the colon means &ldquo;through&rdquo;</div>
-        <code>C2:C5  &rarr;  &ldquo;cell C2 through C5&rdquo;  (Harborside&rsquo;s four department totals)</code>
+        <code>C8:C11  &rarr;  &ldquo;cell C8 through C11&rdquo;  (the four Live You Try It charge cells)</code>
       </div>
     </section>
 
@@ -322,7 +343,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <div class="reveal eyebrow">The building blocks</div>
       <h2 class="reveal">Formula vs. function &mdash; the Big Five</h2>
       <div class="reveal title-rule"></div>
-      <div class="reveal" style="margin-bottom:18px"><p>A <b>formula</b> is anything you write after <b>=</b> (like <b>=C2+C3</b>). A <b>function</b> is a built-in shortcut (like <b>=SUM(&hellip;)</b>). Every formula starts with the equals sign.</p></div>
+      <div class="reveal" style="margin-bottom:18px"><p>A <b>formula</b> is anything you write after <b>=</b> (like <b>=C8+C9</b>). A <b>function</b> is a built-in shortcut (like <b>=SUM(&hellip;)</b>). Every formula starts with the equals sign.</p></div>
       <div class="reveal cards c3">
         <div class="card gold"><div class="k">SUM</div><p>Adds a range. Harborside&rsquo;s total monthly charges.</p></div>
         <div class="card gold"><div class="k">AVERAGE</div><p>The mean. Average daily ER visits.</p></div>
@@ -333,27 +354,27 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 12 SYNTAX FIRST: SUM -->
-    <section class="slide" data-section="2" data-slide="12" data-index="11">
+    <section class="slide compact-example" data-section="2" data-slide="12" data-index="11">
       <div class="reveal eyebrow">Worked example &middot; Harborside Medical Center</div>
       <h2 class="reveal">Total monthly charges across departments</h2>
       <div class="reveal title-rule"></div>
       <div class="two">
         <div class="reveal">
-          <table class="xl">
-            <thead><tr><th class="rownum"></th><th>B</th><th>C</th></tr></thead>
+          <table class="xl" style="font-size:19px">
+            <thead><tr><th class="rownum"></th><th>B</th><th>C</th><th>D</th></tr></thead>
             <tbody>
-              <tr><td class="rownum">2</td><td>Cardiology</td><td>$84,200</td></tr>
-              <tr><td class="rownum">3</td><td>Radiology</td><td>$61,500</td></tr>
-              <tr><td class="rownum">4</td><td>Pediatrics</td><td>$39,800</td></tr>
-              <tr><td class="rownum">5</td><td>Emergency</td><td>$52,500</td></tr>
-              <tr class="result"><td class="rownum">6</td><td>Total</td><td class="fml">=SUM(C2:C5)</td></tr>
+              <tr><td class="rownum">8</td><td>Cardiology charge</td><td>$84,200</td><td>Slide 12 value</td></tr>
+              <tr><td class="rownum">9</td><td>Radiology charge</td><td>$61,500</td><td>Slide 12 value</td></tr>
+              <tr><td class="rownum">10</td><td>Pediatrics charge</td><td>$39,800</td><td>Slide 12 value</td></tr>
+              <tr><td class="rownum">11</td><td>Emergency charge</td><td>$52,500</td><td>Slide 12 value</td></tr>
+              <tr class="result"><td class="rownum">12</td><td>Total monthly charges</td><td class="fml">=SUM(C8:C11)</td><td>Use the input cells above</td></tr>
             </tbody>
           </table>
         </div>
         <div class="reveal">
           <div class="fx">
             <div class="lab">Excel function &mdash; learn this first</div>
-            <code>=SUM(C2:C5)</code>
+            <code>=SUM(C8:C11)</code>
           </div>
           <div class="manual">
             <div class="lab">Then the manual math</div>
@@ -363,41 +384,41 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
           <div class="manual live-pause">
             <div class="lab">Live You Try It</div>
             <code>Live You Try It!C8:C12</code>
-            <div class="flow">Enter 84,200, 61,500, 39,800, and 52,500 first. Then build the SUM formula from those input cells.</div>
+            <div class="flow">Enter the four charges in C8:C11 first. Then put =SUM(C8:C11) in C12.</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 13 CELL REFERENCING -->
-    <section class="slide" data-section="2" data-slide="13" data-index="12">
+    <section class="slide compact-example" data-section="2" data-slide="13" data-index="12">
       <div class="reveal eyebrow">The engine of a smart sheet</div>
       <h2 class="reveal">Relative, absolute &amp; mixed references</h2>
       <div class="reveal title-rule"></div>
       <div class="two">
         <div class="reveal">
           <ul>
-            <li><b>Relative</b> (<b>C2</b>) shifts as you copy it down.</li>
-            <li class="g"><b>Absolute</b> (<b>$B$1</b>) locks a cell &mdash; the <b>$</b> sits in front of what it freezes. Press <b>F4</b> to toggle.</li>
-            <li class="t"><b>Mixed</b> (<b>B$1</b> or <b>$B1</b>) locks just the row or just the column.</li>
+            <li><b>Relative</b> (<b>C17</b>) shifts as you copy it down.</li>
+            <li class="g"><b>Absolute</b> (<b>$C$16</b>) locks a cell &mdash; the <b>$</b> sits in front of what it freezes. Press <b>F4</b> to toggle.</li>
+            <li class="t"><b>Mixed</b> (<b>C$16</b> or <b>$C16</b>) locks just the row or just the column.</li>
           </ul>
-          <p style="margin-top:16px">Harborside&rsquo;s contracted reimbursement rate lives in <b>B1</b>. Lock it so every department uses the same rate.</p>
         </div>
         <div class="reveal">
-          <div class="fmlbar"><b>C2 &nbsp;=</b> &nbsp;=B2*$B$1</div>
-          <table class="xl">
-            <thead><tr><th class="rownum"></th><th>A</th><th>B</th><th>C</th></tr></thead>
+          <div class="fmlbar"><b>C19 &nbsp;=</b> &nbsp;=C17*$C$16</div>
+          <table class="xl" style="font-size:18px">
+            <thead><tr><th class="rownum"></th><th>B</th><th>C</th><th>D</th></tr></thead>
             <tbody>
-              <tr><td class="rownum">1</td><td>Rate</td><td>0.62</td><td></td></tr>
-              <tr><td class="rownum">2</td><td>Cardiology</td><td>84,200</td><td class="fml">=B2*$B$1</td></tr>
-              <tr><td class="rownum">3</td><td>Radiology</td><td>61,500</td><td class="fml">=B3*$B$1</td></tr>
+              <tr><td class="rownum">16</td><td>Contracted reimbursement rate</td><td>0.62</td><td>Slide 13 value</td></tr>
+              <tr><td class="rownum">17</td><td>Cardiology charge</td><td>84,200</td><td>Slide 13 value</td></tr>
+              <tr><td class="rownum">18</td><td>Radiology charge</td><td>61,500</td><td>Slide 13 value</td></tr>
+              <tr class="result"><td class="rownum">19</td><td>Cardiology expected reimbursement</td><td class="fml">=C17*$C$16</td><td>Lock the rate</td></tr>
+              <tr class="result"><td class="rownum">20</td><td>Radiology expected reimbursement</td><td class="fml">=C18*$C$16</td><td>Copy down</td></tr>
             </tbody>
           </table>
-          <p style="font-size:24px;color:var(--muted);margin-top:10px">Copy down: B2&rarr;B3 shifts, $B$1 stays put.</p>
           <div class="manual live-pause">
             <div class="lab">Live You Try It</div>
             <code>Live You Try It!C16:C20</code>
-            <div class="flow">Enter 0.62, 84,200, and 61,500. Build the two reimbursement formulas and lock the rate cell.</div>
+            <div class="flow">C16 = rate; C17:C18 = charges; C19:C20 = formulas with $C$16 locked.</div>
           </div>
         </div>
       </div>
@@ -413,7 +434,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
     </section>
 
     <!-- 15 FORMATTING -->
-    <section class="slide" data-section="3" data-slide="15" data-index="14">
+    <section class="slide compact-example" data-section="3" data-slide="15" data-index="14">
       <div class="reveal eyebrow">Formatting for clarity</div>
       <h2 class="reveal">Turn a data dump into a story</h2>
       <div class="reveal title-rule"></div>
@@ -426,7 +447,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <div class="reveal manual live-pause" style="max-width:920px">
         <div class="lab">Live You Try It</div>
         <code>Live You Try It!C24:C29</code>
-        <div class="flow">Enter 41%, 23%, 28%, and 8%. Use SUM to verify 100%, then MAX to identify the largest payer share.</div>
+        <div class="flow">Enter 41%, 23%, 28%, and 8% in C24:C27. Use C28 for SUM and C29 for MAX.</div>
       </div>
     </section>
 
@@ -467,8 +488,8 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <h1 class="reveal" style="font-size:50px;margin:20px 0 8px">Hard-coding the rate inside the formula</h1>
       <div class="reveal sub" style="margin-bottom:24px">Harborside&rsquo;s reimbursement rate just changed from 0.62 to 0.65&hellip;</div>
       <div class="reveal two">
-        <div class="bad">&#10007;&nbsp; =B2*0.62<br><span style="font-weight:400;font-size:24px">The rate is buried in every cell. Change it and you must hand-edit dozens of formulas &mdash; and you <i>will</i> miss one.</span></div>
-        <div class="good">&#10003;&nbsp; =B2*$B$1<br><span style="font-weight:400;font-size:24px">Update one cell (B1) and the whole sheet refreshes. Transparent, and safe.</span></div>
+        <div class="bad">&#10007;&nbsp; =C17*0.62<br><span style="font-weight:400;font-size:24px">The rate is buried in every cell. Change it and you must hand-edit dozens of formulas &mdash; and you <i>will</i> miss one.</span></div>
+        <div class="good">&#10003;&nbsp; =C17*$C$16<br><span style="font-weight:400;font-size:24px">Update one cell (C16) and the whole sheet refreshes. Transparent, and safe.</span></div>
       </div>
       <p class="reveal" style="margin-top:26px;color:#C9D1DC">Roughly <b style="color:var(--gold)">88%</b> of spreadsheets contain at least one error &mdash; buried hard-codes are a leading cause.</p>
     </section>
@@ -502,7 +523,7 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
       <div class="reveal title-rule"></div>
       <ul class="reveal">
         <li>A workbook holds worksheets; every cell has an address (column letter + row number).</li>
-        <li class="g">Navigate with the Name Box and read the truth in the Formula Bar; a range uses the colon &mdash; <b>C2:C5</b>.</li>
+        <li class="g">Navigate with the Name Box and read the truth in the Formula Bar; a range uses the colon &mdash; <b>C8:C11</b>.</li>
         <li class="g">Reach for a <b>function</b> first &mdash; SUM, AVERAGE, COUNT, MIN, MAX &mdash; before doing math by hand.</li>
         <li class="t">Lock shared inputs with <b>$</b> (F4), read error codes as clues, and never hard-code.</li>
       </ul>
@@ -542,22 +563,22 @@ table.xl td.fml{color:#1a6b3c;font-weight:500}
 [
   "Title. Welcome them in. Frame the day: this is the first real Excel lesson \u2014 by the end the blank grid stops being intimidating. Mention every example is Harborside Medical Center, a hospital, so the data feels real.",
   "Agenda. Three parts: the environment, then making the sheet calculate, then making it trustworthy. Keep it to 30 seconds \u2014 it's a map, not a stop.",
-  "Objectives. Read the I Can statements out loud; tell them these are exactly what the quiz and workbook will check. Note: these are my draft \u2014 replace with the official Notion statements before publishing.",
+  "Objectives. Read the I Can statements out loud; tell them these are exactly what the quiz and workbook will check.",
   "Bridge. Connect back to INTRO-M01: they already installed Office, connected OneDrive, saved a workbook. Today we open it and learn to read it. Validate that the grid looked overwhelming \u2014 that's normal.",
   "Section break \u2014 Part 1. Big idea: before you can calculate anything, you have to be able to describe where things are.",
   "Workbook vs worksheet. The binder analogy lands well. Show the sheet tabs at the bottom of a real file if projecting live. Workbook = the file you save.",
   "The grid. Columns are letters, rows are numbers, a cell is the intersection. Battleship comparison. Click around live and watch the Name Box change. Point out the active-cell border.",
-  "Control center. Name Box = where am I / jump tool. Formula Bar = the real logic behind a displayed value. Ribbon = grouped tools. Then ranges: the colon means 'through' \u2014 C2:C5 is Harborside's four department totals. This sets up SUM.",
+  "Control center. Name Box = where am I / jump tool. Formula Bar = the real logic behind a displayed value. Ribbon = grouped tools. Then ranges: the colon means 'through' \u2014 C8:C11 is the four-charge range students will use in Live You Try It. This sets up SUM.",
   "Section break \u2014 Part 2. Now we make the sheet do the work instead of a calculator.",
   "Data entry + autofill. Push the Tab/Enter habit hard \u2014 mouse-free is faster. Demo the fill handle with Jan\u2192Dec. Double-click trick when there's an adjacent filled column.",
   "Formula vs function. Everything starts with =. A formula is anything after it; a function is a named shortcut. Walk the Big Five quickly with a Harborside use for each.",
-  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C2:C5) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it. Then pause: students open Live You Try It and use rows 8 through 12, entering 84,200, 61,500, 39,800, and 52,500 before building the SUM formula.",
-  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in B1 is the perfect 'lock it' case. Copy =B2*$B$1 down and narrate what moves and what stays. Then pause for Live You Try It rows 16 through 20: enter 0.62, 84,200, and 61,500, then build the reimbursement formulas with the rate locked.",
+  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C8:C11) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it. Then pause: students open Live You Try It and fill C8:C11 before entering the SUM formula in C12.",
+  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in C16 is the perfect 'lock it' case. Copy =C17*$C$16 down and narrate what moves and what stays. Then pause for Live You Try It rows 16 through 20: enter 0.62, 84,200, and 61,500, then build the reimbursement formulas in C19:C20 with the rate locked.",
   "Section break \u2014 Part 3. A sheet that calculates but can't be trusted is worse than no sheet. Now: clarity and safety.",
   "Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye. Quick self-check: Live You Try It rows 24 through 29 use the exact payer mix percentages on the slide, then SUM and MAX for feedback.",
   "Errors. Reassure them: error codes are helpful labels, not failures. Walk #REF!, #DIV/0!, #NAME? with the hospital framing (visits = 0 causes DIV/0).",
   "Golden rules. Don't hard-code, save constantly, one source of truth. These three habits prevent most of the 88%.",
-  "COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =B2*0.62 means hand-editing everything and missing one. =B2*$B$1 fixes the whole sheet from one cell. This is the slide they should remember.",
+  "COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =C17*0.62 means hand-editing everything and missing one. =C17*$C$16 fixes the whole sheet from one cell. This is the slide they should remember.",
   "Discussion. Let them sit with the 88% stat. Push for a concrete hospital example AND the matching safeguard. Cold-call a couple of pairs.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question. Live You Try It is self-graded only; Charge Analysis and Challenge - Payer Mix are the submitted activity tabs.",
   "Takeaways. Quick recap mapped to the three parts. This is the 'what to study' slide.",

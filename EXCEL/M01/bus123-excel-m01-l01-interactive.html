@@ -533,6 +533,41 @@
       font-size: 16px;
     }
 
+    .feedback-copy p {
+      margin: 0;
+    }
+
+    .mission-checklist {
+      display: grid;
+      gap: 8px;
+      margin: 14px 0 0;
+      padding-left: 22px;
+      color: var(--text);
+    }
+
+    .mission-checklist li {
+      padding-left: 2px;
+    }
+
+    .completion-note {
+      margin-top: 14px;
+      border-left: 4px solid var(--accent);
+      background: rgba(74, 124, 94, 0.08);
+      padding: 10px 12px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .completion-note strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .feedback-actions {
       display: grid;
       gap: 10px;
@@ -698,7 +733,7 @@
   <main class="app-shell" aria-label="Interactive Excel practice">
     <aside class="panel" aria-labelledby="missionTitle">
       <h2 class="panel-title" id="missionTitle">Your Missions</h2>
-      <p class="panel-sub">Work through five small moves that make Excel feel less mysterious.</p>
+      <p class="panel-sub">Each mission names the exact cells and toolbar moves to complete.</p>
 
       <div class="progress-wrap" aria-label="Progress">
         <div class="progress-line">
@@ -753,7 +788,7 @@
       <div class="feedback-card">
         <span class="feedback-status" id="feedbackStatus">Ready</span>
         <h3 id="activeMissionName">Select a mission</h3>
-        <p class="feedback-copy" id="activeMissionPrompt">Start with Mission 1. The worksheet is waiting for you.</p>
+        <div class="feedback-copy" id="activeMissionPrompt">Start with Mission 1. The worksheet is waiting for you.</div>
 
         <div class="feedback-actions">
           <button class="primary-btn" id="checkBtn" type="button">Check my work</button>
@@ -792,8 +827,14 @@
       {
         id: "select-c3",
         name: "Find a cell",
-        short: "Select C3 and read the Name Box.",
-        prompt: "Click cell C3. The Name Box should confirm exactly where you are.",
+        short: "Select C3; the Name Box must read C3.",
+        prompt: "Start by proving you can find a cell by its address.",
+        steps: [
+          "Click the cell where column C meets row 3.",
+          "Check that the Name Box above the sheet reads C3.",
+          "Click Check my work."
+        ],
+        completeWhen: "C3 is the active selected cell.",
         hint: "Column letters run across the top. Row numbers run down the left. C3 is where column C meets row 3.",
         success: "Good. The Name Box is your map: it tells you which cell is active.",
         check: () => state.activeCell === "C3"
@@ -801,36 +842,63 @@
       {
         id: "enter-table",
         name: "Enter labels and values",
-        short: "Build the first row of a product table.",
-        prompt: "Enter Product, Units, Unit Cost, and Total Cost in row 2. Then enter Canvas Tote, 24, and 8.5 in row 3.",
-        hint: "Use A2:D2 for labels. Use A3 for the product name, B3 for units, and C3 for unit cost.",
+        short: "Fill A2:D2 and A3:C3.",
+        prompt: "Build the small product table that the later missions will use.",
+        steps: [
+          "In row 2, type Product in A2, Units in B2, Unit Cost in C2, and Total Cost in D2.",
+          "In row 3, type Canvas Tote in A3.",
+          "Type 24 in B3 and 8.5 in C3.",
+          "Leave D3 blank for now."
+        ],
+        completeWhen: "A2:D2 contain the four labels, A3 is Canvas Tote, B3 is 24, and C3 is 8.5.",
+        hint: "Use A2:D2 for labels. Use A3 for the product name, B3 for units, and C3 for unit cost. D3 stays blank until the formula mission.",
         success: "Nice. Labels describe the worksheet; values give Excel something to calculate.",
         check: () => cellText("A2") === "product" && cellText("B2") === "units" && cellText("C2") === "unit cost" && cellText("D2") === "total cost" && cellText("A3") === "canvas tote" && nearlyEqual(numberValue("B3"), 24) && nearlyEqual(numberValue("C3"), 8.5)
       },
       {
         id: "format-table",
         name: "Make it readable",
-        short: "Apply header, currency, and alignment formatting.",
-        prompt: "Use Header row, format C3 as currency, and right-align the numeric cells in B3 and C3.",
-        hint: "Select a cell, then use the toolbar. The Header row button formats A2:D2 in one move.",
+        short: "Header row, C3 currency, B3:C3 right-aligned.",
+        prompt: "Format the table so another person can scan it quickly.",
+        steps: [
+          "Click Header row to format A2:D2.",
+          "Select C3 and click the $ button.",
+          "Select B3 and click Right.",
+          "Select C3 again and click Right."
+        ],
+        completeWhen: "A2:D2 are header-formatted, C3 is currency-formatted, and B3 plus C3 are right-aligned.",
+        hint: "Select a cell, then use the toolbar. Header row formats A2:D2 in one move. The $ and Right buttons apply to the selected cell.",
         success: "Exactly. Formatting is communication, not decoration.",
         check: () => ["A2", "B2", "C2", "D2"].every(address => cells[address].bold) && cells.C3.format === "currency" && cells.B3.align === "right" && cells.C3.align === "right"
       },
       {
         id: "write-formula",
         name: "Write a formula",
-        short: "Calculate total cost with a formula.",
-        prompt: "Select D3 and type =B3*C3 in the formula bar or directly in the cell.",
-        hint: "Start with the equals sign. Excel reads =B3*C3 as units times unit cost.",
+        short: "Put =B3*C3 in D3.",
+        prompt: "Use a formula so Excel calculates total cost from the cells already in the table.",
+        steps: [
+          "Select D3, the Total Cost cell for Canvas Tote.",
+          "Type =B3*C3 in D3 or in the formula bar.",
+          "Press Enter. D3 should display 204."
+        ],
+        completeWhen: "D3 stores a formula that multiplies B3 by C3 and returns 204.",
+        hint: "Start with the equals sign. Excel reads =B3*C3 as units times unit cost. If D3 shows the text instead of 204, check that the formula starts with =.",
         success: "That is the move: let Excel calculate the answer so the worksheet can update later.",
         check: () => isProductFormula(RESULT_CELL, "B3", "C3") && nearlyEqual(numberValue(RESULT_CELL), 204)
       },
       {
         id: "inspect-formula",
         name: "Inspect the formula bar",
-        short: "Compare what the cell displays with what it stores.",
-        prompt: "Select D3. Notice the cell displays the result, while the formula bar shows =B3*C3. Then click the check button below.",
-        hint: "The grid shows the calculated answer. The formula bar shows the underlying formula.",
+        short: "Select D3 and confirm the formula bar.",
+        prompt: "Compare the displayed answer with the formula that produced it.",
+        steps: [
+          "Select D3.",
+          "Look at the grid: D3 should display 204.",
+          "Look at the formula bar: it should show =B3*C3.",
+          "Click I checked the formula bar."
+        ],
+        completeWhen: "D3 is selected, the formula bar shows =B3*C3, and you click the formula-bar confirmation button.",
+        hint: "The grid shows the calculated answer. The formula bar shows the underlying formula. The confirmation button appears only for this mission.",
         success: "Perfect. This habit will save you from editing the wrong thing later.",
         check: () => state.activeCell === RESULT_CELL && isProductFormula(RESULT_CELL, "B3", "C3") && state.formulaBarChecked
       }
@@ -1133,7 +1201,7 @@
       document.getElementById("progressPercent").textContent = percent + "%";
       document.getElementById("progressFill").style.width = percent + "%";
       document.getElementById("activeMissionName").textContent = mission.name;
-      document.getElementById("activeMissionPrompt").textContent = isComplete(state.activeMission) ? mission.success : mission.prompt;
+      document.getElementById("activeMissionPrompt").innerHTML = missionInstructions(mission, isComplete(state.activeMission));
 
       const status = document.getElementById("feedbackStatus");
       status.textContent = complete ? "✓ Looks right" : "! Keep going";
@@ -1158,6 +1226,14 @@
       document.getElementById("leftBtn").classList.toggle("active", cell?.align === "left");
       document.getElementById("centerBtn").classList.toggle("active", cell?.align === "center");
       document.getElementById("rightBtn").classList.toggle("active", cell?.align === "right");
+    }
+
+    function missionInstructions(mission, complete) {
+      if (complete) {
+        return "<p>" + escapeHtml(mission.success) + "</p><div class=\"completion-note\"><strong>Completed when</strong>" + escapeHtml(mission.completeWhen) + "</div>";
+      }
+      const steps = mission.steps.map(step => "<li>" + escapeHtml(step) + "</li>").join("");
+      return "<p>" + escapeHtml(mission.prompt) + "</p><ol class=\"mission-checklist\">" + steps + "</ol><div class=\"completion-note\"><strong>Complete when</strong>" + escapeHtml(mission.completeWhen) + "</div>";
     }
 
     function render() {

@@ -101,10 +101,6 @@
       ],
       "materials": [
         {
-          "type": "Reading",
-          "path": "INTRO/M01/bus123-intro-m01-l03-prereading.pdf"
-        },
-        {
           "type": "Company Profiles",
           "path": "INTRO/M01/bus123-intro-m01-company-profiles.html"
         }

@@ -1,103 +1,185 @@
 ---
-title: "Essential Functions: SUM, AVERAGE, MAX, MIN,"
+title: "BUS 123 - EXCEL-M02-L01 - Formatting and Organizing Worksheets"
 lesson: "EXCEL-M02-L01"
 kind: "Pre-Reading"
-status: "md file"
+status: "published"
 output: "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf"
 ---
 
-# Essential Functions: SUM, AVERAGE, MAX, MIN,
+# BUS 123 - EXCEL-M02-L01 - Formatting and Organizing Worksheets
 
-COUNT Pre-Reading — Complete before class
+**Course:** Solving Business Problems with Technology - Fall 2026 - **Track:** EXCEL - **Module:** M02 - **Lesson:** L01
+**Case Study Company:** Anchor & Oak Events
 
-## Connect to Prior Knowledge
+---
 
-Last class you built the three skills that every Excel user needs: navigating the interface, applying formatting that communicates clearly, and writing formulas with relative and absolute cell references. Today those skills become the platform for something more powerful. Excel functions are pre-built formulas that answer specific business questions — and they use the exact same reference rules you learned in L01. If you understand that B3 moves when copied and $B$1 stays locked, you already understand how ranges work inside functions. The only new thing today is the function name that wraps around the range. That is a much smaller learning lift than it looks.
+## 1 - Connect to Prior Knowledge
 
-## Concept Explanation
+In Excel M01, you learned how to navigate a workbook, enter data, and build formulas with cell references. A correct formula is essential, but correctness alone does not make a worksheet useful. Managers also need to understand the result quickly, identify totals, distinguish inputs from formulas, and follow the structure without asking the workbook creator for an explanation.
 
-## Part A — What a Function Is
+Formatting is therefore part of business communication. A workbook with inconsistent dates, unlabeled currency, random colors, and hidden totals creates doubt even when every calculation is correct. A well-organized workbook makes the same calculations easier to audit and easier to trust.
 
-A function is a named, pre-built formula stored inside Excel. Instead of writing =B2+B3+B4+B5+B6+B7+B8+B9+B10+B11+B12+B13 to total twelve months of revenue, you write =SUM(B2:B13). Both produce the same result — but the function version has a critical advantage: if you insert a new row inside the range, Excel automatically expands the range to include it. The manual formula silently misses the new row with no error message. Every function follows the same pattern: function name, opening parenthesis, one or more arguments (the inputs the function needs), closing parenthesis. Learn this pattern once and you can use any function in Excel.
+Anchor & Oak Events tracks event dates, guest counts, revenue, catering costs, staffing costs, and net profit. In this lesson, you will turn that raw booking summary into a manager-ready worksheet.
 
-## Part B — The Five Functions and When to Use Each
+---
 
-Anchor and Oak Events is a boutique event planning company that handles weddings, corporate events, and private parties. Their monthly revenue data illustrates all five functions. SUM totals every number in a range. For Anchor and Oak, =SUM(B2:B13) gives the annual revenue across all twelve months. This is the most commonly used function in any business spreadsheet. AVERAGE calculates the arithmetic mean of a range. For Anchor and Oak, =AVERAGE(B2:B13) reveals what a typical month looks like — the benchmark against which every other month can be compared. A month below average is not necessarily bad, but knowing how far below matters.
+## 2 - Core Concepts
 
-<!-- page break -->
+### Part A - Number Formats Communicate Meaning
 
-MAX returns the single highest value in a range. =MAX(B2:B13) identifies Anchor and Oak's peak revenue month — June, at $89,500 — driven by wedding season. MIN returns the single lowest: =MIN(B2:B13) reveals January at $18,400, the deepest slow season point. Together, MAX and MIN define the range of the data. COUNT counts cells that contain numbers. COUNTA counts cells that contain any content — numbers, text, or dates. If =COUNT(B2:B13) returns 10 in a 12-row range, two months have no revenue data entered. This makes COUNT a data-quality check, not just a counter. ■ Watch Out Never start your range on a header row. =COUNT(B1:B13) may include or exclude the header depending on whether it contains text or a number — and the behavior changes silently if the header is later edited. Always start on the first data row: =COUNT(B2:B13).
+Excel stores a value separately from the way it appears. The number `4800` can be displayed as `4800`, `$4,800`, `$4,800.00`, or another format without changing the underlying value.
 
-## Part C — References Inside Functions Follow the Same Rules
+Choose a number format based on the business meaning:
 
-The range inside a function argument is a cell reference, and it obeys the same relative and absolute rules as any other reference. =SUM(B2:B13) uses a relative range — copy it one column right and it becomes =SUM(C2:C13). That is usually exactly what you want when applying the same function to multiple columns of data. When a formula needs to compare each row to a single fixed value — such as a budget target stored in one cell — that reference must be absolute. For Anchor and Oak, if the annual budget target is in cell E1, the formula =B2-$E$1 uses a relative reference for B2 (so it shifts down each row) and an absolute reference for $E$1 (so it always reads the same budget target). Press F4 after typing E1 to lock it.
+| Data type | Recommended display | Why it helps |
+|---|---|---|
+| Event date | `15-Mar-26` or another consistent date style | Readers recognize the date immediately and can sort correctly. |
+| Revenue and costs | Currency or Accounting | The dollar unit is visible and decimals are consistent. |
+| Guest count | Whole number | Partial guests would not make sense. |
+| Percentage | Percentage | A stored decimal such as `0.15` displays as `15%`. |
+| General count or ID | Number or General | No currency or percentage meaning is implied. |
 
-Formula Reference Function Syntax Business Question Answered SUM =SUM(range) What is the total of all values in this range? AVERAGE =AVERAGE(range) What is the typical (mean) value in this range? MAX =MAX(range) What is the highest value in this range? MIN =MIN(range) What is the lowest value in this range? COUNT =COUNT(range)
+> **Watch Out - Formatting Does Not Change the Value**
+>
+> Currency formatting does not multiply a number by dollars, and Percentage formatting does not repair an incorrect formula. Always confirm the underlying value and formula first.
 
-## How many cells in this range contain numbers?
+### Part B - Alignment and Visual Hierarchy
 
-COUNTA =COUNTA(range)
+Alignment helps readers scan a table:
 
-## How many cells in this range contain any content?
+- Text labels are usually left-aligned.
+- Numbers are usually right-aligned so place values line up.
+- Column headers may be centered when that improves readability.
+- A title should be visually distinct from the data table.
+- A total row should be more prominent than detail rows.
 
-Reminder: press F4 after typing a cell address inside any function argument to cycle through reference modes ($A$1 → A$1 → $A1 → A1).
+Use bold type, fill color, and borders sparingly. Their purpose is to establish reading order, not to decorate every cell. A quiet header fill and a clear total-row border are more effective than many unrelated colors.
 
-<!-- page break -->
+### Part C - Organize the Worksheet for Scanning
 
-Check Your Understanding Answer all seven questions before class. Answers appear at the end of this document.
+A manager should be able to answer these questions in about 30 seconds:
 
-## 1. What advantage does =SUM(B2:B13) have over the manual formula =B2+B3+B4+...+B13 when rows
+1. What does this worksheet measure?
+2. Where are the input values?
+3. Which cells contain calculated results?
+4. Where is the total?
+5. Are any results unusually high, low, or risky?
 
-are inserted into the range?
+Useful organization choices include:
 
-## 2. Anchor and Oak Events has 12 months of revenue data in cells B2:B13. Write the formula that
+- One clear title and subtitle
+- One header row with consistent labels
+- Detail rows in a predictable order
+- Banded rows for long tables
+- A distinct total row
+- No merged cells inside the data table
+- Consistent formats down each column
+- Freeze panes when headers would otherwise scroll off screen
 
-calculates the average monthly revenue.
+### Part D - Freeze Panes and Banded Rows
 
-## 3. What does =MAX(B2:B13) return, and what business question does it answer for Anchor and Oak?
+Freeze Panes keeps selected rows or columns visible while the rest of the worksheet scrolls. For a long event list, freezing the header row lets the reader see labels even at row 60.
 
-## 4. The formula =COUNT(B2:B13) returns 9 in a 12-row range. What does this tell you?
+Banded rows use alternating, subtle fills to help the eye follow one record across a wide table. Banding should be quiet. If every row uses a strong color, the pattern becomes distracting instead of helpful.
 
-## 5. What is the difference between COUNT and COUNTA?
+### Part E - Color With Purpose
 
-## 6. You write =SUM(B2:B13) in cell B14 and copy it to C14. What formula does Excel place in C14, and
+Use color only when it communicates a role:
 
-why?
+| Color role | Possible use |
+|---|---|
+| Header | Identifies the table structure. |
+| Input | Shows where a student or analyst should type. |
+| Formula/result | Distinguishes calculated cells from inputs. |
+| Warning | Calls attention to an exception that needs review. |
 
-## 7. Anchor and Oak's budget target is in cell E1. You want to compare each monthly revenue (in B2:B13)
+Do not rely on color alone. Pair color with labels, number formats, borders, or text so the workbook remains understandable when printed or viewed by someone with color-vision differences.
 
-to that target in a formula copied down 12 rows. Write the formula for C2 using the correct reference types.
+---
 
-## Key Vocabulary
+## 3 - Formula and Formatting Reference
 
-Function A named, pre-built formula in Excel that performs a specific calculation on a range of cells or values. Argument The input(s) a function requires, placed inside the parentheses (e.g., the range in =SUM(B2:B13)). Range A rectangular block of cells referenced by their start and end addresses, separated by a colon (e.g., B2:B13). SUM A function that adds all numeric values in a specified range. AVERAGE A function that calculates the arithmetic mean (total ÷ count) of a range. MAX / MIN Functions that return the highest (MAX) or lowest (MIN) numeric value in a range.
+Formatting supports calculations; it does not replace them. The Anchor & Oak booking summary uses these core formulas:
 
-<!-- page break -->
+| Business question | Excel syntax | Meaning |
+|---|---|---|
+| What is one event's net profit? | `=Revenue-Catering-Staffing` | Subtract direct event costs from revenue. |
+| What is total revenue? | `=SUM(RevenueRange)` | Add all event revenue values. |
+| What is total net profit? | `=SUM(NetProfitRange)` | Add all calculated event profits. |
+| What is revenue per guest? | `=Revenue/Guests` | Divide event revenue by attendance. |
 
-COUNT A function that counts the number of cells in a range that contain numeric values. COUNTA A function that counts the number of cells in a range that contain any non-empty content. CHECK YOUR UNDERSTANDING — ANSWER KEY
+For the Spring Gala example:
 
-## 1. SUM automatically expands to include any rows inserted inside the range. The manual formula silently
+- Revenue: $4,800
+- Catering: $1,820
+- Staffing: $0
+- Net profit formula: `=4800-1820-0`
+- Net profit: **$2,980**
 
-misses new rows with no error or warning.
+For four event profits of $2,980, $1,990, $5,510, and $3,290:
 
-## 2. =AVERAGE(B2:B13)
+- Total net profit formula: `=SUM(profit_cells)`
+- Total net profit: **$13,770**
 
-## 3. MAX(B2:B13) returns the highest monthly revenue value — the peak month. For Anchor and Oak this
+The formulas should reference worksheet cells rather than typing the numbers directly into the calculation. Cell references make the workbook update when an input changes.
 
-answers: "What was our best month?"
+---
 
-## 4. Three of the twelve cells in the range contain no numeric data — those months have not had revenue
+## 4 - Five-Point Formatting Audit
 
-entered yet. COUNT is showing incomplete data.
+Before sharing a worksheet, perform this audit:
 
-## 5. COUNT counts only cells with numbers. COUNTA counts cells with any content including text and dates. Use
+| Check | Question to ask |
+|---|---|
+| 1. Labels | Are the title, headers, and units clear? |
+| 2. Formats | Are dates, currency, percentages, and counts displayed consistently? |
+| 3. Alignment | Do text and numbers line up in a way that supports scanning? |
+| 4. Structure | Are detail rows, totals, and long-table navigation easy to follow? |
+| 5. Purpose | Does every color, border, and emphasis choice communicate something useful? |
 
-COUNT for numeric completeness checks; use COUNTA to count rows that have labels or any entries.
+A formatting audit is not a search for the prettiest worksheet. It is a test of whether the workbook is readable, consistent, and trustworthy.
 
-## 6. =SUM(C2:C13). Because B2:B13 is a relative range, copying one column right shifts both column letters
+---
 
-from B to C.
+## 5 - Check Your Understanding
 
-## 7. =B2-$E$1. B2 is relative so it shifts to B3, B4, etc. as the formula is copied down. $E$1 is absolute so it
+Answer each question before class.
 
-always references the budget target in E1 regardless of which row the formula is in.
+1. Why can a worksheet be mathematically correct but still difficult to trust?
+2. Which number format should be used for event revenue, and why?
+3. Why should numeric columns usually be right-aligned?
+4. What is the purpose of a distinct total row?
+5. When is Freeze Panes useful?
+6. Why should color not be the only way a workbook communicates meaning?
+7. Anchor & Oak has net profits of $2,980, $1,990, $5,510, and $3,290. What Excel formula should total the four referenced cells, and what is the result?
+
+### Answer Key - Check Your Understanding
+
+| # | Answer |
+|---|---|
+| 1 | Correct calculations can still be hard to interpret when labels, formats, structure, or visual hierarchy are inconsistent. |
+| 2 | Currency or Accounting, because the values represent dollars and should use a consistent display. |
+| 3 | Right alignment lines up place values and makes comparisons easier. |
+| 4 | It separates the summary result from detail rows and makes the worksheet easier to scan. |
+| 5 | Use Freeze Panes when headers or key labels would disappear while scrolling through a long worksheet. |
+| 6 | Labels and structure must also communicate the meaning so the workbook remains accessible and understandable when printed. |
+| 7 | Use `=SUM(the_four_profit_cells)`; the total is **$13,770**. |
+
+---
+
+## 6 - Key Vocabulary
+
+| Term | Definition |
+|---|---|
+| **Number Format** | The display applied to a stored value, such as Currency, Accounting, Date, or Percentage. |
+| **Visual Hierarchy** | The use of size, weight, spacing, and contrast to show what readers should notice first. |
+| **Alignment** | The horizontal or vertical position of content within a cell. |
+| **Banded Rows** | Alternating row fills that help readers track records across a table. |
+| **Freeze Panes** | An Excel feature that keeps selected rows or columns visible while scrolling. |
+| **Total Row** | A visually distinct row that summarizes one or more data columns. |
+| **Conditional Formatting** | Formatting that changes automatically when a cell meets a defined rule. |
+| **Audit-Friendly** | Organized so another person can trace calculations, identify inputs, and understand results efficiently. |
+
+> **Before Class**
+>
+> Open the Excel M02 starter workbook. Locate the `Live You Try It`, `Booking Summary`, `Formatting Audit`, `Class Challenge`, and `FormulaReferenceCard` tabs. Be ready to explain one formatting choice that would help a manager understand the workbook in 30 seconds.

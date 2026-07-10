@@ -3,7 +3,7 @@ title: "BUS 123 — MATH-M03-L01 — Discounts: Trade and Cash"
 lesson: "MATH-M03-L01"
 kind: "Pre-Reading"
 status: "published"
-output: "MATH/M03/bus123-math-m03-l01-prereading.pdf"
+output: "MATH/M03/bus123-math-m03-l01-pre-reading.pdf"
 ---
 
 
@@ -53,7 +53,7 @@ Sometimes a supplier offers more than one trade discount on the same item. For e
 
 The critical rule: **each discount applies to the result of the previous discount, not to the original list price.** This means you cannot simply add the rates together. 20/10/5 is not the same as a single 35% discount.
 
-**Net Price = List Price × (1 − d₁) × (1 − d₂) × (1 − d₃)**
+**Net Price = List Price × (1 − d1) × (1 − d2) × (1 − d3)**
 
 **Worked Example — Surfboard Fins:**
 
@@ -75,13 +75,11 @@ While trade discounts reduce the price of goods, **cash discounts** reward buyer
 
 Cash discount terms are written in standardized shorthand. The most common format is:
 
-```
-2 / 10  net 30
-│   │       │
-│   │       └─ Full payment due — total credit period (days)
-│   └─────── Discount period — pay within this window to earn the discount
-└─────────── Cash discount rate
-```
+| Term component | Meaning |
+|---|---|
+| `2` | Cash discount rate: 2% |
+| `10` | Discount period: pay within 10 days to earn the discount |
+| `net 30` | Full payment is due within 30 days |
 
 **Worked Example — Tidal Goods Invoice:**
 
@@ -104,8 +102,8 @@ Tidal Goods receives an invoice for $4,200.00 from their wetsuit supplier. Terms
 | **Net Price (single)**       | `= List × (1 − d)`                         | $189.99 × 0.70 = $132.99                 |
 | **Discount Amount**          | `= List × d`                               | $189.99 × 0.30 = $57.00                  |
 | **Complement**               | `= 1 − d`                                  | 1 − 0.30 = 0.70                          |
-| **Net Price (chain)**        | `= List × (1−d₁) × (1−d₂) × (1−d₃)`       | $64 × 0.80 × 0.90 × 0.95 = $43.78       |
-| **Single Equivalent Rate**   | `= 1 − [(1−d₁)(1−d₂)(1−d₃)]`              | 1 − 0.684 = 31.6%                        |
+| **Net Price (chain)**        | `= List × (1−d1) × (1−d2) × (1−d3)`       | $64 × 0.80 × 0.90 × 0.95 = $43.78       |
+| **Single Equivalent Rate**   | `= 1 − [(1−d1)(1−d2)(1−d3)]`              | 1 − 0.684 = 31.6%                        |
 | **Cash Discount Payment**    | `= Invoice × (1 − cash rate)`              | $4,200 × 0.98 = $4,116                   |
 | **Cash Discount Savings**    | `= Invoice × cash rate`                    | $4,200 × 0.02 = $84                      |
 

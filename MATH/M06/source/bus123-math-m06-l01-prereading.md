@@ -19,7 +19,7 @@ output: "MATH/M06/bus123-math-m06-l01-prereading.pdf"
 
 Earlier in the math track, you learned how retailers use markup to set selling prices from a known cost — how a 50% markup on a $40 item produces a $60 retail price. But markup math assumes you already know the cost of that item with precision.
 
-This module goes one level deeper: **what exactly is the cost of the item you just sold?** When a business carries hundreds of units bought at different prices across different weeks, the answer is not obvious. The method you choose — FIFO, LIFO, or Weighted Average Cost — changes your reported profit, your tax bill, and the asset value on your balance sheet.
+This module goes one level deeper: **what exactly is the cost of the item you just sold?** When a business carries hundreds of units bought at different prices across different weeks, the answer is not obvious. The method you choose — FIFO, LIFO, or Weighted Average Cost — changes reported COGS, profit, and the asset value on the balance sheet. It can also affect taxable income and taxes under the applicable reporting and tax rules.
 
 Layered on top of product cost are **overhead expenses**: rent, utilities, insurance, and indirect labor that keep the business running but cannot be traced to any single unit sold. Together, these elements feed the **Cost of Goods Sold (COGS)** calculation — the single most important cost line on a product business's income statement.
 
@@ -51,6 +51,8 @@ Tidal sells 20 paddleboards during the quarter. The question every accountant mu
 
 **Weighted Average Cost (WAC)** calculates a single blended unit cost by dividing total cost available by total units available. It smooths out price fluctuations and is popular for commodity-type goods.
 
+![Inventory-layer diagram comparing which purchase costs flow to COGS under FIFO, LIFO, and weighted average cost](../assets/math-m06-inventory-layers.png)
+
 > ✅ **WAC Unit Cost Formula**
 >
 > `WAC Unit Cost = Total Cost of Goods Available / Total Units Available`
@@ -68,9 +70,19 @@ Tidal sells 20 paddleboards during the quarter. The question every accountant mu
 
 The $400 spread between FIFO and LIFO COGS is not rounding — it is a direct result of the accounting policy chosen. Both methods describe the same 20 boards sold from the same physical stockroom. This is why the choice of inventory method is a **strategic management decision**, not just a bookkeeping detail.
 
-> ⚠️ **LIFO and International Reporting**
->
-> LIFO may reduce taxes in the short term, but any US company that wants to report under IFRS (required for most international stock exchanges) cannot use LIFO. If Tidal ever pursued a global expansion or international listing, it would need to restate all historical financials — a costly and complex process.
+#### Build the Inventory Methods in Excel
+
+Enter each purchase layer's quantity and unit cost in separate labeled cells. Calculate each layer's cost with `=Quantity*UnitCost`. Then use:
+
+- WAC unit cost: `=SUM(LayerCostCells)/SUM(QuantityCells)`
+- WAC COGS: `=UnitsSold*WACUnitCost`
+- FIFO COGS for 20 boards: `=10*210+10*230`
+
+![Excel inventory model showing purchase-layer inputs, layer costs, weighted average unit cost, FIFO COGS, and WAC COGS](../assets/math-m06-excel-inventory-model.png)
+
+Before accepting the result, confirm that units assigned to COGS plus units in ending inventory equal total units available.
+
+**LIFO and international reporting:** LIFO is permitted under U.S. GAAP but prohibited under IFRS. Changing reporting frameworks may require substantial accounting-policy and comparative-reporting work; exact tax and reporting consequences depend on the rules that apply to the company.
 
 ---
 
@@ -83,6 +95,8 @@ COGS is the total direct cost of the products a business sold during a period. F
 **Beginning Inventory + Purchases − Ending Inventory = COGS**
 
 In plain English: start with what you had, add what you bought, subtract what is left, and the result is what you sold.
+
+![COGS bridge showing beginning inventory plus purchases equals goods available, less ending inventory equals cost of goods sold](../assets/math-m06-cogs-bridge.png)
 
 #### Tidal Goods Co. — Q1 2026
 
@@ -109,6 +123,8 @@ Notice that ending inventory **directly reduces COGS**. If the physical count at
 >
 > The errors cancel over two periods — but both periods reported false numbers.
 
+![Two-period inventory error flow showing an overstated ending count understating current COGS and overstating following-period COGS](../assets/math-m06-inventory-error-flow.png)
+
 ---
 
 ### Part 3 — Margin vs. Markup
@@ -121,6 +137,10 @@ Both margin and markup measure profitability from the same transaction. They use
 | **Markup**        | `(Revenue − Cost) / Cost`    | ($80 − $48) / $48                  | **66.7%** | Buyers, sales teams|
 
 A buyer who says "we mark up everything 100%" means the selling price is double the cost. That sounds like 100% profit — but the gross margin is only **50%**, because margin divides by the larger selling price. A pricing team that confuses the two will systematically underprice every product in the catalog.
+
+![Comparison showing gross margin dividing profit by revenue while markup divides the same profit by cost](../assets/math-m06-margin-markup-bases.png)
+
+In Excel, use `=(Revenue-Cost)/Revenue` for margin and `=(Revenue-Cost)/Cost` for markup. Format both results as percentages and verify that the denominator matches the business question.
 
 #### Quick Check — Converting Between Them
 
@@ -158,6 +178,10 @@ Tidal operates two departments: a retail Surf Shop (2,400 sq ft) and an Online W
 | Warehouse     | 1,600 / 4,000 = 40% | Sq footage  | 40% × $22,000 = **$8,800**  |
 | **Total**     | 100%          |                  | **$22,000**               |
 
+![Overhead allocation model using department square footage and checks that percentages and allocated amounts reconcile](../assets/math-m06-overhead-allocation.png)
+
+Always verify that department percentages total **100%** and allocated amounts total the original overhead. A complete-looking allocation that does not reconcile is not ready for a management report.
+
 #### The Overhead Rate
 
 `Overhead Rate = Total Overhead / Revenue = $22,000 / $110,000 = 20.0%`
@@ -174,24 +198,34 @@ A 20% overhead rate means that for every dollar of revenue Tidal earns, **20 cen
 
 ---
 
-## 3 · Formula Reference
+## 3 · Predict Before You Calculate
+
+Use these direction checks before trusting an Excel result:
+
+1. During rising prices, FIFO should produce lower COGS than LIFO because older costs are lower.
+2. If ending inventory rises while beginning inventory and purchases stay fixed, COGS should fall.
+3. If revenue falls while overhead remains fixed, the overhead rate should rise.
+4. For the same profitable sale, markup percentage should be larger than margin percentage because cost is the smaller denominator.
+5. Department allocation percentages must total 100%, and allocated dollars must total the original overhead.
+
+## 4 · Formula Reference
 
 | Formula               | Expression                         | Tidal Goods Example                          |
 |-----------------------|------------------------------------|----------------------------------------------|
-| **COGS**              | `Beg Inv + Purchases − End Inv`    | $12,400 + $38,600 − $9,800 = **$41,200**     |
-| **Gross Profit**      | `Revenue − COGS`                   | $110,000 − $41,200 = **$68,800**             |
-| **Gross Margin %**    | `Gross Profit / Revenue`           | $68,800 / $110,000 = **62.5%**               |
-| **Markup %**          | `(Revenue − Cost) / Cost`          | ($80 − $48) / $48 = **66.7%**                |
-| **Margin %**          | `(Revenue − Cost) / Revenue`       | ($80 − $48) / $80 = **40.0%**                |
-| **WAC Unit Cost**     | `Total Cost Avail / Total Units`   | $6,900 / 30 = **$230.00**                    |
+| **COGS**              | `=BeginningInventory+Purchases-EndingInventory` | $12,400 + $38,600 − $9,800 = **$41,200** |
+| **Goods Available**   | `=BeginningInventory+Purchases`    | $12,400 + $38,600 = **$51,000**              |
+| **Gross Profit**      | `=Revenue-COGS`                    | $110,000 − $41,200 = **$68,800**             |
+| **Gross Margin %**    | `=GrossProfit/Revenue`              | $68,800 / $110,000 = **62.5%**               |
+| **Markup %**          | `=(Revenue-Cost)/Cost`              | ($80 − $48) / $48 = **66.7%**                |
+| **WAC Unit Cost**     | `=TotalCostAvailable/TotalUnitsAvailable` | $6,900 / 30 = **$230.00**               |
 | **FIFO COGS**         | `Oldest units × oldest cost`       | 10×$210 + 10×$230 = **$4,400**               |
 | **Dept OH %**         | `Dept Sq Ft / Total Sq Ft`         | 2,400 / 4,000 = **60%**                      |
-| **OH Allocated**      | `Total OH × Dept %`                | $22,000 × 60% = **$13,200**                  |
-| **OH Rate**           | `Total Overhead / Revenue`         | $22,000 / $110,000 = **20.0%**               |
+| **OH Allocated**      | `=TotalOverhead*DeptPercent`        | $22,000 × 60% = **$13,200**                  |
+| **OH Rate**           | `=TotalOverhead/Revenue`            | $22,000 / $110,000 = **20.0%**               |
 
 ---
 
-## 4 · Check Your Understanding
+## 5 · Check Your Understanding
 
 Answer all seven questions before class. Answers appear at the end of this document.
 
@@ -225,7 +259,7 @@ Answer all seven questions before class. Answers appear at the end of this docum
 
 ---
 
-## 5 · Key Vocabulary
+## 6 · Key Vocabulary
 
 | Term                          | Definition                                                                                                                                              |
 |-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|

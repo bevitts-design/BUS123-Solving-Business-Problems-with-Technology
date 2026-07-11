@@ -21,6 +21,10 @@ Read this briefing before class so the calculations in the live activity feel li
 
 Managers need a clean view of two different cost rhythms: **payroll costs** that repeat every pay period, and **asset costs** that are spread across years. Payroll helps Harborside staff patient care safely. Depreciation helps Harborside recognize that equipment wears out, becomes outdated, or loses value over time.
 
+![Comparison showing payroll repeating every pay period while depreciation spreads an asset cost across its useful life](../assets/math-m05-two-cost-rhythms.png)
+
+Payroll often involves current cash paid to employees. Depreciation is different: it allocates a prior asset purchase across accounting periods and usually does not represent new cash leaving the bank in the year it is recorded.
+
 ---
 
 ## 2 · Core Concepts
@@ -50,6 +54,12 @@ The pay cycle changes the size and timing of a paycheck — not the annual salar
 
 **Formula:** `Salary per Period = Annual Salary / Number of Pay Periods`
 
+In Excel, place the annual salary and number of pay periods in separate labeled cells, then use `=AnnualSalary/PayPeriods`.
+
+![Excel pay-cycle model comparing weekly, biweekly, semimonthly, and monthly checks from a 52000 dollar annual salary](../assets/math-m05-pay-cycle-model.png)
+
+Biweekly and semimonthly are not interchangeable. Biweekly payroll normally has 26 periods per year; semimonthly payroll has 24. Both still distribute the same annual salary.
+
 #### Overtime Example — Harborside Medical Center
 
 A Harborside nurse earns $44/hour and works 43 hours in one week. The first 40 hours are paid at the regular rate; the 3 overtime hours are paid at time-and-a-half.
@@ -57,6 +67,20 @@ A Harborside nurse earns $44/hour and works 43 hours in one week. The first 40 h
 - Regular pay: 40 × $44 = **$1,760**
 - Overtime pay: 3 × $44 × 1.5 = **$198**
 - Gross pay: **$1,958**
+
+### Build Overtime Safely in Excel
+
+Use formulas that handle employees both above and below the overtime threshold:
+
+- Regular pay: `=MIN(Hours,40)*Rate`
+- Overtime pay: `=MAX(Hours-40,0)*Rate*1.5`
+- Gross pay: `=RegularPay+OvertimePay`
+
+`MIN` caps regular hours at 40. `MAX` prevents a negative overtime result when an employee works fewer than 40 hours. Gross pay is earnings before deductions; it is not take-home pay.
+
+![Excel payroll model using MIN to cap regular hours and MAX to prevent negative overtime](../assets/math-m05-overtime-model.png)
+
+For the eight-nurse team used in class, one nurse earns `$1,958`, so total weekly gross pay is `=8*1958`, or **$15,664**. Keep the employee count in its own input cell so a manager can test a different staffing level without rewriting the pay formula.
 
 > 💡 **Manager Question**
 >
@@ -109,9 +133,35 @@ Harborside buys a diagnostic ultrasound unit for $84,000. Expected residual valu
 | 5    | $84,000 | $12,000              | $60,000                  | $24,000    |
 | 6    | $84,000 | $12,000              | $72,000                  | $12,000    |
 
+### Build the Depreciation Schedule in Excel
+
+Use three connected formulas:
+
+- Annual depreciation: `=(Cost-ResidualValue)/UsefulLife`
+- Accumulated depreciation: `=AnnualDepreciation*Year`
+- Book value: `=Cost-AccumulatedDepreciation`
+
+For Year 3, the formulas return `$12,000` annual depreciation, `$36,000` accumulated depreciation, and `$48,000` book value.
+
+![Excel Year 3 depreciation model showing asset inputs, annual depreciation, accumulated depreciation, and book value](../assets/math-m05-depreciation-model.png)
+
+![Straight-line timeline showing book value falling by 12000 dollars per year from asset cost to residual value](../assets/math-m05-book-value-timeline.png)
+
+Straight-line book value falls evenly and ends at residual value, not zero. Book value is an accounting amount and may differ from the equipment's current market price.
+
+## 3 · Predict Before You Calculate
+
+Use direction checks to catch formulas that return a number but do not make business sense:
+
+1. If hours rise above 40, total payroll should rise faster because overtime hours receive premium pay.
+2. If the hourly rate rises, both regular and overtime pay should rise.
+3. If useful life increases while cost and residual value stay fixed, annual depreciation should fall.
+4. If residual value increases while cost and useful life stay fixed, annual depreciation should fall.
+5. At the end of useful life, book value should equal residual value rather than zero.
+
 ---
 
-## 3 · Check Your Understanding
+## 4 · Check Your Understanding
 
 Answer these questions before class. Be ready to discuss your reasoning — not just the number.
 
@@ -120,10 +170,25 @@ Answer these questions before class. Be ready to discuss your reasoning — not 
 3. If an employee earns a fixed annual salary, why do weekly and monthly paychecks have different dollar amounts?
 4. What is the difference between depreciation expense and accumulated depreciation?
 5. Why might straight-line depreciation be a good fit for a medical device used steadily throughout the year?
+6. What Excel formula calculates weekly pay for a `$52,000` annual salary?
+7. Using Excel logic, calculate regular pay, overtime pay, and gross pay for 43 hours at `$44` per hour.
+8. What is the total weekly gross pay for 8 nurses working those same hours?
+9. For the ultrasound unit, calculate Year 3 accumulated depreciation and book value.
+10. A six-year depreciation schedule ends at `$0`. What assumption or formula was probably omitted?
+
+### Self-Check
+
+| # | Expected result |
+|---|---|
+| 6 | `=52000/52` gives **$1,000 per week**. |
+| 7 | Regular pay is **$1,760**, overtime pay is **$198**, and gross pay is **$1,958**. |
+| 8 | `=8*1958` gives **$15,664** total weekly gross pay. |
+| 9 | Accumulated depreciation is **$36,000** and book value is **$48,000**. |
+| 10 | Residual value was probably omitted; ending book value should be **$12,000**. |
 
 ---
 
-## 4 · Key Vocabulary
+## 5 · Key Vocabulary
 
 | Term                        | Definition                                                                                                                               |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------|

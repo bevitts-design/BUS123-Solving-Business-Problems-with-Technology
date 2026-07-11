@@ -24,6 +24,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
 from reportlab.platypus import (
+    Image,
     ListFlowable,
     ListItem,
     PageBreak,
@@ -434,6 +435,37 @@ def build_story(doc: SourceDoc) -> list:
             story.append(Spacer(1, 8))
             i += 1
             continue
+        image_match = re.fullmatch(r"!\[([^\]]*)\]\(([^)]+)\)", stripped)
+        if image_match:
+            alt_text, image_ref = image_match.groups()
+            image_path = Path(image_ref.strip())
+            if not image_path.is_absolute():
+                image_path = (doc.path.parent / image_path).resolve()
+            if not image_path.exists():
+                raise FileNotFoundError(
+                    f"Image referenced by {rel(doc.path)} was not found: {image_ref}"
+                )
+            figure = Image(str(image_path))
+            max_width = 6.55 * inch
+            max_height = 3.6 * inch
+            scale = min(max_width / figure.imageWidth, max_height / figure.imageHeight, 1)
+            figure.drawWidth = figure.imageWidth * scale
+            figure.drawHeight = figure.imageHeight * scale
+            figure.hAlign = "CENTER"
+            figure._restrictSize(max_width, max_height)
+            story.append(Spacer(1, 5))
+            story.append(figure)
+            if alt_text:
+                caption_style = ParagraphStyle(
+                    "BUS123FigureCaption",
+                    parent=st["small"],
+                    alignment=TA_CENTER,
+                    spaceBefore=4,
+                    spaceAfter=8,
+                )
+                story.append(paragraph(alt_text, caption_style))
+            i += 1
+            continue
         if stripped.startswith("|") and "|" in stripped[1:]:
             table_lines = []
             while i < len(lines) and lines[i].strip().startswith("|"):
@@ -473,6 +505,10 @@ def build_story(doc: SourceDoc) -> list:
             continue
         if stripped.startswith("### "):
             story.append(paragraph(stripped[4:].strip(), st["h3"]))
+            i += 1
+            continue
+        if stripped.startswith("#### "):
+            story.append(paragraph(stripped[5:].strip(), st["h3"]))
             i += 1
             continue
         if re.match(r"^[-*]\s+", stripped):

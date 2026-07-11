@@ -25,6 +25,14 @@ Anchor & Oak Events tracks event dates, guest counts, revenue, catering costs, s
 
 ## 2 - Core Concepts
 
+### Where the Formatting Tools Are in Windows Excel
+
+Most of the tools in this lesson are on the **Home** tab of the Windows Excel ribbon. Begin every formatting task by selecting the cell or range you want to change. Then choose the command. If you format first and select later, Excel may apply the change somewhere you did not intend.
+
+![Windows Excel Home tab with the Font, Alignment, and Number groups highlighted](../assets/excel-windows-home-formatting-groups.png)
+
+The exact spacing of the ribbon may vary with screen size or Microsoft 365 updates. If a command is hidden, widen the Excel window or select the small drop-down arrow for its group. The command names and group names remain the best landmarks.
+
 ### Part A - Number Formats Communicate Meaning
 
 Excel stores a value separately from the way it appears. The number `4800` can be displayed as `4800`, `$4,800`, `$4,800.00`, or another format without changing the underlying value.
@@ -43,6 +51,23 @@ Choose a number format based on the business meaning:
 >
 > Currency formatting does not multiply a number by dollars, and Percentage formatting does not repair an incorrect formula. Always confirm the underlying value and formula first.
 
+#### Apply a Number Format
+
+1. Select the cells that contain the values.
+2. Select the **Home** tab.
+3. Find the **Number** group.
+4. Open the **Number Format** menu, which usually displays **General** before a format is applied.
+5. Choose **Currency**, **Accounting**, **Percentage**, **Short Date**, or another format that matches the meaning of the data.
+6. Use **Increase Decimal** or **Decrease Decimal** to control only the number of digits displayed after the decimal point.
+
+![Windows Excel Number group showing the format menu, Accounting, Percent, Comma Style, and decimal controls](../assets/excel-windows-number-group.png)
+
+For the Anchor & Oak worksheet, select the Revenue, Catering Cost, Staffing Cost, and Net Profit values and apply **Accounting Number Format**. If cents are not useful for the manager's decision, select **Decrease Decimal** until no decimal places are displayed. This changes the display, not the stored values.
+
+> **Windows Shortcut**
+>
+> Press **Ctrl+1** to open the Format Cells dialog box. Use its **Number** tab when you need more choices, such as a specific date pattern, currency symbol, or negative-number display.
+
 ### Part B - Alignment and Visual Hierarchy
 
 Alignment helps readers scan a table:
@@ -54,6 +79,20 @@ Alignment helps readers scan a table:
 - A total row should be more prominent than detail rows.
 
 Use bold type, fill color, and borders sparingly. Their purpose is to establish reading order, not to decorate every cell. A quiet header fill and a clear total-row border are more effective than many unrelated colors.
+
+#### Format a Header and Total Row
+
+To create a clear header row:
+
+1. Select the cells containing the column headings.
+2. On **Home**, find the **Font** group and select **Bold**.
+3. Open **Fill Color** and choose one quiet, high-contrast fill.
+4. Open **Font Color** only if the fill requires a lighter or darker text color for readability.
+5. In the **Alignment** group, select **Center** for short headings or **Wrap Text** for headings that should remain readable without making the column extremely wide.
+
+To emphasize a total row, select the entire row of totals, apply **Bold**, and use the **Borders** menu to add a **Top Border** or **Double Bottom Border**. Avoid adding heavy borders around every cell.
+
+![Windows Excel Font and Alignment groups showing Bold, Borders, Fill Color, Center, and Wrap Text](../assets/excel-windows-font-alignment-groups.png)
 
 ### Part C - Organize the Worksheet for Scanning
 
@@ -81,6 +120,28 @@ Useful organization choices include:
 Freeze Panes keeps selected rows or columns visible while the rest of the worksheet scrolls. For a long event list, freezing the header row lets the reader see labels even at row 60.
 
 Banded rows use alternating, subtle fills to help the eye follow one record across a wide table. Banding should be quiet. If every row uses a strong color, the pattern becomes distracting instead of helpful.
+
+#### Keep the Header Visible While Scrolling
+
+1. Select the **View** tab.
+2. Find the **Window** group.
+3. Select **Freeze Panes**.
+4. Choose **Freeze Top Row** when the headers are in row 1.
+5. Scroll downward and confirm that the header remains visible.
+
+If the worksheet has a title above its headers, select the cell immediately below the header row, then choose **View → Freeze Panes → Freeze Panes**. Excel freezes the rows above and the columns to the left of the selected cell.
+
+![Windows Excel View tab showing Freeze Panes and Freeze Top Row](../assets/excel-windows-view-freeze-panes.png)
+
+#### Add Banded Rows with Format as Table
+
+1. Select any cell in the data range.
+2. Select **Home → Format as Table** in the **Styles** group.
+3. Choose a light table style with subtle banding.
+4. Confirm the full data range in the Create Table dialog box.
+5. Select **My table has headers**, and then select **OK**.
+
+Format as Table does more than add color: it converts the range to an Excel table and adds filter buttons. Use it only when those table features fit the worksheet. If the activity calls for a normal cell range, apply light alternating fills manually instead.
 
 ### Part E - Color With Purpose
 
@@ -138,6 +199,18 @@ Before sharing a worksheet, perform this audit:
 | 5. Purpose | Does every color, border, and emphasis choice communicate something useful? |
 
 A formatting audit is not a search for the prettiest worksheet. It is a test of whether the workbook is readable, consistent, and trustworthy.
+
+### Before-and-After Practice
+
+Open the `Booking Summary` tab in the starter workbook. Before formatting, identify the title, header row, monetary columns, date column, detail rows, and total row. Then apply the tools from this reading:
+
+1. Apply a consistent date format to the event-date cells.
+2. Apply Accounting format with an appropriate number of decimal places to all monetary columns.
+3. Format the header row with one quiet fill, bold text, and readable alignment.
+4. Distinguish the total row with bold text and a clear border.
+5. Use Wrap Text only where a heading is cut off.
+6. Freeze the correct header row and test it by scrolling.
+7. Zoom out briefly and confirm that the worksheet has a clear visual hierarchy without excessive color.
 
 ---
 

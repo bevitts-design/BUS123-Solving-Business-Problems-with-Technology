@@ -17,7 +17,7 @@ output: "MATH/M03/bus123-math-m03-l01-pre-reading.pdf"
 
 ## 1 · Connect to Prior Knowledge
 
-In the last module, you worked with percentages — converting between decimals and percents, calculating percentage change, and finding amounts from percentages. Today's material builds directly on those skills. **Discounts are simply percentages applied to prices**, and once you can work with percentages confidently, discount math follows naturally.
+Earlier in the math track, you worked with percentages — converting between decimals and percents, calculating percentage change, and finding amounts from percentages. Today's material builds directly on those M01 skills while continuing the equation thinking from M02. **Discounts are simply percentages applied to prices**, and once you can work with percentages confidently, discount math follows naturally.
 
 You have probably encountered discounts as a consumer: "30% off" a jacket, or "buy within 10 days and save 2%." This pre-reading gives you the vocabulary and formulas to work with discounts the way businesses do — precisely and systematically.
 

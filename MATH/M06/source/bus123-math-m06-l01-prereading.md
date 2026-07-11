@@ -174,13 +174,13 @@ Tidal operates two departments: a retail Surf Shop (2,400 sq ft) and an Online W
 
 | Department    | Sq Ft         | Allocation Basis | Overhead Allocated        |
 |---------------|---------------|------------------|---------------------------|
-| Surf Shop     | 2,400 / 4,000 = 60% | Sq footage  | 60% × $22,000 = **$13,200** |
-| Warehouse     | 1,600 / 4,000 = 40% | Sq footage  | 40% × $22,000 = **$8,800**  |
-| **Total**     | 100%          |                  | **$22,000**               |
+| Surf Shop     | 2,400 / 4,000 = 60% | Sq footage  | 60% × $9,000 = **$5,400** |
+| Warehouse     | 1,600 / 4,000 = 40% | Sq footage  | 40% × $9,000 = **$3,600**  |
+| **Total**     | 100%          |                  | **$9,000**               |
 
 ![Overhead allocation model using department square footage and checks that percentages and allocated amounts reconcile](../assets/math-m06-overhead-allocation.png)
 
-Always verify that department percentages total **100%** and allocated amounts total the original overhead. A complete-looking allocation that does not reconcile is not ready for a management report.
+Always verify that department percentages total **100%** and allocated amounts total the original cost pool. Here, allocated rent must total **$9,000**. A complete-looking allocation that does not reconcile is not ready for a management report.
 
 #### The Overhead Rate
 
@@ -220,7 +220,7 @@ Use these direction checks before trusting an Excel result:
 | **WAC Unit Cost**     | `=TotalCostAvailable/TotalUnitsAvailable` | $6,900 / 30 = **$230.00**               |
 | **FIFO COGS**         | `Oldest units × oldest cost`       | 10×$210 + 10×$230 = **$4,400**               |
 | **Dept OH %**         | `Dept Sq Ft / Total Sq Ft`         | 2,400 / 4,000 = **60%**                      |
-| **OH Allocated**      | `=TotalOverhead*DeptPercent`        | $22,000 × 60% = **$13,200**                  |
+| **OH Allocated**      | `=TotalOverhead*DeptPercent`        | $9,000 × 60% = **$5,400**                    |
 | **OH Rate**           | `=TotalOverhead/Revenue`            | $22,000 / $110,000 = **20.0%**               |
 
 ---

@@ -41,8 +41,8 @@ d.rounded_rectangle((430,575,1370,680),radius=12,fill=PALE,outline=GREEN,width=3
 im.save(OUT/"math-m06-cogs-bridge.png",quality=95)
 
 im,d=base("One overstated count creates opposite errors across two periods")
-card(d,(100,135,800,635),"CURRENT PERIOD",["Ending inventory +$3,000","↓","COGS understated $3,000","↓","Net income overstated $3,000"],RED,YELLOW)
-card(d,(1000,135,1700,635),"FOLLOWING PERIOD",["Beginning inventory +$3,000","↓","COGS overstated $3,000","↓","Net income understated $3,000"],BLUE,PALE); d.text((900,375),"→",anchor="mm",font=font(70,True),fill=NAVY)
+card(d,(100,135,800,635),"CURRENT PERIOD",["Ending inventory +$5,000","↓","COGS understated $5,000","↓","Net income overstated $5,000"],RED,YELLOW)
+card(d,(1000,135,1700,635),"FOLLOWING PERIOD",["Beginning inventory +$5,000","↓","COGS overstated $5,000","↓","Net income understated $5,000"],BLUE,PALE); d.text((900,375),"→",anchor="mm",font=font(70,True),fill=NAVY)
 im.save(OUT/"math-m06-inventory-error-flow.png",quality=95)
 
 im,d=base("Margin and markup use the same profit but different bases")
@@ -52,8 +52,8 @@ d.rounded_rectangle((690,650,1110,730),radius=10,fill=NAVY); d.text((900,690),"S
 im.save(OUT/"math-m06-margin-markup-bases.png",quality=95)
 
 im,d=base("Allocate overhead using a driver that explains the cost")
-card(d,(70,125,540,580),"INPUTS",["Total overhead: $22,000","Surf Shop: 2,400 sq ft","Warehouse: 1,600 sq ft","Total: 4,000 sq ft"],BLUE,YELLOW)
-card(d,(665,125,1135,580),"SURF SHOP",["=2400/4000","60%","=$22,000*60%","$13,200"],GREEN)
-card(d,(1260,125,1730,580),"WAREHOUSE",["=1600/4000","40%","=$22,000*40%","$8,800"],ORANGE)
-d.rounded_rectangle((310,625,1490,710),radius=12,fill=YELLOW,outline=ORANGE,width=3); d.text((900,667),"Checks: percentages = 100% · allocations = $22,000",anchor="mm",font=font(22,True),fill=TEXT)
+card(d,(70,125,540,580),"INPUTS",["Monthly rent: $9,000","Surf Shop: 2,400 sq ft","Warehouse: 1,600 sq ft","Total: 4,000 sq ft"],BLUE,YELLOW)
+card(d,(665,125,1135,580),"SURF SHOP",["=2400/4000","60%","=$9,000*60%","$5,400"],GREEN)
+card(d,(1260,125,1730,580),"WAREHOUSE",["=1600/4000","40%","=$9,000*40%","$3,600"],ORANGE)
+d.rounded_rectangle((310,625,1490,710),radius=12,fill=YELLOW,outline=ORANGE,width=3); d.text((900,667),"Checks: percentages = 100% · allocated rent = $9,000",anchor="mm",font=font(22,True),fill=TEXT)
 im.save(OUT/"math-m06-overhead-allocation.png",quality=95)

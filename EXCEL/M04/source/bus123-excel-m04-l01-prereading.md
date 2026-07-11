@@ -82,12 +82,17 @@ One common trap is the overloaded pie chart. If a chart has eight or nine slices
 
 ### Create a Chart in Windows Excel
 
-1. Select the category labels and numeric values that answer the business question. Include the relevant headers, but do not include a grand total unless the total itself belongs in the comparison.
-2. Select the **Insert** tab and find the **Charts** group.
-3. Select **Recommended Charts** to preview options or choose a specific chart button such as **Insert Column or Bar Chart**.
-4. Confirm that categories appear on the category axis and numbers form the data series.
-5. Select the appropriate chart and choose **OK**.
-6. Move or resize the chart without covering source data needed for review.
+1. Start with the business question. For "Which service line produced the most revenue?" you need the **Service Line** and **Revenue** fields.
+2. Select the category labels and numeric values, including both headers. Do not include unrelated fields or a grand total unless the total itself belongs in the comparison.
+3. Pause and inspect the highlighted range. Each selected row should pair one service line with its revenue value.
+
+![Windows Excel worksheet showing Service Line and Revenue selected while the unrelated Visits field remains outside the chart range](../assets/excel-windows-select-chart-data.png)
+
+4. Select the **Insert** tab and find the **Charts** group.
+5. Select **Recommended Charts** to preview options or choose a specific chart button such as **Insert Column or Bar Chart**.
+6. In the preview, confirm that service lines appear on the category axis and revenue determines the height or length of each bar.
+7. Select the appropriate chart and choose **OK**.
+8. Move or resize the chart without covering source data needed for review.
 
 ![Windows Excel Insert tab showing PivotTable, Recommended Charts, and common chart-type buttons](../assets/excel-windows-insert-charts.png)
 
@@ -146,6 +151,9 @@ A PivotTable can answer "total revenue by service line" by placing Service Line 
 2. Select **Insert → PivotTable → From Table/Range**.
 3. Confirm the table or range shown in the dialog box.
 4. Choose **New Worksheet** so the summary has its own workspace, then select **OK**.
+
+![Windows Excel Create PivotTable dialog showing HarborsideData as the source and New Worksheet selected](../assets/excel-windows-create-pivottable-dialog.png)
+
 5. In the PivotTable Fields pane, drag **Service Line** to **Rows**.
 6. Drag **Revenue** to **Values**.
 7. Drag **Month** to **Filters** when the manager needs to switch reporting periods.
@@ -177,6 +185,10 @@ Always check the Value Field Settings. If Revenue appears as Count of Revenue in
 4. Select **Number Format** and apply an appropriate display such as Currency or Number.
 5. Select **OK** and verify that the field caption now says `Sum of Revenue`, `Average of Visits`, or the intended summary.
 6. Compare the result with a simple source calculation or known total.
+
+![Windows Excel Value Field Settings dialog showing Sum selected and the expected Sum of Revenue field caption](../assets/excel-windows-value-field-settings.png)
+
+For a quick independent check, select a blank cell and enter `=SUM(HarborsideData[Revenue])`. The formula result should match the PivotTable grand total when no filters are applied. If the totals differ, check the PivotTable source, filters, summary setting, and refresh status before using the result.
 
 ## 7. Refresh, Slicers, and PivotCharts
 

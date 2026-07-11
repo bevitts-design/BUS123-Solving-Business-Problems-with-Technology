@@ -1,6 +1,6 @@
 ---
 title: "BUS 123 — MATH-M01— Whole Numbers, Fractions & Percents"
-lesson: "MATH-M01"
+lesson: "MATH-M01-L01"
 kind: "Pre-Reading"
 status: "published"
 output: "MATH/M01/bus123-math-m01-l01-prereading.pdf"

@@ -15,7 +15,7 @@ Gerrish School of Business · Endicott College · Fall 2026
 
 ## Current Events Hook
 
-Three of the most anticipated IPOs in recent memory have gone public or are circling the public markets: **SpaceX**, **Anthropic**, and **OpenAI**. Each represents a privately held company that has grown/grew to a valuation of tens of billions of dollars — SpaceX at an estimated $350 billion, Anthropic near $60 billion, and OpenAI above $150 billion. If any of these companies lists on a stock exchange, millions of investors will face a question that has no easy answer: *Is this worth buying at the IPO price?*
+When a closely watched company prepares to enter the public markets, headlines often focus on its expected valuation and possible offering price. Investors still must ask a question that has no easy answer: *Is this security worth buying at that price?* The names and numbers change; the need to understand ownership, return, risk, and valuation does not.
 
 That question — *how do I decide whether a security is worth owning?* — is exactly what this module is about. By the time you finish MATH-M10, you will be able to read a stock quote, calculate the return on a bond, and determine the net asset value of a mutual fund. Those are the building blocks of every serious investment decision.
 
@@ -43,7 +43,7 @@ There are two main types of stock, and they come with very different rights.
 
 **Common stock** is what most people mean when they say "buying stock." Common shareholders have voting rights — they can vote on major corporate decisions such as who sits on the board of directors. However, they are last in line when dividends are distributed and last in line if the company goes bankrupt.
 
-**Preferred stock** does not come with voting rights, but preferred shareholders receive dividends before common shareholders, and they have a higher claim on assets if the company fails. A special category, **cumulative preferred stock**, guarantees that if the company misses a dividend payment, it accumulates as **dividends in arrears** — a debt the company must pay before any common dividends go out.
+**Preferred stock** generally does not come with voting rights, but preferred shareholders receive declared dividends before common shareholders, and they have a higher claim than common shareholders on remaining assets if the company fails. With **cumulative preferred stock**, a skipped dividend accumulates as **dividends in arrears**. The arrears normally must be paid before common dividends resume, but they generally are not corporate debt unless the board has formally declared the dividend.
 
 **Key rule:** Preferred shareholders are paid first. Common shareholders receive whatever is left.
 
@@ -113,7 +113,7 @@ An analyst at Meridian bought 200 shares of MAGH at $39.09 and sold them one yea
 
 When you own a stock, you own a piece of the company. When you own a bond, you are a **creditor** — you have lent money to the company. The company promises to pay you interest on a schedule and return the full face amount (the **par value**, typically $1,000) at a future date called the **maturity date**.
 
-If a company goes bankrupt, bondholders have the **first claim on assets** — ahead of all stockholders. This priority makes bonds lower-risk than stocks, though the potential return is also more limited.
+If a company goes bankrupt, bondholders are creditors and rank ahead of stockholders. Their exact priority depends on the bond's terms and other claims: secured creditors may rank ahead of unsecured bondholders. This creditor status generally makes a particular company's bonds less risky than its stock, though bonds still carry default, interest-rate, inflation, and liquidity risk.
 
 ### How Bond Prices Work
 
@@ -211,6 +211,55 @@ If an investor wanted to purchase 80 shares, they would pay: $7.97 × 80 = **$63
 | Bond Dollar Price | Quoted % × Face Value ($1,000) |
 | Bond Current Yield | Annual Interest ÷ Dollar Price |
 | Mutual Fund NAV | (Total Assets − Total Liabilities) ÷ Shares Outstanding |
+
+---
+
+<!-- page break -->
+
+## Excel Setup: Inputs First, Outputs Second
+
+Open the starter workbook and select **Live You Try It**. Each practice block uses the same beginner-friendly model:
+
+1. Column **B** names the business item.
+2. Yellow cells in column **C** hold either a given input or your formula.
+3. Column **D** gives self-check feedback; it is not an answer cell.
+4. Column **E** provides a hint.
+
+Use the **Name Box** to confirm the selected cell, then look at the **Formula Bar** to confirm what you typed. These screenshots show Windows Excel. Mac Excel includes the same core tools, but commands may appear in a different position.
+
+![Windows Excel Home tab showing Currency and Percentage number-format controls](../assets/excel-home-number-formats.png)
+
+### Build the Bond Model in Cells C51:C60
+
+Select **C51** and enter `1000`. Select **C52** and enter `4%`. Select **C53** and enter `99.59` — not `99.59%`. Select **C54** and enter `5`.
+
+![Labeled worksheet model showing the bond inputs and formulas](../assets/excel-labeled-bond-model.png)
+
+Then enter these formulas one cell at a time:
+
+| Select this cell | Type this exact formula | Format | Expected result |
+|---|---|---|---|
+| **C56** | `=C53/100*C51` | Currency, 2 decimals | **$995.90** |
+| **C57** | `=C56*C54` | Currency, 2 decimals | **$4,979.50** |
+| **C58** | `=C52*C51` | Currency, 2 decimals | **$40.00** |
+| **C59** | `=C58*C54` | Currency, 2 decimals | **$200.00** |
+| **C60** | `=C58/C56` | Percentage, 2 decimals | **4.02%** |
+
+![Comparison showing that a bond quote is entered as 99.59 while a rate is entered as 4 percent](../assets/excel-quote-vs-percent.png)
+
+**Reasonableness checks:** Because the quote is slightly below 100, the dollar price should be slightly below $1,000. Because the bond sells below par, current yield should be slightly above the 4% stated rate. If C56 shows $99,590 or $9.96, recheck the `/100` conversion.
+
+**Automatic-recalculation test:** Change **C53** from `99.59` to `98`. C56 should change to **$980.00**, C57 to **$4,900.00**, and C60 to about **4.08%**. Undo the change or type `99.59` again before continuing.
+
+### Read an ROI Formula from the Formula Bar
+
+For the ROI practice block, enter the slide givens in **C33:C37**. Build the helper calculations in **C39:C45**. Finally, select **C46** and type `=(C44-C41+C45)/C41`, then apply Percentage with two decimals. The expected ROI is **6.12%**.
+
+![Formula bar showing the ROI formula with cell references](../assets/excel-formula-bar-roi.png)
+
+Reasonableness check: the selling price is higher than the purchase price and dividends are positive, so ROI should be positive. It should not be enormous because commissions reduce the gain. Change **C37** from `1.21` to `0` as a quick test; ROI should fall to about **3.06%**, proving the result is linked to the dividend input. Restore `1.21` afterward.
+
+Keep **Class Challenge** separate: read each scenario, enter only its stated inputs and your final numeric answer, and use the **FormulaReferenceCard** for syntax reminders. This pre-reading does not provide the graded challenge formulas or completed answers.
 
 ---
 

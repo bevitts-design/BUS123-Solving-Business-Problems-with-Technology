@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300">
+<rect width="1000" height="300" rx="22" fill="#FAF8F3"/><text x="42" y="42" font-family="Arial" font-size="22" font-weight="700" fill="#1A1F2C">Important distinction · bond quote vs. Excel percentage</text>
+<rect x="42" y="72" width="430" height="174" rx="14" fill="#fff" stroke="#9C4A2B" stroke-width="2"/><text x="70" y="111" font-family="Arial" font-size="21" font-weight="700" fill="#9C4A2B">Quoted price input</text><text x="70" y="158" font-family="Courier New" font-size="34" font-weight="700" fill="#355773">99.59</text><text x="70" y="205" font-family="Arial" font-size="18" fill="#4A5567">Type the market quote as a number.</text>
+<rect x="528" y="72" width="430" height="174" rx="14" fill="#EAF3EC" stroke="#4A7C5E" stroke-width="2"/><text x="556" y="111" font-family="Arial" font-size="21" font-weight="700" fill="#1A1F2C">Rate input</text><text x="556" y="158" font-family="Courier New" font-size="34" font-weight="700" fill="#355773">4%</text><text x="556" y="205" font-family="Arial" font-size="18" fill="#4A5567">Type the coupon rate as a percentage.</text>
+<text x="42" y="282" font-family="Arial" font-size="18" fill="#1A1F2C">Formula: =C53/100*C51 · dividing the quote by 100 converts it to 99.59%.</text>
+</svg>

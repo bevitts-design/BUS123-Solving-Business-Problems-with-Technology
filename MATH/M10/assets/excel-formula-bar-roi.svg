@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300">
+<rect width="1000" height="300" rx="22" fill="#FAF8F3"/><text x="42" y="42" font-family="Arial" font-size="22" font-weight="700" fill="#1A1F2C">Formula bar · active cell C46</text>
+<rect x="42" y="70" width="110" height="54" rx="7" fill="#fff" stroke="#7A8290"/><text x="75" y="105" font-family="Courier New" font-size="22" fill="#355773">C46</text><rect x="166" y="70" width="792" height="54" rx="7" fill="#fff" stroke="#7A8290"/><text x="186" y="104" font-family="Courier New" font-size="19" font-weight="700" fill="#355773">=(C44-C41+C45)/C41</text>
+<rect x="42" y="154" width="916" height="98" rx="12" fill="#EAF3EC" stroke="#4A7C5E" stroke-width="2"/><text x="70" y="191" font-family="Arial" font-size="20" font-weight="700" fill="#1A1F2C">Read the references aloud:</text><text x="70" y="226" font-family="Arial" font-size="20" fill="#4A5567">net sale proceeds − total buy cost + dividends, all divided by total buy cost</text>
+</svg>

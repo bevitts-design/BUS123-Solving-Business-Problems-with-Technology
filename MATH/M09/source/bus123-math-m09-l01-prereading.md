@@ -96,10 +96,10 @@ When interest compounds more frequently than once per year, **both rate and nper
 | Frequency | rate arg | nper arg | FV |
 |---|---|---|---|
 | Annually | 6% | 5 | $33,455.64 |
-| Quarterly | 1.5% | 20 | $33,672.54 |
-| Monthly | 0.5% | 60 | $33,725.46 |
+| Quarterly | 1.5% | 20 | $33,671.38 |
+| Monthly | 0.5% | 60 | $33,721.25 |
 
-More frequent compounding always produces a higher ending balance, because interest starts earning interest sooner. The practical difference between annual and monthly compounding on a $25,000 investment over 5 years is $269.82 — not enormous, but meaningful across a large portfolio.
+More frequent compounding produces a higher ending balance when the same nominal annual rate is divided across more compounding periods. The practical difference between annual and monthly compounding on a $25,000 investment over 5 years is $265.61 — not enormous, but meaningful across a large portfolio.
 
 ---
 
@@ -128,6 +128,31 @@ Excel's financial functions assign direction to every cash flow. When you invest
 Getting the sign wrong does not produce a formula error — it produces a plausible-looking answer with the wrong sign. Always sanity-check: FV should be **larger** than the absolute value of PV when the rate is positive.
 
 **Manual verification habit:** After every `=FV()` result, run: `=ABS(pv)*(1+rate)^nper`. Both must produce the same number. If they don't, your inputs are inconsistent.
+
+### Build a Labeled FV Model in Excel
+
+Keep inputs separate from calculated outputs. In a blank worksheet, type the labels in column A and values in column B:
+
+| Cell | Label | Enter | Format |
+|---|---|---:|---|
+| B4 | Starting principal | 25000 | Currency, 2 decimals |
+| B5 | Annual rate | 6% | Percentage, 2 decimals |
+| B6 | Years | 5 | Number, 0 decimals |
+| B7 | Periods per year | 4 | Number, 0 decimals |
+| B8 | Future value | formula | Currency, 2 decimals |
+
+1. Select cell **B8**.
+2. Type `=FV(B5/B7,B6*B7,0,-B4)` in the formula bar and press **Enter**.
+3. The expected result is **$33,671.38**.
+4. On Windows Excel, use **Home > Number** to apply Currency, Percentage, and Number formats. Mac Excel may position these commands differently.
+5. Reasonableness check: because the rate and time are positive, FV must be greater than the $25,000 starting principal.
+6. Recalculation test: change **B5 from 6% to 7%**. B8 should automatically increase to about **$35,369.45**. Change B5 back to 6% before continuing.
+
+![Excel for Windows labeled quarterly FV model with a formula-bar example](../assets/m09-l01-excel-model.png)
+
+![Excel for Windows number-format controls and an automatic recalculation check](../assets/m09-l01-number-format.png)
+
+This model matches the workbook habit: enter the yellow inputs first, then build the output from cell references. Use the same approach in **Live You Try It**. In **Class Challenge**, follow the prompts and hints, but build your own formulas; the pre-reading does not provide the graded answers.
 
 ---
 
@@ -193,7 +218,7 @@ Answer these questions before class. Show your work on questions 2–6.
 
 **4.** 72 ÷ 8 = **9 years** (estimate). Verification: `=FV(8%, 9, 0, −5000)` = $9,993.50 — very close to $10,000. The Rule of 72 is accurate here.
 
-**5.** (a) Annual: rate = 6%, nper = 5. `=FV(6%, 5, 0, −25000)` = **$33,455.64**. (b) Monthly: rate = 6%/12 = 0.5%, nper = 5 × 12 = 60. `=FV(0.5%, 60, 0, −25000)` = **$33,725.46**. Monthly produces $269.82 more.
+**5.** (a) Annual: rate = 6%, nper = 5. `=FV(6%, 5, 0, −25000)` = **$33,455.64**. (b) Monthly: rate = 6%/12 = 0.5%, nper = 5 × 12 = 60. `=FV(0.5%, 60, 0, −25000)` = **$33,721.25**. Monthly produces **$265.61** more.
 
 **6.** **True.** pv represents the starting investment — money leaving the investor's pocket on day one. Excel's sign convention treats outflows as negative. Entering pv as positive reverses the sign of the FV result, producing a negative FV that is correct in magnitude but wrong in directional meaning.
 

@@ -73,15 +73,42 @@ A client purchases a home for $320,000 at 6.5% annual interest, 30-year term, mo
 
 - `rate = 6.5% ÷ 12 = 0.5417% per month`
 - `nper = 30 × 12 = 360 months`
-- `=PMT(6.5%/12, 360, 320000, 0)` → `−$2,023.13/month`
+- `=PMT(6.5%/12, 360, 320000, 0)` → `−$2,022.62/month`
 
-The client pays **$2,023.13 per month**. Over 30 years:
+The client pays **$2,022.62 per month**. Over 30 years:
 
-- `Total paid = $2,023.13 × 360 = $728,326`
+- `Total paid = ABS(−$2,022.617675...) × 360 = $728,142.36`
 - `Original PV = $320,000`
-- `Total interest paid = $728,326 − $320,000 = $408,326`
+- `Total interest paid = $728,142.36 − $320,000 = $408,142.36`
 
-The client will pay more than $400,000 in interest over the life of the loan — more than the original principal. This is one of the most important numbers a financial advisor can show a client.
+The client will pay more than $400,000 in interest over the life of the loan — more than the original principal. Keep the unrounded PMT in the formula cell and round only the display; multiplying the displayed $2,022.62 by 360 creates a small rounding difference.
+
+### Build a Labeled PMT Model in Excel
+
+Use a compact input-and-output model instead of typing numbers directly into formulas:
+
+| Cell | Label | Enter | Format |
+|---|---|---:|---|
+| B4 | Loan amount | 320000 | Currency, 2 decimals |
+| B5 | Annual rate | 6.5% | Percentage, 2 decimals |
+| B6 | Years | 30 | Number, 0 decimals |
+| B7 | Payments per year | 12 | Number, 0 decimals |
+| B8 | Monthly payment | formula | Currency, 2 decimals |
+| B9 | Total paid | formula | Currency, 2 decimals |
+| B10 | Total interest | formula | Currency, 2 decimals |
+
+1. Select **B8**, type `=PMT(B5/B7,B6*B7,B4,0)`, and press **Enter**. Expected result: **−$2,022.62**.
+2. Select **B9**, type `=ABS(B8)*B6*B7`, and press **Enter**. Expected result: **$728,142.36**.
+3. Select **B10**, type `=B9-B4`, and press **Enter**. Expected result: **$408,142.36**.
+4. On Windows Excel, use **Home > Number** and apply Currency with 2 decimal places to B4 and B8:B10. Mac Excel may position these commands differently.
+5. Reasonableness checks: PMT should be negative because it is a payment; total paid must exceed the loan amount; total interest must be positive.
+6. Recalculation test: change **B5 from 6.5% to 7.0%**. The payment should become more negative and total interest should increase automatically. Then restore B5 to 6.5%.
+
+![Excel for Windows labeled PMT model with exact formula-bar and output examples](../assets/m09-l02-pmt-model.png)
+
+![Cash-flow sign distinction and automatic recalculation test](../assets/m09-l02-signs-and-test.png)
+
+The layout mirrors the starter workbook: use labeled yellow input cells, enter formulas in the answer/output cells, and check the feedback in **Live You Try It**. The **FormulaReferenceCard** is a syntax reminder, not a completed solution. Build the graded **Class Challenge** formulas yourself.
 
 > ⚠️ **The Most Common PMT Error: Wrong Period Match**
 >
@@ -126,15 +153,15 @@ For a savings account with monthly contributions and no starting balance:
 **Worked Example:**
 A Meridian client contributes $500/month to a retirement account earning 7% annual for 30 years.
 
-`=FV(7%/12, 30*12, −500, 0)` → `$606,438.29`
+`=FV(7%/12, 30*12, −500, 0)` → `$609,985.50`
 
-They contributed $500 × 360 = **$180,000** total. Compounding grew it to **$606,438** — the extra $426,438 is entirely from compound interest on prior contributions.
+They contributed $500 × 360 = **$180,000** total. Compounding grew it to **$609,985.50** — the extra **$429,985.50** is entirely from compound interest on prior contributions.
 
 **Starting with both a lump sum and regular contributions:**
 
 If the client already has $10,000 saved and also contributes $500/month:
 
-`=FV(7%/12, 360, −500, −10000)` → `$674,843.64`
+`=FV(7%/12, 360, −500, −10000)` → `$691,150.47`
 
 Both `pmt` and `pv` are negative because both are outflows — money leaving the client's pocket.
 
@@ -147,9 +174,9 @@ Both `pmt` and `pv` are negative because both are outflows — money leaving the
 **Worked Example:**
 A Meridian client will receive $1,500/month for 10 years from a structured settlement. Discount rate: 5% annual. What is that stream worth in today's dollars?
 
-`=PV(5%/12, 10*12, 1500, 0)` → `−$141,799`
+`=PV(5%/12, 10*12, 1500, 0)` → `−$141,422.03`
 
-The stream pays out $1,500 × 120 = **$180,000** total in nominal dollars. In today's dollars at 5%, it is worth only **$141,799**. The difference — $38,201 — represents the time value eroded by 10 years of waiting and discounting.
+The stream pays out $1,500 × 120 = **$180,000** total in nominal dollars. In today's dollars at 5%, it is worth only **$141,422.03**. The difference — **$38,577.97** — represents the time value eroded by 10 years of waiting and discounting.
 
 The result is negative because it represents the **cost to acquire this stream today** (outflow). If a buyer offers $130,000 for the settlement, the client should hold — it is worth more. If the offer is $155,000, the client should accept — the offer exceeds the present value.
 

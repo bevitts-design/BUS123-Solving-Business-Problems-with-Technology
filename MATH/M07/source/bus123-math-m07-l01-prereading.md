@@ -136,7 +136,65 @@ Given: Market Value $820,000 · Assessment Rate 40% · Town Budget $310,000 · T
 
 ---
 
-## 3 · Formula Reference
+## 3 · Build the Tax Models in Excel
+
+Excel should mirror the order of the business calculation. Keep every assumption in its own labeled input cell, then build formulas that reference those cells. In the examples below, **yellow cells are inputs** and **green cells are formulas**.
+
+> 💻 **Windows and Mac Excel**
+>
+> The images show Windows Excel. Mac Excel uses the same commands and formula syntax, although a button may appear in a slightly different position on the ribbon.
+
+### Format Dollar Amounts and Rates
+
+Use **Home → Number** to format prices, taxes, and totals as Accounting or Currency. Format tax and assessment rates as percentages. Enter `6%` or `0.06`—do not enter `6` and then click Percent Style, because Excel would display `600%`.
+
+![Windows Excel Home tab showing the Number group controls used to format tax rates and dollar amounts](../assets/math-m07-excel-number-formats.png)
+
+### Walkthrough 1 — Build the Sales Tax Formula Chain
+
+Set up this model in a blank area of Excel. The cell addresses below are an example; the important requirement is that your formulas reference the cells containing the inputs.
+
+1. **Set up:** In column A, enter the labels Retail Price, Trade Discount, Sales Tax Rate, Shipping, Taxable Subtotal, Sales Tax Owed, and Total Price. In cells B1:B4, enter `$480`, `$80`, `6%`, and `$15`.
+2. **Select and type:** Select B5 and type `=B1-B2`. Select B6 and type `=B5*B3`. Select B7 and type `=B5+B6+B4`.
+3. **Format:** Format B1:B2 and B4:B7 as Accounting or Currency. Format B3 as Percentage.
+4. **Check:** B5 should equal **$400.00**, B6 should equal **$24.00**, and B7 should equal **$439.00**. The total must be greater than the taxable subtotal because tax and shipping were added.
+5. **Try:** Change the trade discount in B2 from `$80` to `$100`. The taxable subtotal, tax, and total should all update automatically.
+
+![Excel sales tax worksheet showing labeled inputs, formula cells, and the required calculation order](../assets/math-m07-sales-tax-model.png)
+
+> ⚠️ **Order Matters**
+>
+> Subtract the trade discount first, calculate tax second, and add shipping last. Do not calculate tax from the original retail price when a trade discount reduces the taxable base.
+
+### Walkthrough 2 — Keep Sales and Excise Taxes on the Same Base
+
+1. **Set up:** Enter Base Cost in A1, Sales Tax Rate in A2, and Excise Tax Rate in A3. Enter `$6,200`, `7%`, and `8%` in B1:B3.
+2. **Select and type:** In B4, calculate sales tax with `=B1*B2`. In B5, calculate excise tax with `=B1*B3`. In B6, calculate total cost with `=B1+B4+B5`.
+3. **Check:** B4 should equal **$434.00**, B5 should equal **$496.00**, and B6 should equal **$7,130.00**.
+4. **Confirm with a second method:** In another cell, type `=B1*(1+B2+B3)`. It should also return **$7,130.00**.
+5. **Try:** Change the excise tax rate to `9%`. Both the excise tax and total cost should rise, but the sales tax should remain unchanged.
+
+![Excel formula bar showing sales tax and excise tax formulas that both reference the original base cost](../assets/math-m07-same-base-formulas.png)
+
+If the excise formula begins with the sales-tax-inclusive total instead of B1, the taxes are being compounded incorrectly. Both tax formulas must point back to the original base cost.
+
+### Walkthrough 3 — Round the Property Tax Rate First
+
+1. **Set up:** Enter Market Value, Assessment Rate, Town Budget, and Total Assessed Value in A1:A4. Enter `$820,000`, `40%`, `$310,000`, and `$4,750,000` in B1:B4.
+2. **Select and type:** In B5, type `=B1*B2` for assessed value. In B6, type `=ROUND(B3/B4,4)` for the tax rate. In B7, type `=B5*B6` for annual tax due.
+3. **Format:** Format B1, B3:B5, and B7 as Accounting or Currency. Format B2 as Percentage. Display B6 as a number with four decimal places so you can verify the required rounding.
+4. **Check:** B5 should equal **$328,000.00**, B6 should equal **0.0653**, and B7 should equal **$21,418.40**.
+5. **Try:** Calculate a monthly NNN planning reserve in B8 with `=B7/12`. The result should be **$1,784.87** when displayed to two decimal places.
+
+![Excel property tax worksheet and formula bar showing ROUND applied before annual tax is calculated](../assets/math-m07-property-tax-round.png)
+
+> ✅ **Workbook Connection**
+>
+> In class, use the same modeling habits on the **Live You Try It** tab of the starter workbook. Use the **FormulaReferenceCard** tab when you need a syntax reminder. Complete the **Class Challenge** only when your instructor directs you to begin the graded work.
+
+---
+
+## 4 · Formula Reference
 
 | Formula Name                    | Expression                                              |
 |---------------------------------|---------------------------------------------------------|
@@ -152,7 +210,7 @@ Given: Market Value $820,000 · Assessment Rate 40% · Town Budget $310,000 · T
 
 ---
 
-## 4 · Check Your Understanding
+## 5 · Check Your Understanding
 
 Answer all seven questions before class. Answers appear at the end of this document.
 
@@ -186,7 +244,7 @@ Answer all seven questions before class. Answers appear at the end of this docum
 
 ---
 
-## 5 · Key Vocabulary
+## 6 · Key Vocabulary
 
 | Term                          | Definition                                                                                                                                                         |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|

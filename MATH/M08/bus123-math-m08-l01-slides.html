@@ -24,17 +24,17 @@
   "Live You Try It pause. Have students open the Live You Try It tab and complete the rows for slide 10 and slide 11. They should type the slide givens into the yellow cells first, then build formulas from those cells. Reinforce that the feedback is self-check coaching, not grading.",
   "Now Part 2 \u2014 running the math backward. Discounting asks: what is a future promise worth today? This is the reverse operation. PV equals FV divided by the discount factor. The discount factor is 1 plus R times T \u2014 always greater than 1, so PV is always less than FV. The economic meaning: present value is the fair price of waiting.",
   "Meridian client example for manual PV. A corporate contract promises 25,000 in 18 months at 7% discount rate. Step one: convert time to 1.5 years. Step two: discount factor = 1 plus 0.07 times 1.5 = 1.105. Step three: PV = 25,000 divided by 1.105 = 22,624 dollars. The 2,376 dollar gap is the cost of waiting \u2014 that is what discounting measures.",
-  "Live You Try It pause for discounting. Students copy the 25,000 receivable, 7 percent rate, and 18-month term into the yellow cells, then build manual PV and =PV formulas. The point is to see the same business question solved two ways and to notice the negative =PV sign.",
+  "Live You Try It pause for discounting. Students copy the 25,000 receivable, 7 percent rate, and 18-month term into the yellow cells, then build manual PV and =PV formulas. The manual formula uses simple interest, while Excel PV uses compound periodic discounting. The answers should be close but should not match, and the Excel result carries a negative cash-flow sign.",
   "Sign convention is the most common source of confusion. Excel treats outflows as negative and inflows as positive. When you discount a receivable, the PV is negative because you would need to invest that amount today. Entering FV as negative does not cause an error \u2014 it just flips the sign of the result, producing a positive PV that looks right but means the opposite.",
   "Common mistake \u2014 the most important slide in Part 2. Students see a negative PV result, panic, and manually add a minus sign. Now the answer is doubly wrong. The correct approach: understand what the sign means. If you are valuing a receivable \u2014 money coming to you \u2014 the negative PV means the present cost of acquiring that future receipt. Do not flip it blindly.",
   "The PV table shows how the same 100 dollars loses value the farther out it is. At 5%, a dollar in 10 years is worth only 61 cents today. Higher rates make the discount steeper \u2014 at 10%, that same dollar in 10 years is only 39 cents. This table builds intuition before students see the formula.",
-  "FV and PV are two directions of the same operation. FV grows money forward \u2014 multiply by the growth factor. PV discounts money back \u2014 divide by the discount factor. They are inverses. =PV(5%,3,0,115) returns negative 99.34. =FV(5%,3,0,-99.34) returns 115. That round trip is the verification students should run every time.",
+  "FV and PV are inverse operations only when you stay within the same model. In the simple-interest model, 100 grows to 115 at 5 percent for 3 years and 115 discounts back to 100. In Excel's compound periodic model, =PV(5%,3,0,115) returns negative 99.34 and =FV(5%,3,0,-99.34) returns 115. Do not use one model to verify the other.",
   "Final Live You Try It pause. Students use rows 19 through 24 on the Live You Try It tab to enter the five DCF payments, discount each one at 6 percent, and total the present values. The Class Challenge tab then extends these same skills as the graded or next-level activity.",
   "Discussion questions for the last ten minutes. Computational: which receivable loses the most value to discounting and why? Conceptual: in plain language, why does a higher discount rate always reduce present value? Applied: the client is offered 75,000 today for the stream. Based on your model at 6%, should they accept?",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
-  "Three things to take from today. First: time erodes value \u2014 inflation, opportunity cost, and risk all work against future money. Second: I=PRT and FV=P(1+RT) move money forward \u2014 T must always be in years. Third: PV equals FV over the discount factor \u2014 and in Excel, =PV returns a negative result that means what you must invest today. Next module: compound interest, where interest earns interest.",
+  "Three things to take from today. First: time erodes value \u2014 inflation, opportunity cost, and risk all work against future money. Second: I=PRT and FV=P(1+RT) move money forward \u2014 T must always be in years. Third: manual simple-interest PV divides by 1 plus rate times time, while Excel PV uses a compound periodic model and returns a negative cash-flow result. Next module develops compound interest directly.",
   "Coming up in MATH-M09-L01: compound interest and future value. The key difference \u2014 instead of I=PRT growing linearly, FV grows exponentially. One rate, applied repeatedly, produces dramatically different results over long time horizons. We will also meet the Rule of 72 and the =FV function.",
-  "That is MATH-M08. Questions before we close? Key formula: PV = FV divided by the discount factor. In Excel: =PV(rate, nper, 0, fv) \u2014 and read the sign carefully. Office hours, Canvas, or email for follow-up."
+  "That is MATH-M08. Questions before we close? Key distinction: manual simple-interest PV uses FV divided by 1 plus rate times time; Excel PV uses compound periodic discounting. Read both the model and the sign carefully. Office hours, Canvas, or email for follow-up."
 ]
 </script>
 
@@ -740,7 +740,7 @@
                 <code><span class="fn">=PV(rate, nper, 0, fv)</span><span class="comment">// Use 0 for pmt on a single future lump sum</span><span class="comment">// Positive fv returns a negative PV outflow</span></code>
               </div>
               <div class="highlight-box terra">
-                <p><strong>Stop and compare:</strong> manual PV and =PV should match in absolute value. If =PV is negative, that is Excel’s cash-flow sign convention, not a mistake.</p>
+                <p><strong>Stop and compare:</strong> these answers should be close, but they should not match. Manual PV uses simple interest; Excel’s =PV uses compound periodic discounting and returns a negative cash-flow result.</p>
               </div>
             </div>
           </div>
@@ -818,7 +818,7 @@
       <section class="slide paper" data-section="3" data-slide="18" data-index="17">
         <div class="slide-inner">
           <div class="eyebrow anim-1">Part 3 · Putting It Together</div>
-          <div class="header-row anim-2"><h2 class="slide-title">FV and PV — Two Directions, One Logic</h2></div>
+          <div class="header-row anim-2"><h2 class="slide-title">FV and PV — Stay Within One Model</h2></div>
           <div class="title-rule terra"></div>
           <div class="two-col anim-3">
             <div>
@@ -827,7 +827,7 @@
                 <p class="body-text" style="font-size:13px;">You have money <strong>today</strong>. How much will it be worth <strong>in the future</strong>?</p>
                 <div class="math-panel" style="margin-top:10px;">
                   <div class="label">FV = P × (1 + R × T)</div>
-                  <code>$99.34 × (1 + 0.05 × 3) = <span class="result">$114.00</span></code>
+                  <code>$100 × (1 + 0.05 × 3) = <span class="result">$115.00</span></code>
                 </div>
               </div>
               <div class="card">
@@ -835,7 +835,7 @@
                 <p class="body-text" style="font-size:13px;">You expect money <strong>in the future</strong>. What is it worth <strong>today</strong>?</p>
                 <div class="math-panel" style="margin-top:10px;">
                   <div class="label">PV = FV ÷ (1 + R × T)</div>
-                  <code>$114 ÷ (1 + 0.05 × 3) = <span class="result">$99.34</span></code>
+                  <code>$115 ÷ (1 + 0.05 × 3) = <span class="result">$100.00</span></code>
                 </div>
               </div>
             </div>
@@ -843,9 +843,9 @@
               <h4>The Round Trip — Always Verify</h4>
               <div class="formula-panel" style="margin-top:8px;margin-bottom:10px;">
                 <div class="label">Excel Round Trip Check</div>
-                <code>=PV(5%, 3, 0, 114) → <span class="neg">−$99.34</span><br>=FV(5%, 3, 0, <span class="neg">−99.34</span>) → <span class="val">$114.00</span> ✓</code>
+                <code>=PV(5%, 3, 0, 115) → <span class="neg">−$99.34</span><br>=FV(5%, 3, 0, <span class="neg">−99.34</span>) → <span class="val">$115.00</span> ✓</code>
               </div>
-              <p class="body-text" style="font-size:13px;">FV and PV are mathematical inverses. If they don't round-trip correctly, something is wrong with your inputs. Always run this check during the activity.</p>
+              <p class="body-text" style="font-size:13px;">Each model is internally reversible. Use the manual FV formula to verify manual PV, and Excel’s =FV() to verify =PV(). Do not cross-check one model with the other.</p>
               <div class="highlight-box gold" style="margin-top:10px;">
                 <p><strong>Coming in M09:</strong> =FV() and =PV() with compound interest — where the exponent n replaces simple multiplication, and growth becomes exponential.</p>
               </div>
@@ -863,11 +863,11 @@
             <div>
               <div style="background:rgba(156,74,43,0.12);border:1px solid rgba(156,74,43,0.4);border-left:4px solid var(--terra);border-radius:6px;padding:16px 18px;margin-bottom:12px;">
                 <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">❌ What Students Do</div>
-                <p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">They see <code style="color:var(--terra);">−$22,624</code> and assume it is an error. They manually add a minus sign to make it positive. Now the formula returns <code style="color:var(--terra);">+$22,624</code> — which looks right but is actually a completely wrong interpretation.</p>
+                <p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">They see <code style="color:var(--terra);">−$22,587</code> and assume it is an error. They manually add a minus sign to make it positive. Now the formula returns <code style="color:var(--terra);">+$22,587</code> — which looks right but reverses the cash-flow meaning.</p>
               </div>
               <div class="formula-panel">
                 <div class="label">The Confusion</div>
-                <code>=PV(7%, 1.5, 0, 25000) → <span class="neg">−$22,624</span><span class="comment">// Student adds minus: −(−22624) = +22624</span><span class="comment">// Now they've broken the sign meaning</span></code>
+                <code>=PV(7%, 1.5, 0, 25000) → <span class="neg">−$22,587.30</span><span class="comment">// Student adds minus: −(−22587.30) = +22587.30</span><span class="comment">// Now they've reversed the cash-flow meaning</span></code>
               </div>
             </div>
             <div>
@@ -877,7 +877,7 @@
               </div>
               <div class="formula-panel">
                 <div class="label">Verify with Round Trip</div>
-                <code>=FV(7%, 1.5, 0, <span class="neg">−22624</span>) → <span class="val">$25,000</span> ✓<span class="comment">// Negative PV + positive FV = consistent</span></code>
+                <code>=FV(7%, 1.5, 0, <span class="neg">−22587.30</span>) → <span class="val">$25,000</span> ✓<span class="comment">// Negative PV + positive FV = consistent</span></code>
               </div>
             </div>
           </div>
@@ -896,7 +896,7 @@
               <p class="body-text" style="font-size:13px;">A Meridian corporate client holds a contract that pays five lump sums over 5 years. Type each payment, the <strong>6%</strong> discount rate, and the year into the yellow cells first. Then build one PV formula per row.</p>
               <div class="formula-panel" style="margin-top:8px;">
                 <div class="label">Your Formula for Each Row</div>
-                <code>=FV/(1+rate*years)<span class="comment">// Manual PV — one row per payment</span>=PV(rate, years, 0, FV)<span class="comment">// Excel function — same result</span>
+                <code>=FV/(1+rate*years)<span class="comment">// Manual simple-interest PV — one row per payment</span>=PV(rate, years, 0, FV)<span class="comment">// Excel compound model — separate comparison</span>
 =SUM(G19:G23)<span class="comment">// Total present value in the Live tab</span></code>
               </div>
               <p class="body-text" style="font-size:12px;">The <strong>Class Challenge</strong> tab is the graded or next-level activity. Live You Try It stays self-graded.</p>
@@ -943,7 +943,7 @@
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
     <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Simple interest</td><td class="pattern">=Principal*Rate*Time</td><td>Calculates interest for one principal, rate, and time.</td><td class="watch">Time must be in years.</td></tr><tr><td>Ending balance / FV</td><td class="pattern">=Principal*(1+Rate*Time)</td><td>Adds simple interest back to principal.</td><td class="watch">The growth factor is 1 plus rate times time.</td></tr><tr><td>Months to years</td><td class="pattern">=Months/12</td><td>Converts months into a year fraction.</td><td class="watch">Use the same time basis as the rate.</td></tr><tr><td>Manual present value</td><td class="pattern">=FV/(1+Rate*Time)</td><td>Discounts a future amount back to today.</td><td class="watch">PV should be less than FV.</td></tr><tr><td>Excel PV function</td><td class="pattern">=PV(rate,nper,0,fv)</td><td>Uses Excel to discount one future value.</td><td class="watch">Excel may return a negative sign convention result.</td></tr><tr><td>DCF total</td><td class="pattern">=SUM(PVRange)</td><td>Adds present values from a stream of cash flows.</td><td class="watch">Discount each cash flow before summing.</td></tr></tbody></table>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Simple interest</td><td class="pattern">=Principal*Rate*Time</td><td>Calculates interest for one principal, rate, and time.</td><td class="watch">Time must be in years.</td></tr><tr><td>Ending balance / FV</td><td class="pattern">=Principal*(1+Rate*Time)</td><td>Adds simple interest back to principal.</td><td class="watch">The growth factor is 1 plus rate times time.</td></tr><tr><td>Months to years</td><td class="pattern">=Months/12</td><td>Converts months into a year fraction.</td><td class="watch">Use the same time basis as the rate.</td></tr><tr><td>Manual present value</td><td class="pattern">=FV/(1+Rate*Time)</td><td>Uses the lesson's simple-interest discount factor.</td><td class="watch">Do not expect it to equal Excel PV() after multiple periods.</td></tr><tr><td>Excel PV function</td><td class="pattern">=PV(rate,nper,0,fv)</td><td>Uses compound periodic discounting.</td><td class="watch">A positive future inflow returns a negative present outflow.</td></tr><tr><td>DCF total</td><td class="pattern">=SUM(PVRange)</td><td>Adds present values from a stream of cash flows.</td><td class="watch">Discount each cash flow before summing.</td></tr></tbody></table>
   </div>
   <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">22 / 25</div>
 </section>

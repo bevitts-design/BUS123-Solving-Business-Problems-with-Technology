@@ -1,3 +1,11 @@
+---
+title: "BUS 123 — MATH-M08-L01 — Simple Interest, Discounting & Present Value"
+lesson: "MATH-M08-L01"
+kind: "Pre-Reading"
+status: "published"
+output: "MATH/M08/bus123-math-m08-l01-prereading.pdf"
+---
+
 # BUS123 · MATH-M08 · L01 Pre-Reading
 ## Simple Interest, Discounting & Present Value
 
@@ -143,7 +151,7 @@ The gap: $25,000 − $22,624 = **$2,376**. That $2,376 is the **cost of waiting*
 
 ### Part F — The Excel =PV() Function
 
-For lump-sum discounting, Excel's `=PV()` function handles the division automatically.
+Excel's `=PV()` function discounts future cash flows using a **compound periodic model**. It is a standard finance function and an important preview of M09, but it does **not** use the simple-interest formula `FV ÷ (1 + R × T)`. Therefore, a manual simple-interest PV and `=PV()` will not generally match when the time spans more than one period.
 
 **Syntax:**
 
@@ -151,10 +159,10 @@ For lump-sum discounting, Excel's `=PV()` function handles the division automati
 =PV(rate, nper, pmt, [fv], [type])
 ```
 
-| Argument | Meaning | For Simple Interest Lump Sum |
+| Argument | Meaning | For the Excel PV Model |
 |---|---|---|
-| `rate` | Interest rate per period | Annual rate (for 1-period problems) |
-| `nper` | Total number of periods | Years (or fractional years) |
+| `rate` | Compound interest rate per period | Annual rate when `nper` is measured in years |
+| `nper` | Total number of compounding periods | Years or fractional annual periods in this lesson |
 | `pmt` | Recurring payment | Enter **0** |
 | `fv` | Future amount to discount | Enter as a **positive number** |
 | Result | Present value | Returns **negative** — see below |
@@ -162,16 +170,87 @@ For lump-sum discounting, Excel's `=PV()` function handles the division automati
 **The sign convention:** Excel treats outflows (money leaving your pocket) as negative and inflows (money coming to you) as positive. The `=PV()` result is negative because it represents the amount you would need to *invest today* to receive the future FV. This is not an error — it is the correct sign.
 
 ```
-=PV(7%, 1.5, 0, 25000)  →  −$22,624.43
+=PV(7%, 1.5, 0, 25000)  →  −$22,587.30
 ```
 
-**Verify with the round trip:** `=FV(7%, 1.5, 0, −22624.43)` → $25,000 ✓
+By comparison, the manual simple-interest calculation is `$25,000 ÷ (1 + 0.07 × 1.5) = $22,624.43`. The values differ because the formulas use different growth assumptions, not because either Excel calculation is broken.
+
+**Verify the Excel function with a round trip:** `=FV(7%, 1.5, 0, −22587.30)` → $25,000 ✓
 
 Always run this check. If `=FV()` does not reproduce the original future value, something is wrong with your inputs.
 
 > ⚠️ **Common Mistake — The Negative PV Panic**
 >
-> Students see `−$22,624` and assume it is an error. They manually add a minus sign to flip it positive. Now the formula is broken — the sign meaning is inverted and the round-trip check will fail. The negative sign is meaningful: it represents *outflow*, the amount you must put in today. Do not flip it.
+> Students see a negative PV and assume it is an error. They manually add a minus sign to flip it positive. Now the sign meaning is inverted and the round-trip check will fail. The negative sign is meaningful: it represents *outflow*, the amount you must put in today. Do not flip it.
+
+---
+
+## Build the Models in Excel
+
+Excel should mirror the structure of the business calculation. Place each assumption in a separate labeled input cell, convert time before calculating interest, and use cell references rather than typing the numbers directly into every formula. In the examples below, **yellow cells are inputs** and **green cells are formulas**.
+
+> 💻 **Windows and Mac Excel**
+>
+> The worksheet images use the standard Excel layout. Windows and Mac Excel use the same formulas and function names, although ribbon buttons may appear in slightly different positions.
+
+### Walkthrough 1 — Convert Time to Years
+
+An annual rate must be paired with time measured in years. Choose the conversion that matches the wording of the problem:
+
+- For months, use `=Months/12`.
+- For exact-interest days, use `=Days/365`.
+- For ordinary-interest days, use `=Days/360`.
+
+![Excel time-conversion guide showing months, exact-interest days, and ordinary-interest days converted to years](../assets/math-m08-time-conversions.png)
+
+1. **Set up:** Enter Months in A1 and `9` in B1. Enter Months per Year in A2 and `12` in B2.
+2. **Select and type:** Select B3 and type `=B1/B2`.
+3. **Format:** Display B3 as a Number with at least two decimal places—not as Currency or Percentage.
+4. **Check:** B3 should equal **0.75 years**. Because nine months is less than one year, the result must be less than 1.
+5. **Try:** Change B1 to `18`. The result should update to **1.5 years**.
+
+### Walkthrough 2 — Build Simple Interest and Future Value
+
+1. **Set up:** In A1:A3, enter Principal, Annual Rate, and Months. In B1:B3, enter `$8,000`, `5.5%`, and `9`.
+2. **Convert time:** In B4, type `=B3/12`.
+3. **Calculate interest:** In B5, type `=B1*B2*B4`.
+4. **Calculate future value:** In B6, type `=B1*(1+B2*B4)`.
+5. **Format:** Format B1, B5, and B6 as Accounting or Currency. Format B2 as Percentage. Display B4 as a Number.
+6. **Check:** B4 should equal **0.75**, B5 should equal **$330.00**, and B6 should equal **$8,330.00**. Future value must be greater than principal when the rate and time are positive.
+7. **Try:** Change the term from 9 months to 12 months. Interest and future value should increase automatically.
+
+![Excel worksheet and formula bar showing cell-reference formulas for simple interest and future value](../assets/math-m08-simple-interest-model.png)
+
+> ⚠️ **Do Not Use FV() for This Step**
+>
+> This is a simple-interest model, so build `=Principal*(1+Rate*Time)` directly. Excel's `FV()` function uses compound periodic growth.
+
+### Walkthrough 3 — Compare Exact and Ordinary Interest
+
+1. **Set up:** Enter Principal, Annual Rate, and Days in A1:A3. Enter `$50,000`, `5%`, and `124` in B1:B3.
+2. **Exact interest:** In B4, type `=B1*B2*(B3/365)`.
+3. **Ordinary interest:** In B5, type `=B1*B2*(B3/360)`.
+4. **Check:** Exact interest should equal **$849.32** and ordinary interest should equal **$861.11**. The 360-day method should be **$11.79 higher**.
+5. **Try:** Calculate the difference in B6 with `=B5-B4`. If the result is negative, the formulas or labels were reversed.
+
+![Excel formula comparison showing exact interest divided by 365 and ordinary interest divided by 360](../assets/math-m08-exact-ordinary-interest.png)
+
+### Walkthrough 4 — Compare Manual PV With Excel PV()
+
+Use the same inputs to compare two different models, not to prove that they return the same answer.
+
+1. **Set up:** Enter Future Value, Annual Rate, and Years in A1:A3. Enter `$25,000`, `7%`, and `1.5` in B1:B3.
+2. **Manual simple-interest PV:** In B4, type `=B1/(1+B2*B3)`. The result should be **$22,624.43**.
+3. **Excel compound-periodic PV:** In B5, type `=PV(B2,B3,0,B1)`. The result should be **−$22,587.30**.
+4. **Read the sign:** The negative result is Excel's cash-flow convention. A positive future inflow requires a present outflow.
+5. **Round-trip check:** In B6, type `=FV(B2,B3,0,B5)`. The result should return approximately **$25,000.00**.
+6. **Try:** Increase the rate to `8%`. The absolute value of both present-value results should decrease because a higher discount rate makes future money worth less today.
+
+![Excel comparison showing the manual simple-interest PV formula and Excel's compound-periodic PV function](../assets/math-m08-pv-model-comparison.png)
+
+> ✅ **Workbook Connection**
+>
+> In class, apply these habits on the **Live You Try It** tab of the starter workbook. Use the **FormulaReferenceCard** tab for syntax reminders. Complete the **Class Challenge** only when your instructor directs you to begin the graded work.
 
 ---
 
@@ -188,7 +267,7 @@ Always run this check. If `=FV()` does not reproduce the original future value, 
 | `T = days ÷ 365` | Exact interest time conversion |
 | `T = days ÷ 360` | Ordinary interest (Banker's Rule) |
 | `PV = FV ÷ (1 + R × T)` | Discount a future payment — manual |
-| `=PV(rate, nper, 0, fv)` | Discount a future payment — Excel |
+| `=PV(rate, nper, 0, fv)` | Discount a future payment using Excel's compound periodic model |
 
 ---
 
@@ -204,7 +283,7 @@ Answer these questions before class. Show your work on questions 2–6.
 
 **4.** A Meridian client will receive $18,000 in 2 years. The discount rate is 7%. Calculate the present value using the manual formula. Show the discount factor calculation.
 
-**5.** Using the same scenario as Question 4, calculate the PV using the Excel `=PV()` function. Write out the formula exactly as you would type it in a cell. What sign does the result carry, and what does it mean?
+**5.** Using the same scenario as Question 4, calculate the PV using Excel's compound-periodic `=PV()` function. Write out the formula exactly as you would type it in a cell. What sign does the result carry, what does it mean, and why does its absolute value differ slightly from the manual simple-interest answer?
 
 **6.** Using a 6% discount rate, calculate the present value of each payment below, then find the total present value of the two-payment stream:
    - Payment A: $12,000 due in 1 year
@@ -224,7 +303,7 @@ Answer these questions before class. Show your work on questions 2–6.
 
 **4.** Discount Factor = 1 + (0.07 × 2) = 1.14. PV = $18,000 ÷ 1.14 = **$15,789.47**.
 
-**5.** `=PV(7%, 2, 0, 18000)` → **−$15,789.47**. The result is negative because it represents the amount you must *invest today* (an outflow) to have $18,000 in 2 years at 7%. It is not an error.
+**5.** `=PV(7%, 2, 0, 18000)` → **−$15,721.90**. The result is negative because it represents the amount you must *invest today* (an outflow) to have $18,000 in 2 years at 7%. Its absolute value differs from the manual answer because `PV()` uses compound periodic discounting while Question 4 uses the simple-interest discount factor `1 + R × T`.
 
 **6.** Payment A: PV = $12,000 ÷ (1 + 0.06 × 1) = $12,000 ÷ 1.06 = **$11,320.75**. Payment B: PV = $20,000 ÷ (1 + 0.06 × 3) = $20,000 ÷ 1.18 = **$16,949.15**. Total PV = **$28,269.90**.
 
@@ -249,5 +328,3 @@ Answer these questions before class. Show your work on questions 2–6.
 | **Discounted Cash Flow (DCF)** | A method that finds the present value of a stream of future cash flows by discounting each one back to today and summing the results. |
 
 ---
-
-

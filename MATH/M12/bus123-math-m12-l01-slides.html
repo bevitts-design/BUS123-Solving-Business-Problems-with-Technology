@@ -533,9 +533,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
           <p class="t-body">The mode is the value that appears most often. A dataset can have no mode, one mode, or be <em>bimodal</em> (two values tie for most frequent).</p>
           <div class="formula-panel">
             =MODE.SNGL(number1, [number2], ...)<br>
-            <span class="comment">// Returns the most frequent value</span><br><br>
+            <span class="comment">// Returns one most frequent NUMERIC value</span><br><br>
             =MODE.MULT(number1, [number2], ...)<br>
-            <span class="comment">// Returns ALL modes (array — use Ctrl+Shift+Enter)</span>
+            <span class="comment">// Returns all numeric modes; Microsoft 365 results spill</span>
           </div>
         </div>
         <div class="col gap-14" style="width:340px;">
@@ -553,7 +553,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
               <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--sage);color:#fff;border-radius:6px;font-weight:600;">Z00.0</span>
               <span style="font-family:var(--mono);font-size:13px;padding:4px 10px;background:var(--paper-2);border-radius:6px;">J06.9</span>
             </div>
-            <p style="font-family:var(--mono);font-size:13px;color:var(--sage);">Mode → Z00.0 (routine checkup) · appears 4×</p>
+            <p style="font-family:var(--mono);font-size:13px;color:var(--sage);">Most common text → Z00.0 · use a frequency table or PivotTable</p>
           </div>
           <div class="card-sage">
             <p class="t-body-sm"><strong>Why it matters:</strong> The mode tells Harborside which visit type to staff for most heavily. Routine checkups dominate — schedule accordingly.</p>
@@ -803,7 +803,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       <div class="formula-panel" style="max-width:600px;">
         =CORREL(array1, array2)<br>
         <span class="comment">// Returns a coefficient between −1 and +1</span><br>
-        <span class="comment">// Strong: |r| &gt; 0.7  ·  Moderate: 0.4–0.7  ·  Weak: &lt; 0.4</span>
+        <span class="comment">// Rough classroom guide only; context and data quality matter</span>
       </div>
       <div class="slide-num-dark">14 / 23</div>
     </div>
@@ -839,19 +839,19 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
               <tr><td>Friday</td><td>30</td><td>5.2</td></tr>
               <tr><td>Saturday</td><td>8</td><td>9.1</td></tr>
               <tr><td>Sunday</td><td>18</td><td>7.1</td></tr>
-              <tr class="result-row"><td colspan="3"><strong>=CORREL(B2:B8, C2:C8) → −0.98</strong></td></tr>
+              <tr class="result-row"><td colspan="3"><strong>=CORREL(B2:B8, C2:C8) → −0.9976 (−1.00 displayed)</strong></td></tr>
             </tbody>
           </table>
         </div>
         <div class="col gap-14" style="width:300px;">
           <div class="card-terra">
-            <p style="font-family:var(--serif);font-size:40px;font-weight:700;color:var(--terra);line-height:1;">r = −0.98</p>
+            <p style="font-family:var(--serif);font-size:40px;font-weight:700;color:var(--terra);line-height:1;">r ≈ −1.00</p>
             <p style="font-family:var(--sans);font-size:14px;font-weight:600;color:var(--terra);margin:8px 0 4px;">Very strong negative correlation</p>
             <p class="t-body-sm">As wait time increases, satisfaction scores drop sharply. This relationship is nearly perfect (r = −1 would be perfect).</p>
           </div>
           <div class="card-gold">
             <p style="font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:4px;">MANAGEMENT ACTION</p>
-            <p class="t-body-sm">Reducing average wait time by even 5 minutes is likely to produce a meaningful improvement in patient satisfaction scores.</p>
+            <p class="t-body-sm">Investigate staffing, case severity, and day-of-week effects before testing whether a wait-time change improves satisfaction.</p>
           </div>
           <div class="live-pause">
             <p class="live-label">Live You Try It</p>
@@ -893,7 +893,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
       </div>
       <div class="card-sage" style="max-width:780px;">
         <p style="font-family:var(--sans);font-size:15px;font-weight:600;color:var(--sage);margin-bottom:6px;">Harborside Example</p>
-        <p class="t-body-sm">We found r = −0.98 between wait time and satisfaction. We <strong>cannot</strong> conclude from this alone that reducing wait time <em>causes</em> higher satisfaction. Maybe low-severity cases (shorter waits) are inherently more satisfied regardless. Deeper analysis is needed before making a staffing investment decision.</p>
+        <p class="t-body-sm">We found r ≈ −1.00 between wait time and satisfaction. We <strong>cannot</strong> conclude from this alone that reducing wait time <em>causes</em> higher satisfaction. Maybe low-severity cases (shorter waits) are inherently more satisfied regardless. Deeper analysis is needed before making a staffing investment decision.</p>
       </div>
       <div class="slide-num-dark">16 / 23</div>
     </div>
@@ -1134,14 +1134,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#111;font-family:var
   "Part 1 break. Central tendency is about finding the center of a set of numbers. Three tools, three different definitions of center.",
   "Walk through the Harborside wait time example. Ask students: does 19.6 minutes feel like a fair average? Note how the 42-minute day drags it up. Then pause for Live You Try It: students enter 12, 15, 18, 11, and 42 in the workbook and build AVERAGE and MEDIAN from their input cells.",
   "Now we sort the same data and find the middle. The median of 15 minutes is much more representative. Ask: when would you choose median over mean for a business report?",
-  "Mode is different \u2014 it's the most frequent value, and it works on text categories too. Diagnosis codes are a great example because they can't be averaged. Ask: what does knowing the mode tell Harborside's scheduling team?",
+  "Mode is the most frequent value. Clarify that MODE.SNGL and MODE.MULT work with numeric data; for diagnosis-code text, use a frequency table, PivotTable, or COUNTIF summary to identify the most common category.",
   "Part 2 break. Standard deviation is the most important concept today. It's the thing that makes the mean meaningful.",
   "Show the two hospitals side by side. Same mean = 20 minutes. Hospital A is consistent; Hospital B is chaotic. Ask students which hospital they'd rather visit and why. The SD tells the whole story the mean hides.",
-  "Excel syntax first: STDEV.S for samples, STDEV.P only for full populations. The key teaching point is n-1 in the denominator \u2014 that adjustment is why we use .S in almost every business context.",
+  "Excel syntax first: STDEV.S estimates a broader process or population from a sample; STDEV.P describes every observation in the population defined by the question. The business question determines the choice.",
   "Walk through the nurse overtime table row by row. Students can follow along manually. Emphasize that the final step is always take the square root. Then pause for Live You Try It: students enter 4, 6, 8, 10, and 12 and build AVERAGE, STDEV.S, and STDEV.P from the input cells.",
   "Part 3 break. Correlation is about relationships \u2014 not just individual variables but how two things move together.",
-  "The three-cell grid is the whole concept in one view. Positive, zero, negative. CORREL returns one number. Spend time on the strength thresholds: above 0.7 is strong, 0.4\u20130.7 moderate, below 0.4 weak.",
-  "Work through the CORREL example. r = -0.98 is very close to perfect negative. Ask students to read that number: longer waits, lower scores, consistently. Then pause for Live You Try It: students enter the seven paired wait-time and satisfaction values and build CORREL from the two input rows.",
+  "The three-cell grid shows direction: positive, near zero, and negative. CORREL returns one number. Any strength thresholds are rough conventions; interpretation also depends on context, sample size, data quality, and outliers.",
+  "Work through the CORREL example. The listed pairs produce r = -0.9976, displayed as -1.00 to two decimals. Ask students to read the direction and verify that each day's paired values stay in the same column. Then pause for Live You Try It.",
   "Critical thinking slide \u2014 this is the most important one. Correlation never proves causation. Both ice cream and hospitalizations go up in summer because of heat. Ask: what third variable might be driving Harborside's correlation?",
   "Interactive slide \u2014 let students type in their own numbers. The three preset buttons are great for class demos. All same values \u2192 SD = 0. One outlier \u2192 mean vs median diverge sharply. Repeated values \u2192 mode appears.",
   "Common mistake slide. Read the contrast aloud. The iceberg quote lands well. Ask: in a business presentation would you ever just report the mean? What would your manager ask next?",

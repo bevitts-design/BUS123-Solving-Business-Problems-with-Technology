@@ -10,7 +10,12 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import html
+import os
 import re
+import shutil
+import subprocess
+import tempfile
 import textwrap
 from dataclasses import dataclass
 from pathlib import Path
@@ -571,22 +576,183 @@ def draw_page(canvas, doc, source: SourceDoc) -> None:
     canvas.restoreState()
 
 
+def inline_html(text: str) -> str:
+    """Convert the small inline-Markdown subset used by pre-readings to HTML."""
+    code: list[str] = []
+
+    def stash(match: re.Match[str]) -> str:
+        code.append(match.group(1))
+        return f"@@CODE{len(code) - 1}@@"
+
+    value = html.escape(re.sub(r"`([^`]+)`", stash, text), quote=True)
+    value = re.sub(r"\[([^]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', value)
+    value = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", value)
+    value = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", value)
+    for index, item in enumerate(code):
+        value = value.replace(f"@@CODE{index}@@", f"<code>{html.escape(item)}</code>")
+    return value
+
+
+def semantic_html(source: SourceDoc) -> str:
+    """Create semantic, print-styled HTML for Chrome's tagged-PDF engine."""
+    parts: list[str] = []
+    lines = source.body
+    i = 0
+    title = source.meta.get("title", "BUS123 Pre-Reading")
+    lesson = source.meta.get("lesson", lesson_from_path(source.path))
+    first_h1 = False
+
+    while i < len(lines):
+        stripped = lines[i].strip()
+        if not stripped:
+            i += 1
+            continue
+        if stripped == "<!-- page break -->":
+            parts.append('<div class="page-break" aria-hidden="true"></div>')
+            i += 1
+            continue
+        if stripped.startswith("<!--"):
+            i += 1
+            while i < len(lines) and "-->" not in lines[i]:
+                i += 1
+            i += 1
+            continue
+        if stripped == "---":
+            parts.append('<hr aria-hidden="true">')
+            i += 1
+            continue
+        image_match = re.fullmatch(r"!\[([^]]*)\]\(([^)]+)\)", stripped)
+        if image_match:
+            alt_text, image_ref = image_match.groups()
+            image_path = Path(image_ref.strip())
+            if not image_path.is_absolute():
+                image_path = (source.path.parent / image_path).resolve()
+            if not image_path.exists():
+                raise FileNotFoundError(f"Image referenced by {rel(source.path)} was not found: {image_ref}")
+            alt = html.escape(alt_text, quote=True)
+            parts.append(f'<figure><img src="{image_path.as_uri()}" alt="{alt}"></figure>')
+            i += 1
+            continue
+        if stripped.startswith("|") and "|" in stripped[1:]:
+            rows: list[list[str]] = []
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                row = lines[i].strip()
+                if not re.fullmatch(r"\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*", row):
+                    rows.append([cell.strip() for cell in row.strip("|").split("|")])
+                i += 1
+            if rows:
+                parts.append("<table><thead><tr>" + "".join(f'<th scope="col">{inline_html(c)}</th>' for c in rows[0]) + "</tr></thead><tbody>")
+                for row in rows[1:]:
+                    parts.append("<tr>" + "".join(f"<td>{inline_html(c)}</td>" for c in row) + "</tr>")
+                parts.append("</tbody></table>")
+            continue
+        if stripped.startswith(">"):
+            quote_lines: list[str] = []
+            while i < len(lines) and lines[i].strip().startswith(">"):
+                item = lines[i].strip()[1:].strip()
+                if item:
+                    quote_lines.append(item)
+                i += 1
+            parts.append('<aside class="callout" aria-label="Important note">' + "<br>".join(inline_html(x) for x in quote_lines) + "</aside>")
+            continue
+        heading = re.match(r"^(#{1,6})\s+(.+)$", stripped)
+        if heading:
+            requested = len(heading.group(1))
+            # The branded document title is the sole H1. Source H1 becomes H2.
+            level = max(2, requested) if first_h1 or requested == 1 else requested
+            first_h1 = True
+            parts.append(f"<h{level}>{inline_html(heading.group(2))}</h{level}>")
+            i += 1
+            continue
+        if re.match(r"^[-*]\s+", stripped):
+            parts.append("<ul>")
+            while i < len(lines) and re.match(r"^[-*]\s+", lines[i].strip()):
+                parts.append(f"<li>{inline_html(re.sub(r'^[-*]\\s+', '', lines[i].strip()))}</li>")
+                i += 1
+            parts.append("</ul>")
+            continue
+        if re.match(r"^\d+[.)]\s+", stripped):
+            parts.append("<ol>")
+            while i < len(lines) and re.match(r"^\d+[.)]\s+", lines[i].strip()):
+                parts.append(f"<li>{inline_html(re.sub(r'^\\d+[.)]\\s+', '', lines[i].strip()))}</li>")
+                i += 1
+            parts.append("</ol>")
+            continue
+
+        paragraph_lines = [stripped]
+        i += 1
+        while i < len(lines):
+            nxt = lines[i].strip()
+            if not nxt or nxt.startswith(("#", "|", ">", "<!--")) or re.match(r"^[-*]\s+", nxt) or re.match(r"^\d+[.)]\s+", nxt):
+                break
+            paragraph_lines.append(nxt)
+            i += 1
+        parts.append(f"<p>{inline_html(' '.join(paragraph_lines))}</p>")
+
+    body = "\n".join(parts)
+    return f'''<!doctype html>
+<html lang="en-US"><head><meta charset="utf-8"><title>{html.escape(title)}</title>
+<style>
+@page {{ size: Letter; margin: .65in .65in .72in; }}
+* {{ box-sizing: border-box; }}
+body {{ margin: 0; color: #1d2530; font: 10.5pt/1.45 Arial, sans-serif; }}
+header {{ border-bottom: 4px solid #c68a2e; margin-bottom: 18px; }}
+.course {{ color: white; background: #102033; font-size: 16pt; font-weight: 700; line-height: 1.2; text-align: center; padding: 14px 18px; }}
+.meta {{ display: flex; justify-content: space-between; color: #5b6470; font-size: 8.5pt; gap: 12px; }}
+.kind {{ color: #9c4a2b; font-weight: 700; }}
+h1 {{ color: #142033; font-size: 19pt; line-height: 1.2; margin: 0 0 12px; }}
+h2 {{ color: #9a6519; font-size: 11pt; text-transform: uppercase; border-top: 1px solid #c68a2e; padding-top: 5px; margin: 18px 0 7px; break-after: avoid; }}
+h3, h4, h5, h6 {{ color: #142033; font-size: 10.5pt; margin: 13px 0 5px; break-after: avoid; }}
+p {{ margin: 0 0 9px; }} ul, ol {{ margin: 5px 0 10px 22px; padding: 0; }} li {{ margin: 0 0 3px; }}
+code {{ font: 9.5pt Consolas, monospace; background: #f1f1ee; padding: 1px 3px; }}
+.callout {{ color: #173f31; background: #eef6f0; border-left: 4px solid #4a7c5e; padding: 9px 11px; margin: 10px 0; break-inside: avoid; }}
+table {{ width: 100%; border-collapse: collapse; margin: 8px 0 13px; font-size: 9pt; break-inside: avoid; }}
+th {{ color: white; background: #102033; text-align: left; }} th, td {{ border: 1px solid #d9d3c7; padding: 5px 6px; vertical-align: top; }}
+tbody tr:nth-child(even) {{ background: #f7f7f4; }} figure {{ margin: 10px auto; text-align: center; break-inside: avoid; }} img {{ max-width: 100%; max-height: 3.6in; }}
+.page-break {{ break-before: page; }} hr {{ border: 0; border-top: 1px solid #d9d3c7; margin: 12px 0; }}
+a {{ color: #155c42; text-decoration: underline; }}
+</style></head><body>
+<header><div class="course">{COURSE}</div><div class="meta"><span>{html.escape(lesson)}</span><span>{html.escape(title)}</span><span class="kind">PRE-READING</span></div></header>
+<main><h1>{html.escape(title)}</h1>{body}</main>
+</body></html>'''
+
+
+def validate_accessible_pdf(output: Path) -> None:
+    reader = PdfReader(str(output))
+    root = reader.trailer["/Root"]
+    marked = root.get("/MarkInfo") or {}
+    failures = []
+    if not root.get("/StructTreeRoot"):
+        failures.append("missing structure tree")
+    if not marked.get("/Marked"):
+        failures.append("not marked as tagged PDF")
+    if not root.get("/Lang"):
+        failures.append("missing document language")
+    if not (reader.metadata or {}).get("/Title"):
+        failures.append("missing document title")
+    if failures:
+        raise RuntimeError(f"Accessibility validation failed for {rel(output)}: {', '.join(failures)}")
+
+
 def build_pdf(source_path: Path) -> Path:
     source = parse_source(source_path)
     output = output_path_for_source(source_path, source.meta)
     output.parent.mkdir(parents=True, exist_ok=True)
-    doc = SimpleDocTemplate(
-        str(output),
-        pagesize=letter,
-        rightMargin=0.65 * inch,
-        leftMargin=0.65 * inch,
-        topMargin=1.85 * inch,
-        bottomMargin=0.72 * inch,
-        title=source.meta.get("title", "BUS123 Pre-Reading"),
-        author="BUS123",
-    )
-    story = build_story(source)
-    doc.build(story, onFirstPage=lambda c, d: draw_page(c, d, source), onLaterPages=lambda c, d: draw_page(c, d, source))
+    renderer = ROOT / "scripts" / "render-accessible-pdf.mjs"
+    bundled_node = Path.home() / ".cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node"
+    node = os.environ.get("NODE_PATH_BINARY") or shutil.which("node")
+    if not node and bundled_node.exists():
+        node = str(bundled_node)
+    if not node:
+        raise RuntimeError("Node.js is required for accessible PDF generation. Set NODE_PATH_BINARY to the Node.js executable.")
+    with tempfile.NamedTemporaryFile("w", suffix=".html", encoding="utf-8", delete=False) as temp:
+        temp.write(semantic_html(source))
+        html_path = Path(temp.name)
+    try:
+        subprocess.run([node, str(renderer), str(html_path), str(output)], check=True, cwd=ROOT)
+    finally:
+        html_path.unlink(missing_ok=True)
+    validate_accessible_pdf(output)
     return output
 
 

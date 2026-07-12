@@ -1,235 +1,161 @@
 ---
-title: "BUS 123 — MATH-M12-L01 — Business Statistics: Central Tendency, Dispersion & Correlation"
+title: "BUS 123 — MATH-M12-L01 — Business Statistics: Center, Spread, and Correlation"
 lesson: "MATH-M12-L01"
 kind: "Pre-Reading"
 status: "published"
 output: "MATH/M12/bus123-math-m12-l01-prereading.pdf"
 ---
 
-# BUS 123 · MATH-M12-L01 · Business Statistics: Central Tendency, Dispersion & Correlation
-
-**Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** MATH · **Module:** M12 · **Lesson:** L01
-**Case Study Company:** Harborside Medical Center
+# BUS123 · MATH-M12-L01 · Pre-Reading
+## Business Statistics: Center, Spread, and Correlation
+**Harborside Medical Center · Fall 2026**
 
 ---
 
-## 1 · Connect to Prior Knowledge
+## Before You Begin
 
-In Module 08 you learned how to calculate financial metrics: loan payments, present value, and interest. Those formulas gave you exact answers for specific situations. Module 12 builds on that foundation by asking a different kind of question: **what does a collection of numbers tell us?**
+Open `bus123-math-m12-l01-starter.xlsx`. Its four tabs have different jobs:
 
-When Harborside Medical Center tracks patient wait times across 30 days, or payroll hours across 50 nurses, a single formula is not enough. We need statistical tools to summarize, interpret, and compare datasets — and Excel has built-in functions for all of them.
+- **START HERE** explains the workflow and color key.
+- **Live You Try It** is self-graded practice tied to slide examples.
+- **Class Challenge** is the graded activity. Its input and answer cells begin blank.
+- **FormulaReferenceCard** is a syntax reminder after you decide which statistic answers the question.
 
----
-
-## 2 · Core Concepts
-
-### Part 1 — Measures of Central Tendency
-
-A measure of central tendency answers the question: *what is a typical value in this dataset?* There are three: the **mean**, the **median**, and the **mode**. Each defines "typical" differently, and choosing the right one depends on your data.
+The screenshots in this reading show **Windows Excel**. Mac Excel has the same functions and number formats, but commands may appear in different positions.
 
 ---
 
-#### Mean (Arithmetic Average)
+## Part 1 · Organize a Statistical Model
 
-The mean is the sum of all values divided by the count of values. It is the most commonly used average in business because it accounts for every data point equally.
+Keep labels, inputs, and calculated outputs separate. Labels explain the data, input cells contain observed values, and output cells contain formulas that reference the inputs.
 
-- **Excel:** `=AVERAGE(range)`
-- **Manual:** `Mean = Sum of all values / Count of values`
+![Labeled Excel model for wait-time statistics](../assets/m12-wait-time-model.png)
 
-**Worked Example — Harborside Medical Center:**
+In **Live You Try It**, the first yellow input row is **C8:G8**. Enter the five wait times from the slides: `12`, `15`, `18`, `11`, and `42`.
 
-Patient wait times for five days: 12, 15, 18, 11, and 42 minutes.
+1. Select **C10**, type `=AVERAGE(C8:G8)`, and press Enter. Expected result: **19.6 minutes**.
+2. Select **C11**, type `=MEDIAN(C8:G8)`, and press Enter. Expected result: **15 minutes**.
+3. Select **C12**, type `=C10-C11`, and press Enter. Expected result: **4.6 minutes**.
+4. Select **C10:C12**, open **Home > Number**, and use Number format with **1 decimal place**.
+5. Reasonableness check: the mean must fall between the minimum (11) and maximum (42). Because 42 is a high outlier, the mean should be above the median.
 
-Mean = (12 + 15 + 18 + 11 + 42) ÷ 5 = 98 ÷ 5 = **19.6 minutes**
+**Input-change test:** Change the 42 in **G8** to `22`. C10 should recalculate to **15.6**, C11 should remain **15.0**, and C12 should become **0.6**. Press Undo when finished.
 
-> ⚠️ **Watch Out — Outlier Effect**
->
-> The 42-minute day pulls the mean up significantly. Four of the five days had waits between 11 and 18 minutes, yet the mean suggests nearly 20 minutes. This is the classic outlier problem — and it's why we need more than one measure of center.
+### Mean, Median, and Mode
 
----
+- **Mean:** `=AVERAGE(range)` adds all numeric values and divides by their count. It uses every value, so outliers affect it.
+- **Median:** `=MEDIAN(range)` returns the middle value after sorting. It is less sensitive to outliers.
+- **Mode:** `=MODE.SNGL(range)` returns one most-frequent **numeric** value. If no numeric value repeats, Excel returns `#N/A`.
+- **Multiple numeric modes:** `=MODE.MULT(range)` returns all tied modes. In current Microsoft 365 Excel, the results spill into neighboring cells; older versions may require legacy array entry.
 
-#### Median
-
-The median is the **middle value** when the data is sorted from smallest to largest. If the dataset has an even number of values, the median is the average of the two middle values. The median is resistant to outliers and is preferred when data is skewed.
-
-- **Excel:** `=MEDIAN(range)`
-- **Manual:** Sort data, find the value at position `(n+1)/2`
-
-**Worked Example — Harborside Medical Center:**
-
-Sorted wait times: 11, 12, **15**, 18, 42. The middle value is **15 minutes**.
-
-Compared to the mean of 19.6, the median of 15 minutes is a far more representative picture of a typical day.
+For text categories such as insurance type or diagnosis code, Excel's `MODE.SNGL` does not work. Use a frequency table, PivotTable, or `COUNTIF`-based summary to find the most common text category.
 
 ---
 
-#### Mode
+## Part 2 · Standard Deviation Measures Spread
 
-The mode is the value that appears **most frequently**. A dataset can have no mode (all values unique), one mode, or multiple modes (bimodal or multimodal). The mode is the only measure of central tendency that works on **categorical (text) data**.
+Two groups can have the same mean but very different consistency. Standard deviation summarizes how far observations typically spread around the mean, in the same unit as the original data.
 
-- **Excel:** `=MODE.SNGL(range)` — returns one mode
-- **Excel:** `=MODE.MULT(range)` — returns all modes (press Ctrl+Shift+Enter)
+- **Sample standard deviation:** `=STDEV.S(range)` estimates spread when the data is a sample from a larger process or population.
+- **Population standard deviation:** `=STDEV.P(range)` describes spread when the data contains every observation in the population you have defined.
 
-**Worked Example — Harborside Medical Center:**
+The choice depends on the business question—not simply whether the dataset is small. A complete month of transactions can be a population if the question is only about that month, but a sample if the goal is to infer future months.
 
-Over ten days, the most frequently filed diagnosis code was Z00.0 (routine wellness visit), appearing 4 times. This is the mode. Harborside uses this to ensure adequate scheduling for routine appointments.
+![Excel formula-bar examples for sample and population standard deviation](../assets/m12-standard-deviation-model.png)
 
----
+In **Live You Try It**, enter `4`, `6`, `8`, `10`, and `12` in **C17:G17**.
 
-#### Choosing the Right Measure
+1. Select **C19**, type `=AVERAGE(C17:G17)`, and press Enter. Expected result: **8.00 hours**.
+2. Select **C20**, type `=STDEV.S(C17:G17)`, and press Enter. Expected result: **3.16 hours**.
+3. Select **C21**, type `=STDEV.P(C17:G17)`, and press Enter. Expected result: **2.83 hours**.
+4. Format **C19:C21** as Number with **2 decimal places**.
+5. Reasonableness checks: standard deviation cannot be negative; identical values would produce zero; `STDEV.S` is slightly larger than `STDEV.P` for the same non-identical values.
 
-| Situation                                  | Best Measure |
-|--------------------------------------------|--------------|
-| Symmetric data, no extreme outliers        | **Mean**     |
-| Skewed data or data with outliers          | **Median**   |
-| Categorical (text) data, or most-common occurrence | **Mode** |
+**Input-change test:** Change the 12 in **G17** to `20`. The mean should become **9.60**, sample SD **6.07**, and population SD **5.43**. Press Undo when finished. The larger spread should match what you see in the values.
 
----
-
-### Part 2 — Standard Deviation: Measuring Spread
-
-Central tendency tells you where the center of your data is. But two datasets can have the **same mean and look completely different**. Standard deviation measures how far the data points spread out from the mean.
-
-Consider two hospitals, each with an average patient wait time of 20 minutes:
-- Hospital A's times range from 18 to 22 minutes — **tightly clustered**.
-- Hospital B's times range from 2 to 35 minutes — **wildly variable**.
-
-Both have the same mean, but Hospital B has a much higher standard deviation, signaling a serious process problem that the mean alone completely hides.
-
-- **Excel (sample):** `=STDEV.S(range)` ← use for samples (almost always)
-- **Excel (population):** `=STDEV.P(range)` ← use only when you have ALL observations
-- **Manual:** `s = √[ Σ(x − mean)² / (n − 1) ]`
-
-#### Sample vs. Population Standard Deviation
-
-Use **`STDEV.S`** (sample) almost everywhere in business. When you analyze last month's wait times, you are working with a sample — not every patient visit that will ever happen. The sample formula divides by `n − 1`, which produces a slightly larger (and more accurate) estimate of the true population spread.
-
-Use **`STDEV.P`** only when you have data for literally every member of the group — for example, all 18 nurses currently employed at Harborside.
-
-#### Worked Example — Nurse Overtime Hours
-
-Five nurses logged 4, 6, 8, 10, and 12 overtime hours last week. The mean is 8 hours.
-
-| Nurse   | Overtime (hrs) | x − mean  | (x − mean)² |
-|---------|---------------|-----------|-------------|
-| Rivera  | 4             | −4        | 16          |
-| Chen    | 6             | −2        | 4           |
-| O'Brien | 8             | 0         | 0           |
-| Patel   | 10            | +2        | 4           |
-| Walsh   | 12            | +4        | 16          |
-| **Total** |             |           | **40**      |
-
-`s = √(40 ÷ 4) = √10 ≈ 3.16 hours`
-
-In Excel: `=STDEV.S(C2:C6)` returns the same result. Most nurses worked within about ±3 hours of the mean — the overtime schedule is reasonably balanced.
-
-> ✅ **Key Principle**
->
-> Always report the standard deviation **alongside the mean**. A mean of 8 hours with SD = 3.16 is very different from a mean of 8 hours with SD = 12 hours. The second scenario would indicate extreme inequality in overtime distribution — an HR red flag.
+![Windows Excel ribbon controls for decimal and number formatting](../assets/m12-excel-number-controls.png)
 
 ---
 
-### Part 3 — Correlation: Measuring Relationships
+## Part 3 · Correlation Measures a Linear Relationship
 
-Correlation measures whether two variables move together, and how strongly. The result is a number called the **correlation coefficient**, written as **r**, which always falls between −1 and +1.
+Correlation describes the direction and strength of a **linear** relationship between two numeric variables. Pearson's correlation coefficient, `r`, ranges from -1 to +1.
 
-- **Excel:** `=CORREL(array1, array2)` — returns a coefficient between −1 and +1
-- **Strength guide:** |r| > 0.7 = Strong · 0.4–0.7 = Moderate · < 0.4 = Weak
+- A positive value means the variables tend to move in the same direction.
+- A negative value means they tend to move in opposite directions.
+- A value near zero means little linear relationship; a curved relationship may still exist.
+- Correlation is undefined if either input range has no variation.
 
-| r value        | Meaning              | Business Example                                       |
-|----------------|----------------------|--------------------------------------------------------|
-| +1.0           | Perfect positive     | Every extra nurse-hour → proportional patients seen    |
-| +0.7 to +0.9   | Strong positive      | More marketing spend → more patient inquiries          |
-| +0.4 to +0.7   | Moderate positive    | Slight link between staffing and throughput            |
-| 0              | No correlation       | Day of week vs. patient zip code                       |
-| −0.4 to −0.7   | Moderate negative    | More red tape → slightly lower satisfaction            |
-| −0.7 to −0.9   | Strong negative      | Longer wait time → lower satisfaction score            |
-| −1.0           | Perfect negative     | Every extra minute waited → exact drop in score        |
+![Paired worksheet model and CORREL formula](../assets/m12-correlation-model.png)
 
-#### Worked Example — Wait Time vs. Patient Satisfaction
+In **Live You Try It**, enter the seven wait times in **C26:I26** and matching satisfaction scores in **C27:I27**. Each column must describe the same day in both rows.
 
-Harborside tracked average daily wait time (minutes) and patient satisfaction scores (1–10) for seven days. Running `=CORREL(B2:B8, C2:C8)` returned **r = −0.98** — a very strong negative correlation. As wait times increase, satisfaction scores drop sharply and consistently.
+1. Select **C29**.
+2. Type `=CORREL(C26:I26,C27:I27)` and press Enter.
+3. Format **C29** as Number with **2 decimal places**.
+4. Expected result from the lesson data: **-1.00** when displayed to two decimals (unrounded value approximately **-0.9976**).
+5. Reasonableness checks: the answer must be between -1 and +1; the two ranges must have the same number of cells; wait and satisfaction values must stay paired by day.
 
-#### Correlation Does Not Mean Causation
+**Input-change test:** Change Friday satisfaction in **G27** from `5.2` to `7.2`. C29 should recalculate to approximately **-0.82**. Press Undo when finished.
 
-> ⚠️ **Correlation ≠ Causation**
->
-> Finding r = −0.98 between wait time and satisfaction does **not** prove that reducing wait time causes higher satisfaction scores. Both variables might be driven by a third factor — for example, Mondays may have high wait times and lower satisfaction for entirely independent reasons (sicker patients, fewer staff).
->
-> Classic example: Ice cream sales and hospital admissions are both higher in summer. Correlation: strong positive. Cause: neither one. **Heat causes both.**
->
-> Never recommend a business action based on correlation alone — always investigate the underlying mechanism first.
+### Correlation Does Not Prove Causation
+
+A strong correlation does not prove that changing one variable will cause the other to change. Staffing, case severity, day of week, measurement choices, or another variable could influence both. Treat correlation as evidence for a question to investigate, not as proof of a mechanism.
+
+Fixed “weak/moderate/strong” cutoffs are only rough conventions. Context, sample size, data quality, outliers, and decision risk all matter.
 
 ---
 
-## 3 · Formula Reference
+## Use the Workbook Safely
 
-| Function        | Excel Syntax                   | Returns                            |
-|-----------------|--------------------------------|------------------------------------|
-| **AVERAGE**     | `=AVERAGE(range)`              | Arithmetic mean                    |
-| **MEDIAN**      | `=MEDIAN(range)`               | Middle value (sorted)              |
-| **MODE.SNGL**   | `=MODE.SNGL(range)`            | Single most frequent value         |
-| **MODE.MULT**   | `=MODE.MULT(range)` [CSE]      | All modes (array formula)          |
-| **MIN / MAX**   | `=MIN(range)` / `=MAX(range)`  | Smallest / largest value           |
-| **COUNT**       | `=COUNT(range)`                | Count of numeric values            |
-| **STDEV.S**     | `=STDEV.S(range)`              | Sample standard deviation          |
-| **STDEV.P**     | `=STDEV.P(range)`              | Population standard deviation      |
-| **CORREL**      | `=CORREL(array1, array2)`      | Pearson correlation coefficient    |
+1. Read the question and identify the requested statistic.
+2. Enter only the stated observations in the yellow input cells.
+3. Select the yellow answer cell and type a formula beginning with `=` that references the input range.
+4. Apply an appropriate format: minutes or hours as Number; correlation as Number, not Percentage.
+5. Check the range, units, sign, and plausible size of the result.
+6. Change one practice input to confirm automatic recalculation, then undo the test.
+
+In **Class Challenge**, apply this process independently. Do not copy a completed answer from another source. The FormulaReferenceCard helps with syntax but does not decide which cells or function fit a scenario.
 
 ---
 
-## 4 · Check Your Understanding
+## Formula Reference
 
-Answer these questions after completing the reading. Answers appear at the end of this document.
-
-1. Harborside records these ER wait times (in minutes): 8, 12, 9, 47, 11. What is the mean? What is the median? Which better represents a typical wait?
-
-2. A dataset of weekly supply orders has values: 50, 50, 60, 70, 50. What is the mode? What Excel function returns it?
-
-3. Hospital A has a mean wait time of 15 minutes with STDEV.S = 2. Hospital B has a mean of 15 minutes with STDEV.S = 10. Which hospital's wait times are more consistent, and why?
-
-4. You run `=STDEV.S` on a range of 20 patient satisfaction scores. When would you use `=STDEV.P` instead?
-
-5. Harborside finds `CORREL(wait times, satisfaction scores)` = −0.94. Describe what this tells management about the relationship.
-
-6. A manager says: "Satisfaction and wait times are strongly correlated — so cutting wait times will definitely improve satisfaction." What is wrong with this statement?
-
-7. You have categorical data: the most common insurance type filed each day for 14 days. Which measure of central tendency is appropriate, and why?
+| Function | Excel syntax | Important check |
+|---|---|---|
+| AVERAGE | `=AVERAGE(C8:G8)` | Outliers can pull the mean. |
+| MEDIAN | `=MEDIAN(C8:G8)` | Uses the middle after sorting conceptually. |
+| MODE.SNGL | `=MODE.SNGL(B2:B8)` | Numeric data only; may return `#N/A`. |
+| MIN / MAX | `=MIN(B2:B8)` / `=MAX(B2:B8)` | Useful for checking the observed range. |
+| STDEV.S | `=STDEV.S(C17:G17)` | Use when estimating a broader process/population. |
+| STDEV.P | `=STDEV.P(C17:G17)` | Use for the entire defined population. |
+| CORREL | `=CORREL(C26:I26,C27:I27)` | Ranges must be paired and equally sized. |
 
 ---
 
-### Answer Key · Check Your Understanding
+## Check Your Understanding
 
-| # | Answer |
-|---|--------|
-| **1** | Mean = (8+12+9+47+11) ÷ 5 = 87 ÷ 5 = **17.4 min**. Median (sorted: 8, 9, 11, 12, 47) = **11 min**. The **median** better represents a typical wait because the outlier (47 min) inflates the mean. |
-| **2** | Mode = **50** (appears 3 times). Excel function: `=MODE.SNGL(range)`. |
-| **3** | **Hospital A** is more consistent. A SD of 2 minutes means nearly all wait times are within a few minutes of the mean. Hospital B's SD of 10 means some patients wait far longer or shorter than the mean suggests. |
-| **4** | Only when you have data for **every single member of the group** — for example, if you surveyed all 18 nurses on staff, not a sample of them. |
-| **5** | There is a **strong negative relationship**: as wait times increase, satisfaction scores decrease consistently. The relationship is strong (|r| = 0.94 > 0.7) and negative. |
-| **6** | **Correlation does not prove causation.** The correlation shows the two variables move together, but a third factor (patient severity, day of week, staffing levels) could be driving both. Further analysis is needed before recommending an action. |
-| **7** | **Mode.** Mean and median require numeric data that can be ranked or averaged. Insurance type is categorical — only mode (most frequent category) is meaningful. |
+1. Why is the median lower than the mean for the five wait times?
+2. Why can `MODE.SNGL` return `#N/A`?
+3. How does the business question determine whether `STDEV.S` or `STDEV.P` is appropriate?
+4. What does a negative correlation say about direction?
+5. Why is a correlation close to -1 not proof that wait time causes satisfaction to fall?
+6. Why should correlation ranges be checked column by column before calculating?
 
 ---
 
-## 5 · Key Vocabulary
+## Key Vocabulary
 
-| Term                      | Definition                                                                                                                                          |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Mean**                  | The arithmetic average of a dataset: sum of values divided by count.                                                                                |
-| **Median**                | The middle value in a sorted dataset; resistant to outliers.                                                                                        |
-| **Mode**                  | The most frequently occurring value; the only central tendency measure that works on categorical data.                                              |
-| **Standard Deviation**    | A measure of spread: how far data points deviate from the mean on average. Reported alongside the mean for a complete picture.                      |
-| **STDEV.S**               | Excel function for sample standard deviation (divides by n−1); used when data is a sample from a larger population.                                |
-| **STDEV.P**               | Excel function for population standard deviation (divides by n); used only when data includes every member of the group.                           |
-| **Correlation Coefficient**| A number from −1 to +1 measuring the strength and direction of a linear relationship between two variables.                                       |
-| **CORREL**                | Excel function that returns the Pearson correlation coefficient between two data arrays.                                                             |
-| **Outlier**               | A data point that differs greatly from the rest of the dataset; can distort the mean but has minimal effect on the median.                         |
-| **Causation**             | A relationship where one variable directly causes a change in another — distinct from correlation, which only measures co-movement.                |
+| Term | Definition |
+|---|---|
+| Mean | Arithmetic average of numeric values |
+| Median | Middle value after values are ordered |
+| Mode | Most frequently occurring value |
+| Outlier | Observation far from most other values |
+| Standard deviation | Spread around the mean, expressed in the data's unit |
+| Sample | Observations used to learn about a larger process or population |
+| Population | The complete set defined by the business question |
+| Correlation | Direction and strength of a linear relationship |
+| Causation | A change in one variable directly produces a change in another |
 
 ---
-
-> 📝 **Before Class**
->
-> Complete this reading before attending class. Bring any questions to the start of the session — the lecture will build directly on these concepts.

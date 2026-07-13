@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-06-29T08:10:58-04:00",
+  "updatedAt": "2026-07-13T08:00:17-04:00",
   "items": [
     {
-      "week": "Week 3",
-      "title": "What should businesses do when AI changes jobs?",
-      "businessQuestion": "When AI can automate parts of a job, should a business invest more in new technology, employee training, or redesigned roles?",
-      "connection": "This connects to the Course Introduction because BUS123 is about using technology thoughtfully, not just adopting tools. Students can see how business technology decisions affect workflows, skills, and people.",
-      "discussionPrompt": "Think about a job you have had, want, or know well. Name one task AI could help with, one skill a person would still need, and one decision a manager should make before using AI in that role.",
+      "week": "Week 4",
+      "title": "What work should stay human when AI handles routine tasks?",
+      "businessQuestion": "When AI can handle routine office tasks, what work should a person still do themselves?",
+      "connection": "This connects to the Course Introduction because BUS123 focuses on using technology thoughtfully. Students can see that business tools change workflows, but people still need judgment, communication, and accountability.",
+      "discussionPrompt": "Pick one workplace task, such as meeting notes, scheduling, email drafts, customer follow-up, or spreadsheet cleanup. Would you automate it with AI, keep it human, or use a mix of both? Explain one benefit and one risk.",
       "relatedLessonId": "intro-m01-l01",
       "sourceLabel": "AP News",
-      "sourceUrl": "https://apnews.com/article/ai-job-losses-education-training-929986c149d415cd2ef4dc3eaf66ca8c"
+      "sourceUrl": "https://apnews.com/article/ai-chatgpt-secretaries-administrative-assistants-jobs-c5988294ce6a2828e83ef7fe42706c48"
     }
   ]
 }

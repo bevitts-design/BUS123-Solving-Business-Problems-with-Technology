@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-07-13T08:00:17-04:00",
+  "updatedAt": "2026-07-20T08:00:22-04:00",
   "items": [
     {
-      "week": "Week 4",
-      "title": "What work should stay human when AI handles routine tasks?",
-      "businessQuestion": "When AI can handle routine office tasks, what work should a person still do themselves?",
-      "connection": "This connects to the Course Introduction because BUS123 focuses on using technology thoughtfully. Students can see that business tools change workflows, but people still need judgment, communication, and accountability.",
-      "discussionPrompt": "Pick one workplace task, such as meeting notes, scheduling, email drafts, customer follow-up, or spreadsheet cleanup. Would you automate it with AI, keep it human, or use a mix of both? Explain one benefit and one risk.",
+      "week": "Week 5",
+      "title": "AI can speed up work, but what should managers still check?",
+      "businessQuestion": "If AI helps employees finish work faster, what should managers measure besides speed?",
+      "connection": "This connects to the Course Introduction because BUS123 focuses on using technology thoughtfully. Students can see that productivity tools are only useful when people check quality, redesign workflows, and stay accountable for decisions.",
+      "discussionPrompt": "Think about a business task like writing emails, summarizing meetings, cleaning spreadsheet data, or creating a report. What would be one good use of AI, one quality check a person should still do, and one rule a manager should set before the team uses it?",
       "relatedLessonId": "intro-m01-l01",
-      "sourceLabel": "AP News",
-      "sourceUrl": "https://apnews.com/article/ai-chatgpt-secretaries-administrative-assistants-jobs-c5988294ce6a2828e83ef7fe42706c48"
+      "sourceLabel": "Microsoft Source",
+      "sourceUrl": "https://news.microsoft.com/source/emea/2026/07/swiss-ai-users-outperform-global-peers-on-productivity/"
     }
   ]
 }

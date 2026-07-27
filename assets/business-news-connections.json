@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-07-20T08:00:22-04:00",
+  "updatedAt": "2026-07-27T08:01:50-04:00",
   "items": [
     {
-      "week": "Week 5",
-      "title": "AI can speed up work, but what should managers still check?",
-      "businessQuestion": "If AI helps employees finish work faster, what should managers measure besides speed?",
-      "connection": "This connects to the Course Introduction because BUS123 focuses on using technology thoughtfully. Students can see that productivity tools are only useful when people check quality, redesign workflows, and stay accountable for decisions.",
-      "discussionPrompt": "Think about a business task like writing emails, summarizing meetings, cleaning spreadsheet data, or creating a report. What would be one good use of AI, one quality check a person should still do, and one rule a manager should set before the team uses it?",
+      "week": "Week 6",
+      "title": "AI tools are spreading at work. Are they actually helping?",
+      "businessQuestion": "If a business gives employees AI tools, what should managers measure to know whether the tools are actually helping?",
+      "connection": "This connects to the Course Introduction because BUS123 is about using technology to solve business problems. Students can see that adopting a tool is only the first step; managers also need data, workflow changes, training, and quality checks.",
+      "discussionPrompt": "Imagine a company adds AI tools for writing, research, spreadsheet cleanup, or customer service. List three things the manager should track: one speed metric, one quality metric, and one employee-support metric.",
       "relatedLessonId": "intro-m01-l01",
-      "sourceLabel": "Microsoft Source",
-      "sourceUrl": "https://news.microsoft.com/source/emea/2026/07/swiss-ai-users-outperform-global-peers-on-productivity/"
+      "sourceLabel": "Gallup",
+      "sourceUrl": "https://www.gallup.com/workplace/713063/ai-workplace-productivity.aspx"
     }
   ]
 }

@@ -31,8 +31,8 @@
   "Cash discounts are incentives for paying invoices early. You'll see them written in shorthand like 2/10 net 30. This means: take 2% off the invoice if you pay within 10 days, otherwise the full amount is due in 30 days. The first number is the discount percentage. The second is the discount period in days. The last is the total credit period.",
   "Let's put this in context. Tidal Goods receives an invoice for $4,200.00 from their wetsuit supplier. The terms are 2/10 net 30. If Tidal Goods pays within 10 days, they get 2% off. In Excel, the discounted payment is $4,116.00. That's an $84 savings just for paying 20 days early. Doesn't sound like much? We'll see why it really adds up.",
   "You Try It pause three. Students should use the exact cash-discount numbers from the slide: invoice $4,200 and terms 2/10 net 30. They calculate the discount amount, early payment, and savings. This is self-graded practice, not the graded challenge.",
-  "Now move to the Class Challenge tab. This is the next-level activity: students combine trade or chain discounts with a cash discount and decide the final amount paid. Unlike Live You Try It, this is the tab that supports grading or a next-class together challenge.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Now move to Vendor Quotes and then Class Challenge. Students have five supplier offers, a 50-unit requirement, and a planned payment day. Give them 15 minutes to link the source cells and begin the comparison in class. They finish the five-row model, tie-outs, quote choice, and two-sentence recommendation for homework. Do not reveal the winning quote during the launch.",
+  "Formula Reference Card review. The slide shows the five patterns students need most for the vendor comparison; the workbook card contains the full set. Emphasize that the formulas must point to cells, the quantity test can exclude a cheap quote, and the row control should equal zero before a recommendation is trusted.",
   "Let's review what we covered. One: trade discounts convert list prices to net prices using the complement. Two: chain discounts multiply complements sequentially \u2014 never add the rates. Three: cash discounts reward early payment and have a surprisingly high annualized cost when skipped.",
   "Next class we move to markup and markdown \u2014 how Tidal Goods sets a selling price above their cost, and how they adjust it downward when running a sale. The same percentage-and-complement logic applies, so you already have the foundation. Make sure you've completed today's workbook before next class.",
   "Close with questions and remind students that Live You Try It is for feedback and revision, while the Class Challenge is the graded or next-level activity."
@@ -929,28 +929,35 @@
     <section class="slide cream" data-label="19 Class Challenge" data-section="4" data-slide="19" data-index="18">
       <div class="slide-pad">
         <div class="eyebrow">Class Challenge</div>
-        <h2>Combine the Discount Decisions</h2>
-        <p class="lead">Live You Try It gave you feedback one formula at a time. The Class Challenge asks you to connect the formulas in a harder business scenario.</p>
-        <div class="challenge-list">
-          <div class="card">
-            <p style="font-size:var(--type-body);"><strong>Wetsuit order</strong><br>50 units at the slide 8 list price, trade discount, and cash terms.</p>
+        <h2>Choose the Best Qualifying Quote</h2>
+        <p class="lead">Five suppliers quote the same 50-unit order. Your model must separate the cheapest offer from the cheapest offer that can actually fill the order.</p>
+        <div class="try-layout">
+          <div class="try-panel">
+            <h3>Build the decision path</h3>
+            <div class="try-steps">
+              <div class="try-step"><strong>Link:</strong> pull every blue input from <em>Vendor Quotes</em> into the yellow comparison cells.</div>
+              <div class="try-step"><strong>Compare:</strong> calculate net unit price, order cost, cash eligibility, savings, and a zero control difference.</div>
+              <div class="try-step"><strong>Recommend:</strong> identify the lowest qualifying cost, choose a quote number, and show the cost basis.</div>
+            </div>
           </div>
-          <div class="card">
-            <p style="font-size:var(--type-body);"><strong>Board accessories</strong><br>Chain discount first, then decide the early-payment amount.</p>
-          </div>
-          <div class="card">
-            <p style="font-size:var(--type-body);"><strong>Display racks</strong><br>Use a two-step chain discount plus 3/15 net 45 terms.</p>
+          <div class="try-panel" style="border-color:var(--gold);">
+            <h3 style="color:var(--gold);">Start here, finish later</h3>
+            <div class="try-steps">
+              <div class="try-step"><strong>In class · 15 minutes</strong><br>Link the purchase settings and five quote rows; complete at least one calculation row.</div>
+              <div class="try-step"><strong>Homework</strong><br>Finish all five rows, confirm every control is $0.00, and write a two-sentence purchasing recommendation.</div>
+              <div class="try-step"><strong>Deliverable</strong><br>Submit the workbook with the Class Challenge complete. Live You Try It remains self-checking practice.</div>
+            </div>
           </div>
         </div>
-        <div class="timer-chip">Class Challenge tab · graded or next-level activity</div>
+        <div class="timer-chip">Vendor Quotes → Class Challenge · graded workbook activity</div>
       </div>
     </section>
 <section class="slide cream" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
   <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
+    <div class="frc-eyebrow">Workbook Companion</div>
     <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Trade complement</td><td class="pattern">=1-discount_rate</td><td>Finds the percent the buyer still pays.</td><td class="watch">Use the complement for net price.</td></tr><tr><td>Trade discount amount</td><td class="pattern">=list_price*discount_rate</td><td>Calculates the savings from the listed price.</td><td class="watch">This is savings, not the payment.</td></tr><tr><td>Trade net price</td><td class="pattern">=list_price*(1-discount_rate)</td><td>Calculates the buyer price after the discount.</td><td class="watch">Net price is what the buyer pays.</td></tr><tr><td>Chain net price</td><td class="pattern">=list_price*(1-d1)*(1-d2)*(1-d3)</td><td>Applies each discount one at a time.</td><td class="watch">Do not add chained discount rates.</td></tr><tr><td>Single equivalent discount</td><td class="pattern">=1-((1-d1)*(1-d2)*(1-d3))</td><td>Converts a chain into one comparable discount.</td><td class="watch">Format the result as a percent.</td></tr><tr><td>Early payment</td><td class="pattern">=invoice*(1-cash_discount_rate)</td><td>Calculates the invoice after a cash discount.</td><td class="watch">Use only when payment is inside the discount window.</td></tr></tbody></table>
+    <p class="frc-note">Core patterns for the vendor comparison; the workbook tab contains the full reference.</p>
+    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Cross-sheet link</td><td class="pattern">='Vendor Quotes'!D9</td><td>Pulls a source value into the model.</td><td class="watch">Link the cell; do not retype it.</td></tr><tr><td>Net unit price</td><td class="pattern">=list_price*(1-d1)*(1-d2)*(1-d3)</td><td>Applies successive trade discounts.</td><td class="watch">Do not add chained rates.</td></tr><tr><td>Quantity qualification</td><td class="pattern">=IF(available_qty&gt;=required_qty,"Yes","No")</td><td>Checks whether the supplier can fill the order.</td><td class="watch">A cheap shortfall does not qualify.</td></tr><tr><td>Final order cost</td><td class="pattern">=IF(cash_eligible="Yes",after_trade*(1-cash_rate),after_trade)</td><td>Uses the cash discount only when earned.</td><td class="watch">Trade discounts come first.</td></tr><tr><td>Control difference</td><td class="pattern">=list_total-final_cost-total_savings</td><td>Confirms that the row ties out.</td><td class="watch">Fix any result other than $0.00.</td></tr></tbody></table>
   </div>
   <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
 </section>

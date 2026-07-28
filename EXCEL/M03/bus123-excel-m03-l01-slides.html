@@ -164,9 +164,9 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
 <div class="bottom-callout">Auditing tools turn hidden logic into visible logic.</div>
 <div class="slide-number">11 / 49</div></section><section class="slide paper" data-section="1" data-slide="12" data-index="11"><div class="eyebrow">CLASS WORKFLOW</div>
 <div class="workbook-map">
-  <div><h3>Raw Data</h3><p>Anchor & Oak revenue export. Students should reference it, not edit it.</p></div>
+  <div><h3>Raw Data</h3><p>Analysis-ready Anchor & Oak booking table. Reference it; do not clean, sort, delete, or overwrite source rows.</p></div>
   <div><h3>Live You Try It</h3><p>Enter the slide givens into yellow cells, then build short formulas with references.</p></div>
-  <div><h3>Class Challenge</h3><p>Read scenario givens, fill blank inputs, and submit final numeric answers.</p></div>
+  <div><h3>Class Challenge</h3><p>Begin the management analysis lab in class; finish the linked KPIs, dynamic results, and recommendation for homework.</p></div>
   <div><h3>Reference Card</h3><p>Keep function syntax visible while working.</p></div>
 </div>
 <div class="slide-number">12 / 49</div></section><section class="slide dark section-slide" data-section="2" data-slide="13" data-index="12">
@@ -373,10 +373,10 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
 <div class="section-break"><div class="kicker">PART 5</div><h1>Decision Drills</h1><p>Now the question is not whether students can type formulas. It is whether they can choose the right tool.</p><div class="gradient-bar"></div></div>
 <div class="slide-number">41 / 49</div></section><section class="slide paper" data-section="4" data-slide="42" data-index="41"><div class="eyebrow">CASE MIX</div>
 <div class="company-grid">
-  <div><h3>Anchor & Oak Events</h3><p>Summarize monthly event revenue.</p><b>SUM / AVERAGE / MAX / MIN</b></div>
-  <div><h3>Tidal Goods Co.</h3><p>Value inventory and category sales.</p><b>SUMIFS / SUMPRODUCT</b></div>
-  <div><h3>Meridian Advisory Group</h3><p>Connect employees to rates and payroll dates.</p><b>XLOOKUP / EOMONTH</b></div>
-  <div><h3>Harborside Medical Center</h3><p>Extract records and count exceptions.</p><b>FILTER / COUNTIFS</b></div>
+  <div><h3>Use the source tables</h3><p>Work from the analysis-ready Anchor & Oak bookings and Planner Directory.</p><b>NO DATA CLEANING</b></div>
+  <div><h3>Build the KPI summary</h3><p>Answer fixed manager questions with linked formulas.</p><b>SUMIFS / COUNTIFS / XLOOKUP</b></div>
+  <div><h3>Create dynamic results</h3><p>Spill a sorted event-type list and the qualifying booking records.</p><b>UNIQUE / SORT / FILTER</b></div>
+  <div><h3>Recommend an action</h3><p>Cite at least two workbook results and explain the business reasoning.</p><b>BEGIN IN CLASS · FINISH FOR HOMEWORK</b></div>
 </div>
 <div class="slide-number">42 / 49</div></section><section class="slide paper" data-section="4" data-slide="43" data-index="42"><div class="eyebrow">CLASS CHECK</div>
 <div class="quiz-card">
@@ -406,7 +406,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   <div class="formula-reference-slide">
     <div class="frc-eyebrow">Workbook Mirror</div>
     <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
+    <p class="frc-note">Compact subset of the expanded starter-workbook reference card.</p>
     <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>SUM</td><td class="pattern">=SUM(range)</td><td>Adds numeric values in a range.</td><td class="watch">Confirm the range includes all rows.</td></tr><tr><td>AVERAGE</td><td class="pattern">=AVERAGE(range)</td><td>Returns the mean of a numeric range.</td><td class="watch">Blank cells are skipped.</td></tr><tr><td>IF</td><td class="pattern">=IF(test,value_if_true,value_if_false)</td><td>Returns one result when a test is true and another when false.</td><td class="watch">Write the test before choosing outputs.</td></tr><tr><td>COUNTIFS</td><td class="pattern">=COUNTIFS(criteria_range,criteria)</td><td>Counts rows that meet criteria.</td><td class="watch">Each criteria range must be the same size.</td></tr><tr><td>XLOOKUP</td><td class="pattern">=XLOOKUP(lookup_value,lookup_array,return_array)</td><td>Finds a matching record and returns the related value.</td><td class="watch">Lookup and return arrays must line up by row.</td></tr><tr><td>FILTER</td><td class="pattern">=FILTER(array,include)</td><td>Spills only the rows that meet the filter rule.</td><td class="watch">A spilled result needs empty cells below.</td></tr></tbody></table>
   </div>
   <div class="slide-number">46 / 49</div>
@@ -449,7 +449,7 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   "Show that most functions follow a predictable grammar: name, open parenthesis, inputs, close parenthesis.",
   "Reinforce that the cell address is still doing work inside the function. This is why F4 matters even inside SUMIFS or XLOOKUP.",
   "This comes from the Chapter 2 source. Make students comfortable using auditing tools before errors become mysterious.",
-  "Tell students the deck and workbook talk to each other. The workbook gives them a place to try these ideas immediately.",
+  "Tell students the deck and workbook talk to each other. Preview that Raw Data is already structurally usable: the graded work is analysis, not cleanup. Students begin the Class Challenge in class and finish it for homework.",
   "Transition into the first real function set.",
   "Do not just say SUM adds. Ask the business question first: annual revenue from monthly rows.",
   "Pause on the workbook. Students should enter the six visible revenue values into Live You Try It row 7, then write a SUM formula that references those yellow cells.",
@@ -479,14 +479,14 @@ h1{font-family:var(--serif);font-size:var(--type-display);line-height:.94;margin
   "Use the first provided PNG as a pause-and-orient slide. Ask students to identify which functions we already used and which ones are coming later in the semester.",
   "Call out the Lambda section explicitly so students do not feel responsible for it today.",
   "Move into synthesis. The final section turns function knowledge into judgment.",
-  "This slide fulfills the mixed-company direction and makes the course cases feel like a shared toolkit.",
+  "Launch the Anchor & Oak management lab here. Model how the fixed criteria feed the KPI summary, then point out the two spill anchors and the short evidence-based recommendation. Give students working time now and state clearly that unfinished work becomes homework.",
   "Let students vote before clicking. This is the interactive decision-based element for the lesson.",
   "Give students a practical troubleshooting loop. It helps them recover independently during workbook time.",
   "Use this to move beyond syntax. Students should recognize logic, range, and interpretation errors.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
   "Keep the closing concise. Functions are about clear questions, clear inputs, and clear decisions.",
   "Set up M04: getting data, charts, and visualization. Emphasize the flow from calculation to communication.",
-  "End by moving directly into the workbook activity. Encourage students to ask about the function choice, not just the syntax."
+  "End by moving directly into the workbook activity. Students should complete at least the first SUMIFS KPI in class, then finish the remaining KPIs, dynamic results, and recommendation for homework. Encourage questions about function choice, not just syntax."
 ]
 </script>
 <script>

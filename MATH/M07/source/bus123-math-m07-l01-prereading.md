@@ -190,7 +190,7 @@ If the excise formula begins with the sales-tax-inclusive total instead of B1, t
 
 > ✅ **Workbook Connection**
 >
-> In class, use the same modeling habits on the **Live You Try It** tab of the starter workbook. Use the **FormulaReferenceCard** tab when you need a syntax reminder. Complete the **Class Challenge** only when your instructor directs you to begin the graded work.
+> In class, use the same modeling habits on the **Live You Try It** tab of the starter workbook. Use the **FormulaReferenceCard** tab when you need a syntax reminder. Then begin the graded **Class Challenge** tax compliance audit in class and finish it for homework: diagnose each supplied filing, repair the liability formula, calculate the adjustment, and reconcile the corrected total to the control total.
 
 ---
 

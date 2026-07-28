@@ -18,7 +18,7 @@ Open `bus123-math-m11-l01-starter.xlsx`. You will use four tabs:
 
 - **START HERE** explains the color key and workflow.
 - **Live You Try It** is self-graded practice. Enter inputs in yellow cells and build formulas that reference those cells.
-- **Class Challenge** is the graded activity. It begins blank; do not use this reading as an answer key.
+- **Class Challenge** is the graded integrated statement tie-out. The business facts are provided, while the classification, formula, control-check, and explanation cells begin blank. Start it in class and finish it as homework.
 - **FormulaReferenceCard** is a syntax reminder after you decide what the business question is asking.
 
 The screenshots in this reading show **Windows Excel**. Mac Excel has the same core commands, but a command may appear in a different position.
@@ -102,6 +102,17 @@ The statement of cash flows groups cash movements into:
 
 **Input-change test:** Change Financing Cash Flow in **B6** from `$220,000` to `$250,000`. Net change should become **-$20,000**, and closing cash should become **$442,000**. Press Undo when finished.
 
+### How the Three Statements Tie Together
+
+The Class Challenge keeps the statement build intentionally simplified, but it requires the same connections managers use to test a model:
+
+- **Net income flows into equity.** With owner distributions entered as a negative amount, a simplified roll-forward is `Beginning Equity + Net Income + Owner Distributions = Ending Equity`.
+- **Ending cash flows into the balance sheet.** The closing cash calculated in the cash-flow section should be linked to the balance-sheet cash line instead of typed again.
+- **The accounting equation must balance.** `Total Assets − Total Liabilities and Equity` should equal zero.
+- **The cash movement must reconcile.** `Cash-Flow Ending Cash − Balance-Sheet Cash` should equal zero.
+
+These checks do not create the answer. They tell you whether the links, signs, and subtotals work together.
+
 ---
 
 ## Part 4 · Trend and Ratio Analysis
@@ -143,16 +154,21 @@ Reasonableness checks: percentages produced by division should be stored as deci
 
 ---
 
-## Use the Workbook Safely
+## Complete the Workbook Safely
 
-1. Read the scenario and identify the requested output.
-2. Enter only the scenario's givens in the yellow input cells.
-3. Select the yellow result cell and type a formula beginning with `=` that references the input cells.
-4. Apply the unit shown in the workbook: Dollars or Percent.
-5. Check the result's direction, size, sign, and units.
-6. Change one practice input to confirm automatic recalculation, then undo the test.
+For **Live You Try It**, keep using the practice workflow: enter the slide givens in yellow cells, build formulas that reference those cells, read the feedback, and undo any input-change test.
 
-In **Class Challenge**, use this process independently. The FormulaReferenceCard reminds you of patterns, but it does not identify the correct cells or provide completed graded answers.
+For **Class Challenge**:
+
+1. Classify each provided business fact by its primary statement.
+2. Link the fact cell into the matching statement line. Do not retype the amount inside a formula.
+3. Build the income-statement, balance-sheet, and cash-flow subtotals using the labeled rows.
+4. Link net income into the equity section and cash-flow ending cash into the balance sheet.
+5. Confirm the balance check, net income link check, and cash tie-out all equal zero.
+6. Calculate the numerical basis for the red flag, then write a concise management interpretation supported by at least one completed result.
+7. Begin the activity in class and submit the completed starter workbook after finishing the remaining tie-out and explanation as homework.
+
+The FormulaReferenceCard supplies syntax patterns, but it does not identify the correct source cells or provide completed graded answers.
 
 ---
 

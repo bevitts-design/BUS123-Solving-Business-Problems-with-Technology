@@ -211,6 +211,10 @@ If an investor wanted to purchase 80 shares, they would pay: $7.97 × 80 = **$63
 | Bond Dollar Price | Quoted % × Face Value ($1,000) |
 | Bond Current Yield | Annual Interest ÷ Dollar Price |
 | Mutual Fund NAV | (Total Assets − Total Liabilities) ÷ Shares Outstanding |
+| Budget Test | `=IF(Cost<=Budget,1,0)` |
+| Income or Return Test | `=IF(OR(Yield>=MinYield,ROI>=MinROI),1,0)` |
+| Risk-Proxy Test | `=IF(OR(Type="Bond",Type="Diversified mutual fund"),1,0)` |
+| Overall Eligibility | `=IF(AND(BudgetTest=1,PerformanceTest=1,RiskTest=1),1,0)` |
 
 ---
 
@@ -259,7 +263,16 @@ For the ROI practice block, enter the slide givens in **C33:C37**. Build the hel
 
 Reasonableness check: the selling price is higher than the purchase price and dividends are positive, so ROI should be positive. It should not be enormous because commissions reduce the gain. Change **C37** from `1.21` to `0` as a quick test; ROI should fall to about **3.06%**, proving the result is linked to the dividend input. Restore `1.21` afterward.
 
-Keep **Class Challenge** separate: read each scenario, enter only its stated inputs and your final numeric answer, and use the **FormulaReferenceCard** for syntax reminders. This pre-reading does not provide the graded challenge formulas or completed answers.
+### Class Challenge: Begin in Class, Finish for Homework
+
+Keep **Class Challenge** separate from Live You Try It. The challenge is one connected Meridian client model rather than a list of isolated answers:
+
+1. Build the linked calculations for the MAGH stock, Meridian bond, and Meridian Balanced Fund.
+2. Link each result into the comparison table instead of retyping calculated values.
+3. Test the $8,000 budget, the income-or-return threshold, and the lesson-supported lower-risk proxy.
+4. Select an eligible recommendation and explain the cost, performance evidence, risk proxy, and why the other alternatives fail.
+
+Begin the model during class and finish it as homework. Use the **FormulaReferenceCard** for syntax reminders after you decide which metric or test belongs in a cell. This pre-reading does not provide the graded formulas, completed comparison table, or recommendation.
 
 ---
 

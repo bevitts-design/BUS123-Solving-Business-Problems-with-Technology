@@ -18,7 +18,7 @@ Open `bus123-math-m12-l01-starter.xlsx`. Its four tabs have different jobs:
 
 - **START HERE** explains the workflow and color key.
 - **Live You Try It** is self-graded practice tied to slide examples.
-- **Class Challenge** is the graded activity. Its input and answer cells begin blank.
+- **Class Challenge** is the graded statistical operations investigation. Its 24 raw shift observations are already populated; the analysis, evidence-link, and recommendation cells begin blank.
 - **FormulaReferenceCard** is a syntax reminder after you decide which statistic answers the question.
 
 The screenshots in this reading show **Windows Excel**. Mac Excel has the same functions and number formats, but commands may appear in different positions.
@@ -115,7 +115,24 @@ Fixed “weak/moderate/strong” cutoffs are only rough conventions. Context, sa
 5. Check the range, units, sign, and plausible size of the result.
 6. Change one practice input to confirm automatic recalculation, then undo the test.
 
-In **Class Challenge**, apply this process independently. Do not copy a completed answer from another source. The FormulaReferenceCard helps with syntax but does not decide which cells or function fit a scenario.
+## Class Challenge · Start in Class, Finish as Homework
+
+The **Class Challenge** uses 24 Harborside shift observations instead of disconnected mini-problems. Do not edit the raw-data table in **B9:I33**.
+
+**During class (about 25 minutes):**
+
+1. Inspect the raw operational observations and verify which rows are AM versus PM.
+2. Build the descriptive-statistics summary in **E37:E48** using bounded ranges from the raw table.
+3. Identify the unusual observation by its ID, compare the mean with and without it, and compare AM versus PM center and spread.
+
+**Finish as homework before the next class:**
+
+1. In **E49**, use `CORREL` on the complete paired **Average wait** and **Satisfaction** columns. Do not substitute staff count, patient volume, or a partial group range.
+2. Link the checked group-gap and correlation results into **E53:E54** with formulas rather than retyping the numbers.
+3. Write a 2–4 sentence recommendation in **B59:I61**. Recommend one staffing, service, or process action; reference at least one linked result; and state the relationship carefully without claiming that correlation proves causation.
+4. Save and upload the completed workbook to Canvas.
+
+The FormulaReferenceCard is a syntax reminder, but you are responsible for choosing the correct statistic and the correct raw-data range.
 
 ---
 

@@ -213,17 +213,21 @@ Slicers are clickable filters for PivotTables. They make it easier for a non-tec
 
 Refresh before presenting, even when the PivotTable appears correct. A polished summary can still be based on an older snapshot.
 
-## 8. What to Bring to Class
+## 8. What to Bring to Class and the Management Brief
 
 In class, you will work with Harborside's service-line data. Be ready to:
 
 1. Inspect whether a dataset is clean enough for charting.
-2. Choose a chart type based on a CFO question.
+2. Choose a chart type based on a manager's question.
 3. Build and polish a chart from the starter workbook.
 4. Plan a PivotTable by selecting Rows, Values, and Filters.
-5. Write a short recommendation supported by the visual.
+5. Begin the Management Visual Brief for the VP of Ambulatory Services.
 
-The goal is not to become an Excel chart designer in one class. The goal is to practice the decision path: question, table, visual, summary, recommendation.
+The Class Challenge begins in class and finishes as homework. You will convert the supplied tidy records into an Excel Table, calculate four core KPIs, build or link a service-line summary with formulas, a PivotTable, or an equivalent summary, and create one or more charts that help the VP decide which service line needs attention next month.
+
+Your chart type and layout are choices, not a tracing exercise. A sorted bar or column chart may clarify a category comparison, while a donut can be defensible for a small part-to-whole revenue question. Whatever you choose, use an accurate source range, add a specific title, apply readable number formats, and finish with a concise recommendation supported by at least two workbook results.
+
+The goal is not to become an Excel chart designer in one class. The goal is to practice the decision path: audience, question, clean table, summary, visual, verification, recommendation.
 
 ## Check Your Understanding
 

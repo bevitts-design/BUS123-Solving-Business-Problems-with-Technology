@@ -156,6 +156,8 @@ Use color only when it communicates a role:
 
 Do not rely on color alone. Pair color with labels, number formats, borders, or text so the workbook remains understandable when printed or viewed by someone with color-vision differences.
 
+Conditional Formatting can make that purpose respond to the data. For example, a manager may need to notice unusually low Net Profit values. Select the Net Profit cells, choose **Home → Conditional Formatting**, and apply one rule that highlights the condition you can explain. The rule, range, and business reason matter more than one prescribed color palette.
+
 ---
 
 ## 3 - Formula and Formatting Reference
@@ -202,15 +204,16 @@ A formatting audit is not a search for the prettiest worksheet. It is a test of 
 
 ### Before-and-After Practice
 
-Open the `Booking Summary` tab in the starter workbook. Before formatting, identify the title, header row, monetary columns, date column, detail rows, and total row. Then apply the tools from this reading:
+Open the `Raw Export` tab only to inspect the original headers and 24 event records; do not edit it. Then work on the separate `Manager View` tab:
 
-1. Apply a consistent date format to the event-date cells.
-2. Apply Accounting format with an appropriate number of decimal places to all monetary columns.
-3. Format the header row with one quiet fill, bold text, and readable alignment.
-4. Distinguish the total row with bold text and a clear border.
-5. Use Wrap Text only where a heading is cut off.
-6. Freeze the correct header row and test it by scrolling.
-7. Zoom out briefly and confirm that the worksheet has a clear visual hierarchy without excessive color.
+1. Convert the full data range into an Excel table with filter buttons.
+2. Apply a consistent date format to Event Date.
+3. Apply Currency or Accounting to Revenue, Catering Cost, Staffing Cost, and Net Profit; keep Guests as whole numbers.
+4. Set readable column widths and alignment so labels and values can be scanned without avoidable clipping.
+5. Freeze the table header row and test it by scrolling.
+6. Build the four labeled summary formulas with cell or table references.
+7. Apply at least one purposeful conditional-formatting rule to Net Profit.
+8. Use the `Class Challenge` checklist for a final 30-second manager audit. A professional design is required, but one exact palette or pixel-perfect layout is not.
 
 ---
 
@@ -255,4 +258,4 @@ Answer each question before class.
 
 > **Before Class**
 >
-> Open the Excel M02 starter workbook. Locate the `Live You Try It`, `Booking Summary`, `Formatting Audit`, `Class Challenge`, and `FormulaReferenceCard` tabs. Be ready to explain one formatting choice that would help a manager understand the workbook in 30 seconds.
+> Open the Excel M02 starter workbook. Locate the `Live You Try It`, `Raw Export`, `Manager View`, `Class Challenge`, and `FormulaReferenceCard` tabs. Be ready to explain why the Raw Export must remain unchanged while the separate Manager View becomes the professional deliverable.

@@ -667,14 +667,14 @@ def semantic_html(source: SourceDoc) -> str:
         if re.match(r"^[-*]\s+", stripped):
             parts.append("<ul>")
             while i < len(lines) and re.match(r"^[-*]\s+", lines[i].strip()):
-                parts.append(f"<li>{inline_html(re.sub(r'^[-*]\\s+', '', lines[i].strip()))}</li>")
+                parts.append(f"<li>{inline_html(re.sub(r'^[-*]\s+', '', lines[i].strip()))}</li>")
                 i += 1
             parts.append("</ul>")
             continue
         if re.match(r"^\d+[.)]\s+", stripped):
             parts.append("<ol>")
             while i < len(lines) and re.match(r"^\d+[.)]\s+", lines[i].strip()):
-                parts.append(f"<li>{inline_html(re.sub(r'^\\d+[.)]\\s+', '', lines[i].strip()))}</li>")
+                parts.append(f"<li>{inline_html(re.sub(r'^\d+[.)]\s+', '', lines[i].strip()))}</li>")
                 i += 1
             parts.append("</ol>")
             continue

@@ -68,6 +68,9 @@ function validateCourseMap() {
     } else if (!allowedStatuses.has(lesson.status)) {
       issues.push(`${lesson.id} uses unsupported status "${lesson.status}".`);
     }
+    if (lesson.visible !== undefined && typeof lesson.visible !== "boolean") {
+      issues.push(`${lesson.id}.visible must be true or false when present.`);
+    }
 
     for (const material of lesson.materials ?? []) {
       validatePublicLink(material, issues, `${lesson.id} material`);
@@ -80,6 +83,8 @@ function validateCourseMap() {
 
   if (!seen.has(data.course.currentLessonId)) {
     issues.push(`currentLessonId "${data.course.currentLessonId}" does not match a lesson id.`);
+  } else if ((data.lessons ?? []).find((lesson) => lesson.id === data.course.currentLessonId)?.visible === false) {
+    issues.push("The current lesson cannot be hidden. Make another lesson current before setting visible to false.");
   }
 
   if (issues.length) {
@@ -142,7 +147,8 @@ const orderedLessons = (lessons) =>
     )
     .map(({ lesson }) => lesson);
 
-const sortedLessons = orderedLessons(data.lessons ?? []);
+const allSortedLessons = orderedLessons(data.lessons ?? []);
+const sortedLessons = allSortedLessons.filter((lesson) => lesson.visible !== false);
 
 const displayLabel = (lesson, track) =>
   lesson.moduleLabel ?? [track?.label ?? lesson.track, lesson.module, lesson.lesson].filter(Boolean).join(" ");
@@ -228,6 +234,7 @@ const lessonCard = (lesson) => {
 };
 
 const orderedTracks = data.tracks
+  .filter((track) => sortedLessons.some((lesson) => lesson.track === track.id))
   .map((track, index) => ({
     track,
     index,
@@ -457,4 +464,4 @@ const html = `<!DOCTYPE html>
 
 await fs.writeFile(path.join(root, "index.html"), html.replace(/^[ \t]+$/gm, ""));
 
-console.log(`Built index.html from course-map.json (${data.lessons.length} lessons, current: ${current.id}).`);
+console.log(`Built index.html from course-map.json (${sortedLessons.length} visible of ${allSortedLessons.length} lessons, current: ${current.id}).`);

@@ -26,7 +26,7 @@ const slug = (value) =>
 const trackById = new Map(data.tracks.map((track) => [track.id, track]));
 
 const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"];
-const statusFilters = ["Current", "Live", "In Progress", "Coming Soon"];
+const statusFilters = ["Current", "Live", "In Progress", "Coming Soon", "Preview Only"];
 
 function validateCourseMap() {
   const issues = [];
@@ -148,7 +148,7 @@ const orderedLessons = (lessons) =>
     .map(({ lesson }) => lesson);
 
 const allSortedLessons = orderedLessons(data.lessons ?? []);
-const sortedLessons = allSortedLessons.filter((lesson) => lesson.visible !== false);
+const sortedLessons = allSortedLessons;
 
 const displayLabel = (lesson, track) =>
   lesson.moduleLabel ?? [track?.label ?? lesson.track, lesson.module, lesson.lesson].filter(Boolean).join(" ");
@@ -179,6 +179,12 @@ const materialIsAvailable = (material) => {
 const materialLink = (material, options = {}) => {
   const label = material.label ?? material.type;
   const classes = `${options.primary ? "primary-action" : "material-chip"} material-${esc(slug(material.type))}`;
+  if (options.locked) {
+    return `<span class="${classes} is-preview-locked" aria-disabled="true" title="${esc(label)} will unlock when this lesson becomes available">
+    <span class="material-icon" aria-hidden="true">${materialIcon(material.type)}</span>
+    <span>${esc(label)} · Locked</span>
+  </span>`;
+  }
   const unavailablePath = material?.path && material.path !== "#" ? ` data-href="${esc(material.path)}"` : "";
   if (!materialIsAvailable(material)) {
     return `<span class="${classes} is-unavailable"${unavailablePath} aria-disabled="true" title="${esc(label)} is not available yet">
@@ -199,27 +205,41 @@ const primaryMaterial = (lesson) =>
 const effectiveStatus = (lesson) =>
   lesson.id === data.course.currentLessonId ? "Current" : lesson.status;
 
-const searchText = (lesson, track) => [
-  lesson.title,
-  lesson.track,
-  track?.label,
-  lesson.moduleType,
-  lesson.moduleLabel,
-  lesson.module,
-  lesson.lesson,
-  lesson.displayOrder,
-  effectiveStatus(lesson),
-  lesson.caseStudy,
-  ...(lesson.skillFocus ?? []),
-  ...(lesson.materials ?? []).flatMap((item) => [item.type, item.label, item.path])
-].filter(Boolean).join(" ").toLowerCase();
+const lessonIsPreviewOnly = (lesson) => lesson.visible === false;
+const studentStatus = (lesson) => lessonIsPreviewOnly(lesson) ? "Preview Only" : effectiveStatus(lesson);
+
+const searchText = (lesson, track) => {
+  const materialTerms = (lesson.materials ?? []).flatMap((item) =>
+    lessonIsPreviewOnly(lesson) ? [item.type, item.label] : [item.type, item.label, item.path]
+  );
+  return [
+    lesson.title,
+    lesson.track,
+    track?.label,
+    lesson.moduleType,
+    lesson.moduleLabel,
+    lesson.module,
+    lesson.lesson,
+    lesson.displayOrder,
+    studentStatus(lesson),
+    lesson.caseStudy,
+    ...(lesson.skillFocus ?? []),
+    ...materialTerms
+  ].filter(Boolean).join(" ").toLowerCase();
+};
 
 const lessonCard = (lesson) => {
   const track = trackById.get(lesson.track);
   const materialSlugs = (lesson.materials ?? []).map((item) => slug(item.type)).join(" ");
-  const status = effectiveStatus(lesson);
+  const previewOnly = lessonIsPreviewOnly(lesson);
+  const status = studentStatus(lesson);
+  const availabilityNote = previewOnly
+    ? `<p class="preview-note"><span class="preview-lock-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+      </span><span><strong>Preview only.</strong> Materials will unlock when this lesson becomes available.</span></p>`
+    : "";
 
-  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(status))}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
+  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}${previewOnly ? " lesson-preview" : ""}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(status))}" data-availability="${previewOnly ? "preview-only" : "available"}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
     <div class="lesson-header">
       <div>
         <div class="code">${esc(displayLabel(lesson, track))}</div>
@@ -229,7 +249,8 @@ const lessonCard = (lesson) => {
     </div>
     <p>${esc(lesson.caseStudy || "General course foundation")}</p>
     <div class="skills">${esc((lesson.skillFocus ?? []).join(" · "))}</div>
-    <div class="materials">${(lesson.materials ?? []).map((material) => materialLink(material)).join("")}</div>
+    ${availabilityNote}
+    <div class="materials">${(lesson.materials ?? []).map((material) => materialLink(material, { locked: previewOnly })).join("")}</div>
   </article>`;
 };
 
@@ -249,10 +270,17 @@ const orderedTracks = data.tracks
 
 const tracks = orderedTracks.map((track) => {
   const lessons = sortedLessons.filter((lesson) => lesson.track === track.id);
+  const availableCount = lessons.filter((lesson) => !lessonIsPreviewOnly(lesson)).length;
+  const previewCount = lessons.length - availableCount;
+  const countLabel = [
+    `${lessons.length} lesson${lessons.length === 1 ? "" : "s"}`,
+    `${availableCount} available`,
+    previewCount ? `${previewCount} preview only` : ""
+  ].filter(Boolean).join(" · ");
   return `<section id="${esc(track.id)}" class="track-section">
     <div class="track-heading">
       <h2>${esc(track.label)}</h2>
-      <span>${lessons.length} lesson${lessons.length === 1 ? "" : "s"}</span>
+      <span>${esc(countLabel)}</span>
     </div>
     <div class="lesson-grid">${lessons.map(lessonCard).join("\n")}</div>
   </section>`;
@@ -415,7 +443,7 @@ const html = `<!DOCTYPE html>
       <div class="shell">
         <div class="eyebrow">${esc(data.course.term)}</div>
         <h1>BUS123 Course Hub</h1>
-        <p>Open today's class materials, then use the lesson cards below for slides, readings, workbooks, and practice files.</p>
+        <p>Open today's class materials, then use the lesson cards below to find what is available now and preview what is coming.</p>
         ${courseResourcesHtml}
         <div class="command-center" aria-label="Course command center">
           <section class="class-pack" aria-labelledby="class-pack-title">
@@ -464,4 +492,5 @@ const html = `<!DOCTYPE html>
 
 await fs.writeFile(path.join(root, "index.html"), html.replace(/^[ \t]+$/gm, ""));
 
-console.log(`Built index.html from course-map.json (${sortedLessons.length} visible of ${allSortedLessons.length} lessons, current: ${current.id}).`);
+const availableLessonCount = allSortedLessons.filter((lesson) => !lessonIsPreviewOnly(lesson)).length;
+console.log(`Built index.html from course-map.json (${allSortedLessons.length} cards: ${availableLessonCount} available, ${allSortedLessons.length - availableLessonCount} preview only, current: ${current.id}).`);

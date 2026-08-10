@@ -379,6 +379,15 @@ h3 { font-size: 28px; }
   background: var(--track-accent);
 }
 
+.lesson.lesson-preview {
+  background: linear-gradient(135deg, var(--white), var(--paper-2));
+  border-style: dashed;
+}
+
+.lesson.lesson-preview::before {
+  background: var(--muted);
+}
+
 .lesson.track-excel { --track-accent: var(--steel); }
 .lesson.track-math { --track-accent: var(--terra); }
 .lesson.track-intro { --track-accent: var(--sage); }
@@ -412,9 +421,26 @@ h3 { font-size: 28px; }
 .status.in-progress { background: rgba(156,74,43,.12); color: var(--terra); }
 .status.canvas-only { background: rgba(14,17,22,.10); color: var(--ink); }
 .status.not-released { background: var(--paper-2); color: var(--muted); }
+.status.preview-only { background: rgba(53,87,115,.12); color: var(--steel); }
 
 .lesson p { color: var(--text-soft); margin: 10px 0 14px; }
 .skills { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.lesson .preview-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  color: var(--steel);
+  background: rgba(53, 87, 115, .08);
+  border-radius: 8px;
+  font-size: 13px;
+}
+.preview-lock-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
 
 .materials { display: flex; flex-wrap: wrap; gap: 8px; }
 .material-chip {
@@ -431,6 +457,7 @@ h3 { font-size: 28px; }
 }
 
 .material-chip.is-unavailable,
+.material-chip.is-preview-locked,
 .primary-action.is-unavailable {
   color: var(--muted);
   background: var(--paper-2);

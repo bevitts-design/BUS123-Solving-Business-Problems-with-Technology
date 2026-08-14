@@ -108,7 +108,7 @@
       "moduleType": "Intro",
       "moduleLabel": "Intro M01-L03",
       "displayOrder": 30,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m01-l01",

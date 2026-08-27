@@ -20,7 +20,7 @@
   "Part 1 starts here. Whole numbers are the building blocks. In business, whole numbers show up in quantities, headcounts, transaction counts, and budgets rounded to the dollar.",
   "The four operations applied to business. Addition: summing revenue across accounts. Subtraction: calculating net after expenses. Multiplication: scaling unit price by volume. Division: finding per-unit or per-person figures. Meridian uses all four in every client engagement.",
   "Here is how you enter this in Excel. =SUM for addition ranges, simple arithmetic operators for everything else. The key habit: always use cell references, never type numbers into formulas. That way, when one input changes, everything recalculates.",
-  "Meridian Advisory has 48 client accounts. Last quarter they added 12 and lost 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. 57 \u00d7 $4,200 = $239,400 in quarterly fee revenue. In Excel: one formula chain, no hardcoded values.",
+  "Use the advisory-office image to frame this as an operating decision, not an abstract arithmetic problem: client counts drive Meridian's quarterly fee revenue and its forecast. Meridian starts with 48 client accounts, adds 12, and loses 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. Then 57 \u00d7 $4,200 = $239,400 in quarterly fee revenue. In Excel, use one formula chain with cell references and no hardcoded values.",
   "You Try It pause one. Have students open the Live You Try It tab and complete the whole-number block. They should use the 57 accounts from the worked example, subtract 4 lost accounts, then multiply by the $4,200 quarterly fee. Ask for formulas before answers.",
   "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares \u2014 if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
   "Part 2 now. Fractions in business show up more than students expect \u2014 mostly as ratios, allocations, and proportional splits.",
@@ -33,11 +33,11 @@
   "Use the business question to choose the formula, then use number formatting to communicate the result. Read across each worksheet row from the question to the cell-reference formula and finally to the formatted result. Ask students which row should not be formatted as a percentage. Case 1 returns a dollar amount because it asks for part of a dollar whole. Cases 2 and 3 return ratios, so those result cells use Percentage formatting. Reinforce that Excel stores 0.15 and displays 15.0 percent; students should not multiply by 100 manually.",
   "Start with the management question: did Meridian hit its growth target? Both calculations use the same $1.2 million starting point, but they serve different purposes. Planning uses the 7.5 percent target to establish what should happen: $1.29 million. Evaluation uses the $1.255 million actual result to calculate what did happen: 4.58 percent growth. Compare the two outcomes. Meridian finished $35,000 below plan and 2.92 percentage points under its target. Ask what leadership should investigate before revising the next forecast. Remind students that percent change always divides by the older value, which is B2 in this example.",
   "You Try It pause three. Students use the same percent cases with the quarterly fee base: a 12% growth target from $239,400 and an actual change check from $239,400 to $268,200. Listen for whether they choose growth-by-rate versus percent-change formulas.",
-  "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. If someone says revenue grew by 20%, that's change. If someone says a client represents 20% of the book, that's a ratio.",
+  "Begin without a formula. Ask what the $230,000 is being compared with. If it is compared with the earlier $200,000 result, the question is about change over time, so the older value is the denominator. If the same $230,000 is compared with Meridian's $1.5 million total fee book, the question is about share of the business, so the whole is the denominator. Reveal the two Excel formulas after students name the comparison. Emphasize the business meaning: growth evaluates performance, while share of total describes business mix and can guide staffing or resource allocation. The denominator gives the percentage its meaning.",
   "Use this synthesis slide to make the ladder explicit: today's live practice is the first layer, the workbook records the formulas, and the class challenge turns those pieces into a multi-step model. Students who are moving quickly can preview it if time allows.",
   "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
-  "Three things to carry out of today. Align your units before any calculation. Use cell references in Excel. Percent change and percent of total are different formulas \u2014 don't mix them. Next lesson we build on these with markup, markdown, and margin math.",
-  "Next lesson: MATH-M01 L02 \u2014 Markup, Markdown, and Margin. We'll keep using business math in pricing decisions and connect these percent habits to the next layer of Excel modeling.",
+  "Three things to carry out of today. Align your units before any calculation. Use cell references in Excel. Percent change and percent of total are different formulas - don't mix them. Next lesson we build on these formula habits by solving equations and working backward to find unknown business inputs.",
+  "Next lesson is MATH-M02 L01: Solving Equations. Use the balanced-scale image to introduce the golden rule: whatever operation we apply to one side of an equation, we apply to the other. Connect the modules explicitly. Today, students used known inputs to calculate an output. Next, they will work backward from a known output to isolate an unknown input using inverse operations. Anchor and Oak Events will apply that skill to rates, costs, revenue, vendor comparisons, and break-even decisions.",
   "Questions? Office hours are Tuesday and Thursday 2\u20134 PM, or email me. Remind students that the Live You Try It tab should be complete before the class challenge."
 ]
 </script>
@@ -512,9 +512,36 @@
   .slide[data-slide="8"] .content > div > div:first-child > div:nth-child(2) {
     margin-top: 22px !important;
   }
-  .slide[data-slide="8"] image-slot {
-    width: 470px !important;
-    height: 330px !important;
+  .slide[data-slide="8"] .meridian-worked-figure {
+    position: relative;
+    width: 470px;
+    height: 330px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--paper-2);
+    box-shadow: 0 20px 46px rgba(14,17,22,.14);
+  }
+  .slide[data-slide="8"] .meridian-worked-photo {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 72% center;
+  }
+  .slide[data-slide="8"] .meridian-worked-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 13px 18px;
+    background: rgba(14,17,22,.88);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
   }
   .slide[data-slide="3"] .content,
   .slide[data-slide="11"] .content,
@@ -677,16 +704,25 @@
   .slide[data-slide="22"] .disc-q { padding: 18px 22px; }
   .slide[data-slide="22"] .disc-q p { font-size: var(--type-body); line-height: 1.32; }
   .up-next-photo {
-    width: 640px;
-    height: 680px;
+    width: 470px;
+    height: 560px;
     border-radius: 18px;
     flex-shrink: 0;
     object-fit: cover;
-    object-position: left center;
+    object-position: center 48%;
     border: 1px solid rgba(255,255,255,0.14);
     box-shadow: 0 24px 60px rgba(0,0,0,0.28);
     background: var(--ink);
   }
+  .up-next-equations-layout{flex:1;display:flex;align-items:center;gap:56px;padding:0 var(--pad-x);}
+  .up-next-equations-copy{flex:1;min-width:0;}
+  .up-next-equations-eyebrow{font-family:var(--mono);font-size:16px;color:var(--sage);margin-bottom:20px;letter-spacing:.08em;text-transform:uppercase;}
+  .up-next-equations-title{font-family:var(--serif);font-size:62px;line-height:.98;color:var(--white);}
+  .up-next-equations-title span{font-style:italic;color:var(--sage);}
+  .up-next-equations-description{margin-top:26px;font-size:22px;line-height:1.4;color:rgba(255,255,255,.72);max-width:500px;}
+  .up-next-equations-bridge{display:flex;align-items:center;gap:14px;margin-top:24px;padding:14px 16px;background:rgba(255,255,255,.06);border-left:4px solid var(--sage);border-radius:0 8px 8px 0;max-width:500px;}
+  .up-next-equations-bridge span{font-family:var(--mono);font-size:16px;color:rgba(255,255,255,.58);}
+  .up-next-equations-bridge strong{font-family:var(--sans);font-size:19px;color:var(--white);}
   .retrofit-tab-strip {
     position: fixed;
     left: 0;
@@ -868,6 +904,30 @@
 .growth-gap strong{font-family:var(--sans);font-size:18px;line-height:1.2;color:var(--text);}
 .growth-leadership strong{color:var(--terra);}
 .growth-leadership span{font-family:var(--sans);font-size:16px;line-height:1.2;color:var(--text);}
+
+.slide[data-slide="21"] .percent-choice-panel{width:100%;padding:26px 34px;border-radius:12px;}
+.slide[data-slide="21"] .percent-choice-panel .mistake-label{margin-bottom:8px;}
+.slide[data-slide="21"] .percent-choice-panel h3{margin-bottom:8px;font-size:32px;line-height:1.05;}
+.percent-choice-intro{font-size:18px !important;line-height:1.3 !important;margin:0 !important;}
+.percent-same-number{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:12px;padding:8px 14px;background:rgba(0,0,0,.18);border-radius:8px;color:var(--white);}
+.percent-same-number span{font-family:var(--mono);font-size:16px;font-weight:700;text-transform:uppercase;opacity:.75;}
+.percent-same-number strong{font-family:var(--serif);font-size:30px;line-height:1;}
+.percent-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px;}
+.percent-choice-card{background:var(--white);border-radius:8px;padding:13px 15px;color:var(--text);}
+.percent-choice-header{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.percent-choice-label{font-family:var(--mono);font-size:16px;font-weight:700;text-transform:uppercase;color:var(--sage);}
+.percent-choice-card.share .percent-choice-label{color:var(--gold);}
+.percent-choice-question{font-family:var(--sans);font-size:16px;font-weight:700;line-height:1.2;color:var(--text);text-align:right;}
+.percent-choice-formula{margin-top:8px;padding:8px 12px !important;line-height:1.2 !important;}
+.percent-choice-formula .fn{font-size:19px !important;margin-bottom:4px !important;}
+.percent-choice-formula .comment{font-size:16px !important;}
+.percent-choice-card.share .percent-choice-formula{border-left-color:var(--gold);}
+.percent-choice-result{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:8px;}
+.percent-choice-result strong{font-family:var(--serif);font-size:25px;line-height:1;color:var(--terra);}
+.percent-choice-result span{font-family:var(--sans);font-size:16px;font-weight:700;color:var(--text-soft);}
+.percent-choice-rule{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px;}
+.percent-choice-rule div{padding:8px 12px;background:rgba(0,0,0,.2);border-radius:8px;font-family:var(--mono);font-size:16px;font-weight:700;color:var(--white);text-align:center;}
+.percent-choice-rule strong{color:var(--gold);}
 
 </style>
 </head>
@@ -1105,7 +1165,10 @@
             </div>
           </div>
         </div>
-        <image-slot id="meridian-img" placeholder="Drop image: financial advisory office or client meeting" style="width:600px; height:440px; border-radius:18px; flex-shrink:0;"></image-slot>
+        <figure class="meridian-worked-figure">
+          <img class="meridian-worked-photo" src="img/bus123-math-m01-l01-meridian-fees.png" alt="Financial planning workspace overlooking a coastal town, with a calculator, financial charts, and an account ledger">
+          <figcaption class="meridian-worked-caption">Client counts drive quarterly fee revenue—and the forecast.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -1500,25 +1563,46 @@
   <!-- ── 18 COMMON MISTAKE 2 ── -->
   <section class="slide dark" data-label="21 Mistake 2 Percent" data-section="3" data-slide="21" data-index="20">
     <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 0 var(--pad-x);">
-      <div class="mistake-panel">
+      <div class="mistake-panel percent-choice-panel">
         <div class="mistake-label">⚠ Common Mistake #2</div>
-        <h3>Percent Change ≠ Percent of Total</h3>
-        <p style="margin-bottom:28px;">"Revenue grew by 20%" uses (New − Old)/Old. "That client is 20% of our book" uses Part/Whole. These are different calculations — students mix them up constantly.</p>
-        <div style="display:flex; gap:32px;">
-          <div style="flex:1; background:rgba(0,0,0,0.25); border-radius:8px; padding:20px 28px; font-family:var(--font-mono); font-size:var(--type-mono); color:rgba(255,255,255,0.9);">
-            <div style="color:rgba(255,255,255,0.5); margin-bottom:8px;">PERCENT CHANGE</div>
-            =(New − Old) / Old<br>
-            =(230000 − 200000) / 200000<br>
-            = 0.15 = 15%
+        <h3>Choose the Denominator Before the Formula</h3>
+        <p class="percent-choice-intro">Before calculating, ask what <strong>$230,000</strong> is being compared with. The comparison determines the denominator.</p>
+
+        <div class="percent-same-number">
+          <span>Same amount · two business questions</span>
+          <strong>$230,000</strong>
+        </div>
+
+        <div class="percent-choice-grid" aria-label="Comparison of percent change and percent of total using the same 230 thousand dollar amount">
+          <div class="percent-choice-card change">
+            <div class="percent-choice-header">
+              <span class="percent-choice-label">Across time</span>
+              <span class="percent-choice-question">Compared with $200,000 earlier</span>
+            </div>
+            <div class="formula-panel percent-choice-formula">
+              <span class="fn">=(B3-B2)/B2</span>
+              <span class="comment">($230K − $200K) ÷ $200K</span>
+            </div>
+            <div class="percent-choice-result"><span>Evaluates performance</span><strong>15% growth</strong></div>
           </div>
-          <div style="flex:1; background:rgba(0,0,0,0.25); border-radius:8px; padding:20px 28px; font-family:var(--font-mono); font-size:var(--type-mono); color:rgba(255,255,255,0.9);">
-            <div style="color:rgba(255,255,255,0.5); margin-bottom:8px;">PERCENT OF TOTAL</div>
-            = Part / Whole<br>
-            = 230000 / 1500000<br>
-            = 0.153 = 15.3%
+
+          <div class="percent-choice-card share">
+            <div class="percent-choice-header">
+              <span class="percent-choice-label">Part of whole</span>
+              <span class="percent-choice-question">Compared with $1,500,000 total</span>
+            </div>
+            <div class="formula-panel percent-choice-formula">
+              <span class="fn">=B3/B4</span>
+              <span class="comment">$230K ÷ $1.5M total fees</span>
+            </div>
+            <div class="percent-choice-result"><span>Describes business mix</span><strong>15.3% of total</strong></div>
           </div>
         </div>
-        <p style="margin-top:20px; font-size:var(--type-small); opacity:0.75;">Before computing: ask yourself — am I measuring change over time, or a share of a total?</p>
+
+        <div class="percent-choice-rule">
+          <div>Across time → denominator = <strong>older value</strong></div>
+          <div>Part of whole → denominator = <strong>total value</strong></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1587,12 +1671,16 @@
 
   <!-- ── 21 UP NEXT ── -->
   <section class="slide dark" data-label="25 Up Next" data-section="4" data-slide="25" data-index="24">
-    <div style="flex:1; display:flex; align-items:center; gap:80px; padding: 0 var(--pad-x);">
-      <img class="up-next-photo" src="assets/retail-markup-markdown.png" alt="Retail shelves with regular price, sale price, and markdown tags">
-      <div>
-        <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:24px; letter-spacing:0.08em; text-transform:uppercase;">Up Next · MATH-M01 · L02</div>
-        <div style="font-family:var(--font-display); font-size:var(--type-display); line-height:1.0; color:var(--white);">Markup,<br><span style="font-style:italic; color:var(--sage);">Markdown<br>&amp; Margin</span></div>
-        <p style="margin-top:40px; font-size:var(--type-lead); color:rgba(255,255,255,0.65); max-width:680px;">We take today's percent skills directly into pricing decisions — cost-based markup, retail markdown, and gross margin. Featuring Meridian Advisory Group.</p>
+    <div class="up-next-equations-layout">
+      <img class="up-next-photo" src="img/bus123-math-m01-l01-up-next-solving-equations.jpg" alt="Balanced brass scale on an event-planning desk with a calculator and budget documents, representing balanced equations">
+      <div class="up-next-equations-copy">
+        <div class="up-next-equations-eyebrow">Up Next · MATH-M02 · L01</div>
+        <div class="up-next-equations-title">Solving<br><span>Equations</span></div>
+        <p class="up-next-equations-description">Use inverse operations to keep equations balanced, isolate unknown inputs, and rearrange cost and revenue formulas for Anchor &amp; Oak Events.</p>
+        <div class="up-next-equations-bridge">
+          <span>Today · Calculate the output</span>
+          <strong>Next · Find the unknown input</strong>
+        </div>
       </div>
     </div>
   </section>

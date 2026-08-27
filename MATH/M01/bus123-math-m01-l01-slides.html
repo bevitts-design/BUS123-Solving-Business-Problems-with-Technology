@@ -24,14 +24,14 @@
   "You Try It pause one. Have students open the Live You Try It tab and complete the whole-number block. They should use the 57 accounts from the worked example, subtract 4 lost accounts, then multiply by the $4,200 quarterly fee. Ask for formulas before answers.",
   "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares \u2014 if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
   "Part 2 now. Fractions in business show up more than students expect \u2014 mostly as ratios, allocations, and proportional splits.",
-  "A fraction is a part of a whole. In business contexts we're almost always asking: what fraction of total revenue, total staff, or total clients does this segment represent? The denominator is always 'the whole thing' \u2014 make sure you know what the whole is before you calculate.",
-  "Excel doesn't love fractions as fractions \u2014 it prefers decimals. The key conversion: divide the numerator by the denominator. 3/4 becomes =3/4 which Excel shows as 0.75. Format as a fraction only when the display specifically calls for it.",
-  "Meridian allocates its 6-person advisory team across three service lines: 2 on tax, 2 on estate planning, 2 on investment management. Each service line gets 2/6 = 1/3 of total staff capacity. After hiring 3 more advisors, all in tax, tax is 5 of 9 total advisors, or 5/9.",
-  "You Try It pause two. Students should complete the fraction block in Excel using 5 as the numerator and 9 as the denominator. Then have them format the same result as a percentage so they see that the formula stays the same while the display changes.",
+  "Start with the six advisor icons and ask: what group are we measuring? Students should identify the 2 Tax advisors as the part. Then ask: out of how many advisors altogether? The whole is all 6 advisors. Connect those answers to the fraction anatomy: 2 is the numerator and 6 is the denominator. Now direct attention to the Excel line: =2/6 returns 0.3333, and Percentage formatting displays that same value as 33.3%. Close by asking what must change if the team grows to 9; that question bridges directly to the next slide.",
+  "Use the worksheet image to separate formula from formatting. Point to the formula column first: each row uses the same part-divided-by-whole pattern with cell references. Then point to the result column: Number shows 0.3333, Fraction shows 1/3, and Percentage shows 33.3%. Demonstrate the workflow verbally: select the result cell, open Home, use the Number Format dropdown, and choose Fraction or Percentage. Emphasize that formatting changes only what students see; the stored value and formula remain the same.",
+  "You Try It pause two. First establish the change: Meridian had 2 Tax advisors out of 6 total, then hired 3 Tax advisors, so the new part is 5 and the new whole is 9. Give students two minutes in the Live You Try It tab. They should enter the same cell-reference formula in E10 and E11, format E10 as Fraction, and format E11 as Percentage with one decimal place. The deliverable is two differently displayed cells built from the same calculation. Ask what changed in the denominator before moving on.",
+  "Bridge from fraction formatting to percent calculations. Students have just seen one ratio displayed as a fraction and as a percentage. Explain that Part 3 expands from this ratio-as-percent case to three percent structures they will use in business.",
   "Part 3 \u2014 Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
   "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole, percent change, and expressing a ratio as a percent. Each has a distinct formula structure.",
-  "=PERCENTAGE calculations in Excel. Top row: percent of a whole \u2014 just multiply. Middle row: percent change \u2014 (New - Old) / Old. Bottom row: part to percent \u2014 part divided by whole. Format the result cell as Percentage. Do not multiply by 100 manually.",
-  "Meridian had $1.2M in AUM fees last year. This year they project a 7.5% increase. In Excel: =1200000 * (1 + 0.075) = $1,290,000. If actual fees came in at $1,255,000, the actual percent change is =(1255000 - 1200000) / 1200000 = 4.58%.",
+  "Use the business question to choose the formula, then use number formatting to communicate the result. Read across each worksheet row from the question to the cell-reference formula and finally to the formatted result. Ask students which row should not be formatted as a percentage. Case 1 returns a dollar amount because it asks for part of a dollar whole. Cases 2 and 3 return ratios, so those result cells use Percentage formatting. Reinforce that Excel stores 0.15 and displays 15.0 percent; students should not multiply by 100 manually.",
+  "Start with the management question: did Meridian hit its growth target? Both calculations use the same $1.2 million starting point, but they serve different purposes. Planning uses the 7.5 percent target to establish what should happen: $1.29 million. Evaluation uses the $1.255 million actual result to calculate what did happen: 4.58 percent growth. Compare the two outcomes. Meridian finished $35,000 below plan and 2.92 percentage points under its target. Ask what leadership should investigate before revising the next forecast. Remind students that percent change always divides by the older value, which is B2 in this example.",
   "You Try It pause three. Students use the same percent cases with the quarterly fee base: a 12% growth target from $239,400 and an actual change check from $239,400 to $268,200. Listen for whether they choose growth-by-rate versus percent-change formulas.",
   "Common mistake number two. Percent change versus percent of total. These are different calculations. Percent change: (New - Old)/Old. Percent of total: Part/Whole. If someone says revenue grew by 20%, that's change. If someone says a client represents 20% of the book, that's a ratio.",
   "Use this synthesis slide to make the ladder explicit: today's live practice is the first layer, the workbook records the formulas, and the class challenge turns those pieces into a multi-step model. Students who are moving quickly can preview it if time allows.",
@@ -741,6 +741,134 @@
 .formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
 .formula-reference-table td.watch{background:var(--paper-2);}
 
+.whole-operations-table{width:100%;margin-top:34px;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 18px 42px rgba(14,17,22,0.08);table-layout:fixed;font-size:20px;line-height:1.3;}
+.whole-operations-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:17px;text-align:left;padding:15px 20px;border-right:1px solid var(--border);}
+.whole-operations-table th:last-child{border-right:0;}
+.whole-operations-table td{padding:17px 20px;border-top:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;color:var(--text);}
+.whole-operations-table td:last-child{border-right:0;}
+.whole-operations-table td:first-child{font-weight:700;color:var(--sage);}
+.whole-operations-table td.formula{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-size:18px;font-weight:700;}
+
+.slide[data-slide="12"] .fraction-anatomy-content{margin-top:24px !important;padding-bottom:36px !important;}
+.slide[data-slide="12"] .fraction-anatomy-content h2{font-size:44px;line-height:1.04;}
+.fraction-excel-strip{display:grid;grid-template-columns:1.15fr .92fr 1fr;align-items:stretch;margin-top:16px;padding:0 !important;overflow:hidden;line-height:1.25 !important;}
+.fraction-excel-step{padding:16px 22px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;gap:5px;}
+.fraction-excel-step:last-child{border-right:0;}
+.fraction-excel-step .step-label{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);}
+.fraction-excel-step .fn{margin:0 !important;font-size:24px !important;}
+.fraction-excel-step .output{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--sage);}
+.fraction-excel-step .output-note{font-family:var(--sans);font-size:16px;color:var(--text-soft);}
+.fraction-story-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:22px;margin-top:16px;}
+.advisor-scene,.fraction-anatomy-card{height:180px;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px 18px;box-shadow:0 14px 34px rgba(14,17,22,.07);}
+.fraction-card-label{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--sage);}
+.advisor-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:12px;}
+.advisor-tile{height:112px;border:1px solid var(--border);border-radius:8px;background:var(--paper-2);color:var(--text-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;}
+.advisor-tile.tax{background:var(--formula-bg);border-color:var(--sage);color:var(--sage);}
+.advisor-tile svg{width:42px;height:54px;display:block;}
+.advisor-tile span{font-family:var(--sans);font-size:16px;font-weight:700;}
+.fraction-anatomy-card{display:grid;grid-template-columns:112px 1fr;column-gap:18px;align-items:center;}
+.fraction-stack{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.fraction-stack .fraction-number{font-family:var(--serif);font-size:64px;font-weight:700;line-height:.88;color:var(--text);}
+.fraction-stack .fraction-bar{width:88px;height:4px;margin:12px 0;background:var(--sage);}
+.fraction-role-list{display:flex;flex-direction:column;gap:22px;}
+.fraction-role{display:flex;flex-direction:column;gap:3px;}
+.fraction-role strong{font-family:var(--sans);font-size:20px;color:var(--text);}
+.fraction-role span{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--sage);text-transform:uppercase;}
+.fraction-takeaway{margin-top:14px;padding:11px 18px;background:var(--paper-2);border-left:4px solid var(--sage);border-radius:0 8px 8px 0;font-size:20px;font-weight:600;color:var(--text);}
+
+.slide[data-slide="13"] .format-demo-content{margin-top:24px !important;padding-bottom:36px !important;}
+.slide[data-slide="13"] .format-demo-content h2{font-size:44px;line-height:1.04;}
+.format-demo-layout{display:grid;grid-template-columns:1.65fr .8fr;gap:22px;margin-top:20px;align-items:stretch;}
+.format-workbook-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px;box-shadow:0 14px 34px rgba(14,17,22,.07);}
+.format-workbook-card .ws-wrap{width:100%;font-size:16px;}
+.format-workbook-card .ws-toolbar{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;font-size:15px;}
+.format-ribbon{display:flex;align-items:center;gap:9px;}
+.format-ribbon strong{color:var(--steel);}
+.format-dropdown{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:5px 10px;color:var(--text);font-family:var(--sans);font-size:15px;}
+.format-workbook-card .ws-cell{padding:10px 9px;font-size:16px;}
+.format-workbook-card .ws-rnum{padding:10px 8px;font-size:15px;}
+.format-workbook-card .format-result{font-family:var(--mono);font-weight:700;color:var(--steel);background:var(--formula-bg);}
+.format-workbook-card .format-selected{outline:3px solid var(--sage);outline-offset:-3px;}
+.format-demo-steps{display:flex;flex-direction:column;gap:12px;}
+.format-demo-step{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--sage);border-radius:0 8px 8px 0;padding:15px 17px;}
+.format-demo-step strong{display:block;font-family:var(--mono);font-size:15px;color:var(--sage);text-transform:uppercase;margin-bottom:5px;}
+.format-demo-step span{display:block;font-size:18px;line-height:1.3;color:var(--text);}
+.format-display-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.format-display-chip{background:var(--formula-bg);border:1px solid var(--border);border-radius:8px;padding:11px;text-align:center;}
+.format-display-chip span{display:block;font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text-soft);text-transform:uppercase;}
+.format-display-chip strong{display:block;margin-top:5px;font-family:var(--mono);font-size:22px;color:var(--steel);}
+.format-value-note{background:var(--paper-2);border-radius:8px;padding:13px 15px;font-size:17px;line-height:1.3;color:var(--text);}
+
+.slide[data-slide="14"] .tax-format-content{margin-top:26px !important;padding-bottom:38px !important;}
+.slide[data-slide="14"] .tax-format-content h2{font-size:44px;line-height:1.04;}
+.slide[data-slide="14"] .tax-format-content .try-layout{margin-top:20px;gap:24px;}
+.slide[data-slide="14"] .tax-format-content .try-panel{padding:20px 22px;}
+.slide[data-slide="14"] .tax-format-content .try-panel h3{font-size:27px;margin-bottom:14px;}
+.tax-change-flow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:14px 0;}
+.tax-team-state{background:var(--paper-2);border:1px solid var(--border);border-radius:8px;padding:13px;text-align:center;}
+.tax-team-state.after{background:var(--formula-bg);border-color:var(--sage);}
+.tax-team-state span{display:block;font-family:var(--mono);font-size:14px;font-weight:700;text-transform:uppercase;color:var(--text-soft);}
+.tax-team-state strong{display:block;margin-top:5px;font-family:var(--serif);font-size:32px;color:var(--text);}
+.tax-change-arrow{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--terra);text-align:center;}
+.slide[data-slide="14"] .tax-format-content .try-formula{padding:12px 16px;font-size:17px;line-height:1.3;}
+.slide[data-slide="14"] .tax-format-content .try-meta{margin-top:12px;gap:8px;}
+.slide[data-slide="14"] .tax-format-content .pill{padding:7px 12px;font-size:15px;}
+.slide[data-slide="14"] .tax-format-content .try-steps{gap:10px;}
+.slide[data-slide="14"] .tax-format-content .try-step{padding:13px 16px;}
+.slide[data-slide="14"] .tax-format-content .try-step span{font-size:17px;line-height:1.3;}
+
+.slide[data-slide="18"] .percent-match-content{margin-top:24px !important;padding-bottom:34px !important;}
+.slide[data-slide="18"] .percent-match-content h2{padding:0;margin:0;font-size:42px;line-height:1.05;}
+.percent-match-message{display:flex;align-items:center;gap:14px;margin-top:14px;padding:12px 18px;background:var(--formula-bg);border-left:4px solid var(--sage);border-radius:0 8px 8px 0;color:var(--text);font-size:18px;line-height:1.3;}
+.percent-match-message strong{color:var(--steel);}
+.percent-match-workbook{margin-top:16px;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 14px 34px rgba(14,17,22,.07);}
+.percent-match-workbook .ws-toolbar{display:flex;align-items:center;gap:14px;padding:9px 14px;font-size:16px;}
+.percent-match-workbook .percent-fx{font-weight:700;color:var(--steel);}
+.percent-match-workbook .percent-formula-prompt{color:var(--text-soft);font-family:var(--sans);}
+.percent-match-grid{display:grid;grid-template-columns:42px 2fr .82fr .82fr 1.25fr .9fr;}
+.percent-match-workbook .ws-cell,.percent-match-workbook .ws-rnum{min-height:42px;padding:9px 10px;font-size:16px;display:flex;align-items:center;}
+.percent-match-workbook .ws-rnum{justify-content:center;}
+.percent-match-workbook .ws-cell.header{font-weight:700;}
+.percent-match-workbook .percent-question{font-family:var(--sans);font-weight:700;color:var(--text);white-space:normal;line-height:1.2;}
+.percent-match-workbook .percent-input{font-family:var(--mono);color:var(--text-soft);}
+.percent-match-workbook .percent-excel-formula{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
+.percent-match-workbook .percent-result{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;background:var(--paper-2);white-space:normal;}
+.percent-match-workbook .percent-result strong{font-family:var(--mono);font-size:18px;color:var(--text);}
+.percent-match-workbook .percent-result span{font-family:var(--sans);font-size:16px;color:var(--sage);font-weight:700;}
+.percent-match-workbook .percent-result.ratio{background:var(--formula-bg);}
+.percent-match-workbook .percent-case-row{min-height:68px;}
+.percent-match-footer{margin-top:10px;font-family:var(--mono);font-size:16px;color:var(--terra);font-weight:700;text-align:right;}
+
+.slide[data-slide="19"] .growth-decision-content{margin-top:22px !important;padding-bottom:32px !important;}
+.slide[data-slide="19"] .growth-decision-content h2{padding:0;margin:0;font-size:42px;line-height:1.05;}
+.growth-context{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:12px;padding:10px 16px;background:var(--paper-2);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;font-size:17px;line-height:1.25;color:var(--text);}
+.growth-context strong{color:var(--steel);}
+.growth-context .growth-start{font-family:var(--mono);font-weight:700;white-space:nowrap;color:var(--text);}
+.growth-comparison{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px;}
+.growth-lane{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:14px 16px;box-shadow:0 12px 28px rgba(14,17,22,.06);}
+.growth-lane-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.growth-lane-label{font-family:var(--mono);font-size:16px;font-weight:700;text-transform:uppercase;color:var(--sage);}
+.growth-lane.actual .growth-lane-label{color:var(--terra);}
+.growth-lane-question{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--text);text-align:right;line-height:1.2;}
+.growth-formula{margin-top:10px;padding:9px 14px !important;line-height:1.25 !important;}
+.growth-formula .fn{font-size:20px !important;margin-bottom:5px !important;}
+.growth-formula .comment{font-size:16px !important;}
+.growth-lane.actual .growth-formula{border-left-color:var(--terra);}
+.growth-result{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-top:10px;}
+.growth-result span{font-family:var(--mono);font-size:16px;font-weight:700;text-transform:uppercase;color:var(--text-soft);}
+.growth-result strong{font-family:var(--serif);font-size:28px;line-height:1;color:var(--sage);}
+.growth-lane.actual .growth-result strong{color:var(--terra);}
+.growth-decision{display:grid;grid-template-columns:150px 1fr 1.15fr 1.7fr;align-items:stretch;margin-top:14px;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--terra);border-radius:0 8px 8px 0;overflow:hidden;box-shadow:0 12px 28px rgba(14,17,22,.05);}
+.growth-status,.growth-gap,.growth-leadership{padding:11px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;gap:3px;}
+.growth-status{background:var(--terra);color:var(--white);}
+.growth-leadership{border-right:0;background:var(--paper-2);}
+.growth-status span,.growth-gap span,.growth-leadership strong{font-family:var(--mono);font-size:16px;font-weight:700;text-transform:uppercase;}
+.growth-status strong{font-family:var(--serif);font-size:25px;line-height:1;}
+.growth-gap span{color:var(--text-soft);}
+.growth-gap strong{font-family:var(--sans);font-size:18px;line-height:1.2;color:var(--text);}
+.growth-leadership strong{color:var(--terra);}
+.growth-leadership span{font-family:var(--sans);font-size:16px;line-height:1.2;color:var(--text);}
+
 </style>
 </head>
 <body>
@@ -858,24 +986,42 @@
     </div>
     <div class="content">
       <h2>Four Operations, Four Business Uses</h2>
-      <div style="display:flex; gap:40px; margin-top:40px;">
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">Addition</div>
-          <p style="font-size:var(--type-body); color:var(--text);">Sum revenue across client accounts or product lines</p>
-        </div>
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">Subtraction</div>
-          <p style="font-size:var(--type-body); color:var(--text);">Calculate net income after operating expenses</p>
-        </div>
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">Multiplication</div>
-          <p style="font-size:var(--type-body); color:var(--text);">Scale unit fee by volume of accounts or transactions</p>
-        </div>
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">Division</div>
-          <p style="font-size:var(--type-body); color:var(--text);">Find per-client, per-employee, or per-unit figures</p>
-        </div>
-      </div>
+      <table class="whole-operations-table" aria-label="Whole number operations, their business meanings, and Excel formulas">
+        <colgroup>
+          <col style="width:22%;">
+          <col style="width:50%;">
+          <col style="width:28%;">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Operation</th>
+            <th scope="col">Business Meaning</th>
+            <th scope="col">Excel Formula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Addition</td>
+            <td>Summing revenue across accounts</td>
+            <td class="formula">=SUM(B2:B10)<br>or =B2+B3</td>
+          </tr>
+          <tr>
+            <td>Subtraction</td>
+            <td>Net income = Revenue − Expenses</td>
+            <td class="formula">=B5 - C5</td>
+          </tr>
+          <tr>
+            <td>Multiplication</td>
+            <td>Total fees = Accounts × Fee per account</td>
+            <td class="formula">=B3 * C3</td>
+          </tr>
+          <tr>
+            <td>Division</td>
+            <td>Per-client fee = Total ÷ Client count</td>
+            <td class="formula">=B7 / C7</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -1028,62 +1174,96 @@
       <span class="eyebrow">Part 2 · Fractions</span>
       <div class="rule"></div>
     </div>
-    <div class="content" style="display:flex; gap:64px; align-items:flex-start;">
-      <div style="flex:1;">
-        <h2>Part of a Whole</h2>
-        <p style="margin-top:32px; margin-bottom:32px;">In business, fractions almost always ask: what share of the total does this piece represent? The denominator is always the whole — make sure you've defined the whole correctly before you calculate.</p>
-        <div class="numbered">
-          <div class="n">1</div>
-          <div class="n-body">Numerator = the piece you're measuring</div>
+    <div class="content fraction-anatomy-content">
+      <h2>A Fraction Means Part ÷ Whole</h2>
+
+      <div class="formula-panel fraction-excel-strip" aria-label="Excel formula two divided by six equals decimal zero point three three three three and displays as thirty-three point three percent">
+        <div class="fraction-excel-step">
+          <span class="step-label">Excel first · Part ÷ Whole</span>
+          <span class="fn">=2/6</span>
         </div>
-        <div style="height:24px;"></div>
-        <div class="numbered">
-          <div class="n">2</div>
-          <div class="n-body">Denominator = the total universe (the whole)</div>
+        <div class="fraction-excel-step">
+          <span class="step-label">Decimal value</span>
+          <span class="output">0.3333</span>
         </div>
-        <div style="height:24px;"></div>
-        <div class="numbered">
-          <div class="n">3</div>
-          <div class="n-body">Excel converts fractions to decimals automatically</div>
-        </div>
-      </div>
-      <div style="width:520px; flex-shrink:0;">
-        <div class="formula-panel">
-          <span class="comment">← Excel converts fraction to decimal</span><br>
-          <span class="fn">=2/6</span><span class="result">→ 0.3333...</span><br>
-          <span class="fn">=1/4</span><span class="result">→ 0.25</span><br>
-          <span class="fn">=5/9</span><span class="result">→ 0.5556</span><br><br>
-          <span class="comment">Format cell as Fraction or % as needed</span>
+        <div class="fraction-excel-step">
+          <span class="step-label">Percentage format</span>
+          <span class="output">33.3%</span>
+          <span class="output-note">Same value, different display</span>
         </div>
       </div>
+
+      <div class="fraction-story-grid">
+        <div class="advisor-scene" role="img" aria-label="Meridian Advisory Group has six advisors. Two Tax advisors are highlighted as the part, and all six advisors make up the whole.">
+          <div class="fraction-card-label">Meridian Advisory Group · 6 advisors</div>
+          <div class="advisor-grid">
+            <div class="advisor-tile tax"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Tax</span></div>
+            <div class="advisor-tile tax"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Tax</span></div>
+            <div class="advisor-tile"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Estate</span></div>
+            <div class="advisor-tile"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Estate</span></div>
+            <div class="advisor-tile"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Invest.</span></div>
+            <div class="advisor-tile"><svg aria-hidden="true" viewBox="0 0 42 54"><circle cx="21" cy="11" r="8" fill="currentColor"/><path d="M8 50V32c0-8 5-12 13-12s13 4 13 12v18H8Z" fill="currentColor"/></svg><span>Invest.</span></div>
+          </div>
+        </div>
+
+        <div class="fraction-anatomy-card" aria-label="Fraction anatomy: two Tax advisors is the numerator or part; six total advisors is the denominator or whole">
+          <div class="fraction-stack" aria-hidden="true">
+            <div class="fraction-number">2</div>
+            <div class="fraction-bar"></div>
+            <div class="fraction-number">6</div>
+          </div>
+          <div class="fraction-role-list">
+            <div class="fraction-role"><strong>Tax advisors</strong><span>Numerator · Part</span></div>
+            <div class="fraction-role"><strong>All advisors</strong><span>Denominator · Whole</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fraction-takeaway">Name the whole before you divide. If the whole changes, the denominator must change too.</div>
     </div>
   </section>
 
   <!-- ── 12 MERIDIAN FRACTIONS ── -->
   <section class="slide cream" data-label="13 Meridian Fractions" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
-      <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
+      <span class="eyebrow">Excel Skill · Number Formats</span>
       <div class="rule"></div>
     </div>
-    <div class="content">
-      <h2>Allocating the Advisory Team</h2>
-      <div style="display:flex; gap:48px; margin-top:40px;">
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--sage); margin-bottom:16px;">STARTING ALLOCATION · 6 ADVISORS</div>
-          <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Tax: 2 advisors → <strong>2/6 = 1/3</strong></p>
-          <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Estate: 2 advisors → <strong>2/6 = 1/3</strong></p>
-          <p style="font-size:var(--type-body); color:var(--text);">Investments: 2 advisors → <strong>2/6 = 1/3</strong></p>
+    <div class="content format-demo-content">
+      <h2>One Formula, Different Displays</h2>
+      <div class="format-demo-layout">
+        <div class="format-workbook-card" role="img" aria-label="Excel example table showing the same part divided by whole formula displayed as a number, a fraction, and a percentage">
+          <div class="ws-wrap">
+            <div class="ws-toolbar">
+              <div class="format-ribbon"><strong>Home</strong><span>Number Format</span><span class="format-dropdown">General ▾</span></div>
+              <span>fx &nbsp; =B2/C2</span>
+            </div>
+            <div class="ws-header-row" style="grid-template-columns:42px 190px 70px 70px 145px 112px;">
+              <div class="ws-cell header">&nbsp;</div><div class="ws-cell header">A</div><div class="ws-cell header">B</div><div class="ws-cell header">C</div><div class="ws-cell header">D</div><div class="ws-cell header">E</div>
+            </div>
+            <div class="ws-row" style="grid-template-columns:42px 190px 70px 70px 145px 112px;">
+              <div class="ws-rnum">1</div><div class="ws-cell" style="font-weight:700;">Display</div><div class="ws-cell" style="font-weight:700;">Part</div><div class="ws-cell" style="font-weight:700;">Whole</div><div class="ws-cell" style="font-weight:700;">Formula</div><div class="ws-cell" style="font-weight:700;">Result</div>
+            </div>
+            <div class="ws-row" style="grid-template-columns:42px 190px 70px 70px 145px 112px;">
+              <div class="ws-rnum">2</div><div class="ws-cell">Number</div><div class="ws-cell">2</div><div class="ws-cell">6</div><div class="ws-cell formula">=B2/C2</div><div class="ws-cell format-result format-selected">0.3333</div>
+            </div>
+            <div class="ws-row" style="grid-template-columns:42px 190px 70px 70px 145px 112px;">
+              <div class="ws-rnum">3</div><div class="ws-cell">Fraction</div><div class="ws-cell">2</div><div class="ws-cell">6</div><div class="ws-cell formula">=B3/C3</div><div class="ws-cell format-result">1/3</div>
+            </div>
+            <div class="ws-row" style="grid-template-columns:42px 190px 70px 70px 145px 112px;">
+              <div class="ws-rnum">4</div><div class="ws-cell">Percentage</div><div class="ws-cell">2</div><div class="ws-cell">6</div><div class="ws-cell formula">=B4/C4</div><div class="ws-cell format-result">33.3%</div>
+            </div>
+          </div>
         </div>
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--terra); margin-bottom:16px;">AFTER HIRING · 3 NEW TAX ADVISORS</div>
-          <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Tax: 5 advisors out of 9 total</p>
-          <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;"><strong>5/9 ≈ 0.556 = 55.6%</strong> of team capacity</p>
-          <p style="font-size:var(--type-body); color:var(--text-soft);">In Excel: <span style="font-family:var(--font-mono); background:#f1f5f9; padding:2px 8px; border-radius:4px;">=5/9</span> → format as % or decimal</p>
-        </div>
-        <div class="card" style="flex:1;">
-          <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--sage); margin-bottom:16px;">KEY QUESTION</div>
-          <p style="font-size:var(--type-body); color:var(--text);">What's the whole? 9 total advisors.</p>
-          <p style="font-size:var(--type-body); color:var(--text-soft); margin-top:12px;">Students who write 5/6 (old total) get the wrong answer. Always update the denominator when the whole changes.</p>
+
+        <div class="format-demo-steps">
+          <div class="format-demo-step"><strong>1 · Select</strong><span>Click the result cell you want to display differently.</span></div>
+          <div class="format-demo-step"><strong>2 · Open</strong><span>Home tab → Number Format dropdown.</span></div>
+          <div class="format-display-pair">
+            <div class="format-display-chip"><span>Fraction</span><strong>1/3</strong></div>
+            <div class="format-display-chip"><span>Percentage</span><strong>33.3%</strong></div>
+          </div>
+          <div class="format-value-note"><strong>Formatting changes the display—not the formula or stored value.</strong></div>
         </div>
       </div>
     </div>
@@ -1097,25 +1277,30 @@
       <span class="eyebrow">You Try It · Live Excel Pause</span>
       <div class="rule"></div>
     </div>
-    <div class="content">
-      <h2>Show the Tax Team Share</h2>
+    <div class="content tax-format-content">
+      <h2>Recalculate the Tax Team Share</h2>
       <div class="try-layout">
         <div class="try-panel">
-          <h3>The whole changed, so the denominator changes.</h3>
-          <p>After hiring, Meridian has <strong>5 Tax advisors</strong> out of <strong>9 total advisors</strong>. Use Excel to show Tax as a decimal and then as a percentage.</p>
+          <h3>The whole changed from 6 to 9</h3>
+          <div class="tax-change-flow" aria-label="Before hiring Meridian had two Tax advisors out of six total. After hiring three Tax advisors, Meridian has five Tax advisors out of nine total.">
+            <div class="tax-team-state"><span>Before</span><strong>2 of 6</strong></div>
+            <div class="tax-change-arrow">+3 Tax<br>advisors →</div>
+            <div class="tax-team-state after"><span>After</span><strong>5 of 9</strong></div>
+          </div>
           <div class="try-formula">
-            Same formula both times: part ÷ whole<br>
-            The display changes when you format as Percentage.
+            Use the same part ÷ whole formula in both yellow answer cells.<br>
+            Change only the number format.
           </div>
           <div class="try-meta">
-            <span class="pill">Numerator = 5</span>
-            <span class="pill">Denominator = 9</span>
+            <span class="pill">2 minutes</span>
+            <span class="pill">Deliverable · E10 and E11</span>
+            <span class="pill">Use cell references</span>
           </div>
         </div>
         <div class="try-steps">
-          <div class="try-step"><strong>Step 1</strong><span>Enter the part and whole in the Live You Try It tab.</span></div>
-          <div class="try-step"><strong>Step 2</strong><span>Write the decimal formula using cell references.</span></div>
-          <div class="try-step"><strong>Step 3</strong><span>Format the matching percent cell as Percentage.</span></div>
+          <div class="try-step"><strong>Step 1</strong><span>Use the new team counts already shown in rows 10–11: part = 5 and whole = 9.</span></div>
+          <div class="try-step"><strong>Step 2</strong><span>Enter the same cell-reference formula in both yellow answer cells.</span></div>
+          <div class="try-step"><strong>Step 3</strong><span>Format E10 as Fraction and E11 as Percentage with one decimal place.</span></div>
         </div>
       </div>
     </div>
@@ -1180,93 +1365,102 @@
   <!-- ── 16 EXCEL PERCENT SYNTAX ── -->
   <section class="slide cream" data-label="18 Excel Percents" data-section="3" data-slide="18" data-index="17">
     <div class="header-row">
-      <span class="eyebrow">Excel First · Percent Formulas</span>
+      <span class="eyebrow">Excel First · Choose the Formula</span>
       <div class="rule"></div>
     </div>
-    <div class="content two-col" style="gap:56px;">
-      <div class="col">
-        <h2>Percent Formulas in Excel</h2>
-        <p style="margin-top:24px; margin-bottom:32px;">Format the result cell as <strong>Percentage</strong>. Do not multiply by 100 manually — Excel's format handles the display automatically.</p>
-        <div class="formula-panel">
-          <div class="percent-formula-row">
-            <span class="comment">Case 1 — percent of whole</span>
-            <span><span class="fn">=B2 * B3</span><span class="comment">← whole * rate</span></span>
-          </div>
-          <div class="percent-formula-row">
-            <span class="comment">Case 2 — percent change</span>
-            <span><span class="fn">=(B5 - B4) / B4</span><span class="comment">← (new−old)/old</span></span>
-          </div>
-          <div class="percent-formula-row">
-            <span class="comment">Case 3 — ratio as percent</span>
-            <span><span class="fn">=B7 / B8</span><span class="comment">← part/whole → format %</span></span>
-          </div>
+    <div class="content percent-match-content">
+      <h2>Match the Question to the Formula</h2>
+      <div class="percent-match-message">
+        <strong>Teaching message</strong>
+        <span>The business question chooses the formula. Number formatting controls how the result appears.</span>
+      </div>
+
+      <div class="percent-match-workbook" role="img" aria-label="Excel-style table matching three percent business questions to their cell-reference formulas and formatted results">
+        <div class="ws-toolbar">
+          <span class="percent-fx">fx</span>
+          <span class="percent-formula-prompt">Read across: business question → cell references → formatted result</span>
+        </div>
+        <div class="ws-header-row percent-match-grid">
+          <div class="ws-cell header">&nbsp;</div>
+          <div class="ws-cell header">A · Business Question</div>
+          <div class="ws-cell header">B · Value 1</div>
+          <div class="ws-cell header">C · Value 2</div>
+          <div class="ws-cell header">D · Excel Formula</div>
+          <div class="ws-cell header">E · Result</div>
+        </div>
+        <div class="ws-row percent-match-grid percent-case-row">
+          <div class="ws-rnum">2</div>
+          <div class="ws-cell percent-question">What is 15% of $80,000?</div>
+          <div class="ws-cell percent-input">$80,000</div>
+          <div class="ws-cell percent-input">15%</div>
+          <div class="ws-cell percent-excel-formula">=B2*C2</div>
+          <div class="ws-cell percent-result"><strong>$12,000</strong><span>Currency</span></div>
+        </div>
+        <div class="ws-row percent-match-grid percent-case-row">
+          <div class="ws-rnum">3</div>
+          <div class="ws-cell percent-question">How much did revenue change?</div>
+          <div class="ws-cell percent-input">$200,000</div>
+          <div class="ws-cell percent-input">$230,000</div>
+          <div class="ws-cell percent-excel-formula">=(C3-B3)/B3</div>
+          <div class="ws-cell percent-result ratio"><strong>15.0%</strong><span>Percentage</span></div>
+        </div>
+        <div class="ws-row percent-match-grid percent-case-row result-row">
+          <div class="ws-rnum">4</div>
+          <div class="ws-cell percent-question">What percent of clients renewed?</div>
+          <div class="ws-cell percent-input">4</div>
+          <div class="ws-cell percent-input">25</div>
+          <div class="ws-cell percent-excel-formula">=B4/C4</div>
+          <div class="ws-cell percent-result ratio"><strong>16.0%</strong><span>Percentage</span></div>
         </div>
       </div>
-      <div class="col" style="display:flex; align-items:center;">
-        <div class="ws-wrap" style="width:100%;">
-          <div class="ws-toolbar">fx &nbsp; =(B5-B4)/B4</div>
-          <div class="ws-header-row" style="grid-template-columns:48px 1fr 1fr;">
-            <div class="ws-cell header">&nbsp;</div>
-            <div class="ws-cell header">A</div>
-            <div class="ws-cell header">B</div>
-          </div>
-          <div class="ws-row" style="grid-template-columns:48px 1fr 1fr;">
-            <div class="ws-rnum">1</div>
-            <div class="ws-cell" style="font-weight:600; color:#1a1a2e;">Label</div>
-            <div class="ws-cell" style="font-weight:600; color:#1a1a2e;">Value</div>
-          </div>
-          <div class="ws-row" style="grid-template-columns:48px 1fr 1fr;">
-            <div class="ws-rnum">4</div>
-            <div class="ws-cell">Prior Year AUM Fees</div>
-            <div class="ws-cell">$1,200,000</div>
-          </div>
-          <div class="ws-row" style="grid-template-columns:48px 1fr 1fr; background:#f7f8fa;">
-            <div class="ws-rnum">5</div>
-            <div class="ws-cell">Projected Fees (+7.5%)</div>
-            <div class="ws-cell formula">=B4*(1+0.075)</div>
-          </div>
-          <div class="ws-row result-row" style="grid-template-columns:48px 1fr 1fr;">
-            <div class="ws-rnum">6</div>
-            <div class="ws-cell" style="font-weight:600; color:#1a1a2e;">% Change Check</div>
-            <div class="ws-cell formula">=(B5-B4)/B4</div>
-          </div>
-        </div>
-      </div>
+      <div class="percent-match-footer">Do not multiply by 100 — use Percentage formatting</div>
     </div>
   </section>
 
   <!-- ── 17 MERIDIAN PERCENTS ── -->
   <section class="slide cream" data-label="19 Meridian Percents" data-section="3" data-slide="19" data-index="18">
     <div class="header-row">
-      <span class="eyebrow">Worked Example · Meridian Advisory Group</span>
+      <span class="eyebrow">Business Decision · Meridian Advisory Group</span>
       <div class="rule"></div>
     </div>
-    <div class="content">
-      <h2>AUM Fee Growth — Forward and Backward</h2>
-      <div style="display:flex; gap:48px; margin-top:40px;">
-        <div style="flex:1;">
-          <div class="card">
-            <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--sage); margin-bottom:12px;">FORWARD · Project with given rate</div>
-            <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Prior year fees: <strong>$1,200,000</strong></p>
-            <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Projected growth: <strong>7.5%</strong></p>
-            <p style="font-size:var(--type-body); color:var(--text);">In Excel: <span style="font-family:var(--font-mono); background:#f1f5f9; padding:2px 8px; border-radius:4px;">=1200000*(1+0.075)</span> = <strong>$1,290,000</strong></p>
+    <div class="content growth-decision-content">
+      <h2>Did Meridian Hit Its Growth Target?</h2>
+      <div class="growth-context">
+        <span>Managers use percentages to <strong>set a goal</strong> and then <strong>evaluate performance</strong>.</span>
+        <span class="growth-start">Starting fees · $1,200,000</span>
+      </div>
+
+      <div class="growth-comparison" aria-label="Comparison of Meridian's planned fee growth and actual fee growth">
+        <div class="growth-lane plan">
+          <div class="growth-lane-header">
+            <span class="growth-lane-label">1 · Plan</span>
+            <span class="growth-lane-question">What should happen at 7.5% growth?</span>
           </div>
-        </div>
-        <div style="flex:1;">
-          <div class="card">
-            <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--terra); margin-bottom:12px;">BACKWARD · Compute actual rate</div>
-            <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">Actual fees came in: <strong>$1,255,000</strong></p>
-            <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">In Excel: <span style="font-family:var(--font-mono); background:#f1f5f9; padding:2px 8px; border-radius:4px;">=(1255000-1200000)/1200000</span></p>
-            <p style="font-size:var(--type-body); color:var(--text);">= <strong>0.0458 = 4.58%</strong> — below target</p>
+          <div class="formula-panel growth-formula">
+            <span class="fn">=B2*(1+C2)</span>
+            <span class="comment">$1,200,000 × (1 + 7.5%)</span>
           </div>
+          <div class="growth-result"><span>Target fees</span><strong>$1,290,000</strong></div>
         </div>
-        <div style="flex:1;">
-          <div class="card">
-            <div style="font-family:var(--font-mono); font-size:var(--type-small); color:var(--gold); margin-bottom:12px;">THE RULE</div>
-            <p style="font-size:var(--type-body); color:var(--text); margin-bottom:12px;">The base (denominator) in percent change is <strong>always the older / earlier number.</strong></p>
-            <p style="font-size:var(--type-body); color:var(--text-soft);">Flipping numerator and denominator gives you the wrong answer — always verify which number is the starting point.</p>
+
+        <div class="growth-lane actual">
+          <div class="growth-lane-header">
+            <span class="growth-lane-label">2 · Evaluate</span>
+            <span class="growth-lane-question">What growth did $1,255,000 produce?</span>
           </div>
+          <div class="formula-panel growth-formula">
+            <span class="fn">=(B4-B2)/B2</span>
+            <span class="comment">Earlier value B2 is the denominator</span>
+          </div>
+          <div class="growth-result"><span>Actual growth</span><strong>4.58%</strong></div>
         </div>
+      </div>
+
+      <div class="growth-decision" aria-label="Business conclusion: Meridian finished below its growth plan">
+        <div class="growth-status"><span>Conclusion</span><strong>Off Plan</strong></div>
+        <div class="growth-gap"><span>Revenue gap</span><strong>$35,000 below target</strong></div>
+        <div class="growth-gap"><span>Growth gap</span><strong>2.92 percentage points</strong></div>
+        <div class="growth-leadership"><strong>Leadership question</strong><span>What should Meridian investigate before revising its next forecast?</span></div>
       </div>
     </div>
   </section>

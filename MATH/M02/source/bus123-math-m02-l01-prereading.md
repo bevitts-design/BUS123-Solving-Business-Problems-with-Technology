@@ -142,13 +142,13 @@ Answer each question before looking at the answer key below. Show your equation 
 
 1. What is the Golden Rule of equation solving?
 2. Solve: `x + 480 = 1,250`. What is `x`?
-3. Solve: `12x = 900`. What is `x`?
-4. Solve: `5x + 75 = 450`. What is `x`?
-5. Solve: `400 + 30n = 100 + 60n`. What is `n`?
-6. Using `FC = R - VC`, if R = $22,400 and VC = $14,900, what is FC?
-7. Anchor & Oak earned $5,400 on a private dinner. Labor cost $28/hour and the event lasted 15 hours. The remaining revenue covers venue and supplies. Write and solve the equation to find non-labor revenue.
+3. Solve: `5x + 75 = 450`. What is `x`?
+4. Solve: `400 + 30n = 100 + 60n`. What is `n`?
+5. Using `FC = R - VC`, if R = $22,400 and VC = $14,900, what is FC? Explain what the result means for the business.
 
 ---
+
+<!-- page break -->
 
 ### Answer Key · Check Your Understanding
 
@@ -156,11 +156,9 @@ Answer each question before looking at the answer key below. Show your equation 
 |---|--------|
 | **1** | Whatever operation you apply to one side of an equation, you must apply to the other side. |
 | **2** | `x = 1,250 − 480` = **770** |
-| **3** | `x = 900 / 12` = **75** |
-| **4** | Step 1: `5x = 450 − 75 = 375`. Step 2: `x = 375 / 5` = **75** |
-| **5** | Subtract 30n from both sides: `400 = 100 + 30n`. Subtract 100: `300 = 30n`. Divide: **n = 10** |
-| **6** | `FC = 22,400 − 14,900` = **$7,500** |
-| **7** | Total revenue = $5,400. Labor = $28 × 15 = $420. Equation: `x + 420 = 5,400`. **x = $4,980** (non-labor revenue) |
+| **3** | Step 1: `5x = 450 − 75 = 375`. Step 2: `x = 375 / 5` = **75** |
+| **4** | Subtract 30n from both sides: `400 = 100 + 30n`. Subtract 100: `300 = 30n`. Divide: **n = 10** |
+| **5** | `FC = 22,400 − 14,900` = **$7,500**. The business can spend up to $7,500 on fixed costs and still break even at the projected revenue and variable-cost levels. |
 
 ---
 

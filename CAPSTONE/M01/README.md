@@ -1,6 +1,6 @@
-# BUS123 Capstone M01 Example Project
+# BUS123 Capstone M01
 
-This folder contains a draft example capstone project for BUS123.
+This folder contains the public, student-facing Northstar Athletic Studio finance capstone for BUS123.
 
 ## Student-facing files
 
@@ -11,4 +11,6 @@ This folder contains a draft example capstone project for BUS123.
 
 - `source/bus123-capstone-m01-l01-project.md`: editable source for the project handout content.
 
-This example is not wired into `course-map.json` yet. Add it to the public course map only when it is ready to be released in the student sequence.
+The lesson is registered in `course-map.json` as Capstone M01. Its public visibility is controlled through the course map and Mission Control.
+
+Instructor notes, the completed reference workbook, and grading support belong in the private `BUS123-instructor` repository.

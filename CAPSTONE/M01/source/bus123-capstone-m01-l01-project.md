@@ -4,7 +4,7 @@ track: capstone
 module: M01
 lesson: L01
 title: Northstar Athletic Studio Finance Capstone
-status: example
+status: student-facing
 student_facing: true
 ---
 

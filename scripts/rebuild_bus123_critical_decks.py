@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import html
 import json
+import argparse
 from pathlib import Path
 
 
@@ -127,6 +128,18 @@ h3{font:700 var(--type-subtitle)/1.08 var(--serif);letter-spacing:0}
 .quote{font:700 62px/.98 var(--serif);max-width:900px;color:var(--paper)}
 .question-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
 .question-grid div{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:30px;font:700 var(--type-lead)/1.28 var(--sans)}
+.lesson-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;font:500 17px/1.24 var(--sans)}
+.lesson-table th{background:var(--ink);color:var(--gold);font:700 15px/1.15 var(--mono);letter-spacing:.04em;text-align:left;padding:12px 14px;border-right:1px solid rgba(255,255,255,.18)}
+.lesson-table td{padding:11px 14px;border-top:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle}
+.lesson-table th:last-child,.lesson-table td:last-child{border-right:0}
+.lesson-table .formula{background:var(--formula-bg);color:var(--steel);font:700 16px/1.22 var(--mono)}
+.lesson-table .result{color:var(--sage);font-weight:700}
+.lesson-table .warning{background:var(--paper-2);color:var(--terra);font-weight:700}
+.activity-strip{display:grid;grid-template-columns:1.15fr 1.45fr .62fr 1.05fr;gap:12px;margin-top:18px}
+.activity-strip div{background:var(--paper-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.activity-strip strong{display:block;color:var(--sage);font:700 13px/1 var(--mono);letter-spacing:.07em;text-transform:uppercase;margin-bottom:6px}
+.activity-strip span{font:600 16px/1.25 var(--sans);color:var(--text-soft)}
+.decision-line{margin-top:16px;padding:14px 18px;border-left:4px solid var(--gold);background:var(--paper-2);font:700 19px/1.25 var(--sans);color:var(--text)}
 .nav{position:fixed;right:22px;bottom:18px;z-index:40;display:flex;gap:8px}
 .nav button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.55);color:#fff;font:700 20px/1 var(--sans);cursor:pointer}
 .counter{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:40;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:8px 15px;font:700 12px/1 var(--mono);letter-spacing:.08em}
@@ -292,68 +305,79 @@ def build_intro() -> tuple[list[str], list[str]]:
 
 def build_math() -> tuple[list[str], list[str]]:
     notes = [
-        "Open by framing this as a pricing decision lesson. Students are not just calculating percentages; they are deciding whether a price can cover cost, waste, and event overhead for Anchor and Oak.",
-        "Preview the three-part path: markup, markdown, and break-even. Keep the sequence simple because the formulas build on one another.",
-        "Read the objectives and emphasize interpretation. Students need to know what the percentage is based on before trusting an answer.",
-        "Use the Anchor and Oak image as the bridge. Event pricing is a good case because capacity, timing, perishability, and labor all matter at the same time.",
-        "Start part one by naming the central question: if we know cost and markup, can we set a price that makes sense?",
-        "Walk through the terms slowly. Cost, selling price, and gross profit are not interchangeable. The formulas only work when the base is clear.",
-        "Show Excel syntax first, then the manual math. This models the course pattern: spreadsheet function or formula first, then the calculation logic underneath.",
-        "Use the mini worksheet to make markup feel like a workbook row. Ask students what would change if the markup rate changed.",
-        "Transition to markdowns. The business reason changes: now the issue is demand, timing, and inventory that may lose value.",
-        "Anchor markdowns in event decisions. Unsold seats, perishable supplies, and late promotions all turn time into a pricing pressure.",
-        "Again, show the Excel expression first. Then show the manual selling price after the markdown. Emphasize that markdown is taken from the original selling price.",
-        "Use this comparison to separate markup from markdown. One begins with cost and builds up. The other begins with price and moves down.",
-        "This is the student decision prompt. Let them vote before revealing the logic. The point is not a single right instinct; it is naming the tradeoff.",
-        "Move to break-even. This is the moment where pricing and cost structure meet.",
-        "Define fixed cost, variable cost, selling price, and contribution margin. These terms will come back in later workbook work.",
-        "Show the contribution margin formula first, then break-even units. Students need to see how price and variable cost connect before solving for volume.",
-        "Use the chart as the visual anchor. Break-even is the point where revenue catches total cost. Everything before it is pressure; everything after it creates profit.",
-        "Pause on the required common mistake. Students often mix percent bases or divide by price when the formula needs contribution margin.",
-        "Use these questions to make the lesson conversational. The best answer should mention both math and business context.",
-        "Close with three durable takeaways. Keep markup, markdown, and break-even separate in their minds.",
-        "Preview the next lesson as a shift from price decisions to costs that change over time and people.",
-        "End with the office-hours prompt and the workbook setup. Students should bring questions about bases, not just arithmetic.",
+        "Open by framing this as a pricing decision lesson. Students are deciding whether a price can cover cost, waste, and event overhead for Anchor & Oak. Ask for one risk of pricing too low and one risk of pricing too high. Allow 2 minutes.",
+        "Preview the three-part path: markup, markdown, and break-even. Emphasize that the formulas build on one another and that every percentage needs a named base. Allow 1 minute.",
+        "Read the objectives and emphasize interpretation. Students should be able to explain why a formula fits the business question, not only produce a number. Allow 2 minutes.",
+        "Use the Anchor & Oak image as the bridge. Event pricing combines capacity, timing, perishability, and labor. Ask which factor feels least predictable. Allow 3 minutes.",
+        "Start part one with the central question: if we know cost and markup, can we set a price that makes sense? Keep this transition brief. Allow 1 minute.",
+        "Reinforce the reading table. The $8.10 markup amount is unchanged, but the reported percentage changes because the denominator changes. Formative answer: 45% uses cost as the base; 31% uses selling price. Likely misconception: treating the two rates as interchangeable. Allow 5 minutes.",
+        "Model the Excel formula and the manual calculation. Ask students to identify the base before substituting numbers. Formative answer: cost is the base, so $18 x 1.45 = $26.10. Allow 4 minutes.",
+        "Live You Try It. Students enter =C5*(1+C6) in D7 and should get $26.10. Have partners compare formulas, not just answers. Likely misconception: typing 45 instead of 45%. Debrief by naming the cell that contains the base. Allow 4 minutes.",
+        "Transition to markdowns. The business reason changes from building a price to responding to demand, timing, and inventory that may lose value. Allow 1 minute.",
+        "Anchor markdowns in event decisions. Unsold seats and perishable supplies turn time into pricing pressure. Ask which pressure a discount can address and which it cannot. Allow 3 minutes.",
+        "Model =OriginalPrice*(1-MarkdownRate). Formative answer: $52 x 0.80 = $41.60. Likely misconception: subtracting 20 percentage points or applying the rate to cost. Allow 4 minutes.",
+        "Live You Try It. Students enter =C8*(1-C9) in D10 and should get $41.60. Ask them to point to the original-price base. Debrief by contrasting the minus sign here with the plus sign in markup. Allow 4 minutes.",
+        "Reinforce the reading's waste-adjusted model. Confirm 102 sellable units, $3,132 target revenue, and $30.71 required price. Then ask whether the market will accept that price. Likely misconception: spreading revenue across all 120 produced units. Allow 7 minutes.",
+        "Move to break-even. This is where pricing and cost structure meet. Keep the transition brief. Allow 1 minute.",
+        "Define fixed cost, variable cost, selling price, and contribution margin. Ask which costs continue even if no guests attend. Formative answer: fixed costs. Allow 4 minutes.",
+        "Show contribution margin first, then ROUNDUP for break-even units. Formative answer: $48 - $27 = $21 per guest; $3,600 / $21 = 171.4, so 172 guests. Likely misconception: rounding down. Allow 5 minutes.",
+        "Live You Try It. Students verify the boundary: 171 guests contribute $3,591, which is $9 short; 172 contribute $3,612, which is $12 over. Deliverable: D14, D15, and one sentence explaining why 172 is required. Allow 6 minutes.",
+        "Pause on the common mistake. Students often mix percent bases or divide fixed costs by selling price instead of contribution margin. Ask them to correct one wrong move aloud. Allow 3 minutes.",
+        "Use the questions to make the lesson conversational. Strong answers mention both the calculation and market context. Invite one argument for discounting and one against it. Allow 5 minutes.",
+        "Close with three durable takeaways. Ask students to name the base for markup, markdown, and break-even in order. Allow 3 minutes.",
+        "Preview the next lesson as a shift from price decisions to costs that change over time and people. Remind students that the habit of naming units and bases carries forward. Allow 2 minutes.",
+        "End with the office-hours prompt and workbook setup. Exit ticket: name one base, one formula, and one decision the formula supports. Allow 2 minutes.",
     ]
     s = [
         slide(1, 0, "dark", "Title", '<div class="eyebrow">BUS123 · MATH-M04-L01</div><h1>Markups, Markdowns, and Break-Even</h1><p class="subtitle">From cost to price decisions at Anchor & Oak Events.</p><div class="title-meta"><span>Business Math</span><span>Anchor & Oak Events</span><span>Fall 2026</span></div>'),
-        slide(2, 0, "", "Agenda", header("Today", "Three pricing questions guide the lesson.") + '<div class="grid-3" style="margin-top:38px"><div class="card"><strong>01 Markup</strong><p>How do we turn cost into a selling price?</p></div><div class="card"><strong>02 Markdown</strong><p>How do demand, timing, and waste pressure price?</p></div><div class="card"><strong>03 Break-even</strong><p>How many sales are needed before profit begins?</p></div></div>'),
-        slide(3, 0, "", "Objectives", header("I can", "By the end of class, you can do four things.") + '<div style="margin-top:32px"><div class="numbered"><div class="n">01</div><div class="n-body">Calculate markup from cost and selling price.</div></div><div class="numbered"><div class="n">02</div><div class="n-body">Calculate markdowns from original selling price.</div></div><div class="numbered"><div class="n">03</div><div class="n-body">Use contribution margin to estimate break-even units.</div></div><div class="numbered"><div class="n">04</div><div class="n-body">Explain how pricing assumptions affect an event decision.</div></div></div>'),
-        slide(4, 0, "", "Bridge", header("Anchor & Oak Events", "Event pricing has to cover more than food.") + '<div class="two-col" style="margin-top:28px"><div><p class="lead">A ticket price has to absorb vendor cost, staffing, setup, unsold capacity, and the risk of perishable inventory. A small pricing error can move the entire event from profit to loss.</p></div><div class="image-card"><img src="img/bus123-math-m04-l01-anchor-oak-events-wide.png" alt="Anchor and Oak Events visual"></div></div>'),
+        slide(2, 0, "", "Agenda", header("Today", "Three pricing questions guide the lesson") + '<div class="grid-3" style="margin-top:38px"><div class="card"><strong>01 Markup</strong><p>How do we turn cost into a selling price?</p></div><div class="card"><strong>02 Markdown</strong><p>How do demand, timing, and waste pressure price?</p></div><div class="card"><strong>03 Break-even</strong><p>How many sales are needed before profit begins?</p></div></div>'),
+        slide(3, 0, "", "Objectives", header("I can", "By the end of class, you can do four things") + '<div style="margin-top:32px"><div class="numbered"><div class="n">01</div><div class="n-body">Calculate markup from cost and selling price.</div></div><div class="numbered"><div class="n">02</div><div class="n-body">Calculate markdowns from original selling price.</div></div><div class="numbered"><div class="n">03</div><div class="n-body">Use contribution margin to estimate break-even units.</div></div><div class="numbered"><div class="n">04</div><div class="n-body">Explain how pricing assumptions affect an event decision.</div></div></div>'),
+        slide(4, 0, "", "Bridge", header("Anchor & Oak Events", "Event pricing has to cover more than food") + '<div class="two-col" style="margin-top:28px"><div><p class="lead">A ticket price has to absorb vendor cost, staffing, setup, unsold capacity, and the risk of perishable inventory. A small pricing error can move the entire event from profit to loss.</p></div><div class="image-card"><img src="img/bus123-math-m04-l01-anchor-oak-events-wide.png" alt="Anchor and Oak Events visual"></div></div>'),
         slide(5, 1, "dark section", "Part 1", '<div class="eyebrow">Part 1 of 3</div><h1>Markup: Turning Cost Into Price</h1><p class="subtitle">The first job is knowing what base the percentage is using.</p>'),
-        slide(6, 1, "", "Terms", header("Markup terms", "Keep the base clear before calculating.") + '<div class="grid-3" style="margin-top:30px"><div class="card"><strong>COST</strong><p>What Anchor & Oak pays for food, rentals, supplies, or services.</p></div><div class="card"><strong>SELLING PRICE</strong><p>What the customer pays for the package, ticket, or item.</p></div><div class="card"><strong>GROSS PROFIT</strong><p>The difference between selling price and cost before overhead.</p></div></div>'),
-        slide(7, 1, "", "Markup Formula", header("Excel first", "Markup builds up from cost.") + '<div class="formula-panel"><span class="fn">=Cost*(1+MarkupRate)</span>Cost $18.00; markup rate 45%; selling price <span class="result">$26.10</span>.</div><p class="lead">Manual math: $18.00 + ($18.00 x 45%) = $18.00 + $8.10 = $26.10.</p>'),
-        slide(8, 1, "", "Markup Worksheet", header("Worksheet row", "A pricing model makes the base visible.") + '<div class="two-col" style="margin-top:28px"><div class="mini-sheet"><div class="sheet-grid"><span class="head">Item</span><span class="head">Cost</span><span class="head">Markup</span><span class="head">Price</span><span>Dessert cup</span><span>$18.00</span><span>45%</span><span class="result">$26.10</span><span class="alt">Table favor</span><span class="alt">$6.50</span><span class="alt">55%</span><span class="result">$10.08</span></div></div><div><p class="lead">The formula is not the whole decision. Anchor & Oak still has to ask whether customers will accept the price.</p></div></div>'),
+        slide(6, 1, "", "Markup Bases", header("One markup amount, two rates", "The denominator changes what the percentage means") + '<table class="lesson-table" style="margin-top:24px"><thead><tr><th>Measure</th><th>Formula</th><th>Example</th></tr></thead><tbody><tr><td>Markup amount</td><td class="formula">=SellingPrice-Cost</td><td class="result">$8.10</td></tr><tr><td>Markup on cost</td><td class="formula">=MarkupAmount/Cost</td><td class="result">45%</td></tr><tr><td>Markup on selling price</td><td class="formula">=MarkupAmount/SellingPrice</td><td class="result">31%</td></tr></tbody></table><div class="decision-line">Same $8.10 markup amount. Different bases. Different percentages.</div>'),
+        slide(7, 1, "", "Markup Formula", header("Excel first", "Markup builds up from cost") + '<div class="formula-panel"><span class="fn">=Cost*(1+MarkupRate)</span>Cost $18.00; markup rate 45%; selling price <span class="result">$26.10</span>.</div><p class="lead">Manual math: $18.00 + ($18.00 x 45%) = $18.00 + $8.10 = $26.10.</p>'),
+        slide(8, 1, "", "Live You Try It", header("Live You Try It", "Build the selling-price formula in the starter workbook") + '<div class="mini-sheet" style="margin-top:20px"><div class="sheet-grid"><span class="head">Item</span><span class="head">Cost</span><span class="head">Markup</span><span class="head">Price</span><span>Dessert cup</span><span>$18.00</span><span>45%</span><span class="result">$26.10</span></div></div><div class="activity-strip"><div><strong>What</strong><span>Calculate selling price</span></div><div><strong>How</strong><span>Use C5 and C6; enter the formula in D7</span></div><div><strong>Time</strong><span>2 min</span></div><div><strong>Deliverable</strong><span>Formula + $26.10 check</span></div></div>'),
         slide(9, 2, "dark section", "Part 2", '<div class="eyebrow">Part 2 of 3</div><h1>Markdowns and Perishables</h1><p class="subtitle">Event businesses price for demand, timing, and waste.</p>'),
-        slide(10, 2, "", "Markdown Pressure", header("Markdown pressure", "Late demand changes the pricing question.") + '<div class="grid-3" style="margin-top:30px"><div class="card"><strong>Demand</strong><p>Will enough seats fill before the event?</p></div><div class="card"><strong>Timing</strong><p>How late is the promotion or discount?</p></div><div class="card"><strong>Waste</strong><p>What supplies or capacity expire if unsold?</p></div></div>'),
-        slide(11, 2, "", "Markdown Formula", header("Excel first", "Markdown moves down from the original price.") + '<div class="formula-panel"><span class="fn">=OriginalPrice*(1-MarkdownRate)</span>Original price $52.00; markdown rate 20%; sale price <span class="result">$41.60</span>.</div><p class="lead">Manual math: $52.00 - ($52.00 x 20%) = $52.00 - $10.40 = $41.60.</p>'),
-        slide(12, 2, "", "Markup vs Markdown", header("Do not mix the bases", "Markup and markdown point in opposite directions.") + '<div class="grid-2" style="margin-top:32px"><div class="card"><strong>Markup</strong><p>Starts with cost and builds up to selling price.</p></div><div class="card"><strong>Markdown</strong><p>Starts with selling price and moves down to a sale price.</p></div></div>'),
-        slide(13, 2, "", "Decision Prompt", header("Decision prompt", "Should Anchor & Oak discount empty seats?") + '<div class="grid-3" style="margin-top:30px"><div class="card"><strong>Option A</strong><p>Hold price and protect brand position.</p></div><div class="card"><strong>Option B</strong><p>Discount late and recover some contribution.</p></div><div class="card"><strong>Option C</strong><p>Bundle extras instead of lowering the ticket.</p></div></div>'),
+        slide(10, 2, "", "Markdown Pressure", header("Markdown pressure", "Late demand changes the pricing question") + '<div class="grid-3" style="margin-top:30px"><div class="card"><strong>Demand</strong><p>Will enough seats fill before the event?</p></div><div class="card"><strong>Timing</strong><p>How late is the promotion or discount?</p></div><div class="card"><strong>Waste</strong><p>What supplies or capacity expire if unsold?</p></div></div>'),
+        slide(11, 2, "", "Markdown Formula", header("Excel first", "Markdown moves down from the original price") + '<div class="formula-panel"><span class="fn">=OriginalPrice*(1-MarkdownRate)</span>Original price $52.00; markdown rate 20%; sale price <span class="result">$41.60</span>.</div><p class="lead">Manual math: $52.00 - ($52.00 x 20%) = $52.00 - $10.40 = $41.60.</p>'),
+        slide(12, 2, "", "Live You Try It", header("Live You Try It", "Calculate the discounted ticket price in the starter workbook") + '<div class="mini-sheet" style="margin-top:20px"><div class="sheet-grid"><span class="head">Offer</span><span class="head">Original price</span><span class="head">Markdown</span><span class="head">Sale price</span><span>Late ticket</span><span>$52.00</span><span>20%</span><span class="result">$41.60</span></div></div><div class="activity-strip"><div><strong>What</strong><span>Calculate sale price</span></div><div><strong>How</strong><span>Use C8 and C9; enter the formula in D10</span></div><div><strong>Time</strong><span>2 min</span></div><div><strong>Deliverable</strong><span>Formula + $41.60 check</span></div></div>'),
+        slide(13, 2, "", "Waste-Adjusted Model", header("Waste changes the required price", "Carry the reading model into a market decision") + '<table class="lesson-table" style="margin-top:16px;font-size:15px"><thead><tr><th>Input or result</th><th>Value</th><th>Excel logic</th></tr></thead><tbody><tr><td>Produced units</td><td>120</td><td class="formula">Input</td></tr><tr><td>Cost per unit</td><td>$18.00</td><td class="formula">Input</td></tr><tr><td>Markup rate</td><td>45%</td><td class="formula">Input</td></tr><tr><td>Waste rate</td><td>15%</td><td class="formula">Input</td></tr><tr><td>Sellable units</td><td class="result">102</td><td class="formula">=120*(1-15%)</td></tr><tr><td>Target revenue</td><td class="result">$3,132.00</td><td class="formula">=120*$18*(1+45%)</td></tr><tr><td>Required price</td><td class="result">$30.71</td><td class="formula">=$3,132/102</td></tr></tbody></table><div class="decision-line">Decision: can Anchor & Oak sell 102 packages at $30.71 each?</div>'),
         slide(14, 3, "dark section", "Part 3", '<div class="eyebrow">Part 3 of 3</div><h1>Break-Even</h1><p class="subtitle">How many sales does it take before profit begins?</p>'),
-        slide(15, 3, "", "Break-Even Terms", header("Break-even terms", "Separate costs that stay fixed from costs that move.") + '<div class="grid-4" style="margin-top:30px"><div class="card"><strong>FC</strong><p>Fixed costs: venue, permit, base staffing, insurance.</p></div><div class="card"><strong>VC</strong><p>Variable cost per guest: food, materials, service labor.</p></div><div class="card"><strong>S</strong><p>Selling price per guest or unit.</p></div><div class="card"><strong>CM</strong><p>Contribution margin: selling price minus variable cost.</p></div></div>'),
-        slide(16, 3, "", "Break-Even Formula", header("Excel first", "Break-even divides fixed cost by contribution margin.") + '<div class="formula-panel"><span class="fn">=FixedCosts/(SellingPrice-VariableCost)</span>Fixed costs $3,600; selling price $48; variable cost $27; break-even <span class="result">172 guests</span>.</div><p class="lead">Manual math: $3,600 / ($48 - $27) = $3,600 / $21 = 171.4, rounded up to 172 guests.</p>'),
-        slide(17, 3, "", "Break-Even Chart", header("Visual anchor", "Revenue crosses total cost at break-even.") + '<div class="two-col" style="margin-top:28px"><div class="chart"><div class="axis"></div><div class="line cost"></div><div class="line rev"></div><div class="be-dot"></div></div><div><p class="lead">Before the crossing point, each sale reduces the loss. After the crossing point, each additional guest contributes to profit.</p></div></div>'),
-        slide(18, 3, "terra", "Common Mistake", '<div class="eyebrow">Common Mistake</div><h2>Using the wrong base for the percentage.</h2><div class="grid-2" style="margin-top:36px"><div class="card"><strong>Wrong move</strong><p>Apply markdown to cost, or divide fixed costs by selling price instead of contribution margin.</p></div><div class="card"><strong>Better move</strong><p>Name the base first: cost, original selling price, or contribution margin.</p></div></div>'),
-        slide(19, 4, "", "Discussion", header("Discuss", "Pricing is math plus judgment.") + '<div class="question-grid"><div>When is a lower price the smarter business decision?</div><div>Which assumption matters most for Anchor & Oak: demand, waste, labor, or fixed cost?</div></div>'),
-        slide(20, 4, "", "Takeaways", header("Key takeaways", "Three pricing ideas should stick.") + '<div style="margin-top:32px"><div class="numbered"><div class="n">01</div><div class="n-body">Markup starts with cost and builds toward price.</div></div><div class="numbered"><div class="n">02</div><div class="n-body">Markdown starts with original price and moves down.</div></div><div class="numbered"><div class="n">03</div><div class="n-body">Break-even depends on contribution margin, not just sales volume.</div></div></div>'),
-        slide(21, 4, "", "Up Next", header("Coming next", "Depreciation and payroll costs.") + '<div class="two-col" style="margin-top:30px"><div><p class="lead">Next, we shift from prices to costs that change across time and people: depreciation, payroll, and the work of matching formulas to messy business realities.</p></div><div class="card"><strong>Workbook bridge</strong><p>Before opening the workbook, identify the base for every percentage and the unit for every cost.</p></div></div>'),
+        slide(15, 3, "", "Break-Even Terms", header("Break-even terms", "Separate costs that stay fixed from costs that move") + '<div class="grid-4" style="margin-top:30px"><div class="card"><strong>FC</strong><p>Fixed costs: venue, permit, base staffing, insurance.</p></div><div class="card"><strong>VC</strong><p>Variable cost per guest: food, materials, service labor.</p></div><div class="card"><strong>S</strong><p>Selling price per guest or unit.</p></div><div class="card"><strong>CM</strong><p>Contribution margin: selling price minus variable cost.</p></div></div>'),
+        slide(16, 3, "", "Break-Even Formula", header("Excel first", "Break-even divides fixed cost by contribution margin") + '<div class="formula-panel"><span class="fn">=ROUNDUP(FixedCosts/(SellingPrice-VariableCost),0)</span>Fixed costs $3,600; selling price $48; variable cost $27; break-even <span class="result">172 guests</span>.</div><p class="lead">Manual math: $3,600 / ($48 - $27) = $3,600 / $21 = 171.4, rounded up to 172 guests.</p>'),
+        slide(17, 3, "", "Live You Try It", header("Live You Try It", "Prove why break-even requires rounding up") + '<table class="lesson-table" style="margin-top:18px"><thead><tr><th>Audience</th><th>Total contribution</th><th>Covers $3,600?</th><th>Boundary check</th></tr></thead><tbody><tr><td>171 guests</td><td class="formula">=171*$21</td><td class="warning">No</td><td class="warning">$3,591 · $9 short</td></tr><tr><td>172 guests</td><td class="formula">=172*$21</td><td class="result">Yes</td><td class="result">$3,612 · $12 over</td></tr></tbody></table><div class="activity-strip"><div><strong>What</strong><span>Calculate CM and break-even</span></div><div><strong>How</strong><span>Enter formulas in D14 and D15; verify both rows</span></div><div><strong>Time</strong><span>3 min</span></div><div><strong>Deliverable</strong><span>Two formulas + why 172</span></div></div>'),
+        slide(18, 3, "terra", "Common Mistake", '<div class="eyebrow">Common Mistake</div><h2>Using the wrong base for the percentage</h2><div class="grid-2" style="margin-top:36px"><div class="card"><strong>Wrong move</strong><p>Apply markdown to cost, or divide fixed costs by selling price instead of contribution margin.</p></div><div class="card"><strong>Better move</strong><p>Name the base first: cost, original selling price, or contribution margin.</p></div></div>'),
+        slide(19, 4, "", "Discussion", header("Discuss", "Pricing is math plus judgment") + '<div class="question-grid"><div>When is a lower price the smarter business decision?</div><div>Which assumption matters most for Anchor & Oak: demand, waste, labor, or fixed cost?</div></div>'),
+        slide(20, 4, "", "Takeaways", header("Key takeaways", "Three pricing ideas should stick") + '<div style="margin-top:32px"><div class="numbered"><div class="n">01</div><div class="n-body">Markup starts with cost and builds toward price.</div></div><div class="numbered"><div class="n">02</div><div class="n-body">Markdown starts with original price and moves down.</div></div><div class="numbered"><div class="n">03</div><div class="n-body">Break-even depends on contribution margin, not just sales volume.</div></div></div>'),
+        slide(21, 4, "", "Up Next", header("Coming next", "Depreciation and payroll costs") + '<div class="two-col" style="margin-top:30px"><div><p class="lead">Next, we shift from prices to costs that change across time and people: depreciation, payroll, and the work of matching formulas to messy business realities.</p></div><div class="card"><strong>Workbook bridge</strong><p>Before opening the workbook, identify the base for every percentage and the unit for every cost.</p></div></div>'),
         slide(22, 4, "dark", "Close", '<div class="eyebrow">Questions?</div><h1>Bring the base. Then bring the formula.</h1><p class="subtitle">Office hours are posted on Canvas. Bring workbook questions before the next lesson.</p><div class="title-meta"><span>Next: MATH-M05</span><span>Costs across time and people</span></div>'),
     ]
     return s, notes
 
 
 def main() -> int:
-    intro_slides, intro_notes = build_intro()
-    math_slides, math_notes = build_math()
-    (ROOT / "INTRO/M01/bus123-intro-m01-l02-slides.html").write_text(
-        deck_html("BUS123 · INTRO M01 · L02 — Technology in Everyday Life and Business", intro_notes, intro_slides),
-        encoding="utf-8",
-    )
-    (ROOT / "MATH/M04/bus123-math-m04-l01-slides.html").write_text(
-        deck_html("BUS123 · MATH M04 · L01 — Markups, Markdowns, and Break-Even", math_notes, math_slides),
-        encoding="utf-8",
-    )
-    print("Rebuilt INTRO/M01/L02 and MATH/M04/L01 decks.")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--intro", action="store_true", help="Rebuild only INTRO/M01/L02")
+    parser.add_argument("--math", action="store_true", help="Rebuild only MATH/M04/L01")
+    args = parser.parse_args()
+    build_both = not args.intro and not args.math
+
+    rebuilt: list[str] = []
+    if build_both or args.intro:
+        intro_slides, intro_notes = build_intro()
+        (ROOT / "INTRO/M01/bus123-intro-m01-l02-slides.html").write_text(
+            deck_html("BUS123 · INTRO M01 · L02 — Technology in Everyday Life and Business", intro_notes, intro_slides),
+            encoding="utf-8",
+        )
+        rebuilt.append("INTRO/M01/L02")
+    if build_both or args.math:
+        math_slides, math_notes = build_math()
+        (ROOT / "MATH/M04/bus123-math-m04-l01-slides.html").write_text(
+            deck_html("BUS123 · MATH M04 · L01 — Markups, Markdowns, and Break-Even", math_notes, math_slides),
+            encoding="utf-8",
+        )
+        rebuilt.append("MATH/M04/L01")
+    print(f"Rebuilt {' and '.join(rebuilt)} decks.")
     return 0
 
 

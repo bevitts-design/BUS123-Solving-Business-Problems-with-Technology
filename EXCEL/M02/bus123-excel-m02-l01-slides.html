@@ -625,12 +625,12 @@ h1{
     <article class="slide" data-section="0" data-slide="2" data-index="1">
       <header class="slide-header"><h2>Agenda</h2><span class="badge">EXCEL-M02-L01 · 02</span></header>
       <div class="body top">
-        <p class="lead">Today we turn a raw Anchor &amp; Oak Events worksheet into something a manager can read in 30 seconds.</p>
+        <p class="lead">Today we rehearse on Tidal Goods data, then build an Anchor &amp; Oak Manager View from its untouched raw export.</p>
         <ol class="agenda-list">
           <li><span class="n">1</span><strong>Readability first:</strong> why formatting is business communication, not decoration.</li>
-          <li><span class="n">2</span><strong>Practice the choices:</strong> format supplied data, then make a table usable.</li>
+          <li><span class="n">2</span><strong>Practice the choices:</strong> format the supplied Tidal Goods data, then make its table usable.</li>
           <li><span class="n">3</span><strong>Audit the handoff:</strong> banding, Freeze Panes, color rules, and common mistakes.</li>
-          <li><span class="n">4</span><strong>Build:</strong> begin the Manager View and leave with a clear finish plan.</li>
+          <li><span class="n">4</span><strong>Build:</strong> copy the Anchor &amp; Oak export into the blank Manager View, then organize it.</li>
         </ol>
       </div>
     </article>
@@ -640,7 +640,7 @@ h1{
       <div class="body top">
         <div class="kicker">I Can Statements</div>
         <ol class="num-list">
-          <li><span class="n">1</span>I can preserve source data while creating a separate working view.</li>
+          <li><span class="n">1</span>I can copy an untouched raw export into a separate working view without changing the source.</li>
           <li><span class="n">2</span>I can apply meaningful date, whole-number, and business-money formats.</li>
           <li><span class="n">3</span>I can use a table, filters, Freeze Panes, alignment, and readable widths to support scanning.</li>
           <li><span class="n">4</span>I can use visual hierarchy and conditional formatting for a business purpose.</li>
@@ -744,21 +744,23 @@ h1{
       <div class="section-break">
         <div class="kicker">Part 2 of 3</div>
         <h2>Format The Worksheet</h2>
-        <p>Now we apply the rules to supplied data before opening the larger Manager View challenge.</p>
+        <p>First rehearse the formatting choices on Tidal Goods data. Then transfer the process to the Anchor &amp; Oak challenge.</p>
       </div>
     </article>
 
     <article class="slide" data-section="2" data-slide="10" data-index="9">
-      <header class="slide-header"><h2>Raw Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 10</span></header>
+      <header class="slide-header"><h2>Raw Retail Sales</h2><span class="badge">EXCEL-M02-L01 · 10</span></header>
       <div class="body top">
-        <p class="lead">The data is correct. The handoff is not ready.</p>
+        <p class="lead">The Tidal Goods values are correct. The handoff is not ready.</p>
         <table class="ws">
-          <thead><tr><th>Event</th><th>Date</th><th>Guests</th><th>Revenue</th><th>Catering</th><th>Staffing</th><th>Net</th></tr></thead>
+          <thead><tr><th>Product</th><th>Sale Date</th><th>Units Sold</th><th>Sales Revenue</th><th>Gross Profit</th></tr></thead>
           <tbody>
-            <tr><td>Spring Gala</td><td>3/15/2026</td><td>120</td><td>4800</td><td>1820</td><td>0</td><td>2980</td></tr>
-            <tr class="row-even"><td>Corporate Retreat</td><td>5/8/2026</td><td>55</td><td>3200</td><td>1210</td><td>0</td><td>1990</td></tr>
-            <tr><td>Summer Wedding</td><td>6/21/2026</td><td>200</td><td>9500</td><td>3100</td><td>890</td><td>5510</td></tr>
-            <tr class="row-even"><td>Fall Gala</td><td>10/4/2026</td><td>95</td><td>5200</td><td>1400</td><td>510</td><td>3290</td></tr>
+            <tr><td>Coastal Tote</td><td>46087</td><td>38</td><td>3040</td><td>1216</td></tr>
+            <tr class="row-even"><td>Insulated Bottle</td><td>46095</td><td>24</td><td>1680</td><td>672</td></tr>
+            <tr><td>Canvas Apron</td><td>46114</td><td>17</td><td>1360</td><td>544</td></tr>
+            <tr class="row-even"><td>Bamboo Tray</td><td>46131</td><td>31</td><td>2480</td><td>868</td></tr>
+            <tr><td>Ceramic Mug</td><td>46149</td><td>45</td><td>2025</td><td>810</td></tr>
+            <tr class="row-even"><td>Storage Basket</td><td>46165</td><td>19</td><td>1520</td><td>532</td></tr>
           </tbody>
         </table>
         <div class="callout"><p>Ask students: which two changes would make this worksheet easier to scan immediately?</p></div>
@@ -766,20 +768,22 @@ h1{
     </article>
 
     <article class="slide" data-section="2" data-slide="11" data-index="10">
-      <header class="slide-header"><h2>Formatted Booking Summary</h2><span class="badge">EXCEL-M02-L01 · 11</span></header>
+      <header class="slide-header"><h2>Formatted Retail Sales</h2><span class="badge">EXCEL-M02-L01 · 11</span></header>
       <div class="body top">
-        <p class="lead">Same data, clearer story: readable dates, currency, alignment, and a distinct total row.</p>
+        <p class="lead">Same Tidal Goods data, clearer story: readable dates, business money, alignment, and a distinct total row.</p>
         <table class="ws">
-          <thead><tr><th>Event</th><th>Date</th><th>Guests</th><th>Revenue</th><th>Catering</th><th>Staffing</th><th>Net Profit</th></tr></thead>
+          <thead><tr><th>Product</th><th>Sale Date</th><th>Units Sold</th><th>Sales Revenue</th><th>Gross Profit</th></tr></thead>
           <tbody>
-            <tr><td>Spring Gala</td><td>15-Mar-26</td><td>120</td><td>$4,800</td><td>$1,820</td><td>$0</td><td>$2,980</td></tr>
-            <tr class="row-even"><td>Corporate Retreat</td><td>08-May-26</td><td>55</td><td>$3,200</td><td>$1,210</td><td>$0</td><td>$1,990</td></tr>
-            <tr><td>Summer Wedding</td><td>21-Jun-26</td><td>200</td><td>$9,500</td><td>$3,100</td><td>$890</td><td>$5,510</td></tr>
-            <tr class="row-even"><td>Fall Gala</td><td>04-Oct-26</td><td>95</td><td>$5,200</td><td>$1,400</td><td>$510</td><td>$3,290</td></tr>
-            <tr class="row-result"><td colspan="3">Total</td><td>$22,700</td><td>$7,530</td><td>$1,400</td><td>$13,770</td></tr>
+            <tr><td>Coastal Tote</td><td>06-Mar-26</td><td>38</td><td>$3,040</td><td>$1,216</td></tr>
+            <tr class="row-even"><td>Insulated Bottle</td><td>14-Mar-26</td><td>24</td><td>$1,680</td><td>$672</td></tr>
+            <tr><td>Canvas Apron</td><td>02-Apr-26</td><td>17</td><td>$1,360</td><td>$544</td></tr>
+            <tr class="row-even"><td>Bamboo Tray</td><td>19-Apr-26</td><td>31</td><td>$2,480</td><td>$868</td></tr>
+            <tr><td>Ceramic Mug</td><td>07-May-26</td><td>45</td><td>$2,025</td><td>$810</td></tr>
+            <tr class="row-even"><td>Storage Basket</td><td>23-May-26</td><td>19</td><td>$1,520</td><td>$532</td></tr>
+            <tr class="row-result"><td colspan="2">Total</td><td>174</td><td>$12,105</td><td>$4,642</td></tr>
           </tbody>
         </table>
-        <div class="try-pause"><div class="tag">Live You Try It · Checkpoint 1 · 6 Minutes</div><p><strong>What + how:</strong> open the supplied six-row table on <em>Live You Try It</em>. Format Event Date as a readable date, Guests as a whole number, and Revenue / Net Profit as business money; then improve headers, widths, and alignment. <strong>Deliverable:</strong> the same stored values, made immediately readable.</p></div>
+        <div class="try-pause"><div class="tag">Live You Try It · Checkpoint 1 · 6 Minutes</div><p><strong>What + how:</strong> open the supplied six-row Tidal Goods table. Format Sale Date as a readable date, Units Sold as a whole number, and Sales Revenue / Gross Profit as business money; then improve headers, widths, and alignment. <strong>Deliverable:</strong> the same stored values, made immediately readable.</p></div>
       </div>
     </article>
 
@@ -813,7 +817,7 @@ h1{
           <span class="comment">// Freeze the rows above the selected cell.</span>
           <span class="result">Row 7 remains visible while the records scroll.</span>
         </div>
-        <div class="try-pause" style="grid-column:1 / -1;"><div class="tag">Live You Try It · Checkpoint 2 · 5 Minutes</div><p><strong>What + how:</strong> create the table, preserve its filters, select A8 and freeze the rows above it, then add one conditional-formatting rule to Net Profit. <strong>Deliverable:</strong> a working table plus “Highlight ___ because the manager needs to ___.”</p></div>
+        <div class="try-pause" style="grid-column:1 / -1;"><div class="tag">Live You Try It · Checkpoint 2 · 5 Minutes</div><p><strong>What + how:</strong> create the table, preserve its filters, select A8 and freeze the rows above it, then add one conditional-formatting rule to Gross Profit. <strong>Deliverable:</strong> a working table plus “Highlight ___ because the manager needs to ___.”</p></div>
       </div>
     </article>
 
@@ -923,11 +927,11 @@ h1{
             <p>Name one formatting choice that builds trust and one that makes you doubt the data.</p>
           </div>
           <div class="question-card">
-            <h3>Which format would help a manager fastest?</h3>
-            <p>Choose the first two edits you would make on the Manager View before anyone reviews it.</p>
+            <h3>How does the working copy begin?</h3>
+            <p>Name the first two actions when the Manager View data area is blank.</p>
           </div>
         </div>
-        <div class="callout"><p><strong>3 minutes · pair decision:</strong> agree on the first two Manager View edits and why. Be ready to share one choice. Then keep Raw Export unchanged and open the Class Challenge checklist.</p></div>
+        <div class="callout"><p><strong>3 minutes · pair decision:</strong> agree on the first two actions and why. Keep Raw Export unchanged, copy and paste its values at Manager View!A7, rename the headers, then open the Class Challenge checklist.</p></div>
       </div>
     </article>
 
@@ -948,11 +952,11 @@ h1{
         <div class="up-next">
           <div class="next-card">
             <h3>Class Challenge</h3>
-            <p><strong>25 minutes in class:</strong> preserve Raw Export; build the table, filters, formats, widths, alignment, and Freeze Panes. <strong>30–40 minutes after class:</strong> finish four formulas, one purposeful conditional-formatting rule, and the 30-second audit. Submit the completed .xlsx.</p>
+            <p><strong>25 minutes in class:</strong> copy Raw Export!A1:J25, paste values at Manager View!A7, rename the headers, then build the table, filters, formats, widths, alignment, and Freeze Panes. <strong>30–40 minutes after class:</strong> finish four formulas, one purposeful conditional-formatting rule, and the 30-second audit. Submit the completed .xlsx.</p>
           </div>
           <div class="next-card">
-            <h3>EXCEL-M03-L01</h3>
-            <p>Aggregate Functions and Data Analysis: SUM, AVERAGE, COUNT, MIN, MAX, and SUMIF applied to Anchor &amp; Oak booking data.</p>
+            <h3>Next Class: Test #1</h3>
+            <p><strong>Thursday, September 24:</strong> Introduction, Excel M01–M02, and Math M01–M02. Assessment details are in Canvas. <strong>Next instructional lesson:</strong> Math M03 — Discounts: Trade and Cash · Tuesday, September 29.</p>
           </div>
         </div>
       </div>
@@ -962,7 +966,7 @@ h1{
       <div class="accent-bar"></div>
       <div class="close-wrap">
         <div class="kicker">BUS123 · EXCEL-M02-L01</div>
-        <h2>Questions?</h2>
+        <h2>Questions</h2>
         <p class="office">Formatting never changes the numbers. It changes how quickly and confidently someone else can use them.</p>
         <p class="office">Office hours and course help are the right place to bring workbook cleanup questions before they become bad habits.</p>
       </div>
@@ -985,26 +989,26 @@ h1{
 <script type="application/json" id="speaker-notes">
 [
   "Welcome to Excel M02. This lesson is about making worksheets readable. Formatting is a professional communication skill, not decoration.",
-  "Preview the class flow. The throughline is Anchor & Oak Events: understand the formatting choices, practice them on supplied data, then begin a manager-ready working view.",
-  "Keep these objectives short. The goal is not memorizing every ribbon command; it is preserving the source while making the working view communicate.",
+  "Preview the class flow. Students rehearse the formatting decisions on the distinct Tidal Goods data, then transfer the process to the Anchor & Oak Manager View.",
+  "Keep these objectives short. The goal is not memorizing every ribbon command; it is copying the source into a separate working view without changing the raw export, then making that view communicate.",
   "Bridge from prior Excel basics. The same values can create very different reader experiences depending on headers, number formats, and structure.",
   "Frame Part 1 around judgment. Before students use the ribbon, they need to know what good formatting is trying to accomplish.",
   "Use the flow from attention to reliability to decisions. A manager reads the worksheet differently when the design guides them.",
   "Pause on the percentage trap. Raw value 0.15 formatted as percent gives 15 percent; raw value 15 formatted as percent gives 1500 percent.",
   "Compare the two mini tables. Ask students what column B means in the left version. The discomfort is the point.",
-  "Set up Part 2 as application. Students will format supplied values rather than spending class time retyping data from the slides.",
-  "Ask students what they would fix first before showing the formatted version. Listen for dates, currency, totals, and headers.",
-  "Checkpoint 1, six minutes. Students open Live You Try It and format the six supplied records. Circulate for date, whole-number, money, header, width, and alignment choices. Formative answer: values remain unchanged while meaning becomes easier to scan. Likely misconception: typing a currency symbol into the cell instead of applying a number format.",
+  "Set up Part 2 as a low-stakes rehearsal. Students will format supplied Tidal Goods values before they touch the Anchor & Oak challenge data.",
+  "Ask students what they would fix first before showing the formatted Tidal Goods version. Listen for dates, currency, totals, and headers.",
+  "Checkpoint 1, six minutes. Students open Live You Try It and format the six Tidal Goods records. Circulate for Sale Date, Units Sold, Sales Revenue, Gross Profit, header, width, and alignment choices. Formative answer: values remain unchanged while meaning becomes easier to scan. Likely misconception: typing a currency symbol into the cell instead of applying a number format.",
   "Drill the shortcuts briefly. Students do not need to memorize all of them today, but they should recognize the Number group and Format Cells dialog.",
-  "Checkpoint 2, five minutes. Students convert A7:E13 to a table, keep filters, select A8 before choosing Freeze Panes, and add one purposeful Net Profit rule. Deliverable: the working table and a completed purpose statement. Likely misconception: choosing Freeze Top Row, which would not preserve row 7.",
+  "Checkpoint 2, five minutes. Students convert A7:E13 to a table, keep filters, select A8 before choosing Freeze Panes, and add one purposeful Gross Profit rule. Deliverable: the working table and a completed purpose statement. Likely misconception: choosing Freeze Top Row, which would not preserve row 7.",
   "Part 3 moves from making the sheet look good to making it hold up when someone uses it.",
-  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster. Ask what banding helps the eye do and what it cannot communicate by itself.",
-  "Demo the exact Manager View method. Select A8, choose View, Freeze Panes, Freeze Panes, then scroll. Rows 1 through 7 should remain visible. Contrast this with Freeze Top Row so the misconception is explicit.",
+  "Transition from the Tidal Goods rehearsal to the Anchor & Oak challenge. Banding is a quiet readability tool; the total row should be distinct without turning the worksheet into a poster.",
+  "After students copy Raw Export!A1:J25, paste values at Manager View!A7, and rename the headers, demo the exact Freeze Panes method. Select A8, choose View, Freeze Panes, Freeze Panes, then scroll. Rows 1 through 7 should remain visible.",
   "Color with purpose is the professional rule. Every color should have exactly one job students can name.",
   "Common mistake: merged cells. Explain that merged headers are attractive until sorting and filtering fail. Center Across Selection is the safe substitute.",
-  "Give pairs three minutes. They must agree on the first two Manager View edits and one reason, then share one choice. Listen for preserving Raw Export, establishing table structure, meaningful formats, widths, alignment, or Freeze Panes.",
+  "Give pairs three minutes. The first two actions are to copy and paste the Raw Export values at Manager View!A7, then replace the snake_case headers with readable labels. Listen for why Raw Export must remain unchanged.",
   "Summarize the takeaways as communication, consistency, and durability. These are the standards students can apply beyond this one file.",
-  "Launch the Class Challenge with the workbook checklist visible. Students have about 25 minutes in class for the structure and 30 to 40 minutes after class for four formulas, one purposeful rule, the audit, and submission. Reinforce that professional design may vary as long as the workbook stays readable and purposeful.",
+  "Launch the Class Challenge with the workbook checklist visible. Students first copy Raw Export!A1:J25, paste values at Manager View!A7, and rename the headers. They then have about 25 minutes in class for the structure and 30 to 40 minutes after class for four formulas, one purposeful rule, the audit, and submission. Preview Test #1 on Thursday, September 24, covering Introduction, Excel M01–M02, and Math M01–M02. The next instructional lesson is Math M03 on Tuesday, September 29.",
   "Close by repeating the core insight: formatting never changes the numbers; it changes how quickly and confidently someone else can use them."
 ]
 </script>

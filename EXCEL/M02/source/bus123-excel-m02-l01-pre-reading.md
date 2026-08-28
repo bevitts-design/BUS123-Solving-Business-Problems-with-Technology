@@ -9,7 +9,7 @@ output: "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf"
 # BUS 123 - EXCEL-M02-L01 - Formatting and Organizing Worksheets
 
 **Course:** Solving Business Problems with Technology - Fall 2026 - **Track:** EXCEL - **Module:** M02 - **Lesson:** L01
-**Case Study Company:** Anchor & Oak Events
+**Case Study Companies:** Tidal Goods Co. (guided practice) - Anchor & Oak Events (class challenge)
 
 ---
 
@@ -17,7 +17,7 @@ output: "EXCEL/M02/bus123-excel-m02-l01-pre-reading.pdf"
 
 In Excel M01, you learned how to navigate a workbook, enter and edit values, and build formulas with cell references. Those skills make a worksheet calculate correctly. This lesson adds a different professional question: **Can another person understand and use the worksheet quickly?**
 
-Anchor & Oak Events tracks event dates, guest counts, revenue, costs, net profit, and booking status. A raw export can contain accurate data while still being difficult to scan. In class, you will preserve that source data and create a separate manager-ready view.
+You will first rehearse the formatting decisions on a short Tidal Goods retail dataset. Then Anchor & Oak Events supplies event dates, guest counts, revenue, costs, net profit, and booking status for the class challenge. Its raw export can contain accurate data while still being difficult to scan. In class, you will preserve that source data, copy it into a separate working area, and build the manager-ready view yourself.
 
 > **The Lesson Goal**
 >
@@ -93,6 +93,21 @@ Press **Ctrl+1** to open the Format Cells dialog box when you need a specific da
 
 Formatting should help the table continue working when someone scrolls, sorts, filters, or adds records.
 
+### Create the Working Copy Before You Format
+
+The `Raw Export` tab is the source record. The `Manager View` data area begins blank by design so you can practice creating a safe working copy.
+
+When your instructor directs you:
+
+1. Leave `Raw Export` unchanged.
+2. Select `Raw Export!A1:J25` and copy all 10 headers plus the 24 detail records.
+3. Click `Manager View!A7`.
+4. Use **Paste Values** so the new view contains the source values without a live link back to the raw tab.
+5. Replace the 10 `snake_case` headers with readable business labels. Do not change the 24 detail records.
+6. Build the table, number formats, widths, alignment, Freeze Panes, summaries, and conditional formatting on `Manager View`.
+
+This separates source preservation from analysis. If a working-view format or formula needs correction, the original export remains available for comparison.
+
 ### Headers and Alignment
 
 - Keep one clear header row inside the data table.
@@ -138,7 +153,7 @@ For example, a manager might want to identify unusually low Net Profit values fo
 
 ## 6 - Formula and Formatting Reference
 
-The Manager View includes four summary cells. In class, you will decide which range answers each business question and build formulas with worksheet or table references.
+After you create the working copy, the Manager View includes four summary cells. In class, you will decide which range answers each business question and build formulas with worksheet or table references.
 
 | Business question | Excel pattern | Reminder |
 |---|---|---|
@@ -193,4 +208,4 @@ Answer these five questions before class. Bring your reasoning; you will compare
 
 > **Before Class - Open, Observe, Do Not Build Yet**
 >
-> Open the Excel M02 starter workbook. Read `START HERE`, then locate `Live You Try It`, `Raw Export`, `Manager View`, `Class Challenge`, and `FormulaReferenceCard`. Do not edit `Raw Export` or begin the Manager View makeover before class. Be ready to explain why the raw source must remain unchanged and name the first two formatting improvements you would make.
+> Open the Excel M02 starter workbook. Read `START HERE`, then locate `Live You Try It`, `Raw Export`, `Manager View`, `Class Challenge`, and `FormulaReferenceCard`. Notice that the Tidal Goods practice data is different from the Anchor & Oak challenge data and that `Manager View!A7:J31` is blank by design. Do not edit `Raw Export`, paste data, or begin the Manager View makeover before class. Be ready to explain why the raw source must remain unchanged and name the first two actions that create the working copy.

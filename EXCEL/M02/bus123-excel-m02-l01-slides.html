@@ -628,9 +628,9 @@ h1{
         <p class="lead">Today we turn a raw Anchor &amp; Oak Events worksheet into something a manager can read in 30 seconds.</p>
         <ol class="agenda-list">
           <li><span class="n">1</span><strong>Readability first:</strong> why formatting is business communication, not decoration.</li>
-          <li><span class="n">2</span><strong>Format the worksheet:</strong> numbers, dates, totals, headers, and alignment.</li>
-          <li><span class="n">3</span><strong>Audit the handoff:</strong> banding, freeze panes, color rules, and common mistakes.</li>
-          <li><span class="n">4</span><strong>Practice:</strong> apply the five-point audit to the starter workbook.</li>
+          <li><span class="n">2</span><strong>Practice the choices:</strong> format supplied data, then make a table usable.</li>
+          <li><span class="n">3</span><strong>Audit the handoff:</strong> banding, Freeze Panes, color rules, and common mistakes.</li>
+          <li><span class="n">4</span><strong>Build:</strong> begin the Manager View and leave with a clear finish plan.</li>
         </ol>
       </div>
     </article>
@@ -640,10 +640,10 @@ h1{
       <div class="body top">
         <div class="kicker">I Can Statements</div>
         <ol class="num-list">
-          <li><span class="n">1</span>I can apply number, currency, percentage, and date formats so a worksheet communicates clearly.</li>
-          <li><span class="n">2</span>I can format headers, totals, rows, and columns to guide a reader's eye through data.</li>
-          <li><span class="n">3</span>I can use consistent alignment and color rules without decorating for decoration's sake.</li>
-          <li><span class="n">4</span>I can identify and fix common formatting choices that break sorting, filtering, or trust.</li>
+          <li><span class="n">1</span>I can preserve source data while creating a separate working view.</li>
+          <li><span class="n">2</span>I can apply meaningful date, whole-number, and business-money formats.</li>
+          <li><span class="n">3</span>I can use a table, filters, Freeze Panes, alignment, and readable widths to support scanning.</li>
+          <li><span class="n">4</span>I can use visual hierarchy and conditional formatting for a business purpose.</li>
         </ol>
       </div>
     </article>
@@ -744,7 +744,7 @@ h1{
       <div class="section-break">
         <div class="kicker">Part 2 of 3</div>
         <h2>Format The Worksheet</h2>
-        <p>Now we apply the rules to Anchor &amp; Oak's booking summary and build a readable total row.</p>
+        <p>Now we apply the rules to supplied data before opening the larger Manager View challenge.</p>
       </div>
     </article>
 
@@ -779,7 +779,7 @@ h1{
             <tr class="row-result"><td colspan="3">Total</td><td>$22,700</td><td>$7,530</td><td>$1,400</td><td>$13,770</td></tr>
           </tbody>
         </table>
-        <div class="try-pause"><div class="tag">Live You Try It</div><p>In the workbook, enter <strong>4,800</strong>, <strong>1,820</strong>, and <strong>0</strong> into yellow cells, then build <code>=Revenue-Catering-Staffing</code> to check Spring Gala net profit.</p></div>
+        <div class="try-pause"><div class="tag">Live You Try It · Checkpoint 1 · 6 Minutes</div><p><strong>What + how:</strong> open the supplied six-row table on <em>Live You Try It</em>. Format Event Date as a readable date, Guests as a whole number, and Revenue / Net Profit as business money; then improve headers, widths, and alignment. <strong>Deliverable:</strong> the same stored values, made immediately readable.</p></div>
       </div>
     </article>
 
@@ -801,19 +801,19 @@ h1{
     </article>
 
     <article class="slide" data-section="2" data-slide="13" data-index="12">
-      <header class="slide-header"><h2>Excel Syntax: Dates And Totals</h2><span class="badge">EXCEL-M02-L01 · 13</span></header>
+      <header class="slide-header"><h2>Make The Practice Table Usable</h2><span class="badge">EXCEL-M02-L01 · 13</span></header>
       <div class="body split">
         <div class="formula-panel">
-          <span class="fn">Ctrl + Shift + #</span>
-          <span class="comment">// Applies the default short date format.</span>
-          <span class="result">3/15/2026 - March 15, 2026 - 15-Mar-26</span>
+          <span class="fn">Select A7:E13 - Home - Format as Table</span>
+          <span class="comment">// Include every header and all six supplied records.</span>
+          <span class="result">Keep the filter buttons available for the reader.</span>
         </div>
         <div class="formula-panel">
-          <span class="fn">=SUM(D2:D5)</span>
-          <span class="comment">// Sum all revenue rows before checking manually.</span>
-          <span class="result">Manual check: $4,800 + $3,200 + $9,500 + $5,200 = $22,700</span>
+          <span class="fn">Select A8 - View - Freeze Panes - Freeze Panes</span>
+          <span class="comment">// Freeze the rows above the selected cell.</span>
+          <span class="result">Row 7 remains visible while the records scroll.</span>
         </div>
-        <div class="try-pause"><div class="tag">Live You Try It</div><p>Enter the four revenue values from the slide, reference those yellow cells, and build one <code>SUM</code> formula that returns <strong>22,700</strong>.</p></div>
+        <div class="try-pause" style="grid-column:1 / -1;"><div class="tag">Live You Try It · Checkpoint 2 · 5 Minutes</div><p><strong>What + how:</strong> create the table, preserve its filters, select A8 and freeze the rows above it, then add one conditional-formatting rule to Net Profit. <strong>Deliverable:</strong> a working table plus “Highlight ___ because the manager needs to ___.”</p></div>
       </div>
     </article>
 
@@ -836,7 +836,7 @@ h1{
             <li>Total rows use stronger border and weight.</li>
             <li>Headers stay consistent across the workbook.</li>
           </ul>
-          <div class="try-pause"><div class="tag">Live You Try It</div><p>Use <strong>2,980</strong>, <strong>1,990</strong>, <strong>5,510</strong>, and <strong>3,290</strong> to build a total net profit formula, then compare it to <strong>13,770</strong>.</p></div>
+          <div class="callout"><p><strong>Table check:</strong> banding supports scanning; it does not replace meaningful number formats, readable widths, or a clear total.</p></div>
         </div>
         <table class="ws">
           <thead><tr><th>Event</th><th>Guests</th><th>Revenue</th><th>Net</th></tr></thead>
@@ -856,11 +856,11 @@ h1{
       <div class="body top">
         <p class="lead">Anchor &amp; Oak tracks 80 events a year. When students scroll to row 60, the labels should still be visible.</p>
         <div class="formula-panel">
-          <span class="fn">View tab - Freeze Panes - Freeze Top Row</span>
-          <span class="comment">// Locks row 1 while you scroll down.</span>
-          <span class="result">Click cell B2, then View - Freeze Panes - Freeze Panes to freeze both row 1 and column A.</span>
+          <span class="fn">Manager View: select A8 - View - Freeze Panes - Freeze Panes</span>
+          <span class="comment">// Excel freezes every row above the selected cell.</span>
+          <span class="result">Rows 1–7 stay visible, including the actual row 7 table header.</span>
         </div>
-        <div class="callout gold"><p><strong>Unfreeze:</strong> same menu. The option changes to "Unfreeze Panes" once a freeze is active.</p></div>
+        <div class="callout gold"><p><strong>Do not choose Freeze Top Row here.</strong> That would keep only row 1 visible and lose the real table header when you scroll.</p></div>
       </div>
     </article>
 
@@ -927,20 +927,11 @@ h1{
             <p>Choose the first two edits you would make on the Manager View before anyone reviews it.</p>
           </div>
         </div>
-        <div class="callout"><p><strong>Practice handoff:</strong> keep Raw Export unchanged, begin the Manager View makeover, then use the Class Challenge checklist for a 30-second manager audit.</p></div>
+        <div class="callout"><p><strong>3 minutes · pair decision:</strong> agree on the first two Manager View edits and why. Be ready to share one choice. Then keep Raw Export unchanged and open the Class Challenge checklist.</p></div>
       </div>
     </article>
-<article class="slide" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
-  <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
-    <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total row</td><td class="pattern">=SUM(D2:D5)</td><td>Adds detail rows into one formatted total.</td><td class="watch">Do not hardcode totals.</td></tr><tr><td>Percent format</td><td class="pattern">=Part/Total</td><td>Shows a share of a whole as a rate.</td><td class="watch">0.15 displays as 15%; 15 displays as 1500%.</td></tr><tr><td>Error-safe formula</td><td class="pattern">=IFERROR(formula,&quot;&quot;)</td><td>Keeps the sheet readable when an input is missing.</td><td class="watch">Fix the base formula before hiding errors.</td></tr><tr><td>Locked total</td><td class="pattern">=$D$10</td><td>Keeps the total fixed when copying formulas.</td><td class="watch">Use F4 to toggle dollar signs.</td></tr></tbody></table>
-  </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
-</article>
 
-    <article class="slide" data-section="4" data-slide="21" data-index="20">
+    <article class="slide" data-section="4" data-slide="20" data-index="19">
       <header class="slide-header"><h2>Key Takeaways</h2><span class="badge">EXCEL-M02-L01 · 20</span></header>
       <div class="body top">
         <ol class="agenda-list">
@@ -951,13 +942,13 @@ h1{
       </div>
     </article>
 
-    <article class="slide" data-section="4" data-slide="22" data-index="21">
+    <article class="slide" data-section="4" data-slide="21" data-index="20">
       <header class="slide-header"><h2>Up Next</h2><span class="badge">EXCEL-M02-L01 · 21</span></header>
       <div class="body">
         <div class="up-next">
           <div class="next-card">
             <h3>Class Challenge</h3>
-            <p>Start the raw-export makeover in class: build the table, filters, formats, widths, and Freeze Panes. Finish the formulas, purposeful conditional formatting, and 30-second audit for homework.</p>
+            <p><strong>25 minutes in class:</strong> preserve Raw Export; build the table, filters, formats, widths, alignment, and Freeze Panes. <strong>30–40 minutes after class:</strong> finish four formulas, one purposeful conditional-formatting rule, and the 30-second audit. Submit the completed .xlsx.</p>
           </div>
           <div class="next-card">
             <h3>EXCEL-M03-L01</h3>
@@ -967,7 +958,7 @@ h1{
       </div>
     </article>
 
-    <article class="slide dark" data-section="0" data-slide="23" data-index="22">
+    <article class="slide dark" data-section="0" data-slide="22" data-index="21">
       <div class="accent-bar"></div>
       <div class="close-wrap">
         <div class="kicker">BUS123 · EXCEL-M02-L01</div>
@@ -994,27 +985,26 @@ h1{
 <script type="application/json" id="speaker-notes">
 [
   "Welcome to Excel M02. This lesson is about making worksheets readable. Formatting is a professional communication skill, not decoration.",
-  "Preview the class flow. The throughline is Anchor & Oak Events: a correct but messy booking worksheet that needs to become manager-ready.",
-  "Keep these objectives short. Students should hear that the goal is not memorizing every ribbon command; it is making the worksheet communicate.",
+  "Preview the class flow. The throughline is Anchor & Oak Events: understand the formatting choices, practice them on supplied data, then begin a manager-ready working view.",
+  "Keep these objectives short. The goal is not memorizing every ribbon command; it is preserving the source while making the working view communicate.",
   "Bridge from prior Excel basics. The same values can create very different reader experiences depending on headers, number formats, and structure.",
   "Frame Part 1 around judgment. Before students use the ribbon, they need to know what good formatting is trying to accomplish.",
   "Use the flow from attention to reliability to decisions. A manager reads the worksheet differently when the design guides them.",
   "Pause on the percentage trap. Raw value 0.15 formatted as percent gives 15 percent; raw value 15 formatted as percent gives 1500 percent.",
   "Compare the two mini tables. Ask students what column B means in the left version. The discomfort is the point.",
-  "Set up Part 2 as application. We are going to take the Anchor and Oak booking summary from raw export to readable handoff.",
+  "Set up Part 2 as application. Students will format supplied values rather than spending class time retyping data from the slides.",
   "Ask students what they would fix first before showing the formatted version. Listen for dates, currency, totals, and headers.",
-  "Walk through the formatted version in order: readable dates, currency columns, right alignment, and the total row. Then pause for Live You Try It: students enter 4800, 1820, and 0 in yellow cells and build the Spring Gala net profit formula from those inputs.",
+  "Checkpoint 1, six minutes. Students open Live You Try It and format the six supplied records. Circulate for date, whole-number, money, header, width, and alignment choices. Formative answer: values remain unchanged while meaning becomes easier to scan. Likely misconception: typing a currency symbol into the cell instead of applying a number format.",
   "Drill the shortcuts briefly. Students do not need to memorize all of them today, but they should recognize the Number group and Format Cells dialog.",
-  "Excel syntax comes first, then the manual check. Pause for Live You Try It: students enter 4800, 3200, 9500, and 5200 into yellow cells and build one SUM formula that returns 22700.",
+  "Checkpoint 2, five minutes. Students convert A7:E13 to a table, keep filters, select A8 before choosing Freeze Panes, and add one purposeful Net Profit rule. Deliverable: the working table and a completed purpose statement. Likely misconception: choosing Freeze Top Row, which would not preserve row 7.",
   "Part 3 moves from making the sheet look good to making it hold up when someone uses it.",
-  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster. Use the Live You Try It pause to have students total 2980, 1990, 5510, and 3290 before they compare to 13770.",
-  "Demo freeze panes live if possible. Scroll down with row 1 unlocked, then freeze the top row and scroll again.",
+  "Banding is a quiet readability tool. The total row should be distinct without turning the worksheet into a poster. Ask what banding helps the eye do and what it cannot communicate by itself.",
+  "Demo the exact Manager View method. Select A8, choose View, Freeze Panes, Freeze Panes, then scroll. Rows 1 through 7 should remain visible. Contrast this with Freeze Top Row so the misconception is explicit.",
   "Color with purpose is the professional rule. Every color should have exactly one job students can name.",
   "Common mistake: merged cells. Explain that merged headers are attractive until sorting and filtering fail. Center Across Selection is the safe substitute.",
-  "Use the two discussion questions before practice. Students should name the first two fixes they would make on Manager View while explaining why Raw Export must stay unchanged.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Give pairs three minutes. They must agree on the first two Manager View edits and one reason, then share one choice. Listen for preserving Raw Export, establishing table structure, meaningful formats, widths, alignment, or Freeze Panes.",
   "Summarize the takeaways as communication, consistency, and durability. These are the standards students can apply beyond this one file.",
-  "Launch the Class Challenge as a start-in-class, finish-for-homework assignment. Point students to Raw Export, Manager View, the four summary cells, and the checklist. Reinforce that professional design may vary as long as the workbook stays readable and purposeful.",
+  "Launch the Class Challenge with the workbook checklist visible. Students have about 25 minutes in class for the structure and 30 to 40 minutes after class for four formulas, one purposeful rule, the audit, and submission. Reinforce that professional design may vary as long as the workbook stays readable and purposeful.",
   "Close by repeating the core insight: formatting never changes the numbers; it changes how quickly and confidently someone else can use them."
 ]
 </script>

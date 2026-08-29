@@ -38,7 +38,7 @@ Payroll often involves current cash paid to employees. Depreciation is different
 | **Hourly pay**   | Employees paid for hours worked, often with overtime eligibility | `Hours × Rate` |
 | **Overtime pay** | Extra pay for hours beyond the regular threshold (commonly 40 hrs/week) | `OT Hours × Rate × 1.5` |
 | **Salary**       | Fixed annual pay converted into periodic checks | `Annual Salary / Pay Periods` |
-| **Commission**   | Pay based on a percentage of sales, referrals, or measurable revenue | `Sales × Commission Rate` |
+| **Commission**   | Pay based on a percentage of sales or other clearly defined revenue | `Sales × Commission Rate` |
 | **Gross pay**    | Total earned before deductions              | `Regular + OT + Commission`          |
 
 #### Payroll Cycles
@@ -93,7 +93,7 @@ For the eight-nurse team used in class, one nurse earns `$1,958`, so total weekl
 | **Hourly**              | Patient-care shifts, front desk, variable schedules    | Overtime can rise quickly                          |
 | **Salary**              | Managers, billing leaders, ongoing responsibility      | Workload may become invisible                      |
 | **Piece rate / per visit** | Task-based work, contract coverage, repeatable services | Volume may be rewarded over quality             |
-| **Commission**          | Outreach, referrals, optional service growth           | Revenue incentive may need guardrails              |
+| **Commission**          | Nonclinical sales or clearly defined growth roles      | Revenue incentive may need guardrails              |
 | **Salary + commission** | Stable role with a growth target                       | Formula must be transparent                        |
 
 ---
@@ -205,6 +205,6 @@ Answer these questions before class. Be ready to discuss your reasoning — not 
 
 > 📝 **Bring to Class**
 >
-> Be ready to use the starter workbook as a payroll and depreciation management system. The **Live You Try It** pauses will use the same salary, overtime, team payroll, and ultrasound depreciation numbers from the slides so you can self-check each formula before moving on.
+> Be ready to use the starter workbook as a payroll and depreciation management system. The **Live You Try It** pauses will use the same salary, overtime, and ultrasound numbers from the slides. You will build three payroll checks and then complete a six-year depreciation schedule so the pattern is visible across the asset's full useful life.
 >
-> The **Class Challenge** asks you to combine payroll cost, staffing pressure, depreciation, and business interpretation. Your goal is not only to calculate the new payroll or asset amount, but also to explain whether the decision is **operationally reasonable** for a medical practice.
+> The **Class Challenge** asks you to make two fair comparisons. First, hold required service hours constant while comparing staffing plans. Then compare the same asset under two useful-life assumptions. Your goal is not only to calculate the cost difference, but also to explain whether each decision is **operationally reasonable** for a medical practice.

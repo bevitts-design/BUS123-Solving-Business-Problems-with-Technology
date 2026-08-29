@@ -3,248 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BUS123 MATH M05 · Harborside Payroll Management System</title>
+  <title>BUS123 MATH M05 · Payroll and Depreciation Decision Lab</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --ink: #0E1116; --paper: #FAF8F3; --paper-2: #F2EEE5; --white: #FFFFFF;
-      --text: #1A1F2C; --text-soft: #4A5567; --muted: #7A8290; --border: #E5E1D6;
-      --sage: #4A7C5E; --gold: #B8843D; --terra: #9C4A2B; --steel: #355773;
+    :root{
+      --ink:#0E1116;--paper:#FAF8F3;--paper-2:#F2EEE5;--white:#FFFFFF;
+      --text:#1A1F2C;--text-soft:#4A5567;--muted:#7A8290;--border:#E5E1D6;
+      --sage:#4A7C5E;--gold:#B8843D;--terra:#9C4A2B;--steel:#355773;--formula-bg:#EAF3EC;
+      --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+      --serif:"Bodoni Moda",serif;--sans:"DM Sans",sans-serif;--mono:"JetBrains Mono",monospace;
     }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--paper); color: var(--text); font-family: "Geist", sans-serif; line-height: 1.45; }
-    .top { background: var(--ink); color: var(--white); padding: 30px 24px; }
-    .shell { max-width: 1240px; margin: 0 auto; }
-    .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-    .brand { display: flex; align-items: center; gap: 18px; min-width: 0; }
-    .brand img { width: 86px; height: 86px; object-fit: contain; border-radius: 12px; background: rgba(255,255,255,.08); }
-    .eyebrow { font: 600 13px/1 "JetBrains Mono", monospace; color: var(--gold); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
-    h1, h2, h3 { margin: 0; font-family: "Instrument Serif", serif; font-weight: 400; line-height: 1.05; letter-spacing: 0; }
-    h1 { font-size: 54px; }
-    h2 { font-size: 36px; margin-bottom: 14px; }
-    h3 { font-size: 28px; }
-    .top p { max-width: 780px; margin: 12px 0 0; color: rgba(255,255,255,.72); font-size: 18px; }
-    .period { border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 12px; display: grid; gap: 8px; min-width: 220px; }
-    .period label { color: rgba(255,255,255,.72); font: 600 12px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
-    select { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; background: var(--white); color: var(--text); font: 600 15px/1 "Geist", sans-serif; }
-    main { padding: 28px 24px 52px; }
-    .dashboard { display: grid; grid-template-columns: minmax(320px, 420px) minmax(0, 1fr); gap: 20px; align-items: start; }
-    .panel { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 22px; }
-    .controls { display: grid; gap: 18px; }
-    .control { display: grid; gap: 8px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
-    .control:last-child { border-bottom: 0; padding-bottom: 0; }
-    .control-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; font-weight: 700; }
-    output { font-family: "JetBrains Mono", monospace; color: var(--sage); font-weight: 600; white-space: nowrap; }
-    input[type="range"] { width: 100%; accent-color: var(--sage); }
-    .hint { margin: 0; color: var(--text-soft); font-size: 14px; }
-    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
-    .metric { min-height: 132px; background: var(--paper); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
-    .metric small { display: block; color: var(--muted); font: 600 11px/1.2 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
-    .metric strong { display: block; font-family: "Instrument Serif", serif; font-size: 44px; font-weight: 400; line-height: .95; }
-    .metric span { display: block; margin-top: 10px; color: var(--text-soft); font-size: 14px; }
-    .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 18px; }
-    .chart { height: 380px; border: 1px solid var(--border); border-radius: 8px; background: linear-gradient(to top, rgba(229,225,214,.9) 1px, transparent 1px) 0 0 / 100% 25%, var(--white); position: relative; overflow: hidden; padding: 22px; }
-    .bars { height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: end; }
-    .bar-wrap { display: grid; gap: 10px; align-items: end; height: 100%; }
-    .bar { min-height: 8px; border-radius: 8px 8px 0 0; background: var(--sage); display: flex; align-items: start; justify-content: center; padding-top: 10px; color: var(--white); font: 700 13px/1 "JetBrains Mono", monospace; }
-    .bar-wrap:nth-child(2) .bar { background: var(--gold); }
-    .bar-wrap:nth-child(3) .bar { background: var(--steel); }
-    .bar-wrap:nth-child(4) .bar { background: var(--terra); }
-    .bar-label { min-height: 38px; text-align: center; color: var(--text-soft); font-size: 13px; font-weight: 650; }
-    .mix { display: grid; gap: 12px; }
-    .mix-row { display: grid; grid-template-columns: 110px 1fr 72px; gap: 10px; align-items: center; font-size: 14px; }
-    .track { height: 18px; border-radius: 99px; background: var(--paper-2); overflow: hidden; }
-    .fill { height: 100%; border-radius: 99px; background: var(--sage); }
-    .mix-row:nth-child(2) .fill { background: var(--gold); }
-    .mix-row:nth-child(3) .fill { background: var(--steel); }
-    .mix-row:nth-child(4) .fill { background: var(--terra); }
-    .table { margin-top: 18px; border: 1px solid var(--border); border-radius: 8px; overflow: auto; background: var(--white); }
-    table { width: 100%; border-collapse: collapse; min-width: 760px; }
-    th, td { padding: 13px 14px; border-bottom: 1px solid var(--border); text-align: right; font-size: 14px; }
-    th:first-child, td:first-child { text-align: left; }
-    th { background: var(--ink); color: var(--white); font-weight: 700; }
-    tr:last-child td { border-bottom: 0; }
-    .callout { margin-top: 18px; border-radius: 8px; background: var(--ink); color: var(--white); padding: 18px; display: grid; gap: 8px; }
-    .callout strong { color: var(--gold); font: 600 13px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
-    .callout p { margin: 0; color: rgba(255,255,255,.78); }
-    .question { margin-top: 18px; border-left: 6px solid var(--gold); background: var(--paper-2); padding: 16px 18px; border-radius: 8px; color: var(--text-soft); }
-    @media (max-width: 980px) {
-      .brand-row, .dashboard, .workspace { grid-template-columns: 1fr; display: grid; }
-      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      h1 { font-size: 42px; }
-    }
-    @media (max-width: 620px) {
-      .metrics { grid-template-columns: 1fr; }
-      .brand { align-items: flex-start; }
-      .brand img { width: 64px; height: 64px; }
-    }
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.45 var(--sans)}
+    button,input,textarea{font:inherit}.top{background:var(--ink);color:var(--white);border-top:6px solid var(--gold)}.shell{max-width:1220px;margin:0 auto;padding:28px 24px}.top-grid{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+    .eyebrow{font:700 15px/1 var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}h1,h2,h3{font-family:var(--serif);margin:0;line-height:1.05}h1{font-size:52px}h2{font-size:34px}h3{font-size:26px}.top p{margin:10px 0 0;color:rgba(255,255,255,.76);font-size:19px;max-width:760px}
+    .mode-tabs{display:flex;gap:10px}.mode-tabs button{border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.06);color:var(--white);padding:14px 18px;font-weight:700;cursor:pointer}.mode-tabs button.on{background:var(--paper);color:var(--ink)}
+    .instructions{margin:24px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.instruction{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px}.instruction b{display:block;color:var(--sage);font:700 15px/1 var(--mono);text-transform:uppercase;margin-bottom:7px}.instruction span{font-size:16px;color:var(--text-soft)}
+    .lab{display:none}.lab.on{display:block}.grid{display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}.panel{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px}.control{padding:14px 0;border-bottom:1px solid var(--border)}.control:last-child{border-bottom:0}.control-row{display:flex;justify-content:space-between;gap:16px;align-items:baseline;font-weight:700}.control output{font:700 16px/1 var(--mono);color:var(--sage)}input[type="range"]{width:100%;margin-top:10px;accent-color:var(--sage)}.hint{font-size:15px;color:var(--text-soft);margin:7px 0 0}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}.kpi{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px}.kpi small{display:block;color:var(--muted);font:700 14px/1.2 var(--mono);text-transform:uppercase}.kpi strong{display:block;margin-top:10px;font:900 38px/.95 var(--serif)}.kpi span{display:block;margin-top:8px;color:var(--text-soft);font-size:15px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:16px}.option{background:var(--white);border:2px solid var(--border);border-radius:14px;padding:20px}.option.best{border-color:var(--sage)}.option h3{margin-bottom:12px}.option dl{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin:0}.option dt{color:var(--text-soft)}.option dd{margin:0;font-weight:700}.option .total{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font:700 19px/1.2 var(--mono);color:var(--steel)}
+    .readout{margin-top:16px;background:var(--ink);color:var(--white);border-radius:12px;padding:18px}.readout b{color:var(--gold);font:700 15px/1 var(--mono);text-transform:uppercase}.readout p{margin:8px 0 0;color:rgba(255,255,255,.82)}
+    .deliverable{margin-top:18px;background:var(--formula-bg);border-left:5px solid var(--sage);border-radius:10px;padding:18px}.deliverable h3{font-size:24px}.deliverable ol{margin:12px 0 0 22px}.deliverable textarea{width:100%;min-height:90px;margin-top:14px;border:1px solid var(--border);border-radius:8px;padding:12px;background:var(--white);resize:vertical}
+    table{width:100%;border-collapse:collapse;background:var(--white);font-size:16px}th{background:var(--ink);color:var(--white);text-align:left;padding:11px 12px}td{padding:10px 12px;border:1px solid var(--border)}tbody tr:nth-child(even) td{background:var(--paper-2)}tr.selected td{background:var(--formula-bg);font-weight:700;color:var(--sage)}
+    .asset-layout{display:grid;grid-template-columns:1.08fr .92fr;gap:16px}.chart-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px}.book-row{display:grid;grid-template-columns:54px 1fr 86px;gap:10px;align-items:center;margin-top:12px}.track{height:24px;background:var(--paper-2);border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--sage);border-radius:99px}.book-row strong{font:700 14px/1 var(--mono);text-align:right}
+    .formula{margin-top:16px;background:var(--formula-bg);border-left:4px solid var(--sage);border-radius:10px;padding:16px;font:500 17px/1.45 var(--mono)}.formula b{display:block;color:var(--steel);font-size:20px;margin-bottom:8px}
+    @media(max-width:900px){.top-grid,.grid,.asset-layout{grid-template-columns:1fr}.instructions,.kpis{grid-template-columns:repeat(2,1fr)}.mode-tabs{flex-wrap:wrap}.options{grid-template-columns:1fr}}
+    @media(max-width:560px){h1{font-size:40px}.instructions,.kpis{grid-template-columns:1fr}.shell{padding:22px 16px}}
   </style>
 </head>
 <body>
-  <header class="top">
-    <div class="shell brand-row">
-      <div class="brand">
-        <img src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-icon-badge.png" alt="Harborside Medical">
-        <div>
-          <div class="eyebrow">BUS123 · MATH M05 · Harborside Medical</div>
-          <h1>Payroll Management System</h1>
-          <p>Adjust staffing, hours, overtime, and pay mix to see how payroll changes across a healthcare practice.</p>
-        </div>
-      </div>
-      <div class="period">
-        <label for="period">View payroll as</label>
-        <select id="period">
-          <option value="weekly">Weekly</option>
-          <option value="monthly">Monthly estimate</option>
-          <option value="annual">Annual estimate</option>
-        </select>
-      </div>
-    </div>
-  </header>
+<header class="top"><div class="shell top-grid"><div><div class="eyebrow">BUS123 · MATH M05 · Harborside Medical Center</div><h1>Payroll and Depreciation Decision Lab</h1><p>Change assumptions, hold the right constraint constant, and explain what the model still cannot tell you.</p></div><nav class="mode-tabs" aria-label="Decision lab modes"><button type="button" class="on" data-mode="payroll">Payroll decision</button><button type="button" data-mode="asset">Depreciation decision</button></nav></div></header>
 
-  <main class="shell">
-    <section class="dashboard">
-      <div class="panel">
-        <h2>Assumptions</h2>
-        <div class="controls">
-          <div class="control"><div class="control-row"><label for="nurses">Nurses</label><output id="nursesOut"></output></div><input id="nurses" type="range" min="4" max="18" value="9" step="1"><p class="hint">Hourly employees with overtime eligibility.</p></div>
-          <div class="control"><div class="control-row"><label for="nurseHours">Average nurse hours</label><output id="nurseHoursOut"></output></div><input id="nurseHours" type="range" min="32" max="56" value="43" step="1"></div>
-          <div class="control"><div class="control-row"><label for="nurseRate">Nurse hourly rate</label><output id="nurseRateOut"></output></div><input id="nurseRate" type="range" min="32" max="58" value="44" step="1"></div>
-          <div class="control"><div class="control-row"><label for="assistants">Medical assistants</label><output id="assistantsOut"></output></div><input id="assistants" type="range" min="3" max="16" value="7" step="1"></div>
-          <div class="control"><div class="control-row"><label for="assistantHours">Assistant hours</label><output id="assistantHoursOut"></output></div><input id="assistantHours" type="range" min="28" max="50" value="38" step="1"></div>
-          <div class="control"><div class="control-row"><label for="frontDesk">Front desk employees</label><output id="frontDeskOut"></output></div><input id="frontDesk" type="range" min="2" max="10" value="4" step="1"></div>
-          <div class="control"><div class="control-row"><label for="managers">Salaried managers</label><output id="managersOut"></output></div><input id="managers" type="range" min="1" max="6" value="3" step="1"><p class="hint">Annual salary is converted to a weekly payroll cost.</p></div>
-          <div class="control"><div class="control-row"><label for="outreach">Outreach reps</label><output id="outreachOut"></output></div><input id="outreach" type="range" min="0" max="6" value="2" step="1"><p class="hint">Salary plus commission for new patient programs.</p></div>
-          <div class="control"><div class="control-row"><label for="sales">Weekly outreach sales</label><output id="salesOut"></output></div><input id="sales" type="range" min="10000" max="90000" value="36000" step="1000"></div>
-        </div>
-      </div>
+<section class="instructions shell" aria-label="Activity instructions"><div class="instruction"><b>What</b><span>Test one staffing and one equipment decision</span></div><div class="instruction"><b>How</b><span>Work in pairs and change one input at a time</span></div><div class="instruction"><b>Time</b><span>Seven minutes per decision mode</span></div><div class="instruction"><b>Deliverable</b><span>Recommendation, evidence, and one limitation</span></div></section>
 
-      <div>
-        <div class="metrics">
-          <div class="metric"><small>Total payroll</small><strong id="totalPayroll">$0</strong><span id="periodLabel">weekly gross payroll</span></div>
-          <div class="metric"><small>Overtime cost</small><strong id="otCost">$0</strong><span>included in hourly payroll</span></div>
-          <div class="metric"><small>Employees</small><strong id="employeeCount">0</strong><span>across all pay types</span></div>
-          <div class="metric"><small>Avg. cost / employee</small><strong id="avgCost">$0</strong><span id="avgLabel">per week</span></div>
-        </div>
+<main class="shell">
+  <section id="payrollLab" class="lab on" aria-labelledby="payrollHeading"><div class="grid"><aside class="panel"><h2 id="payrollHeading">Fixed-Coverage Inputs</h2><p class="hint">Both team options must provide the same required weekly hours.</p><div class="control"><div class="control-row"><label for="requiredHours">Required service hours</label><output id="requiredHoursOut"></output></div><input id="requiredHours" type="range" min="320" max="440" step="1" value="387"></div><div class="control"><div class="control-row"><label for="hourlyRate">Hourly wage</label><output id="hourlyRateOut"></output></div><input id="hourlyRate" type="range" min="32" max="58" step="1" value="44"></div><div class="control"><div class="control-row"><label for="currentNurses">Current team</label><output id="currentNursesOut"></output></div><input id="currentNurses" type="range" min="6" max="14" step="1" value="9"></div><div class="control"><div class="control-row"><label for="alternativeNurses">Alternative team</label><output id="alternativeNursesOut"></output></div><input id="alternativeNurses" type="range" min="6" max="14" step="1" value="10"></div><div class="control"><div class="control-row"><label for="otMultiplier">Overtime multiplier</label><output id="otMultiplierOut"></output></div><input id="otMultiplier" type="range" min="1" max="2" step="0.1" value="1.5"></div></aside>
+    <div><div class="kpis"><div class="kpi"><small>Required coverage</small><strong id="coverageKpi">387</strong><span>hours in both options</span></div><div class="kpi"><small>Weekly difference</small><strong id="weeklyDifference">$0</strong><span id="weeklyDirection"></span></div><div class="kpi"><small>Annualized difference</small><strong id="annualDifference">$0</strong><span>wage-only estimate</span></div></div><div class="options"><article id="currentOption" class="option"><h3>Current team</h3><dl><dt>Nurses</dt><dd id="curPeople"></dd><dt>Average hours</dt><dd id="curAvg"></dd><dt>Regular hours</dt><dd id="curRegularHours"></dd><dt>Overtime hours</dt><dd id="curOtHours"></dd><dt>Coverage</dt><dd id="curCoverage"></dd></dl><div class="total" id="curTotal"></div></article><article id="alternativeOption" class="option"><h3>Alternative team</h3><dl><dt>Nurses</dt><dd id="altPeople"></dd><dt>Average hours</dt><dd id="altAvg"></dd><dt>Regular hours</dt><dd id="altRegularHours"></dd><dt>Overtime hours</dt><dd id="altOtHours"></dd><dt>Coverage</dt><dd id="altCoverage"></dd></dl><div class="total" id="altTotal"></div></article></div><div class="readout"><b>Manager readout</b><p id="payrollReadout"></p></div><div class="deliverable"><h3>Payroll decision record</h3><ol><li>Which option has lower weekly wages while preserving coverage?</li><li>What is the weekly and annualized difference?</li><li>What excluded cost or operating factor could change your recommendation?</li></ol><textarea aria-label="Payroll recommendation" placeholder="Write your recommendation, evidence, and one limitation here"></textarea></div></div></div></section>
 
-        <div class="workspace">
-          <div class="panel">
-            <h2>Payroll by Employee Type</h2>
-            <div class="chart" aria-label="Payroll bar chart">
-              <div class="bars">
-                <div class="bar-wrap"><div id="barNurses" class="bar"></div><div class="bar-label">Nurses</div></div>
-                <div class="bar-wrap"><div id="barAssistants" class="bar"></div><div class="bar-label">Medical assistants</div></div>
-                <div class="bar-wrap"><div id="barFront" class="bar"></div><div class="bar-label">Front desk</div></div>
-                <div class="bar-wrap"><div id="barOther" class="bar"></div><div class="bar-label">Salary + commission</div></div>
-              </div>
-            </div>
-            <div class="table">
-              <table>
-                <thead><tr><th>Group</th><th>Employees</th><th>Regular pay</th><th>Overtime / commission</th><th>Total gross</th></tr></thead>
-                <tbody id="payRows"></tbody>
-              </table>
-            </div>
-          </div>
+  <section id="assetLab" class="lab" aria-labelledby="assetHeading"><div class="grid"><aside class="panel"><h2 id="assetHeading">Asset Assumptions</h2><p class="hint">Predict the direction before moving a control.</p><div class="control"><div class="control-row"><label for="assetCost">Asset cost</label><output id="assetCostOut"></output></div><input id="assetCost" type="range" min="50000" max="150000" step="1000" value="84000"></div><div class="control"><div class="control-row"><label for="residualValue">Residual value</label><output id="residualValueOut"></output></div><input id="residualValue" type="range" min="0" max="30000" step="1000" value="12000"></div><div class="control"><div class="control-row"><label for="usefulLife">Useful life</label><output id="usefulLifeOut"></output></div><input id="usefulLife" type="range" min="3" max="10" step="1" value="6"></div><div class="control"><div class="control-row"><label for="selectedYear">Inspect year</label><output id="selectedYearOut"></output></div><input id="selectedYear" type="range" min="1" max="6" step="1" value="3"></div><div class="formula"><b>=(Cost-ResidualValue)/UsefulLife</b><span id="formulaNarrative"></span></div></aside>
+    <div><div class="kpis"><div class="kpi"><small>Annual depreciation</small><strong id="annualDep"></strong><span>constant each year</span></div><div class="kpi"><small>Selected-year accumulated</small><strong id="selectedAccum"></strong><span id="selectedAccumLabel"></span></div><div class="kpi"><small>Selected-year book value</small><strong id="selectedBook"></strong><span>recorded value, not market value</span></div></div><div class="asset-layout"><div class="panel"><h2>Complete Schedule</h2><table aria-label="Interactive depreciation schedule"><thead><tr><th>Year</th><th>Expense</th><th>Accumulated</th><th>Book value</th></tr></thead><tbody id="scheduleRows"></tbody></table></div><div class="chart-card"><h2>Book Value Path</h2><div id="bookChart" aria-label="Book value bars by year"></div><div class="readout"><b>Ending check</b><p id="assetReadout"></p></div></div></div><div class="deliverable"><h3>Equipment decision record</h3><ol><li>What happens to annual depreciation if useful life increases?</li><li>Why does ending book value equal residual value rather than zero?</li><li>What operational or market information is needed before replacing the asset?</li></ol><textarea aria-label="Equipment recommendation" placeholder="Write your explanation, evidence, and one limitation here"></textarea></div></div></div></section>
+</main>
 
-          <aside class="panel">
-            <h2>Payroll Mix</h2>
-            <div class="mix">
-              <div class="mix-row"><span>Nurses</span><div class="track"><div id="mixNurses" class="fill"></div></div><b id="mixNursesPct">0%</b></div>
-              <div class="mix-row"><span>Assistants</span><div class="track"><div id="mixAssistants" class="fill"></div></div><b id="mixAssistantsPct">0%</b></div>
-              <div class="mix-row"><span>Front desk</span><div class="track"><div id="mixFront" class="fill"></div></div><b id="mixFrontPct">0%</b></div>
-              <div class="mix-row"><span>Other</span><div class="track"><div id="mixOther" class="fill"></div></div><b id="mixOtherPct">0%</b></div>
-            </div>
-            <div class="callout">
-              <strong>Manager readout</strong>
-              <p id="readout">Adjust assumptions to see what is driving payroll.</p>
-            </div>
-            <div class="question">
-              <strong>Student prompt:</strong> Which change is more effective: reducing average overtime by 2 hours, or hiring one more employee in the highest-overtime group?
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    const els = {
-      period: document.getElementById('period'),
-      nurses: document.getElementById('nurses'),
-      nurseHours: document.getElementById('nurseHours'),
-      nurseRate: document.getElementById('nurseRate'),
-      assistants: document.getElementById('assistants'),
-      assistantHours: document.getElementById('assistantHours'),
-      frontDesk: document.getElementById('frontDesk'),
-      managers: document.getElementById('managers'),
-      outreach: document.getElementById('outreach'),
-      sales: document.getElementById('sales')
-    };
-    const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-    const num = (id) => Number(els[id].value);
-    const scaleForPeriod = () => els.period.value === 'weekly' ? 1 : els.period.value === 'monthly' ? 52 / 12 : 52;
-    const periodWord = () => els.period.value === 'weekly' ? 'per week' : els.period.value === 'monthly' ? 'per month' : 'per year';
-    function hourlyGroup(count, hours, rate) {
-      const regularHours = Math.min(hours, 40) * count;
-      const overtimeHours = Math.max(hours - 40, 0) * count;
-      const regular = regularHours * rate;
-      const overtime = overtimeHours * rate * 1.5;
-      return { count, regular, overtime, total: regular + overtime };
-    }
-    function calculate() {
-      const nurses = hourlyGroup(num('nurses'), num('nurseHours'), num('nurseRate'));
-      const assistants = hourlyGroup(num('assistants'), num('assistantHours'), 27);
-      const front = hourlyGroup(num('frontDesk'), 37, 24);
-      const managers = { count: num('managers'), regular: num('managers') * 76000 / 52, overtime: 0 };
-      managers.total = managers.regular;
-      const outreachBase = num('outreach') * 46000 / 52;
-      const outreachCommission = num('sales') * 0.035;
-      const outreach = { count: num('outreach'), regular: outreachBase, overtime: outreachCommission, total: outreachBase + outreachCommission };
-      const other = { count: managers.count + outreach.count, regular: managers.regular + outreach.regular, overtime: outreach.overtime, total: managers.total + outreach.total };
-      const groups = { nurses, assistants, front, other };
-      const weeklyTotal = Object.values(groups).reduce((sum, group) => sum + group.total, 0);
-      const otTotal = nurses.overtime + assistants.overtime + front.overtime;
-      const employees = nurses.count + assistants.count + front.count + other.count;
-      const scale = scaleForPeriod();
-      document.getElementById('totalPayroll').textContent = money.format(weeklyTotal * scale);
-      document.getElementById('otCost').textContent = money.format(otTotal * scale);
-      document.getElementById('employeeCount').textContent = employees;
-      document.getElementById('avgCost').textContent = money.format((weeklyTotal * scale) / employees);
-      document.getElementById('periodLabel').textContent = els.period.value + ' gross payroll';
-      document.getElementById('avgLabel').textContent = periodWord();
-      const max = Math.max(...Object.values(groups).map(g => g.total));
-      [['barNurses', nurses], ['barAssistants', assistants], ['barFront', front], ['barOther', other]].forEach(([id, group]) => {
-        const bar = document.getElementById(id);
-        bar.style.height = Math.max(8, group.total / max * 300) + 'px';
-        bar.textContent = money.format(group.total);
-      });
-      const rows = [
-        ['Nurses', nurses], ['Medical assistants', assistants], ['Front desk', front],
-        ['Managers + outreach', other]
-      ];
-      document.getElementById('payRows').innerHTML = rows.map(([label, group]) => `<tr><td>${label}</td><td>${group.count}</td><td>${money.format(group.regular * scale)}</td><td>${money.format(group.overtime * scale)}</td><td><strong>${money.format(group.total * scale)}</strong></td></tr>`).join('');
-      [['mixNurses', 'mixNursesPct', nurses], ['mixAssistants', 'mixAssistantsPct', assistants], ['mixFront', 'mixFrontPct', front], ['mixOther', 'mixOtherPct', other]].forEach(([fillId, pctId, group]) => {
-        const pct = weeklyTotal ? Math.round(group.total / weeklyTotal * 100) : 0;
-        document.getElementById(fillId).style.width = pct + '%';
-        document.getElementById(pctId).textContent = pct + '%';
-      });
-      const overtimeShare = weeklyTotal ? Math.round(otTotal / weeklyTotal * 100) : 0;
-      const largest = rows.reduce((best, row) => row[1].total > best[1].total ? row : best, rows[0])[0];
-      document.getElementById('readout').textContent = `${largest} are the largest payroll driver. Overtime is ${overtimeShare}% of weekly gross payroll before deductions and employer taxes.`;
-      document.getElementById('nursesOut').textContent = num('nurses');
-      document.getElementById('nurseHoursOut').textContent = num('nurseHours') + ' hrs';
-      document.getElementById('nurseRateOut').textContent = money.format(num('nurseRate')) + '/hr';
-      document.getElementById('assistantsOut').textContent = num('assistants');
-      document.getElementById('assistantHoursOut').textContent = num('assistantHours') + ' hrs';
-      document.getElementById('frontDeskOut').textContent = num('frontDesk');
-      document.getElementById('managersOut').textContent = num('managers');
-      document.getElementById('outreachOut').textContent = num('outreach');
-      document.getElementById('salesOut').textContent = money.format(num('sales'));
-    }
-    Object.values(els).forEach(el => el.addEventListener('input', calculate));
-    calculate();
-  </script>
+<script>
+  const money=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+  const byId=id=>document.getElementById(id);
+  document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-mode]').forEach(item=>item.classList.toggle('on',item===button));byId('payrollLab').classList.toggle('on',button.dataset.mode==='payroll');byId('assetLab').classList.toggle('on',button.dataset.mode==='asset')}));
+  function payrollOption(required,people,rate,multiplier){const average=required/people;const regularHours=Math.min(required,people*40);const overtimeHours=Math.max(required-people*40,0);const regularPay=regularHours*rate;const overtimePay=overtimeHours*rate*multiplier;return{people,average,regularHours,overtimeHours,total:regularPay+overtimePay}}
+  function writeOption(prefix,option){byId(prefix+'People').textContent=option.people;byId(prefix+'Avg').textContent=option.average.toFixed(1);byId(prefix+'RegularHours').textContent=option.regularHours.toFixed(1);byId(prefix+'OtHours').textContent=option.overtimeHours.toFixed(1);byId(prefix+'Coverage').textContent=(option.regularHours+option.overtimeHours).toFixed(1);byId(prefix+'Total').textContent='Weekly wages '+money.format(option.total)}
+  function calculatePayroll(){const required=Number(byId('requiredHours').value),rate=Number(byId('hourlyRate').value),currentPeople=Number(byId('currentNurses').value),alternativePeople=Number(byId('alternativeNurses').value),multiplier=Number(byId('otMultiplier').value);const current=payrollOption(required,currentPeople,rate,multiplier),alternative=payrollOption(required,alternativePeople,rate,multiplier);writeOption('cur',current);writeOption('alt',alternative);byId('requiredHoursOut').textContent=required+' hrs';byId('hourlyRateOut').textContent=money.format(rate)+'/hr';byId('currentNursesOut').textContent=currentPeople+' nurses';byId('alternativeNursesOut').textContent=alternativePeople+' nurses';byId('otMultiplierOut').textContent=multiplier.toFixed(1)+'×';byId('coverageKpi').textContent=required;const difference=current.total-alternative.total;byId('weeklyDifference').textContent=money.format(Math.abs(difference));byId('annualDifference').textContent=money.format(Math.abs(difference)*52);byId('weeklyDirection').textContent=difference>0?'alternative costs less':difference<0?'current costs less':'same wage cost';byId('currentOption').classList.toggle('best',current.total<alternative.total);byId('alternativeOption').classList.toggle('best',alternative.total<current.total);const lower=difference>0?'alternative':difference<0?'current':'neither';byId('payrollReadout').textContent=lower==='neither'?'Both options have the same wage cost. Coverage is equal; inspect the overtime pattern and outside costs.':`The ${lower} option has lower wage cost while both options provide ${required} hours. This model excludes benefits, recruiting, training, scheduling, and continuity effects.`}
+  ['requiredHours','hourlyRate','currentNurses','alternativeNurses','otMultiplier'].forEach(id=>byId(id).addEventListener('input',calculatePayroll));
+  function calculateAsset(){const cost=Number(byId('assetCost').value),residual=Number(byId('residualValue').value),life=Number(byId('usefulLife').value);byId('selectedYear').max=life;if(Number(byId('selectedYear').value)>life)byId('selectedYear').value=life;const selected=Number(byId('selectedYear').value),annual=(cost-residual)/life,accumulated=annual*selected,book=Math.max(residual,cost-accumulated);byId('assetCostOut').textContent=money.format(cost);byId('residualValueOut').textContent=money.format(residual);byId('usefulLifeOut').textContent=life+' years';byId('selectedYearOut').textContent='Year '+selected;byId('annualDep').textContent=money.format(annual);byId('selectedAccum').textContent=money.format(accumulated);byId('selectedAccumLabel').textContent='through Year '+selected;byId('selectedBook').textContent=money.format(book);byId('formulaNarrative').textContent=`(${money.format(cost)} − ${money.format(residual)}) ÷ ${life} = ${money.format(annual)} per year`;let rows='',bars='';for(let year=1;year<=life;year++){const accum=annual*year,value=Math.max(residual,cost-accum);rows+=`<tr class="${year===selected?'selected':''}"><td>${year}</td><td>${money.format(annual)}</td><td>${money.format(accum)}</td><td>${money.format(value)}</td></tr>`;bars+=`<div class="book-row"><span>Year ${year}</span><div class="track"><div class="fill" style="width:${value/cost*100}%"></div></div><strong>${money.format(value)}</strong></div>`}byId('scheduleRows').innerHTML=rows;byId('bookChart').innerHTML=bars;byId('assetReadout').textContent=`After Year ${life}, book value is ${money.format(residual)}—the residual value, not zero. Book value is an accounting amount and does not establish replacement timing.`}
+  ['assetCost','residualValue','usefulLife','selectedYear'].forEach(id=>byId(id).addEventListener('input',calculateAsset));
+  calculatePayroll();calculateAsset();
+</script>
 </body>
 </html>

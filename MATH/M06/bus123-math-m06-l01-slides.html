@@ -1,1772 +1,628 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BUS123 · MATH-M06 · L01 — Inventory, Overhead & COGS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <script type="application/json" id="speaker-notes">
-[
-  "Welcome to Module 6. Today we're tackling three of the most important numbers in any product-based business: inventory value, overhead costs, and cost of goods sold. By the end of class you'll be able to calculate all three \u2014 and you'll understand why getting them wrong can make a profitable business look like it's losing money.",
-  "Let's talk about what's happening in the real world right now. As of 2026, 95% of retail executives say they expect rising costs from global trade policies \u2014 and tariff-driven inventory decisions are headline news. This isn't abstract. These are the exact calculations every retail buyer, analyst, and manager is running right now.",
-  "Here's our roadmap for the 75 minutes. Three parts: inventory valuation methods, the COGS formula and pricing math, and overhead allocation. We'll weave in a real business \u2014 Tidal Goods Co. \u2014 throughout every part.",
-  "Quick bridge from last module. We've been working with revenue and markup math. Today we go one level deeper \u2014 into the cost side. Before you can price anything, you need to know exactly what it cost you to own that product. That's what COGS and inventory valuation tell you.",
-  "Part 1: Inventory Valuation. This is the question: when you sell a product from a mixed pile of stock bought at different prices, which cost do you record? The answer changes your profit. Let's explore how.",
-  "Tidal Goods Co. sells outdoor and coastal gear. They buy the same paddleboard model across three different purchase orders \u2014 $210, $230, and $250 \u2014 as supplier prices shift. When they sell one, which cost hits their books? This is the inventory valuation problem every retailer faces.",
-  "There are four methods. Specific ID traces the exact unit. FIFO assumes the oldest stock sells first. LIFO assumes the newest sells first. WAC blends all costs into one average. Each gives a different COGS \u2014 and a different profit number \u2014 from the same physical sale.",
-  "Let's run the numbers side by side. Tidal bought 30 paddleboards: 10 at $210, 10 at $230, and 10 at $250. They sell 20. Under FIFO, COGS = $4,400. Under LIFO, COGS = $4,800. Under WAC, COGS = $4,600. Same 20 boards sold \u2014 a $400 difference in profit depending on the method.",
-  "The FIFO vs LIFO strategic decision: During inflation, FIFO shows higher profit because old cheap costs go to COGS. LIFO shows lower profit \u2014 but lower taxes. Important note: LIFO is banned under IFRS, the international standard. US companies using LIFO cannot report under international rules without restating. That's a real constraint for global retailers.",
-  "Live You Try It pause for inventory methods. Students should open the Live You Try It tab and complete rows 1 through 3 by typing the slide givens into the input cells first: D6:G6 for FIFO COGS, D7:G7 for WAC unit cost, and D8:E8 for WAC COGS. Then they build formulas in column H that reference those cells. Column I feedback is self-checking, not graded.",
-  "Now let's connect inventory to the balance sheet. At Tidal, ending inventory under FIFO = $250 (the newest board). Under LIFO = $210 (the oldest). That changes total assets reported. Lenders and investors read this number \u2014 so the method choice has financial consequences far beyond the income statement.",
-  "Part 2: COGS and Pricing Strategy. COGS is not just a formula \u2014 it's the foundation of every pricing decision. Let's build it from scratch with Tidal.",
-  "The COGS formula in plain English: what you started with, plus what you bought, minus what's left. Beginning Inventory + Purchases \u2212 Ending Inventory = COGS. Simple structure, high stakes. An error in ending inventory flows directly into profit \u2014 and then into next period's beginning inventory. Errors compound.",
-  "Live You Try It pause for the COGS formula. Students type beginning inventory of $12,400, purchases of $38,600, and ending inventory of $9,800 into D9:F9 first, then build the COGS formula in H9 using those cells. The feedback cell coaches the self-check before you move on.",
-  "Let's build Tidal's full COGS schedule. Beginning inventory $12,400. New purchases during the quarter: $38,600. Ending inventory after physical count: $9,800. COGS = $41,200. That number feeds directly into the income statement. Gross Profit = Revenue minus $41,200.",
-  "Live You Try It pause for margin versus markup. Students type the same $80 selling price and $48 cost from the worked example into D10:E10 for margin and D11:E11 for markup, then build formulas in H10 and H11 that reference those cells. The goal is denominator discipline, not memorizing the answer.",
-  "Now pricing \u2014 margin versus markup. This is one of the most confused topics in retail. Margin is profit as a percent of revenue. Markup is profit as a percent of cost. They look similar but they are not the same number \u2014 confusing them causes serious underpricing.",
-  "Tidal sells a surf bag for $80. They paid $48 for it. Markup = $32 / $48 = 66.7%. Margin = $32 / $80 = 40%. A buyer who says 'we mark up 100%' is saying margin is 50% \u2014 not 100%. Show the Excel formulas, then the manual math.",
-  "Common mistake slide \u2014 this one is critical. If ending inventory is OVERSTATED \u2014 say a physical count error adds $5,000 of phantom inventory \u2014 COGS is understated by $5,000. Net income is overstated by $5,000 this period. Next period, beginning inventory is now wrong too. The error cascades across two periods. Auditors look for this specifically.",
-  "Part 3: Overhead Allocation. Every business has costs that don't attach to a single product \u2014 rent, utilities, insurance. These still need to show up somewhere in the cost of doing business. Overhead allocation is how we distribute them fairly.",
-  "Tidal operates two departments: Surf Shop and Online Warehouse. Monthly rent is $9,000. The Surf Shop occupies 2,400 sq ft; the Warehouse 1,600 sq ft. Allocated by square footage: Surf Shop gets 60% = $5,400. Warehouse gets 40% = $3,600. The allocation base \u2014 square footage \u2014 is a management decision.",
-  "Live You Try It pause for overhead. Students type the rent and square-footage givens into D12:F12 before building the allocation formula in H12, then type total overhead and revenue into D13:E13 before building the overhead-rate formula in H13. Treat this as a quick self-check before discussion.",
-  "Overhead Rate formula: Total Overhead Costs divided by Revenue. At Tidal: $22,000 overhead on $110,000 revenue = 20% overhead rate. That means for every dollar of revenue, 20 cents goes to keeping the lights on before we even count COGS. Management watches this number closely.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
-  "Discussion: Two questions to work through with the person next to you. One: Tidal is considering switching from FIFO to WAC. What are the tradeoffs? Think tax impact, balance sheet presentation, and complexity. Two: Tidal's overhead rate just jumped from 18% to 24% in one quarter. What would you investigate first?",
-  "Three things to take away from today. One: inventory method choice is a strategic decision \u2014 it affects profit, taxes, and reported assets. Two: COGS errors compound across periods \u2014 get the ending inventory right. Three: overhead allocation requires choosing a fair base \u2014 and the choice matters for departmental profitability.",
-  "Coming up next \u2014 Excel Activity. You'll take Tidal's raw transaction data and build a formatted management report: COGS schedule, inventory valuation comparison, and overhead allocation table. The live rows are self-graded practice; the Class Challenge is the next-level graded work."
-]
-</script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUS123 · MATH-M06 · L01 — Inventory, COGS &amp; Overhead</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,900&amp;family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-    --ink:#0E1116;
-    --paper:#FAF8F3;
-    --paper-2:#F2EEE5;
-    --white:#FFFFFF;
-    --text:#1A1F2C;
-    --text-soft:#4A5567;
-    --muted:#7A8290;
-    --border:#E5E1D6;
-    --sage:#4A7C5E;
-    --gold:#B8843D;
-    --terra:#9C4A2B;
-    --steel:#355773;
-    --formula-bg:#EAF3EC;
-    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
-    --serif:"Bodoni Moda",serif;
-    --sans:"DM Sans",sans-serif;
-    --mono:"JetBrains Mono",monospace;
-    --font-display:var(--serif);
-    --font-body:var(--sans);
-    --font-mono:var(--mono);
+      --ink: #0E1116;
+      --paper: #FAF8F3;
+      --paper-2: #F2EEE5;
+      --white: #FFFFFF;
+      --text: #1A1F2C;
+      --soft: #4A5567;
+      --muted: #737B88;
+      --border: #DCD7CA;
+      --sage: #4A7C5E;
+      --sage-pale: #EAF3EC;
+      --gold: #B8843D;
+      --gold-pale: #F4E9D6;
+      --terra: #9C4A2B;
+      --terra-pale: #F6E8E1;
+      --steel: #355773;
+      --steel-pale: #E8EFF5;
+      --yellow: #FFF2B2;
+      --green: #DDEFE2;
+      --shadow: #00000021;
+      --white-08: #FFFFFF14;
+      --white-16: #FFFFFF29;
+      --white-68: #FFFFFFAD;
+      --white-86: #FFFFFFDB;
+      --serif: "Bodoni Moda", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
 
-    --accent: var(--sage);
-    --scale: .6667;
-    --type-display:  calc(112px * var(--scale));
-    --type-title:    calc(72px  * var(--scale));
-    --type-subtitle: calc(44px  * var(--scale));
-    --type-lead:     calc(34px  * var(--scale));
-    --type-body:     calc(28px  * var(--scale));
-    --type-small:    calc(24px  * var(--scale));
-    --type-eyebrow:  calc(24px  * var(--scale));
-    --type-mono:     calc(24px  * var(--scale));
-    --type-stat:     calc(200px * var(--scale));
-    --pad-x:      128px;
-    --pad-top:    104px;
-    --pad-bottom: 96px;
-    --gap-title:  56px;
-    --gap-item:   32px;
-  }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--ink); }
+    body { font-family: var(--sans); color: var(--text); }
+    button { font: inherit; }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #111; font-family: 'DM Sans', sans-serif; }
-
-    .slide {
+    #deck {
+      position: absolute;
+      left: 50%;
+      top: 50%;
       width: 1280px;
       height: 720px;
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+      background: var(--paper);
+      box-shadow: 0 24px 64px var(--shadow);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
       overflow: hidden;
-      flex-direction: column;
-      padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+      padding: 72px 86px 66px;
+      background: var(--paper);
     }
-    .slide.dark  { background: var(--ink);   color: #fff; }
-    .slide.cream { background: var(--paper); color: var(--text); }
+    .slide.active { display: flex; flex-direction: column; }
+    .slide.dark { background: var(--ink); color: var(--white); }
+    .slide.break { justify-content: center; }
 
-    /* ── GRADIENT BAR ── */
-    .grad-bar {
-      height: 6px;
-      background: var(--gradient);
-      border-radius: 3px;
-      margin-bottom: 48px;
-      width: 100%;
-    }
-
-    /* ── HEADER ROW ── */
-    .header-row {
+    .tabs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 36px;
       display: flex;
-      align-items: baseline;
-      gap: 24px;
-      margin-bottom: 12px;
+      align-items: stretch;
+      background: var(--paper-2);
+      border-bottom: 1px solid var(--border);
+      z-index: 3;
     }
-    .eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-eyebrow);
-      color: var(--accent);
+    .dark .tabs { background: var(--ink); border-color: var(--white-16); }
+    .tab {
+      min-width: 138px;
+      padding: 9px 20px 0;
+      border-right: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 15px;
+      letter-spacing: .05em;
+      color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
-    .eyebrow.light { color: rgba(255,255,255,0.5); }
-    .rule {
-      height: 1px;
-      background: var(--border);
-      margin-bottom: var(--gap-title);
-    }
-    .rule.light { background: rgba(255,255,255,0.15); }
+    .dark .tab { border-color: var(--white-16); color: var(--white-68); }
+    .tab.current { color: var(--sage); background: var(--white); border-top: 4px solid var(--sage); padding-top: 5px; }
+    .dark .tab.current { color: var(--gold); background: var(--white-08); border-top-color: var(--gold); }
 
-    h1 {
-      font-family: 'Bodoni Moda', serif;
-      font-size: var(--type-display);
-      font-weight: 400;
-      line-height: 1.0;
-      color: #fff;
+    .kicker {
+      margin: 0 0 12px;
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--sage);
     }
-    h2 {
-      font-family: 'Bodoni Moda', serif;
-      font-size: var(--type-title);
-      font-weight: 400;
-      line-height: 1.1;
-    }
-    h2.light { color: #fff; }
-    h2.dark-txt { color: var(--text); }
+    .dark .kicker { color: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { font-family: var(--serif); letter-spacing: -.025em; }
+    h1 { max-width: 1000px; margin-bottom: 18px; font-size: 76px; line-height: .98; }
+    h2 { margin-bottom: 24px; font-size: 50px; line-height: 1.04; }
+    h3 { margin-bottom: 10px; font-size: 22px; line-height: 1.18; }
+    p, li { font-size: 20px; line-height: 1.42; }
+    .lead { max-width: 940px; font-size: 29px; line-height: 1.3; color: var(--soft); }
+    .dark .lead { color: var(--white-68); }
+    .small { font-size: 16px; line-height: 1.35; }
+    .muted { color: var(--muted); }
+    .dark .muted { color: var(--white-68); }
+    strong { font-weight: 700; }
 
-    .subtitle {
-      font-family: 'Bodoni Moda', serif;
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: rgba(255,255,255,0.65);
-      margin-top: 24px;
+    .accent-line {
+      width: 180px;
+      height: 7px;
+      margin: 2px 0 26px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--gold), var(--terra), var(--sage));
     }
-    .subtitle.cream { color: var(--text-soft); }
-
-    p, li {
-      font-family: 'DM Sans', sans-serif;
-      font-size: var(--type-body);
-      line-height: 1.55;
-      color: var(--text);
+    .section-mark {
+      position: absolute;
+      right: 78px;
+      bottom: 38px;
+      font-family: var(--serif);
+      font-size: 210px;
+      font-weight: 900;
+      line-height: .75;
+      color: var(--white-08);
     }
-    p.light, li.light { color: rgba(255,255,255,0.85); }
+    .break h2 { max-width: 850px; font-size: 76px; color: var(--white); }
+    .break .lead { max-width: 790px; }
 
-    /* ── CARDS ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .split-55 { display: grid; grid-template-columns: 1.12fr .88fr; gap: 30px; align-items: stretch; }
+    .split-64 { display: grid; grid-template-columns: 1.55fr .85fr; gap: 30px; align-items: stretch; }
+    .stack { display: flex; flex-direction: column; gap: 16px; }
+    .grow { flex: 1; }
+
     .card {
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 40px;
+      border-radius: 16px;
+      padding: 24px 26px;
+      box-shadow: 0 8px 22px var(--shadow);
     }
-    .card.dark-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      padding: 36px 40px;
-    }
+    .card.sage { background: var(--sage-pale); border-color: var(--sage); }
+    .card.gold { background: var(--gold-pale); border-color: var(--gold); }
+    .card.terra { background: var(--terra-pale); border-color: var(--terra); }
+    .card.steel { background: var(--steel-pale); border-color: var(--steel); }
+    .dark .card { background: var(--white-08); border-color: var(--white-16); box-shadow: none; color: var(--white); }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    .card ul { margin: 8px 0 0 20px; padding: 0; }
+    .card li { margin-bottom: 7px; }
 
-    /* ── NUMBERED STATEMENTS ── */
-    .numbered {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      margin-bottom: var(--gap-item);
-    }
-    .n {
-      font-family: 'Bodoni Moda', serif;
-      font-style: italic;
-      font-size: calc(52px * var(--scale));
-      color: var(--accent);
-      min-width: 64px;
-      line-height: 1;
-    }
-    .n.light { color: rgba(255,255,255,0.35); }
-    .n-body {
-      font-size: var(--type-lead);
-      line-height: 1.4;
-      color: var(--text);
-    }
-    .n-body.light { color: rgba(255,255,255,0.85); }
-
-    /* ── DARK PANEL (Excel / formulas) ── */
-    .dark-panel {
-      background: var(--ink);
-      color: var(--gold);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-mono);
-      border-radius: 10px;
-      padding: 28px 36px;
-      line-height: 1.7;
-    }
-    .dark-panel.on-dark {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* ── STAT SLIDE ── */
-    .stat-number {
-      font-family: 'Bodoni Moda', serif;
-      font-style: italic;
-      font-size: var(--type-stat);
-      color: var(--accent);
-      line-height: 0.9;
-    }
-    .stat-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: var(--type-lead);
-      color: rgba(255,255,255,0.65);
-      margin-top: 24px;
-    }
-
-    /* ── SECTION BREAK LAYOUT ── */
-    .section-num {
-      font-family: 'Bodoni Moda', serif;
-      font-style: italic;
-      font-size: calc(200px * var(--scale));
-      color: rgba(255,255,255,0.06);
-      position: absolute;
-      right: var(--pad-x);
-      bottom: 60px;
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    /* ── MISTAKE BOX ── */
-    .mistake-box {
-      background: rgba(156, 74, 43, 0.18);
-      border: 2px solid var(--terra);
-      border-radius: 14px;
-      padding: 36px 44px;
-    }
-    .mistake-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-eyebrow);
-      color: var(--terra);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
-    }
-
-    /* ── GRID LAYOUTS ── */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
-    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 28px; }
-    .col-60-40 { display: grid; grid-template-columns: 60fr 40fr; gap: 64px; }
-    .col-50-50 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-
-    /* ── FLEX HELPERS ── */
-    .flex-col { display: flex; flex-direction: column; }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
-    .gap-32 { gap: 32px; }
-    .gap-24 { gap: 24px; }
-    .mt-auto { margin-top: auto; }
-
-    /* ── TABLE STYLES ── */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: var(--type-small);
-    }
-    .data-table th {
-      background: var(--ink);
-      color: var(--gold);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: calc(22px * var(--scale));
-      padding: 16px 20px;
-      text-align: left;
-      border-bottom: 2px solid var(--gold);
-    }
-    .data-table td {
-      padding: 14px 20px;
-      border-bottom: 1px solid var(--border);
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text);
-    }
-    .data-table tr:nth-child(even) td { background: #F7F4EE; }
-    .data-table tr.result td {
-      background: #FFFBF0;
-      border-left: 3px solid var(--gold);
-      font-weight: 600;
-      color: #1a6b3c;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .data-table tr.highlight td {
-      background: rgba(74,124,94,0.08);
-      font-weight: 600;
-    }
-
-    /* ── BAR CHART (CSS animated) ── */
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 24px;
-      height: 320px;
-    }
-    .bar-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      flex: 1;
-    }
-    .bar-fill {
-      width: 100%;
-      border-radius: 8px 8px 0 0;
-      animation: growUp 1s ease-out forwards;
-      transform-origin: bottom;
-      transform: scaleY(0);
-    }
-    @keyframes growUp {
-      to { transform: scaleY(1); }
-    }
-    .bar-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-small);
-      font-weight: 500;
-      color: var(--text);
-    }
-    .bar-lbl {
-      font-family: 'DM Sans', sans-serif;
-      font-size: calc(22px * var(--scale));
-      color: var(--text-soft);
-      text-align: center;
-    }
-
-    /* ── DONUT CHART ── */
-    .donut-wrap { position: relative; }
-    .donut-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-
-    /* ── FLOW ARROW ── */
-    .flow {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .flow-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 32px;
-      text-align: center;
-      flex: 1;
-    }
-    .flow-box .fb-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: calc(22px * var(--scale));
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-    .flow-box .fb-val {
-      font-family: 'Bodoni Moda', serif;
-      font-size: calc(42px * var(--scale));
-      color: var(--text);
-      margin-top: 8px;
-    }
-    .flow-arrow {
-      font-family: 'DM Sans', sans-serif;
-      font-size: calc(40px * var(--scale));
-      color: var(--accent);
-    }
-    .flow-op {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-small);
-      color: var(--accent);
-      text-align: center;
-    }
-    .flow-stack {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* ── PILL TAGS ── */
-    .pill-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .pill {
-      background: rgba(74,124,94,0.12);
-      color: var(--sage);
-      border: 1px solid rgba(74,124,94,0.3);
-      border-radius: 40px;
-      padding: 10px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: var(--type-small);
-      font-weight: 500;
-    }
-    .pill.terra {
-      background: rgba(156,74,43,0.10);
-      color: var(--terra);
-      border-color: rgba(156,74,43,0.3);
-    }
-    .pill.gold {
-      background: rgba(184,132,61,0.12);
-      color: var(--gold);
-      border-color: rgba(184,132,61,0.3);
-    }
-
-    /* ── AGENDA LIST ── */
-    .agenda-item {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .agenda-item:last-child { border-bottom: none; }
-    .agenda-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: calc(28px * var(--scale));
-      color: var(--accent);
-      min-width: 48px;
-    }
-    .agenda-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: var(--type-lead);
-      color: var(--text);
-    }
-    .agenda-badge {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-eyebrow);
-      color: var(--muted);
-    }
-
-    /* ── OBJECTIVES ── */
-    .obj-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .obj-row:last-child { border-bottom: none; }
-    .obj-check {
-      width: 32px;
-      height: 32px;
+    .number {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 14px;
       border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 16px;
-      flex-shrink: 0;
-      margin-top: 4px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 17px;
     }
-    .obj-text {
-      font-size: var(--type-body);
+    .sage .number { background: var(--sage); }
+    .gold .number { background: var(--gold); }
+    .terra .number { background: var(--terra); }
+    .steel .number { background: var(--steel); }
+
+    table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; font-size: 17px; }
+    th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    th:first-child, td:first-child { border-left: 1px solid var(--border); }
+    thead th { color: var(--white); background: var(--ink); font-family: var(--mono); font-size: 16px; letter-spacing: .03em; }
+    thead th:first-child { border-top-left-radius: 10px; }
+    thead th:last-child { border-top-right-radius: 10px; }
+    tbody tr:nth-child(even) td { background: var(--paper-2); }
+    tbody tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+    tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+    .tight th, .tight td { padding: 9px 11px; font-size: 16px; }
+    .tight thead th { font-size: 16px; }
+    .right { text-align: right; }
+    .center { text-align: center; }
+
+    .formula {
+      padding: 20px 24px;
+      border-radius: 14px;
+      background: var(--ink);
+      color: var(--gold);
+      font-family: var(--mono);
+      font-size: 20px;
       line-height: 1.45;
     }
+    .formula .result { color: var(--white); }
+    .formula .comment { color: var(--white-68); }
+    .formula.compact { padding: 15px 19px; font-size: 17px; }
+    .formula + .formula { margin-top: 12px; }
 
-    /* ── COMPARISON BADGE ── */
-    .method-badge {
+    .activity {
+      border-left: 8px solid var(--gold);
+      background: var(--gold-pale);
       border-radius: 12px;
-      padding: 32px 36px;
-      flex: 1;
+      padding: 20px 24px;
     }
-    .method-badge.fifo { background: rgba(74,124,94,0.12); border: 1px solid rgba(74,124,94,0.25); }
-    .method-badge.lifo { background: rgba(156,74,43,0.10); border: 1px solid rgba(156,74,43,0.25); }
-    .method-badge.wac  { background: rgba(184,132,61,0.10); border: 1px solid rgba(184,132,61,0.25); }
-    .method-badge.spec { background: rgba(53,87,115,0.10); border: 1px solid rgba(53,87,115,0.25); }
-    .method-name {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-small);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+    .activity h3 { margin-bottom: 8px; }
+    .activity-grid { display: grid; grid-template-columns: 1.4fr .72fr .9fr; gap: 18px; }
+    .activity-label { display: block; margin-bottom: 5px; font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: .05em; color: var(--terra); text-transform: uppercase; }
+    .activity p { margin-bottom: 0; font-size: 18px; }
+
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: stretch; }
+    .stat { padding: 26px 28px; border-top: 5px solid var(--gold); background: var(--white-08); }
+    .stat strong { display: block; font-family: var(--serif); font-size: 72px; line-height: 1; color: var(--white); }
+    .stat span { display: block; margin-top: 10px; font-size: 20px; line-height: 1.35; color: var(--white-68); }
+    .source { position: absolute; left: 86px; right: 86px; bottom: 54px; font-size: 15px; color: var(--white-68); }
+    .source a { color: var(--white-86); }
+
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; align-items: center; }
+    .flow .node { position: relative; min-height: 120px; display: grid; place-items: center; padding: 18px; border: 2px solid var(--steel); border-radius: 16px; background: var(--steel-pale); text-align: center; font-size: 20px; font-weight: 700; }
+    .flow .node:not(:last-child)::after { content: "→"; position: absolute; right: -27px; color: var(--terra); font-size: 28px; }
+
+    .equation { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 10px; align-items: center; margin: 14px 0 22px; }
+    .equation .term { min-height: 112px; display: grid; place-items: center; padding: 14px; border: 1px solid var(--border); border-radius: 14px; background: var(--white); text-align: center; font-size: 19px; }
+    .equation .op { font-family: var(--serif); font-size: 36px; color: var(--terra); }
+
+    .callout { padding: 16px 20px; border-left: 6px solid var(--sage); background: var(--sage-pale); font-size: 18px; line-height: 1.38; }
+    .warning { border-left-color: var(--terra); background: var(--terra-pale); }
+    .tag { display: inline-block; padding: 6px 10px; border-radius: 99px; background: var(--paper-2); font-family: var(--mono); font-size: 15px; color: var(--soft); }
+    .takeaway { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+    .takeaway .number { flex: 0 0 auto; margin: 0; background: var(--sage); }
+    .takeaway p { margin: 3px 0 0; font-size: 21px; }
+
+    .mistake {
+      padding: 24px 28px;
+      border: 3px solid var(--terra);
+      border-radius: 16px;
+      background: var(--terra-pale);
     }
-    .method-val {
-      font-family: 'Bodoni Moda', serif;
-      font-size: calc(56px * var(--scale));
-      line-height: 1.1;
+    .mistake .wrong { font-family: var(--mono); font-size: 22px; color: var(--terra); text-decoration: line-through; }
+    .mistake .correct { margin-top: 12px; font-family: var(--mono); font-size: 22px; color: var(--sage); }
+
+    .footer {
+      position: absolute;
+      left: 86px;
+      right: 86px;
+      bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
     }
-    .method-sub {
-      font-size: calc(22px * var(--scale));
-      color: var(--text-soft);
-      margin-top: 8px;
+    .dark .footer { color: var(--white-68); }
+
+    #controls { position: fixed; right: 18px; bottom: 16px; z-index: 20; display: flex; gap: 8px; opacity: .35; transition: opacity .2s; }
+    #controls:hover { opacity: 1; }
+    #controls button { width: 38px; height: 38px; border: 1px solid var(--white-16); border-radius: 50%; background: var(--ink); color: var(--white); cursor: pointer; }
+    #notes {
+      position: fixed;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      max-height: 210px;
+      z-index: 15;
+      display: none;
+      overflow: auto;
+      padding: 18px 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--text);
+      box-shadow: 0 10px 36px var(--shadow);
+      font-size: 17px;
+      line-height: 1.45;
     }
-
-    /* ── PROGRESS BAR STRIP ── */
-    .prog-bar {
-      height: 8px;
-      background: var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .prog-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--accent);
-      animation: growRight 1.2s ease-out forwards;
-      transform-origin: left;
-      transform: scaleX(0);
-    }
-    @keyframes growRight { to { transform: scaleX(1); } }
-
-    /* ── IMAGE SLOT ── */
-    image-slot {
-      display: block;
-    }
-
-
-  /* BUS123 high-priority retrofit overrides */
-  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
-  .tab-strip { background: var(--ink); }
-  .formula-panel {
-    background: var(--formula-bg) !important;
-    border: 0 !important;
-    border-left: 4px solid var(--sage) !important;
-    border-radius: 0 8px 8px 0 !important;
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .label {
-    color: var(--steel) !important;
-    font-family: var(--mono) !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-  }
-  .formula-panel code {
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .fn,
-  .formula-panel code .fn {
-    color: var(--steel) !important;
-    display: block !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    margin-bottom: 14px !important;
-  }
-  .formula-panel .comment,
-  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
-  .formula-panel .result,
-  .formula-panel code .result,
-  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
-  .formula-panel code .arg { color: var(--steel) !important; }
-  .formula-panel code .neg { color: var(--terra) !important; }
-  .retrofit-tab-strip {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 84px;
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    z-index: 9997;
-    border-right: 1px solid rgba(255,255,255,0.12);
-  }
-  .retrofit-home-dot {
-    width: 18px;
-    height: 18px;
-    border: 0;
-    border-radius: 50%;
-    background: var(--gradient);
-    cursor: pointer;
-    margin-bottom: 14px;
-  }
-  .retrofit-tab-strip .tab-btn {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 6px;
-    background: transparent;
-    color: rgba(255,255,255,0.62);
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    padding: 12px 7px;
-    text-transform: uppercase;
-  }
-  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
-  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
-  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
-  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
-
-
-.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;max-width:1060px;margin:0 auto;}
-.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
-.formula-reference-slide h2{font-family:var(--serif);font-size:40px;line-height:1;margin:0;color:var(--text);}
-.formula-reference-slide .frc-note{font-size:17px;line-height:1.2;color:var(--text-soft);margin:0 0 2px 0;}
-.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:14px;line-height:1.15;}
-.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:14px;text-align:left;padding:6px 8px;border:1px solid var(--border);}
-.formula-reference-table td{border:1px solid var(--border);padding:5px 8px;vertical-align:top;color:var(--text);}
-.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
-.formula-reference-table td.watch{background:var(--paper-2);}
-
-</style>
+    body.show-notes #notes { display: block; }
+  </style>
 </head>
 <body>
+  <main id="deck" aria-live="polite">
 
-<deck-stage width="1280" height="720" class="deck-shell" no-rail>
+    <section class="slide dark active" data-part="Overview" aria-label="Slide 1">
+      <div class="tabs"><span class="tab current">MATH M06</span><span class="tab">Tidal Goods Co</span><span class="tab">75 minutes</span></div>
+      <p class="kicker">BUS123 · Quantitative reasoning for managers</p>
+      <div class="accent-line"></div>
+      <h1>Inventory, COGS &amp; Overhead</h1>
+      <p class="lead">Build the cost story behind one management recommendation</p>
+      <div class="footer"><span>Professor Evitts</span><span>01 / 22</span></div>
+    </section>
 
-  <!-- ═══════════════════════════ SLIDE 01 — TITLE ═══════════════════════════ -->
-  <section class="slide dark" data-label="01 Title"
-    style="justify-content: flex-end; padding-bottom: 112px;" data-section="0" data-slide="1" data-index="0">
-    <div class="grad-bar"></div>
-    <div style="margin-top: auto;">
-      <div class="eyebrow light" style="margin-bottom: 24px;">BUS123 · MATH-M06 · L01</div>
-      <h1 style="max-width: 1200px; line-height:1.0;">Inventory, Overhead<br>& COGS</h1>
-      <p class="subtitle">The math behind every product's true cost</p>
-    </div>
-    <div style="margin-top: 64px; display:flex; align-items:center; gap: 40px;">
-      <div style="font-family:'DM Sans',sans-serif; font-size:var(--type-small); color:rgba(255,255,255,0.4);">
-        Tidal Goods Co. · Fall 2026 · Gerrish School of Business
+    <section class="slide dark" data-part="Overview" aria-label="Slide 2">
+      <div class="tabs"><span class="tab current">Why it matters</span><span class="tab">Retail pressure</span><span class="tab">Decision context</span></div>
+      <p class="kicker">Opening prediction · 8 min</p>
+      <h2>When costs rise, which number moves first</h2>
+      <div class="stat-row grow">
+        <div class="stat"><strong>95%</strong><span>of surveyed retail executives expect global trade policies to increase costs</span></div>
+        <div class="stat"><strong>66%</strong><span>plan to restructure supply chains if input costs rise in 2026</span></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 02 — REAL WORLD HOOK ═══════════════════════════ -->
-  <section class="slide dark" data-label="02 Hook" data-section="0" data-slide="2" data-index="1">
-    <div class="grad-bar"></div>
-    <div class="header-row">
-      <span class="eyebrow light">Right Now · Spring 2026</span>
-    </div>
-    <div class="rule light"></div>
-
-    <div class="col-50-50" style="flex:1; align-items:center;">
-      <div>
-        <h2 class="light" style="font-size: calc(64px * var(--scale)); margin-bottom: 32px;">
-          95% of retail executives expect rising costs this year
-        </h2>
-        <p class="light" style="margin-bottom: 24px;">
-          Tariffs, supply chain restructuring, and new inventory strategies are headline news — and every company's analysts are running these exact calculations.
-        </p>
-        <div class="pill-row" style="margin-top:32px;">
-          <span class="pill gold">Tariff Headwinds</span>
-          <span class="pill gold">Inventory Timing</span>
-          <span class="pill gold">COGS Pressure</span>
-        </div>
+      <div class="activity" style="margin-top:22px">
+        <div class="activity-grid"><p><span class="activity-label">What</span>Predict which decision changes first: inventory, price, supplier, or overhead</p><p><span class="activity-label">How / Time</span>Vote + pair · 2 min</p><p><span class="activity-label">Deliverable</span>One reason</p></div>
       </div>
+      <p class="source">Source: <a href="https://www.deloitte.com/global/en/Industries/consumer/perspectives/global-retail-industry-outlook.html">Deloitte, 2026 Global Retail Industry Outlook</a> · survey of 330 retail executives</p>
+      <div class="footer"><span>Cost pressure creates measurement pressure</span><span>02 / 22</span></div>
+    </section>
 
-      <div style="display:flex; flex-direction:column; gap: 24px;">
-        <div class="card dark-card">
-          <div class="eyebrow light" style="margin-bottom:12px;">Deloitte, 2026</div>
-          <p class="light" style="font-size: var(--type-small);">
-            66% of retailers are restructuring supply chains — onshoring, nearshoring, new sourcing — specifically to manage input cost pressures.
-          </p>
-        </div>
-        <div class="card dark-card">
-          <div class="eyebrow light" style="margin-bottom:12px;">Supply Chain Dive, May 2026</div>
-          <p class="light" style="font-size: var(--type-small);">
-            Transportation costs firming, energy volatile, labor tight. The cost floor for retail operations has reset higher — durably.
-          </p>
-        </div>
+    <section class="slide" data-part="Overview" aria-label="Slide 3">
+      <div class="tabs"><span class="tab current">Roadmap</span><span class="tab">Model</span><span class="tab">Recommend</span></div>
+      <p class="kicker">Today’s 75-minute sequence</p>
+      <h2>One model, four decision moments</h2>
+      <div class="grid-4 grow">
+        <div class="card sage"><span class="number">1</span><h3>Predict</h3><p>Choose what management should investigate first</p><span class="tag">8 min</span></div>
+        <div class="card gold"><span class="number">2</span><h3>Value inventory</h3><p>Compare FIFO and weighted average using unequal layers</p><span class="tag">20 min</span></div>
+        <div class="card steel"><span class="number">3</span><h3>Build COGS</h3><p>Reconcile goods available, ending inventory, and gross profit</p><span class="tag">18 min</span></div>
+        <div class="card terra"><span class="number">4</span><h3>Allocate &amp; advise</h3><p>Select overhead drivers and defend a response</p><span class="tag">29 min</span></div>
       </div>
-    </div>
-  </section>
+      <div class="footer"><span>Opening 8 · Inventory 20 · COGS 18 · Overhead 18 · Recommend 8 · Close 3</span><span>03 / 22</span></div>
+    </section>
 
-  <!-- ═══════════════════════════ SLIDE 03 — AGENDA ═══════════════════════════ -->
-  <section class="slide cream" data-label="03 Agenda" data-section="0" data-slide="3" data-index="2">
-    <div class="header-row">
-      <span class="eyebrow">Today's Class</span>
-    </div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom: 48px;">What we're covering</h2>
+    <section class="slide" data-part="Overview" aria-label="Slide 4">
+      <div class="tabs"><span class="tab current">Learning targets</span><span class="tab">Controls</span><span class="tab">Judgment</span></div>
+      <p class="kicker">By the end of class</p>
+      <h2>You can explain the number—not just calculate it</h2>
+      <div class="grid-2 grow">
+        <div class="card"><div class="takeaway"><span class="number">1</span><p>Calculate FIFO and weighted-average COGS with unequal purchase quantities</p></div><div class="takeaway"><span class="number">2</span><p>Build and reconcile a complete COGS schedule</p></div></div>
+        <div class="card"><div class="takeaway"><span class="number">3</span><p>Choose a defensible allocation driver for each overhead cost pool</p></div><div class="takeaway"><span class="number">4</span><p>Recommend an action and name the control that supports it</p></div></div>
+      </div>
+      <p class="callout"><strong>Prior-learning bridge:</strong> margin and markup return briefly after the COGS schedule. They are not a separate unit today.</p>
+      <div class="footer"><span>Accuracy + interpretation + judgment</span><span>04 / 22</span></div>
+    </section>
 
-    <div style="max-width: 1100px;">
-      <div class="agenda-item">
-        <span class="agenda-num">01</span>
-        <span class="agenda-text">Inventory Valuation — FIFO, LIFO, WAC, and the strategy behind each</span>
-        <span class="agenda-badge">~25 min</span>
-      </div>
-      <div class="agenda-item">
-        <span class="agenda-num">02</span>
-        <span class="agenda-text">COGS Formula + Margin vs. Markup — pricing from a cost foundation</span>
-        <span class="agenda-badge">~25 min</span>
-      </div>
-      <div class="agenda-item">
-        <span class="agenda-num">03</span>
-        <span class="agenda-text">Overhead Allocation — distributing indirect costs across departments</span>
-        <span class="agenda-badge">~15 min</span>
-      </div>
-      <div class="agenda-item">
-        <span class="agenda-num">04</span>
-        <span class="agenda-text">Excel Activity preview — raw data → management report</span>
-        <span class="agenda-badge">Next class</span>
-      </div>
-    </div>
-  </section>
+    <section class="slide dark break" data-part="Inventory" aria-label="Slide 5">
+      <div class="tabs"><span class="tab">Overview</span><span class="tab current">Part 1</span><span class="tab">Inventory</span></div>
+      <p class="kicker">Part 1 · 20 min</p><div class="accent-line"></div>
+      <h2>Which costs leave the shelf</h2>
+      <p class="lead">The physical sale is the same. The cost-flow assumption changes COGS, profit, and ending inventory.</p>
+      <span class="section-mark">01</span>
+      <div class="footer"><span>Inventory valuation</span><span>05 / 22</span></div>
+    </section>
 
-  <!-- ═══════════════════════════ SLIDE 04 — OBJECTIVES ═══════════════════════════ -->
-  <section class="slide cream" data-label="04 Objectives" data-section="0" data-slide="4" data-index="3">
-    <div class="header-row">
-      <span class="eyebrow">Learning Objectives</span>
-    </div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom: 48px;">By the end of today, I can…</h2>
-
-    <div style="max-width: 1100px;">
-      <div class="obj-row">
-        <div class="obj-check">✓</div>
-        <p class="obj-text">Calculate COGS using the Beginning Inventory + Purchases − Ending Inventory formula and identify how inventory errors compound across periods</p>
-      </div>
-      <div class="obj-row">
-        <div class="obj-check">✓</div>
-        <p class="obj-text">Apply FIFO, LIFO, and Weighted Average Cost to value inventory and explain the strategic implications of each method</p>
-      </div>
-      <div class="obj-row">
-        <div class="obj-check">✓</div>
-        <p class="obj-text">Distinguish between margin and markup and calculate both from a cost and revenue basis</p>
-      </div>
-      <div class="obj-row">
-        <div class="obj-check">✓</div>
-        <p class="obj-text">Allocate overhead costs across departments using a practical basis such as square footage or revenue share</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 05 — BRIDGE ═══════════════════════════ -->
-  <section class="slide cream" data-label="05 Bridge" data-section="1" data-slide="5" data-index="4">
-    <div class="header-row">
-      <span class="eyebrow">Connecting the Dots</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-60-40" style="flex:1; align-items:center;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">Last module: Revenue & Pricing.<br>This module: the cost side.</h2>
-        <p style="margin-bottom: 24px; max-width: 820px;">
-          We've been working from the top of the income statement down. Before you can set a price, you need to know exactly what it cost you to own that product — purchase price, plus all indirect costs attached to it.
-        </p>
-        <div class="flow" style="margin-top: 48px; max-width: 900px;">
-          <div class="flow-box">
-            <div class="fb-label">Revenue</div>
-            <div class="fb-val">$110,000</div>
-          </div>
-          <div class="flow-stack">
-            <span class="flow-arrow">−</span>
-            <span class="flow-op">COGS</span>
-          </div>
-          <div class="flow-box">
-            <div class="fb-label">COGS</div>
-            <div class="fb-val">$41,200</div>
-          </div>
-          <div class="flow-stack">
-            <span class="flow-arrow">=</span>
-          </div>
-          <div class="flow-box" style="border-color: var(--sage); background: rgba(74,124,94,0.06);">
-            <div class="fb-label" style="color: var(--sage);">Gross Profit</div>
-            <div class="fb-val" style="color: var(--sage);">$68,800</div>
-          </div>
-        </div>
-      </div>
-      <image-slot id="s5-img" placeholder="Drop image: retail store shelf / warehouse" style="width:100%; height:520px; border-radius:18px;" radius="18"></image-slot>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 06 — SECTION BREAK 1 ═══════════════════════════ -->
-  <section class="slide dark" data-label="06 Part 1" data-section="1" data-slide="6" data-index="5">
-    <div class="grad-bar"></div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-      <div class="eyebrow light" style="margin-bottom: 24px;">Part 1 of 3</div>
-      <h2 class="light" style="font-size: calc(88px * var(--scale)); max-width:900px; line-height:1.1;">
-        Inventory Valuation
-      </h2>
-      <p class="light" style="margin-top: 32px; max-width: 700px; font-size: var(--type-lead);">
-        Same product. Same sale. Different profit — depending on which cost you record.
-      </p>
-    </div>
-    <div class="section-num">1</div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 07 — THE PROBLEM ═══════════════════════════ -->
-  <section class="slide cream" data-label="07 The Problem" data-section="1" data-slide="7" data-index="6">
-    <div class="header-row">
-      <span class="eyebrow">Tidal Goods Co. · The Inventory Problem</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-60-40" style="flex:1; align-items:flex-start;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">Three purchase orders.<br>One product. Which cost do you use?</h2>
-        <p style="margin-bottom: 40px; max-width: 760px;">
-          Tidal buys the same paddleboard model across three orders as supplier prices shift due to tariff pressures. When they sell one, which purchase price becomes COGS?
-        </p>
-
-        <div class="grid-3" style="max-width: 780px;">
-          <div class="card" style="text-align:center; background: rgba(74,124,94,0.07); border-color: rgba(74,124,94,0.25);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-1 · Feb</div>
-            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--sage);">$210</div>
-            <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
-          </div>
-          <div class="card" style="text-align:center; background: rgba(184,132,61,0.08); border-color: rgba(184,132,61,0.3);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-2 · Mar</div>
-            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--gold);">$230</div>
-            <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
-          </div>
-          <div class="card" style="text-align:center; background: rgba(156,74,43,0.08); border-color: rgba(156,74,43,0.25);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">PO-3 · Apr</div>
-            <div style="font-family:'Bodoni Moda',serif; font-size: calc(52px * var(--scale)); color: var(--terra);">$250</div>
-            <div style="font-size: var(--type-small); color: var(--text-soft); margin-top:8px;">10 units</div>
-          </div>
-        </div>
-        <p style="margin-top: 32px; font-size: var(--type-small); color: var(--text-soft);">
-          Tidal sells 20 units in Q2. Which 20? The cheapest? The newest? An average?
-        </p>
-      </div>
-      <image-slot id="s7-img" placeholder="Drop image: paddleboards / coastal retail" style="width:100%; height:480px; border-radius:18px;" radius="18"></image-slot>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 08 — FOUR METHODS ═══════════════════════════ -->
-  <section class="slide cream" data-label="08 Four Methods" data-section="1" data-slide="8" data-index="7">
-    <div class="header-row">
-      <span class="eyebrow">Inventory Valuation · Four Methods</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="grid-4" style="flex:1; align-items:stretch;">
-      <div class="method-badge spec flex-col">
-        <div class="method-name" style="color: var(--steel);">Specific ID</div>
-        <div class="method-val" style="color: var(--steel);">Exact</div>
-        <p style="font-size: var(--type-small); color: var(--text-soft); margin-top: 16px; line-height:1.5;">
-          Trace the exact unit sold to its purchase price. Accurate but only practical for unique high-value items — art, custom boats, jewelry.
-        </p>
-      </div>
-      <div class="method-badge fifo flex-col">
-        <div class="method-name" style="color: var(--sage);">FIFO</div>
-        <div class="method-val" style="color: var(--sage);">First In<br>First Out</div>
-        <p style="font-size: var(--type-small); color: var(--text-soft); margin-top: 16px; line-height:1.5;">
-          Oldest inventory cost flows to COGS first. Ending inventory reflects the most recent prices. Most common globally.
-        </p>
-      </div>
-      <div class="method-badge lifo flex-col">
-        <div class="method-name" style="color: var(--terra);">LIFO</div>
-        <div class="method-val" style="color: var(--terra);">Last In<br>First Out</div>
-        <p style="font-size: var(--type-small); color: var(--text-soft); margin-top: 16px; line-height:1.5;">
-          Newest inventory cost flows to COGS first. Lowers taxable income during inflation. <em>Not permitted under IFRS.</em>
-        </p>
-      </div>
-      <div class="method-badge wac flex-col">
-        <div class="method-name" style="color: var(--gold);">WAC</div>
-        <div class="method-val" style="color: var(--gold);">Weighted<br>Average</div>
-        <p style="font-size: var(--type-small); color: var(--text-soft); margin-top: 16px; line-height:1.5;">
-          Blends all purchase costs into one average unit cost. Smooths price fluctuations — popular for commodities and grocery.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 09 — SIDE BY SIDE CALC ═══════════════════════════ -->
-  <section class="slide cream" data-label="09 Method Comparison" data-section="2" data-slide="9" data-index="8">
-    <div class="header-row">
-      <span class="eyebrow">Tidal Goods Co. · Same Sale, Three Results</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-60-40" style="flex:1; align-items:flex-start; gap: 56px;">
-      <div>
-        <p style="margin-bottom: 28px; font-size: var(--type-small); color: var(--text-soft);">
-          Available: 30 units at $210, $230, $250 (10 each). Units sold: 20.
-        </p>
-        <table class="data-table" style="margin-bottom: 32px;">
-          <thead>
-            <tr>
-              <th>Method</th>
-              <th>COGS Calculation</th>
-              <th>COGS Total</th>
-              <th>Ending Inv.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="highlight">
-              <td style="color:var(--sage); font-weight:600;">FIFO</td>
-              <td>10×$210 + 10×$230</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$4,400</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$2,500</td>
-            </tr>
-            <tr>
-              <td style="color:var(--terra); font-weight:600;">LIFO</td>
-              <td>10×$250 + 10×$230</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$4,800</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$2,100</td>
-            </tr>
-            <tr>
-              <td style="color:var(--gold); font-weight:600;">WAC</td>
-              <td>20 × $230.00 avg</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$4,600</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$2,300</td>
-            </tr>
-            <tr class="result">
-              <td colspan="2">FIFO vs LIFO difference</td>
-              <td colspan="2">$400 on the same physical sale</td>
-            </tr>
-          </tbody>
+    <section class="slide" data-part="Inventory" aria-label="Slide 6">
+      <div class="tabs"><span class="tab current">Raw data</span><span class="tab">Purchase layers</span><span class="tab">Predict</span></div>
+      <p class="kicker">Tidal Goods Co · Paddleboards</p>
+      <h2>Unequal layers create a real modeling decision</h2>
+      <div class="split-64 grow">
+        <table>
+          <thead><tr><th>Inventory layer</th><th class="right">Quantity</th><th class="right">Unit cost</th><th class="right">Layer cost</th></tr></thead>
+          <tbody><tr><td>Beginning inventory</td><td class="right">8</td><td class="right">$205</td><td class="right">$1,640</td></tr><tr><td>March purchase</td><td class="right">12</td><td class="right">$232</td><td class="right">$2,784</td></tr><tr><td>April purchase</td><td class="right">10</td><td class="right">$258</td><td class="right">$2,580</td></tr><tr><td><strong>Goods available</strong></td><td class="right"><strong>30</strong></td><td class="right">—</td><td class="right"><strong>$7,004</strong></td></tr></tbody>
         </table>
-        <div class="formula-panel">
-          WAC unit cost: (10×$210 + 10×$230 + 10×$250) / 30 = $230.00<br>
-          COGS (WAC): 20 × $230.00 = $4,600
-        </div>
+        <div class="card gold"><h3>19 units sold at $420 each</h3><p>Before calculating, predict which method reports:</p><ul><li>Higher COGS</li><li>Higher gross profit</li><li>Higher ending inventory</li></ul><p class="small muted">Write a reason—not a guess.</p></div>
       </div>
+      <div class="footer"><span>Quantities differ · the sale crosses a layer</span><span>06 / 22</span></div>
+    </section>
 
-      <div style="display:flex; flex-direction:column; gap:24px; justify-content:center; height:100%;">
-        <div style="background: rgba(74,124,94,0.08); border-radius:12px; padding:28px 32px; border:1px solid rgba(74,124,94,0.2);">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:8px;">FIFO PROFIT</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size: calc(60px * var(--scale)); color:var(--sage);">Higher</div>
-          <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Better looking financials — higher taxes</p>
-        </div>
-        <div style="background: rgba(156,74,43,0.08); border-radius:12px; padding:28px 32px; border:1px solid rgba(156,74,43,0.2);">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--terra); margin-bottom:8px;">LIFO PROFIT</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size: calc(60px * var(--scale)); color:var(--terra);">Lower</div>
-          <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Lower taxes — but banned under IFRS</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="slide cream" data-label="10 Live You Try It Inventory" data-section="2" data-slide="10" data-index="9">
-    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom:28px;">Rows 1-3: type the givens, then build formulas from cells.</h2>
-    <div class="grid-3" style="gap:24px; margin-bottom:28px;">
-      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 1 · FIFO COGS</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D6=10 units, E6=$210, F6=10 units, G6=$230</p>
-        <div style="font-family:'Bodoni Moda',serif; font-size:calc(40px * var(--scale)); color:var(--sage); margin-top:14px;">H6 formula</div>
-      </div>
-      <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 2 · WAC UNIT COST</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D7=10 units, E7=$210, F7=$230, G7=$250</p>
-        <div style="font-family:'Bodoni Moda',serif; font-size:calc(40px * var(--scale)); color:var(--gold); margin-top:14px;">H7 formula</div>
-      </div>
-      <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.22);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--steel); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 3 · WAC COGS</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D8=20 units sold, E8=$230.00 average cost</p>
-        <div style="font-family:'Bodoni Moda',serif; font-size:calc(40px * var(--scale)); color:var(--steel); margin-top:14px;">H8 formula</div>
-      </div>
-    </div>
-    <div class="formula-panel">
-      <span class="fn">Type givens in D:G first</span>
-      <span class="comment">Then build formulas in column H that reference those input cells.</span>
-      <span class="result">Column I gives self-check feedback; this is not part of the graded rubric.</span>
-    </div>
-  </section>
+    <section class="slide" data-part="Inventory" aria-label="Slide 7">
+      <div class="tabs"><span class="tab current">Reading table</span><span class="tab">Four methods</span><span class="tab">Decision use</span></div>
+      <p class="kicker">Reinforcement from the prereading</p>
+      <h2>Match the method to the business question</h2>
+      <table class="tight grow">
+        <thead><tr><th>Method</th><th>Cost-flow logic</th><th>Best fit</th><th>Watch for</th></tr></thead>
+        <tbody><tr><td><strong>Specific ID</strong></td><td>Trace the exact unit sold</td><td>Unique, high-value items</td><td>Tracking burden</td></tr><tr><td><strong>FIFO</strong></td><td>Oldest costs reach COGS first</td><td>Perishable or rotating stock</td><td>Higher profit when costs rise</td></tr><tr><td><strong>LIFO</strong></td><td>Newest costs reach COGS first</td><td>Permitted U.S. reporting situations</td><td>Not permitted under IFRS</td></tr><tr><td><strong>Weighted average</strong></td><td>Blend all available unit costs</td><td>Similar, interchangeable units</td><td>Use quantity-weighted—not simple—average</td></tr></tbody>
+      </table>
+      <div class="activity"><div class="activity-grid"><p><span class="activity-label">What</span>Choose the two plausible methods for Tidal</p><p><span class="activity-label">How / Time</span>Pairs · 2 min</p><p><span class="activity-label">Deliverable</span>Method + evidence</p></div></div>
+      <div class="footer"><span>Table carried forward from the reading</span><span>07 / 22</span></div>
+    </section>
 
-
-  <!-- ═══════════════════════════ SLIDE 10 — ANIMATED BAR CHART ═══════════════════════════ -->
-  <section class="slide cream" data-label="11 COGS Comparison Chart" data-section="2" data-slide="11" data-index="10">
-    <div class="header-row">
-      <span class="eyebrow">Visualizing the Impact · Tidal Goods Co.</span>
-    </div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom: 48px;">COGS by method — same 20 units sold</h2>
-
-    <div style="display:flex; gap: 80px; flex:1; align-items:flex-end;">
-      <div class="bar-chart" style="flex:1;">
-        <div class="bar-col">
-          <span class="bar-val">$4,400</span>
-          <div class="bar-fill" style="height:220px; background:var(--sage); animation-delay:0.1s;"></div>
-          <span class="bar-lbl">FIFO<br>Lowest COGS</span>
-        </div>
-        <div class="bar-col">
-          <span class="bar-val">$4,600</span>
-          <div class="bar-fill" style="height:270px; background:var(--gold); animation-delay:0.25s;"></div>
-          <span class="bar-lbl">WAC<br>Middle ground</span>
-        </div>
-        <div class="bar-col">
-          <span class="bar-val">$4,800</span>
-          <div class="bar-fill" style="height:320px; background:var(--terra); animation-delay:0.4s;"></div>
-          <span class="bar-lbl">LIFO<br>Highest COGS</span>
-        </div>
-      </div>
-
-      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:24px;">
-        <div class="card">
-          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px;">The $400 swing</h3>
-          <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            FIFO reports $400 less in COGS than LIFO on 20 units — meaning $400 more in gross profit. That's not a rounding error; that's a management decision showing up on the income statement.
-          </p>
-        </div>
-        <div class="card" style="background: rgba(74,124,94,0.06); border-color: rgba(74,124,94,0.2);">
-          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:600; margin-bottom:12px; color:var(--sage);">IFRS note</h3>
-          <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            LIFO is prohibited under International Financial Reporting Standards. Any US retailer planning to operate globally or go public internationally must use FIFO or WAC.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 11 — SECTION BREAK 2 ═══════════════════════════ -->
-  <section class="slide dark" data-label="12 Part 2" data-section="2" data-slide="12" data-index="11">
-    <div class="grad-bar"></div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-      <div class="eyebrow light" style="margin-bottom: 24px;">Part 2 of 3</div>
-      <h2 class="light" style="font-size: calc(88px * var(--scale)); max-width:960px; line-height:1.1;">
-        COGS & Pricing Strategy
-      </h2>
-      <p class="light" style="margin-top: 32px; max-width: 700px; font-size: var(--type-lead);">
-        Building the formula — and why margin ≠ markup.
-      </p>
-    </div>
-    <div class="section-num">2</div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 12 — COGS FORMULA ═══════════════════════════ -->
-  <section class="slide cream" data-label="13 COGS Formula" data-section="2" data-slide="13" data-index="12">
-    <div class="header-row">
-      <span class="eyebrow">The COGS Formula · Step by Step</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-50-50" style="flex:1; align-items:center; gap:64px;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 40px;">What you started with + what you bought − what's left</h2>
-        <div class="flow" style="flex-wrap:wrap; gap:16px;">
-          <div class="flow-box" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.2);">
-            <div class="fb-label">Beginning Inv.</div>
-            <div class="fb-val">$12,400</div>
-          </div>
-          <div class="flow-stack">
-            <span class="flow-arrow">+</span>
-            <span class="flow-op">Purchases</span>
-          </div>
-          <div class="flow-box">
-            <div class="fb-label">Purchases</div>
-            <div class="fb-val">$38,600</div>
-          </div>
-          <div class="flow-stack">
-            <span class="flow-arrow">−</span>
-            <span class="flow-op">Ending Inv.</span>
-          </div>
-          <div class="flow-box">
-            <div class="fb-label">Ending Inv.</div>
-            <div class="fb-val">$9,800</div>
-          </div>
-          <div class="flow-stack"><span class="flow-arrow">=</span></div>
-          <div class="flow-box" style="border-color:var(--sage); background:rgba(74,124,94,0.07);">
-            <div class="fb-label" style="color:var(--sage);">COGS</div>
-            <div class="fb-val" style="color:var(--sage);">$41,200</div>
+    <section class="slide" data-part="Inventory" aria-label="Slide 8">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Build first</span><span class="tab">Reveal second</span></div>
+      <p class="kicker">Productive struggle · 10 min</p>
+      <h2>Build the inventory model before the formula reveal</h2>
+      <div class="split-55 grow">
+        <div class="activity">
+          <div class="stack">
+            <p><span class="activity-label">What</span>On <strong>Management Model</strong>, assign 19 sold units across the FIFO layers; then calculate weighted-average unit cost and COGS.</p>
+            <p><span class="activity-label">How / Time</span>Individual 6 min → compare with a partner 3 min → control check 1 min</p>
+            <p><span class="activity-label">Deliverable</span>FIFO COGS, WAC COGS, ending inventory, and three green control checks</p>
           </div>
         </div>
+        <div class="stack">
+          <div class="card sage"><h3>Decision rule</h3><p>Use business logic first. Use the Formula Reference sheet only after you can name the numerator and denominator.</p></div>
+          <div class="card terra"><h3>Do not bypass the layers</h3><p>A simple average of $205, $232, and $258 ignores the different quantities purchased.</p></div>
+        </div>
       </div>
+      <div class="footer"><span>Attempt → compare → reconcile</span><span>08 / 22</span></div>
+    </section>
 
-      <div style="display:flex; flex-direction:column; gap:24px;">
-        <div class="formula-panel">
-          =SUMPRODUCT or manual:<br>
-          Beg_Inv + Purchases − End_Inv<br>
-          = 12400 + 38600 − 9800<br>
-          <span style="color:#fff;">= $41,200</span>
-        </div>
-        <div class="card">
-          <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            <strong>Why this matters:</strong> An incorrect ending inventory changes COGS in this period — and becomes the wrong beginning inventory next period. The error compounds.
-          </p>
+    <section class="slide dark break" data-part="COGS" aria-label="Slide 9">
+      <div class="tabs"><span class="tab">Inventory</span><span class="tab current">Part 2</span><span class="tab">COGS</span></div>
+      <p class="kicker">Part 2 · 18 min</p><div class="accent-line"></div>
+      <h2>Turn inventory into an income-statement story</h2>
+      <p class="lead">A COGS schedule is not finished until goods available reconcile and the result connects to gross profit.</p>
+      <span class="section-mark">02</span>
+      <div class="footer"><span>COGS and gross profit</span><span>09 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="COGS" aria-label="Slide 10">
+      <div class="tabs"><span class="tab current">COGS schedule</span><span class="tab">Reconcile</span><span class="tab">Interpret</span></div>
+      <p class="kicker">Same raw data · two valid cost flows</p>
+      <h2>Build the complete schedule—not a single answer cell</h2>
+      <div class="equation"><div class="term"><strong>Beginning inventory</strong><br>$1,640</div><div class="op">+</div><div class="term"><strong>Purchases</strong><br>$5,364</div><div class="op">−</div><div class="term"><strong>Ending inventory</strong><br>method dependent</div><div class="op">=</div><div class="term"><strong>COGS</strong><br>method dependent</div></div>
+      <div class="grid-2 grow">
+        <div class="card sage"><h3>Control 1 · Cost</h3><p>COGS + ending inventory must equal $7,004 of goods available.</p></div>
+        <div class="card steel"><h3>Control 2 · Units</h3><p>Units sold + ending units must equal 30 units available.</p></div>
+      </div>
+      <div class="footer"><span>Every method must reconcile to the same goods available</span><span>10 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="COGS" aria-label="Slide 11">
+      <div class="tabs"><span class="tab current">Error path</span><span class="tab">Two periods</span><span class="tab">Audit logic</span></div>
+      <p class="kicker">Why the ending count matters</p>
+      <h2>One inventory error travels through the statements</h2>
+      <div class="flow grow">
+        <div class="node">Ending inventory overstated</div><div class="node">Current COGS understated</div><div class="node">Current profit overstated</div><div class="node">Next beginning inventory overstated</div>
+      </div>
+      <p class="callout warning"><strong>Manager’s control:</strong> reconcile the physical count to the perpetual record, investigate exceptions, and document the adjustment.</p>
+      <div class="footer"><span>Balance sheet → income statement → next period</span><span>11 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="COGS" aria-label="Slide 12">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">COGS schedule</span><span class="tab">Explain variance</span></div>
+      <p class="kicker">Model + interpretation · 8 min</p>
+      <h2>Translate the method choice into a management result</h2>
+      <div class="activity grow">
+        <div class="grid-2">
+          <div><p><span class="activity-label">What</span>Complete the parallel FIFO and WAC schedules, then calculate revenue, gross profit, and gross margin.</p><p><span class="activity-label">How / Time</span>Pairs · 6 min build + 2 min explain</p></div>
+          <div><p><span class="activity-label">Deliverable</span>One sentence: “Compared with ___, ___ reports ___ COGS and ___ gross profit because ___.”</p><p><span class="activity-label">Control</span>Both cost and unit checks must show PASS before interpreting.</p></div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="slide cream" data-label="14 Live You Try It COGS" data-section="2" data-slide="14" data-index="13">
-    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom:32px;">Row 4: type the COGS givens, then reference them.</h2>
-    <div class="col-60-40" style="flex:1; align-items:center; gap:56px;">
-      <div class="mini-sheet" style="width:100%;">
-        <table class="data-table">
-          <thead><tr><th>Workbook Cell</th><th>Slide Given</th><th>Role</th></tr></thead>
-          <tbody>
-            <tr><td>D9</td><td style="font-family:'JetBrains Mono',monospace;">$12,400</td><td>Beginning inventory</td></tr>
-            <tr><td>E9</td><td style="font-family:'JetBrains Mono',monospace;">$38,600</td><td>Purchases</td></tr>
-            <tr><td>F9</td><td style="font-family:'JetBrains Mono',monospace;">$9,800</td><td>Ending inventory</td></tr>
-            <tr class="result"><td>H9</td><td style="font-family:'JetBrains Mono',monospace;">formula</td><td>COGS using D9:F9</td></tr>
-          </tbody>
+      <div class="formula compact" style="margin-top:18px">Excel reveal after attempt: <span class="result">=SUMPRODUCT(QuantityRange,UnitCostRange)/SUM(QuantityRange)</span></div>
+      <div class="footer"><span>Formula syntax follows business logic</span><span>12 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="COGS" aria-label="Slide 13">
+      <div class="tabs"><span class="tab current">Prior-learning bridge</span><span class="tab">Margin</span><span class="tab">Markup</span></div>
+      <p class="kicker">Brief denominator check · 3 min</p>
+      <h2>Same dollars, different denominator</h2>
+      <div class="split-55 grow">
+        <table>
+          <thead><tr><th>Metric</th><th>Business question</th><th>Excel pattern</th></tr></thead>
+          <tbody><tr><td><strong>Gross margin</strong></td><td>What share of revenue remains after COGS?</td><td><code>=(Revenue-COGS)/Revenue</code></td></tr><tr><td><strong>Markup</strong></td><td>How much was added relative to cost?</td><td><code>=(Price-Cost)/Cost</code></td></tr></tbody>
         </table>
+        <div class="card gold"><h3>30-second check</h3><p>If price is $80 and cost is $48, which is larger: margin or markup?</p><p class="small muted">Name the denominator before calculating.</p></div>
       </div>
-      <div class="formula-panel">
-        <span class="fn">H9 references D9:F9</span>
-        <span class="comment">Beginning Inventory + Purchases - Ending Inventory</span>
-        <span class="result">Feedback in I9 checks the formula and the typed givens.</span>
-      </div>
-    </div>
-  </section>
+      <p class="callout">Today’s management model uses <strong>gross margin</strong> because it connects revenue to COGS.</p>
+      <div class="footer"><span>Reading table reinforced · prior concept, not a new unit</span><span>13 / 22</span></div>
+    </section>
 
+    <section class="slide dark break" data-part="Overhead" aria-label="Slide 14">
+      <div class="tabs"><span class="tab">COGS</span><span class="tab current">Part 3</span><span class="tab">Overhead</span></div>
+      <p class="kicker">Part 3 · 18 min</p><div class="accent-line"></div>
+      <h2>Allocate shared costs with evidence</h2>
+      <p class="lead">A fair driver should reflect what causes—or meaningfully benefits from—the cost.</p>
+      <span class="section-mark">03</span>
+      <div class="footer"><span>Cost pools and allocation drivers</span><span>14 / 22</span></div>
+    </section>
 
-  <!-- ═══════════════════════════ SLIDE 13 — MARGIN VS MARKUP ═══════════════════════════ -->
-  <section class="slide cream" data-label="15 Margin vs Markup" data-section="2" data-slide="15" data-index="14">
-    <div class="header-row">
-      <span class="eyebrow">Pricing Math · Margin vs. Markup</span>
-    </div>
-    <div class="rule"></div>
+    <section class="slide" data-part="Overhead" aria-label="Slide 15">
+      <div class="tabs"><span class="tab current">Reading table</span><span class="tab">Cost pools</span><span class="tab">Driver judgment</span></div>
+      <p class="kicker">Reinforcement from the prereading</p>
+      <h2>Different costs deserve different drivers</h2>
+      <table class="tight grow">
+        <thead><tr><th>Monthly cost pool</th><th class="right">Amount</th><th>Likely internal driver</th><th>Why it fits</th></tr></thead>
+        <tbody><tr><td>Rent</td><td class="right">$9,000</td><td>Square footage</td><td>Space creates the cost</td></tr><tr><td>Utilities</td><td class="right">$4,200</td><td>Measured usage / sq. ft.</td><td>Usage or occupied space</td></tr><tr><td>Insurance</td><td class="right">$3,800</td><td>Insured value / sq. ft.</td><td>Exposure drives coverage</td></tr><tr><td>Indirect labor</td><td class="right">$3,500</td><td>Labor hours / headcount</td><td>People supported</td></tr><tr><td>Maintenance</td><td class="right">$1,500</td><td>Maintenance hours / sq. ft.</td><td>Service effort or space</td></tr></tbody>
+      </table>
+      <p class="callout warning"><strong>Accounting boundary:</strong> internal allocation supports management decisions. It does not automatically turn store rent, utilities, or insurance into externally reported inventory cost.</p>
+      <div class="footer"><span>Table carried forward from the reading</span><span>15 / 22</span></div>
+    </section>
 
-    <div class="col-50-50" style="flex:1; align-items:flex-start; gap:64px;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">Same numbers.<br>Completely different denominators.</h2>
-        <p style="margin-bottom: 32px; max-width:680px;">
-          Tidal sells a surf bag for $80. They paid $48. Profit = $32.
-        </p>
-        <div class="grid-2" style="gap:24px; max-width:780px;">
-          <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.25);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:12px;">MARGIN</div>
-            <div style="font-family:'Bodoni Moda',serif; font-size:calc(64px * var(--scale)); color:var(--sage);">40%</div>
-            <div style="font-size:var(--type-small); color:var(--text-soft); margin-top:12px; font-family:'JetBrains Mono',monospace;">$32 / $80 revenue</div>
-            <p style="font-size:var(--type-small); color:var(--text-soft); margin-top:8px;">Profit ÷ Revenue. Used by investors and finance teams.</p>
-          </div>
-          <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.3);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--gold); margin-bottom:12px;">MARKUP</div>
-            <div style="font-family:'Bodoni Moda',serif; font-size:calc(64px * var(--scale)); color:var(--gold);">66.7%</div>
-            <div style="font-size:var(--type-small); color:var(--text-soft); margin-top:12px; font-family:'JetBrains Mono',monospace;">$32 / $48 cost</div>
-            <p style="font-size:var(--text-soft); font-size:var(--type-small); margin-top:8px;">Profit ÷ Cost. Used by buyers to set prices from known costs.</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:24px; justify-content:center;">
-        <div class="formula-panel">
-          Margin  = (Revenue − Cost) / Revenue<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (80 − 48) / 80 = <span style="color:#fff;">40%</span><br><br>
-          Markup  = (Revenue − Cost) / Cost<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (80 − 48) / 48 = <span style="color:#fff;">66.7%</span>
-        </div>
-        <div class="card" style="background:rgba(156,74,43,0.07); border-color:rgba(156,74,43,0.2);">
-          <p style="font-size:var(--type-small); color:var(--terra); font-weight:600; margin-bottom:8px;">⚠ The classic mistake</p>
-          <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            A buyer who targets a "100% markup" is earning a 50% margin — not 100%. Confusing the two leads to systematic underpricing across every product line.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="slide cream" data-label="16 Live You Try It Margin Markup" data-section="2" data-slide="16" data-index="15">
-    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom:34px;">Rows 5-6: type price and cost before choosing the denominator.</h2>
-    <div class="grid-2" style="gap:40px; flex:1; align-items:stretch;">
-      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 5 · MARGIN</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D10=$80 selling price, E10=$48 cost.</p>
-        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(D10-E10)/D10</span><span class="result">Feedback appears in I10.</span></div>
-      </div>
-      <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--gold); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 6 · MARKUP</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D11=$80 selling price, E11=$48 cost.</p>
-        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=(D11-E11)/E11</span><span class="result">Feedback appears in I11.</span></div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══════════════════════════ SLIDE 14 — COMMON MISTAKE ═══════════════════════════ -->
-  <section class="slide cream" data-label="17 Common Mistake" data-section="3" data-slide="17" data-index="16">
-    <div class="header-row">
-      <span class="eyebrow">Watch Out For This</span>
-    </div>
-    <div class="rule"></div>
-
-    <div style="flex:1; display:flex; align-items:center; gap:64px;">
-      <div style="flex:1;">
-        <div class="mistake-box">
-          <div class="mistake-label">⚠ Common Mistake — Inventory Overstatement</div>
-          <h3 style="font-family:'DM Sans',sans-serif; font-size:var(--type-lead); font-weight:700; margin-bottom:20px; color:var(--terra);">
-            An inflated ending inventory count destroys two periods of accurate reporting
-          </h3>
-          <p style="font-size:var(--type-body); line-height:1.6; color:var(--text);">
-            If Tidal's physical count accidentally includes $5,000 of phantom inventory:
-          </p>
-          <ul style="margin-top:20px; padding-left: 32px; display:flex; flex-direction:column; gap:12px; list-style:disc;">
-            <li style="font-size:var(--type-small); line-height:1.5;"><strong>This period:</strong> Ending Inventory ↑ $5,000 → COGS understated → Net Income overstated by $5,000</li>
-            <li style="font-size:var(--type-small); line-height:1.5;"><strong>Next period:</strong> Beginning Inventory now too high by $5,000 → COGS overstated → Net Income understated</li>
-            <li style="font-size:var(--type-small); line-height:1.5;"><strong>Net effect over 2 periods:</strong> The errors cancel — but both periods are wrong, and management made decisions on bad numbers</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="width:500px; display:flex; flex-direction:column; gap:24px;">
-        <div class="card">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">Period 1 — phantom $5K</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--terra);">COGS ↓</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--sage); margin-top:4px;">Profit ↑</div>
-        </div>
-        <div class="card">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">Period 2 — correction cascades</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--sage);">COGS ↑</div>
-          <div style="font-family:'Bodoni Moda',serif; font-size:calc(48px * var(--scale)); color:var(--terra); margin-top:4px;">Profit ↓</div>
-        </div>
-        <p style="font-size:var(--type-small); color:var(--muted); text-align:center;">Auditors look for exactly this pattern</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 15 — SECTION BREAK 3 ═══════════════════════════ -->
-  <section class="slide dark" data-label="18 Part 3" data-section="3" data-slide="18" data-index="17">
-    <div class="grad-bar"></div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-      <div class="eyebrow light" style="margin-bottom: 24px;">Part 3 of 3</div>
-      <h2 class="light" style="font-size: calc(88px * var(--scale)); max-width:960px; line-height:1.1;">
-        Overhead Allocation
-      </h2>
-      <p class="light" style="margin-top: 32px; max-width: 700px; font-size: var(--type-lead);">
-        The costs that don't attach to any single product — but still need to go somewhere.
-      </p>
-    </div>
-    <div class="section-num">3</div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 16 — OVERHEAD INTRO ═══════════════════════════ -->
-  <section class="slide cream" data-label="19 Overhead Intro" data-section="3" data-slide="19" data-index="18">
-    <div class="header-row">
-      <span class="eyebrow">Overhead · The Invisible Costs</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-60-40" style="flex:1; align-items:center;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">Every product sold<br>carries a share of the building it lived in</h2>
-        <p style="margin-bottom: 32px; max-width:760px;">
-          Overhead = indirect costs you cannot economically trace to a single unit. Rent, utilities, insurance, maintenance. They exist whether you sell 1 paddleboard or 1,000.
-        </p>
-        <div class="grid-3" style="margin-top:32px;">
-          <div class="card" style="text-align:center;">
-            <div style="font-size: calc(44px * var(--scale));">🏢</div>
-            <p style="font-size:var(--type-small); font-weight:600; margin-top:8px;">Rent & Utilities</p>
-          </div>
-          <div class="card" style="text-align:center;">
-            <div style="font-size: calc(44px * var(--scale));">🔧</div>
-            <p style="font-size:var(--type-small); font-weight:600; margin-top:8px;">Maintenance</p>
-          </div>
-          <div class="card" style="text-align:center;">
-            <div style="font-size: calc(44px * var(--scale));">👤</div>
-            <p style="font-size:var(--type-small); font-weight:600; margin-top:8px;">Indirect Labor</p>
-          </div>
-        </div>
-        <div class="formula-panel" style="margin-top:32px;">
-          Overhead Rate = Total Overhead ÷ Revenue<br>
-          Tidal: $22,000 ÷ $110,000 = <span style="color:#fff;">20%</span>
-        </div>
-      </div>
-      <image-slot id="s16-img" placeholder="Drop image: retail store interior / overhead view" style="width:100%; height:480px; border-radius:18px;" radius="18"></image-slot>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 17 — OVERHEAD ALLOCATION ═══════════════════════════ -->
-  <section class="slide cream" data-label="20 Overhead Allocation" data-section="3" data-slide="20" data-index="19">
-    <div class="header-row">
-      <span class="eyebrow">Tidal Goods Co. · Department Allocation</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-50-50" style="flex:1; align-items:flex-start; gap:64px;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">$9,000 rent.<br>Two departments. Split by square footage.</h2>
-        <p style="margin-bottom: 28px; font-size:var(--type-small); color:var(--text-soft);">
-          Tidal operates a Surf Shop (2,400 sq ft) and an Online Warehouse (1,600 sq ft) — 4,000 sq ft total.
-        </p>
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Department</th>
-              <th>Sq Ft</th>
-              <th>% of Total</th>
-              <th>Rent Allocated</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Surf Shop</td>
-              <td style="font-family:'JetBrains Mono',monospace;">2,400</td>
-              <td style="font-family:'JetBrains Mono',monospace; color:var(--sage);">60%</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$5,400</td>
-            </tr>
-            <tr>
-              <td>Online Warehouse</td>
-              <td style="font-family:'JetBrains Mono',monospace;">1,600</td>
-              <td style="font-family:'JetBrains Mono',monospace; color:var(--gold);">40%</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$3,600</td>
-            </tr>
-            <tr class="result">
-              <td colspan="2">Total</td>
-              <td style="font-family:'JetBrains Mono',monospace;">100%</td>
-              <td style="font-family:'JetBrains Mono',monospace;">$9,000</td>
-            </tr>
-          </tbody>
+    <section class="slide" data-part="Overhead" aria-label="Slide 16">
+      <div class="tabs"><span class="tab current">Worked structure</span><span class="tab">Rent</span><span class="tab">Square footage</span></div>
+      <p class="kicker">One pool · one defensible base</p>
+      <h2>Rent follows the space each department occupies</h2>
+      <div class="split-55 grow">
+        <table>
+          <thead><tr><th>Department</th><th class="right">Sq. ft.</th><th class="right">Share</th><th class="right">Allocated rent</th></tr></thead>
+          <tbody><tr><td>Surf Shop</td><td class="right">2,400</td><td class="right">60%</td><td class="right">$5,400</td></tr><tr><td>Online Warehouse</td><td class="right">1,600</td><td class="right">40%</td><td class="right">$3,600</td></tr><tr><td><strong>Total</strong></td><td class="right"><strong>4,000</strong></td><td class="right"><strong>100%</strong></td><td class="right"><strong>$9,000</strong></td></tr></tbody>
         </table>
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:24px; justify-content:center; height:100%;">
-        <!-- Animated donut SVG -->
-        <div style="display:flex; justify-content:center; align-items:center;">
-          <svg width="280" height="280" viewBox="0 0 280 280">
-            <circle cx="140" cy="140" r="100" fill="none" stroke="var(--border)" stroke-width="40"/>
-            <!-- 60% sage -->
-            <circle cx="140" cy="140" r="100" fill="none" stroke="var(--sage)" stroke-width="40"
-              stroke-dasharray="376.99 628.32" stroke-dashoffset="157.08"
-              transform="rotate(-90 140 140)" opacity="0">
-              <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.5s" fill="freeze"/>
-              <animate attributeName="stroke-dasharray" from="0 628.32" to="376.99 628.32" dur="1s" begin="0.5s" fill="freeze" calcMode="ease"/>
-            </circle>
-            <!-- 40% gold -->
-            <circle cx="140" cy="140" r="100" fill="none" stroke="var(--gold)" stroke-width="40"
-              stroke-dasharray="251.33 628.32" stroke-dashoffset="-219.91"
-              transform="rotate(-90 140 140)" opacity="0">
-              <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="1s" fill="freeze"/>
-              <animate attributeName="stroke-dasharray" from="0 628.32" to="251.33 628.32" dur="0.8s" begin="1s" fill="freeze" calcMode="ease"/>
-            </circle>
-            <text x="140" y="132" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="36" fill="var(--text)">$9,000</text>
-            <text x="140" y="162" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="18" fill="var(--muted)">Monthly Rent</text>
-          </svg>
-        </div>
-        <div style="display:flex; gap:16px; justify-content:center;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:14px; height:14px; border-radius:3px; background:var(--sage);"></div>
-            <span style="font-size:var(--type-small);">Surf Shop 60%</span>
-          </div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:14px; height:14px; border-radius:3px; background:var(--gold);"></div>
-            <span style="font-size:var(--type-small);">Warehouse 40%</span>
-          </div>
-        </div>
-        <div class="formula-panel" style="margin-top:8px;">
-          Dept % = Dept Sq Ft ÷ Total Sq Ft<br>
-          Surf: 2400 ÷ 4000 = <span style="color:#fff;">60%</span><br>
-          Alloc: 60% × $9,000 = <span style="color:#fff;">$5,400</span>
+        <div class="stack">
+          <div class="formula compact">=DepartmentSqFt / TotalSqFt</div>
+          <div class="formula compact">=RentPool * DepartmentShare</div>
+          <div class="card sage"><h3>Control check</h3><p>Department allocations must sum to the entire cost pool.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="footer"><span>Cause-and-benefit logic → allocation</span><span>16 / 22</span></div>
+    </section>
 
-  <!-- ═══════════════════════════ SLIDE 18 — OVERHEAD RATE ANIMATED ═══════════════════════════ -->
-  <section class="slide cream" data-label="21 Overhead Rate" data-section="3" data-slide="21" data-index="20">
-    <div class="header-row">
-      <span class="eyebrow">Tidal Goods Co. · Overhead Rate Trend</span>
-    </div>
-    <div class="rule"></div>
+    <section class="slide" data-part="Overhead" aria-label="Slide 17">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Driver choice</span><span class="tab">Downside case</span></div>
+      <p class="kicker">Build + challenge · 10 min</p>
+      <h2>Choose the driver, then stress the overhead rate</h2>
+      <div class="grid-2 grow">
+        <div class="activity"><p><span class="activity-label">What</span>Select a driver for each cost pool and allocate $22,000 across both departments.</p><p><span class="activity-label">How / Time</span>Pairs · 6 min</p><p><span class="activity-label">Deliverable</span>Driver rationale + PASS for every allocation check</p></div>
+        <div class="activity"><p><span class="activity-label">Challenge</span>Assume revenue falls 10% while overhead stays fixed. Recalculate the overhead rate.</p><p><span class="activity-label">How / Time</span>Individual · 3 min + 1 min compare</p><p><span class="activity-label">Deliverable</span>One risk the higher rate creates</p></div>
+      </div>
+      <div class="formula compact" style="margin-top:18px">Excel reveal after attempt: <span class="result">=TotalOverhead / Revenue</span> <span class="comment">· format as %</span></div>
+      <div class="footer"><span>Driver judgment + scenario analysis</span><span>17 / 22</span></div>
+    </section>
 
-    <div class="col-50-50" style="flex:1; align-items:center; gap:64px;">
-      <div>
-        <h2 dark-txt style="margin-bottom:32px;">20 cents of every dollar<br>goes to overhead before COGS</h2>
-        <p style="margin-bottom: 40px; max-width:680px;">
-          Tidal's current overhead rate is 20%. Management tracks this quarterly. A jump from 18% to 24% in one quarter is a red flag worth investigating.
-        </p>
-        <div style="display:flex; flex-direction:column; gap:20px; max-width:700px;">
-          <div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-size:var(--type-small); color:var(--text-soft);">Q2 2025 — 18%</span>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:var(--type-small); color:var(--sage);">$16,200 / $90,000</span>
-            </div>
-            <div class="prog-bar"><div class="prog-fill" style="width:18%; animation-delay:0.2s;"></div></div>
-          </div>
-          <div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-size:var(--type-small); color:var(--text-soft);">Q3 2025 — 19%</span>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:var(--type-small); color:var(--gold);">$18,050 / $95,000</span>
-            </div>
-            <div class="prog-bar"><div class="prog-fill" style="width:19%; animation-delay:0.4s;"></div></div>
-          </div>
-          <div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-size:var(--type-small); color:var(--text-soft);">Q4 2025 — 20%</span>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:var(--type-small); color:var(--gold);">$20,000 / $100,000</span>
-            </div>
-            <div class="prog-bar"><div class="prog-fill" style="width:20%; animation-delay:0.6s;"></div></div>
-          </div>
-          <div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-              <span style="font-size:var(--type-small); color:var(--text-soft);">Q1 2026 — 20%</span>
-              <span style="font-family:'JetBrains Mono',monospace; font-size:var(--type-small); color:var(--sage);">$22,000 / $110,000</span>
-            </div>
-            <div class="prog-bar"><div class="prog-fill" style="width:20%; animation-delay:0.8s;"></div></div>
-          </div>
+    <section class="slide" data-part="Overhead" aria-label="Slide 18">
+      <div class="tabs"><span class="tab current">Common mistake</span><span class="tab">Internal</span><span class="tab">External</span></div>
+      <p class="kicker">Common mistake</p>
+      <h2>Allocation does not rewrite financial reporting</h2>
+      <div class="mistake grow">
+        <p class="wrong">“We allocated store rent to products, so rent becomes inventory cost.”</p>
+        <p class="correct">Internal view: allocate rent to understand department economics.</p>
+        <p class="correct">External view: classify costs under the applicable reporting rules.</p>
+        <div class="grid-2" style="margin-top:24px"><div class="card"><h3>Often inventoriable</h3><p>Purchase price, freight-in, and other costs required to bring inventory to its present location and condition</p></div><div class="card"><h3>Often period expense</h3><p>Store rent, selling expenses, and general administrative costs</p></div></div>
+      </div>
+      <div class="footer"><span>Management usefulness ≠ accounting classification</span><span>18 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="Decision" aria-label="Slide 19">
+      <div class="tabs"><span class="tab current">Management huddle</span><span class="tab">Recommend</span><span class="tab">Defend</span></div>
+      <p class="kicker">Integrated recommendation · 8 min</p>
+      <h2>What should Tidal do next</h2>
+      <div class="activity grow">
+        <div class="grid-2">
+          <div><p><span class="activity-label">What</span>Complete the <strong>Decision Brief</strong>: choose FIFO or WAC for internal reporting, defend the overhead drivers, and respond to the revenue downside.</p><p><span class="activity-label">How / Time</span>Teams of 3 · 5 min build + 3 min rapid share</p></div>
+          <div><p><span class="activity-label">Deliverable</span>A four-part recommendation: action, numeric evidence, risk, and control.</p><p><span class="activity-label">Decision test</span>Could another manager reproduce your result from the raw data?</p></div>
         </div>
       </div>
+      <div class="grid-4" style="margin-top:18px"><div class="card sage"><h3>Action</h3><p class="small">What should change?</p></div><div class="card gold"><h3>Evidence</h3><p class="small">Which two numbers matter?</p></div><div class="card terra"><h3>Risk</h3><p class="small">What could mislead?</p></div><div class="card steel"><h3>Control</h3><p class="small">How will you verify?</p></div></div>
+      <div class="footer"><span>From calculation to management judgment</span><span>19 / 22</span></div>
+    </section>
 
-      <div style="display:flex; flex-direction:column; align-items:center; gap:32px;">
-        <div style="text-align:center;">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--muted); margin-bottom:8px;">CURRENT RATE</div>
-          <div style="font-family:'Bodoni Moda',serif; font-style:italic; font-size:calc(140px * var(--scale)); color:var(--sage); line-height:0.9;">20%</div>
-        </div>
-        <div class="formula-panel">
-          Overhead Rate =<br>
-          Total Overhead ÷ Revenue<br>
-          = $22,000 ÷ $110,000<br>
-          = <span style="color:#fff;">20.0%</span>
-        </div>
+    <section class="slide" data-part="Decision" aria-label="Slide 20">
+      <div class="tabs"><span class="tab current">Debrief</span><span class="tab">Three takeaways</span><span class="tab">Transfer</span></div>
+      <p class="kicker">What strong managers remember</p>
+      <h2>Three ideas travel beyond this case</h2>
+      <div class="grid-3 grow">
+        <div class="card sage"><span class="number">1</span><h3>Method changes the story</h3><p>Same sales, different COGS and ending inventory.</p></div>
+        <div class="card gold"><span class="number">2</span><h3>Controls protect interpretation</h3><p>Reconcile units and costs before explaining a variance.</p></div>
+        <div class="card steel"><span class="number">3</span><h3>Drivers require judgment</h3><p>Choose evidence that reflects cause or benefit.</p></div>
       </div>
-    </div>
-  </section>
-  <section class="slide cream" data-label="22 Live You Try It Overhead" data-section="3" data-slide="22" data-index="21">
-    <div class="header-row"><span class="eyebrow">Live You Try It · Excel Pause</span></div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom:30px;">Rows 7-8: type the drivers, then build overhead formulas.</h2>
-    <div class="grid-2" style="gap:40px; flex:1; align-items:stretch;">
-      <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.22);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--sage); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 7 · SURF SHOP RENT</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D12=$9,000 rent, E12=2,400 sq ft, F12=4,000 sq ft.</p>
-        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=D12*(E12/F12)</span><span class="result">Feedback appears in I12.</span></div>
+      <p class="callout"><strong>Transfer question:</strong> Which idea would matter most in a service business with little physical inventory?</p>
+      <div class="footer"><span>Calculate · control · explain</span><span>20 / 22</span></div>
+    </section>
+
+    <section class="slide" data-part="Decision" aria-label="Slide 21">
+      <div class="tabs"><span class="tab current">Workbook flow</span><span class="tab">Raw data</span><span class="tab">Decision brief</span></div>
+      <p class="kicker">Your reusable workflow</p>
+      <h2>Follow the model from evidence to action</h2>
+      <div class="flow grow">
+        <div class="node">1 · Protect Raw Data</div><div class="node">2 · Build Management Model</div><div class="node">3 · Pass Controls</div><div class="node">4 · Write Decision Brief</div>
       </div>
-      <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.22);">
-        <div style="font-family:'JetBrains Mono',monospace; color:var(--steel); font-size:var(--type-eyebrow); margin-bottom:8px;">ROW 8 · OVERHEAD RATE</div>
-        <p style="font-size:var(--type-small); color:var(--text-soft);">D13=$22,000 total overhead, E13=$110,000 revenue.</p>
-        <div class="formula-panel" style="margin-top:22px;"><span class="fn">=D13/E13</span><span class="result">Feedback appears in I13.</span></div>
+      <div class="grid-2"><div class="card sage"><h3>Formula Reference</h3><p>Use it as a syntax reminder after you choose the business logic.</p></div><div class="card terra"><h3>Decision Brief</h3><p>Do not report a number without the meaning, risk, and control.</p></div></div>
+      <div class="footer"><span>Raw data → model → controls → recommendation</span><span>21 / 22</span></div>
+    </section>
+
+    <section class="slide dark" data-part="Close" aria-label="Slide 22">
+      <div class="tabs"><span class="tab current">Exit ticket</span><span class="tab">3 minutes</span><span class="tab">Close</span></div>
+      <p class="kicker">Exit ticket · 3 min</p>
+      <h2>If the physical inventory count is wrong, what decision becomes least trustworthy</h2>
+      <div class="grid-2 grow">
+        <div class="card"><h3>Answer in two sentences</h3><p>Sentence 1: name the affected number and direction.</p><p>Sentence 2: name the management decision that could be distorted.</p></div>
+        <div class="card"><h3>Self-check</h3><p>Did you connect inventory → COGS → profit → decision?</p><p class="muted">Submit before leaving.</p></div>
       </div>
-    </div>
-  </section>
+      <div class="accent-line"></div>
+      <div class="footer"><span>BUS123 · MATH M06</span><span>22 / 22</span></div>
+    </section>
+  </main>
 
+  <aside id="notes" aria-label="Speaker notes"></aside>
+  <nav id="controls" aria-label="Slide controls"><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide">→</button></nav>
 
-  <!-- ═══════════════════════════ SLIDE 19 — DISCUSSION ═══════════════════════════ -->
-  <section class="slide dark" data-label="23 Discussion" data-section="4" data-slide="23" data-index="22">
-    <div class="grad-bar"></div>
-    <div class="header-row">
-      <span class="eyebrow light">Turn & Talk · 5 Minutes</span>
-    </div>
-    <div class="rule light"></div>
-    <h2 class="light" style="margin-bottom: 64px;">Two questions to work through</h2>
+  <script type="application/json" id="speaker-notes">
+  [
+    "Welcome students and frame the lesson as a management-modeling sequence rather than three disconnected formulas. Ask: What makes a cost number trustworthy? Listen for source data, formulas, and controls. Misconception: a spreadsheet output is automatically reliable. Timing: 1 minute; transition directly to the retail context.",
+    "Have students vote before discussing. A defensible answer can be inventory purchasing, supplier mix, price, or overhead investigation if the reason connects to cost pressure. Use the Deloitte figures only to establish relevance; do not imply one universal response. Misconception: rising input costs always require an immediate price increase. Timing: 7 minutes including pair share and debrief.",
+    "Preview the sequence and point out that the integrated recommendation is the endpoint. Emphasize that the workbook will be used throughout—not saved for the end. Formative check: ask which step must precede interpretation; expected answer is passing the controls. Timing: 2 minutes.",
+    "Read the four targets as observable performances. Stress unequal quantities, a complete schedule, driver judgment, and a defensible recommendation. Misconception: knowing a formula is equivalent to understanding the model. Briefly state that margin versus markup is prior learning and will appear only as a denominator check. Timing: 2 minutes.",
+    "Introduce the inventory question: which costs leave the balance sheet and enter COGS? Ask students to predict why a method matters even when the physical units sold do not change. Expected rationale: reported COGS, profit, and ending inventory can differ. Timing: 1 minute.",
+    "Give students 45 seconds to inspect the layers and write a prediction. Correct directional prediction under rising costs: FIFO has lower COGS and higher ending inventory than weighted average; weighted average falls between low and high layer costs. Do not reveal exact answers yet. Misconception: average the three listed unit costs without weighting quantities. Timing: 3 minutes.",
+    "Use this reading table as retrieval practice. Ask pairs to rule out two methods and defend the remaining two. Likely response: FIFO and weighted average are plausible for interchangeable retail stock; Specific ID is unnecessary and LIFO adds reporting constraints. Note that method choice for external reporting must follow applicable rules and consistency requirements. Timing: 4 minutes.",
+    "Direct students to Management Model. They first assign sold units to FIFO layers, then build weighted-average calculations. Do not provide formulas during the first six minutes. Formative answer: FIFO uses all 8 beginning units and 11 of the March layer, leaving 1 March and all 10 April units. Require three PASS controls before discussion. Common issue: hard-coding the answer rather than referencing source cells. Timing: 10 minutes.",
+    "Transition from cost-flow mechanics to the income statement. Ask: What must remain constant across FIFO and WAC? Expected answers: 30 units available, 19 units sold, 11 ending units, and $7,004 total goods available. Timing: 1 minute.",
+    "Build the COGS schedule verbally from left to right. The ending-inventory amount changes by method, but each method must reconcile COGS plus ending inventory to goods available. Ask students to identify the two controls before they calculate. Misconception: revenue belongs inside the COGS identity. Timing: 3 minutes.",
+    "Trace the error path and ask students to state the direction at every arrow. If ending inventory is overstated, current COGS is understated and current profit is overstated; next-period beginning inventory is also overstated. Explain that the next-period effect can reverse when the inventory is sold or corrected. Timing: 4 minutes.",
+    "Students complete the parallel COGS schedules and gross-margin rows. Do not reveal the SUMPRODUCT pattern until the attempt period ends. Expected directional explanation: WAC reports higher COGS and lower gross profit than FIFO when costs rise in this case. Require cost and unit PASS checks. Timing: 8 minutes.",
+    "Use this as a quick retrieval bridge. Ask students to name each denominator before calculating. For $80 price and $48 cost, gross margin is 40% and markup is 66.7%; markup is larger because cost is the smaller denominator. Do not expand this into a fourth lesson segment. Timing: 3 minutes.",
+    "Introduce overhead as costs that support operations but cannot be economically traced to one product or job. Ask for one example from students' workplaces. Emphasize that today they are building an internal management view. Timing: 1 minute.",
+    "Walk through the reading table and ask whether one driver should allocate every pool. Expected answer: no; the driver should reflect cause or benefit. Highlight the accounting boundary: internal allocation is useful, but external inventory classification follows reporting rules. Misconception: any allocated cost becomes inventoriable. Timing: 4 minutes.",
+    "Model rent allocation because its driver is visible and defensible. Ask students to calculate the shares before displaying the dollar allocations. Correct shares are 60% and 40%, allocating $5,400 and $3,600. The allocation control must total $9,000. Timing: 3 minutes.",
+    "Students choose drivers for all five pools and enter allocation formulas. Accept more than one driver when the rationale is coherent and data are available. In the downside case, fixed overhead divided by 90% of original revenue produces a higher rate. Misconception: a higher overhead rate proves overhead spending increased; it may be the denominator falling. Timing: 10 minutes.",
+    "Use the exact wrong statement first, then separate the two views. Internal allocation supports product, department, or channel decisions; it does not by itself change external classification. Ask students to classify freight-in versus store rent. Expected: freight-in is commonly part of inventory cost; store rent is commonly a period expense. Timing: 3 minutes.",
+    "Assign teams of three roles: model checker, decision lead, and skeptic. A strong brief includes a clear action, at least two model numbers, one risk, and one control. Do not require one preferred inventory method; grade the coherence between business purpose, evidence, and recommendation. Timing: 8 minutes including rapid shares.",
+    "Debrief by asking one team to supply an example for each takeaway. Reinforce that methods tell different valid cost-flow stories, controls precede interpretation, and allocation drivers are judgments supported by evidence. Transfer answer for a service firm: overhead-driver judgment and control design may matter more than physical inventory. Timing: 3 minutes.",
+    "Orient students to the workbook's five sheets. Raw Data should remain unchanged; source links and student formulas belong in Management Model; controls must pass before the Decision Brief is finalized; Formula Reference is a support, not an answer key. Timing: 2 minutes.",
+    "Give three quiet minutes. A strong response explains that an incorrect ending count distorts ending inventory, COGS, gross profit, and potentially pricing, purchasing, or performance decisions. Collect the response as the final formative check. Timing: 3 minutes."
+  ]
+  </script>
 
-    <div class="grid-2" style="gap:48px; flex:1; align-items:stretch;">
-      <div class="card dark-card" style="display:flex; flex-direction:column; gap:24px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); text-transform:uppercase; letter-spacing:.08em;">Question 01</div>
-        <p class="light" style="font-size:var(--type-lead); line-height:1.5;">
-          Tidal is considering switching from FIFO to Weighted Average Cost. What are the tradeoffs? Think about tax impact, balance sheet presentation, and operational complexity.
-        </p>
-      </div>
-      <div class="card dark-card" style="display:flex; flex-direction:column; gap:24px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--gold); text-transform:uppercase; letter-spacing:.08em;">Question 02</div>
-        <p class="light" style="font-size:var(--type-lead); line-height:1.5;">
-          Tidal's overhead rate jumped from 18% to 24% in one quarter while revenue stayed flat. As a new analyst, what three things would you investigate first?
-        </p>
-      </div>
-    </div>
-  </section>
-<section class="slide cream" data-section="4" data-slide="24" data-index="23" data-label="24 Formula Reference Card" id="slide-20">
-  <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
-    <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table">
-      <thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead>
-      <tbody>
-        <tr><td>COGS</td><td class="pattern">=BeginningInventory+Purchases-EndingInventory</td><td>Calculates product cost sold during the period.</td><td class="watch">Ending inventory is subtracted.</td></tr>
-        <tr><td>Goods available for sale</td><td class="pattern">=BeginningInventory+Purchases</td><td>Shows total inventory cost available to sell.</td><td class="watch">COGS cannot exceed this amount.</td></tr>
-        <tr><td>Gross profit</td><td class="pattern">=Revenue-COGS</td><td>Shows profit before overhead and operating costs.</td><td class="watch">Revenue and COGS must cover the same period.</td></tr>
-        <tr><td>Gross margin percent</td><td class="pattern">=GrossProfit/Revenue</td><td>Shows percent of revenue left after product cost.</td><td class="watch">Margin divides by revenue.</td></tr>
-        <tr><td>Markup percent</td><td class="pattern">=(Revenue-Cost)/Cost</td><td>Shows profit as a percent of cost.</td><td class="watch">Markup divides by cost, not revenue.</td></tr>
-        <tr><td>WAC unit cost</td><td class="pattern">=TotalCostAvailable/TotalUnitsAvailable</td><td>Blends purchase layers into one average unit cost.</td><td class="watch">Recalculate when new stock arrives.</td></tr>
-        <tr><td>Overhead allocated</td><td class="pattern">=TotalOverhead*DeptPercent</td><td>Assigns shared overhead to the department share.</td><td class="watch">The percent base must match the allocation driver.</td></tr>
-        <tr><td>Overhead rate</td><td class="pattern">=TotalOverhead/Revenue</td><td>Shows overhead consumed by each revenue dollar.</td><td class="watch">Rising rates can mean cost creep or revenue pressure.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">24 / 27</div>
-</section>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const notes = JSON.parse(document.getElementById('speaker-notes').textContent);
+    const notesBox = document.getElementById('notes');
+    let index = 0;
 
-  <!-- ═══════════════════════════ SLIDE 20 — KEY TAKEAWAYS ═══════════════════════════ -->
-  <section class="slide cream" data-label="25 Takeaways" data-section="4" data-slide="25" data-index="24">
-    <div class="header-row">
-      <span class="eyebrow">Key Takeaways · Module 06</span>
-    </div>
-    <div class="rule"></div>
-    <h2 dark-txt style="margin-bottom: 56px;">Three things to remember</h2>
-
-    <div style="max-width: 1100px; display:flex; flex-direction:column; gap:16px;">
-      <div class="numbered">
-        <div class="n">01</div>
-        <div class="n-body">Inventory method choice is a <em>strategic</em> decision — FIFO, LIFO, and WAC produce different COGS, different profits, different taxes, and different balance sheet asset values from the exact same physical inventory.</div>
-      </div>
-      <div class="numbered">
-        <div class="n">02</div>
-        <div class="n-body">COGS errors compound across periods — an overstated ending inventory this quarter becomes an overstated beginning inventory next quarter. Get the physical count right.</div>
-      </div>
-      <div class="numbered">
-        <div class="n">03</div>
-        <div class="n-body">Margin and markup are not interchangeable — margin divides by revenue, markup divides by cost. Confusing them leads to systematic underpricing across every product line.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 21 — EXCEL PREVIEW ═══════════════════════════ -->
-  <section class="slide cream" data-label="26 Excel Preview" data-section="4" data-slide="26" data-index="25">
-    <div class="header-row">
-      <span class="eyebrow">Coming Up · Excel Activity</span>
-    </div>
-    <div class="rule"></div>
-
-    <div class="col-60-40" style="flex:1; align-items:center; gap:64px;">
-      <div>
-        <h2 dark-txt style="margin-bottom: 32px;">Raw data → Management-ready report</h2>
-        <p style="margin-bottom:32px; max-width:760px;">
-          You'll use the workbook in two passes: quick self-graded Live You Try It rows during the slides, then a 15-question Class Challenge that combines inventory methods, COGS, margin, markup, and overhead.
-        </p>
-        <div class="grid-3" style="max-width:820px; gap:24px;">
-          <div class="card" style="background:rgba(74,124,94,0.07); border-color:rgba(74,124,94,0.2);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--sage); margin-bottom:8px;">Tab 1</div>
-            <p style="font-size:var(--type-small); font-weight:600;">Live You Try It</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Self-graded rows with hints and feedback</p>
-          </div>
-          <div class="card" style="background:rgba(184,132,61,0.08); border-color:rgba(184,132,61,0.25);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--gold); margin-bottom:8px;">Tab 2</div>
-            <p style="font-size:var(--type-small); font-weight:600;">Class Challenge</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">15 next-level formula questions</p>
-          </div>
-          <div class="card" style="background:rgba(53,87,115,0.08); border-color:rgba(53,87,115,0.2);">
-            <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:var(--steel); margin-bottom:8px;">Tab 3</div>
-            <p style="font-size:var(--type-small); font-weight:600;">FormulaReferenceCard</p>
-            <p style="font-size:calc(22px * var(--scale)); color:var(--text-soft); margin-top:8px;">Syntax reminders after choosing the method</p>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:16px; justify-content:center;">
-        <div class="card">
-          <p style="font-size:var(--type-small); color:var(--text-soft); line-height:1.6;">
-            <strong>The goal:</strong> Take a messy data dump and produce something management can actually use to make decisions.
-          </p>
-        </div>
-        <image-slot id="s21-img" placeholder="Drop image: clean Excel dashboard" style="width:100%; height:280px; border-radius:12px;" radius="12"></image-slot>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ SLIDE 22 — CLOSE ═══════════════════════════ -->
-  <section class="slide dark" data-label="27 Close" data-section="4" data-slide="27" data-index="26">
-    <div class="grad-bar"></div>
-    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
-      <div class="eyebrow light" style="margin-bottom:24px;">BUS123 · MATH-M06</div>
-      <h2 class="light" style="font-size:calc(96px * var(--scale)); margin-bottom:32px;">Questions?</h2>
-      <p class="subtitle" style="max-width:700px;">
-        Inventory. Overhead. COGS.<br>The cost foundation of every product business.
-      </p>
-      <div style="margin-top:64px; display:flex; gap:48px; justify-content:center;">
-        <div style="text-align:center;">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:rgba(255,255,255,0.4); margin-bottom:8px;">Office Hours</div>
-          <div style="font-size:var(--type-small); color:rgba(255,255,255,0.7);">Check Canvas for schedule</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-family:'JetBrains Mono',monospace; font-size:var(--type-eyebrow); color:rgba(255,255,255,0.4); margin-bottom:8px;">Press N</div>
-          <div style="font-size:var(--type-small); color:rgba(255,255,255,0.7);">Toggle speaker notes</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</deck-stage>
-
-<script>
-(function(){
-  if(customElements.get('deck-stage')) return;
-  class DeckStage extends HTMLElement {
-    connectedCallback(){
-      if(this._ready) return; this._ready = true;
-      const W = parseInt(this.getAttribute('width') || 1920);
-      const H = parseInt(this.getAttribute('height') || 1080);
-      this._slides = [...this.querySelectorAll('.slide')];
-      this._idx = 0;
-      this._notes = [];
-      try { const el = document.getElementById('speaker-notes');
-            if(el) this._notes = JSON.parse(el.textContent); } catch(e){}
-
-      const stage = document.createElement('div');
-      stage.style.cssText = 'position:absolute; transform-origin:top left;'
-                          + 'width:'+W+'px; height:'+H+'px;';
-      this._slides.forEach(s => {
-        s.style.position = 'absolute';
-        s.style.top = '0'; s.style.left = '0';
-        s.style.width = W+'px'; s.style.height = H+'px';
-        s.style.display = 'none';
-        s.style.flexDirection = 'column';
-        stage.appendChild(s);
-      });
-      this.appendChild(stage);
-      this._stage = stage;
-
-      this.style.cssText = 'display:block; position:fixed; top:0; left:0;'
-                         + 'width:100vw; height:100vh; overflow:hidden; background:#111;';
-
-      const ctr = document.createElement('div');
-      ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%);'
-        + 'background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;'
-        + 'padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
-      document.body.appendChild(ctr); this._ctr = ctr;
-
-      const btnStyle = 'position:fixed; bottom:20px; z-index:9999;'
-        + 'background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);'
-        + 'color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px;'
-        + 'border-radius:50%; cursor:pointer;';
-      const prev = document.createElement('button');
-      prev.innerHTML = '&#8592;'; prev.style.cssText = btnStyle + 'right:80px;';
-      prev.onclick = () => this._go(this._idx - 1);
-      document.body.appendChild(prev);
-      const next = document.createElement('button');
-      next.innerHTML = '&#8594;'; next.style.cssText = btnStyle + 'right:24px;';
-      next.onclick = () => this._go(this._idx + 1);
-      document.body.appendChild(next);
-
-      const notes = document.createElement('div');
-      notes.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%);'
-        + 'max-width:860px; width:90%; background:rgba(10,10,20,0.9); color:#e2e8f0;'
-        + 'font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px;'
-        + 'display:none; z-index:9998;';
-      document.body.appendChild(notes); this._notes_el = notes;
-
-      document.addEventListener('keydown', e => {
-        if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._go(this._idx+1); }
-        if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){ e.preventDefault(); this._go(this._idx-1); }
-        if(e.key==='Home'){ e.preventDefault(); this._go(0); }
-        if(e.key==='End'){ e.preventDefault(); this._go(this._slides.length-1); }
-        if(e.key==='n'||e.key==='N') this._toggleNotes();
-      });
-
-      this.addEventListener('click', e => {
-        const x = e.clientX / window.innerWidth;
-        if(x < 0.33) this._go(this._idx-1);
-        else if(x > 0.67) this._go(this._idx+1);
-      });
-
-      this._scale(); this._go(0);
-      window.addEventListener('resize', () => this._scale());
+    function fitDeck() {
+      const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+      document.getElementById('deck').style.transform = `translate(-50%, -50%) scale(${scale})`;
     }
-    _scale(){
-      const W = parseInt(this.getAttribute('width')||1920);
-      const H = parseInt(this.getAttribute('height')||1080);
-      const s = Math.min(window.innerWidth/W, window.innerHeight/H);
-      const ox = (window.innerWidth  - W*s) / 2;
-      const oy = (window.innerHeight - H*s) / 2;
-      this._stage.style.transform = `translate(${ox}px,${oy}px) scale(${s})`;
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      notesBox.textContent = notes[index] || '';
+      history.replaceState(null, '', `#${index + 1}`);
     }
-    _go(n){
-      n = Math.max(0, Math.min(n, this._slides.length-1));
-      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
-      this._idx = n;
-      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'flex';
-      this._ctr.textContent = (n+1)+' / '+this._slides.length;
-      if(this._notes_el.style.display==='block' && this._notes[n])
-        this._notes_el.textContent = this._notes[n];
-    }
-    _toggleNotes(){
-      this._notes_el.style.display = this._notes_el.style.display==='block'?'none':'block';
-      if(this._notes_el.style.display==='block' && this._notes[this._idx])
-        this._notes_el.textContent = this._notes[this._idx];
-    }
-  }
-  customElements.define('deck-stage', DeckStage);
-})();
-</script>
-
-<script>
-(function(){
-  if(customElements.get('image-slot')) return;
-  class ImageSlot extends HTMLElement {
-    connectedCallback(){
-      if(this._init) return; this._init = true;
-      const ph = this.getAttribute('placeholder') || 'Drop image here';
-      Object.assign(this.style, {
-        display:'flex', alignItems:'center', justifyContent:'center',
-        borderRadius:'12px', border:'2px dashed rgba(0,0,0,0.12)',
-        background:'rgba(0,0,0,0.04)', color:'rgba(0,0,0,0.25)',
-        fontFamily:'JetBrains Mono, monospace', fontSize:'16px',
-        textAlign:'center', padding:'16px', cursor:'pointer'
-      });
-      this.textContent = ph;
-      this.addEventListener('click', () => {
-        const inp = document.createElement('input');
-        inp.type = 'file'; inp.accept = 'image/*';
-        inp.onchange = e => {
-          const f = e.target.files[0]; if(!f) return;
-          const r = new FileReader();
-          r.onload = ev => {
-            this.style.background = `url(${ev.target.result}) center/cover no-repeat`;
-            this.style.border = 'none'; this.textContent = '';
-          };
-          r.readAsDataURL(f);
-        };
-        inp.click();
-      });
-    }
-  }
-  customElements.define('image-slot', ImageSlot);
-})();
-</script>
-
-
-<script>
-(function(){
-  function currentDeck(){ return document.querySelector('deck-stage'); }
-  function ensureDeckController(deck){
-    if(!deck || deck._slidesReady) return;
-    if(deck._ready && deck._slides && deck._go){
-      deck._slidesReady=true;
-      return;
-    }
-    deck._slidesReady=true;
-    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
-    deck._idx=0;
-    deck._notes=[];
-    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
-    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
-    var notes=document.createElement('div');
-    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
-    document.body.appendChild(notes);
-    deck._notes_el=notes;
-    deck._go=function(n){
-      n=Math.max(0,Math.min(n,deck._slides.length-1));
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
-      deck._idx=n;
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
-    };
-    deck._toggleNotes=function(){
-      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
-    };
-    if(!window.__bus123RetrofitKeys){
-      window.__bus123RetrofitKeys=true;
-      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
-    }
-    deck._go(0);
-  }
-  function goToSection(section){
-    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
-    var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
-    if(target>=0) deck._go(target);
-  }
-  function addTabs(){
-    if(document.querySelector('.retrofit-tab-strip')) return;
-    var deck=currentDeck(); if(!deck) return;
-    ensureDeckController(deck);
-    var strip=document.createElement('nav');
-    strip.className='retrofit-tab-strip tab-strip';
-    strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';
-    document.body.appendChild(strip);
-    strip.querySelector('.retrofit-home-dot').addEventListener('click',function(){ if(deck._go) deck._go(0); });
-    strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.addEventListener('click',function(){ goToSection(btn.getAttribute('data-section')); }); });
-    var notesBtn=strip.querySelector('.retrofit-notes-btn');
-    if(notesBtn) notesBtn.addEventListener('click',function(){ var d=currentDeck(); if(d && d._toggleNotes) d._toggleNotes(); });
-    function sync(){
-      if(!deck._slides) return;
-      var active=deck._slides[deck._idx];
-      var sec=active && active.getAttribute('data-section');
-      strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-section')===sec); });
-      requestAnimationFrame(sync);
-    }
-    sync();
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(addTabs,0); });
-  else setTimeout(addTabs,0);
-})();
-</script>
-
+    document.getElementById('prev').addEventListener('click', () => show(index - 1));
+    document.getElementById('next').addEventListener('click', () => show(index + 1));
+    document.addEventListener('keydown', event => {
+      if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); show(index + 1); }
+      if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); show(index - 1); }
+      if (event.key.toLowerCase() === 'n') document.body.classList.toggle('show-notes');
+      if (event.key === 'Home') show(0);
+      if (event.key === 'End') show(slides.length - 1);
+    });
+    window.addEventListener('resize', fitDeck);
+    fitDeck();
+    show(Math.max(0, (Number(location.hash.slice(1)) || 1) - 1));
+  </script>
 </body>
 </html>

@@ -127,7 +127,7 @@ Notice that ending inventory **directly reduces COGS**. If the physical count at
 
 ---
 
-### Part 3 — Margin vs. Markup
+### Prior-Learning Bridge — Margin vs. Markup
 
 Both margin and markup measure profitability from the same transaction. They use the same inputs — revenue and cost — but **divide by different denominators**. Confusing them is one of the most common and costly errors in retail pricing.
 
@@ -149,28 +149,32 @@ In Excel, use `=(Revenue-Cost)/Revenue` for margin and `=(Revenue-Cost)/Cost` fo
 
 ---
 
-### Part 4 — Overhead Allocation
+### Part 3 — Overhead Allocation
 
 #### What Is Overhead?
 
-Overhead costs are indirect, recurring expenses required to keep the business operational that **cannot be traced to any single unit sold**.
+Overhead costs are indirect, recurring expenses required to keep the business operational that **cannot be economically traced to any single unit sold**.
+
+> ✅ **Financial Reporting vs. Management Allocation**
+>
+> Product purchase and landed costs generally flow through inventory and COGS for a retailer. Store rent, utilities, insurance, and similar operating overhead are commonly treated as period operating expenses in external financial statements. Managers may still allocate those costs to departments, channels, or products for **internal profitability analysis**. An internal allocation does not automatically change a cost's external-reporting classification; the applicable accounting standards and company policies control that classification.
 
 Tidal's monthly overhead:
 
-| Category         | Monthly Amount |
-|------------------|---------------|
-| Rent             | $9,000        |
-| Utilities        | $4,200        |
-| Insurance        | $3,800        |
-| Indirect labor   | $3,500        |
-| Maintenance      | $1,500        |
-| **Total**        | **$22,000**   |
+| Category         | Monthly Amount | Likely Internal Allocation Driver |
+|------------------|---------------:|-----------------------------------|
+| Rent             | $9,000         | Square footage                    |
+| Utilities        | $4,200         | Square footage or measured usage  |
+| Insurance        | $3,800         | Square footage or insured value   |
+| Indirect labor   | $3,500         | Direct labor hours or headcount   |
+| Maintenance      | $1,500         | Maintenance hours or square footage |
+| **Total**        | **$22,000**    | Drivers selected by cost pool     |
 
-Whether Tidal sells one board or one thousand, these costs exist.
+In this simplified monthly case, Tidal treats these costs as fixed within the relevant activity range. In practice, some overhead costs are mixed or step costs and may change when activity moves far enough.
 
 #### Allocating Across Departments
 
-Tidal operates two departments: a retail Surf Shop (2,400 sq ft) and an Online Warehouse (1,600 sq ft). Most overhead categories are allocated by **square footage**, because those costs increase with physical space.
+Tidal operates two departments: a retail Surf Shop (2,400 sq ft) and an Online Warehouse (1,600 sq ft). For the rent example, **square footage** is the selected driver because occupancy cost is closely related to physical space. Other cost pools may require different drivers.
 
 | Department    | Sq Ft         | Allocation Basis | Overhead Allocated        |
 |---------------|---------------|------------------|---------------------------|
@@ -186,7 +190,7 @@ Always verify that department percentages total **100%** and allocated amounts t
 
 `Overhead Rate = Total Overhead / Revenue = $22,000 / $110,000 = 20.0%`
 
-A 20% overhead rate means that for every dollar of revenue Tidal earns, **20 cents goes to keeping the lights on** before COGS is even considered. When this rate rises unexpectedly, management investigates: Did rent increase? Did revenue drop while fixed costs stayed flat?
+A 20% overhead rate means that operating overhead equals **20 cents per revenue dollar**. It is a separate management measure from COGS and gross margin. When this rate rises unexpectedly, management investigates: Did a cost pool increase? Did revenue drop while fixed costs stayed flat? Did the cost mix or department activity change?
 
 > ✅ **Choosing the Right Allocation Basis**
 >
@@ -227,21 +231,16 @@ Use these direction checks before trusting an Excel result:
 
 ## 5 · Check Your Understanding
 
-Answer all seven questions before class. Answers appear at the end of this document.
+Answer all eight questions before class. Answers appear at the end of this document.
 
 1. Tidal Goods Co. had beginning inventory of $14,000, made purchases of $32,000 during the quarter, and ended with inventory of $11,500. Calculate COGS.
-
 2. Using the paddleboard purchase orders in Part 1 (10 units at $210, 10 at $230, 10 at $250), calculate the COGS if Tidal sells 15 units using the **FIFO** method.
-
 3. Using the same purchase orders, calculate the Weighted Average Cost per unit and the COGS for selling 15 units under **WAC**.
-
 4. Tidal sells a wetsuit for $120. The landed cost is $72. Calculate both the **gross margin percentage** and the **markup percentage**.
-
 5. Tidal's overhead for the month is $18,000. Revenue is $90,000. Calculate the overhead rate. If revenue drops to $75,000 next month but overhead stays flat, what is the new overhead rate?
-
 6. Tidal's Surf Shop occupies 3,000 sq ft and the Warehouse occupies 2,000 sq ft. Monthly rent is $10,000. How much rent should be allocated to each department?
-
 7. Tidal's ending inventory count is accidentally overstated by $3,000 this quarter. Explain what happens to COGS and net income this period, and what happens in the following period as a result.
+8. Match each cost pool to the most defensible internal allocation driver: store rent, payment-processing fees, and indirect production supervision. Choose from square footage, revenue share, or direct labor hours. Then explain why allocating store rent internally does not automatically make it part of inventory or COGS in the external financial statements.
 
 ---
 
@@ -256,6 +255,7 @@ Answer all seven questions before class. Answers appear at the end of this docum
 | **5** | Current: $18,000 / $90,000 = **20.0%**. If revenue drops: $18,000 / $75,000 = **24.0%** — same overhead, less revenue to absorb it. |
 | **6** | Surf Shop: 3,000 / 5,000 = 60% × $10,000 = **$6,000**. Warehouse: 2,000 / 5,000 = 40% × $10,000 = **$4,000**. |
 | **7** | This period: ending inventory overstated by $3,000 → COGS understated → net income **overstated** by $3,000. Next period: beginning inventory too high → COGS overstated → net income **understated** by $3,000. The errors offset over two periods, but both periods reported incorrect figures. |
+| **8** | Store rent → **square footage**; payment-processing fees → **revenue share**; indirect production supervision → **direct labor hours**. These drivers support internal management analysis. External classification still depends on the applicable accounting standards and company policy; an internal allocation alone does not turn store rent into inventory or COGS. |
 
 ---
 
@@ -278,4 +278,4 @@ Answer all seven questions before class. Answers appear at the end of this docum
 
 > 📝 **Bring to Class**
 >
-> Be ready to turn Tidal Goods Co.'s raw transaction information into a management report. The class activity will ask you to build a COGS schedule, compare inventory methods, calculate margin versus markup, and allocate overhead in a way a manager could explain.
+> Be ready to turn Tidal Goods Co.'s raw transaction information into a management report. The class activity uses unequal purchase quantities and a partial-layer sale, then asks you to build FIFO and weighted-average results, reconcile the model, choose defensible overhead drivers, and make a management recommendation. Margin versus markup will appear as a short prior-learning check rather than a separate model.

@@ -1,1599 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BUS123 · MATH-M07 · L01 — Sales, Excise &amp; Property Taxes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS123 · MATH-M07-L01 · Sales, Excise &amp; Property Taxes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <script type="application/json" id="speaker-notes">
-[
-  "Welcome to Module 7. Today we're covering three taxes every business manager encounters: sales, excise, and property. By the end of class you'll be able to calculate all three and explain the strategic so what behind each one.",
-  "Let's warm up. Think about the last time you bought something online and saw an unexpected tax charge at checkout. That's a real business problem. Businesses that don't handle tax mechanics correctly lose sales, face legal liability, and misread their own revenue. Tax literacy is a competitive edge.",
-  "Here are today's three learning objectives. Notice we're not just computing. We're also asking why it matters strategically.",
-  "Last lesson we worked through trade discounts, markups, and markdowns. Today we go one layer deeper: after you price something, you have to handle taxes correctly. The order of operations matters enormously.",
-  "Part 1 of 3: Sales Tax. This is the tax most students already know from everyday shopping. But the business perspective is completely different from the consumer perspective.",
-  "As a consumer, you pay sales tax. As a merchant, you collect it and hold it temporarily. It is not your money. Think of it as a liability on your books. Misclassifying collected tax as revenue is an accounting error that creates real legal exposure.",
-  "Here's the critical order of operations for sales tax. Trade discounts come off first, before tax is calculated. Shipping gets added after. If you flip that order, your tax calculation is wrong. Let's walk through Tidal Goods Co. step by step.",
-  "Now let's move this to Excel. The formula structure mirrors the manual math exactly, but Excel lets us change any input and recalculate instantly. Show students: change the trade discount and watch the tax recalculate automatically.",
-  "Live You Try It pause for sales tax. Students open the Live You Try It tab, enter the exact slide numbers in the yellow input cells first, then build formulas in column H for rows 1 through 3: 480 dollar retail price, 80 dollar trade discount, 6 percent tax rate, and 15 dollars shipping. The feedback is self-graded, so they should revise until rows 1 through 3 show correct.",
-  "What if you already have the total and need to back out actual sales? This is the reverse sales tax problem. Tidal's register shows 52,000 dollars in receipts including 6.5 percent sales tax. The formula isolates actual revenue with total receipts divided by 1 plus the rate.",
-  "Live You Try It pause for reverse sales tax. Students use rows 4 and 5 with the exact 52,000 dollars and 6.5 percent from the slide. Row 4 has input cells for receipts and tax rate; row 5 should reference row 4 rather than retyping the pre-tax sales answer. Row 4 should self-check to 48,826 dollars and 29 cents; row 5 should show 3,173 dollars and 71 cents of tax held for remittance.",
-  "Part 2 of 3: Excise Tax. This is the one most students have never heard of, even though they've paid it hundreds of times. It's baked into the price before they see it.",
-  "Excise tax is levied upstream: manufacturers and wholesalers pay it, so it's embedded in the sticker price by the time a consumer sees the product. Fuel, alcohol, tobacco, and some high-end appliances. For a retailer, this means the excise tax directly raises inventory cost.",
-  "When both sales tax and excise tax apply to the same item, they are not compounded. Both are calculated on the base cost. This is a common student error: thinking you apply one tax first, then apply the second tax to the already-taxed amount. That's wrong. Both percentages hit the original base.",
-  "Meridian Advisory Group just equipped their new office with commercial appliances for a client hospitality suite. Let's calculate the total cost including both taxes. Watch how we handle the two-tax scenario in Excel.",
-  "Live You Try It pause for excise tax. Students use rows 6 through 8 with the exact 6,200 dollar base cost, 7 percent sales tax, and 8 percent excise tax. They should enter the givens in the input cells and use row references for the total cost. The self-checks should confirm 434 dollars, 496 dollars, and 7,130 dollars.",
-  "Part 3 of 3: Property Tax. This one affects every business that owns or leases space. And for anyone in a triple net lease, it directly affects monthly rent.",
-  "Property tax is calculated in three steps. Step 1: assessed value. Step 2: tax rate. Step 3: annual tax due. Each step feeds the next. The key rule: always round the tax rate to four decimal places. That precision matters when you multiply against large property values.",
-  "The tax rate is set by dividing the town's budget need by the total assessed value of all taxable property in town. Your individual property's share of the total determines your bill. This is why a town that approves a bigger budget raises everyone's property tax.",
-  "Now let's connect the three steps. Meridian Advisory Group is evaluating office space in a municipality. Let's walk through the full calculation: assessed value, tax rate, annual tax due. This is exactly what a finance team does during location analysis.",
-  "Live You Try It pause for property tax. Students use rows 9 through 11 with the exact slide numbers: 820,000 dollar market value, 40 percent assessment rate, 310,000 dollar budget need, and 4,750,000 dollars total assessed value. Rows 9 and 10 collect the inputs; row 11 should reference the assessed value and rounded rate cells. The feedback should confirm 328,000 dollars, 0.0653, and 21,418 dollars and 40 cents.",
-  "Common mistake alert. Two big ones here. First: applying tax before subtracting the trade discount. Second: compounding sales and excise taxes instead of calculating both from the base. Both errors produce wrong totals and wrong revenue figures on financial statements.",
-  "Now shift from self-graded practice to the Class Challenge tax compliance audit. Students begin in class and finish for homework. They will inspect six supplied filings, mark each as OK or ERROR, repair the liability formulas, calculate the adjustments, and reconcile the corrected total to the supplied control total. Remind them that blue-gray cells are source records and yellow cells are their work.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
-  "Three takeaways from today. Sales tax: merchant collects, doesn't own, and order of operations matters. Excise tax: baked in upstream, both taxes hit the base separately. Property tax: three-step chain, rate rounded to four decimal places.",
-  "Next lesson we go deeper on payroll taxes: FICA, federal and state withholding. Same structure: understand who pays what, then calculate it in Excel. Pre-reading is posted.",
-  "Use this close slide for final questions and remind students that they begin the Class Challenge audit in class, finish it for homework, and submit the completed workbook according to your Canvas directions."
-]
-</script>
-
   <style>
-    :root {
-    --ink:#0E1116;
-    --paper:#FAF8F3;
-    --paper-2:#F2EEE5;
-    --white:#FFFFFF;
-    --text:#1A1F2C;
-    --text-soft:#4A5567;
-    --muted:#7A8290;
-    --border:#E5E1D6;
-    --sage:#4A7C5E;
-    --gold:#B8843D;
-    --terra:#9C4A2B;
-    --steel:#355773;
-    --formula-bg:#EAF3EC;
-    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
-    --serif:"Bodoni Moda",serif;
-    --sans:"DM Sans",sans-serif;
-    --mono:"JetBrains Mono",monospace;
-    --font-display:var(--serif);
-    --font-body:var(--sans);
-    --font-mono:var(--mono);
-
-    --accent: var(--sage);
-    --scale: .6667;
-    --type-display:  calc(112px * var(--scale));
-    --type-title:    calc(72px  * var(--scale));
-    --type-subtitle: calc(44px  * var(--scale));
-    --type-lead:     calc(34px  * var(--scale));
-    --type-body:     calc(28px  * var(--scale));
-    --type-small:    calc(24px  * var(--scale));
-    --type-eyebrow:  calc(24px  * var(--scale));
-    --type-mono:     calc(24px  * var(--scale));
-    --type-stat:     calc(180px * var(--scale));
-    --pad-x:      128px;
-    --pad-top:    104px;
-    --pad-bottom: 96px;
-    --gap-title:  56px;
-    --gap-item:   32px;
-  }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #111; font-family: var(--font-body); }
-
-    .slide {
-      width: 1280px;
-      height: 720px;
-      overflow: hidden;
-      flex-direction: column;
+    :root{
+      --ink:#0E1116;
+      --paper:#FAF8F3;
+      --paper-2:#F2EEE5;
+      --white:#FFFFFF;
+      --text:#1A1F2C;
+      --text-soft:#4A5567;
+      --muted:#7A8290;
+      --border:#E5E1D6;
+      --sage:#4A7C5E;
+      --gold:#B8843D;
+      --terra:#9C4A2B;
+      --steel:#355773;
+      --formula-bg:#EAF3EC;
+      --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+      --serif:"Bodoni Moda",serif;
+      --sans:"DM Sans",sans-serif;
+      --mono:"JetBrains Mono",monospace;
+      --type-display:72px;
+      --type-title:46px;
+      --type-subtitle:30px;
+      --type-lead:24px;
+      --type-body:20px;
+      --type-small:16px;
+      --type-eyebrow:15px;
+      --type-stat:140px;
     }
-    .slide.dark  { background: var(--ink);   color: var(--white); }
-    .slide.cream { background: var(--paper); color: var(--text);  }
-
-    /* ── Gradient bar ── */
-    .grad-bar {
-      height: 8px;
-      background: var(--gradient);
-      width: 100%;
-      flex-shrink: 0;
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--ink)}
+    body{font-family:var(--sans);color:var(--text)}
+    button{font:inherit}
+    .deck-shell{position:absolute;width:1280px;height:720px;transform-origin:top left;background:var(--ink);overflow:hidden}
+    .slide{position:absolute;inset:0;display:none;flex-direction:column;padding:56px 70px 54px 124px;background:var(--paper);overflow:hidden}
+    .slide.active{display:flex}
+    .slide.dark{background:var(--ink);color:var(--white)}
+    .slide.mistake{background:var(--terra);color:var(--white)}
+    .slide::after{content:attr(data-slide) " / 22";position:absolute;right:28px;top:22px;font-family:var(--mono);font-size:var(--type-small);color:var(--muted)}
+    .slide.dark::after,.slide.mistake::after{color:var(--border)}
+    .grad-bar{position:absolute;left:0;right:0;top:0;height:8px;background:var(--gradient)}
+    .eyebrow{font-family:var(--mono);font-size:var(--type-eyebrow);font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+    .dark .eyebrow{color:var(--gold)}
+    .mistake .eyebrow{color:var(--white)}
+    h1,h2,h3,p{margin:0}
+    h1{font-family:var(--serif);font-size:var(--type-display);line-height:.98;letter-spacing:-.03em}
+    h2{font-family:var(--serif);font-size:var(--type-title);line-height:1.03;letter-spacing:-.02em;color:var(--text)}
+    .dark h2,.mistake h2{color:var(--white)}
+    h3{font-family:var(--serif);font-size:var(--type-subtitle);line-height:1.1}
+    .subtitle{font-family:var(--serif);font-style:italic;font-size:var(--type-subtitle);color:var(--border);margin-top:18px}
+    .lead{font-size:var(--type-lead);line-height:1.42;color:var(--text-soft)}
+    .body{display:flex;flex:1;min-height:0;margin-top:30px;gap:28px}
+    .col{display:flex;flex:1;flex-direction:column;gap:18px;min-width:0}
+    .row{display:flex;gap:22px;align-items:stretch}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px 24px;box-shadow:0 8px 22px rgba(14,17,22,.07)}
+    .card.sage{border-top:5px solid var(--sage)}
+    .card.gold{border-top:5px solid var(--gold)}
+    .card.terra{border-top:5px solid var(--terra)}
+    .card.steel{border-top:5px solid var(--steel)}
+    .label{font-family:var(--mono);font-size:var(--type-small);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--sage);margin-bottom:8px}
+    .card p,.card li{font-size:var(--type-body);line-height:1.42}
+    .card ul{margin:8px 0 0 22px;padding:0}
+    .number-row{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:center;padding:15px 0;border-bottom:1px solid var(--border)}
+    .number-row:last-child{border-bottom:0}
+    .number{font-family:var(--serif);font-size:42px;font-weight:900;color:var(--gold)}
+    .number-row p{font-size:var(--type-lead);line-height:1.28}
+    .formula-panel{background:var(--formula-bg);color:var(--ink);border-left:4px solid var(--sage);border-radius:0 14px 14px 0;padding:18px 22px;font-family:var(--mono);font-size:18px;font-weight:500;line-height:1.5}
+    .formula-panel .syntax{display:block;margin-bottom:14px;font-size:22px;font-weight:700;color:var(--steel)}
+    .formula-panel .comment{display:block;font-size:var(--type-small);color:var(--text-soft);margin-top:10px}
+    .formula-panel .result{display:block;color:var(--sage);font-weight:700;margin-top:8px}
+    .rule-banner{display:flex;align-items:flex-start;gap:14px;background:var(--paper-2);border:1px solid var(--border);border-left:5px solid var(--gold);border-radius:12px;padding:16px 18px}
+    .rule-banner strong{font-family:var(--mono);font-size:var(--type-small);text-transform:uppercase;color:var(--terra)}
+    .rule-banner p{font-size:18px;line-height:1.35;color:var(--text-soft)}
+    .data-table{width:100%;border-collapse:collapse;background:var(--white);font-size:18px;box-shadow:0 8px 22px rgba(14,17,22,.07)}
+    .data-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:var(--type-small);text-align:left;padding:11px 13px;border:1px solid var(--border)}
+    .data-table td{padding:10px 13px;border:1px solid var(--border);vertical-align:top}
+    .data-table tr:nth-child(even) td{background:var(--paper-2)}
+    .data-table .excel{font-family:var(--mono);font-weight:700;color:var(--steel);background:var(--formula-bg)}
+    .data-table .result-row td{font-weight:700;border-left:3px solid var(--gold)}
+    .activity-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .pill{font-family:var(--mono);font-size:var(--type-small);font-weight:700;color:var(--steel);background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 13px}
+    .prompt{background:var(--white);border:2px solid var(--gold);border-radius:18px;padding:20px 24px}
+    .prompt h3{font-size:28px;margin-bottom:9px}
+    .prompt p{font-size:var(--type-body);line-height:1.38}
+    .decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .decision{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:22px;min-height:176px}
+    .decision .letter{font-family:var(--serif);font-size:44px;font-weight:900;color:var(--gold)}
+    .decision p{font-size:19px;line-height:1.36;margin-top:7px}
+    .section-break{justify-content:center}
+    .section-break .part{font-family:var(--mono);font-size:var(--type-eyebrow);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+    .section-break h2{font-size:76px}
+    .section-break p{font-family:var(--serif);font-style:italic;font-size:var(--type-subtitle);color:var(--border);margin-top:16px}
+    .stat{font-family:var(--serif);font-size:var(--type-stat);font-weight:900;line-height:.82;color:var(--gold)}
+    .takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+    .takeaway{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:24px;min-height:310px}
+    .takeaway .big{font-family:var(--serif);font-size:62px;font-weight:900;color:var(--gold)}
+    .takeaway h3{font-size:28px;margin:10px 0}
+    .takeaway p{font-size:19px;line-height:1.42}
+    .mistake-board{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+    .mistake-card{background:var(--paper);color:var(--text);border-radius:18px;padding:26px}
+    .mistake-card .wrong{font-family:var(--mono);font-size:19px;color:var(--terra);font-weight:700;margin:12px 0}
+    .mistake-card .right{font-family:var(--mono);font-size:19px;color:var(--sage);font-weight:700;margin:12px 0}
+    .mistake-card p{font-size:18px;line-height:1.4}
+    .tab-strip{position:absolute;z-index:20;left:0;top:0;bottom:0;width:84px;background:var(--ink);display:flex;flex-direction:column;align-items:center;padding:24px 10px;gap:13px;border-right:1px solid rgba(255,255,255,.12)}
+    .home-dot{width:34px;height:34px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer;margin-bottom:9px}
+    .tab-btn{width:62px;min-height:90px;border:1px solid var(--text-soft);border-radius:10px;background:transparent;color:var(--border);font-family:var(--mono);font-size:13px;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);cursor:pointer;padding:10px}
+    .tab-btn[data-jump="1"]{border-color:var(--sage)}
+    .tab-btn[data-jump="2"]{border-color:var(--gold)}
+    .tab-btn[data-jump="3"]{border-color:var(--terra)}
+    .tab-btn.active{background:var(--paper);color:var(--ink)}
+    .tab-btn.active[data-jump="1"]{box-shadow:inset 5px 0 0 var(--sage)}
+    .tab-btn.active[data-jump="2"]{box-shadow:inset 5px 0 0 var(--gold)}
+    .tab-btn.active[data-jump="3"]{box-shadow:inset 5px 0 0 var(--terra)}
+    .notes-btn{margin-top:auto;width:42px;height:42px;border-radius:50%;border:1px solid var(--muted);background:transparent;color:var(--border);font-family:var(--mono);font-weight:700;cursor:pointer}
+    .controls{position:absolute;z-index:22;right:26px;bottom:22px;display:flex;gap:8px}
+    .controls button{width:42px;height:36px;border:1px solid var(--border);border-radius:9px;background:var(--white);color:var(--ink);cursor:pointer;font-weight:700}
+    .notes-panel{position:absolute;z-index:30;left:84px;right:0;bottom:0;display:none;max-height:190px;overflow:auto;background:var(--ink);color:var(--white);border-top:4px solid var(--gold);padding:18px 28px;font-size:17px;line-height:1.45}
+    .notes-panel.open{display:block}
+    .notes-panel strong{color:var(--gold);font-family:var(--mono);font-size:var(--type-small);text-transform:uppercase}
+    svg{max-width:100%;height:auto}
+    .svg-label{font-family:var(--sans);font-size:20px;font-weight:700;fill:var(--text)}
+    .svg-small{font-family:var(--mono);font-size:15px;fill:var(--text-soft)}
+    .dark .svg-label{fill:var(--white)}
+    @media print{
+      html,body{overflow:visible;background:var(--white)}
+      .deck-shell{position:static;transform:none!important;width:1280px;height:auto}
+      .slide{position:relative;display:flex!important;page-break-after:always}
+      .tab-strip,.controls,.notes-panel{display:none!important}
     }
-
-    /* ── Header row (eyebrow + title + rule) ── */
-    .header-row {
-      padding: var(--pad-top) var(--pad-x) 0;
-      flex-shrink: 0;
-    }
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .dark .eyebrow { color: var(--gold); }
-    .slide-title {
-      font-family: var(--font-display);
-      font-size: var(--type-title);
-      font-weight: 400;
-      line-height: 1.1;
-      color: inherit;
-    }
-    .dark .slide-title { color: var(--white); }
-    .title-rule {
-      height: 1px;
-      background: var(--border);
-      margin-top: 24px;
-    }
-    .dark .title-rule { background: rgba(255,255,255,0.15); }
-
-    /* ── Body area ── */
-    .body {
-      flex: 1;
-      padding: var(--gap-title) var(--pad-x) var(--pad-bottom);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: var(--gap-item);
-    }
-    .body-row {
-      display: flex;
-      gap: 48px;
-      align-items: stretch;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 40px;
-      color: var(--text);
-    }
-    .card-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 12px;
-    }
-    .card-title {
-      font-family: var(--font-display);
-      font-size: var(--type-lead);
-      font-weight: 400;
-      margin-bottom: 16px;
-    }
-    .card-body {
-      font-size: var(--type-body);
-      line-height: 1.55;
-      color: var(--text-soft);
-    }
-
-    /* ── Numbered statements ── */
-    .numbered {
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-    .n {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: var(--accent);
-      line-height: 1;
-      flex-shrink: 0;
-      min-width: 56px;
-    }
-    .dark .n { color: var(--gold); }
-    .n-body {
-      font-size: var(--type-body);
-      line-height: 1.55;
-      padding-top: 4px;
-    }
-
-    /* ── Pills ── */
-    .pill {
-      display: inline-block;
-      background: var(--paper-2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 10px 24px;
-      font-size: var(--type-small);
-      font-family: var(--font-body);
-      font-weight: 500;
-      color: var(--text);
-    }
-    .pill-row { display: flex; flex-wrap: wrap; gap: 16px; }
-
-    /* ── Dark Excel panel ── */
-    .dark-panel {
-      background: var(--ink);
-      color: var(--gold);
-      font-family: var(--font-mono);
-      font-size: var(--type-mono);
-      border-radius: 10px;
-      padding: 24px 32px;
-      line-height: 1.7;
-    }
-    .dark-panel .comment { color: rgba(255,255,255,0.4); }
-    .dark-panel .fn { color: #6EE7B7; }
-    .dark-panel .str { color: #FCA5A5; }
-
-    /* ── Spreadsheet mock ── */
-    .sheet-wrap {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .sheet-bar {
-      background: #1A1A2E;
-      color: var(--gold);
-      font-family: var(--font-mono);
-      font-size: var(--type-small);
-      padding: 10px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .sheet-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-    }
-    .sheet-table th {
-      background: #1A1A2E;
-      color: var(--gold);
-      font-family: var(--font-mono);
-      font-size: var(--type-small);
-      font-weight: 500;
-      padding: 10px 18px;
-      border: 1px solid rgba(201,168,76,0.3);
-      text-align: center;
-    }
-    .sheet-table td {
-      font-family: var(--font-mono);
-      font-size: var(--type-small);
-      padding: 10px 18px;
-      border: 1px solid #e2e8f0;
-      color: #0a3d6b;
-    }
-    .sheet-table tr:nth-child(even) td { background: #f7f8fa; }
-    .sheet-table td.formula { color: #1a6b3c; }
-    .sheet-table td.result-row {
-      background: #fffbf0;
-      border-left: 3px solid var(--gold);
-      font-weight: 600;
-      color: #1a6b3c;
-    }
-    .sheet-table td.row-num {
-      background: #1A1A2E;
-      color: var(--gold);
-      font-family: var(--font-mono);
-      font-size: var(--type-small);
-      text-align: center;
-      border: 1px solid rgba(201,168,76,0.3);
-    }
-
-    /* ── Section break ── */
-    .section-break-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 var(--pad-x) var(--pad-bottom);
-    }
-    .part-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: rgba(255,255,255,0.45);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: calc(96px * var(--scale));
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-    .section-sub {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: rgba(255,255,255,0.55);
-    }
-
-    /* ── Title slide ── */
-    .title-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 var(--pad-x) var(--pad-bottom);
-    }
-    .title-eyebrow {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .main-title {
-      font-family: var(--font-display);
-      font-size: var(--type-display);
-      font-weight: 400;
-      color: var(--white);
-      line-height: 1.05;
-      margin-bottom: 28px;
-    }
-    .main-subtitle {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 64px;
-    }
-    .title-meta {
-      display: flex;
-      gap: 48px;
-    }
-    .title-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .title-meta-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: rgba(255,255,255,0.35);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .title-meta-value {
-      font-size: var(--type-small);
-      color: rgba(255,255,255,0.75);
-      font-weight: 500;
-    }
-
-    /* ── Mistake callout ── */
-    .mistake-box {
-      background: rgba(156, 74, 43, 0.18);
-      border: 2px solid var(--terra);
-      border-radius: 14px;
-      padding: 36px 40px;
-    }
-    .mistake-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: var(--terra);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .mistake-title {
-      font-family: var(--font-display);
-      font-size: var(--type-lead);
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .mistake-body {
-      font-size: var(--type-body);
-      line-height: 1.55;
-      color: var(--text-soft);
-    }
-
-    /* ── Stat slide ── */
-    .stat-number {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-stat);
-      color: var(--gold);
-      line-height: 0.9;
-    }
-    .stat-label {
-      font-size: var(--type-lead);
-      color: rgba(255,255,255,0.7);
-      margin-top: 24px;
-    }
-
-    /* ── Lead text ── */
-    .lead {
-      font-size: var(--type-lead);
-      line-height: 1.5;
-      color: var(--text-soft);
-    }
-    .dark .lead { color: rgba(255,255,255,0.75); }
-
-    /* ── Divider ── */
-    .rule { height: 1px; background: var(--border); }
-    .dark .rule { background: rgba(255,255,255,0.12); }
-
-    /* ── Two-col ── */
-    .two-col { display: flex; gap: 56px; align-items: stretch; }
-    .col { flex: 1; display: flex; flex-direction: column; gap: 24px; }
-
-    /* ── Step rows ── */
-    .step-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding: 20px 24px;
-      background: var(--paper-2);
-      border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-    .step-num {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: var(--accent);
-      min-width: 48px;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-    .step-text {
-      font-size: var(--type-body);
-      line-height: 1.45;
-      color: var(--text);
-    }
-    .step-formula {
-      font-family: var(--font-mono);
-      font-size: var(--type-small);
-      color: var(--accent);
-      background: rgba(74,124,94,0.1);
-      border-radius: 6px;
-      padding: 6px 14px;
-      margin-top: 8px;
-      display: inline-block;
-    }
-
-    /* ── Big two-stat row ── */
-    .stat-pair {
-      display: flex;
-      gap: 48px;
-    }
-    .stat-block {
-      flex: 1;
-      background: var(--ink);
-      border-radius: 14px;
-      padding: 40px 44px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .stat-block-num {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: calc(72px * var(--scale));
-      color: var(--gold);
-      line-height: 1;
-    }
-    .stat-block-label {
-      font-size: var(--type-small);
-      color: rgba(255,255,255,0.6);
-      font-weight: 500;
-    }
-    .stat-block-detail {
-      font-family: var(--font-mono);
-      font-size: var(--type-mono);
-      color: rgba(255,255,255,0.4);
-    }
-
-    /* ── Practice box ── */
-    .practice-box {
-      background: rgba(74,124,94,0.1);
-      border: 2px solid var(--sage);
-      border-radius: 14px;
-      padding: 36px 40px;
-    }
-    .practice-label {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: var(--sage);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
-    }
-    .practice-body {
-      font-size: var(--type-body);
-      line-height: 1.6;
-      color: var(--text);
-    }
-
-    /* ── Discussion ── */
-    .discussion-q {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: var(--type-subtitle);
-      color: var(--white);
-      line-height: 1.4;
-      padding: 36px 40px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-    }
-    .q-num {
-      font-family: var(--font-mono);
-      font-size: var(--type-eyebrow);
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    /* ── Takeaway card ── */
-    .takeaway-row {
-      display: flex;
-      gap: 40px;
-    }
-    .takeaway-card {
-      flex: 1;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 40px;
-    }
-    .tk-num {
-      font-family: var(--font-display);
-      font-style: italic;
-      font-size: calc(56px * var(--scale));
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-    .tk-head {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: var(--type-lead);
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .tk-body {
-      font-size: var(--type-body);
-      line-height: 1.55;
-      color: var(--text-soft);
-    }
-
-
-  /* BUS123 high-priority retrofit overrides */
-  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
-  .tab-strip { background: var(--ink); }
-  .formula-panel {
-    background: var(--formula-bg) !important;
-    border: 0 !important;
-    border-left: 4px solid var(--sage) !important;
-    border-radius: 0 8px 8px 0 !important;
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .label {
-    color: var(--steel) !important;
-    font-family: var(--mono) !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-  }
-  .formula-panel code {
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .fn,
-  .formula-panel code .fn {
-    color: var(--steel) !important;
-    display: block !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    margin-bottom: 14px !important;
-  }
-  .formula-panel .comment,
-  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
-  .formula-panel .result,
-  .formula-panel code .result,
-  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
-  .formula-panel code .arg { color: var(--steel) !important; }
-  .formula-panel code .neg { color: var(--terra) !important; }
-  .retrofit-tab-strip {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 84px;
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    z-index: 9997;
-    border-right: 1px solid rgba(255,255,255,0.12);
-  }
-  .retrofit-home-dot {
-    width: 18px;
-    height: 18px;
-    border: 0;
-    border-radius: 50%;
-    background: var(--gradient);
-    cursor: pointer;
-    margin-bottom: 14px;
-  }
-  .retrofit-tab-strip .tab-btn {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 6px;
-    background: transparent;
-    color: rgba(255,255,255,0.62);
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    padding: 12px 7px;
-    text-transform: uppercase;
-  }
-  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
-  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
-  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
-  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
-
-
-.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
-.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
-.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
-.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
-.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
-.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
-.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
-.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
-.formula-reference-table td.watch{background:var(--paper-2);}
-
-</style>
+  </style>
 </head>
 <body>
-<deck-stage width="1280" height="720" class="deck-shell" no-rail>
+<div class="deck-shell" aria-live="polite">
+  <nav class="tab-strip" aria-label="Deck sections">
+    <button class="home-dot" data-target="0" aria-label="Go to title slide"></button>
+    <button class="tab-btn" data-jump="1">Sales</button>
+    <button class="tab-btn" data-jump="2">Excise</button>
+    <button class="tab-btn" data-jump="3">Property</button>
+    <button class="tab-btn" data-jump="4">Wrap</button>
+    <button class="notes-btn" aria-label="Toggle speaker notes" title="Toggle notes">N</button>
+  </nav>
 
-  <!-- ① TITLE -->
-  <section class="slide dark" data-label="01 Title" data-section="0" data-slide="1" data-index="0">
-    <div class="grad-bar"></div>
-    <div class="title-content">
-      <div class="title-eyebrow">BUS123 · MATH-M07 · L01 &nbsp;|&nbsp; Fall 2026</div>
-      <div class="main-title">Sales, Excise &amp;<br>Property Taxes</div>
-      <div class="main-subtitle">Three taxes. Three roles. One order of operations.</div>
-      <div class="title-meta">
-        <div class="title-meta-item">
-          <span class="title-meta-label">Course</span>
-          <span class="title-meta-value">Solving Business Problems with Technology</span>
-        </div>
-        <div class="title-meta-item">
-          <span class="title-meta-label">Track</span>
-          <span class="title-meta-value">MATH Module 07</span>
-        </div>
-        <div class="title-meta-item">
-          <span class="title-meta-label">Today's companies</span>
-          <span class="title-meta-value">Tidal Goods Co. · Meridian Advisory Group</span>
-        </div>
+  <main class="slides">
+    <section class="slide dark active" data-slide="1" data-section="0">
+      <div class="grad-bar"></div>
+      <div class="eyebrow">BUS123 · MATH-M07-L01 · Fall 2026</div>
+      <div style="margin-top:92px;max-width:930px">
+        <h1>Sales, Excise &amp;<br>Property Taxes</h1>
+        <p class="subtitle">Simple rules · auditable decisions · formulas that explain themselves</p>
       </div>
-    </div>
-  </section>
+      <div class="row" style="margin-top:auto">
+        <div class="pill">Tidal Goods Co.</div>
+        <div class="pill">Meridian Advisory Group</div>
+        <div class="pill">Training jurisdiction</div>
+      </div>
+    </section>
 
-  <!-- ② HOOK -->
-  <section class="slide cream" data-label="02 Hook" data-section="0" data-slide="2" data-index="1">
-    <div class="header-row">
-      <div class="eyebrow">Real-World Hook</div>
-      <div class="slide-title">The Cart Abandonment Problem</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col" style="flex:1.1;">
-        <p class="lead">Studies show that <strong>unexpected taxes at checkout</strong> are among the top reasons shoppers abandon online carts.</p>
-        <p class="lead" style="margin-top:16px;">For a business, that's lost revenue — caused entirely by poor tax communication, not poor product quality.</p>
+    <section class="slide" data-slide="2" data-section="0">
+      <div class="eyebrow">Agenda</div>
+      <h2>Three tax decisions, one audit trail</h2>
+      <div class="body" style="display:block;margin-top:26px">
+        <div class="number-row"><div class="number">01</div><p>Choose the correct sales-tax base and separate receipts from revenue</p></div>
+        <div class="number-row"><div class="number">02</div><p>Keep sales and excise taxes tied to the same supplied base</p></div>
+        <div class="number-row"><div class="number">03</div><p>Build the property-tax chain and round at the required step</p></div>
+        <div class="number-row"><div class="number">04</div><p>Audit filed formulas, repair errors, and reconcile the liability</p></div>
       </div>
-      <div class="col" style="flex:1;">
-        <div class="card">
-          <div class="card-label">So What?</div>
-          <div class="card-body" style="color: var(--text); font-size: var(--type-body); line-height:1.6;">
-            Tax literacy isn't just accounting — it's a <strong>customer experience and pricing strategy decision</strong> that every manager owns.
-          </div>
-        </div>
-        <div class="card" style="margin-top:24px;">
-          <div class="card-label">The Three Taxes Today</div>
-          <div class="pill-row" style="margin-top:4px;">
-            <span class="pill">Sales Tax</span>
-            <span class="pill">Excise Tax</span>
-            <span class="pill">Property Tax</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ③ LEARNING OBJECTIVES -->
-  <section class="slide cream" data-label="03 Objectives" data-section="0" data-slide="3" data-index="2">
-    <div class="header-row">
-      <div class="eyebrow">Learning Objectives</div>
-      <div class="slide-title">I Can Statements</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="justify-content: flex-start; padding-top: 40px;">
-      <div class="numbered">
-        <div class="n">01</div>
-        <div class="n-body">I can compute sales tax on a sale that includes a trade discount and a shipping charge, in the correct order of operations.</div>
+    <section class="slide" data-slide="3" data-section="0">
+      <div class="eyebrow">Learning objectives</div>
+      <h2>I can choose, calculate, and defend</h2>
+      <div class="body" style="display:block;margin-top:30px">
+        <div class="number-row"><div class="number">01</div><p>I can identify the taxable base and sequence a sales-tax calculation</p></div>
+        <div class="number-row"><div class="number">02</div><p>I can calculate two taxes from one supplied base without compounding</p></div>
+        <div class="number-row"><div class="number">03</div><p>I can build and audit a three-step property-tax model in Excel</p></div>
+        <div class="number-row"><div class="number">04</div><p>I can explain the business obligation and defend the formula I used</p></div>
       </div>
-      <div class="numbered">
-        <div class="n">02</div>
-        <div class="n-body">I can calculate total cost when both excise tax and sales tax apply to the same item, without compounding them.</div>
-      </div>
-      <div class="numbered">
-        <div class="n">03</div>
-        <div class="n-body">I can perform a full three-step property tax calculation: assessed value → tax rate (rounded to four decimal places) → annual tax due.</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ④ RECAP / BRIDGE -->
-  <section class="slide cream" data-label="04 Bridge" data-section="0" data-slide="4" data-index="3">
-    <div class="header-row">
-      <div class="eyebrow">Connecting Prior Learning</div>
-      <div class="slide-title">From Pricing to Taxes</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col">
-        <div class="card">
-          <div class="card-label">Last Module</div>
-          <div class="card-title">Trade Discounts &amp; Markups</div>
-          <div class="card-body">You learned how businesses set a selling price — subtract trade discounts, apply markups.</div>
+    <section class="slide" data-slide="4" data-section="0">
+      <div class="eyebrow">Recap and retrieval</div>
+      <h2>Where does tax enter the pricing chain</h2>
+      <div class="body" style="align-items:center">
+        <div class="col" style="flex:1.2">
+          <svg viewBox="0 0 720 300" role="img" aria-labelledby="price-chain-title">
+            <title id="price-chain-title">Flow from retail price to discount, taxable base, tax, shipping, and customer total</title>
+            <rect x="10" y="96" width="130" height="92" rx="16" fill="var(--white)" stroke="var(--steel)" stroke-width="3"></rect>
+            <text x="75" y="132" text-anchor="middle" class="svg-label">Retail</text><text x="75" y="158" text-anchor="middle" class="svg-label">price</text>
+            <path d="M145 142 H205" stroke="var(--gold)" stroke-width="5"></path><path d="M194 132 L210 142 L194 152" fill="none" stroke="var(--gold)" stroke-width="5"></path>
+            <rect x="215" y="96" width="130" height="92" rx="16" fill="var(--white)" stroke="var(--terra)" stroke-width="3"></rect>
+            <text x="280" y="132" text-anchor="middle" class="svg-label">Less</text><text x="280" y="158" text-anchor="middle" class="svg-label">discount</text>
+            <path d="M350 142 H410" stroke="var(--gold)" stroke-width="5"></path><path d="M399 132 L415 142 L399 152" fill="none" stroke="var(--gold)" stroke-width="5"></path>
+            <rect x="420" y="76" width="140" height="132" rx="18" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect>
+            <text x="490" y="130" text-anchor="middle" class="svg-label">Taxable</text><text x="490" y="156" text-anchor="middle" class="svg-label">base</text>
+            <path d="M565 142 H625" stroke="var(--gold)" stroke-width="5"></path><path d="M614 132 L630 142 L614 152" fill="none" stroke="var(--gold)" stroke-width="5"></path>
+            <rect x="635" y="96" width="74" height="92" rx="16" fill="var(--white)" stroke="var(--gold)" stroke-width="3"></rect>
+            <text x="672" y="132" text-anchor="middle" class="svg-label">Tax</text><text x="672" y="158" text-anchor="middle" class="svg-label">step</text>
+            <text x="360" y="258" text-anchor="middle" class="svg-small">Point to the amount that should be taxed before revealing the answer</text>
+          </svg>
+        </div>
+        <div class="col" style="flex:.8">
+          <div class="prompt"><h3>Thirty-second choice</h3><p>A $480 order receives an $80 qualifying trade discount. Which number should become the tax base: $480 or $400?</p></div>
+          <div class="rule-banner"><div><strong>Bridge</strong><p>Pricing determines the starting amount. Tax rules determine which amount becomes the base.</p></div></div>
         </div>
       </div>
-      <div style="display:flex; align-items:center; font-family:var(--font-display); font-size:calc(64px * var(--scale)); color:var(--accent); flex-shrink:0;">→</div>
-      <div class="col">
-        <div class="card">
-          <div class="card-label">This Module</div>
-          <div class="card-title">Taxes Applied to That Price</div>
-          <div class="card-body">Now we add the government's layer. Taxes are calculated at specific points in the pricing chain — and the order matters.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ⑤ SECTION BREAK: PART 1 -->
-  <section class="slide dark" data-label="05 Part 1" data-section="1" data-slide="5" data-index="4">
-    <div class="grad-bar"></div>
-    <div class="section-break-content">
-      <div class="part-label">Part 1 of 3</div>
-      <div class="section-title">Sales Tax</div>
-      <div class="section-sub">The merchant as collection agent</div>
-    </div>
-  </section>
+    <section class="slide dark section-break" data-slide="5" data-section="1">
+      <div class="grad-bar"></div><div class="part">Part 1 of 3</div><h2>Sales Tax</h2><p>Choose the base · collect the liability · separate revenue</p>
+    </section>
 
-  <!-- ⑥ SALES TAX: CONCEPT -->
-  <section class="slide cream" data-label="06 Sales Tax Role" data-section="1" data-slide="6" data-index="5">
-    <div class="header-row">
-      <div class="eyebrow">Sales Tax · Concept</div>
-      <div class="slide-title">The Merchant Is a Collection Agent</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col">
-        <div class="card">
-          <div class="card-label">Consumer Perspective</div>
-          <div class="card-title">You Pay It</div>
-          <div class="card-body">The consumer sees a line item at checkout. They pay it and forget about it.</div>
+    <section class="slide" data-slide="6" data-section="1">
+      <div class="eyebrow">Sales tax · business role</div>
+      <h2>The merchant holds the tax, not the revenue</h2>
+      <div class="body" style="align-items:center">
+        <div class="col" style="flex:1.25">
+          <svg viewBox="0 0 720 330" role="img" aria-labelledby="merchant-flow-title">
+            <title id="merchant-flow-title">Customer payment splits into business revenue and tax liability remitted to government</title>
+            <rect x="25" y="112" width="150" height="92" rx="20" fill="var(--white)" stroke="var(--steel)" stroke-width="3"></rect>
+            <text x="100" y="151" text-anchor="middle" class="svg-label">Customer</text><text x="100" y="179" text-anchor="middle" class="svg-small">pays total</text>
+            <path d="M180 158 H280" stroke="var(--gold)" stroke-width="6"></path><path d="M266 146 L286 158 L266 170" fill="none" stroke="var(--gold)" stroke-width="6"></path>
+            <rect x="295" y="86" width="160" height="144" rx="22" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect>
+            <text x="375" y="146" text-anchor="middle" class="svg-label">Merchant</text><text x="375" y="178" text-anchor="middle" class="svg-small">splits the cash</text>
+            <path d="M460 126 H548" stroke="var(--sage)" stroke-width="6"></path><path d="M534 114 L554 126 L534 138" fill="none" stroke="var(--sage)" stroke-width="6"></path>
+            <rect x="562" y="72" width="140" height="92" rx="18" fill="var(--white)" stroke="var(--sage)" stroke-width="3"></rect>
+            <text x="632" y="111" text-anchor="middle" class="svg-label">Revenue</text><text x="632" y="137" text-anchor="middle" class="svg-small">business keeps</text>
+            <path d="M460 192 H548" stroke="var(--terra)" stroke-width="6"></path><path d="M534 180 L554 192 L534 204" fill="none" stroke="var(--terra)" stroke-width="6"></path>
+            <rect x="562" y="178" width="140" height="92" rx="18" fill="var(--white)" stroke="var(--terra)" stroke-width="3"></rect>
+            <text x="632" y="217" text-anchor="middle" class="svg-label">Liability</text><text x="632" y="243" text-anchor="middle" class="svg-small">remit later</text>
+          </svg>
+        </div>
+        <div class="col" style="flex:.75">
+          <div class="card terra"><div class="label">Manager check</div><h3>$52,000 is not all revenue</h3><p style="margin-top:12px">If receipts include tax, isolate pre-tax sales before reporting revenue.</p></div>
+          <div class="formula-panel"><span class="syntax">=TotalReceipts/(1+TaxRate)</span>$52,000 ÷ 1.065 = $48,826.29<span class="result">Tax held: $3,173.71</span></div>
         </div>
       </div>
-      <div class="col">
-        <div class="card" style="border-color: var(--sage); border-width:2px;">
-          <div class="card-label" style="color: var(--sage);">Business Perspective</div>
-          <div class="card-title">You Hold It — Temporarily</div>
-          <div class="card-body">The merchant collects tax funds from the customer and <strong>holds them in trust</strong> for the government. It is a <em>liability</em>, not revenue. Misclassifying collected tax as earned revenue is a compliance and cash-flow error.</div>
+    </section>
+
+    <section class="slide" data-slide="7" data-section="1">
+      <div class="eyebrow">Sales tax · reading table reinforced</div>
+      <h2>Use the supplied order of operations</h2>
+      <div class="body" style="flex-direction:column;gap:18px;margin-top:24px">
+        <div class="rule-banner"><div><strong>Training jurisdiction</strong><p>Qualifying discount first, sales tax second, shipping last.</p></div></div>
+        <table class="data-table" aria-label="Sales tax order of operations">
+          <thead><tr><th>Step</th><th>Operation</th><th>Excel pattern</th><th>Tidal Goods result</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Subtract the trade discount</td><td class="excel">=B1-B2</td><td>$480 - $80 = $400</td></tr>
+            <tr><td>2</td><td>Apply tax to the taxable subtotal</td><td class="excel">=B5*B3</td><td>$400 × 6% = $24</td></tr>
+            <tr class="result-row"><td>3</td><td>Add shipping after tax</td><td class="excel">=B5+B6+B4</td><td>$400 + $24 + $15 = $439</td></tr>
+          </tbody>
+        </table>
+        <p class="lead">The table is not a formula to memorize. It is an audit trail: every row explains where the next number came from.</p>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="8" data-section="1">
+      <div class="eyebrow">Live You Try It · independent transfer</div>
+      <h2>Choose the sequence before you build</h2>
+      <div class="activity-meta"><span class="pill">What: workbook rows 1-5</span><span class="pill">How: independently</span><span class="pill">Time: 6 minutes</span></div>
+      <div class="body">
+        <div class="col">
+          <div class="prompt"><h3>Forward calculation</h3><p>Use the new Tidal Goods numbers in the workbook. Identify the taxable base, calculate the tax, then add shipping.</p></div>
+          <div class="prompt"><h3>Reverse calculation</h3><p>Separate total receipts into pre-tax sales and tax held. Decide why dividing by the tax rate alone cannot work.</p></div>
+        </div>
+        <div class="col">
+          <div class="card sage"><div class="label">Deliverable</div><p>Five formulas in column H. Each feedback cell must confirm a correct value and a formula.</p></div>
+          <div class="card gold"><div class="label">Do not copy</div><p>The workbook uses new numbers. Use the reading table as a process guide, not as an answer key.</p></div>
+          <div class="card steel"><div class="label">Debrief</div><p>Be ready to name the base used in row 2 and explain why row 4 divides by <strong>1 + rate</strong>.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ⑦ SALES TAX: ORDER OF OPS + EXAMPLE -->
-  <section class="slide cream" data-label="07 Sales Tax Calculation" data-section="1" data-slide="7" data-index="6">
-    <div class="header-row">
-      <div class="eyebrow">Sales Tax · Tidal Goods Co.</div>
-      <div class="slide-title">Order of Operations</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col" style="flex:1;">
-        <div class="step-row">
-          <div class="step-num">1</div>
-          <div class="step-text">
-            <strong>Subtract trade discount</strong> from retail price first
-            <div class="step-formula">Taxable = Price − Trade Discount</div>
-          </div>
+    <section class="slide dark section-break" data-slide="9" data-section="2">
+      <div class="grad-bar"></div><div class="part">Part 2 of 3</div><h2>Excise Tax</h2><p>Read the scenario rule · preserve the base · test the formula</p>
+    </section>
+
+    <section class="slide" data-slide="10" data-section="2">
+      <div class="eyebrow">Excise tax · simplified scenario</div>
+      <h2>A targeted tax with a supplied rule</h2>
+      <div class="body">
+        <div class="col">
+          <div class="card gold"><div class="label">What excise means here</div><h3>One designated product</h3><p style="margin-top:12px">The training jurisdiction applies an excise tax to a specified commercial appliance. The problem supplies the rate.</p></div>
+          <div class="card steel"><div class="label">Business impact</div><h3>Higher acquisition cost</h3><p style="margin-top:12px">The tax changes the manager's cost and may affect price, margin, and demand.</p></div>
         </div>
-        <div class="step-row">
-          <div class="step-num">2</div>
-          <div class="step-text">
-            <strong>Apply tax rate</strong> to the taxable subtotal
-            <div class="step-formula">Tax = Taxable × Rate</div>
-          </div>
-        </div>
-        <div class="step-row">
-          <div class="step-num">3</div>
-          <div class="step-text">
-            <strong>Add shipping</strong> after tax has been calculated
-            <div class="step-formula">Total = Taxable + Tax + Shipping</div>
-          </div>
+        <div class="col">
+          <div class="rule-banner"><div><strong>Scenario rule</strong><p>When the problem says both taxes share the original base, calculate both from that base. This is a lesson assumption, not a universal tax rule.</p></div></div>
+          <div class="stat" style="font-size:116px;margin-top:24px">1 base</div>
+          <p class="lead">Two rates can point to the same starting amount without pointing to each other.</p>
         </div>
       </div>
-      <div class="col" style="flex:1;">
-        <div class="formula-panel">
-          <div class="comment">// Tidal Goods Co. — wholesale order</div>
-          <br>
-          Retail price:     $480.00<br>
-          Trade discount:  − $80.00<br>
-          ──────────────────────────<br>
-          Taxable subtotal: $400.00<br>
-          × 6% tax:         × 0.06<br>
-          Tax owed:          $24.00<br>
-          ──────────────────────────<br>
-          Subtotal + Tax:   $424.00<br>
-          + Shipping:       + $15.00<br>
-          <span style="color:#6EE7B7; font-weight:600;">Total Price:      $439.00</span>
+    </section>
+
+    <section class="slide" data-slide="11" data-section="2">
+      <div class="eyebrow">Excise tax · reading table reinforced</div>
+      <h2>Two taxes, one supplied base</h2>
+      <div class="body" style="flex-direction:column;gap:18px;margin-top:24px">
+        <table class="data-table" aria-label="Same-base excise tax worked example">
+          <thead><tr><th>Tax type</th><th>Excel pattern first</th><th>Manual check</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Base cost</td><td class="excel">Given in B1</td><td>Supplied</td><td>$6,200.00</td></tr>
+            <tr><td>Sales tax</td><td class="excel">=B1*B2</td><td>$6,200 × 7%</td><td>$434.00</td></tr>
+            <tr><td>Excise tax</td><td class="excel">=B1*B3</td><td>$6,200 × 8%</td><td>$496.00</td></tr>
+            <tr class="result-row"><td>Total cost</td><td class="excel">=B1+B4+B5</td><td>$6,200 + $434 + $496</td><td>$7,130.00</td></tr>
+          </tbody>
+        </table>
+        <div class="formula-panel"><span class="syntax">=B1*(1+B2+B3)</span>Combined-rate confirmation: $6,200 × 1.15<span class="result">Same answer: $7,130.00</span></div>
+      </div>
+    </section>
+
+    <section class="slide" data-slide="12" data-section="2">
+      <div class="eyebrow">Excise tax · visual proof</div>
+      <h2>Both arrows return to the base</h2>
+      <div class="body" style="align-items:center">
+        <div class="col" style="flex:1.2">
+          <svg viewBox="0 0 720 360" role="img" aria-labelledby="same-base-title">
+            <title id="same-base-title">Base cost connects independently to sales tax and excise tax, which then combine into total cost</title>
+            <rect x="270" y="25" width="180" height="94" rx="20" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect>
+            <text x="360" y="66" text-anchor="middle" class="svg-label">Base cost</text><text x="360" y="94" text-anchor="middle" class="svg-small">$6,200</text>
+            <path d="M325 124 L195 205" stroke="var(--steel)" stroke-width="6"></path><path d="M202 188 L187 211 L214 207" fill="none" stroke="var(--steel)" stroke-width="6"></path>
+            <path d="M395 124 L525 205" stroke="var(--terra)" stroke-width="6"></path><path d="M506 207 L533 211 L518 188" fill="none" stroke="var(--terra)" stroke-width="6"></path>
+            <rect x="72" y="216" width="220" height="94" rx="20" fill="var(--white)" stroke="var(--steel)" stroke-width="3"></rect>
+            <text x="182" y="257" text-anchor="middle" class="svg-label">Sales tax</text><text x="182" y="285" text-anchor="middle" class="svg-small">base × 7%</text>
+            <rect x="428" y="216" width="220" height="94" rx="20" fill="var(--white)" stroke="var(--terra)" stroke-width="3"></rect>
+            <text x="538" y="257" text-anchor="middle" class="svg-label">Excise tax</text><text x="538" y="285" text-anchor="middle" class="svg-small">base × 8%</text>
+          </svg>
+        </div>
+        <div class="col" style="flex:.8">
+          <div class="card terra"><div class="label">Compounding error</div><p>Starting the second tax from an already-taxed amount breaks the supplied rule and overstates cost.</p></div>
+          <div class="card sage"><div class="label">Audit question</div><p>Does each tax formula point back to the same base cell?</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ⑧ SALES TAX: EXCEL -->
-  <section class="slide cream" data-label="08 Sales Tax Excel" data-section="1" data-slide="8" data-index="7">
-    <div class="header-row">
-      <div class="eyebrow">Sales Tax · Excel</div>
-      <div class="slide-title">Building the Formula Chain</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col" style="flex:1.1;">
-        <div class="formula-panel">
-          <span class="comment">// Excel structure — Tidal Goods Co.</span><br><br>
-          B1 = 480          <span class="comment">// Retail price</span><br>
-          B2 = 80           <span class="comment">// Trade discount</span><br>
-          B3 = 0.06         <span class="comment">// Tax rate</span><br>
-          B4 = 15           <span class="comment">// Shipping</span><br><br>
-          B5 = <span class="fn">=B1-B2</span>       <span class="comment">// Taxable subtotal</span><br>
-          B6 = <span class="fn">=B5*B3</span>       <span class="comment">// Tax owed</span><br>
-          B7 = <span class="fn">=B5+B6+B4</span>    <span class="comment">// Total price</span>
+    <section class="slide" data-slide="13" data-section="2">
+      <div class="eyebrow">Live You Try It · pair decision</div>
+      <h2>Prove which formula respects the base</h2>
+      <div class="activity-meta"><span class="pill">What: workbook rows 6-8</span><span class="pill">How: pairs</span><span class="pill">Time: 4 minutes</span></div>
+      <div class="body">
+        <div class="decision-grid" style="flex:1">
+          <div class="decision"><div class="letter">A</div><p>Calculate each tax from the supplied base, then add both amounts to the base.</p></div>
+          <div class="decision"><div class="letter">B</div><p>Calculate sales tax first, then apply excise tax to the tax-included amount.</p></div>
+          <div class="decision"><div class="letter">C</div><p>Add the two rates and multiply only the tax portion, without adding the base.</p></div>
+        </div>
+        <div class="col" style="flex:.55">
+          <div class="card sage"><div class="label">Deliverable</div><p>Three formulas plus one sentence: “Our formulas respect the base because…”</p></div>
+          <div class="card steel"><div class="label">Debrief</div><p>Point to the exact cell reference that proves your choice.</p></div>
         </div>
       </div>
-      <div class="col" style="flex:1;">
-        <div class="card">
-          <div class="card-label">Key Insight</div>
-          <div class="card-body" style="font-size: var(--type-body); line-height:1.6; color:var(--text);">
-            When inputs are in separate cells, changing <em>any one value</em> — discount rate, shipping, tax rate — recalculates the entire chain automatically. This is the Excel advantage over a one-time manual calculation.
-          </div>
+    </section>
+
+    <section class="slide dark section-break" data-slide="14" data-section="3">
+      <div class="grad-bar"></div><div class="part">Part 3 of 3</div><h2>Property Tax</h2><p>State the assumptions · round the rate · plan the cash cost</p>
+    </section>
+
+    <section class="slide" data-slide="15" data-section="3">
+      <div class="eyebrow">Property tax · model boundary</div>
+      <h2>A simple training municipality</h2>
+      <div class="body" style="align-items:center">
+        <div class="col" style="flex:1.1">
+          <svg viewBox="0 0 700 350" role="img" aria-labelledby="property-funnel-title">
+            <title id="property-funnel-title">Market value flows through assessment rate to assessed value and annual tax due</title>
+            <polygon points="55,45 645,45 550,145 150,145" fill="var(--paper-2)" stroke="var(--steel)" stroke-width="3"></polygon>
+            <text x="350" y="100" text-anchor="middle" class="svg-label">Market value</text>
+            <polygon points="150,165 550,165 475,255 225,255" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></polygon>
+            <text x="350" y="220" text-anchor="middle" class="svg-label">Assessed value</text>
+            <rect x="260" y="275" width="180" height="64" rx="16" fill="var(--white)" stroke="var(--gold)" stroke-width="3"></rect>
+            <text x="350" y="315" text-anchor="middle" class="svg-label">Annual tax</text>
+          </svg>
+        </div>
+        <div class="col" style="flex:.9">
+          <div class="rule-banner"><div><strong>Training assumption</strong><p>The supplied assessment rate converts market value to assessed value. Round the municipal rate to four decimals before calculating tax due.</p></div></div>
+          <div class="card terra"><div class="label">NNN decision</div><h3>Variable occupancy cost</h3><p style="margin-top:10px">A typical triple-net lease passes property tax, insurance, and maintenance to the tenant. Review the lease terms and tax outlook before signing.</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <section class="slide" data-slide="16" data-section="3">
+      <div class="eyebrow">Property tax · reading table reinforced</div>
+      <h2>Three steps, always in this supplied order</h2>
+      <div class="body" style="flex-direction:column;gap:18px;margin-top:24px">
+        <table class="data-table" aria-label="Property tax three-step calculation">
+          <thead><tr><th>Step</th><th>What you calculate</th><th>Excel syntax first</th><th>Manager check</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Assessed value</td><td class="excel">=MarketValue*AssessmentRate</td><td>Did you use the supplied assessment rate?</td></tr>
+            <tr><td>2</td><td>Tax rate</td><td class="excel">=ROUND(Budget/TotalAV,4)</td><td>Did you round before the next step?</td></tr>
+            <tr class="result-row"><td>3</td><td>Annual tax due</td><td class="excel">=RoundedRate*AssessedValue</td><td>Did you use assessed value, not market value?</td></tr>
+          </tbody>
+        </table>
+        <p class="lead">The third formula should reference the outputs of steps 1 and 2. That makes the model traceable and easy to audit.</p>
+      </div>
+    </section>
 
-  <section class="slide cream" data-label="09 Live You Try It Sales Tax" data-section="1" data-slide="9" data-index="8">
-    <div class="header-row">
-      <div class="eyebrow">Live You Try It · Excel Pause</div>
-      <div class="slide-title">Rows 1-3: rebuild the sales tax chain.</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="gap:28px;">
-      <div class="body-row">
-        <div class="practice-box col">
-          <div class="practice-label">Row 1</div>
-          <div class="practice-body">Taxable subtotal from <strong>$480</strong> retail price and <strong>$80</strong> trade discount.</div>
+    <section class="slide" data-slide="17" data-section="3">
+      <div class="eyebrow">Property tax · full walkthrough</div>
+      <h2>Round the rate before applying it</h2>
+      <div class="body">
+        <div class="col" style="flex:.8">
+          <div class="card steel"><div class="label">Meridian Advisory Group</div><p>Market value: <strong>$820,000</strong><br>Assessment rate: <strong>40%</strong><br>Town budget: <strong>$310,000</strong><br>Total assessed value: <strong>$4,750,000</strong></p></div>
+          <div class="stat" style="font-size:86px">4 decimals</div>
         </div>
-        <div class="practice-box col">
-          <div class="practice-label">Row 2</div>
-          <div class="practice-body">Sales tax owed on the <strong>$400</strong> taxable subtotal at <strong>6%</strong>.</div>
-        </div>
-        <div class="practice-box col">
-          <div class="practice-label">Row 3</div>
-          <div class="practice-body">Total price after adding <strong>$15</strong> shipping after tax.</div>
+        <div class="col" style="flex:1.2">
+          <div class="formula-panel"><span class="syntax">=MarketValue*AssessmentRate</span>$820,000 × 40%<span class="result">Assessed value: $328,000.00</span></div>
+          <div class="formula-panel"><span class="syntax">=ROUND(Budget/TotalAV,4)</span>ROUND($310,000 ÷ $4,750,000, 4)<span class="result">Rounded rate: 0.0653</span></div>
+          <div class="formula-panel"><span class="syntax">=RoundedRate*AssessedValue</span>0.0653 × $328,000<span class="result">Annual tax: $21,418.40</span></div>
         </div>
       </div>
-      <div class="formula-panel">
-        <span class="fn">Live You Try It rows 1-3</span>
-        <span class="comment">Enter the slide givens in the yellow input cells first; build formulas in column H.</span>
-        <span class="result">Self-check targets: $400.00, $24.00, and $439.00.</span>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ⑨ BACK-CALCULATING ACTUAL SALES -->
-  <section class="slide cream" data-label="10 Reverse Sales Tax" data-section="1" data-slide="10" data-index="9">
-    <div class="header-row">
-      <div class="eyebrow">Sales Tax · Reverse Calculation</div>
-      <div class="slide-title">What Were the Actual Sales?</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col" style="flex:1.1;">
-        <p class="lead">Tidal Goods Co.'s register shows <strong>$52,000</strong> in total receipts for the day. The store collects <strong>6.5% sales tax</strong>. What was the actual pre-tax revenue?</p>
-        <div style="margin-top: 32px;" class="formula-panel">
-          <span class="comment">// Formula</span><br><br>
-          Actual Sales = Total Sales ÷ (1 + Tax Rate)<br><br>
-          <span class="fn">=B1/(1+B2)</span><br><br>
-          = $52,000 ÷ 1.065<br>
-          <span style="color:#6EE7B7; font-weight:600;">= $48,826.29</span>
-        </div>
+    <section class="slide mistake" data-slide="18" data-section="3">
+      <div class="eyebrow">Common mistake</div>
+      <h2>Correct inputs can still produce the wrong liability</h2>
+      <div class="mistake-board">
+        <div class="mistake-card"><h3>Wrong tax base</h3><div class="wrong">=MarketValue*RoundedRate</div><p>This skips the assessment step and overstates the taxable value.</p><div class="right">=AssessedValue*RoundedRate</div><p>Use the output of step 1 as the base for step 3.</p></div>
+        <div class="mistake-card"><h3>Wrong rounding point</h3><div class="wrong">=ROUND(RawRate*AssessedValue,2)</div><p>This carries an unrounded rate into the tax calculation.</p><div class="right">=ROUND(Budget/TotalAV,4)</div><p>Round the rate first, then calculate annual tax.</p></div>
       </div>
-      <div class="col" style="flex:0.9;">
-        <div class="card">
-          <div class="card-label">Why This Matters</div>
-          <div class="card-body" style="font-size:var(--type-body); line-height:1.6; color:var(--text);">
-            <strong>$52,000</strong> is NOT revenue. Of that total, <strong>$3,173.71</strong> belongs to the state. Reporting $52,000 as revenue overstates earnings by over 6%.
-          </div>
+    </section>
+
+    <section class="slide" data-slide="19" data-section="4">
+      <div class="eyebrow">Class challenge · audit discussion</div>
+      <h2>Audit the filings and defend the repair</h2>
+      <div class="activity-meta"><span class="pill">How: pairs</span><span class="pill">Time: 12 minutes</span><span class="pill">Debrief: 2 minutes</span></div>
+      <div class="body">
+        <div class="col">
+          <div class="card steel"><div class="label">Round 1 · 8 minutes</div><p>Complete R01-R03: finding code, corrected formula, and adjustment.</p></div>
+          <div class="card gold"><div class="label">Round 2 · 4 minutes</div><p>Choose one of R04-R06 and complete the same audit trail. Finish the remaining records for homework.</p></div>
+          <div class="card sage"><div class="label">Deliverable</div><p>Reconciled workbook plus an 8+ word audit note naming the most consequential issue.</p></div>
+        </div>
+        <div class="col">
+          <div class="prompt"><h3>Discussion question 1</h3><p>Which error changes the liability most, and what business risk would it create?</p></div>
+          <div class="prompt"><h3>Discussion question 2</h3><p>What evidence proves that your corrected total is complete and internally consistent?</p></div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <section class="slide cream" data-label="11 Live You Try It Reverse Tax" data-section="1" data-slide="11" data-index="10">
-    <div class="header-row">
-      <div class="eyebrow">Live You Try It · Excel Pause</div>
-      <div class="slide-title">Rows 4-5: separate receipts from revenue.</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:48px;">
-      <div class="col">
-        <div class="card">
-          <div class="card-label">Row 4 · Pre-tax sales</div>
-          <div class="card-body">Use <strong>$52,000</strong> total receipts and a <strong>6.5%</strong> tax rate. Divide by <strong>1.065</strong>, not by 0.065.</div>
-        </div>
+    <section class="slide" data-slide="20" data-section="4">
+      <div class="eyebrow">Key takeaways</div>
+      <h2>What to carry forward</h2>
+      <div class="takeaways">
+        <div class="takeaway"><div class="big">01</div><h3>Choose the base</h3><p>Discount first, then tax, then shipping under the supplied sales-tax rule. Separate tax held from revenue.</p></div>
+        <div class="takeaway"><div class="big">02</div><h3>Trace the arrows</h3><p>When two taxes share a base, both formulas must point back to that original base.</p></div>
+        <div class="takeaway"><div class="big">03</div><h3>Round at the rule</h3><p>Build assessed value, round the property-tax rate, then calculate annual tax due.</p></div>
       </div>
-      <div class="col">
-        <div class="card" style="border-color:var(--gold); border-width:2px;">
-          <div class="card-label" style="color:var(--gold);">Row 5 · Tax held</div>
-          <div class="card-body">Subtract the pre-tax sales from receipts to find the tax collected and owed to the state.</div>
+    </section>
+
+    <section class="slide" data-slide="21" data-section="4">
+      <div class="eyebrow">Up next · MATH-M07-L02</div>
+      <h2>Payroll taxes move from price to people</h2>
+      <div class="body" style="align-items:center">
+        <div class="col" style="flex:1.15">
+          <svg viewBox="0 0 700 330" role="img" aria-labelledby="payroll-flow-title">
+            <title id="payroll-flow-title">Gross pay flows through employee and employer tax obligations to net pay and payroll cost</title>
+            <rect x="20" y="112" width="170" height="100" rx="20" fill="var(--white)" stroke="var(--steel)" stroke-width="3"></rect><text x="105" y="170" text-anchor="middle" class="svg-label">Gross pay</text>
+            <path d="M195 162 H270" stroke="var(--gold)" stroke-width="6"></path><path d="M256 150 L276 162 L256 174" fill="none" stroke="var(--gold)" stroke-width="6"></path>
+            <rect x="285" y="72" width="180" height="180" rx="24" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect><text x="375" y="145" text-anchor="middle" class="svg-label">Tax roles</text><text x="375" y="178" text-anchor="middle" class="svg-small">employee + employer</text>
+            <path d="M470 162 H545" stroke="var(--gold)" stroke-width="6"></path><path d="M531 150 L551 162 L531 174" fill="none" stroke="var(--gold)" stroke-width="6"></path>
+            <rect x="560" y="112" width="120" height="100" rx="20" fill="var(--white)" stroke="var(--terra)" stroke-width="3"></rect><text x="620" y="155" text-anchor="middle" class="svg-label">Net</text><text x="620" y="183" text-anchor="middle" class="svg-label">pay</text>
+          </svg>
         </div>
+        <div class="col" style="flex:.85"><p class="lead">Next lesson: identify who pays what, build gross-to-net formulas, and reconcile total payroll cost.</p><div class="rule-banner"><div><strong>Prepare</strong><p>Complete the payroll-tax pre-reading before class.</p></div></div></div>
       </div>
-      <div class="col">
-        <div class="formula-panel">
-          <span class="fn">=Receipts/(1+TaxRate)</span>
-          <span class="comment">Enter receipts and rate first; row 5 references row 4.</span>
-          <span class="result">Self-check: $48,826.29 and $3,173.71.</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ⑩ SECTION BREAK: PART 2 -->
-  <section class="slide dark" data-label="12 Part 2" data-section="2" data-slide="12" data-index="11">
-    <div class="grad-bar"></div>
-    <div class="section-break-content">
-      <div class="part-label">Part 2 of 3</div>
-      <div class="section-title">Excise Tax</div>
-      <div class="section-sub">Baked in before the customer sees the price</div>
-    </div>
-  </section>
+    <section class="slide dark" data-slide="22" data-section="4">
+      <div class="grad-bar"></div>
+      <div style="margin:auto;text-align:center;max-width:920px"><div class="eyebrow">Close</div><h1 style="font-style:italic">Questions?</h1><p class="subtitle">Finish the remaining audit records and submit the completed workbook through Canvas</p><p style="margin-top:42px;font-size:var(--type-body);color:var(--border)">Prof. Evitts · bevitts@endicott.edu · Gerrish School of Business</p></div>
+    </section>
+  </main>
 
-  <!-- ⑪ EXCISE TAX: CONCEPT -->
-  <section class="slide cream" data-label="13 Excise Tax Concept" data-section="2" data-slide="13" data-index="12">
-    <div class="header-row">
-      <div class="eyebrow">Excise Tax · Concept</div>
-      <div class="slide-title">Upstream, Embedded, Invisible to Consumers</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:48px;">
-      <div class="col">
-        <div class="card">
-          <div class="card-label">What It Is</div>
-          <div class="card-body" style="font-size:var(--type-body); line-height:1.6; color:var(--text);">A targeted tax on <strong>specific goods</strong> — fuel, alcohol, tobacco, luxury appliances. Imposed on manufacturers or wholesalers, not at the retail register.</div>
-        </div>
-        <div class="card" style="margin-top:24px;">
-          <div class="card-label">Where It's Paid</div>
-          <div class="card-body" style="font-size:var(--type-body); line-height:1.6; color:var(--text);">Upstream — before the product reaches a retailer. By the time a consumer sees the sticker price, excise tax is already included.</div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="border-color: var(--gold); border-width:2px; flex:1;">
-          <div class="card-label" style="color:var(--gold);">Pricing Strategy Impact</div>
-          <div class="card-title">Demand Elasticity Risk</div>
-          <div class="card-body">Because excise tax raises your inventory acquisition cost, you must raise retail prices to maintain margin. The risk: do your customers walk when the price goes up? This is the elasticity question.</div>
-        </div>
-        <div class="pill-row" style="margin-top:24px;">
-          <span class="pill">Fuel</span>
-          <span class="pill">Alcohol</span>
-          <span class="pill">Tobacco</span>
-          <span class="pill">Luxury appliances</span>
-          <span class="pill">Firearms</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="controls" aria-label="Slide controls"><button class="prev" aria-label="Previous slide">←</button><button class="next" aria-label="Next slide">→</button></div>
+  <aside class="notes-panel" aria-live="polite"><strong>Speaker notes</strong><div class="notes-text"></div></aside>
+</div>
 
-  <!-- ⑫ EXCISE TAX: BOTH TAXES + EXAMPLE -->
-  <section class="slide cream" data-label="14 Excise Tax Calculation" data-section="2" data-slide="14" data-index="13">
-    <div class="header-row">
-      <div class="eyebrow">Excise Tax · Meridian Advisory Group</div>
-      <div class="slide-title">When Both Taxes Apply — Never Compound Them</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col" style="flex:1.1;">
-        <div class="formula-panel">
-          <span class="comment">// Meridian Advisory — commercial appliance</span><br>
-          <span class="comment">// Base cost: $6,200 | Sales tax: 7% | Excise: 8%</span><br><br>
-          Sales Tax  = <span class="fn">$6,200 × 0.07</span> = $434.00<br>
-          Excise Tax = <span class="fn">$6,200 × 0.08</span> = $496.00<br>
-          ──────────────────────────────────────<br>
-          <span style="color:#6EE7B7; font-weight:600;">Total Cost = $6,200 + $434 + $496 = $7,130</span><br><br>
-          <span class="comment">// Shortcut: (7% + 8%) = 15% combined rate</span><br>
-          <span class="fn">= $6,200 × 1.15 = $7,130</span>
-        </div>
-      </div>
-      <div class="col" style="flex:0.9;">
-        <div class="card" style="border-color:var(--terra); border-width:2px;">
-          <div class="card-label" style="color:var(--terra);">Critical Rule</div>
-          <div class="card-title">Both taxes hit the BASE</div>
-          <div class="card-body">
-            Do NOT apply sales tax to the excise-tax-included amount. Both percentages are calculated on the original <strong>$6,200</strong> separately. Adding the rates first and multiplying once gives the same correct answer.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑬ EXCISE TAX: EXCEL -->
-  <section class="slide cream" data-label="15 Excise Tax Excel" data-section="2" data-slide="15" data-index="14">
-    <div class="header-row">
-      <div class="eyebrow">Excise Tax · Excel</div>
-      <div class="slide-title">Two Approaches, One Answer</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col">
-        <div class="formula-panel">
-          <span class="comment">// Approach 1 — Separate calculations</span><br><br>
-          B1 = 6200    <span class="comment">// Base cost</span><br>
-          B2 = 0.07    <span class="comment">// Sales tax rate</span><br>
-          B3 = 0.08    <span class="comment">// Excise tax rate</span><br><br>
-          B4 = <span class="fn">=B1*B2</span>       <span class="comment">// Sales tax amt</span><br>
-          B5 = <span class="fn">=B1*B3</span>       <span class="comment">// Excise tax amt</span><br>
-          B6 = <span class="fn">=B1+B4+B5</span>    <span class="comment">// Total cost</span>
-        </div>
-      </div>
-      <div class="col">
-        <div class="formula-panel">
-          <span class="comment">// Approach 2 — Combined rate shortcut</span><br><br>
-          B1 = 6200    <span class="comment">// Base cost</span><br>
-          B2 = 0.07    <span class="comment">// Sales tax rate</span><br>
-          B3 = 0.08    <span class="comment">// Excise tax rate</span><br><br>
-          B4 = <span class="fn">=B1*(1+B2+B3)</span><br><br>
-          <span style="color:#6EE7B7;">Both return $7,130 ✓</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="slide cream" data-label="16 Live You Try It Excise" data-section="2" data-slide="16" data-index="15">
-    <div class="header-row">
-      <div class="eyebrow">Live You Try It · Excel Pause</div>
-      <div class="slide-title">Rows 6-8: prove both taxes hit the base.</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="gap:28px;">
-      <div class="body-row">
-        <div class="practice-box col">
-          <div class="practice-label">Row 6</div>
-          <div class="practice-body">Sales tax on a <strong>$6,200</strong> base cost at <strong>7%</strong>.</div>
-        </div>
-        <div class="practice-box col">
-          <div class="practice-label">Row 7</div>
-          <div class="practice-body">Excise tax on the same <strong>$6,200</strong> base cost at <strong>8%</strong>.</div>
-        </div>
-        <div class="practice-box col">
-          <div class="practice-label">Row 8</div>
-          <div class="practice-body">Total cost using base cost plus both separate tax amounts.</div>
-        </div>
-      </div>
-      <div class="formula-panel">
-        <span class="fn">=Base*SalesRate  and  =Base*ExciseRate</span>
-        <span class="comment">Enter base and rate inputs first; use row references for total cost.</span>
-        <span class="result">Self-check targets: $434.00, $496.00, and $7,130.00.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑭ SECTION BREAK: PART 3 -->
-  <section class="slide dark" data-label="17 Part 3" data-section="3" data-slide="17" data-index="16">
-    <div class="grad-bar"></div>
-    <div class="section-break-content">
-      <div class="part-label">Part 3 of 3</div>
-      <div class="section-title">Property Tax</div>
-      <div class="section-sub">Three steps · four decimal places · every dollar of assessed value</div>
-    </div>
-  </section>
-
-  <!-- ⑮ PROPERTY TAX: CONCEPT + TRIPLE NET -->
-  <section class="slide cream" data-label="18 Property Tax Concept" data-section="3" data-slide="18" data-index="17">
-    <div class="header-row">
-      <div class="eyebrow">Property Tax · Concept</div>
-      <div class="slide-title">The Asset-Owner's Obligation</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:56px;">
-      <div class="col">
-        <div class="card">
-          <div class="card-label">What It Funds</div>
-          <div class="card-body" style="font-size:var(--type-body); line-height:1.6; color:var(--text);">
-            Local schools, fire &amp; police protection, roads, infrastructure. Property tax is the primary municipal revenue source.
-          </div>
-        </div>
-        <div class="card" style="margin-top:24px;">
-          <div class="card-label">What's Taxable</div>
-          <div class="pill-row" style="margin-top:4px;">
-            <span class="pill">Land</span>
-            <span class="pill">Buildings</span>
-            <span class="pill">Machinery</span>
-            <span class="pill">Computers</span>
-            <span class="pill">Furniture</span>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="border-color:var(--terra); border-width:2px; flex:1;">
-          <div class="card-label" style="color:var(--terra);">Triple Net Lease Alert</div>
-          <div class="card-title">NNN Leases Pass Tax to the Tenant</div>
-          <div class="card-body">In a Triple Net (NNN) lease, the <em>tenant</em> — not the landlord — pays property taxes, insurance, and maintenance. A business that signs a NNN lease without researching local property tax rates is signing a blank check on their overhead.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑯ PROPERTY TAX: THREE STEPS -->
-  <section class="slide cream" data-label="19 Property Tax Steps" data-section="3" data-slide="19" data-index="18">
-    <div class="header-row">
-      <div class="eyebrow">Property Tax · Protocol</div>
-      <div class="slide-title">Three Steps, Always in This Order</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="justify-content: flex-start; padding-top:32px;">
-      <div class="step-row">
-        <div class="step-num">1</div>
-        <div class="step-text">
-          <strong>Assessed Value</strong> — The municipality taxes only a fraction of market value
-          <div class="step-formula">Assessed Value = Assessment Rate × Market Value</div>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">2</div>
-        <div class="step-text">
-          <strong>Tax Rate</strong> — Determined by the town's budget need divided by total assessed value<br>
-          <em style="font-size: var(--type-small); color: var(--terra);">Round to the nearest ten-thousandth (4 decimal places)</em>
-          <div class="step-formula">Tax Rate = Town Budget ÷ Total Assessed Value</div>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">3</div>
-        <div class="step-text">
-          <strong>Annual Tax Due</strong> — Apply the rounded rate to your assessed value
-          <div class="step-formula">Annual Tax = Tax Rate × Assessed Value</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑰ PROPERTY TAX: FULL WORKED EXAMPLE -->
-  <section class="slide cream" data-label="20 Property Tax Worked Example" data-section="3" data-slide="20" data-index="19">
-    <div class="header-row">
-      <div class="eyebrow">Property Tax · Meridian Advisory Group</div>
-      <div class="slide-title">Full Three-Step Walkthrough</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:48px;">
-      <div class="col" style="flex:1;">
-        <div class="card" style="background:var(--paper-2);">
-          <div class="card-label">Given</div>
-          <div class="card-body" style="font-size:var(--type-body); line-height:1.9; color:var(--text);">
-            Market Value of Office: <strong>$820,000</strong><br>
-            Assessment Rate: <strong>40%</strong><br>
-            Town Budget: <strong>$310,000</strong><br>
-            Total Assessed Value in Town: <strong>$4,750,000</strong>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="flex:1.2;">
-        <div class="formula-panel" style="font-size:calc(22px * var(--scale));">
-          <span class="comment">// Step 1 — Assessed Value</span><br>
-          <span class="fn">= 0.40 × $820,000</span>   →  <span style="color:#6EE7B7;">$328,000</span><br><br>
-          <span class="comment">// Step 2 — Tax Rate (round to 4 decimals)</span><br>
-          <span class="fn">= $310,000 ÷ $4,750,000</span>  = 0.065263...<br>
-          Rounded:  →  <span style="color:#6EE7B7;">0.0653</span>  (6.53%)<br><br>
-          <span class="comment">// Step 3 — Annual Tax Due</span><br>
-          <span class="fn">= 0.0653 × $328,000</span>  →  <span style="color:#6EE7B7; font-weight:600;">$21,418.40</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="slide cream" data-label="21 Live You Try It Property" data-section="3" data-slide="21" data-index="20">
-    <div class="header-row">
-      <div class="eyebrow">Live You Try It · Excel Pause</div>
-      <div class="slide-title">Rows 9-11: finish the property tax chain.</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:48px;">
-      <div class="col" style="flex:1.05;">
-        <div class="card">
-          <div class="card-label">Exact slide inputs</div>
-          <div class="card-body" style="line-height:1.8;">
-            Market value: <strong>$820,000</strong><br>
-            Assessment rate: <strong>40%</strong><br>
-            Town budget need: <strong>$310,000</strong><br>
-            Total assessed value: <strong>$4,750,000</strong>
-          </div>
-        </div>
-      </div>
-      <div class="col" style="flex:1;">
-        <div class="formula-panel">
-          <span class="fn">=ROUND(Budget/TotalAV,4)</span>
-          <span class="comment">Enter rows 9 and 10 inputs first; row 11 references those results.</span>
-          <span class="result">Self-check: $328,000.00, 0.0653, and $21,418.40.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑱ COMMON MISTAKE -->
-  <section class="slide cream" data-label="22 Common Mistakes" data-section="3" data-slide="22" data-index="21">
-    <div class="header-row">
-      <div class="eyebrow">Watch Out</div>
-      <div class="slide-title">Two Mistakes That Show Up Every Exam</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="flex-direction:row; gap:48px;">
-      <div class="mistake-box col">
-        <div class="mistake-label">⚠ Mistake 1 · Sales Tax</div>
-        <div class="mistake-title">Applying Tax Before the Trade Discount</div>
-        <div class="mistake-body">
-          <strong>Wrong:</strong> $480 × 0.06 = $28.80 tax, then subtract $80<br><br>
-          <strong>Right:</strong> $480 − $80 = $400 taxable, then $400 × 0.06 = $24.00<br><br>
-          Taxing the full retail price before the discount inflates the tax — and the customer's total.
-        </div>
-      </div>
-      <div class="mistake-box col">
-        <div class="mistake-label">⚠ Mistake 2 · Excise Tax</div>
-        <div class="mistake-title">Compounding the Two Tax Rates</div>
-        <div class="mistake-body">
-          <strong>Wrong:</strong> Apply 7% to base, then apply 8% to the tax-included amount<br><br>
-          <strong>Right:</strong> Both 7% and 8% are calculated on the <em>original base price</em> separately<br><br>
-          Compounding overstates total cost and corrupts your margin analysis.
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CLASS CHALLENGE -->
-  <section class="slide cream" data-label="23 Class Challenge" data-section="4" data-slide="23" data-index="22">
-    <div class="header-row">
-      <div class="eyebrow">Class Challenge · Begin in Class, Finish for Homework</div>
-      <div class="slide-title">Audit the filings. Repair the liability.</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body" style="gap:24px;">
-      <div class="card" style="background:var(--paper-2); padding:20px 26px;">
-        <div class="card-label">Your assignment</div>
-        <div class="card-body" style="font-size:var(--type-body); color:var(--text);">Six supplied sales-tax, excise-tax, and property-tax records contain a purposeful mix of correct and incorrect filings. Blue-gray cells are source data; yellow cells are your audit work.</div>
-      </div>
-      <div class="body-row" style="align-items:stretch; gap:18px;">
-        <div class="practice-box col" style="border-top:4px solid var(--steel);">
-          <div class="practice-label">Inspect</div>
-          <div class="practice-body">Read the filed formula and reported liability.</div>
-        </div>
-        <div style="align-self:center; color:var(--gold); font-size:30px;" aria-hidden="true">→</div>
-        <div class="practice-box col" style="border-top:4px solid var(--gold);">
-          <div class="practice-label">Diagnose</div>
-          <div class="practice-body">Enter <strong>0</strong> for OK or <strong>1</strong> for ERROR.</div>
-        </div>
-        <div style="align-self:center; color:var(--gold); font-size:30px;" aria-hidden="true">→</div>
-        <div class="practice-box col" style="border-top:4px solid var(--terra);">
-          <div class="practice-label">Repair</div>
-          <div class="practice-body">Build a corrected formula and calculate its adjustment.</div>
-        </div>
-        <div style="align-self:center; color:var(--gold); font-size:30px;" aria-hidden="true">→</div>
-        <div class="practice-box col" style="border-top:4px solid var(--sage);">
-          <div class="practice-label">Reconcile</div>
-          <div class="practice-body">Tie the corrected liability to the <strong>$28,405.15</strong> control total.</div>
-        </div>
-      </div>
-      <div class="formula-panel">
-        <span class="fn">6 records · 3 errors · 1 control total</span>
-        <span class="comment">Finish with one brief audit note naming the most consequential issue.</span>
-        <span class="result">Live You Try It stays self-checking; only Class Challenge is graded.</span>
-      </div>
-    </div>
-  </section>
-
-<section class="slide cream" data-section="4" data-slide="24" data-index="23" data-label="24 Formula Reference Card" id="slide-20">
-  <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
-    <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Taxable subtotal</td><td class="pattern">=Price-Discount</td><td>Finds the amount subject to sales tax.</td><td class="watch">Apply discounts before tax.</td></tr><tr><td>Sales tax owed</td><td class="pattern">=Taxable*Rate</td><td>Calculates the tax on the taxable subtotal.</td><td class="watch">Use the tax rate as a decimal.</td></tr><tr><td>Total price</td><td class="pattern">=Taxable+Tax+Shipping</td><td>Adds taxable amount, tax, and shipping.</td><td class="watch">Shipping rules can vary by scenario.</td></tr><tr><td>Back-calculate sales</td><td class="pattern">=TotalReceipts/(1+Rate)</td><td>Finds sales before tax from total receipts.</td><td class="watch">Do not subtract the tax rate directly.</td></tr><tr><td>Tax remittance</td><td class="pattern">=Receipts-PreTaxSales</td><td>Finds tax collected and owed to the government.</td><td class="watch">Collected tax is not revenue.</td></tr><tr><td>Separate excise taxes</td><td class="pattern">=Base*SalesRate and =Base*ExciseRate</td><td>Calculates both tax amounts from the same base.</td><td class="watch">Do not compound the two rates.</td></tr><tr><td>Combined excise shortcut</td><td class="pattern">=Base*(1+SalesRate+ExciseRate)</td><td>Combines rates when they share one base.</td><td class="watch">Only use when both taxes share the same base.</td></tr><tr><td>Assessed value</td><td class="pattern">=MarketValue*AssessmentRate</td><td>Converts market value to taxable assessed value.</td><td class="watch">Use assessed value for tax due.</td></tr><tr><td>Property tax rate</td><td class="pattern">=ROUND(Budget/TotalAV,4)</td><td>Rounds the municipal tax rate to four decimals.</td><td class="watch">Round before applying the rate.</td></tr><tr><td>Annual property tax</td><td class="pattern">=RoundedRate*AssessedValue</td><td>Calculates annual property tax due.</td><td class="watch">Use the rounded rate.</td></tr><tr><td>Monthly NNN reserve</td><td class="pattern">=AnnualTax/12</td><td>Converts annual property tax into monthly planning cost.</td><td class="watch">Useful for lease cash-flow planning.</td></tr></tbody></table>
-  </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">24 / 27</div>
-</section>
-
-  <!-- ⑳ KEY TAKEAWAYS -->
-  <section class="slide cream" data-label="25 Takeaways" data-section="4" data-slide="25" data-index="24">
-    <div class="header-row">
-      <div class="eyebrow">Key Takeaways</div>
-      <div class="slide-title">What to Carry Forward</div>
-      <div class="title-rule"></div>
-    </div>
-    <div class="body">
-      <div class="takeaway-row">
-        <div class="takeaway-card">
-          <div class="tk-num">01</div>
-          <div class="tk-head">Sales Tax: Order Matters</div>
-          <div class="tk-body">Trade discount first, then tax, then shipping. Merchants collect — they don't own the funds. Reverse-calculate actual sales with Total ÷ (1 + Rate).</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="tk-num">02</div>
-          <div class="tk-head">Excise Tax: Both Hit the Base</div>
-          <div class="tk-body">Excise tax is baked in upstream. When both excise and sales tax apply, calculate each from the original cost separately — never compound them.</div>
-        </div>
-        <div class="takeaway-card">
-          <div class="tk-num">03</div>
-          <div class="tk-head">Property Tax: Three Steps, Four Decimals</div>
-          <div class="tk-body">Assessed value → tax rate (rounded to 4 decimal places) → annual tax due. NNN leases pass all three to the tenant — research the municipality before signing.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ㉑ UP NEXT -->
-  <section class="slide dark" data-label="26 Up Next" data-section="4" data-slide="26" data-index="25">
-    <div class="grad-bar"></div>
-    <div class="section-break-content">
-      <div class="part-label">Coming Up · MATH-M07-L02</div>
-      <div class="section-title">Payroll Taxes</div>
-      <div class="section-sub">FICA, federal &amp; state withholding — who pays what, and how to calculate gross-to-net in Excel</div>
-    </div>
-  </section>
-
-  <!-- ㉒ CLOSE -->
-  <section class="slide dark" data-label="27 Close" data-section="4" data-slide="27" data-index="26">
-    <div class="grad-bar"></div>
-    <div class="section-break-content" style="align-items:center; text-align:center;">
-      <div class="section-title" style="font-style:italic;">Questions?</div>
-      <div class="section-sub" style="margin-top:24px;">Prof. Evitts &nbsp;·&nbsp; bevitts@endicott.edu &nbsp;·&nbsp; Gerrish School of Business</div>
-      <div style="margin-top:48px; font-family:var(--font-mono); font-size:var(--type-eyebrow); color:rgba(255,255,255,0.3);">
-        Pre-reading for L02 posted on Canvas &nbsp;·&nbsp; Office hours by appointment
-      </div>
-    </div>
-  </section>
-
-</deck-stage>
-
-<script>
-(function(){
-  if(customElements.get('deck-stage')) return;
-  class DeckStage extends HTMLElement {
-    connectedCallback(){
-      if(this._ready) return; this._ready = true;
-      const W = parseInt(this.getAttribute('width') || 1920);
-      const H = parseInt(this.getAttribute('height') || 1080);
-      this._slides = [...this.querySelectorAll('.slide')];
-      this._idx = 0;
-      this._notes = [];
-      try {
-        const el = document.getElementById('speaker-notes');
-        if(el) this._notes = JSON.parse(el.textContent);
-      } catch(e){}
-
-      const stage = document.createElement('div');
-      stage.style.cssText = 'position:absolute; transform-origin:top left;'
-                          + 'width:'+W+'px; height:'+H+'px;';
-      this._slides.forEach(s => {
-        s.style.position    = 'absolute';
-        s.style.top         = '0';
-        s.style.left        = '0';
-        s.style.width       = W+'px';
-        s.style.height      = H+'px';
-        s.style.display     = 'none';
-        s.style.flexDirection = 'column';
-        stage.appendChild(s);
-      });
-      this.appendChild(stage);
-      this._stage = stage;
-
-      this.style.cssText = 'display:block; position:fixed; top:0; left:0;'
-                         + 'width:100vw; height:100vh; overflow:hidden; background:#111;';
-
-      const ctr = document.createElement('div');
-      ctr.style.cssText = 'position:fixed; bottom:20px; left:50%; transform:translateX(-50%);'
-        + 'background:rgba(0,0,0,0.6); color:#fff; font:500 14px/1 monospace;'
-        + 'padding:6px 16px; border-radius:20px; pointer-events:none; z-index:9999;';
-      document.body.appendChild(ctr);
-      this._ctr = ctr;
-
-      const btnStyle = 'position:fixed; bottom:20px; z-index:9999;'
-        + 'background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.2);'
-        + 'color:#fff; font:600 18px/1 sans-serif; width:44px; height:44px;'
-        + 'border-radius:50%; cursor:pointer;';
-      const prev = document.createElement('button');
-      prev.innerHTML = '&#8592;';
-      prev.style.cssText = btnStyle + 'right:80px;';
-      prev.onclick = () => this._go(this._idx - 1);
-      document.body.appendChild(prev);
-      const next = document.createElement('button');
-      next.innerHTML = '&#8594;';
-      next.style.cssText = btnStyle + 'right:24px;';
-      next.onclick = () => this._go(this._idx + 1);
-      document.body.appendChild(next);
-
-      const notes = document.createElement('div');
-      notes.style.cssText = 'position:fixed; bottom:70px; left:50%; transform:translateX(-50%);'
-        + 'max-width:860px; width:90%; background:rgba(10,10,20,0.9); color:#e2e8f0;'
-        + 'font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px;'
-        + 'display:none; z-index:9998;';
-      document.body.appendChild(notes);
-      this._notes_el = notes;
-
-      document.addEventListener('keydown', e => {
-        if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){ e.preventDefault(); this._go(this._idx+1); }
-        if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key))         { e.preventDefault(); this._go(this._idx-1); }
-        if(e.key==='Home'){ e.preventDefault(); this._go(0); }
-        if(e.key==='End') { e.preventDefault(); this._go(this._slides.length-1); }
-        if(e.key==='n'||e.key==='N') this._toggleNotes();
-      });
-
-      this.addEventListener('click', e => {
-        const x = e.clientX / window.innerWidth;
-        if(x < 0.33) this._go(this._idx-1);
-        else if(x > 0.67) this._go(this._idx+1);
-      });
-
-      this._scale();
-      this._go(0);
-      window.addEventListener('resize', () => this._scale());
-    }
-    _scale(){
-      const W = parseInt(this.getAttribute('width')||1920);
-      const H = parseInt(this.getAttribute('height')||1080);
-      const s = Math.min(window.innerWidth/W, window.innerHeight/H);
-      const ox = (window.innerWidth  - W*s) / 2;
-      const oy = (window.innerHeight - H*s) / 2;
-      this._stage.style.transform = `translate(${ox}px,${oy}px) scale(${s})`;
-    }
-    _go(n){
-      n = Math.max(0, Math.min(n, this._slides.length-1));
-      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'none';
-      this._idx = n;
-      if(this._slides[this._idx]) this._slides[this._idx].style.display = 'flex';
-      this._ctr.textContent = (n+1)+' / '+this._slides.length;
-      if(this._notes_el.style.display==='block' && this._notes[n])
-        this._notes_el.textContent = this._notes[n];
-    }
-    _toggleNotes(){
-      this._notes_el.style.display = this._notes_el.style.display==='block'?'none':'block';
-      if(this._notes_el.style.display==='block' && this._notes[this._idx])
-        this._notes_el.textContent = this._notes[this._idx];
-    }
-  }
-  customElements.define('deck-stage', DeckStage);
-})();
+<script type="application/json" id="speaker-notes">
+[
+  "Timing: 1 minute. Welcome students and frame the lesson as business decision-making, not tax-law memorization. Emphasize that every problem uses one simplified training jurisdiction.",
+  "Timing: 1 minute. Preview the four-part sequence. Tell students that the class ends with an audit trail, so every calculation they build should be explainable and traceable.",
+  "Timing: 2 minutes. Read the objectives as choose, calculate, and defend. Formative check: ask which objective is more demanding than simply getting the right number. Answer: defending the base and formula.",
+  "Timing: 2 minutes. Retrieval first: students point to the taxable base before any formula is shown. Answer: $400. Rationale: the supplied training rule says the qualifying $80 discount reduces the $480 base. Misconception: taxing the retail price because it appears first. Debrief with one student explanation.",
+  "Timing: 30 seconds. Transition to sales tax. Remind students that the business role differs from the consumer role.",
+  "Timing: 4 minutes. Walk the cash flow from customer to merchant, then split it into revenue and liability. Excel syntax comes first in the panel. Answer: $52,000 divided by 1.065 gives $48,826.29 revenue and $3,173.71 tax held. Misconception: treating total receipts as revenue. Debrief by asking which amount belongs on the income statement.",
+  "Timing: 5 minutes. Reinforce the exact table from the reading. Move left to right and ask what each row uses from the row above. Rationale: the table is an audit trail, not a memorization device. Misconception: adding shipping before tax. Answer: $439 total under the supplied rule.",
+  "Timing: 6 minutes. Students work independently on Live You Try It rows 1-5 using new numbers. Do not reveal syntax. Answers for debrief: row 1 $640.00; row 2 $36.80; row 3 $698.80; row 4 $60,000.00; row 5 $4,200.00. Ask one student why the reverse formula divides by 1 plus the rate. Deliverable: five formulas and formula-aware confirmation.",
+  "Timing: 30 seconds. Transition to excise tax. State that the scenario supplies the rule; students are not expected to infer real-world jurisdiction law.",
+  "Timing: 4 minutes. Explain the simplified commercial-appliance scenario and the manager's margin concern. Rationale: the task is learning how to preserve the stated base. Misconception: assuming every excise tax works this way. Re-emphasize the training-jurisdiction banner.",
+  "Timing: 5 minutes. Read the table by following the repeated B1 reference. Excel syntax appears before the manual check. Answers: $434 sales tax, $496 excise tax, $7,130 total. Confirm the combined shortcut only because the scenario states that both rates share the same base.",
+  "Timing: 3 minutes. Use the two arrows as the proof. Ask students to point to the base cell in both formulas. Misconception: one tax arrow starting from the other tax box. Debrief: both formulas return to the original base.",
+  "Timing: 3.5 minutes. Pairs complete Live You Try It rows 6-8. Correct choice: A. Workbook answers: $435.00 sales tax, $326.25 excise tax, $8,011.25 total. Require the sentence to name the base cell. Misconception: choosing B because it looks sequential.",
+  "Timing: 30 seconds. Transition to property tax. Signal that the new challenge is not multiplication; it is using the correct intermediate value and rounding at the specified step.",
+  "Timing: 4 minutes. State the model boundary: this is a simple training municipality. Explain the funnel from market value to assessed value to tax. NNN debrief: exact exposure depends on lease terms, but variable property tax can raise occupancy cost.",
+  "Timing: 5 minutes. Reinforce the three-step reading table. Ask students to circle the outputs that become later inputs. Misconceptions: using market value in step 3 and rounding only the final dollar answer. The manager checks are the audit criteria.",
+  "Timing: 4 minutes. Walk the three formula panels top to bottom. Answers: $328,000 assessed value, 0.0653 rounded rate, $21,418.40 annual tax. Rationale: separate helper cells make the model auditable. Ask why the raw rate should not feed step 3 under the supplied rule.",
+  "Timing: 3.5 minutes. Common Mistake reveal. Ask students to diagnose each formula before reading the correction. Answer 1: market value is the wrong base. Answer 2: the rate must be rounded first. Debrief by naming the exact prior-step cell that each correct formula should reference.",
+  "Timing: 14 minutes total. Pairs spend 8 minutes on R01-R03, 4 minutes on one record from R04-R06, and 2 minutes debriefing. Answers: R01 OK $63.75; R02 ERROR corrected $24.00 adjustment -$4.80; R03 OK $4,625.00; R04 OK $930.00; R05 ERROR corrected $1,344.00 adjustment -$52.92; R06 ERROR corrected $21,418.40 adjustment -$32,127.60. Corrected control total: $28,405.15. Most consequential error: R06 by dollar impact. Remaining records are homework.",
+  "Timing: 3 minutes. Students give one sentence for each takeaway without reading the card. Listen for base, arrows, and rounding point. Correct incomplete statements before moving on.",
+  "Timing: 1 minute. Preview payroll taxes as another role-and-reconciliation problem. No new computation today. Remind students to complete the next pre-reading.",
+  "Timing: 2 minutes. Take final questions. Restate the deliverable: completed audit workbook, reconciliation difference of zero, and an 8+ word audit note submitted through Canvas."
+]
 </script>
-
 <script>
-(function(){
-  if(customElements.get('image-slot')) return;
-  class ImageSlot extends HTMLElement {
-    connectedCallback(){
-      if(this._init) return; this._init = true;
-      const ph = this.getAttribute('placeholder') || 'Drop image here';
-      Object.assign(this.style, {
-        display:'flex', alignItems:'center', justifyContent:'center',
-        borderRadius:'12px', border:'2px dashed rgba(255,255,255,0.2)',
-        background:'rgba(255,255,255,0.04)', color:'rgba(255,255,255,0.3)',
-        fontFamily:'JetBrains Mono, monospace', fontSize:'16px',
-        textAlign:'center', padding:'16px', cursor:'pointer'
-      });
-      this.textContent = ph;
-      this.addEventListener('click', () => {
-        const inp = document.createElement('input');
-        inp.type = 'file'; inp.accept = 'image/*';
-        inp.onchange = e => {
-          const f = e.target.files[0]; if(!f) return;
-          const r = new FileReader();
-          r.onload = ev => {
-            this.style.background = `url(${ev.target.result}) center/cover no-repeat`;
-            this.style.border = 'none'; this.textContent = '';
-          };
-          r.readAsDataURL(f);
-        };
-        inp.click();
-      });
+  (function(){
+    var W=1280,H=720,deck=document.querySelector('.deck-shell');
+    var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var notes=JSON.parse(document.getElementById('speaker-notes').textContent);
+    var index=0;
+    var notesPanel=document.querySelector('.notes-panel');
+    var notesText=document.querySelector('.notes-text');
+    function fit(){
+      var s=Math.min(window.innerWidth/W,window.innerHeight/H);
+      var x=(window.innerWidth-W*s)/2,y=(window.innerHeight-H*s)/2;
+      deck.style.transform='translate('+x+'px,'+y+'px) scale('+s+')';
     }
-  }
-  customElements.define('image-slot', ImageSlot);
-})();
+    function show(i){
+      index=Math.max(0,Math.min(slides.length-1,i));
+      slides.forEach(function(slide,n){slide.classList.toggle('active',n===index)});
+      var section=slides[index].getAttribute('data-section');
+      document.querySelectorAll('.tab-btn[data-jump]').forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-jump')===section)});
+      notesText.textContent=notes[index]||'';
+      document.querySelector('.prev').disabled=index===0;
+      document.querySelector('.next').disabled=index===slides.length-1;
+    }
+    function jump(section){
+      var target=slides.findIndex(function(slide){return slide.getAttribute('data-section')===String(section)});
+      if(target>=0)show(target);
+    }
+    function toggleNotes(){notesPanel.classList.toggle('open')}
+    window.addEventListener('resize',fit);
+    document.querySelector('.prev').addEventListener('click',function(){show(index-1)});
+    document.querySelector('.next').addEventListener('click',function(){show(index+1)});
+    document.querySelector('.home-dot').addEventListener('click',function(){show(0)});
+    document.querySelectorAll('.tab-btn[data-jump]').forEach(function(btn){btn.addEventListener('click',function(){jump(btn.getAttribute('data-jump'))})});
+    document.querySelector('.notes-btn').addEventListener('click',toggleNotes);
+    window.addEventListener('keydown',function(event){
+      if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){show(index+1)}
+      if(event.key==='ArrowLeft'||event.key==='PageUp'){show(index-1)}
+      if(event.key==='Home'){show(0)}
+      if(event.key==='End'){show(slides.length-1)}
+      if(event.key==='n'||event.key==='N'){toggleNotes()}
+    });
+    fit();show(0);
+  })();
 </script>
-
-<script>
-(function(){
-  function currentDeck(){ return document.querySelector('deck-stage'); }
-  function ensureDeckController(deck){
-    if(!deck || deck._slidesReady) return;
-    deck._slidesReady=true;
-    deck._slides=[].slice.call(deck.querySelectorAll('.slide'));
-    deck._idx=0;
-    deck._notes=[];
-    try{ var el=document.getElementById('speaker-notes'); if(el) deck._notes=JSON.parse(el.textContent); }catch(e){}
-    deck._slides.forEach(function(slide){ slide.style.position='absolute'; slide.style.top='0'; slide.style.left='0'; slide.style.display='none'; slide.style.flexDirection='column'; });
-    var notes=document.createElement('div');
-    notes.style.cssText='position:fixed; bottom:70px; left:50%; transform:translateX(-50%); max-width:860px; width:90%; background:rgba(10,10,20,0.92); color:#e2e8f0; font:400 13px/1.6 sans-serif; padding:14px 18px; border-radius:10px; display:none; z-index:9998;';
-    document.body.appendChild(notes);
-    deck._notes_el=notes;
-    deck._go=function(n){
-      n=Math.max(0,Math.min(n,deck._slides.length-1));
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='none';
-      deck._idx=n;
-      if(deck._slides[deck._idx]) deck._slides[deck._idx].style.display='flex';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[n] || '';
-    };
-    deck._toggleNotes=function(){
-      deck._notes_el.style.display=deck._notes_el.style.display==='block'?'none':'block';
-      if(deck._notes_el.style.display==='block') deck._notes_el.textContent=deck._notes[deck._idx] || '';
-    };
-    if(!window.__bus123RetrofitKeys){
-      window.__bus123RetrofitKeys=true;
-      document.addEventListener('keydown',function(e){ var d=currentDeck(); if(!d || !d._go) return; if(['ArrowRight','ArrowDown',' ','PageDown'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx+1);} if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>=0){e.preventDefault(); d._go(d._idx-1);} if(e.key==='n'||e.key==='N') d._toggleNotes(); });
-    }
-    deck._go(0);
-  }
-  function goToSection(section){
-    var deck=currentDeck(); ensureDeckController(deck); if(!deck || !deck._slides || !deck._go) return;
-    var target=deck._slides.findIndex(function(slide){ return slide.getAttribute('data-section')===String(section); });
-    if(target>=0) deck._go(target);
-  }
-  function addTabs(){
-    if(document.querySelector('.retrofit-tab-strip')) return;
-    var deck=currentDeck(); if(!deck) return;
-    ensureDeckController(deck);
-    var strip=document.createElement('nav');
-    strip.className='retrofit-tab-strip tab-strip';
-    strip.innerHTML='<button class="retrofit-home-dot" title="Title"></button><button class="tab-btn" data-section="1">Part 1</button><button class="tab-btn" data-section="2">Part 2</button><button class="tab-btn" data-section="3">Part 3</button><button class="tab-btn" data-section="4">Wrap</button><button class="tab-btn retrofit-notes-btn" data-notes="true" title="Toggle speaker notes">N</button>';
-    document.body.appendChild(strip);
-    strip.querySelector('.retrofit-home-dot').addEventListener('click',function(){ if(deck._go) deck._go(0); });
-    strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.addEventListener('click',function(){ goToSection(btn.getAttribute('data-section')); }); });
-    var notesBtn=strip.querySelector('.retrofit-notes-btn');
-    if(notesBtn) notesBtn.addEventListener('click',function(){ var d=currentDeck(); if(d && d._toggleNotes) d._toggleNotes(); });
-    function sync(){
-      if(!deck._slides) return;
-      var active=deck._slides[deck._idx];
-      var sec=active && active.getAttribute('data-section');
-      strip.querySelectorAll('.tab-btn[data-section]').forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-section')===sec); });
-      requestAnimationFrame(sync);
-    }
-    sync();
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ setTimeout(addTabs,0); });
-  else setTimeout(addTabs,0);
-})();
-</script>
-
 </body>
 </html>

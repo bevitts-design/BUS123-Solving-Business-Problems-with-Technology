@@ -153,7 +153,7 @@ For example, a manager might want to identify unusually low Net Profit values fo
 
 ## 6 - Formula and Formatting Reference
 
-After you create the working copy, the Manager View includes four summary cells. In class, you will decide which range answers each business question and build formulas with worksheet or table references.
+After the in-class structural build, the Manager View includes four summary cells. As independent after-class work, you will decide which detail range answers each business question, build formulas with worksheet or table references, and verify that each result reconciles to the records. A clean formula-error scan is useful, but it is not proof by itself: the cells must contain formulas, reference the intended detail rows, and update when a source value changes.
 
 | Business question | Excel pattern | Reminder |
 |---|---|---|
@@ -162,7 +162,7 @@ After you create the working copy, the Manager View includes four summary cells.
 | How should dates display? | `dd-mmm-yy` | A format changes display, not the stored date. |
 | How should business money display? | `$#,##0` or another consistent currency format | Choose a decimal policy that fits the decision. |
 
-Use the workbook's `FormulaReferenceCard` during class as a syntax reminder. It does not supply the finished Manager View formulas.
+Use the workbook's `FormulaReferenceCard` as a syntax reminder. It does not supply the finished Manager View formulas or the final values.
 
 ---
 

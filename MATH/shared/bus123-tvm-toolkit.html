@@ -556,7 +556,7 @@
     <div class="shell">
       <p class="eyebrow">Business Finance Toolkit</p>
       <h1>Move money through time, then build it in Excel.</h1>
-      <p>A reusable classroom toolkit for time value of money, compounding, cash-flow movement, borrowing, saving, and offer comparison.</p>
+      <p>A reusable classroom toolkit for time value of money, cash-flow movement, borrowing, saving, and offer comparison. Each activity names its growth or discounting model.</p>
     </div>
   </header>
 
@@ -579,7 +579,7 @@
     <section class="activity" id="simple-interest" data-activity>
       <aside class="panel">
         <h2>Simple Interest</h2>
-        <p>Start with $1,500, 7%, and 3 years. Compare simple interest with compounding.</p>
+        <p>Start with $1,500, 7%, and 3 years. Build simple interest first, then compare it with compound growth.</p>
         <div class="controls">
           <label><span>Principal <output id="siPrincipalOut">$1,500</output></span><input id="siPrincipal" type="range" min="500" max="10000" step="250" value="1500"></label>
           <label><span>Annual rate <output id="siRateOut">7.00%</output></span><input id="siRate" type="range" min="1" max="18" step=".25" value="7"></label>
@@ -596,7 +596,7 @@
         </div>
         <div class="bars" id="siBars"></div>
         <div class="formula-panel">
-          <article class="formula-card"><h3>Excel Build</h3><p>Use assumptions in B1:B3.</p><code>=B1*B2*B3</code><code>=B1*(1+B2)^B3</code></article>
+          <article class="formula-card"><h3>Excel Build</h3><p>Use assumptions in B1:B3. The first two formulas are the simple-interest model; the third is a compound comparison.</p><code>=B1*B2*B3</code><code>=B1*(1+B2*B3)</code><code>=B1*(1+B2)^B3</code></article>
           <article class="formula-card"><h3>Class Question</h3><p>If this were a loan versus an investment, who benefits from compounding?</p></article>
         </div>
       </section>
@@ -631,8 +631,8 @@
 
     <section class="activity" id="present-value" data-activity>
       <aside class="panel">
-        <h2>Present Value</h2>
-        <p>Move one future amount back to today. This is the clean single-sum version before students compare full offers.</p>
+        <h2>Present Value · Compound-Periodic</h2>
+        <p>Move one future amount back to today with the same compound-periodic model used by Excel <code>PV()</code> and the M08 Class Challenge.</p>
         <div class="controls">
           <label><span>Future value <output id="presentFvOut">$2,000</output></span><input id="presentFv" type="range" min="500" max="50000" step="250" value="2000"></label>
           <label><span>Discount rate <output id="presentRateOut">10.00%</output></span><input id="presentRate" type="range" min="1" max="18" step=".25" value="10"></label>
@@ -641,7 +641,7 @@
       </aside>
       <section class="stage">
         <h2>Move Money Backward</h2>
-        <p>Present value answers: what is a future amount worth today after discounting for time and required return?</p>
+        <p>Present value answers: what is a future amount worth today under the selected compound-periodic rate and number of periods?</p>
         <div class="metrics">
           <div class="metric"><small>Future Value</small><strong id="presentFvMetric">$2,000.00</strong></div>
           <div class="metric accent"><small>Present Value</small><strong id="presentPvMetric">$1,502.63</strong></div>
@@ -652,6 +652,7 @@
           <article class="formula-card"><h3>Excel Formula</h3><p>Use PV when the amount is moving earlier in time.</p><code>=PV(rate, nper, 0, -future_value)</code></article>
           <article class="formula-card"><h3>Math Logic</h3><p>Divide by the growth factor for the waiting period.</p><code>PV = FV / (1 + rate)^years</code></article>
         </div>
+        <div class="decision"><strong>Model boundary</strong><p>Manual simple-interest PV uses <code>FV / (1 + rate × time)</code>. It is a different model and should not be expected to match this tool after multiple periods.</p></div>
         <div class="decision"><strong>Class Question</strong><p>Why is money due later worth less than the same number of dollars today?</p></div>
       </section>
     </section>
@@ -659,7 +660,7 @@
     <section class="activity" id="cash-flow" data-activity>
       <aside class="panel">
         <h2>Cash Flow Timeline</h2>
-        <p>Move a cash flow to a different year and decide whether PV or FV logic applies.</p>
+        <p>Move a cash flow to a different year with compound-periodic PV or FV logic.</p>
         <div class="choice-grid">
           <button type="button" data-cf-choice="pv" aria-pressed="true">Moving earlier: use present value</button>
           <button type="button" data-cf-choice="fv" aria-pressed="false">Moving later: use future value</button>
@@ -673,7 +674,7 @@
       </aside>
       <section class="stage">
         <h2>PV or FV?</h2>
-        <p id="cfSentence">A cash flow is being moved through time.</p>
+        <p id="cfSentence" role="status" aria-live="polite">A cash flow is being moved through time.</p>
         <div class="metrics">
           <div class="metric warning"><small>Direction</small><strong id="cfDirection">Earlier</strong></div>
           <div class="metric"><small>Periods Moved</small><strong id="cfPeriods">12</strong></div>
@@ -859,6 +860,11 @@
     const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
     const pct = new Intl.NumberFormat("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const modes = [...document.querySelectorAll("[data-activity]")].map((section) => section.id);
+    document.querySelectorAll(".metrics").forEach((group) => {
+      group.setAttribute("role", "status");
+      group.setAttribute("aria-live", "polite");
+      group.setAttribute("aria-atomic", "true");
+    });
 
     const value = (id) => Number(document.querySelector(`#${id}`).value);
     const setText = (id, text) => { document.querySelector(`#${id}`).textContent = text; };

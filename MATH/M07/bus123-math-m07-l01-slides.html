@@ -176,6 +176,19 @@
     .objective-node:nth-child(3),.objective-node:nth-child(5){border-left-color:var(--sage)}
     .objective-node .node-no{font-family:var(--serif);font-size:48px;font-weight:900;color:var(--gold)}
     .objective-node p{font-size:20px;line-height:1.36}
+    .slide[data-slide="8"] .sheet-and-notes{margin-top:14px}
+    .slide[data-slide="8"] .sheet-notes{gap:10px;justify-content:flex-start}
+    .slide[data-slide="15"] .photo-layout{margin-top:18px}
+    .slide[data-slide="15"] .photo-copy{justify-content:flex-start;gap:12px}
+    .slide[data-slide="15"] .card{padding:16px 18px}
+    .slide[data-slide="15"] .card p{font-size:18px;line-height:1.32}
+    .slide[data-slide="16"] .sheet-and-notes,.slide[data-slide="17"] .sheet-and-notes{margin-top:18px}
+    .slide[data-slide="17"] .sheet-notes{gap:10px}
+    .slide[data-slide="18"] .mistake-board{margin-top:24px}
+    .slide[data-slide="18"] .mistake-card{padding:20px}
+    .slide[data-slide="18"] .mistake-card .wrong,.slide[data-slide="18"] .mistake-card .right{margin:8px 0}
+    .slide[data-slide="19"] .activity-meta{margin-top:12px}
+    .slide[data-slide="19"] .audit-layout{margin-top:14px}
     .tab-strip{position:absolute;z-index:20;left:0;top:0;bottom:0;width:84px;background:var(--ink);display:flex;flex-direction:column;align-items:center;padding:24px 10px;gap:13px;border-right:1px solid rgba(255,255,255,.12)}
     .home-dot{width:34px;height:34px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer;margin-bottom:9px}
     .tab-btn{width:62px;min-height:90px;border:1px solid var(--text-soft);border-radius:10px;background:transparent;color:var(--border);font-family:var(--mono);font-size:13px;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);cursor:pointer;padding:10px}
@@ -362,10 +375,9 @@
           <div class="excel-callout" style="right:18px;bottom:18px"><strong>Build in column H</strong>Use cell references—not typed answers.</div>
         </div>
         <div class="sheet-notes">
-          <div class="prompt"><h3>Forward</h3><p>Base → tax → shipping</p></div>
-          <div class="prompt"><h3>Reverse</h3><p>Receipts → sales + tax held</p></div>
-          <div class="card sage"><div class="label">Deliverable</div><p>Five formulas and five green feedback confirmations.</p></div>
-          <div class="card steel"><div class="label">Debrief</div><p>Name the base in row 7 and explain why row 9 divides by <strong>1 + rate</strong>.</p></div>
+          <div class="card steel"><div class="label">Two models</div><p><strong>Forward:</strong> base → tax → shipping<br><strong>Reverse:</strong> receipts → sales + tax held</p></div>
+          <div class="card sage"><div class="label">Deliverable</div><p>Five formulas with five green feedback confirmations.</p></div>
+          <div class="rule-banner"><div><strong>Debrief</strong><p>Name the base in row 7. Explain <strong>1 + rate</strong> in row 9.</p></div></div>
         </div>
       </div>
     </section>
@@ -469,12 +481,7 @@
       <div class="photo-layout reverse">
         <div class="photo-copy">
           <div class="rule-banner"><div><strong>Training assumption</strong><p>The supplied assessment rate converts market value to assessed value. Round the municipal rate to four decimals before calculating tax due.</p></div></div>
-          <div class="pricing-ladder">
-            <div class="ladder-step"><div class="step-no">1</div><strong>Market value</strong><span>starting point</span></div>
-            <div class="ladder-step"><div class="step-no">2</div><strong>Assessed value</strong><span>taxable base</span></div>
-            <div class="ladder-step"><div class="step-no">3</div><strong>Annual tax</strong><span>cash cost</span></div>
-          </div>
-          <div class="card terra"><div class="label">NNN decision</div><h3>Variable occupancy cost</h3><p style="margin-top:10px">A typical triple-net lease passes property tax, insurance, and maintenance to the tenant. Review the lease terms and tax outlook before signing.</p></div>
+          <div class="card terra"><div class="label">NNN decision</div><h3>Variable occupancy cost</h3><p style="margin-top:8px">A typical triple-net lease can pass property tax, insurance, and maintenance to the tenant. Review the lease terms and tax outlook before signing.</p></div>
         </div>
         <div class="photo-frame">
           <img src="img/bus123-math-m07-l01-office-building.jpg" alt="Modern professional office building in a neutral civic business district">
@@ -597,8 +604,7 @@
           </table>
         </div>
         <div class="audit-panel">
-          <div class="card steel"><div class="label">Round 1 · 8 minutes</div><p>Complete R01–R03.</p></div>
-          <div class="card gold"><div class="label">Round 2 · 4 minutes</div><p>Choose one of R04–R06.</p></div>
+          <div class="card steel"><div class="label">Work plan</div><p><strong>8 min:</strong> complete R01–R03.<br><strong>4 min:</strong> choose one of R04–R06.</p></div>
           <div class="prompt"><h3>Which error matters most?</h3><p>Name the business risk created by its dollar impact.</p></div>
           <div class="prompt"><h3>How do you know you are done?</h3><p>Point to the evidence that proves the repair reconciles.</p></div>
           <div class="card sage"><div class="label">Deliverable</div><p>Reconciled workbook plus an 8+ word audit note.</p></div>
@@ -661,7 +667,7 @@
   "Timing: 3 minutes. Use the two arrows as the proof. Ask students to point to the base cell in both formulas. Misconception: one tax arrow starting from the other tax box. Debrief: both formulas return to the original base.",
   "Timing: 3.5 minutes. Pairs complete Live You Try It rows 6-8. Correct choice: A. Workbook answers: $435.00 sales tax, $326.25 excise tax, $8,011.25 total. Require the sentence to name the base cell. Misconception: choosing B because it looks sequential.",
   "Timing: 30 seconds. Transition to property tax. Signal that the new challenge is not multiplication; it is using the correct intermediate value and rounding at the specified step.",
-  "Timing: 4 minutes. State the model boundary: this is a simple training municipality. Explain the funnel from market value to assessed value to tax. NNN debrief: exact exposure depends on lease terms, but variable property tax can raise occupancy cost.",
+  "Timing: 4 minutes. Use the office image to state the model boundary: this is a simple training municipality. Preview the sequence from market value to assessed value to tax; the next slide makes the chain explicit. NNN debrief: exact exposure depends on lease terms, but variable property tax can raise occupancy cost.",
   "Timing: 5 minutes. Reinforce the three-step reading table. Ask students to circle the outputs that become later inputs. Misconceptions: using market value in step 3 and rounding only the final dollar answer. The manager checks are the audit criteria.",
   "Timing: 4 minutes. Walk the Excel worksheet from the formula bar to the three green outputs. Answers: $328,000 assessed value, 0.0653 rounded rate, $21,418.40 annual tax. Rationale: separate helper cells make the model auditable. Ask why the raw rate should not feed step 3 under the supplied rule.",
   "Timing: 3.5 minutes. Common Mistake reveal. Ask students to diagnose each formula before reading the correction. Answer 1: market value is the wrong base. Answer 2: the rate must be rounded first. Debrief by naming the exact prior-step cell that each correct formula should reference.",

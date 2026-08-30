@@ -67,7 +67,7 @@ OLD_PALETTE_HEX = ("#0C1A2E", "#D4A052", "#BE6B4A", "#7AAB8C")
 
 SLIDE_COUNT_EXCEPTIONS = {
     "INTRO/M01/bus123-intro-m01-l01-slides.html": 40,
-    "MATH/M08/bus123-math-m08-l01-slides.html": 24,
+    "MATH/M08/bus123-math-m08-l01-slides.html": 22,
 }
 
 COMMON_MISTAKE_SLIDE_EXCEPTIONS = {

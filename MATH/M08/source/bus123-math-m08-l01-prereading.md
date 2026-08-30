@@ -136,6 +136,12 @@ A multi-year discounted cash-flow comparison should discount each payment to the
 
 Do not add future dollars first and discount the total once when the payments arrive on different dates.
 
+### Coming in class—not pre-class work
+
+You do **not** need to open or complete the Cash Flow Timeline tool or the class decision activity before class. Before class, complete only the five **Check Your Understanding** questions below.
+
+During class, the instructor will use the Cash Flow Timeline tool for a brief whole-class visualization. You will then complete the decision activity with a partner in the starter workbook.
+
 ## Excel Habits for Class
 
 - Put assumptions in separate cells and use cell references in formulas.

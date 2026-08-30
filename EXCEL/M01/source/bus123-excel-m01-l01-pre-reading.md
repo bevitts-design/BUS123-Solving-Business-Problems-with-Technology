@@ -1,87 +1,178 @@
 ---
-title: "Navigating Excel, Formatting & Cell References"
+title: "BUS 123 — EXCEL-M01-L01 — Creating and Editing Worksheets"
 lesson: "EXCEL-M01-L01"
 kind: "Pre-Reading"
-status: "draft-from-pdf"
+status: "published"
 output: "EXCEL/M01/bus123-excel-m01-l01-pre-reading.pdf"
 ---
 
-# Navigating Excel, Formatting & Cell References
+# BUS 123 · EXCEL-M01-L01 · Creating and Editing Worksheets
 
-Pre-Reading — Complete before your first Excel class session
+**Course:** Solving Business Problems with Technology · Fall 2026 · **Track:** EXCEL · **Module:** M01 · **Lesson:** L01
 
-## Connect to Prior Knowledge
+**Case Study Company:** Harborside Medical Center
 
-In the course introduction you practiced setting up your BUS 123 folder in OneDrive and saving your first file. That habit — save first, save often, save to the right place — carries directly into this module. Every Excel workbook you build this semester will live in that folder structure. Now that your workspace is organized, you are ready to work inside Excel itself. Excel is the most widely used business software in the world. Accountants use it to build financial models. Operations managers use it to track inventory. Marketing teams use it to analyze campaign data. Regardless of your career path in business, fluency with Excel is a baseline expectation. This module builds that foundation.
+---
 
-## Concept Explanation
+## 1 · Connect to Prior Knowledge
 
-## Part A — The Excel Interface
+In the course introduction, you created a BUS 123 folder in OneDrive and saved your first file. That habit—**save first, save often, and save to the right place**—now moves inside Excel.
 
-When you open a new Excel workbook you see a grid of rows and columns. Every intersection of a row and column is a cell. Cells are addressed by column letter and row number: A1, B3, C10. The five zones you must know before class are listed below. Zone Location What It Does Quick Access Toolbar Top-left corner Stores your most-used commands for one-click access Ribbon Top band Organizes all commands into tabs: Home, Insert, Formulas, Data, and more Name Box Left of formula bar Shows the address of the selected cell (e.g., C3) Formula Bar Right of Name Box Shows the raw content of the active cell — a value or a formula Sheet Tabs Bottom of window Each tab is a separate worksheet within the same workbook file Navigation shortcuts save time in large files. Tidal Goods Co., one of our case study businesses, manages a product catalog with hundreds of rows. Three shortcuts you must know: Ctrl+End jumps to the last used cell; Ctrl+Home returns to A1; Ctrl+Arrow jumps to the edge of a contiguous data range. Practice these before class.
+An Excel **workbook** is the file you save. A workbook can contain several **worksheets**, shown as tabs along the bottom. Each worksheet contains cells arranged in rows and columns. Business analysts use those cells to store assumptions, construct formulas, and show evidence for a decision.
+
+Harborside Medical Center will use aggregate department and payer data in this lesson. The data are simplified for training and contain no patient-level information.
+
+> ✅ **Your goal before class**
+>
+> Be ready to locate a cell, explain what is stored in it, distinguish a displayed format from an underlying value, and predict what should happen when a formula is copied.
+
+---
+
+## 2 · Find Your Way Around Excel
+
+### The five interface zones
+
+| Zone | Where it appears | What it tells you or lets you do |
+|---|---|---|
+| **Ribbon** | Across the top | Organizes commands into tabs such as Home, Insert, Formulas, and Data. |
+| **Name Box** | Left of the Formula Bar | Shows the address of the active cell, such as `C8`; you can also type an address to jump there. |
+| **Formula Bar** | Above the worksheet grid | Shows the underlying value or formula stored in the active cell. |
+| **Worksheet grid** | Main work area | Organizes cells by column letter and row number. |
+| **Sheet Tabs** | Along the bottom | Move among worksheets inside the same workbook. |
+
+The intersection of a column and row is a **cell**. Column C and row 8 identify cell `C8`. A colon means “through,” so `C8:C11` means every cell from C8 through C11.
+
+### Navigation shortcuts
+
+Excel commands vary slightly by platform. Formula syntax and cell addresses remain the same.
+
+| Goal | Windows | Mac |
+|---|---|---|
+| Return to cell A1 | `Ctrl+Home` | `Control+Home` or `Control+Fn+Left Arrow` on some MacBooks |
+| Move to the last used cell | `Ctrl+End` | `Control+End` or `Control+Fn+Right Arrow` on some MacBooks |
+| Move to the edge of the current data region | `Ctrl+Arrow` | `Command+Arrow` |
+
+> 💡 **Use both the Name Box and Formula Bar**
+>
+> The Name Box answers **“Where am I?”** The Formula Bar answers **“What is actually stored here?”** A displayed result alone cannot answer both questions.
 
 <!-- page break -->
 
-## Part B — Formatting Essentials
+## 3 · Separate the Stored Value from Its Display
 
-Formatting does not change the underlying value in a cell — it changes how that value is displayed. Professional formatting serves one purpose: communication. A reader should be able to glance at your spreadsheet and immediately understand what type of data they are looking at. The three most important formatting decisions are: (1) Number format — is this a dollar amount, a percentage, or a plain number? Apply the correct format every time. (2) Alignment — numbers always align right; text always aligns left. This is a professional convention you must follow. (3) Headers and borders — bold your column headers and add borders to separate data sections from totals. ■ Common Mistake 0.15 is not the same as 15%. If you type a decimal like 0.15 into a cell without applying Percentage format, your reader has no idea whether that represents 15%, 15 cents, or some other quantity. Always apply number format before sharing any file.
+Formatting changes how a value appears; it does not change the stored value.
 
-## Part C — Cell References: Relative and Absolute
+| Stored value | Display format | What the worksheet may show |
+|---:|---|---:|
+| `84200` | Currency or Accounting | `$84,200` |
+| `0.62` | Percentage | `62%` |
+| `0.41` | Percentage | `41%` |
 
-This is the most important concept in the lesson. Every formula you write in Excel contains cell references. A reference tells Excel which cell to pull data from. There are two kinds. Relative references (written as A1, B3, etc.) update automatically when you copy a formula to a new location. If you copy a formula one row down, every relative reference shifts one row down with it. This is the default behavior — and it is usually exactly what you want when applying the same calculation to multiple rows of data. Absolute references (written as $A$1, $B$1, etc.) are locked. The dollar signs tell Excel: do not move this reference when I copy the formula. Use an absolute reference whenever every formula in a range needs to point back to the same single cell — such as a tax rate, a markup percentage, or a fixed cost stored in one place. Tidal Goods Co. example. Tidal Goods stores its 40% product markup rate in cell B1. Column B holds product costs; column C will hold the selling price calculated as: cost × (1 + markup rate). The formula in C3 should be =B3*(1+$B$1). B3 is relative — it moves down to B4, B5, B6 as we copy the formula. $B$1 is absolute — it always reads the 40% markup stored in B1, regardless of which row the formula is copied to. The F4 shortcut. After typing a cell address inside a formula, press F4 to cycle through the four reference modes: $A$1 (both locked) → A$1 (row locked) → $A1 (column locked) → A1 (relative, back to start). Professional analysts never type dollar signs manually — they always use F4.
+If you click a cell that displays `62%`, the Formula Bar may still show `0.62`. The displayed percentage is communication; the stored decimal is what formulas use.
 
-Formula Reference Relative =B3*(1+B1) Reference moves when formula is copied Absolute =B3*(1+$B$1) Reference stays fixed regardless of copy destination
+### Useful formatting decisions
 
-<!-- page break -->
+- Format dollar amounts as Currency or Accounting.
+- Format rates and shares as Percentage.
+- Use clear headers and enough column width to show complete labels.
+- Let Excel’s default alignment help distinguish text from numbers, but treat alignment as a formatting convention—not a universal rule.
+- Use borders and fills to clarify sections rather than decorating every cell.
 
-Row locked =B3*(1+A$1) Row number is locked; column can shift Col locked =B3*(1+$A1) Column letter is locked; row can shift Shortcut: Press F4 after typing a cell address in a formula to cycle through all four modes.
+> ⚠️ **Common mistake: entering 62 instead of 62%**
+>
+> `62%` and `0.62` represent the same stored rate. Entering `62` and applying Percentage format produces `6200%`, which is a different value.
 
-Check Your Understanding Answer these seven questions on your own before class. Answers appear at the end of this document.
+---
 
-## 1. Which part of the Excel interface shows the address of the currently selected cell?
+## 4 · Build Formulas with Cell References
 
-## 2. A cell displays $14.99. You click the cell and the Formula Bar shows =B3*1.4. What does this tell you
+Every Excel formula begins with an equals sign. A cell reference tells Excel where to find an input.
 
-about what is stored in the cell?
+### Relative references move
 
-## 3. You press Ctrl+End in a large worksheet. What happens?
+A relative reference such as `C17` changes when a formula is copied to another row. If the formula in C23 is copied down one row, `C23` becomes `C24`.
 
-## 4. You type 0.15 into a cell that represents a 15% discount rate. What formatting step should you take,
+### Absolute references stay fixed
 
-and why?
+An absolute reference such as `$C$21` keeps both the column and row fixed. Use it when every copied formula must use the same shared assumption.
 
-## 5. A formula in C3 reads =B3*(1+B1). When you copy this formula to C4, what does the formula in C4
+Harborside’s starter workbook uses a **simplified training contract**:
 
-become?
+> Expected reimbursement = stated charge × supplied reimbursement rate
 
-## 6. You want C4 to always reference the markup rate in B1 regardless of where the formula is copied.
+The supplied rate is stored in cell C21 on the **Charge Analysis** tab. The first reimbursement formula is:
 
-## How do you rewrite the reference to B1?
+> **Excel syntax:** `=C23*$C$21`
+>
+> **Manual check:** `$84,200 × 62% = $52,204`
 
-## 7. You have typed =B3 inside a formula. What does pressing F4 once do?
+When copied from D23 to D24:
+
+- `C23` changes to `C24` because the department charge should move with the row.
+- `$C$21` remains `$C$21` because every department uses the same supplied rate.
+
+On Windows, `F4` cycles a reference through its locking modes. On Mac, use `Command+T` or `F4`; MacBook function-key settings may affect whether you also need the `Fn` key. The important decision comes first: **identify what must move and what must remain fixed.**
+
+> 📘 **Model boundary**
+>
+> This charge-times-rate calculation is a simplified classroom assumption supplied for this lesson. Real payer contracts and Medicare payment methodologies vary. Do not describe this training calculation as a universal hospital reimbursement rule.
+
+## 5 · Choose a Formula from the Business Question
+
+Do not choose a function merely because you remember its name. First identify the evidence the manager needs.
+
+| Business question | Evidence needed | Excel pattern |
+|---|---|---|
+| What are total monthly charges? | One combined total | `=SUM(C6:C10)` |
+| What is the typical department charge? | Arithmetic mean | `=AVERAGE(C6:C10)` |
+| How many numeric charge entries are present? | Count of numeric cells | `=COUNT(C6:C10)` |
+| What is the largest charge? | Highest value | `=MAX(C6:C10)` |
+| What is the smallest charge? | Lowest value | `=MIN(C6:C10)` |
+
+### Verification is part of the model
+
+A worksheet without visible errors can still be wrong. Use evidence that tests the model’s logic:
+
+1. **Formula Bar check:** confirm the cell contains a formula, not a typed answer.
+2. **Range check:** confirm the formula includes every intended input and no unintended cells.
+3. **Reference check:** confirm shared assumptions stay fixed when formulas are copied.
+4. **Reconciliation check:** calculate the same total a second way and subtract. A correct difference should equal zero.
+5. **Reasonableness check:** ask whether the result fits the business context.
+
+For example, the five Harborside department reimbursements should total the same amount as total charges multiplied by the shared rate. If those two totals differ, the model does not reconcile.
+
+> ⚠️ **Syntax errors and logic errors are different**
+>
+> Excel often flags a syntax error. It may not flag a formula that uses the wrong range, omits a row, or hard-codes an assumption. Those silent logic errors require an audit check.
+
+---
+
+## 6 · Prepare for Class
+
+Answer these five questions before class. Bring your reasoning, not only a final answer.
+
+**1. [Retrieval]** Which interface element shows the address of the active cell, and which element shows the value or formula stored in that cell?
+
+**2. [Interpretation]** A cell displays `62%`, while the Formula Bar shows `0.62`. Did formatting change the stored value? Explain.
+
+**3. [Reference prediction]** Cell D23 contains `=C23*$C$21`. What should the formula become when copied to D24? Identify what moves and what stays fixed.
+
+**4. [Method choice]** A manager asks, “What is the highest department charge?” Which Excel pattern matches the evidence needed, and why would `SUM` answer a different question?
+
+**5. [Error diagnosis]** A student types `176886` into a total cell and sees no formula error. Why is that not convincing proof that the reimbursement model is correct? Name one stronger check.
+
+---
 
 ## Key Vocabulary
 
-Cell address The unique identifier for a cell, expressed as a column letter followed by a row number (e.g., B3, C10). Name Box The box to the left of the Formula Bar that displays the address of the currently selected cell. Formula Bar
-
-<!-- page break -->
-
-The bar above the worksheet grid that displays the raw content — value or formula — of the active cell. Number format A display setting that controls how a numeric value appears in a cell (currency, percentage, decimal places, etc.) without altering the underlying value. Relative reference A cell reference that automatically adjusts when a formula is copied to a new location. Absolute reference A cell reference locked with dollar signs ($A$1) that does not change when a formula is copied. F4 Keyboard shortcut that cycles a cell reference through four modes: $A$1, A$1, $A1, A1. Ribbon The horizontal band of tabs and command groups at the top of the Excel window. CHECK YOUR UNDERSTANDING — ANSWER KEY
-
-## 1. The Name Box (located to the left of the Formula Bar).
-
-## 2. The cell contains a formula (=B3*1.4), not a typed value. The cell displays the formula's result ($14.99).
-
-## 3. Excel jumps to the last used cell in the worksheet — the bottom-right corner of your data range.
-
-## 4. Apply Percentage format (Home tab > Number group). Without it, a reader cannot tell whether 0.15
-
-represents 15%, $0.15, or another quantity.
-
-## 5. =B4*(1+B2). Both references are relative, so each shifts one row down when copied.
-
-## 6. Write $B$1. The dollar signs lock both the column and row, so the reference always points to B1 regardless
-
-of where the formula is copied.
-
-## 7. F4 changes =B3 to =$B$3 — locking both the column and row with dollar signs.
+| Term | Meaning |
+|---|---|
+| **Workbook** | The Excel file that can contain one or more worksheets. |
+| **Worksheet** | One tabbed grid inside a workbook. |
+| **Active cell** | The currently selected cell. |
+| **Cell address** | A column letter and row number, such as `C8`. |
+| **Range** | A group of cells, such as `C8:C11`. |
+| **Formula Bar** | The interface area that shows the active cell’s underlying value or formula. |
+| **Relative reference** | A reference that changes when copied. |
+| **Absolute reference** | A reference, such as `$C$21`, that remains fixed when copied. |
+| **Reconciliation** | An independent comparison used to prove that two logically equivalent totals agree. |

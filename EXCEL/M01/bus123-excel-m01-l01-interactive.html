@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BUS123 Excel First Steps Interactive</title>
+  <title>BUS123 Creating and Editing Worksheets Interactive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0E1116;
@@ -29,9 +29,9 @@
       --cell-head: #1A1A2E;
       --result-row: #FFFBF0;
       --gradient: linear-gradient(90deg, #B8843D 0%, #9C4A2B 50%, #4A7C5E 100%);
-      --font-serif: "Instrument Serif", Georgia, serif;
-      --font-sans: "Geist", system-ui, sans-serif;
-      --font-mono: "JetBrains Mono", "Courier New", monospace;
+      --font-serif: "Bodoni Moda", serif;
+      --font-sans: "DM Sans", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
     }
 
     * {
@@ -138,7 +138,7 @@
 
     .app-shell {
       display: grid;
-      grid-template-columns: minmax(240px, 300px) minmax(520px, 1fr) minmax(260px, 340px);
+      grid-template-columns: minmax(240px, 260px) minmax(600px, 1fr) minmax(260px, 300px);
       gap: 24px;
       width: min(1500px, calc(100vw - 48px));
       margin: 24px auto;
@@ -387,7 +387,7 @@
       border-collapse: collapse;
       table-layout: fixed;
       width: 100%;
-      min-width: 720px;
+      min-width: 520px;
       background: var(--white);
       color: var(--text);
     }
@@ -428,6 +428,12 @@
       padding: 0;
       position: relative;
     }
+
+    .sheet tr > :nth-child(1) { width: 7%; }
+    .sheet tr > :nth-child(2) { width: 22%; }
+    .sheet tr > :nth-child(3) { width: 26%; }
+    .sheet tr > :nth-child(4) { width: 17%; }
+    .sheet tr > :nth-child(5) { width: 28%; }
 
     tr:nth-child(even) .cell {
       background: var(--cell-alt);
@@ -722,10 +728,10 @@
   <header class="top-bar">
     <div>
       <p class="brand-kicker">BUS123 · Excel M01 · L01</p>
-      <h1>Excel First Steps</h1>
+      <h1>Creating and Editing Worksheets</h1>
     </div>
     <div class="top-meta">
-      <span>Practice before the starter workbook</span>
+      <span>Pre-class retrieval · individual · 6–8 minutes</span>
       <button class="reset-btn" id="resetProgress" type="button">Reset practice</button>
     </div>
   </header>
@@ -733,7 +739,7 @@
   <main class="app-shell" aria-label="Interactive Excel practice">
     <aside class="panel" aria-labelledby="missionTitle">
       <h2 class="panel-title" id="missionTitle">Your Missions</h2>
-      <p class="panel-sub">Each mission names the exact cells and toolbar moves to complete.</p>
+      <p class="panel-sub">Complete all five missions. Bring the finished screen to the slide 4 retrieval debrief.</p>
 
       <div class="progress-wrap" aria-label="Progress">
         <div class="progress-line">
@@ -751,8 +757,8 @@
     <section class="workbench" aria-labelledby="workbenchTitle">
       <div class="workbench-head">
         <div class="workbench-title">
-          <p class="case-label">Tidal Goods Co.</p>
-          <h2 id="workbenchTitle">Mini Product Worksheet</h2>
+          <p class="case-label">Harborside Medical Center</p>
+          <h2 id="workbenchTitle">Department Charge Worksheet</h2>
         </div>
         <div class="toolbar" aria-label="Formatting tools">
           <button class="tool-btn" id="boldBtn" type="button" title="Bold selected cell">B</button>
@@ -817,8 +823,8 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const STORAGE_KEY = "bus123-excel-first-steps-v1";
-    const columns = ["A", "B", "C", "D", "E"];
+    const STORAGE_KEY = "bus123-excel-m01-l01-retrieval-v2";
+    const columns = ["A", "B", "C", "D"];
     const rows = [1, 2, 3, 4, 5, 6];
     const RESULT_CELL = "D3";
     const INSPECT_MISSION_ID = "inspect-formula";
@@ -843,48 +849,49 @@
         id: "enter-table",
         name: "Enter labels and values",
         short: "Fill A2:D2 and A3:C3.",
-        prompt: "Build the small product table that the later missions will use.",
+        prompt: "Build the small Harborside charge table that the later missions will use.",
         steps: [
-          "In row 2, type Product in A2, Units in B2, Unit Cost in C2, and Total Cost in D2.",
-          "In row 3, type Canvas Tote in A3.",
-          "Type 24 in B3 and 8.5 in C3.",
+          "In row 2, type Department in A2, Monthly Charge in B2, Rate in C2, and Expected Reimb. in D2.",
+          "In row 3, type Cardiology in A3.",
+          "Type 84200 in B3 and 0.62 in C3.",
           "Leave D3 blank for now."
         ],
-        completeWhen: "A2:D2 contain the four labels, A3 is Canvas Tote, B3 is 24, and C3 is 8.5.",
-        hint: "Use A2:D2 for labels. Use A3 for the product name, B3 for units, and C3 for unit cost. D3 stays blank until the formula mission.",
-        success: "Nice. Labels describe the worksheet; values give Excel something to calculate.",
-        check: () => cellText("A2") === "product" && cellText("B2") === "units" && cellText("C2") === "unit cost" && cellText("D2") === "total cost" && cellText("A3") === "canvas tote" && nearlyEqual(numberValue("B3"), 24) && nearlyEqual(numberValue("C3"), 8.5)
+        completeWhen: "A2:D2 contain the four labels, A3 is Cardiology, B3 is 84200, and C3 is 0.62.",
+        hint: "Use A2:D2 for labels. Use A3 for the department, B3 for the monthly charge, and C3 for the supplied rate. D3 stays blank until the formula mission.",
+        success: "Nice. Labels give each aggregate value its business meaning.",
+        check: () => cellText("A2") === "department" && cellText("B2") === "monthly charge" && cellText("C2") === "rate" && cellText("D2") === "expected reimb." && cellText("A3") === "cardiology" && nearlyEqual(numberValue("B3"), 84200) && nearlyEqual(numberValue("C3"), 0.62)
       },
       {
         id: "format-table",
         name: "Make it readable",
-        short: "Header row, C3 currency, B3:C3 right-aligned.",
+        short: "Header row, B3 currency, C3 percent, B3:C3 right-aligned.",
         prompt: "Format the table so another person can scan it quickly.",
         steps: [
           "Click Header row to format A2:D2.",
-          "Select C3 and click the $ button.",
+          "Select B3 and click the $ button.",
+          "Select C3 and click the % button.",
           "Select B3 and click Right.",
           "Select C3 again and click Right."
         ],
-        completeWhen: "A2:D2 are header-formatted, C3 is currency-formatted, and B3 plus C3 are right-aligned.",
-        hint: "Select a cell, then use the toolbar. Header row formats A2:D2 in one move. The $ and Right buttons apply to the selected cell.",
+        completeWhen: "A2:D2 are header-formatted, B3 is currency-formatted, C3 is percentage-formatted, and both are right-aligned.",
+        hint: "Select a cell, then use the toolbar. Header row formats A2:D2 in one move. Monthly Charge uses $, while Rate uses %.",
         success: "Exactly. Formatting is communication, not decoration.",
-        check: () => ["A2", "B2", "C2", "D2"].every(address => cells[address].bold) && cells.C3.format === "currency" && cells.B3.align === "right" && cells.C3.align === "right"
+        check: () => ["A2", "B2", "C2", "D2"].every(address => cells[address].bold) && cells.B3.format === "currency" && cells.C3.format === "percent" && cells.B3.align === "right" && cells.C3.align === "right"
       },
       {
         id: "write-formula",
         name: "Write a formula",
         short: "Put =B3*C3 in D3.",
-        prompt: "Use a formula so Excel calculates total cost from the cells already in the table.",
+        prompt: "Use the lesson's simplified training contract so Excel calculates expected reimbursement from the cells already in the table.",
         steps: [
-          "Select D3, the Total Cost cell for Canvas Tote.",
+          "Select D3, the Expected Reimb. cell for Cardiology.",
           "Type =B3*C3 in D3 or in the formula bar.",
-          "Press Enter. D3 should display 204."
+          "Press Enter. D3 should display 52204."
         ],
-        completeWhen: "D3 stores a formula that multiplies B3 by C3 and returns 204.",
-        hint: "Start with the equals sign. Excel reads =B3*C3 as units times unit cost. If D3 shows the text instead of 204, check that the formula starts with =.",
-        success: "That is the move: let Excel calculate the answer so the worksheet can update later.",
-        check: () => isProductFormula(RESULT_CELL, "B3", "C3") && nearlyEqual(numberValue(RESULT_CELL), 204)
+        completeWhen: "D3 stores a formula that multiplies B3 by C3 and returns 52204.",
+        hint: "Start with the equals sign. In this training model, Excel reads =B3*C3 as charge times supplied rate. If D3 shows text instead of 52204, check the equals sign.",
+        success: "That is the move: the result now depends on labeled input cells and can update later.",
+        check: () => isProductFormula(RESULT_CELL, "B3", "C3") && nearlyEqual(numberValue(RESULT_CELL), 52204)
       },
       {
         id: "inspect-formula",
@@ -893,13 +900,13 @@
         prompt: "Compare the displayed answer with the formula that produced it.",
         steps: [
           "Select D3.",
-          "Look at the grid: D3 should display 204.",
+          "Look at the grid: D3 should display 52204.",
           "Look at the formula bar: it should show =B3*C3.",
           "Click I checked the formula bar."
         ],
         completeWhen: "D3 is selected, the formula bar shows =B3*C3, and you click the formula-bar confirmation button.",
         hint: "The grid shows the calculated answer. The formula bar shows the underlying formula. The confirmation button appears only for this mission.",
-        success: "Perfect. This habit will save you from editing the wrong thing later.",
+        success: "Perfect. Deliverable complete: five retrieval missions, including formula-bar evidence.",
         check: () => state.activeCell === RESULT_CELL && isProductFormula(RESULT_CELL, "B3", "C3") && state.formulaBarChecked
       }
     ];

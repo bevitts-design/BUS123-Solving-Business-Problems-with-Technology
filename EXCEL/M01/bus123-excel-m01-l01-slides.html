@@ -1,648 +1,791 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BUS123 · EXCEL-M01-L01 · Foundations of Excel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0E1116; --paper:#FAF8F3; --paper-2:#F2EEE5; --white:#FFFFFF;
-  --text:#1A1F2C; --text-soft:#4A5567; --muted:#7A8290; --border:#E5E1D6;
-  --sage:#4A7C5E; --gold:#B8843D; --terra:#9C4A2B; --steel:#355773;
-  --formula-bg:#EAF3EC;
-  --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
-  --serif:"Bodoni Moda",serif; --sans:"DM Sans",sans-serif; --mono:"JetBrains Mono",monospace;
-  --W:1280px; --H:720px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;background:var(--ink);overflow:hidden;font-family:var(--sans)}
-#deck{position:absolute;width:var(--W);height:var(--H);transform-origin:top left;background:var(--ink);display:flex}
-
-/* ---- Tab strip (chrome, not slide content) ---- */
-.tab-strip{width:84px;flex:none;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 0;background:var(--ink)}
-.home-dot{width:14px;height:14px;border-radius:50%;background:var(--gradient);cursor:pointer;flex:none;box-shadow:0 0 0 4px rgba(255,255,255,.04)}
-.tab{width:52px;flex:1;max-height:170px;border:none;border-radius:0 12px 12px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;font-family:var(--sans);transition:all .2s ease;opacity:.92}
-.tab .tnum{font-size:24px;font-weight:600;line-height:1}
-.tab .tlabel{writing-mode:vertical-rl;text-orientation:mixed;font-size:14px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
-.tab[data-section="1"]{background:var(--sage)}
-.tab[data-section="2"]{background:var(--gold)}
-.tab[data-section="3"]{background:var(--terra)}
-.tab.active{background:var(--paper);color:var(--text);opacity:1;box-shadow:0 4px 20px rgba(0,0,0,.35)}
-.tab.active .tdot{width:10px;height:10px;border-radius:50%}
-.tab[data-section="1"].active .tdot{background:var(--sage)}
-.tab[data-section="2"].active .tdot{background:var(--gold)}
-.tab[data-section="3"].active .tdot{background:var(--terra)}
-.tdot{display:none}
-.tab.active .tdot{display:block}
-
-/* ---- Stage / sheet ---- */
-.stage{position:relative;flex:1;margin:22px 22px 22px 6px;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.slide{padding:56px 64px;background:var(--paper);color:var(--text);flex-direction:column;overflow:auto}
-.slide.dark{background:var(--ink);color:var(--paper)}
-
-/* geometry on dark slides */
-.geo{position:absolute;pointer-events:none;z-index:0}
-.geo.c1{width:520px;height:520px;border-radius:50%;border:2px solid var(--sage);opacity:.08;right:-140px;top:-160px}
-.geo.c2{width:360px;height:360px;border-radius:50%;background:var(--gold);opacity:.06;left:-120px;bottom:-130px}
-.geo.c3{width:240px;height:240px;border-radius:50%;border:2px solid var(--terra);opacity:.09;right:180px;bottom:-90px}
-.geo.grid{inset:0;opacity:.05;background-image:linear-gradient(var(--paper) 1px,transparent 1px),linear-gradient(90deg,var(--paper) 1px,transparent 1px);background-size:56px 56px}
-.slide>*{position:relative;z-index:1}
-
-/* ---- Typography ---- */
-.eyebrow{font-family:var(--sans);font-size:24px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--sage)}
-.slide.dark .eyebrow{color:var(--gold)}
-h1{font-family:var(--serif);font-weight:900;font-size:74px;line-height:1.02;letter-spacing:-.01em}
-h2{font-family:var(--serif);font-weight:700;font-size:42px;line-height:1.06}
-.sub{font-family:var(--serif);font-style:italic;font-weight:400;font-size:30px;color:var(--text-soft)}
-.slide.dark .sub{color:#C9D1DC}
-.bar{height:8px;width:300px;border-radius:8px;background:var(--gradient)}
-.title-rule{height:3px;width:100%;background:var(--border);margin:18px 0 30px}
-.slide.dark .title-rule{background:rgba(255,255,255,.12)}
-p,li{font-size:26px;line-height:1.5;color:var(--text)}
-.slide.dark p,.slide.dark li{color:#D7DEE7}
-ul{list-style:none;display:flex;flex-direction:column;gap:16px}
-li{padding-left:34px;position:relative}
-li::before{content:"";position:absolute;left:0;top:13px;width:14px;height:14px;border-radius:4px;background:var(--sage)}
-li.g::before{background:var(--gold)} li.t::before{background:var(--terra)}
-
-/* header row */
-.header-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
-
-/* cards / grids */
-.cards{display:grid;gap:20px;margin-top:8px}
-.cards.c2{grid-template-columns:1fr 1fr}
-.cards.c3{grid-template-columns:repeat(3,1fr)}
-.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px 26px}
-.card h3{font-family:var(--serif);font-weight:700;font-size:27px;margin-bottom:8px}
-.card .k{font-family:var(--sans);font-size:24px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
-.card.gold .k{color:var(--gold)} .card.terra .k{color:var(--terra)}
-.card p{font-size:24px;color:var(--text-soft)}
-
-/* formula panel (Excel syntax first) */
-.fx{background:var(--ink);border-radius:14px;padding:22px 26px;border-left:6px solid var(--gold)}
-.fx .lab{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
-.fx code{display:block;font-family:var(--sans);font-weight:600;font-size:30px;color:#EAF0F7;font-feature-settings:"tnum";letter-spacing:.01em}
-.manual{background:var(--paper-2);border-radius:14px;padding:20px 26px;margin-top:16px}
-.manual .lab{font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px}
-.manual code{font-family:var(--sans);font-weight:500;font-size:27px;color:var(--text);font-feature-settings:"tnum"}
-.flow{font-size:26px;color:var(--text-soft);margin-top:12px}
-.live-pause{margin-top:14px;background:var(--formula-bg);border:1px solid rgba(74,124,94,.35);border-left:6px solid var(--sage)}
-.live-pause .lab{color:var(--sage);font-size:18px;letter-spacing:.12em}
-.live-pause code{font-size:21px;color:var(--steel);font-family:var(--mono);font-weight:700}
-.live-pause .flow{font-size:20px;line-height:1.35;color:var(--text-soft)}
-
-/* Excel worksheet replica */
-table.xl{border-collapse:collapse;width:100%;font-size:24px;font-feature-settings:"tnum"}
-table.xl th,table.xl td{border:1px solid #e2e8f0;padding:10px 14px;text-align:left}
-table.xl thead th{background:#1a1a2e;color:var(--gold);border-color:#c9a84c;font-weight:600}
-table.xl .rownum{background:#1a1a2e;color:#c9a84c;text-align:center;font-weight:600;width:46px}
-table.xl tbody tr:nth-child(even) td{background:#f7f8fa}
-table.xl td{background:#fff;color:#0a3d6b}
-table.xl tr.result td{background:#fffbf0;color:#1a6b3c;border-left:3px solid #c9a84c;font-weight:600}
-	table.xl td.fml{color:#1a6b3c;font-weight:500}
-	.fmlbar{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:24px;color:#1a6b3c;margin-bottom:12px;font-feature-settings:"tnum"}
-	.fmlbar b{color:#0a3d6b;font-family:var(--sans)}
-	.slide.compact-example{padding:26px 52px}
-	.compact-example .title-rule{margin:8px 0 12px}
-	.compact-example p,.compact-example li{font-size:22px;line-height:1.35}
-	.compact-example ul{gap:10px}
-	.compact-example li::before{top:9px}
-	.compact-example .two{gap:24px}
-	.compact-example table.xl th,.compact-example table.xl td{padding:6px 8px}
-	.compact-example .fx{padding:14px 18px;border-radius:10px}
-	.compact-example .fx .lab{font-size:17px;margin-bottom:6px}
-	.compact-example .fx code{font-size:25px}
-	.compact-example .manual{padding:12px 16px;margin-top:9px;border-radius:10px}
-	.compact-example .manual .lab{font-size:17px;margin-bottom:6px}
-	.compact-example .manual code{font-size:21px}
-	.compact-example .flow{font-size:20px;line-height:1.25;margin-top:7px}
-	.compact-example .live-pause{margin-top:9px}
-	.compact-example .live-pause .lab{font-size:16px}
-	.compact-example .live-pause code{font-size:18px}
-	.compact-example .live-pause .flow{font-size:17px;line-height:1.25}
-	.compact-example .fmlbar{font-size:20px;margin-bottom:8px;padding:6px 10px}
-	.compact-example .card{padding:16px 18px;border-radius:10px}
-	.compact-example .card h3{font-size:23px;margin-bottom:5px}
-	.compact-example .card .k{font-size:17px;margin-bottom:5px}
-	.compact-example .card p{font-size:19px;line-height:1.3}
-
-/* mistake slide */
-.mistake-tag{display:inline-block;background:var(--terra);color:#fff;font-size:24px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 18px;border-radius:8px}
-.bad,.good{border-radius:12px;padding:18px 24px;font-size:27px;font-weight:600;font-feature-settings:"tnum"}
-.bad{background:rgba(156,74,43,.18);border:1px solid var(--terra);color:#F3C9BB}
-.good{background:rgba(74,124,94,.2);border:1px solid var(--sage);color:#CDE6D6}
-
-/* image slot */
-.image-slot{border:2px dashed var(--border);border-radius:14px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:24px;font-weight:500;letter-spacing:.04em;min-height:200px;overflow:hidden}
-.image-slot span{opacity:.8}
-.image-slot.has-image{border:1px solid var(--border);background:var(--white);min-height:315px}
-.image-slot.has-image img{display:block;width:100%;height:100%;object-fit:cover}
-
-/* misc */
-.lo-num{font-family:var(--serif);font-weight:900;font-size:30px;color:var(--sage);margin-right:14px}
-.pill{display:inline-block;background:var(--paper-2);border:1px solid var(--border);border-radius:999px;padding:8px 18px;font-size:24px;font-weight:500;color:var(--text-soft)}
-.stat{font-family:var(--serif);font-weight:900;font-size:96px;line-height:1;background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-.center{align-items:center;text-align:center}
-.spacer{flex:1}
-.footer-meta{font-size:24px;color:var(--muted);letter-spacing:.04em}
-.slide.dark .footer-meta{color:#8A93A0}
-
-/* reveal animation */
-.reveal{opacity:0}
-.slide.is-active .reveal{animation:fadeUp .5s ease both}
-.slide.dark.is-active .reveal{animation:fadeIn .45s ease both}
-.slide.is-active .reveal:nth-child(1){animation-delay:.04s}
-.slide.is-active .reveal:nth-child(2){animation-delay:.14s}
-.slide.is-active .reveal:nth-child(3){animation-delay:.24s}
-.slide.is-active .reveal:nth-child(4){animation-delay:.34s}
-.slide.is-active .reveal:nth-child(5){animation-delay:.44s}
-.slide.is-active .reveal:nth-child(6){animation-delay:.54s}
-.slide.is-active .reveal:nth-child(7){animation-delay:.64s}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion: reduce){.reveal{opacity:1!important;animation:none!important}}
-
-/* slide number + notes */
-#slideno{position:fixed;right:18px;bottom:14px;color:#6f7884;font-size:15px;letter-spacing:.12em;z-index:50}
-#notes{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:rgba(14,17,22,.96);color:#E7ECF2;padding:22px 28px;font-size:18px;line-height:1.5;border-top:3px solid var(--gold);display:none;z-index:60}
-#notes b{color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-size:14px}
-#hint{position:fixed;left:18px;bottom:14px;color:#6f7884;font-size:14px;letter-spacing:.06em;z-index:50}
-
-.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
-.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
-.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
-.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
-.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
-.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
-.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
-.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
-.formula-reference-table td.watch{background:var(--paper-2);}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUS123 · EXCEL-M01-L01 · Creating and Editing Worksheets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0E1116;
+      --paper:#FAF8F3;
+      --paper-2:#F2EEE5;
+      --white:#FFFFFF;
+      --text:#1A1F2C;
+      --text-soft:#4A5567;
+      --muted:#7A8290;
+      --border:#E5E1D6;
+      --sage:#4A7C5E;
+      --gold:#B8843D;
+      --terra:#9C4A2B;
+      --steel:#355773;
+      --formula-bg:#EAF3EC;
+      --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+      --serif:"Bodoni Moda",serif;
+      --sans:"DM Sans",sans-serif;
+      --mono:"JetBrains Mono",monospace;
+      --type-display:72px;
+      --type-title:46px;
+      --type-subtitle:30px;
+      --type-lead:24px;
+      --type-body:20px;
+      --type-small:16px;
+      --type-eyebrow:15px;
+      --type-stat:140px;
+      --excel-header:#1a1a2e;
+      --excel-header-text:#c9a84c;
+      --excel-blue:#0a3d6b;
+      --excel-alt:#f7f8fa;
+      --excel-result:#fffbf0;
+      --excel-green:#1a6b3c;
+      --excel-grid:#d8dce2;
+      --excel-bar:#edf0f2;
+      --excel-input:#fff2cc;
+      --excel-selection:#217346;
+      --error-bg:#FCE4D6;
+    }
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--ink);font-family:var(--sans);color:var(--text)}
+    button{font:inherit}
+    .deck-shell{position:absolute;left:0;top:0;width:1280px;height:720px;transform-origin:0 0;background:var(--ink);overflow:hidden}
+    .tabs{position:absolute;left:0;top:0;width:84px;height:720px;background:var(--ink);display:flex;flex-direction:column;align-items:center;padding:24px 10px;gap:14px;z-index:20;border-right:1px solid var(--text-soft)}
+    .home-dot{width:40px;height:40px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer;position:relative;margin-bottom:16px}
+    .home-dot::after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--ink)}
+    .tab-btn{width:60px;min-height:116px;border:1px solid var(--text-soft);border-radius:18px;background:transparent;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;padding:10px 0}
+    .tab-btn span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--mono);font-size:var(--type-eyebrow);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+    .tab-btn[data-tab="1"]{border-color:var(--sage)}
+    .tab-btn[data-tab="2"]{border-color:var(--gold)}
+    .tab-btn[data-tab="3"]{border-color:var(--terra)}
+    .tab-btn.active{background:var(--paper);color:var(--ink)}
+    .tab-btn.active::before{content:"";position:absolute;left:8px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--sage)}
+    .tab-btn[data-tab="2"].active::before{background:var(--gold)}
+    .tab-btn[data-tab="3"].active::before{background:var(--terra)}
+    .stage{position:absolute;left:84px;top:0;width:1196px;height:720px;background:var(--paper);overflow:hidden}
+    .slide{position:absolute;inset:0;display:none;padding:42px 52px 60px;background:var(--paper);overflow:hidden}
+    .slide.active{display:block}
+    .slide.dark{background:var(--ink);color:var(--white)}
+    .slide.terra{background:var(--terra);color:var(--white)}
+    .slide.center{display:none;align-items:center;justify-content:center;text-align:center}
+    .slide.center.active{display:flex}
+    .gradient-bar{position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--gradient)}
+    .eyebrow{font-family:var(--mono);font-size:var(--type-eyebrow);font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+    .dark .eyebrow,.terra .eyebrow{color:var(--gold)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-family:var(--serif);font-size:var(--type-display);line-height:.98;letter-spacing:-2px;margin-bottom:20px}
+    h2{font-family:var(--serif);font-size:var(--type-title);line-height:1.04;letter-spacing:-1px;margin-bottom:18px}
+    h3{font-size:24px;line-height:1.15;margin-bottom:10px}
+    p,li{font-size:var(--type-body);line-height:1.35}
+    .lead{font-size:var(--type-lead);line-height:1.3;color:var(--text-soft)}
+    .dark .lead,.terra .lead{color:var(--paper-2)}
+    .small{font-size:var(--type-small);line-height:1.35;color:var(--text-soft)}
+    .dark .small,.terra .small{color:var(--paper-2)}
+    .mono{font-family:var(--mono)}
+    .accent{color:var(--sage)}
+    .gold{color:var(--gold)}
+    .terra-text{color:var(--terra)}
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .22s ease,transform .22s ease}
+    .reveal.is-visible{opacity:1;transform:none}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+    .split.wide-left{grid-template-columns:1.15fr .85fr}
+    .split.wide-right{grid-template-columns:.82fr 1.18fr}
+    .photo{width:100%;height:100%;object-fit:cover;display:block}
+    .photo-panel{position:relative;border-radius:24px;overflow:hidden;min-height:430px;background:var(--paper-2)}
+    .photo-panel figcaption{position:absolute;left:18px;right:18px;bottom:16px;background:var(--ink);color:var(--white);padding:10px 14px;border-radius:10px;font-size:var(--type-small);line-height:1.25}
+    .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 37%,transparent 72%)}
+    .hero-copy{position:relative;z-index:2;width:58%;padding-top:90px}
+    .section-photo{padding:0}
+    .section-photo .photo{position:absolute;inset:0}
+    .section-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 42%,transparent 78%)}
+    .section-copy{position:relative;z-index:2;width:53%;padding:92px 0 0 58px}
+    .part-number{font-family:var(--serif);font-size:120px;line-height:.8;color:var(--gold);opacity:.95;margin-bottom:22px}
+    .route{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;position:relative}
+    .route::before{content:"";position:absolute;left:9%;right:9%;top:45px;height:4px;background:var(--gradient)}
+    .route-step{position:relative;text-align:center;padding:0 18px}
+    .route-node{width:90px;height:90px;border-radius:50%;margin:0 auto 20px;background:var(--white);border:4px solid var(--sage);display:grid;place-items:center;font-family:var(--serif);font-size:40px;font-weight:900;position:relative;z-index:1}
+    .route-step:nth-child(2) .route-node{border-color:var(--gold)}
+    .route-step:nth-child(3) .route-node{border-color:var(--terra)}
+    .route-step:nth-child(4) .route-node{border-color:var(--steel)}
+    .route-step p{font-size:18px;color:var(--text-soft)}
+    .outcomes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:20px}
+    .outcome{background:var(--white);border:1px solid var(--border);border-left:6px solid var(--sage);border-radius:14px;padding:20px 22px;display:grid;grid-template-columns:54px 1fr;gap:16px;align-items:center}
+    .outcome:nth-child(2){border-left-color:var(--gold)}
+    .outcome:nth-child(3){border-left-color:var(--terra)}
+    .outcome:nth-child(4){border-left-color:var(--steel)}
+    .outcome .num{font-family:var(--serif);font-size:44px;font-weight:900;color:var(--text-soft)}
+    .outcome p{margin:0;font-size:19px}
+    .diagram-wrap{background:var(--white);border:1px solid var(--border);border-radius:22px;padding:20px 24px}
+    .diagram-wrap svg{width:100%;height:390px;display:block}
+    .callout{background:var(--formula-bg);border-left:4px solid var(--sage);padding:14px 18px;border-radius:0 12px 12px 0;font-size:18px;line-height:1.3}
+    .formula-panel{background:var(--formula-bg);color:var(--ink);border-left:4px solid var(--sage);font-family:var(--mono);font-size:18px;font-weight:500;line-height:1.4;padding:16px 18px;border-radius:0 12px 12px 0}
+    .formula-panel .fn{display:block;font-size:22px;font-weight:700;color:var(--steel);margin-bottom:14px}
+    .formula-panel .comment{display:block;color:var(--text-soft);font-family:var(--sans);font-size:16px;margin-top:10px}
+    .formula-panel .result{display:block;color:var(--excel-green);font-weight:700;margin-top:8px}
+    .activity{border:4px solid var(--gold);border-radius:24px;background:var(--white);padding:28px 32px;position:relative}
+    .activity::before{content:"STUDENT WORK";position:absolute;top:-17px;left:26px;background:var(--gold);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:1px;padding:7px 14px;border-radius:8px}
+    .activity h2{font-size:48px;margin-top:8px}
+    .activity-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:22px 0}
+    .meta-cell{background:var(--paper-2);border-radius:10px;padding:12px}
+    .meta-cell b{display:block;font-family:var(--mono);font-size:14px;color:var(--terra);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px}
+    .meta-cell span{font-size:17px;line-height:1.2}
+    .deliverable{background:var(--ink);color:var(--white);border-radius:14px;padding:18px 20px;font-size:22px;line-height:1.25}
+    .excel-window{background:var(--white);border:1px solid var(--excel-grid);border-radius:12px;overflow:hidden;box-shadow:0 10px 26px rgba(14,17,22,.12)}
+    .excel-titlebar{height:28px;background:var(--excel-header);color:var(--white);display:flex;align-items:center;justify-content:space-between;padding:0 12px;font-size:14px}
+    .excel-ribbon{height:32px;background:var(--excel-bar);border-bottom:1px solid var(--excel-grid);display:flex;align-items:center;gap:18px;padding:0 12px;font-size:13px;color:var(--text-soft)}
+    .formula-strip{height:36px;background:var(--white);border-bottom:1px solid var(--excel-grid);display:grid;grid-template-columns:72px 34px 1fr;align-items:center;font-family:var(--mono);font-size:14px}
+    .name-box{height:100%;display:grid;place-items:center;border-right:1px solid var(--excel-grid);color:var(--excel-blue);font-weight:700}
+    .fx-label{display:grid;place-items:center;color:var(--muted);font-style:italic}
+    .formula-value{padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+    .sheet-grid{width:100%;border-collapse:collapse;table-layout:fixed;font-size:14px}
+    .sheet-grid th,.sheet-grid td{border:1px solid var(--excel-grid);height:30px;padding:4px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .sheet-grid .corner,.sheet-grid .col-head,.sheet-grid .row-head{background:var(--excel-bar);color:var(--text-soft);font-weight:600;text-align:center}
+    .sheet-grid .row-head{width:38px;padding:0}
+    .sheet-grid .header{background:var(--excel-header);color:var(--excel-header-text);font-weight:700;text-align:center;border-color:var(--excel-header-text)}
+    .sheet-grid .value{color:var(--excel-blue);text-align:right}
+    .sheet-grid .input-cell{background:var(--excel-input);color:var(--excel-blue);text-align:right}
+    .sheet-grid .formula-cell{background:var(--formula-bg);color:var(--excel-blue);font-family:var(--mono);text-align:right}
+    .sheet-grid .result-cell{background:var(--excel-result);color:var(--excel-green);font-weight:700;text-align:right;border-left:3px solid var(--excel-header-text)}
+    .sheet-grid .precedent{box-shadow:inset 0 0 0 3px var(--gold)}
+    .sheet-grid .active-cell{position:relative;box-shadow:inset 0 0 0 3px var(--excel-selection);z-index:1}
+    .sheet-grid .active-cell::after{content:"";position:absolute;width:7px;height:7px;right:-1px;bottom:-1px;background:var(--excel-selection)}
+    .sheet-tabs{height:32px;background:var(--excel-bar);display:flex;align-items:end;gap:2px;padding-left:42px;border-top:1px solid var(--excel-grid);overflow:hidden}
+    .sheet-tab{padding:7px 12px 6px;background:var(--paper-2);border:1px solid var(--excel-grid);border-bottom:0;border-radius:7px 7px 0 0;font-size:12px;white-space:nowrap}
+    .sheet-tab.active{background:var(--white);color:var(--excel-green);font-weight:700;border-top:3px solid var(--excel-selection);padding-top:5px}
+    .excel-caption{font-size:var(--type-small);color:var(--text-soft);margin:9px 0 0}
+    .legend{display:flex;gap:18px;align-items:center;margin-top:10px;font-size:15px;color:var(--text-soft)}
+    .legend span::before{content:"";display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px;background:var(--excel-input);border:1px solid var(--border)}
+    .legend .formula-key::before{background:var(--formula-bg)}
+    .legend .result-key::before{background:var(--excel-result);border-left:3px solid var(--excel-header-text)}
+    .decision-tree{display:grid;grid-template-columns:1.1fr 70px 1fr;gap:16px;align-items:center;margin-top:18px}
+    .question-list,.function-list{display:grid;gap:10px}
+    .tree-node{padding:13px 16px;border-radius:10px;background:var(--white);border:1px solid var(--border);font-size:17px;line-height:1.2}
+    .function-list .tree-node{font-family:var(--mono);font-weight:700;color:var(--steel);background:var(--formula-bg);border-left:4px solid var(--sage)}
+    .tree-arrows{height:310px;width:70px}
+    .format-compare{display:grid;grid-template-columns:1fr 94px 1fr;align-items:center;gap:18px;margin-top:20px}
+    .stored-box,.display-box{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:24px;text-align:center}
+    .stored-box .big,.display-box .big{font-family:var(--mono);font-size:58px;font-weight:700;color:var(--steel);margin:20px 0}
+    .display-box .big{color:var(--excel-green)}
+    .arrow-big{font-family:var(--serif);font-size:64px;text-align:center;color:var(--gold)}
+    .error-compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+    .error-card{border-radius:20px;padding:22px;background:var(--white);border:2px solid var(--terra)}
+    .error-card.correct{border-color:var(--sage)}
+    .error-card .tag{font-family:var(--mono);font-size:15px;font-weight:700;text-transform:uppercase;color:var(--terra);margin-bottom:12px}
+    .error-card.correct .tag{color:var(--sage)}
+    .error-card code{display:block;background:var(--paper-2);border-radius:10px;padding:13px;font-family:var(--mono);font-size:20px;margin:12px 0}
+    .mistake-grid{display:grid;grid-template-columns:1fr 70px 1fr;gap:18px;align-items:center;margin-top:20px}
+    .mistake-panel{background:var(--ink);border:2px solid var(--white);border-radius:20px;padding:24px;min-height:330px}
+    .mistake-panel.good{background:var(--paper);color:var(--ink);border-color:var(--gold)}
+    .mistake-panel.good .small{color:var(--text-soft)}
+    .rate-pill{display:inline-block;font-family:var(--mono);font-size:22px;padding:10px 14px;border-radius:10px;background:var(--terra);color:var(--white);margin:4px}
+    .good .rate-pill{background:var(--formula-bg);color:var(--steel);border:2px solid var(--sage)}
+    .audit-path{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:54px;position:relative}
+    .audit-path::before{content:"";position:absolute;left:14%;right:14%;top:62px;height:6px;background:var(--gradient);border-radius:6px}
+    .audit-step{text-align:center;position:relative;z-index:1}
+    .audit-icon{width:124px;height:124px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:var(--white);border:5px solid var(--sage);font-family:var(--serif);font-size:44px;font-weight:900}
+    .audit-step:nth-child(2) .audit-icon{border-color:var(--gold)}
+    .audit-step:nth-child(3) .audit-icon{border-color:var(--terra)}
+    .audit-step p{max-width:260px;margin:0 auto;font-size:18px;color:var(--text-soft)}
+    .nav-controls{position:absolute;right:20px;bottom:16px;display:flex;gap:8px;z-index:30}
+    .nav-btn{width:46px;height:38px;border:1px solid var(--border);border-radius:10px;background:var(--white);color:var(--ink);cursor:pointer;font-size:22px;font-weight:700;box-shadow:0 3px 10px rgba(14,17,22,.12)}
+    .slide-counter{position:absolute;left:22px;bottom:24px;font-family:var(--mono);font-size:16px;color:var(--muted);z-index:30}
+    .notes-panel{display:none;position:absolute;left:18px;right:82px;bottom:12px;max-height:190px;overflow:auto;background:var(--ink);color:var(--white);border:2px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:16px;line-height:1.35;z-index:40}
+    .notes-panel.visible{display:block}
+    .notes-panel b{color:var(--gold)}
+    .key-hint{position:absolute;right:132px;bottom:26px;font-family:var(--mono);font-size:16px;color:var(--muted)}
+    button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+    @media (prefers-reduced-motion:reduce){.reveal{transition:none}}
+  </style>
 </head>
 <body>
-<div id="deck">
-  <nav class="tab-strip">
-    <div class="home-dot" data-jump="0" title="Title"></div>
-    <button class="tab" data-section="1"><span class="tnum">1</span><span class="tlabel">Environment</span><span class="tdot"></span></button>
-    <button class="tab" data-section="2"><span class="tnum">2</span><span class="tlabel">Data &amp; Formulas</span><span class="tdot"></span></button>
-    <button class="tab" data-section="3"><span class="tnum">3</span><span class="tlabel">Trust</span><span class="tdot"></span></button>
-  </nav>
-  <div class="stage" id="stage">
+  <main class="deck-shell" aria-label="BUS123 Excel M01 lesson slides">
+    <nav class="tabs" aria-label="Lesson sections">
+      <button class="home-dot" type="button" aria-label="Go to title slide" data-jump="0"></button>
+      <button class="tab-btn" type="button" data-tab="1" data-jump="4" aria-label="Go to Part 1"><span>Part 1</span></button>
+      <button class="tab-btn" type="button" data-tab="2" data-jump="8" aria-label="Go to Part 2"><span>Part 2</span></button>
+      <button class="tab-btn" type="button" data-tab="3" data-jump="13" aria-label="Go to Part 3"><span>Part 3</span></button>
+    </nav>
 
-    <!-- 1 TITLE -->
-    <section class="slide dark" data-section="0" data-slide="1" data-index="0">
-      <div class="geo c1"></div><div class="geo c2"></div><div class="geo c3"></div>
-      <div class="reveal bar" style="margin-bottom:40px"></div>
-      <div class="reveal eyebrow">EXCEL-M01 · Lesson 01</div>
-      <h1 class="reveal" style="margin:18px 0 16px">Foundations of Excel</h1>
-      <div class="reveal sub">Building, navigating &amp; trusting your first spreadsheets</div>
-      <div class="spacer"></div>
-      <div class="reveal footer-meta">BUS123 · Solving Business Problems with Technology &nbsp;·&nbsp; Gerrish School of Business, Endicott College</div>
-    </section>
-
-    <!-- 2 AGENDA -->
-    <section class="slide" data-section="0" data-slide="2" data-index="1">
-      <div class="reveal eyebrow">Today</div>
-      <h2 class="reveal">Where we&rsquo;re headed</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal cards c3">
-        <div class="card"><div class="k">Part 1</div><h3>The Environment</h3><p>Workbooks, the grid, and how to move around without getting lost.</p></div>
-        <div class="card gold"><div class="k">Part 2</div><h3>Data &amp; Formulas</h3><p>Entering data fast, the Big Five functions, and cell references.</p></div>
-        <div class="card terra"><div class="k">Part 3</div><h3>Spreadsheets You Trust</h3><p>Formatting, reading errors, and the habits that prevent them.</p></div>
-      </div>
-      <div class="spacer"></div>
-      <p class="reveal" style="color:var(--text-soft)">Every example today comes from <b>Harborside Medical Center</b> &mdash; a working hospital&rsquo;s real data problems.</p>
-    </section>
-
-    <!-- 3 LEARNING OBJECTIVES -->
-    <section class="slide" data-section="0" data-slide="3" data-index="2">
-      <div class="reveal eyebrow">Learning Objectives</div>
-      <h2 class="reveal">By the end of this lesson&hellip;</h2>
-      <div class="reveal title-rule"></div>
-      <ul class="reveal">
-        <li><span class="lo-num">1</span>I can tell a workbook from a worksheet and name any cell by its address.</li>
-        <li class="g"><span class="lo-num">2</span>I can move around a sheet using the Name Box, Formula Bar, and Ribbon, and describe a range with colon notation.</li>
-        <li class="g"><span class="lo-num">3</span>I can enter data efficiently and use the Fill Handle to extend a pattern.</li>
-        <li class="t"><span class="lo-num">4</span>I can write the core functions (SUM, AVERAGE, COUNT, MIN, MAX) and explain how relative vs. absolute references change a formula.</li>
-        <li class="t"><span class="lo-num">5</span>I can recognize common error codes and apply the golden rules that keep a spreadsheet trustworthy.</li>
-      </ul>
-    </section>
-
-    <!-- 4 RECAP / BRIDGE -->
-    <section class="slide" data-section="0" data-slide="4" data-index="3">
-      <div class="reveal eyebrow">Picking up from last module</div>
-      <h2 class="reveal">Your file is saved &mdash; now let&rsquo;s open it</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <p>In INTRO-M01 you installed Office 365, connected your Endicott OneDrive, and saved your first <b>workbook</b> to your BUS123 folder.</p>
-          <p style="margin-top:20px">That blank grid looked like an ocean of rectangles. Today it becomes a tool you can read at a glance &mdash; the way an analyst does.</p>
+    <section class="stage" aria-live="polite">
+      <article class="slide dark active" data-section="0" data-label="Creating and Editing Worksheets">
+        <img class="hero-photo" src="img/bus123-excel-m01-l01-hospital-analyst-workstation.jpg" alt="Hospital operations analyst reviewing aggregate department information at a workstation">
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="eyebrow">EXCEL-M01-L01 · Harborside Medical Center</div>
+          <h1>Creating and Editing Worksheets</h1>
+          <p class="lead">Foundations of Excel: locate the evidence, construct the formula, verify the model.</p>
+          <p class="small">A trustworthy worksheet turns operating data into a decision.</p>
         </div>
-        <div class="reveal image-slot has-image"><img src="assets/onedrive_sync.png" alt="OneDrive sync status shown beside cloud file status icons"></div>
-      </div>
-    </section>
+        <div class="gradient-bar" aria-hidden="true"></div>
+      </article>
 
-    <!-- 5 SECTION BREAK PART 1 -->
-    <section class="slide dark" data-section="1" data-slide="5" data-index="4">
-      <div class="geo c1"></div><div class="geo c3"></div>
-      <div class="reveal bar" style="margin-bottom:36px"></div>
-      <div class="reveal eyebrow">Part 1</div>
-      <h1 class="reveal" style="font-size:64px;margin-top:14px">The Excel Environment</h1>
-      <div class="reveal sub">Macro-structure, the grid, and the control center</div>
-    </section>
-
-    <!-- 6 WORKBOOK VS WORKSHEET -->
-    <section class="slide" data-section="1" data-slide="6" data-index="5">
-      <div class="reveal eyebrow">Macro-structure</div>
-      <h2 class="reveal">Workbook vs. worksheet</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal cards c2">
-        <div class="card"><div class="k">The Workbook</div><h3>The whole file</h3><p>What you save and share. <b>HarborsideBudget.xlsx</b> is one workbook.</p></div>
-        <div class="card"><div class="k">The Worksheet</div><h3>The pages inside</h3><p>The tabs along the bottom &mdash; one sheet per department, all in the same file.</p></div>
-      </div>
-      <p class="reveal" style="margin-top:24px;color:var(--text-soft)">Think of it as a binder: one binder (workbook) holding many pages (worksheets). Harborside keeps <i>Cardiology</i>, <i>Radiology</i>, and <i>ER</i> on separate sheets in a single year-end file.</p>
-    </section>
-
-    <!-- 7 THE GRID -->
-    <section class="slide" data-section="1" data-slide="7" data-index="6">
-      <div class="reveal eyebrow">The grid system</div>
-      <h2 class="reveal">Columns, rows &amp; the active cell</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <ul>
-            <li><b>Columns</b> run vertical, labeled with letters (A, B, C&hellip;).</li>
-            <li class="g"><b>Rows</b> run horizontal, labeled with numbers (1, 2, 3&hellip;).</li>
-            <li class="t"><b>A cell</b> is the intersection &mdash; its <b>address</b> is the column letter then the row number.</li>
-          </ul>
-          <p style="margin-top:20px">Click a cell and it becomes the <b>active cell</b> (the bordered one). On Harborside&rsquo;s ER sheet, cell <b>B7</b> holds last month&rsquo;s visit count &mdash; like coordinates in Battleship.</p>
+      <article class="slide" data-section="0" data-label="Lesson route">
+        <div class="eyebrow">Today’s route · 75 minutes</div>
+        <h2>From a blank cell to defensible evidence</h2>
+        <div class="route" role="list" aria-label="Four-stage lesson route">
+          <div class="route-step reveal" role="listitem"><div class="route-node">1</div><h3>Locate</h3><p>Find the active cell, Formula Bar, range, and worksheet tab.</p></div>
+          <div class="route-step reveal" role="listitem"><div class="route-node">2</div><h3>Construct</h3><p>Translate a business question into a formula.</p></div>
+          <div class="route-step reveal" role="listitem"><div class="route-node">3</div><h3>Verify</h3><p>Check the formula, references, result, and reconciliation.</p></div>
+          <div class="route-step reveal" role="listitem"><div class="route-node">4</div><h3>Decide</h3><p>State what the evidence supports—and what it does not.</p></div>
         </div>
-        <div class="reveal">
-          <table class="xl">
-            <thead><tr><th class="rownum"></th><th>A</th><th>B</th></tr></thead>
-            <tbody>
-              <tr><td class="rownum">6</td><td>Department</td><td>ER</td></tr>
-              <tr><td class="rownum">7</td><td>Visits</td><td>1,842</td></tr>
-            </tbody>
+      </article>
+
+      <article class="slide" data-section="0" data-label="Learning objectives">
+        <div class="eyebrow">Learning objectives</div>
+        <h2>By the end, I can show the evidence</h2>
+        <div class="outcomes">
+          <div class="outcome reveal"><div class="num">01</div><p>Locate an active cell and explain what its Name Box and Formula Bar reveal.</p></div>
+          <div class="outcome reveal"><div class="num">02</div><p>Choose and construct SUM, AVERAGE, COUNT, MAX, or MIN from a business question.</p></div>
+          <div class="outcome reveal"><div class="num">03</div><p>Copy a reimbursement formula while keeping the shared rate fixed.</p></div>
+          <div class="outcome reveal"><div class="num">04</div><p>Reconcile the model to zero and support a claim-share recommendation.</p></div>
+        </div>
+      </article>
+
+      <article class="slide" data-section="0" data-label="Retrieval: read the active cell">
+        <div class="eyebrow">Retrieval · reading p.1</div>
+        <h2>What can you prove from one selected cell?</h2>
+        <div class="excel-window reveal" aria-label="Excel view of Charge Analysis cells B5 through D10 with cell C8 active">
+          <div class="excel-titlebar"><span>bus123-excel-m01-l01-starter.xlsx</span><span>Harborside Medical Center</span></div>
+          <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span><span>View</span></div>
+          <div class="formula-strip"><div class="name-box">C8</div><div class="fx-label">fx</div><div class="formula-value">39800</div></div>
+          <table class="sheet-grid">
+            <colgroup><col style="width:38px"><col style="width:34%"><col style="width:33%"><col style="width:33%"></colgroup>
+            <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th><th class="col-head">D</th></tr>
+            <tr><th class="row-head">5</th><td class="header">Department</td><td class="header">Monthly Charges</td><td class="header">Patient Visits</td></tr>
+            <tr><th class="row-head">6</th><td>Cardiology</td><td class="value">$84,200</td><td class="value">612</td></tr>
+            <tr><th class="row-head">7</th><td>Radiology</td><td class="value">$61,500</td><td class="value">488</td></tr>
+            <tr><th class="row-head">8</th><td>Pediatrics</td><td class="value active-cell">$39,800</td><td class="value">920</td></tr>
+            <tr><th class="row-head">9</th><td>Emergency</td><td class="value">$52,500</td><td class="value">1,842</td></tr>
+            <tr><th class="row-head">10</th><td>Oncology</td><td class="value">$47,300</td><td class="value">355</td></tr>
           </table>
-          <p style="font-size:24px;color:var(--muted);margin-top:12px">Active cell B7 &rarr; column&nbsp;B, row&nbsp;7.</p>
+          <div class="sheet-tabs"><span class="sheet-tab">START HERE</span><span class="sheet-tab">Live You Try It</span><span class="sheet-tab active">Charge Analysis</span><span class="sheet-tab">Challenge - Payer Mix</span></div>
         </div>
-      </div>
-    </section>
+        <p class="callout reveal" style="margin-top:14px"><b>Prompt:</b> Name the active cell. What is stored there? What business label gives the value meaning?</p>
+      </article>
 
-    <!-- 8 CONTROL CENTER + RANGES -->
-    <section class="slide" data-section="1" data-slide="8" data-index="7">
-      <div class="reveal eyebrow">The control center</div>
-      <h2 class="reveal">Name Box, Formula Bar &amp; the range</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal cards c3">
-        <div class="card"><div class="k">Name Box</div><h3>Where am I?</h3><p>Shows the active cell&rsquo;s address. Type <b>A100</b> and Enter to jump there.</p></div>
-        <div class="card"><div class="k">Formula Bar</div><h3>The real story</h3><p>The cell shows <b>238,000</b>; the bar shows the logic behind it, like <b>=SUM(C8:C11)</b>.</p></div>
-        <div class="card"><div class="k">Ribbon</div><h3>The toolbox</h3><p>Tabs (Home, Insert, Data) holding grouped tools.</p></div>
-      </div>
-      <div class="reveal fx" style="margin-top:22px;border-left-color:var(--sage)">
-        <div class="lab" style="color:var(--sage)">A range = a group of cells &middot; the colon means &ldquo;through&rdquo;</div>
-        <code>C8:C11  &rarr;  &ldquo;cell C8 through C11&rdquo;  (the four Live You Try It charge cells)</code>
-      </div>
-    </section>
-
-    <!-- 9 SECTION BREAK PART 2 -->
-    <section class="slide dark" data-section="2" data-slide="9" data-index="8">
-      <div class="geo c2"></div><div class="geo c3"></div>
-      <div class="reveal bar" style="margin-bottom:36px"></div>
-      <div class="reveal eyebrow">Part 2</div>
-      <h1 class="reveal" style="font-size:64px;margin-top:14px">Data, Formulas &amp; Functions</h1>
-      <div class="reveal sub">From typing numbers to making the sheet do the work</div>
-    </section>
-
-    <!-- 10 DATA ENTRY + AUTOFILL -->
-    <section class="slide" data-section="2" data-slide="10" data-index="9">
-      <div class="reveal eyebrow">Working faster</div>
-      <h2 class="reveal">Data entry &amp; the Fill Handle</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <ul>
-            <li><b>Tab</b> moves right, <b>Enter</b> moves down &mdash; keep your hands off the mouse.</li>
-            <li class="g"><b>Fill Handle:</b> the small square at a cell&rsquo;s bottom-right. Drag it to extend a pattern.</li>
-            <li class="g"><b>Double-click</b> the Fill Handle to shoot a formula all the way down a filled column.</li>
-          </ul>
-          <p style="margin-top:18px">Typing <i>Jan</i> then dragging gives Feb, Mar, Apr&hellip; &mdash; Harborside&rsquo;s twelve reporting months in seconds.</p>
+      <article class="slide dark section-photo" data-section="1" data-label="Part 1: Know where you are">
+        <img class="photo" src="img/bus123-excel-m01-l01-workbook-orientation-team.jpg" alt="Two hospital operations colleagues orienting themselves to a spreadsheet workbook">
+        <div class="section-copy">
+          <div class="eyebrow">Part 1 of 3 · 12 minutes</div>
+          <div class="part-number">01</div>
+          <h2>Know where you are</h2>
+          <p class="lead">Before formulas: locate the workbook, worksheet, cell, range, and underlying content.</p>
         </div>
-        <div class="reveal image-slot has-image"><img src="assets/fill-handle-demo.png" alt="Excel-style worksheet showing the fill handle dragging Jan into Feb, Mar, and Apr"></div>
-      </div>
-    </section>
+        <div class="gradient-bar" aria-hidden="true"></div>
+      </article>
 
-    <!-- 11 FORMULA VS FUNCTION + BIG FIVE -->
-    <section class="slide" data-section="2" data-slide="11" data-index="10">
-      <div class="reveal eyebrow">The building blocks</div>
-      <h2 class="reveal">Formula vs. function &mdash; the Big Five</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal" style="margin-bottom:18px"><p>A <b>formula</b> is anything you write after <b>=</b> (like <b>=C8+C9</b>). A <b>function</b> is a built-in shortcut (like <b>=SUM(&hellip;)</b>). Every formula starts with the equals sign.</p></div>
-      <div class="reveal cards c3">
-        <div class="card gold"><div class="k">SUM</div><p>Adds a range. Harborside&rsquo;s total monthly charges.</p></div>
-        <div class="card gold"><div class="k">AVERAGE</div><p>The mean. Average daily ER visits.</p></div>
-        <div class="card gold"><div class="k">COUNT / COUNTA</div><p>How many entries? Audit for missing data.</p></div>
-        <div class="card gold"><div class="k">MIN / MAX</div><p>Lowest and highest &mdash; the busiest and quietest day.</p></div>
-        <div class="card gold"><div class="k">=</div><p>Always first. No equals sign, no calculation.</p></div>
-      </div>
-    </section>
-
-    <!-- 12 SYNTAX FIRST: SUM -->
-    <section class="slide compact-example" data-section="2" data-slide="12" data-index="11">
-      <div class="reveal eyebrow">Worked example &middot; Harborside Medical Center</div>
-      <h2 class="reveal">Total monthly charges across departments</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <table class="xl" style="font-size:19px">
-            <thead><tr><th class="rownum"></th><th>B</th><th>C</th><th>D</th></tr></thead>
-            <tbody>
-              <tr><td class="rownum">8</td><td>Cardiology charge</td><td>$84,200</td><td>Slide 12 value</td></tr>
-              <tr><td class="rownum">9</td><td>Radiology charge</td><td>$61,500</td><td>Slide 12 value</td></tr>
-              <tr><td class="rownum">10</td><td>Pediatrics charge</td><td>$39,800</td><td>Slide 12 value</td></tr>
-              <tr><td class="rownum">11</td><td>Emergency charge</td><td>$52,500</td><td>Slide 12 value</td></tr>
-              <tr class="result"><td class="rownum">12</td><td>Total monthly charges</td><td class="fml">=SUM(C8:C11)</td><td>Use the input cells above</td></tr>
-            </tbody>
-          </table>
+      <article class="slide" data-section="1" data-label="Workbook structure">
+        <div class="eyebrow">Structure · editable relationship map</div>
+        <h2>Excel is a hierarchy, not an endless grid</h2>
+        <div class="diagram-wrap reveal">
+          <svg viewBox="0 0 980 390" role="img" aria-labelledby="hier-title hier-desc">
+            <title id="hier-title">Workbook, worksheet, cell, and range hierarchy</title>
+            <desc id="hier-desc">One workbook contains several worksheets. A worksheet contains individual cells, and adjacent cells can form a range.</desc>
+            <rect x="35" y="132" width="220" height="116" rx="20" fill="var(--ink)"/>
+            <text x="145" y="178" fill="var(--gold)" font-family="var(--mono)" font-size="18" text-anchor="middle">WORKBOOK</text>
+            <text x="145" y="214" fill="var(--white)" font-family="var(--sans)" font-size="23" text-anchor="middle">starter.xlsx</text>
+            <path d="M255 190 H345" stroke="var(--sage)" stroke-width="6" fill="none"/>
+            <polygon points="345,190 327,180 327,200" fill="var(--sage)"/>
+            <rect x="365" y="55" width="240" height="72" rx="16" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="3"/>
+            <rect x="365" y="159" width="240" height="72" rx="16" fill="var(--formula-bg)" stroke="var(--gold)" stroke-width="3"/>
+            <rect x="365" y="263" width="240" height="72" rx="16" fill="var(--formula-bg)" stroke="var(--terra)" stroke-width="3"/>
+            <text x="485" y="84" fill="var(--steel)" font-family="var(--mono)" font-size="16" text-anchor="middle">WORKSHEET TAB</text>
+            <text x="485" y="110" fill="var(--text)" font-family="var(--sans)" font-size="20" text-anchor="middle">Live You Try It</text>
+            <text x="485" y="188" fill="var(--steel)" font-family="var(--mono)" font-size="16" text-anchor="middle">WORKSHEET TAB</text>
+            <text x="485" y="214" fill="var(--text)" font-family="var(--sans)" font-size="20" text-anchor="middle">Charge Analysis</text>
+            <text x="485" y="292" fill="var(--steel)" font-family="var(--mono)" font-size="16" text-anchor="middle">WORKSHEET TAB</text>
+            <text x="485" y="318" fill="var(--text)" font-family="var(--sans)" font-size="20" text-anchor="middle">Challenge - Payer Mix</text>
+            <path d="M605 195 H690" stroke="var(--gold)" stroke-width="6" fill="none"/>
+            <polygon points="690,195 672,185 672,205" fill="var(--gold)"/>
+            <rect x="710" y="93" width="230" height="82" rx="18" fill="var(--white)" stroke="var(--steel)" stroke-width="3"/>
+            <rect x="710" y="219" width="230" height="82" rx="18" fill="var(--white)" stroke="var(--terra)" stroke-width="3"/>
+            <text x="825" y="124" fill="var(--steel)" font-family="var(--mono)" font-size="18" text-anchor="middle">CELL · C8</text>
+            <text x="825" y="151" fill="var(--text-soft)" font-family="var(--sans)" font-size="17" text-anchor="middle">one location</text>
+            <text x="825" y="250" fill="var(--terra)" font-family="var(--mono)" font-size="18" text-anchor="middle">RANGE · C8:C11</text>
+            <text x="825" y="277" fill="var(--text-soft)" font-family="var(--sans)" font-size="17" text-anchor="middle">four adjacent cells</text>
+          </svg>
         </div>
-        <div class="reveal">
-          <div class="fx">
-            <div class="lab">Excel function &mdash; learn this first</div>
-            <code>=SUM(C8:C11)</code>
+      </article>
+
+      <article class="slide" data-section="1" data-label="Navigate with evidence">
+        <div class="eyebrow">Navigation · reading-to-workbook bridge</div>
+        <h2>Use the interface to answer three different questions</h2>
+        <div class="split wide-right">
+          <div>
+            <div class="callout reveal"><b>Where am I?</b><br>Name Box → <span class="mono">C8</span></div>
+            <div class="callout reveal" style="margin-top:14px;border-left-color:var(--gold)"><b>What is stored here?</b><br>Formula Bar → <span class="mono">39800</span></div>
+            <div class="callout reveal" style="margin-top:14px;border-left-color:var(--terra)"><b>What does it mean?</b><br>Row + column labels → Pediatrics monthly charges</div>
+            <p class="small reveal" style="margin-top:18px"><b>Windows:</b> Ctrl+Home / Ctrl+End / Ctrl+Arrow<br><b>Mac:</b> Control+Home or Fn equivalents / Command+Arrow</p>
           </div>
-          <div class="manual">
-            <div class="lab">Then the manual math</div>
-            <code>84,200 + 61,500 + 39,800 + 52,500</code>
-            <div class="flow"><b>= $238,000</b> in monthly charges</div>
-          </div>
-          <div class="manual live-pause">
-            <div class="lab">Live You Try It</div>
-            <code>Live You Try It!C8:C12</code>
-            <div class="flow">Enter the four charges in C8:C11 first. Then put =SUM(C8:C11) in C12.</div>
+          <div class="excel-window reveal" aria-label="Charge Analysis worksheet with cell C8 active and formula bar showing 39800">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Charge Analysis</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">C8</div><div class="fx-label">fx</div><div class="formula-value">39800</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:42%"><col style="width:29%"><col style="width:29%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th><th class="col-head">D</th></tr>
+              <tr><th class="row-head">5</th><td class="header">Department</td><td class="header">Monthly Charges</td><td class="header">Patient Visits</td></tr>
+              <tr><th class="row-head">6</th><td>Cardiology</td><td class="value">$84,200</td><td class="value">612</td></tr>
+              <tr><th class="row-head">7</th><td>Radiology</td><td class="value">$61,500</td><td class="value">488</td></tr>
+              <tr><th class="row-head">8</th><td>Pediatrics</td><td class="value active-cell">$39,800</td><td class="value">920</td></tr>
+              <tr><th class="row-head">9</th><td>Emergency</td><td class="value">$52,500</td><td class="value">1,842</td></tr>
+              <tr><th class="row-head">10</th><td>Oncology</td><td class="value">$47,300</td><td class="value">355</td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab">Live You Try It</span><span class="sheet-tab active">Charge Analysis</span></div>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- 13 CELL REFERENCING -->
-    <section class="slide compact-example" data-section="2" data-slide="13" data-index="12">
-      <div class="reveal eyebrow">The engine of a smart sheet</div>
-      <h2 class="reveal">Relative, absolute &amp; mixed references</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <ul>
-            <li><b>Relative</b> (<b>C17</b>) shifts as you copy it down.</li>
-            <li class="g"><b>Absolute</b> (<b>$C$16</b>) locks a cell &mdash; the <b>$</b> sits in front of what it freezes. Press <b>F4</b> to toggle.</li>
-            <li class="t"><b>Mixed</b> (<b>C$16</b> or <b>$C16</b>) locks just the row or just the column.</li>
-          </ul>
+      <article class="slide" data-section="1" data-label="Activity: locate and name the range">
+        <div class="activity">
+          <div class="eyebrow">Retrieval activity</div>
+          <h2>Locate it. Name it. Explain it.</h2>
+          <p class="lead">Open <b>Charge Analysis</b>. Select the four monthly-charge cells from Cardiology through Emergency.</p>
+          <div class="activity-meta">
+            <div class="meta-cell"><b>What</b><span>Select and name the range</span></div>
+            <div class="meta-cell"><b>How</b><span>Individual, then compare</span></div>
+            <div class="meta-cell"><b>Time</b><span>2 minutes</span></div>
+            <div class="meta-cell"><b>Debrief</b><span>Cold-call one range + meaning</span></div>
+          </div>
+          <div class="deliverable"><b>Deliverable:</b> Say the range address and one sentence explaining what those four cells contain.</div>
+          <p class="small" style="margin-top:14px"><b>Mastery evidence:</b> correct range notation, correct tab, and a business label—not only four highlighted cells.</p>
         </div>
-        <div class="reveal">
-          <div class="fmlbar"><b>C19 &nbsp;=</b> &nbsp;=C17*$C$16</div>
-          <table class="xl" style="font-size:18px">
-            <thead><tr><th class="rownum"></th><th>B</th><th>C</th><th>D</th></tr></thead>
-            <tbody>
-              <tr><td class="rownum">16</td><td>Contracted reimbursement rate</td><td>0.62</td><td>Slide 13 value</td></tr>
-              <tr><td class="rownum">17</td><td>Cardiology charge</td><td>84,200</td><td>Slide 13 value</td></tr>
-              <tr><td class="rownum">18</td><td>Radiology charge</td><td>61,500</td><td>Slide 13 value</td></tr>
-              <tr class="result"><td class="rownum">19</td><td>Cardiology expected reimbursement</td><td class="fml">=C17*$C$16</td><td>Lock the rate</td></tr>
-              <tr class="result"><td class="rownum">20</td><td>Radiology expected reimbursement</td><td class="fml">=C18*$C$16</td><td>Copy down</td></tr>
-            </tbody>
-          </table>
-          <div class="manual live-pause">
-            <div class="lab">Live You Try It</div>
-            <code>Live You Try It!C16:C20</code>
-            <div class="flow">C16 = rate; C17:C18 = charges; C19:C20 = formulas with $C$16 locked.</div>
+      </article>
+
+      <article class="slide dark" data-section="2" data-label="Part 2: Construct the formula">
+        <div class="eyebrow">Part 2 of 3 · 24 minutes</div>
+        <div class="split" style="height:520px">
+          <div>
+            <div class="part-number">02</div>
+            <h2>Construct the formula</h2>
+            <p class="lead">Let the business question choose the method. Then use references so the model can update.</p>
+          </div>
+          <div class="diagram-wrap" style="background:var(--paper-2)">
+            <svg viewBox="0 0 440 390" role="img" aria-labelledby="copy-title copy-desc">
+              <title id="copy-title">A copied formula with moving and fixed references</title>
+              <desc id="copy-desc">The charge reference moves from row 17 to row 18 while the shared rate in cell C16 remains fixed.</desc>
+              <rect x="55" y="62" width="330" height="74" rx="14" fill="var(--white)" stroke="var(--gold)" stroke-width="4"/>
+              <text x="220" y="106" fill="var(--steel)" font-family="var(--mono)" font-size="24" text-anchor="middle">=C17*$C$16</text>
+              <path d="M220 145 V238" stroke="var(--sage)" stroke-width="8"/>
+              <polygon points="220,252 205,230 235,230" fill="var(--sage)"/>
+              <rect x="55" y="260" width="330" height="74" rx="14" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"/>
+              <text x="220" y="304" fill="var(--steel)" font-family="var(--mono)" font-size="24" text-anchor="middle">=C18*$C$16</text>
+              <text x="117" y="180" fill="var(--terra)" font-family="var(--sans)" font-size="17">moves ↓</text>
+              <text x="278" y="180" fill="var(--sage)" font-family="var(--sans)" font-size="17">stays fixed</text>
+            </svg>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="gradient-bar" aria-hidden="true"></div>
+      </article>
 
-    <!-- 14 SECTION BREAK PART 3 -->
-    <section class="slide dark" data-section="3" data-slide="14" data-index="13">
-      <div class="geo c1"></div><div class="geo c2"></div>
-      <div class="reveal bar" style="margin-bottom:36px"></div>
-      <div class="reveal eyebrow">Part 3</div>
-      <h1 class="reveal" style="font-size:62px;margin-top:14px">Spreadsheets You Can Trust</h1>
-      <div class="reveal sub">Clarity, error literacy, and the golden rules</div>
-    </section>
-
-    <!-- 15 FORMATTING -->
-    <section class="slide compact-example" data-section="3" data-slide="15" data-index="14">
-      <div class="reveal eyebrow">Formatting for clarity</div>
-      <h2 class="reveal">Turn a data dump into a story</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal cards c3">
-        <div class="card"><div class="k">Number formats</div><p><b>Accounting</b> for statements, <b>Currency</b> for casual, <b>Percent</b> for payer mix.</p></div>
-        <div class="card"><div class="k">Cell hygiene</div><p>Auto-fit columns (double-click the border); Wrap Text instead of ultra-wide columns.</p></div>
-        <div class="card"><div class="k">Visual hierarchy</div><p>Bold headers, bottom borders, banded rows to guide the eye.</p></div>
-      </div>
-      <p class="reveal" style="margin-top:22px;color:var(--text-soft)">Harborside&rsquo;s payer mix &mdash; Medicare 41%, Medicaid 23%, Commercial 28%, Self-pay 8% &mdash; reads instantly when formatted as percentages with a clear header row.</p>
-      <div class="reveal manual live-pause" style="max-width:920px">
-        <div class="lab">Live You Try It</div>
-        <code>Live You Try It!C24:C29</code>
-        <div class="flow">Enter 41%, 23%, 28%, and 8% in C24:C27. Use C28 for SUM and C29 for MAX.</div>
-      </div>
-    </section>
-
-    <!-- 16 ERRORS -->
-    <section class="slide" data-section="3" data-slide="16" data-index="15">
-      <div class="reveal eyebrow">Error literacy</div>
-      <h2 class="reveal">What the sheet is trying to tell you</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal">
-        <table class="xl" style="font-size:25px">
-          <thead><tr><th>Error</th><th>Means</th><th>Usual fix</th></tr></thead>
-          <tbody>
-            <tr><td class="fml">#REF!</td><td>Broken reference</td><td>A cell the formula needed was deleted or moved.</td></tr>
-            <tr><td class="fml">#DIV/0!</td><td>Divide by zero</td><td>An empty or zero denominator &mdash; e.g. visits = 0.</td></tr>
-            <tr><td class="fml">#NAME?</td><td>Syntax typo</td><td>Misspelled function, like <b>=SUMM(&hellip;)</b>.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="reveal" style="margin-top:20px;color:var(--text-soft)">An error code isn&rsquo;t failure &mdash; it&rsquo;s a label pointing you straight to the problem.</p>
-    </section>
-
-    <!-- 17 GOLDEN RULES -->
-    <section class="slide" data-section="3" data-slide="17" data-index="16">
-      <div class="reveal eyebrow">The golden rules</div>
-      <h2 class="reveal">Habits of a trustworthy spreadsheet</h2>
-      <div class="reveal title-rule"></div>
-      <ul class="reveal">
-        <li class="t"><b>Stop hard-coding.</b> Put a number like the reimbursement rate in its own cell and reference it &mdash; never bury it inside a formula.</li>
-        <li><b>Save constantly.</b> Ctrl&nbsp;+&nbsp;S (Cmd&nbsp;+&nbsp;S) is the cheapest insurance you&rsquo;ll ever buy.</li>
-        <li class="g"><b>One source of truth.</b> Reference and total automatically instead of copy-pasting the same number around the file.</li>
-      </ul>
-    </section>
-
-    <!-- 18 COMMON MISTAKE -->
-    <section class="slide dark" data-section="3" data-slide="18" data-index="17">
-      <div class="geo c3"></div><div class="geo grid"></div>
-      <div class="reveal mistake-tag">Common Mistake</div>
-      <h1 class="reveal" style="font-size:50px;margin:20px 0 8px">Hard-coding the rate inside the formula</h1>
-      <div class="reveal sub" style="margin-bottom:24px">Harborside&rsquo;s reimbursement rate just changed from 0.62 to 0.65&hellip;</div>
-      <div class="reveal two">
-        <div class="bad">&#10007;&nbsp; =C17*0.62<br><span style="font-weight:400;font-size:24px">The rate is buried in every cell. Change it and you must hand-edit dozens of formulas &mdash; and you <i>will</i> miss one.</span></div>
-        <div class="good">&#10003;&nbsp; =C17*$C$16<br><span style="font-weight:400;font-size:24px">Update one cell (C16) and the whole sheet refreshes. Transparent, and safe.</span></div>
-      </div>
-      <p class="reveal" style="margin-top:26px;color:#C9D1DC">Roughly <b style="color:var(--gold)">88%</b> of spreadsheets contain at least one error &mdash; buried hard-codes are a leading cause.</p>
-    </section>
-
-    <!-- 19 DISCUSSION -->
-    <section class="slide" data-section="4" data-slide="19" data-index="18">
-      <div class="reveal eyebrow">Talk it through</div>
-      <h2 class="reveal">Discussion</h2>
-      <div class="reveal title-rule"></div>
-      <div class="reveal" style="display:flex;gap:36px;align-items:center">
-        <div class="stat">88%</div>
-        <p style="font-size:30px">of spreadsheets contain at least one error. In a hospital like Harborside, <b>where would a hidden spreadsheet error do the most damage</b> &mdash; and which habit from today would catch it first?</p>
-      </div>
-      <div class="spacer"></div>
-      <p class="reveal footer-meta">Turn to a neighbor &middot; 3 minutes &middot; one example, one safeguard.</p>
-    </section>
-<section class="slide" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
-  <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
-    <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Total a range</td><td class="pattern">=SUM(C6:C10)</td><td>Adds selected numbers into one total.</td><td class="watch">Use a range instead of typing each charge.</td></tr><tr><td>Average a range</td><td class="pattern">=AVERAGE(C6:C10)</td><td>Finds the typical value from several numbers.</td><td class="watch">Average is not the same as total.</td></tr><tr><td>Count numeric cells</td><td class="pattern">=COUNT(C6:C10)</td><td>Counts cells that contain numbers.</td><td class="watch">Text labels are ignored.</td></tr><tr><td>Highest value</td><td class="pattern">=MAX(C6:C10)</td><td>Returns the largest value in a range.</td><td class="watch">MAX finds the biggest number, not the biggest label.</td></tr><tr><td>Lowest value</td><td class="pattern">=MIN(C6:C10)</td><td>Returns the smallest value in a range.</td><td class="watch">MIN finds the smallest number, not the smallest label.</td></tr><tr><td>Percent of total</td><td class="pattern">=C6/$C$10</td><td>Shows one value as a share of the total.</td><td class="watch">Lock the total before copying.</td></tr><tr><td>Absolute reference</td><td class="pattern">=$C$21 or $C$10</td><td>Locks a shared input so copied formulas keep using it.</td><td class="watch">Press F4 to toggle dollar signs.</td></tr><tr><td>Range notation</td><td class="pattern">C6:C10</td><td>Means cell C6 through cell C10.</td><td class="watch">Include only the cells you want calculated.</td></tr></tbody></table>
-  </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 23</div>
-</section>
-
-    <!-- 20 KEY TAKEAWAYS -->
-    <section class="slide" data-section="4" data-slide="21" data-index="20">
-      <div class="reveal eyebrow">Key takeaways</div>
-      <h2 class="reveal">What to carry forward</h2>
-      <div class="reveal title-rule"></div>
-      <ul class="reveal">
-        <li>A workbook holds worksheets; every cell has an address (column letter + row number).</li>
-        <li class="g">Navigate with the Name Box and read the truth in the Formula Bar; a range uses the colon &mdash; <b>C8:C11</b>.</li>
-        <li class="g">Reach for a <b>function</b> first &mdash; SUM, AVERAGE, COUNT, MIN, MAX &mdash; before doing math by hand.</li>
-        <li class="t">Lock shared inputs with <b>$</b> (F4), read error codes as clues, and never hard-code.</li>
-      </ul>
-    </section>
-
-    <!-- 21 UP NEXT -->
-    <section class="slide" data-section="4" data-slide="22" data-index="21">
-      <div class="reveal eyebrow">Up next</div>
-      <h2 class="reveal">EXCEL-M01-L02 &mdash; Building a working worksheet</h2>
-      <div class="reveal title-rule"></div>
-      <div class="two">
-        <div class="reveal">
-          <p>You&rsquo;ll take a full Harborside dataset and build a clean, formatted worksheet from scratch &mdash; functions, references, and number formats working together.</p>
-          <p style="margin-top:18px"><span class="pill">Bring: your saved BUS123 OneDrive folder</span></p>
+      <article class="slide" data-section="2" data-label="Copy and fill with intention">
+        <div class="eyebrow">Copying · workbook-specific view</div>
+        <h2>The fill handle repeats a pattern—good or bad</h2>
+        <div class="split wide-right">
+          <div>
+            <p class="lead">Before dragging, predict what each reference should do.</p>
+            <div class="callout reveal"><b>Move:</b> the department charge changes by row.</div>
+            <div class="callout reveal" style="margin-top:14px;border-left-color:var(--gold)"><b>Stay fixed:</b> the shared reimbursement rate remains in one cell.</div>
+            <p class="small reveal" style="margin-top:18px">The fill handle copies structure. It does not decide whether the structure is correct.</p>
+          </div>
+          <div class="excel-window reveal" aria-label="Live You Try It worksheet showing an absolute-reference formula copied from C19 to C20">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Live You Try It</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">C19</div><div class="fx-label">fx</div><div class="formula-value">=C17*$C$16</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:53%"><col style="width:27%"><col style="width:20%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th><th class="col-head">D</th></tr>
+              <tr><th class="row-head">15</th><td class="header">Task</td><td class="header">Yellow entry cell</td><td class="header">Hint</td></tr>
+              <tr><th class="row-head">16</th><td>Contracted reimbursement rate</td><td class="input-cell precedent">62%</td><td></td></tr>
+              <tr><th class="row-head">17</th><td>Cardiology charge</td><td class="input-cell precedent">$84,200</td><td></td></tr>
+              <tr><th class="row-head">18</th><td>Radiology charge</td><td class="input-cell">$61,500</td><td></td></tr>
+              <tr><th class="row-head">19</th><td>Cardiology expected reimbursement</td><td class="formula-cell active-cell">$52,204</td><td>copy ↓</td></tr>
+              <tr><th class="row-head">20</th><td>Radiology expected reimbursement</td><td class="formula-cell">$38,130</td><td></td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab active">Live You Try It</span><span class="sheet-tab">Charge Analysis</span></div>
+          </div>
         </div>
-        <div class="reveal image-slot has-image"><img src="assets/team_laptops.png" alt="Business team collaborating around laptops and spreadsheet work"></div>
+      </article>
+
+      <article class="slide" data-section="2" data-label="Choose the evidence before the function">
+        <div class="eyebrow">Method choice · prediction before reveal</div>
+        <h2>What evidence does the manager need?</h2>
+        <div class="decision-tree">
+          <div class="question-list">
+            <div class="tree-node reveal">All department charges combined</div>
+            <div class="tree-node reveal">Typical department charge</div>
+            <div class="tree-node reveal">Number of numeric entries</div>
+            <div class="tree-node reveal">Highest or lowest value</div>
+            <div class="tree-node reveal">Largest payer share</div>
+          </div>
+          <svg class="tree-arrows" viewBox="0 0 70 310" aria-hidden="true">
+            <path d="M5 31 H60 M5 93 H60 M5 155 H60 M5 217 H60 M5 279 H60" stroke="var(--gold)" stroke-width="4"/>
+            <path d="M60 31 l-10 -7 v14 z M60 93 l-10 -7 v14 z M60 155 l-10 -7 v14 z M60 217 l-10 -7 v14 z M60 279 l-10 -7 v14 z" fill="var(--gold)"/>
+          </svg>
+          <div class="function-list">
+            <div class="tree-node reveal">=SUM(range)</div>
+            <div class="tree-node reveal">=AVERAGE(range)</div>
+            <div class="tree-node reveal">=COUNT(range)</div>
+            <div class="tree-node reveal">=MAX(range) / =MIN(range)</div>
+            <div class="tree-node reveal">=MAX(share_range)</div>
+          </div>
+        </div>
+        <p class="callout reveal" style="margin-top:18px"><b>Decision rule:</b> state the business evidence first; reveal the function second.</p>
+      </article>
+
+      <article class="slide" data-section="2" data-label="Guided practice: SUM">
+        <div class="eyebrow">Instructor model → student attempt</div>
+        <h2>Build one total from four charge cells</h2>
+        <div class="split wide-right">
+          <div>
+            <div class="formula-panel reveal">
+              <span class="fn">=SUM(C8:C11)</span>
+              <span>84,200 + 61,500 + 39,800 + 52,500</span>
+              <span class="result">= $238,000</span>
+              <span class="comment">The range includes four intended inputs.</span>
+            </div>
+            <div class="activity-meta reveal" style="grid-template-columns:1fr 1fr;margin-top:18px">
+              <div class="meta-cell"><b>How / time</b><span>Individual · 3 minutes</span></div>
+              <div class="meta-cell"><b>Deliverable</b><span>Formula in C12</span></div>
+              <div class="meta-cell"><b>Debrief</b><span>Reveal range, then manual check</span></div>
+              <div class="meta-cell"><b>Mastery</b><span>Formula—not a typed total</span></div>
+            </div>
+          </div>
+          <div class="excel-window reveal" aria-label="Live You Try It cells B6 through G12 with C12 active and SUM formula displayed">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Live You Try It</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">C12</div><div class="fx-label">fx</div><div class="formula-value">=SUM(C8:C11)</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:57%"><col style="width:43%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th></tr>
+              <tr><th class="row-head">7</th><td class="header">Task</td><td class="header">Yellow entry cell</td></tr>
+              <tr><th class="row-head">8</th><td>Cardiology charge</td><td class="input-cell precedent">$84,200</td></tr>
+              <tr><th class="row-head">9</th><td>Radiology charge</td><td class="input-cell precedent">$61,500</td></tr>
+              <tr><th class="row-head">10</th><td>Pediatrics charge</td><td class="input-cell precedent">$39,800</td></tr>
+              <tr><th class="row-head">11</th><td>Emergency charge</td><td class="input-cell precedent">$52,500</td></tr>
+              <tr><th class="row-head">12</th><td><b>Total monthly charges</b></td><td class="result-cell active-cell">$238,000</td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab active">Live You Try It</span><span class="sheet-tab">Charge Analysis</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide" data-section="2" data-label="Guided practice: absolute reference">
+        <div class="eyebrow">Guided practice · move one, lock one</div>
+        <h2>Predict the copied formula before you drag</h2>
+        <div class="split wide-right">
+          <div>
+            <div class="formula-panel reveal">
+              <span class="fn">=C17*$C$16</span>
+              <span>C17 moves to C18</span>
+              <span>$C$16 stays fixed</span>
+              <span class="result">C19 = $52,204 · C20 = $38,130</span>
+            </div>
+            <div class="callout reveal" style="margin-top:14px"><b>Windows:</b> F4<br><b>Mac:</b> Command+T or F4<br><b>Decision first:</b> what must remain fixed?</div>
+            <div class="activity-meta reveal" style="grid-template-columns:1fr 1fr;margin-top:14px">
+              <div class="meta-cell"><b>How / time</b><span>Individual, then pair · 4 min</span></div>
+              <div class="meta-cell"><b>Deliverable</b><span>C19:C20 + explanation</span></div>
+            </div>
+          </div>
+          <div class="excel-window reveal" aria-label="Live You Try It cells B14 through C20 showing the absolute reference formula in active cell C19">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Live You Try It</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">C19</div><div class="fx-label">fx</div><div class="formula-value">=C17*$C$16</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:58%"><col style="width:42%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th></tr>
+              <tr><th class="row-head">16</th><td>Contracted reimbursement rate</td><td class="input-cell precedent">62%</td></tr>
+              <tr><th class="row-head">17</th><td>Cardiology charge</td><td class="input-cell precedent">$84,200</td></tr>
+              <tr><th class="row-head">18</th><td>Radiology charge</td><td class="input-cell">$61,500</td></tr>
+              <tr><th class="row-head">19</th><td>Cardiology expected reimbursement</td><td class="result-cell active-cell">$52,204</td></tr>
+              <tr><th class="row-head">20</th><td>Radiology expected reimbursement</td><td class="result-cell">$38,130</td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab active">Live You Try It</span><span class="sheet-tab">Charge Analysis</span></div>
+          </div>
+        </div>
+        <p class="small reveal" style="margin-top:10px"><b>Model boundary:</b> charge × supplied rate is a simplified training contract, not a universal reimbursement rule.</p>
+      </article>
+
+      <article class="slide dark section-photo" data-section="3" data-label="Part 3: Verify before deciding">
+        <img class="photo" src="img/bus123-excel-m01-l01-payer-mix-review.jpg" alt="Hospital revenue-cycle team discussing aggregate payer and department evidence">
+        <div class="section-copy">
+          <div class="eyebrow">Part 3 of 3 · 24 minutes</div>
+          <div class="part-number">03</div>
+          <h2>Verify before deciding</h2>
+          <p class="lead">A model is decision-ready only when its formulas and evidence reconcile.</p>
+        </div>
+        <div class="gradient-bar" aria-hidden="true"></div>
+      </article>
+
+      <article class="slide" data-section="3" data-label="Format the evidence, then reconcile it">
+        <div class="eyebrow">Formatting · value versus display</div>
+        <h2>The display changes. The stored value does not.</h2>
+        <div class="split wide-left">
+          <div>
+            <div class="format-compare reveal">
+              <div class="stored-box"><div class="small">Formula Bar stores</div><div class="big">0.41</div><div class="small">decimal value</div></div>
+              <div class="arrow-big">→</div>
+              <div class="display-box"><div class="small">Percentage format shows</div><div class="big">41%</div><div class="small">same value</div></div>
+            </div>
+            <div class="activity-meta reveal" style="grid-template-columns:repeat(4,1fr);margin-top:16px">
+              <div class="meta-cell"><b>What</b><span>Enter shares; SUM + MAX</span></div>
+              <div class="meta-cell"><b>How</b><span>Individual</span></div>
+              <div class="meta-cell"><b>Time</b><span>4 minutes</span></div>
+              <div class="meta-cell"><b>Deliverable</b><span>C24:C29</span></div>
+            </div>
+          </div>
+          <div class="excel-window reveal" aria-label="Live You Try It payer mix cells with C28 active and SUM formula displayed">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Live You Try It</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Insert</span><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">C28</div><div class="fx-label">fx</div><div class="formula-value">=SUM(C24:C27)</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:59%"><col style="width:41%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C</th></tr>
+              <tr><th class="row-head">24</th><td>Medicare share</td><td class="input-cell precedent">41%</td></tr>
+              <tr><th class="row-head">25</th><td>Medicaid share</td><td class="input-cell precedent">23%</td></tr>
+              <tr><th class="row-head">26</th><td>Commercial share</td><td class="input-cell precedent">28%</td></tr>
+              <tr><th class="row-head">27</th><td>Self-pay share</td><td class="input-cell precedent">8%</td></tr>
+              <tr><th class="row-head">28</th><td><b>Total payer mix</b></td><td class="result-cell active-cell">100%</td></tr>
+              <tr><th class="row-head">29</th><td><b>Largest payer share</b></td><td class="result-cell">41%</td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab active">Live You Try It</span><span class="sheet-tab">Challenge - Payer Mix</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide" data-section="3" data-label="Diagnose syntax and logic errors">
+        <div class="eyebrow">Error diagnosis · two different failures</div>
+        <h2>Excel may flag the syntax. It may miss the logic.</h2>
+        <div class="error-compare">
+          <div class="error-card reveal">
+            <div class="tag">Visible syntax problem</div>
+            <h3>Excel interrupts you</h3>
+            <code>=SUM(C8:C11</code>
+            <p>Missing parenthesis. Excel can usually identify the malformed expression.</p>
+          </div>
+          <div class="error-card correct reveal">
+            <div class="tag">Silent logic problem</div>
+            <h3>The formula runs—but omits a row</h3>
+            <code>=SUM(C8:C10)</code>
+            <p>No error code appears. The range check reveals that Emergency in C11 is missing.</p>
+          </div>
+        </div>
+        <p class="callout reveal" style="margin-top:22px"><b>Prompt:</b> Which problem will Excel flag? Which requires an analyst to inspect the evidence?</p>
+      </article>
+
+      <article class="slide" data-section="3" data-label="Independent transfer: Charge Analysis">
+        <div class="activity" style="padding:24px 28px">
+          <div class="eyebrow">Independent transfer</div>
+          <h2 style="font-size:44px">Make Charge Analysis decision-ready</h2>
+          <div class="split wide-left" style="gap:24px">
+            <div>
+              <p class="lead">Choose formulas for C13:C17, copy reimbursement formulas through D27, then prove the model reconciles in D29:D31.</p>
+              <div class="activity-meta" style="grid-template-columns:1fr 1fr;margin:16px 0">
+                <div class="meta-cell"><b>How / time</b><span>Individual · 10 minutes</span></div>
+                <div class="meta-cell"><b>Deliverable</b><span>Formulas + zero difference</span></div>
+                <div class="meta-cell"><b>Debrief</b><span>Pair audit, then class evidence</span></div>
+                <div class="meta-cell"><b>Mastery</b><span>Formula checks pass; model reconciles</span></div>
+              </div>
+              <div class="deliverable"><b>Do not type the answers.</b> Feedback requires formulas.</div>
+            </div>
+            <div class="excel-window" aria-label="Charge Analysis launch view with blank formula cells and model-check section">
+              <div class="excel-titlebar"><span>starter.xlsx</span><span>Charge Analysis</span></div>
+              <div class="formula-strip"><div class="name-box">C13</div><div class="fx-label">fx</div><div class="formula-value"></div></div>
+              <table class="sheet-grid">
+                <colgroup><col style="width:38px"><col style="width:56%"><col style="width:44%"></colgroup>
+                <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">C / D</th></tr>
+                <tr><th class="row-head">13</th><td>Total monthly charges</td><td class="input-cell active-cell"></td></tr>
+                <tr><th class="row-head">14</th><td>Average charges per dept</td><td class="input-cell"></td></tr>
+                <tr><th class="row-head">23</th><td>Cardiology expected reimb.</td><td class="input-cell"></td></tr>
+                <tr><th class="row-head">29</th><td>Total expected reimbursement</td><td class="input-cell"></td></tr>
+                <tr><th class="row-head">30</th><td>Control total</td><td class="input-cell"></td></tr>
+                <tr><th class="row-head">31</th><td>Difference</td><td class="input-cell"></td></tr>
+              </table>
+              <div class="sheet-tabs"><span class="sheet-tab active">Charge Analysis</span><span class="sheet-tab">Challenge - Payer Mix</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide terra" data-section="3" data-label="Common mistake: hard-coded assumptions">
+        <div class="eyebrow">Common mistake</div>
+        <h2>Five typed rates create five places to be wrong</h2>
+        <div class="mistake-grid">
+          <div class="mistake-panel reveal">
+            <h3 class="gold">Hard-coded copies</h3>
+            <p class="small">The same assumption is buried in every formula.</p>
+            <div><span class="rate-pill">× 62%</span><span class="rate-pill">× 62%</span></div>
+            <div><span class="rate-pill">× 62%</span><span class="rate-pill">× 62%</span></div>
+            <div><span class="rate-pill">× 62%</span></div>
+            <p style="margin-top:20px">A change to 65% requires five edits—and one may be missed.</p>
+          </div>
+          <div class="arrow-big reveal" style="color:var(--white)">→</div>
+          <div class="mistake-panel good reveal">
+            <h3 class="accent">One source of truth</h3>
+            <p class="small">Every row references the shared assumption in C21.</p>
+            <span class="rate-pill">$C$21 = 62%</span>
+            <div class="formula-panel" style="margin-top:20px">
+              <span class="fn">=C23*$C$21</span>
+              <span class="comment">Copy down. Update one input.</span>
+            </div>
+            <p style="margin-top:18px">One change updates all five reimbursement formulas.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="slide" data-section="4" data-label="Debrief: defend the evidence">
+        <div class="eyebrow">Discussion + debrief · 5 minutes</div>
+        <h2>What evidence makes the model trustworthy?</h2>
+        <div class="split wide-right">
+          <div class="activity reveal" style="padding:24px">
+            <h3 style="font-size:30px">Pair audit</h3>
+            <p>Compare one partner’s Charge Analysis formula cells and reconciliation.</p>
+            <div class="activity-meta" style="grid-template-columns:1fr 1fr;margin:14px 0">
+              <div class="meta-cell"><b>How</b><span>Pairs</span></div>
+              <div class="meta-cell"><b>Time</b><span>3 minutes</span></div>
+              <div class="meta-cell"><b>Deliverable</b><span>One claim + cell evidence</span></div>
+              <div class="meta-cell"><b>Debrief</b><span>Two pairs report</span></div>
+            </div>
+            <div class="deliverable">“The model is ready because _____ in cell _____.”</div>
+          </div>
+          <div class="excel-window reveal" aria-label="Completed Charge Analysis model-check evidence showing reconciled totals">
+            <div class="excel-titlebar"><span>starter.xlsx</span><span>Charge Analysis · debrief evidence</span></div>
+            <div class="excel-ribbon"><b>Home</b><span>Formulas</span><span>Data</span></div>
+            <div class="formula-strip"><div class="name-box">D31</div><div class="fx-label">fx</div><div class="formula-value">=D29-D30</div></div>
+            <table class="sheet-grid">
+              <colgroup><col style="width:38px"><col style="width:62%"><col style="width:38%"></colgroup>
+              <tr><th class="corner"></th><th class="col-head">B</th><th class="col-head">D</th></tr>
+              <tr><th class="row-head">28</th><td class="header">Model Check</td><td class="header">Evidence</td></tr>
+              <tr><th class="row-head">29</th><td>Total expected reimbursement</td><td class="result-cell">$176,886</td></tr>
+              <tr><th class="row-head">30</th><td>Control total (charges × rate)</td><td class="result-cell">$176,886</td></tr>
+              <tr><th class="row-head">31</th><td><b>Reconciliation difference</b></td><td class="result-cell active-cell">$0</td></tr>
+            </table>
+            <div class="sheet-tabs"><span class="sheet-tab active">Charge Analysis</span><span class="sheet-tab">Challenge - Payer Mix</span></div>
+          </div>
+        </div>
+        <p class="callout reveal" style="margin-top:16px;margin-bottom:0"><b>Business boundary:</b> the payer challenge supports a conclusion about <em>share of claims</em>, not share of revenue.</p>
+      </article>
+
+      <article class="slide" data-section="4" data-label="Key takeaways">
+        <div class="eyebrow">Key takeaways</div>
+        <h2>Locate → Calculate → Verify</h2>
+        <div class="audit-path" role="list" aria-label="Three-part Excel modeling summary">
+          <div class="audit-step reveal" role="listitem"><div class="audit-icon">1</div><h3>Locate</h3><p>Use the Name Box, Formula Bar, labels, and tab to establish context.</p></div>
+          <div class="audit-step reveal" role="listitem"><div class="audit-icon">2</div><h3>Calculate</h3><p>Let the business question choose the function and references.</p></div>
+          <div class="audit-step reveal" role="listitem"><div class="audit-icon">3</div><h3>Verify</h3><p>Inspect the formula, test the range, and reconcile to zero.</p></div>
+        </div>
+        <p class="callout reveal" style="margin-top:34px"><b>Independent transfer after class:</b> complete Challenge - Payer Mix and support the largest <em>claim-share</em> conclusion with formula-cell evidence.</p>
+      </article>
+
+      <article class="slide dark section-photo" data-section="4" data-label="Up next: Formatting and Organizing Worksheets">
+        <img class="photo" src="img/bus123-excel-m01-l01-organized-worksheet-preview.jpg" alt="Business analyst preparing a clearly organized worksheet at a clean workstation">
+        <div class="section-copy">
+          <div class="eyebrow">Up next · EXCEL-M02-L01</div>
+          <h2>Formatting and Organizing Worksheets</h2>
+          <p class="lead">Make the evidence easier to scan, compare, and trust.</p>
+          <p class="small">Next: format and organize a worksheet so its evidence is easy to use.</p>
+        </div>
+        <div class="gradient-bar" aria-hidden="true"></div>
+      </article>
+
+      <article class="slide dark center" data-section="0" data-label="Close and exit prompt">
+        <div style="max-width:900px">
+          <div class="eyebrow">Exit prompt</div>
+          <h2 style="font-size:64px">What should move—and what must remain fixed?</h2>
+          <p class="lead">Answer with one workbook example and one verification check.</p>
+          <p class="small" style="margin-top:32px">Questions? · BUS123 · Creating and Editing Worksheets</p>
+        </div>
+      </article>
+
+      <div class="slide-counter" aria-live="polite"><span id="current-slide">1</span> / 22</div>
+      <div class="key-hint">N = notes</div>
+      <div class="nav-controls" aria-label="Slide navigation">
+        <button class="nav-btn" id="prev-btn" type="button" aria-label="Previous reveal or slide">←</button>
+        <button class="nav-btn" id="next-btn" type="button" aria-label="Next reveal or slide">→</button>
       </div>
+      <aside class="notes-panel" id="notes-panel" aria-label="Speaker notes"><b>Speaker notes</b><div id="notes-copy"></div></aside>
     </section>
+  </main>
 
-    <!-- 22 CLOSE -->
-    <section class="slide dark center" data-section="0" data-slide="23" data-index="22">
-      <div class="geo c1"></div><div class="geo c2"></div>
-      <div class="reveal bar" style="margin:0 auto 32px"></div>
-      <h1 class="reveal" style="font-size:60px">Questions?</h1>
-      <div class="reveal sub" style="margin-top:14px">Foundations of Excel &middot; EXCEL-M01-L01</div>
-      <div class="spacer"></div>
-      <div class="reveal footer-meta">BUS123 &middot; Solving Business Problems with Technology &middot; Professor Evitts</div>
-    </section>
+  <script type="application/json" id="speaker-notes">[
+    "Opening, 2 minutes. Frame the lesson as evidence work, not button memorization. Harborside uses aggregate operating data; there is no patient-level information. The photograph establishes the people-and-decision context. Ask: what would make you trust a number on this analyst's screen?",
+    "Agenda, 2 minutes. Preview the non-overlapping 75-minute route: locate, construct, verify, decide. Each step creates evidence used by the next. Do not spend time defining every Excel command here.",
+    "Objectives, 2 minutes. Read the student-work verbs: locate, choose and construct, copy while locking, reconcile and recommend. The deliverables are visible cells and explanations, not merely correct final numbers.",
+    "Retrieval, 3 minutes. Students silently inspect the authentic Charge Analysis view. Expected response: C8 is active; the Formula Bar stores 39800; the row and column identify Pediatrics monthly charges. Likely misconception: reporting only $39,800 without the cell or business label. Debrief by tracing Name Box → Formula Bar → labels.",
+    "Section transition, 30 seconds. The photograph marks the shift into workbook orientation. State the teaching message: before formulas, know where you are and what the active cell contains.",
+    "Hierarchy, 3 minutes. Explain workbook → worksheets → cells/ranges. Ask students to name one workbook, one tab, one cell, and one range in their starter. Misconception: calling the entire file a worksheet. Correct by pointing to the file name versus bottom tabs.",
+    "Navigation, 3.5 minutes. Model the Name Box and Formula Bar using C8. Platform note: Windows and Mac shortcuts differ, while formula syntax and cell addresses remain the same. Do not require shortcut memorization; require students to choose the tool that answers the question.",
+    "Retrieval activity, 4 minutes total: 2 minutes individual, 1 minute compare, 1 minute debrief. Students select Charge Analysis C6:C9 and state that it contains monthly charges for Cardiology through Emergency. Mastery: correct range, correct tab, and business meaning. Likely misconception: selecting B6:C9 or including Oncology. Ask the student to use headers and row labels to repair the range.",
+    "Section transition, 30 seconds. Preview the rule: the fill handle repeats whatever structure you give it. A prediction must come before the copy.",
+    "Copying model, 3.5 minutes. Use the authentic Live You Try It view. Expected explanation: C17 becomes C18; $C$16 remains fixed. Likely misconception: locking the department charge too. Ask which input is shared across every row.",
+    "Method choice, 3 minutes. Reveal each business question before its function. Students should say the evidence needed first. Misconception: using SUM whenever several numbers appear. Response: ask whether the manager needs a combined total, typical value, count, or extreme.",
+    "SUM model and guided pause, 5 minutes total: model 1, individual work 3, debrief 1. Students work in Live You Try It C8:C12. Deliverable: a SUM formula in C12, not a typed 238000. Expected formative result: $238,000. Likely misconception: C8:C10 omits Emergency. Debrief with the outlined precedents and manual check.",
+    "Absolute-reference guided practice, 7 minutes total: model 2, individual 3, pair explanation 1, debrief 1. Students complete C16:C20. Expected formative structure: =C17*$C$16 copied down; the charge moves and rate stays fixed. Likely misconception: C17*C16 without dollar signs. Instructor response: change the rate hypothetically and ask which formulas should update from one place.",
+    "Section transition, 30 seconds. The photograph marks the move from formula construction to model evidence and judgment. State the model boundary: the supplied charge-times-rate calculation is a training contract, not a universal reimbursement rule.",
+    "Formatting and payer-mix pause, 5 minutes total: explain value versus display 1, individual work 3, debrief 1. Students enter C24:C27, build SUM in C28 and MAX in C29. Expected formative evidence: 100% reconciliation and 41% maximum. Likely misconception: entering 41 and formatting it as a percent. Inspect the Formula Bar to distinguish 0.41 from 41.",
+    "Error diagnosis, 3 minutes. Ask which formula Excel will flag. The missing parenthesis is a syntax error; the short range is a silent logic error. Likely misconception: a clean error scan proves correctness. Response: require range, reference, and reconciliation checks.",
+    "Independent transfer, 12 minutes total: setup 2 and individual work 10. Students choose formulas for C13:C17, copy reimbursement formulas through D27, and build D29:D31. Deliverable: formula-driven cells and a zero reconciliation difference. Do not reveal a solution key. Mastery evidence: workbook feedback recognizes formulas, the copied rate remains locked, and the model check reconciles. During troubleshooting, ask diagnostic questions rather than naming the function.",
+    "Common mistake, 3 minutes. Contrast five buried constants with one source of truth in $C$21. Remove the old unsupported percentage claim from discussion. Likely misconception: every constant is automatically wrong. Clarify that supplied assumptions belong in labeled input cells and formulas should reference them.",
+    "Pair audit and debrief, 7 minutes total: pairs 3, two reports 2, instructor synthesis 2. Deliverable: 'The model is ready because ___ in cell ___.' Expected evidence includes formula construction, a fixed shared rate, matching control totals, and a zero difference. Do not treat a clean error scan as sufficient. Close by distinguishing claim share from revenue share.",
+    "Takeaways, 3 minutes. Students repeat Locate → Calculate → Verify with one concrete workbook example for each. Assign Challenge - Payer Mix as post-class transfer unless the instructor explicitly changes the plan. The decision sentence must identify the largest share of claims and cite formula-cell evidence.",
+    "Up next, 1.5 minutes. Correct sequence: EXCEL-M02-L01, Formatting and Organizing Worksheets. Connect today's accurate formula structure to the next lesson's communication and organization work. The photograph is a transfer preview, not an Excel replica.",
+    "Close, 1 minute. Exit response: identify one reference that should move, one that should remain fixed, and one verification check. Listen for a cell-specific example and a model-level check. Total planned time: 75 minutes."
+  ]</script>
 
-  </div>
-</div>
-<div id="slideno"></div>
-<div id="hint">&larr; &rarr; navigate &middot; N = notes</div>
-<div id="notes"></div>
+  <script>
+    (function(){
+      var W=1280,H=720,deck=document.querySelector('.deck-shell');
+      function fit(){
+        var s=Math.min(window.innerWidth/W,window.innerHeight/H);
+        deck.style.transform='translate('+((window.innerWidth-W*s)/2)+'px,'+((window.innerHeight-H*s)/2)+'px) scale('+s+')';
+      }
+      window.addEventListener('resize',fit);fit();
 
-<script type="application/json" id="speaker-notes">
-[
-  "Title. Welcome them in. Frame the day: this is the first real Excel lesson \u2014 by the end the blank grid stops being intimidating. Mention every example is Harborside Medical Center, a hospital, so the data feels real.",
-  "Agenda. Three parts: the environment, then making the sheet calculate, then making it trustworthy. Keep it to 30 seconds \u2014 it's a map, not a stop.",
-  "Objectives. Read the I Can statements out loud; tell them these are exactly what the quiz and workbook will check.",
-  "Bridge. Connect back to INTRO-M01: they already installed Office, connected OneDrive, saved a workbook. Today we open it and learn to read it. Validate that the grid looked overwhelming \u2014 that's normal.",
-  "Section break \u2014 Part 1. Big idea: before you can calculate anything, you have to be able to describe where things are.",
-  "Workbook vs worksheet. The binder analogy lands well. Show the sheet tabs at the bottom of a real file if projecting live. Workbook = the file you save.",
-  "The grid. Columns are letters, rows are numbers, a cell is the intersection. Battleship comparison. Click around live and watch the Name Box change. Point out the active-cell border.",
-  "Control center. Name Box = where am I / jump tool. Formula Bar = the real logic behind a displayed value. Ribbon = grouped tools. Then ranges: the colon means 'through' \u2014 C8:C11 is the four-charge range students will use in Live You Try It. This sets up SUM.",
-  "Section break \u2014 Part 2. Now we make the sheet do the work instead of a calculator.",
-  "Data entry + autofill. Push the Tab/Enter habit hard \u2014 mouse-free is faster. Demo the fill handle with Jan\u2192Dec. Double-click trick when there's an adjacent filled column.",
-  "Formula vs function. Everything starts with =. A formula is anything after it; a function is a named shortcut. Walk the Big Five quickly with a Harborside use for each.",
-  "Worked SUM \u2014 SYNTAX FIRST. Show =SUM(C8:C11) before any arithmetic. Then reveal the manual addition to $238,000. Reinforce the rule: we learn the Excel function first, the by-hand math is just to prove it. Then pause: students open Live You Try It and fill C8:C11 before entering the SUM formula in C12.",
-  "References. The make-or-break concept. Relative shifts, absolute locks with $, F4 toggles. The reimbursement rate in C16 is the perfect 'lock it' case. Copy =C17*$C$16 down and narrate what moves and what stays. Then pause for Live You Try It rows 16 through 20: enter 0.62, 84,200, and 61,500, then build the reimbursement formulas in C19:C20 with the rate locked.",
-  "Section break \u2014 Part 3. A sheet that calculates but can't be trusted is worse than no sheet. Now: clarity and safety.",
-  "Formatting. Accounting vs Currency vs Percent. Payer mix as the percent example. Auto-fit and wrap text. Banded rows guide the eye. Quick self-check: Live You Try It rows 24 through 29 use the exact payer mix percentages on the slide, then SUM and MAX for feedback.",
-  "Errors. Reassure them: error codes are helpful labels, not failures. Walk #REF!, #DIV/0!, #NAME? with the hospital framing (visits = 0 causes DIV/0).",
-  "Golden rules. Don't hard-code, save constantly, one source of truth. These three habits prevent most of the 88%.",
-  "COMMON MISTAKE \u2014 spend real time here. The rate changes from 0.62 to 0.65. Hard-coded =C17*0.62 means hand-editing everything and missing one. =C17*$C$16 fixes the whole sheet from one cell. This is the slide they should remember.",
-  "Discussion. Let them sit with the 88% stat. Push for a concrete hospital example AND the matching safeguard. Cold-call a couple of pairs.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question. Live You Try It is self-graded only; Charge Analysis and Challenge - Payer Mix are the submitted activity tabs.",
-  "Takeaways. Quick recap mapped to the three parts. This is the 'what to study' slide.",
-  "Up next. L02 builds a full Harborside worksheet. Remind them to bring their OneDrive folder.",
-  "Close. Q&A. Thank them and point to the pre-reading PDF and workbook when those are posted."
-]
-</script>
+      var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+      var notes=JSON.parse(document.getElementById('speaker-notes').textContent);
+      var current=0,revealCount=0;
+      var counter=document.getElementById('current-slide');
+      var notesPanel=document.getElementById('notes-panel');
+      var notesCopy=document.getElementById('notes-copy');
 
-<script>
-(function(){
-  var deck=document.getElementById('deck');
-  var W=1280,H=720;
-  var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var notes=[]; try{notes=JSON.parse(document.getElementById('speaker-notes').textContent);}catch(e){}
-  var cur=0, notesOn=false;
-
-  slides.forEach(function(s){ s.style.position='absolute'; s.style.inset='0'; s.style.display='none'; });
-
-  function fit(){
-    var vw=window.innerWidth, vh=window.innerHeight;
-    var s=Math.min(vw/W, vh/H);
-    deck.style.transform='scale('+s+')';
-    deck.style.left=Math.round((vw-W*s)/2)+'px';
-    deck.style.top=Math.round((vh-H*s)/2)+'px';
-  }
-  function show(i){
-    if(i<0)i=0; if(i>slides.length-1)i=slides.length-1;
-    slides.forEach(function(s){ s.style.display='none'; s.classList.remove('is-active'); });
-    var sl=slides[i]; sl.style.display='flex'; void sl.offsetWidth; sl.classList.add('is-active');
-    cur=i;
-    var sec=sl.getAttribute('data-section');
-    tabs.forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-section')===sec && sec!=='0' && sec!=='4'); });
-    document.getElementById('slideno').textContent=String(i+1).padStart(2,'0')+' / '+slides.length;
-    renderNotes();
-  }
-  function renderNotes(){
-    var n=document.getElementById('notes');
-    if(!notesOn){n.style.display='none';return;}
-    n.style.display='block';
-    n.innerHTML='<b>Slide '+(cur+1)+' notes</b><br>'+(notes[cur]||'');
-  }
-  function next(){show(cur+1);} function prev(){show(cur-1);}
-
-  document.addEventListener('keydown',function(e){
-    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next();}
-    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev();}
-    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
-    else if(e.key==='n'||e.key==='N'){notesOn=!notesOn;renderNotes();}
-  });
-  deck.addEventListener('click',function(e){
-    if(e.target.closest('.tab')||e.target.closest('.home-dot'))return;
-    var r=deck.getBoundingClientRect(), x=(e.clientX-r.left)/r.width;
-    if(x<0.33)prev(); else next();
-  });
-  tabs.forEach(function(t){ t.addEventListener('click',function(){
-    var sec=t.getAttribute('data-section');
-    for(var i=0;i<slides.length;i++){ if(slides[i].getAttribute('data-section')===sec){show(i);return;} }
-  }); });
-  document.querySelector('.home-dot').addEventListener('click',function(){show(0);});
-
-  window.addEventListener('resize',fit);
-  fit(); show(0);
-})();
-</script>
+      function currentReveals(){return Array.prototype.slice.call(slides[current].querySelectorAll('.reveal'));}
+      function paintReveals(){currentReveals().forEach(function(el,i){el.classList.toggle('is-visible',i<revealCount);});}
+      function setTabs(){
+        var section=slides[current].getAttribute('data-section');
+        document.querySelectorAll('.tab-btn').forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-tab')===section);});
+      }
+      function show(index,showAll){
+        current=Math.max(0,Math.min(slides.length-1,index));
+        slides.forEach(function(slide,i){slide.classList.toggle('active',i===current);});
+        revealCount=showAll?currentReveals().length:0;
+        paintReveals();
+        counter.textContent=String(current+1);
+        notesCopy.textContent=notes[current]||'';
+        setTabs();
+        document.title='BUS123 · '+(current+1)+'/22 · '+slides[current].getAttribute('data-label');
+      }
+      function next(){
+        var reveals=currentReveals();
+        if(revealCount<reveals.length){revealCount+=1;paintReveals();return;}
+        show(current+1,false);
+      }
+      function prev(){
+        if(revealCount>0){revealCount-=1;paintReveals();return;}
+        if(current>0){show(current-1,true);}
+      }
+      document.getElementById('next-btn').addEventListener('click',next);
+      document.getElementById('prev-btn').addEventListener('click',prev);
+      document.querySelectorAll('[data-jump]').forEach(function(btn){btn.addEventListener('click',function(){show(Number(btn.getAttribute('data-jump')),false);});});
+      document.addEventListener('keydown',function(event){
+        if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){event.preventDefault();next();}
+        else if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();prev();}
+        else if(event.key==='Home'){event.preventDefault();show(0,false);}
+        else if(event.key==='End'){event.preventDefault();show(slides.length-1,false);}
+        else if(event.key==='n'||event.key==='N'){notesPanel.classList.toggle('visible');}
+      });
+      show(0,false);
+    }());
+  </script>
 </body>
 </html>

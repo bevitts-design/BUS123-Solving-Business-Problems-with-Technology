@@ -1,1404 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- BUS123 APPROVED EXCEPTION: This lesson intentionally uses 25 slides instead of the standard 22. Preserve the additional Live You Try It, FormulaReferenceCard, and decision-check slides during future revisions. -->
-  <meta name="bus123-slide-count-exception" content="approved:25-slides">
-  <title>MATH-M09-L01 · Compound Interest &amp; Future Value</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script type="application/json" id="speaker-notes">
-[
-  "Welcome back. Last module we moved money forward and backward with simple interest \u2014 linear growth. Today: compound interest. Same logic, one change: the interest earns interest. That changes everything over long horizons.",
-  "Three parts. Part 1: simple vs compound comparison \u2014 same money, same rate, dramatically different outcomes. Part 2: FV equals PV times (1+i) to the n and the =FV() function. Part 3: non-annual compounding and Rule of 72.",
-  "Four I Can statements \u2014 all have an Excel component. The =FV() function is the star today. pmt stays zero \u2014 we add recurring payments in L02.",
-  "Bridge from M08. Simple interest: same dollar amount every period, linear. Compound interest: interest earns interest, exponential. The exponent n is the structural difference \u2014 that single change drives everything.",
-  "The $1,000 comparison. Year 1: identical. Year 2: compound pulls ahead by $2.50 \u2014 tiny. Year 30: compound has $4,321 vs simple interest $2,500. The gap is $1,821 on a $1,000 investment. Same rate, same principal.",
-  "The formula. FV = PV times (1+i)^n. Two things to remember: i is rate per compounding period, not annual rate. n is total periods, not years. If compounding is quarterly, i = annual/4 and n = years times 4.",
-  "=FV() syntax. Rate, nper, pmt, pv. For lump sums: pmt = 0, pv = negative. Excel handles the exponent. Always show syntax first, then manual verification below.",
-  "Sign convention. PV negative because money leaves your pocket on day one. FV comes back positive. Entering PV as positive flips the sign \u2014 no error, just wrong meaning. Always sanity check: is FV larger than PV?",
-  "Worked example. $40,000 at 4% for 3 years. Excel: =FV(4%,3,0,-40000) = $44,994.56. Year by year: 41,600 then 43,264 then 44,994.56. Simple interest would give $44,800 \u2014 compound adds $194.56 over just 3 years.",
-  "Excel worksheet demo. Each input in its own labeled cell. FV formula uses cell references. Manual verify row must match. Students should be able to trace every argument back to its source cell.",
-  "Live You Try It pause. Students enter $40,000, 4%, 3 years, and pmt 0 into the yellow input cells, then build =FV() and the manual verification from those cells.",
-  "Section break. Non-annual compounding. Same principal, same annual rate, same years \u2014 different results. The rule: always adjust BOTH rate and nper to match the compounding period.",
-  "Frequency table. $25,000 at 6% for 5 years. Annual: $33,455.64. Monthly: $33,721.25. Daily: $33,745.64. More frequent = higher FV. The gap between annual and daily is about $290. At higher rates or longer horizons the difference is much larger.",
-  "Rule of 72. 72 divided by the annual rate gives approximate years to double. At 6%: 12 years. At 9%: 8 years. Quick estimation tool \u2014 not exact. Verify with =FV(). Use it for planning conversations.",
-  "Quarterly worked example. Same $25,000, 6%, 5 years but quarterly. Rate = 6%/4 = 1.5%. Nper = 5*4 = 20. =FV(1.5%,20,0,-25000) = $33,671.38. The worksheet shows rate and nper cells calculated from the inputs.",
-  "Live You Try It pause. Students use the same $25,000, 6%, 5 years, quarterly example to calculate rate per period, total periods, and future value from cell references.",
-  "Common mistake. Adjusting nper to 20 for quarterly but leaving rate at 6% instead of 1.5%. Returns $80,178 \u2014 wildly inflated. No error message. The fix: rate and nper must always refer to the same unit of time.",
-  "Class Challenge setup. Students move from self-checked practice into the graded challenge tab, using only formulas in the blue cells and the exact slide numbers already used in the lesson.",
-  "Discussion. Computational: dollar difference between annual and monthly on $25,000 at 6% over 5 years. Conceptual: why exponential vs linear. Applied: 4% annual vs 3.8% monthly on $100,000 over 10 years \u2014 which wins?",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
-  "Three takeaways. The exponent FV=PV(1+i)^n. The function =FV(rate,nper,0,-pv). Rule of 72. Next: PMT and annuities \u2014 the pmt argument we left at zero today becomes the main event.",
-  "Preview of M09-L02. Money goes in or out every period. Mortgages, car loans, retirement contributions. =PMT() calculates the required payment. Same TVM logic, new variable.",
-  "That is MATH-M09-L01. Questions? Key insight: interest earns interest. Same rate, exponentially more money the longer time passes. =FV() handles the exponent. Signs matter. Periods must match rates.",
-  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing.",
-  "Use this slide to connect the example back to the business decision, then invite students to identify the Excel input or interpretation before advancing."
-]
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>BUS123 · MATH-M09 · Compound Interest & Future Value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  /* ============================================================
-     BUS123 v2 Hybrid Design System — MATH-M09-L01
-     Inline styles for standalone delivery (GitHub Pages compatible)
-     ============================================================ */
-
-  :root {
-    --ink:#0E1116;
-    --paper:#FAF8F3;
-    --paper-2:#F2EEE5;
-    --white:#FFFFFF;
-    --text:#1A1F2C;
-    --text-soft:#4A5567;
-    --muted:#7A8290;
-    --border:#E5E1D6;
-    --sage:#4A7C5E;
-    --gold:#B8843D;
-    --terra:#9C4A2B;
-    --steel:#355773;
-    --formula-bg:#EAF3EC;
-    --gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
-    --serif:"Bodoni Moda",serif;
-    --sans:"DM Sans",sans-serif;
-    --mono:"JetBrains Mono",monospace;
-    --font-display:var(--serif);
-    --font-body:var(--sans);
-    --font-mono:var(--mono);
-
-    --xls-header-bg:   #1a1a2e;
-    --xls-header-text: #c9a84c;
-    --xls-header-border:#c9a84c;
-    --xls-cell-bg:     #ffffff;
-    --xls-cell-text:   #0a3d6b;
-    --xls-alt-row:     #f7f8fa;
-    --xls-result-bg:   #fffbf0;
-    --xls-result-text: #1a6b3c;
-    --xls-formula:     #1a6b3c;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: #111318;
-    font-family: 'DM Sans', system-ui, sans-serif;
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-  }
-
-  /* ── Shell ── */
-  .deck-shell {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  /* ── Tab Strip ── */
-  .tab-strip {
-    display: flex;
-    flex-direction: column;
-    width: 48px;
-    background: #0a0c0f;
-    border-right: 1px solid #1e2128;
-    gap: 4px;
-    padding: 12px 6px;
-    flex-shrink: 0;
-    z-index: 10;
-  }
-  .tab-strip .tab-spacer { flex: 1; }
-  .tab-btn {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #5a6270;
-    background: transparent;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 4px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-  }
-  .tab-btn:hover { background: #1e2128; color: #a0a8b4; }
-  .tab-btn.active-sage  { background: rgba(74,124,94,0.18); color: var(--sage);  border-left: 2px solid var(--sage); }
-  .tab-btn.active-gold  { background: rgba(184,132,61,0.18); color: var(--gold);  border-left: 2px solid var(--gold); }
-  .tab-btn.active-terra { background: rgba(156,74,43,0.18);  color: var(--terra); border-left: 2px solid var(--terra); }
-  .tab-btn.active-neutral { background: #1e2128; color: #c8cdd5; border-left: 2px solid #5a6270; }
-
-  /* ── Viewport ── */
-  .slide-viewport {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #111318;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* ── Slide Scaler ── */
-  .slide-scaler {
-    width: 1280px;
-    height: 720px;
-    position: relative;
-    transform-origin: center center;
-  }
-
-  /* ── Slide Base ── */
-  .slide {
-    display: none;
-    width: 1280px;
-    height: 720px;
-    position: absolute;
-    top: 0; left: 0;
-    overflow: hidden;
-    border-radius: 6px;
-  }
-  .slide.active { display: block; }
-
-  /* Paper slides */
-  .slide.paper {
-    background: var(--paper);
-    color: var(--text);
-  }
-  .slide.paper .slide-inner {
-    padding: 44px 52px 32px 52px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Dark slides */
-  .slide.dark {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .slide.dark .slide-inner {
-    padding: 44px 52px 32px 52px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── Gradient Bar ── */
-  .gradient-bar {
-    height: 4px;
-    background: var(--gradient);
-    width: 100%;
-    border-radius: 2px;
-    margin-bottom: 28px;
-    flex-shrink: 0;
-  }
-
-  /* ── Typography ── */
-  .eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .eyebrow.sage  { color: var(--sage); }
-  .eyebrow.gold  { color: var(--gold); }
-  .eyebrow.terra { color: var(--terra); }
-
-  h1.display {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-size: 52px;
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--paper);
-    margin-bottom: 16px;
-  }
-  h1.display em { font-style: italic; font-weight: 400; color: var(--gold); }
-
-  h2.section-title {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-size: 42px;
-    font-weight: 900;
-    line-height: 1.1;
-    color: var(--paper);
-    margin-bottom: 12px;
-  }
-
-  h2.slide-title {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: var(--text);
-    margin-bottom: 20px;
-  }
-  h2.slide-title.paper { color: var(--text); }
-
-  h3.sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-soft);
-    margin-bottom: 8px;
-  }
-
-  p.body-text {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.65;
-    color: var(--text-soft);
-  }
-  p.body-text.dark { color: rgba(250,248,243,0.78); }
-
-  .subtitle-italic {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 400;
-    color: rgba(250,248,243,0.65);
-    margin-bottom: 32px;
-  }
-
-  /* ── Title Rule ── */
-  .title-rule {
-    height: 2px;
-    background: var(--border);
-    width: 100%;
-    margin-bottom: 24px;
-    flex-shrink: 0;
-  }
-  .title-rule.sage  { background: var(--sage);  opacity: 0.5; }
-  .title-rule.gold  { background: var(--gold);  opacity: 0.5; }
-  .title-rule.terra { background: var(--terra); opacity: 0.5; }
-
-  /* ── Header Row ── */
-  .header-row {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 6px;
-  }
-  .slide-num {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    flex-shrink: 0;
-  }
-
-  /* ── Bullet Lists ── */
-  .bullet-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-  }
-  .bullet-list li {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-soft);
-    padding-left: 20px;
-    position: relative;
-  }
-  .bullet-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--muted);
-    font-weight: 300;
-  }
-  .bullet-list.sage  li::before { color: var(--sage); }
-  .bullet-list.gold  li::before { color: var(--gold); }
-  .bullet-list.terra li::before { color: var(--terra); }
-  .bullet-list li strong { color: var(--text); font-weight: 600; }
-
-  /* ── Two-column layout ── */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    flex: 1;
-    min-height: 0;
-  }
-  .two-col.wide-left  { grid-template-columns: 1.4fr 1fr; }
-  .two-col.wide-right { grid-template-columns: 1fr 1.4fr; }
-
-  /* ── Card ── */
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 20px 22px;
-  }
-  .card.tinted { background: var(--paper-2); }
-  .card h4 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .card h4.sage  { color: var(--sage); }
-  .card h4.gold  { color: var(--gold); }
-  .card h4.terra { color: var(--terra); }
-
-  /* ── Formula Panel (dark) ── */
-  .formula-panel {
-    background: #0a0c10;
-    border: 1px solid #2a2e38;
-    border-left: 3px solid var(--gold);
-    border-radius: 6px;
-    padding: 16px 20px;
-    margin-bottom: 14px;
-  }
-  .formula-panel .label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 8px;
-  }
-  .formula-panel code {
-    font-family: 'DM Sans', sans-serif;
-    font-variant-numeric: tabular-nums;
-    font-size: 18px;
-    font-weight: 600;
-    color: #e8d5a0;
-    letter-spacing: 0.02em;
-    display: block;
-  }
-  .formula-panel code .fn { color: #7fba8a; }
-  .formula-panel code .arg { color: #8ab4d4; }
-  .formula-panel code .val { color: #e8d5a0; }
-  .formula-panel code .neg { color: #e8887a; }
-
-  /* ── Formula Panel (light — manual math) ── */
-  .math-panel {
-    background: var(--paper-2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--sage);
-    border-radius: 6px;
-    padding: 14px 20px;
-  }
-  .math-panel .label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 8px;
-  }
-  .math-panel code {
-    font-family: 'DM Sans', sans-serif;
-    font-variant-numeric: tabular-nums;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-    display: block;
-    line-height: 1.7;
-  }
-  .math-panel code .result { color: var(--sage); font-weight: 700; }
-
-  /* ── Excel Replica Table ── */
-  .xls-wrap {
-    overflow: hidden;
-    border-radius: 5px;
-    border: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  .xls-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-  }
-  .xls-table th {
-    background: var(--xls-header-bg);
-    color: var(--xls-header-text);
-    border: 1px solid var(--xls-header-border);
-    padding: 6px 10px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-  }
-  .xls-table th.row-num { width: 32px; text-align: center; }
-  .xls-table td {
-    background: var(--xls-cell-bg);
-    color: var(--xls-cell-text);
-    border: 1px solid #e2e8f0;
-    padding: 5px 10px;
-    font-size: 13px;
-  }
-  .xls-table tr:nth-child(even) td { background: var(--xls-alt-row); }
-  .xls-table tr.result-row td {
-    background: var(--xls-result-bg);
-    border-left: 3px solid var(--xls-header-border);
-    color: var(--xls-result-text);
-    font-weight: 600;
-  }
-  .xls-table td.formula-cell {
-    color: var(--xls-formula);
-    font-style: italic;
-    font-size: 12px;
-  }
-  .xls-table td.row-num {
-    background: #f0f2f8;
-    color: var(--xls-header-text);
-    text-align: center;
-    font-size: 11px;
-    font-weight: 600;
-    border-color: var(--xls-header-border);
-  }
-
-  /* ── Stat / Callout ── */
-  .stat-block {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .stat-num {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--gold);
-    line-height: 1;
-  }
-  .stat-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: rgba(250,248,243,0.65);
-    line-height: 1.4;
-  }
-
-  /* ── Pill tag ── */
-  .pill {
-    display: inline-block;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-  }
-  .pill.sage  { background: rgba(74,124,94,0.15);  color: var(--sage); }
-  .pill.gold  { background: rgba(184,132,61,0.15); color: var(--gold); }
-  .pill.terra { background: rgba(156,74,43,0.15);  color: var(--terra); }
-
-  /* ── Comparison table (simple vs compound) ── */
-  .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .compare-table th {
-    padding: 9px 14px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .compare-table th.simple-head { background: rgba(74,124,94,0.12); color: var(--sage); }
-  .compare-table th.compound-head { background: rgba(184,132,61,0.12); color: var(--gold); }
-  .compare-table th.label-head { background: var(--paper-2); color: var(--muted); }
-  .compare-table td {
-    padding: 8px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-soft);
-    font-size: 13px;
-  }
-  .compare-table td.label-cell { font-weight: 500; color: var(--text); background: var(--paper-2); }
-  .compare-table td.simple-cell { background: rgba(74,124,94,0.05); }
-  .compare-table td.compound-cell { background: rgba(184,132,61,0.05); }
-  .compare-table td strong { color: var(--text); font-weight: 600; }
-
-  /* ── Geometric decoration ── */
-  .geo {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 50%;
-  }
-
-  /* ── Nav controls ── */
-  .nav-controls {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 100;
-  }
-  .nav-btn {
-    width: 36px; height: 36px;
-    background: #1e2128;
-    border: 1px solid #2e3340;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: #8a92a0;
-    font-size: 16px;
-    transition: background 0.15s, color 0.15s;
-  }
-  .nav-btn:hover { background: #2a2f3a; color: #c8cdd5; }
-  .slide-counter {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: #5a6270;
-    min-width: 44px;
-    text-align: center;
-  }
-
-  /* ── Speaker Notes Overlay ── */
-  .notes-overlay {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(10,12,15,0.96);
-    border-top: 1px solid #2a2e38;
-    padding: 16px 24px 16px 72px;
-    z-index: 200;
-    max-height: 28vh;
-    overflow-y: auto;
-  }
-  .notes-overlay.visible { display: block; }
-  .notes-overlay p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #a8b0bc;
-  }
-  .notes-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 6px;
-  }
-
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-  .slide.active .anim-1 { animation: fadeUp 0.5s ease 0.05s both; }
-  .slide.active .anim-2 { animation: fadeUp 0.5s ease 0.15s both; }
-  .slide.active .anim-3 { animation: fadeUp 0.5s ease 0.25s both; }
-  .slide.active .anim-4 { animation: fadeUp 0.5s ease 0.35s both; }
-  .slide.active .anim-5 { animation: fadeUp 0.5s ease 0.45s both; }
-  .slide.dark.active .slide-inner { animation: fadeIn 0.4s ease both; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .slide.active .anim-1,
-    .slide.active .anim-2,
-    .slide.active .anim-3,
-    .slide.active .anim-4,
-    .slide.active .anim-5,
-    .slide.dark.active .slide-inner { animation: none; }
-  }
-
-  /* ── Highlight box ── */
-  .highlight-box {
-    border-radius: 6px;
-    padding: 14px 18px;
-    margin-top: 12px;
-  }
-  .highlight-box.sage  { background: rgba(74,124,94,0.1);  border-left: 3px solid var(--sage); }
-  .highlight-box.gold  { background: rgba(184,132,61,0.1); border-left: 3px solid var(--gold); }
-  .highlight-box.terra { background: rgba(156,74,43,0.1);  border-left: 3px solid var(--terra); }
-  .highlight-box p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text-soft);
-    line-height: 1.55;
-  }
-  .highlight-box p strong { color: var(--text); }
-
-  /* objectives grid */
-  .obj-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    flex: 1;
-  }
-  .obj-item {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .obj-icon {
-    width: 28px; height: 28px;
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .obj-icon.sage  { background: rgba(74,124,94,0.12); }
-  .obj-icon.gold  { background: rgba(184,132,61,0.12); }
-  .obj-icon.terra { background: rgba(156,74,43,0.12); }
-  .obj-text {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--text-soft);
-    line-height: 1.5;
-  }
-  .obj-text strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 2px; font-size: 12px; letter-spacing: 0.04em; }
-
-  /* agenda items */
-  .agenda-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
-  .agenda-item {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-  }
-  .agenda-num {
-    font-family: 'Bodoni Moda', Georgia, serif;
-    font-size: 24px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .agenda-num.sage  { color: var(--sage); }
-  .agenda-num.gold  { color: var(--gold); }
-  .agenda-num.terra { color: var(--terra); }
-  .agenda-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .agenda-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    color: var(--text-soft);
-    margin-top: 2px;
-  }
-
-  /* frequency table */
-  .freq-table { width: 100%; border-collapse: collapse; }
-  .freq-table th, .freq-table td {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-    text-align: left;
-  }
-  .freq-table th { background: var(--paper-2); font-weight: 600; color: var(--text); font-size: 12px; }
-  .freq-table td { color: var(--text-soft); }
-  .freq-table td strong { color: var(--text); font-weight: 600; }
-  .freq-table tr:nth-child(even) td { background: var(--paper-2); }
-
-  /* takeaway card */
-  .takeaway-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    flex: 1;
-  }
-  .takeaway-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 18px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .takeaway-card .tc-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .takeaway-card .tc-formula {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .takeaway-card p {
-    font-size: 12px;
-    color: var(--text-soft);
-    line-height: 1.5;
-  }
-
-
-  .r72-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  .r72-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px; text-align: center; }
-  .r72-rate { font-family: 'Bodoni Moda',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
-  .r72-years { font-family: 'DM Sans',sans-serif; font-size: 13px; color: var(--text-soft); }
-  .r72-years strong { color: var(--text); }
-
-
-  /* BUS123 high-priority retrofit overrides */
-  .deck-shell, deck-stage.deck-shell { background: var(--ink); }
-  .tab-strip { background: var(--ink); }
-  .formula-panel {
-    background: var(--formula-bg) !important;
-    border: 0 !important;
-    border-left: 4px solid var(--sage) !important;
-    border-radius: 0 8px 8px 0 !important;
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .label {
-    color: var(--steel) !important;
-    font-family: var(--mono) !important;
-    font-size: 15px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.08em !important;
-    text-transform: uppercase !important;
-  }
-  .formula-panel code {
-    color: var(--ink) !important;
-    font-family: var(--mono) !important;
-    font-size: 18px !important;
-    font-weight: 500 !important;
-    line-height: 1.7 !important;
-  }
-  .formula-panel .fn,
-  .formula-panel code .fn {
-    color: var(--steel) !important;
-    display: block !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    margin-bottom: 14px !important;
-  }
-  .formula-panel .comment,
-  .formula-panel code .comment { color: var(--text-soft) !important; display: block; font-size: 14px !important; }
-  .formula-panel .result,
-  .formula-panel code .result,
-  .formula-panel code .val { color: var(--sage) !important; font-weight: 700; }
-  .formula-panel code .arg { color: var(--steel) !important; }
-  .formula-panel code .neg { color: var(--terra) !important; }
-  .retrofit-tab-strip {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 84px;
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    z-index: 9997;
-    border-right: 1px solid rgba(255,255,255,0.12);
-  }
-  .retrofit-home-dot {
-    width: 18px;
-    height: 18px;
-    border: 0;
-    border-radius: 50%;
-    background: var(--gradient);
-    cursor: pointer;
-    margin-bottom: 14px;
-  }
-  .retrofit-tab-strip .tab-btn {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 6px;
-    background: transparent;
-    color: rgba(255,255,255,0.62);
-    cursor: pointer;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    padding: 12px 7px;
-    text-transform: uppercase;
-  }
-  .retrofit-tab-strip .tab-btn[data-section="1"] { border-color: var(--sage); }
-  .retrofit-tab-strip .tab-btn[data-section="2"] { border-color: var(--gold); }
-  .retrofit-tab-strip .tab-btn[data-section="3"] { border-color: var(--terra); }
-  .retrofit-tab-strip .tab-btn.active { background: var(--paper); color: var(--ink); }
-
-
-.formula-reference-slide{height:100%;display:flex;flex-direction:column;justify-content:center;gap:12px;max-width:1060px;margin:0 auto;}
-.formula-reference-slide .frc-eyebrow{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0;}
-.formula-reference-slide h2{font-family:var(--serif);font-size:44px;line-height:1;margin:0;color:var(--text);}
-.formula-reference-slide .frc-note{font-size:18px;line-height:1.25;color:var(--text-soft);margin:0 0 4px 0;}
-.formula-reference-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:16px;line-height:1.22;}
-.formula-reference-table th{background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:16px;text-align:left;padding:9px 10px;border:1px solid var(--border);}
-.formula-reference-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;color:var(--text);}
-.formula-reference-table td.pattern{background:var(--formula-bg);color:var(--steel);font-family:var(--mono);font-weight:700;}
-.formula-reference-table td.watch{background:var(--paper-2);}
-
+:root{
+  --ink:#0E1116;--paper:#FAF8F3;--paper-2:#F2EEE5;--white:#FFFFFF;--text:#1A1F2C;--text-soft:#4A5567;--muted:#7A8290;--border:#E5E1D6;--sage:#4A7C5E;--gold:#B8843D;--terra:#9C4A2B;--steel:#355773;--formula-bg:#EAF3EC;--gradient:linear-gradient(90deg,var(--gold),var(--terra),var(--sage));
+  --serif:"Bodoni Moda",serif;--sans:"DM Sans",sans-serif;--mono:"JetBrains Mono",monospace;
+  --type-display:72px;--type-title:46px;--type-subtitle:30px;--type-lead:24px;--type-body:20px;--type-small:16px;--type-eyebrow:15px;--type-stat:140px;
+}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink);color:var(--text);font-family:var(--sans)}button,a{font:inherit}.deck-shell{width:1280px;height:720px;transform-origin:0 0;position:absolute;display:grid;grid-template-columns:84px 1196px;background:var(--ink)}.tabs{background:var(--ink);display:flex;flex-direction:column;align-items:center;padding:18px 8px;gap:14px;z-index:20}.home-dot{width:42px;height:42px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer}.section-tab{width:68px;min-height:104px;padding:8px 4px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--white);font-family:var(--mono);font-size:var(--type-eyebrow);font-weight:700;letter-spacing:.08em;writing-mode:vertical-rl;transform:rotate(180deg);cursor:pointer}.section-tab span{display:inline-block;width:9px;height:9px;border-radius:50%;margin-bottom:8px}.tab-1 span{background:var(--sage)}.tab-2 span{background:var(--gold)}.tab-3 span{background:var(--terra)}.section-tab.active{background:var(--paper);color:var(--ink);border-color:var(--border)}.stage{position:relative;width:1196px;height:720px;background:var(--ink);overflow:hidden}.slide{position:absolute;inset:0;background:var(--paper);padding:48px 62px 70px;display:none;overflow:hidden}.slide.active{display:block}.slide.dark{background:var(--ink);color:var(--white)}.slide.has-gradient::before{content:"";position:absolute;top:0;left:0;right:0;height:9px;background:var(--gradient)}.slide-header{margin-bottom:22px}.eyebrow{font:700 var(--type-eyebrow)/1.2 var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--sage);margin:0 0 10px}.dark .eyebrow{color:var(--gold)}h1,h2,h3,p{margin-top:0}h1{font:900 var(--type-display)/.98 var(--serif);letter-spacing:-.035em;margin-bottom:20px}h2{font:900 var(--type-title)/1.02 var(--serif);letter-spacing:-.025em;margin-bottom:0}h3{font:700 30px/1.1 var(--serif);margin-bottom:12px}p,li,td,th{font-size:var(--type-body);line-height:1.35}.lead{font-size:var(--type-lead);line-height:1.35;color:var(--text-soft)}.lead.on-dark{color:var(--paper-2)}.slide-body{height:calc(100% - 88px)}.title-slide{padding:0}.title-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.title-shade{position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,var(--ink) 34%,transparent 76%);opacity:.94}.title-copy{position:absolute;left:70px;top:92px;width:620px}.title-copy h1{max-width:600px}.title-subtitle{font:400 var(--type-subtitle)/1.3 var(--serif);font-style:italic;color:var(--paper-2);max-width:560px}.photo-credit{position:absolute;top:500px;left:0;width:570px;font-size:var(--type-small);color:var(--paper-2);border-left:4px solid var(--sage);padding-left:14px}.section-break{display:none;grid-template-columns:250px 1fr;align-items:center;gap:60px;padding:90px}.section-break.active{display:grid}.break-number{font:900 var(--type-stat)/1 var(--serif);color:var(--gold);border-right:2px solid var(--text-soft);padding-right:50px;text-align:right}.section-break h2{font-size:62px}.agenda-path{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch;height:390px;margin-top:36px}.agenda-step{position:relative;background:var(--white);border:1px solid var(--border);border-top:8px solid var(--sage);padding:30px 24px;border-radius:10px}.agenda-step:nth-child(2){border-top-color:var(--gold)}.agenda-step:nth-child(3){border-top-color:var(--terra)}.agenda-step:nth-child(4){border-top-color:var(--steel)}.agenda-step span{display:block;font:700 56px/1 var(--serif);color:var(--paper-2);margin-bottom:26px}.agenda-step strong{font-size:26px}.agenda-step p{font-size:18px;color:var(--text-soft);margin-top:12px}.objective-stack{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}.objective{display:grid;grid-template-columns:72px 1fr;align-items:center;min-height:150px;background:var(--white);border:1px solid var(--border);padding:22px;border-radius:12px}.objective span{font:700 36px/1 var(--mono);color:var(--sage)}.objective p{margin:0;font-size:22px}.photo-frame{margin:0;position:relative;border-radius:14px;overflow:hidden;background:var(--paper-2)}.photo-frame img{width:100%;height:100%;object-fit:cover;display:block}.photo-frame figcaption{position:absolute;left:0;right:0;bottom:0;background:var(--ink);color:var(--white);padding:12px 16px;font-size:var(--type-small)}.photo-question{display:grid;grid-template-columns:58% 42%;height:450px;border-radius:14px;overflow:hidden}.photo-question .photo-frame{border-radius:0}.question-panel{background:var(--white);padding:45px 36px;border:1px solid var(--border)}.question-panel h3{font-size:38px}.question-panel .deliverable{margin-top:38px;border-left:4px solid var(--gold);padding:12px;background:var(--paper-2);font-size:18px}.chart-table-layout{display:grid;grid-template-columns:65% 35%;gap:24px;align-items:center}.growth-chart{width:100%;height:390px;background:var(--white);border:1px solid var(--border);border-radius:12px}.axis{stroke:var(--muted);stroke-width:2}.line{fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.line.simple{stroke:var(--steel)}.line.compound{stroke:var(--sage)}.svg-label{font:700 20px var(--sans)}.simple-label{fill:var(--steel)}.compound-label{fill:var(--sage)}.svg-small{font:500 16px var(--mono);fill:var(--text-soft)}.evidence-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border)}.evidence-table caption{font:700 var(--type-small) var(--mono);text-align:left;padding:10px;color:var(--text-soft)}.evidence-table th{background:var(--ink);color:var(--gold);font-size:16px;padding:10px;text-align:left}.evidence-table td{font-size:16px;padding:10px;border-bottom:1px solid var(--border)}.evidence-table tbody tr:last-child{background:var(--formula-bg);font-weight:700}.dependency-map{width:100%;height:390px}.node rect{stroke-width:3}.node text{text-anchor:middle;font:700 18px var(--sans);fill:var(--text)}.node text+text{font:400 16px var(--sans);fill:var(--text-soft)}.input-node rect{fill:var(--white);stroke:var(--sage)}.timing-node rect{fill:var(--formula-bg);stroke:var(--gold)}.result-node rect{fill:var(--paper-2);stroke:var(--steel)}.connector{fill:none;stroke:var(--text-soft);stroke-width:4}.rule-strip{display:flex;gap:24px;align-items:center;background:var(--ink);color:var(--white);padding:16px 22px;border-radius:8px;font-size:18px}.rule-strip strong{color:var(--gold)}.decision-route{display:grid;grid-template-columns:220px 50px 1fr 1fr;gap:18px;align-items:stretch;margin:30px 0}.route-start,.route-option{background:var(--white);border:2px solid var(--border);border-radius:12px;padding:24px;min-height:170px}.route-start span{font:700 var(--type-small) var(--mono);color:var(--sage)}.route-start strong,.route-option strong{display:block;font-size:23px;margin-top:14px}.route-option.featured{background:var(--formula-bg);border-color:var(--sage)}.route-option p{font-size:18px;color:var(--text-soft)}.route-arrow{font:700 50px var(--serif);display:grid;place-items:center;color:var(--gold)}.scenario-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.scenario-row div{font-size:18px;background:var(--paper-2);padding:16px;border-left:4px solid var(--steel)}.scenario-row span{font:700 22px var(--mono);color:var(--steel);margin-right:10px}.prompt-line{font-weight:600;margin-top:24px}.excel-window{margin:0;background:var(--white);border:2px solid var(--ink);border-radius:9px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.12)}.excel-titlebar{height:32px;background:var(--ink);color:var(--white);display:grid;grid-template-columns:70px 1fr 70px;align-items:center;padding:0 10px;font-size:16px}.excel-titlebar strong{text-align:center}.excel-app{color:var(--gold);font-weight:700}.excel-ribbon{display:flex;gap:28px;padding:7px 14px;background:var(--paper-2);font-size:16px;border-bottom:1px solid var(--border)}.excel-formula{height:39px;display:grid;grid-template-columns:82px 38px 1fr;align-items:center;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:16px}.name-box{padding:9px;border-right:1px solid var(--border);font-weight:700}.fx{text-align:center;color:var(--sage);font-style:italic}.formula-bar{padding:8px 12px;border-left:1px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.excel-row{display:grid;grid-template-columns:38px 128px 112px 86px 110px 150px 176px 176px}.excel-cell{min-height:36px;padding:7px 8px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:16px;line-height:1.15;overflow:hidden}.excel-rownum,.excel-letter,.excel-corner{background:var(--paper-2);text-align:center;font-family:var(--mono);color:var(--text-soft)}.excel-letters .excel-cell{min-height:28px;padding:5px}.excel-header{background:var(--ink);color:var(--gold);font-weight:700}.excel-input{background:var(--paper-2);font-weight:600}.excel-result{background:var(--formula-bg);color:var(--steel);font-weight:700;border-left:3px solid var(--gold)}.excel-active{outline:4px solid var(--steel);outline-offset:-4px;position:relative}.excel-active::after{content:"ACTIVE";position:absolute;right:3px;bottom:2px;font:700 10px var(--mono);color:var(--steel)}.excel-ok{color:var(--sage);font-weight:700}.excel-tabs{display:flex;gap:5px;background:var(--paper-2);padding:7px 12px;font-size:14px;white-space:nowrap}.excel-tabs span{padding:5px 8px;border:1px solid var(--border)}.excel-tabs .active-tab{background:var(--white);border-bottom:3px solid var(--sage);font-weight:700}.excel-window figcaption{font-size:16px;color:var(--text-soft);padding:7px 12px}.excel-with-formula{display:grid;grid-template-columns:1fr;gap:15px}.formula-panel{background:var(--formula-bg);color:var(--ink);border-left:4px solid var(--sage);font:500 18px/1.35 var(--mono);padding:16px 20px;border-radius:4px}.formula-excel{font-size:22px;font-weight:700;color:var(--steel);display:block;margin-bottom:14px}.formula-manual{display:inline-block;margin-right:24px}.formula-result{font-weight:700;color:var(--sage)}.activity-slide{display:grid;gap:16px}.activity-brief{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--ink);padding:12px;border-radius:10px}.activity-brief div{background:var(--white);padding:10px 12px;min-height:72px}.activity-brief span{display:block;font:700 13px var(--mono);color:var(--terra);margin-bottom:5px}.activity-brief strong{font-size:16px;line-height:1.25}.audit-layout,.debrief-layout{display:grid;grid-template-columns:1fr 250px;gap:20px;align-items:center}.audit-stamp,.verdict-card{background:var(--ink);color:var(--white);padding:28px 20px;border-radius:14px;text-align:center;border-top:8px solid var(--sage)}.audit-stamp span,.verdict-card span{font:700 var(--type-small) var(--mono);color:var(--gold)}.audit-stamp strong,.verdict-card strong{font:900 36px var(--serif);display:block;margin:18px 0}.audit-stamp p,.verdict-card p{font-size:18px}.verdict-card em{display:block;font:700 20px var(--mono);color:var(--gold)}.reveal{opacity:0;transform:translateY(12px);transition:opacity .2s,transform .2s}.reveal.shown{opacity:1;transform:none}.frequency-layout{display:grid;grid-template-columns:58% 42%;gap:22px}.evidence-table.wide td,.evidence-table.wide th{font-size:17px}.bar-chart{display:grid;gap:18px;padding:20px;background:var(--white);border:1px solid var(--border);border-radius:10px}.bar-chart div{display:grid;grid-template-columns:82px 1fr 112px;gap:8px;align-items:center;font-size:16px}.bar-chart i{display:block;width:var(--w);height:26px;background:var(--sage);border-left:5px solid var(--gold)}.bar-chart strong{font-family:var(--mono);font-size:16px}.model-note{font-size:16px;color:var(--text-soft);margin-top:12px}.rule72-visual{display:grid;grid-template-columns:33% 37% 30%;gap:18px;align-items:center}.estimate-card{background:var(--ink);color:var(--white);padding:28px;border-radius:12px}.estimate-card span{font:700 15px var(--mono);color:var(--gold)}.estimate-card strong{font:900 33px/1.15 var(--serif);display:block;margin:20px 0}.estimate-card p{font-size:17px}.timeline{position:relative;height:220px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:80px 42px}.timeline .track{height:8px;background:var(--border);position:relative}.timeline i{position:absolute;left:var(--x);top:-17px;width:4px;height:42px}.timeline .exact{background:var(--sage)}.timeline .estimate{background:var(--terra)}.timeline .start,.timeline .end{position:absolute;top:70px;font:700 22px var(--mono)}.timeline .start{left:10px}.timeline .end{right:10px}.exact-label,.estimate-label{position:absolute;font-size:15px}.exact-label{left:38%;bottom:34px;color:var(--sage)}.estimate-label{left:47%;bottom:8px;color:var(--terra)}.tool-link{display:inline-block;margin-top:20px;background:var(--steel);color:var(--white);padding:12px 18px;border-radius:7px;text-decoration:none;font-weight:700}.tool-link:focus{outline:4px solid var(--gold);outline-offset:3px}.tool-link.light{background:var(--white);color:var(--ink)}.decision-photo-layout{display:grid;grid-template-columns:62% 38%;height:285px;border-radius:14px;overflow:hidden;margin-bottom:14px}.decision-photo-layout .photo-frame{border-radius:0}.decision-prompt{background:var(--ink);color:var(--white);padding:26px}.decision-prompt h3{font-size:34px}.choice{display:flex;gap:12px;align-items:center;margin:12px 0;background:var(--paper);color:var(--ink);padding:10px 14px}.choice span{font:700 23px var(--mono);color:var(--terra)}.dominant-activity .slide-header{margin-bottom:14px}.mistake-slide{background:var(--terra);color:var(--white)}.mistake-slide .eyebrow{color:var(--paper)}.mistake-board{display:grid;grid-template-columns:1fr 1fr;gap:26px}.mistake-board>div{padding:34px;border-radius:12px;min-height:270px}.mistake-board span{font:700 15px var(--mono);letter-spacing:.1em}.mistake-board code{display:block;font:700 20px var(--mono);margin:24px 0;background:var(--paper);color:var(--ink);padding:16px}.mistake-board strong{display:block;font:900 42px var(--serif)}.mistake-board p{font-size:18px}.wrong{background:var(--ink)}.correction{background:var(--paper);color:var(--ink);border:5px solid var(--gold)}.mistake-question{font-size:23px;font-weight:700;margin-top:28px;text-align:center}.discussion-pair{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}.discussion-pair>div{background:var(--white);border:2px solid var(--border);padding:36px;border-radius:14px;min-height:300px}.discussion-pair span{font:700 40px var(--mono);color:var(--sage)}.discussion-pair h3{font-size:34px;margin-top:25px}.discussion-pair p{font-size:21px}.takeaway-list{display:grid;gap:22px;margin-top:28px}.takeaway-list div{display:grid;grid-template-columns:80px 1fr;align-items:center;background:var(--white);border:1px solid var(--border);padding:22px;border-radius:10px}.takeaway-list span{font:900 44px var(--serif);color:var(--gold)}.takeaway-list p{font-size:24px;margin:0}.up-next{display:grid;grid-template-columns:58% 42%;height:450px;background:var(--ink);color:var(--white);border-radius:14px;overflow:hidden}.up-next .photo-frame{border-radius:0}.up-next>div{padding:50px 36px}.up-next h3{font-size:40px}.up-next p{color:var(--paper-2)}.close-slide{display:none;place-items:center;text-align:center}.close-slide.active{display:grid}.close-copy h2{font-size:86px}.close-copy p{font-size:24px}.close-copy span{font:700 16px var(--mono);color:var(--muted)}.annuity-timelines{display:grid;grid-template-columns:1fr 1fr;gap:24px}.annuity{background:var(--white);border:2px solid var(--border);padding:28px;border-radius:12px}.annuity h3{font-size:32px}.annuity p{font-size:18px;color:var(--text-soft)}.cash-timeline{position:relative;display:grid;grid-template-columns:70px 1fr 30px 1fr 30px 1fr 30px;align-items:center;height:150px}.cash-timeline i{height:4px;background:var(--text-soft)}.cash-timeline b{font:700 18px var(--mono);text-align:center}.cash-timeline em{position:absolute;font:700 36px var(--mono);color:var(--terra);top:68px}.cash-timeline .p0{left:56px}.cash-timeline .p1{left:34%}.cash-timeline .p2{left:64%}.cash-timeline .p3{right:8px}.cash-timeline .today{font-size:16px}.perspective-map{display:grid;grid-template-columns:1fr 280px 1fr;gap:20px;align-items:center}.perspective{padding:28px;border-radius:14px;background:var(--white);border:2px solid var(--border)}.perspective>span{font:700 15px var(--mono);color:var(--sage)}.flow{display:flex;justify-content:space-between;align-items:center;padding:20px;margin-top:18px;border-left:5px solid var(--sage);background:var(--formula-bg)}.flow.out{border-left-color:var(--terra);background:var(--paper-2)}.flow em{font:900 38px var(--serif)}.perspective-center{text-align:center}.perspective-center strong{font:900 30px var(--serif)}.perspective-center p{font-size:17px}.function-map{width:100%;height:410px}.question-node rect{fill:var(--ink);stroke:var(--gold);stroke-width:3}.question-node text{fill:var(--white)}.pm-node rect,.fv-node rect,.pv-node rect{fill:var(--white);stroke:var(--sage);stroke-width:3}.term-visual{display:grid;grid-template-columns:63% 37%;gap:20px}.dual-bars{background:var(--white);padding:18px;border:1px solid var(--border);border-radius:10px}.dual-bars>div{display:grid;grid-template-columns:60px 1fr 104px 1fr 104px;gap:8px;align-items:center;min-height:55px;font-size:16px}.dual-bars .bar-head{font:700 14px var(--mono);color:var(--text-soft);grid-template-columns:60px 1fr 104px 1fr 104px}.dual-bars i{display:block;height:22px;width:var(--w)}.dual-bars .pay{background:var(--steel)}.dual-bars .interest{background:var(--terra)}.dual-bars strong{font:700 15px var(--mono)}.pv-layout{display:grid;grid-template-columns:70% 30%;gap:18px}.offer-choice{display:grid;gap:12px}.offer-choice>div{background:var(--white);padding:17px;border:2px solid var(--border);border-left:6px solid var(--sage)}.offer-choice span{font:700 14px var(--mono);color:var(--terra)}.offer-choice strong{display:block;font:900 34px var(--serif);margin:7px 0}.offer-choice p{font-size:16px}.offer-choice>p{font-size:15px;color:var(--text-soft)}.answer-strip{display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--white);padding:14px 18px;margin-top:18px;border-left:6px solid var(--gold)}.answer-strip strong{color:var(--gold)}.answer-strip span{font:600 16px var(--mono)}.notes-panel{position:absolute;left:104px;right:24px;bottom:70px;max-height:245px;overflow:auto;background:var(--ink);color:var(--white);padding:18px 24px;border:2px solid var(--gold);border-radius:8px;z-index:50;font-size:18px;line-height:1.45;display:none}.notes-panel.open{display:block}.notes-panel strong{color:var(--gold)}.controls{position:absolute;right:22px;bottom:18px;display:flex;gap:10px;align-items:center;z-index:60}.controls button{width:46px;height:38px;border:1px solid var(--border);border-radius:7px;background:var(--white);color:var(--ink);font-weight:700;cursor:pointer}.controls button:focus,.home-dot:focus,.section-tab:focus{outline:4px solid var(--gold);outline-offset:2px}.counter{font:700 16px var(--mono);color:var(--white);background:var(--ink);padding:8px 12px;border-radius:6px}.keyboard-hint{position:absolute;left:104px;bottom:22px;color:var(--muted);font:500 13px var(--mono);z-index:40}@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.excel-tabs{font-size:15px;padding:5px 10px}.excel-active::after{display:none}.excel-with-formula{gap:8px}.formula-panel{padding:10px 18px}.formula-excel{margin-bottom:6px}.activity-slide{gap:8px}.activity-mode .activity-slide{gap:6px}.activity-slide .excel-window figcaption{display:none}.activity-brief{gap:6px;padding:8px}.activity-brief div{display:grid;grid-template-columns:100px 1fr;gap:8px;align-items:start;min-height:58px;padding:8px 10px}.activity-brief span{font-size:15px;line-height:1.1;margin:0}.activity-brief strong{font-size:16px;line-height:1.18}.dual-bars .bar-head{font-size:15px}.offer-choice span{font-size:15px}.keyboard-hint{font-size:15px}.model-compact h2{font-size:42px}.model-compact .slide-header{margin-bottom:12px}.model-compact .excel-window figcaption{display:none}.model-compact .formula-panel{display:flex;align-items:center;gap:18px;padding:7px 14px;font-size:16px;white-space:nowrap}.model-compact .formula-excel{font-size:20px;margin:0}.model-compact .formula-manual{margin:0}.transfer-activity h2{font-size:40px}.transfer-activity .slide-header{margin-bottom:8px}.transfer-activity .excel-ribbon{display:none}.transfer-activity .excel-titlebar{height:28px}.transfer-activity .excel-formula{height:32px}.transfer-activity .excel-cell{min-height:28px;padding:4px 7px}.transfer-activity .excel-letters .excel-cell{min-height:22px;padding:2px}.transfer-activity .excel-tabs{padding:3px 8px}.transfer-activity .activity-brief{gap:4px;padding:6px}.transfer-activity .activity-brief div{min-height:52px;padding:5px 8px}.transfer-activity .activity-brief strong{line-height:1.1}
 </style>
 </head>
 <body>
-<div class="deck-shell">
-  <nav class="tab-strip">
-    <button class="tab-btn" data-section="1" onclick="jumpSection(1)">Part 1</button>
-    <button class="tab-btn" data-section="2" onclick="jumpSection(2)">Part 2</button>
-    <button class="tab-btn" data-section="3" onclick="jumpSection(3)">Part 3</button>
-    <button class="tab-btn" data-section="4" onclick="jumpSection(4)">Wrap</button>
-    <div class="tab-spacer"></div>
-  </nav>
-  <div class="slide-viewport" id="viewport">
-    <div class="slide-scaler" id="scaler">
+<main class="deck-shell" aria-label="BUS123 slide deck">
+  <nav class="tabs" aria-label="Deck sections"><button class="home-dot" data-jump="0" aria-label="Go to title slide"></button><button class="section-tab tab-1" data-jump="4" aria-label="Jump to CHOOSE"><span></span>CHOOSE</button><button class="section-tab tab-2" data-jump="8" aria-label="Jump to BUILD"><span></span>BUILD</button><button class="section-tab tab-3" data-jump="13" aria-label="Jump to DECIDE"><span></span>DECIDE</button></nav>
+  <div class="stage">
 
-      <!-- SLIDE 0 · Title -->
-      <section class="slide dark active" data-section="0" data-slide="1" data-index="0">
-        <div class="slide-inner">
-          <div class="gradient-bar"></div>
-          <div class="eyebrow gold anim-1">MATH-M09 · L01 &nbsp;·&nbsp; Meridian Advisory Group</div>
-          <h1 class="display anim-2">Compound Interest<br>&amp; <em>Future Value</em></h1>
-          <p class="subtitle-italic anim-3">BUS123 · Solving Business Problems with Technology</p>
-          <div style="margin-top:auto;display:flex;gap:32px;" class="anim-4">
-            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Track</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Business Math</div></div>
-            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">Semester</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Fall 2026</div></div>
-            <div><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:4px;">School</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Gerrish School of Business</div></div>
-          </div>
-        </div>
-        <div class="geo" style="width:320px;height:320px;background:radial-gradient(circle,rgba(184,132,61,0.08),transparent 70%);right:-60px;top:-60px;"></div>
-      </section>
-
-      <!-- SLIDE 1 · Agenda -->
-      <section class="slide paper" data-section="0" data-slide="2" data-index="1">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Today's Plan</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Where We're Going · 75 Minutes</h2></div>
-          <div class="title-rule"></div>
-          <div class="agenda-list anim-3">
-            <div class="agenda-item"><div class="agenda-num sage">1</div><div><div class="agenda-label">Simple vs. Compound — The Key Difference</div><div class="agenda-sub">Why interest-on-interest changes everything over time</div></div></div>
-            <div class="agenda-item"><div class="agenda-num gold">2</div><div><div class="agenda-label">FV = PV × (1 + i)ⁿ &amp; the =FV() Function</div><div class="agenda-sub">The exponent · sign convention · =FV() syntax and worked examples</div></div></div>
-            <div class="agenda-item"><div class="agenda-num terra">3</div><div><div class="agenda-label">Non-Annual Compounding &amp; Rule of 72</div><div class="agenda-sub">Adjusting rate and nper · frequency table · doubling time estimates</div></div></div>
-            <div class="agenda-item"><div class="agenda-num" style="color:var(--muted);">4</div><div><div class="agenda-label">Meridian Activity + Discussion</div><div class="agenda-sub">Build FV models, compare frequencies, defend your recommendation</div></div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 2 · I Can Statements -->
-      <section class="slide paper" data-section="0" data-slide="3" data-index="2">
-        <div class="slide-inner">
-          <div class="eyebrow sage anim-1">Learning Objectives</div>
-          <div class="header-row anim-2"><h2 class="slide-title">I Can Statements</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="obj-grid anim-3">
-            <div class="obj-item"><div class="obj-icon sage">📐</div><div class="obj-text"><strong>Simple vs. Compound</strong>Explain the difference and calculate FV using both methods for a lump sum.</div></div>
-            <div class="obj-item"><div class="obj-icon gold">📈</div><div class="obj-text"><strong>=FV() Function</strong>Use =FV(rate, nper, 0, −pv) in Excel with correct sign convention.</div></div>
-            <div class="obj-item"><div class="obj-icon terra">🔢</div><div class="obj-text"><strong>Non-Annual Compounding</strong>Adjust both rate and nper for quarterly, monthly, and semiannual compounding.</div></div>
-            <div class="obj-item"><div class="obj-icon" style="background:rgba(74,124,94,0.12);">⚡</div><div class="obj-text"><strong>Rule of 72</strong>Estimate doubling time using 72 ÷ rate and verify with =FV().</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 3 · Bridge from M08 -->
-      <section class="slide paper" data-section="1" data-slide="4" data-index="3">
-        <div class="slide-inner">
-          <div class="eyebrow sage anim-1">Part 1 · Building on M08</div>
-          <div class="header-row anim-2"><h2 class="slide-title">From Simple to Compound — One Change, Exponential Impact</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="two-col anim-3">
-            <div class="card" style="border-left:3px solid var(--sage);">
-              <h4 class="sage">M08 — Simple Interest (Linear)</h4>
-              <p class="body-text" style="font-size:13px;margin-bottom:10px;">Interest calculated on the <strong>original principal only</strong>. Same dollar amount every period.</p>
-              <div class="math-panel"><div class="label">FV = P × (1 + R × T)</div><code>Flat growth — same $ added every year</code></div>
-            </div>
-            <div class="card" style="border-left:3px solid var(--gold);">
-              <h4 class="gold">M09 — Compound Interest (Exponential)</h4>
-              <p class="body-text" style="font-size:13px;margin-bottom:10px;">Interest calculated on the <strong>accumulated balance</strong>. The base grows every period.</p>
-              <div class="formula-panel" style="margin-bottom:0;"><div class="label">FV = PV × (1 + i)ⁿ</div><code><span class="comment">// Exponential growth — more every year</span></code></div>
-            </div>
-          </div>
-          <div class="highlight-box gold anim-4" style="margin-top:14px;">
-            <p><strong>The key change:</strong> simple uses R×T (multiplication). Compound uses (1+i)ⁿ (exponentiation). The exponent n is what makes the snowball roll.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 4 · $1,000 comparison table -->
-      <section class="slide paper" data-section="1" data-slide="5" data-index="4">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Part 1 · The Snowball Effect</div>
-          <div class="header-row anim-2"><h2 class="slide-title">$1,000 at 5% — Simple vs. Compound</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col anim-3">
-            <div class="xls-wrap">
-              <table class="compare-table">
-                <thead><tr><th class="label-head">Year</th><th class="simple-head">Simple Interest</th><th class="compound-head">Compound Interest</th><th class="label-head" style="background:rgba(156,74,43,0.08);color:var(--terra);">Difference</th></tr></thead>
-                <tbody>
-                  <tr><td class="label-cell">1</td><td class="simple-cell">$1,050.00</td><td class="compound-cell">$1,050.00</td><td>$0.00</td></tr>
-                  <tr><td class="label-cell">2</td><td class="simple-cell">$1,100.00</td><td class="compound-cell">$1,102.50</td><td>$2.50</td></tr>
-                  <tr><td class="label-cell">3</td><td class="simple-cell">$1,150.00</td><td class="compound-cell">$1,157.63</td><td>$7.63</td></tr>
-                  <tr><td class="label-cell">5</td><td class="simple-cell">$1,250.00</td><td class="compound-cell">$1,276.28</td><td>$26.28</td></tr>
-                  <tr><td class="label-cell">10</td><td class="simple-cell">$1,500.00</td><td class="compound-cell">$1,628.89</td><td>$128.89</td></tr>
-                  <tr><td class="label-cell">30</td><td class="simple-cell">$2,500.00</td><td class="compound-cell">$4,321.94</td><td style="color:var(--terra);font-weight:700;">$1,821.94</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card"><h4 class="gold">Year 1 — No Difference</h4><p class="body-text" style="font-size:13px;">Both give $1,050 in year 1. Compound diverges from year 2 onward, when interest begins earning on prior interest.</p></div>
-              <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Year 30 — Enormous Gap</h4><p class="body-text" style="font-size:13px;"><strong>$4,321 vs. $2,500.</strong> Same rate. Same principal. Compound produces <strong>73% more.</strong></p></div>
-              <div class="highlight-box sage"><p>This is the engine behind every retirement account and long-term investment. The math is simple — the exponent does all the work.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 5 · Section break FV formula -->
-      <section class="slide dark" data-section="2" data-slide="6" data-index="5">
-        <div class="slide-inner">
-          <div class="eyebrow gold anim-1">Part 2 · Future Value</div>
-          <h2 class="section-title anim-2" style="color:var(--gold);">FV = PV × (1 + i)ⁿ</h2>
-          <div class="anim-3" style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px;">
-            <div style="padding:16px;background:rgba(184,132,61,0.08);border-left:3px solid var(--gold);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">i · Rate per Period</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Annual rate ÷ compounding periods per year. <strong style="color:var(--paper);">Must match nper's unit.</strong></p></div>
-            <div style="padding:16px;background:rgba(74,124,94,0.08);border-left:3px solid var(--sage);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">n · Number of Periods</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Years × compounding periods per year. <strong style="color:var(--paper);">Must match i's unit.</strong></p></div>
-          </div>
-          <div class="anim-4" style="margin-top:20px;padding:16px 20px;background:rgba(250,248,243,0.04);border:1px solid rgba(250,248,243,0.08);border-radius:6px;max-width:580px;">
-            <p style="font-size:14px;color:rgba(250,248,243,0.65);line-height:1.6;"><strong style="color:var(--paper);">Critical rule:</strong> i and n must always refer to the same unit of time. Mismatching is the most common compound interest error.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 6 · =FV() Syntax -->
-      <section class="slide paper" data-section="2" data-slide="7" data-index="6">
-        <div class="slide-inner">
-          <div class="eyebrow gold anim-1">Part 2 · Excel =FV() Function</div>
-          <div class="header-row anim-2"><h2 class="slide-title">The =FV() Function — Syntax First</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="anim-3"><div class="formula-panel"><div class="label">Excel Syntax</div><code><span class="fn">=FV(<span class="arg">rate</span>, <span class="arg">nper</span>, <span class="arg">pmt</span>, [<span class="neg">pv</span>], [<span class="arg">type</span>])</span></code></div></div>
-          <div class="two-col anim-4" style="grid-template-columns:1.6fr 1fr;">
-            <div class="xls-wrap">
-              <table class="xls-table">
-                <thead><tr><th>Argument</th><th>Meaning</th><th>For Lump Sum</th></tr></thead>
-                <tbody>
-                  <tr><td style="font-weight:600;color:var(--sage);">rate</td><td>Rate per compounding period</td><td>Annual rate ÷ periods/yr</td></tr>
-                  <tr><td style="font-weight:600;color:var(--gold);">nper</td><td>Total compounding periods</td><td>Years × periods/yr</td></tr>
-                  <tr><td style="font-weight:600;color:var(--muted);">pmt</td><td>Recurring payment (annuities)</td><td>Enter <strong>0</strong></td></tr>
-                  <tr><td style="font-weight:600;color:var(--terra);">pv</td><td>Present value (starting amount)</td><td>Enter as <strong>negative</strong></td></tr>
-                  <tr class="result-row"><td>Result</td><td>Future value at end of nper</td><td>Returns <strong>positive</strong></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="formula-panel"><div class="label">Lump Sum Example</div><code><span class="fn">=FV(6%, 5, 0, <span class="neg">−25000</span>)</span><span class="comment">// Returns: +$33,455.64</span><span class="comment">// pv negative = money out today</span></code></div>
-              <div class="highlight-box terra"><p><strong>pmt = annuity argument.</strong> Always 0 for single lump-sum problems. We use it in M09-L02.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 7 · Sign convention -->
-      <section class="slide paper" data-section="2" data-slide="8" data-index="7">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Part 2 · Sign Convention</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Why pv Must Be Negative</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col anim-3">
-            <div>
-              <div class="card" style="margin-bottom:12px;"><h4 class="gold">Excel's Cash Flow Rule</h4><p class="body-text" style="font-size:13px;margin-bottom:8px;"><strong>Outflow (money leaving you):</strong> negative<br><strong>Inflow (money coming to you):</strong> positive</p><p class="body-text" style="font-size:13px;">Investing $25,000 today is an outflow — money leaves your pocket. PV = −$25,000. The FV result returns positive.</p></div>
-              <div class="highlight-box sage"><p><strong>Sanity check:</strong> FV should always be larger than PV in absolute terms. If it isn't, the sign is wrong.</p></div>
-            </div>
-            <div>
-              <div class="formula-panel" style="margin-bottom:10px;"><div class="label">✓ Correct</div><code>=FV(6%, 5, 0, <span class="neg">−25000</span>) → <span class="val">+$33,456</span><span class="comment">// pv negative → FV positive</span></code></div>
-              <div class="formula-panel"><div class="label">✗ Wrong Sign — Still Returns a Number</div><code>=FV(6%, 5, 0, <span class="val">25000</span>) → <span class="neg">−$33,456</span><span class="comment">// No error — just wrong meaning</span></code></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 8 · Worked example -->
-      <section class="slide paper" data-section="2" data-slide="9" data-index="8">
-        <div class="slide-inner">
-          <div class="eyebrow gold anim-1">Part 2 · Worked Example</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — $40,000 at 4% for 3 Years</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col anim-3">
-            <div>
-              <div class="formula-panel"><div class="label">Excel First</div><code><span class="fn">=FV(4%, 3, 0, <span class="neg">−40000</span>)</span><span class="comment">// Returns: $44,994.56</span></code></div>
-              <div class="math-panel"><div class="label">Manual Verification — Year by Year</div><code>Start: $40,000.00<br>Year 1: 40,000 × 1.04 = <span class="result">$41,600.00</span><br>Year 2: 41,600 × 1.04 = <span class="result">$43,264.00</span><br>Year 3: 43,264 × 1.04 = <span class="result">$44,994.56</span></code></div>
-            </div>
-            <div class="card tinted" style="display:flex;flex-direction:column;gap:10px;">
-              <h4 class="gold">Simple vs. Compound</h4>
-              <table style="width:100%;border-collapse:collapse;font-size:13px;">
-                <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px 0;color:var(--text-soft);">Simple Interest</td><td style="padding:6px 0;font-weight:600;color:var(--sage);">$44,800.00</td></tr>
-                <tr><td style="padding:6px 0;color:var(--text-soft);">Compound Interest</td><td style="padding:6px 0;font-weight:600;color:var(--gold);">$44,994.56</td></tr>
-                <tr style="border-top:2px solid var(--border);"><td style="padding:6px 0;font-weight:500;color:var(--text);">Compound advantage</td><td style="padding:6px 0;font-weight:700;color:var(--terra);">+$194.56</td></tr>
-              </table>
-              <div class="highlight-box gold" style="margin-top:4px;"><p>$194.56 extra in 3 years. At 30 years: over $1,800 on the same $1,000. The longer the horizon, the more the exponent matters.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 9 · Excel model annual -->
-      <section class="slide paper" data-section="2" data-slide="10" data-index="9">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Part 2 · Excel Setup</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Meridian FV Model — Annual Compounding</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col wide-left anim-3">
-            <div class="xls-wrap">
-              <table class="xls-table">
-                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th><th>C</th></tr></thead>
-                <tbody>
-                  <tr><td class="row-num">2</td><td>Present Value (PV)</td><td style="background:#fef9e7;color:#856404;">−40,000</td><td style="color:var(--muted);font-size:11px;">Enter as negative</td></tr>
-                  <tr><td class="row-num">3</td><td>Annual Rate (i)</td><td style="background:#fef9e7;color:#856404;">0.04</td><td style="color:var(--muted);font-size:11px;">As decimal</td></tr>
-                  <tr><td class="row-num">4</td><td>Years (n)</td><td style="background:#fef9e7;color:#856404;">3</td><td style="color:var(--muted);font-size:11px;">Annual → n = years</td></tr>
-                  <tr><td class="row-num">5</td><td>PMT</td><td>0</td><td style="color:var(--muted);font-size:11px;">Lump sum — no payments</td></tr>
-                  <tr class="result-row"><td class="row-num">6</td><td>Future Value</td><td class="formula-cell">=FV(B3,B4,B5,B2)</td><td style="color:var(--xls-result-text);font-weight:600;">$44,994.56</td></tr>
-                  <tr><td class="row-num">7</td><td>Manual Verify</td><td class="formula-cell">=ABS(B2)*(1+B3)^B4</td><td style="color:var(--muted);font-size:11px;">Must match B6</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="card"><h4 class="sage">Model Rules</h4><ul class="bullet-list sage" style="font-size:13px;"><li>Each input in its own labeled cell</li><li>FV formula uses only cell references</li><li>Manual verify row must match FV row</li></ul></div>
-              <div class="highlight-box gold"><p><strong>Habit to build:</strong> after every =FV(), run the manual verify. If they don't match, find the mistake before moving on.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- LIVE YOU TRY IT · Annual FV pause -->
-      <section class="slide paper" data-section="2" data-slide="11" data-index="10">
-        <div class="slide-inner">
-          <div class="eyebrow sage anim-1">Live You Try It · 4 Minutes</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Rebuild the $40,000 FV Model in Excel</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="two-col anim-3">
-            <div class="xls-wrap">
-              <table class="xls-table">
-                <thead><tr><th>Input</th><th>From Slide</th><th>Your Cell</th></tr></thead>
-                <tbody>
-                  <tr><td>Present Value</td><td>$40,000</td><td class="formula-cell">Live You Try It!D6</td></tr>
-                  <tr><td>Annual Rate</td><td>4%</td><td class="formula-cell">Live You Try It!E6</td></tr>
-                  <tr><td>Years</td><td>3</td><td class="formula-cell">Live You Try It!F6</td></tr>
-                  <tr class="result-row"><td>Formula</td><td>=FV(rate,nper,pmt,pv)</td><td class="formula-cell">Use only cell references</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Workbook Move</h4><p class="body-text">Open <strong>Live You Try It</strong>. First type the slide givens into the yellow cells. Then build the =FV() and manual verification formulas from those cells.</p></div>
-              <div class="formula-panel"><div class="label">Target Structure</div><code><span class="fn">=FV(E6,F6,G6,-D6)</span><span class="comment">// Do not type 4%, 3, or 40000 into the formula.</span></code></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 10 · Section break non-annual -->
-      <section class="slide dark" data-section="3" data-slide="12" data-index="11">
-        <div class="slide-inner">
-          <div class="eyebrow terra anim-1">Part 3 · Compounding Frequency</div>
-          <h2 class="section-title anim-2" style="color:var(--terra);">Frequency Matters</h2>
-          <p class="body-text dark anim-3" style="max-width:520px;margin-top:12px;">Same principal. Same annual rate. Same years. Different ending balances. When compounding happens more often, interest starts earning interest sooner.</p>
-          <div class="anim-4" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px;">
-            <div style="padding:14px;background:rgba(74,124,94,0.08);border-left:3px solid var(--sage);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;">The Rule: Always Adjust Both</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;"><strong style="color:var(--paper);">rate</strong> = annual rate ÷ periods/year<br><strong style="color:var(--paper);">nper</strong> = years × periods/year</p></div>
-            <div style="padding:14px;background:rgba(184,132,61,0.08);border-left:3px solid var(--gold);border-radius:6px;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Never Adjust Only One</div><p style="font-size:13px;color:rgba(250,248,243,0.7);line-height:1.5;">Changing nper but not rate produces a completely wrong result. Both must change together.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 11 · Frequency table -->
-      <section class="slide paper" data-section="3" data-slide="13" data-index="12">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Part 3 · Non-Annual Compounding</div>
-          <div class="header-row anim-2"><h2 class="slide-title">$25,000 at 6% for 5 Years — What Frequency Does</h2></div>
-          <div class="title-rule terra"></div>
-          <div class="two-col anim-3">
-            <div class="xls-wrap">
-              <table class="freq-table">
-                <thead><tr><th>Frequency</th><th>rate arg</th><th>nper arg</th><th>FV</th></tr></thead>
-                <tbody>
-                  <tr><td>Annually</td><td>6% ÷ 1 = 6%</td><td>5 × 1 = 5</td><td><strong>$33,455.64</strong></td></tr>
-                  <tr><td>Semiannually</td><td>6% ÷ 2 = 3%</td><td>5 × 2 = 10</td><td><strong>$33,597.91</strong></td></tr>
-                  <tr><td>Quarterly</td><td>6% ÷ 4 = 1.5%</td><td>5 × 4 = 20</td><td><strong>$33,671.38</strong></td></tr>
-                  <tr><td>Monthly</td><td>6% ÷ 12 = 0.5%</td><td>5 × 12 = 60</td><td><strong>$33,721.25</strong></td></tr>
-                  <tr><td>Daily</td><td>6% ÷ 365 ≈ 0.016%</td><td>5 × 365 = 1,825</td><td><strong>$33,745.64</strong></td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              <div class="formula-panel"><div class="label">Excel — Monthly Compounding</div><code><span class="fn">=FV(6%/12, 5*12, 0, <span class="neg">−25000</span>)</span><span class="comment">// rate: 6%/12  nper: 5*12</span><span class="comment">// Returns: $33,721.25</span></code></div>
-              <div class="card"><h4 class="terra">The Takeaway</h4><p class="body-text" style="font-size:13px;">More frequent = higher FV. Annual-to-daily gap is $290 on $25,000 over 5 years. At higher rates or longer horizons the gap grows substantially.</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 12 · Rule of 72 -->
-      <section class="slide paper" data-section="3" data-slide="14" data-index="13">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Part 3 · Mental Math Shortcut</div>
-          <div class="header-row anim-2"><h2 class="slide-title">The Rule of 72 — Doubling Time Estimate</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="two-col anim-3">
-            <div>
-              <div class="formula-panel" style="margin-bottom:14px;"><div class="label">Rule of 72</div><code><span class="fn">Years to Double ≈ 72 ÷ Rate (%)</span><span class="comment">// Quick estimate — not exact</span><span class="comment">// Verify precise answer with =FV()</span></code></div>
-              <div class="r72-grid" style="grid-template-columns:repeat(2,1fr);">
-                <div class="r72-card"><div class="r72-rate">4%</div><div class="r72-years">72÷4 = <strong>18 yrs</strong></div></div>
-                <div class="r72-card"><div class="r72-rate">6%</div><div class="r72-years">72÷6 = <strong>12 yrs</strong></div></div>
-                <div class="r72-card"><div class="r72-rate">8%</div><div class="r72-years">72÷8 = <strong>9 yrs</strong></div></div>
-                <div class="r72-card"><div class="r72-rate">12%</div><div class="r72-years">72÷12 = <strong>6 yrs</strong></div></div>
-              </div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-              <div class="card"><h4 class="sage">When to Use It</h4><p class="body-text" style="font-size:13px;">Quick client conversations. Back-of-napkin planning. Sanity-checking whether an Excel answer is in the right ballpark. Does not replace exact calculation.</p></div>
-              <div class="card"><h4 class="gold">Try It Now</h4><p class="body-text" style="font-size:13px;">A Meridian client has a retirement account earning 7% annually. How many years to double?</p><p class="body-text" style="font-size:14px;margin-top:8px;"><strong>72 ÷ 7 ≈ 10.3 years.</strong><br>Verify: =FV(7%,10,0,−1000) = $1,967 ≈ $2,000 ✓</p></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 13 · Quarterly compounding worked example -->
-      <section class="slide paper" data-section="3" data-slide="15" data-index="14">
-        <div class="slide-inner">
-          <div class="eyebrow terra anim-1">Part 3 · Non-Annual Compounding</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Meridian Client — Quarterly Compounding</h2></div>
-          <div class="title-rule terra"></div>
-          <div class="two-col anim-3">
-            <div>
-              <div class="card" style="margin-bottom:12px;"><h4 class="terra">Given</h4><p class="body-text" style="font-size:14px;">P = $25,000 &nbsp;·&nbsp; 6% annual &nbsp;·&nbsp; 5 years &nbsp;·&nbsp; <strong>Quarterly compounding</strong></p></div>
-              <div class="math-panel"><div class="label">Adjustments</div><code>Rate per period: 6% ÷ 4 = <span class="result">1.5%</span><br>Total periods:   5 × 4   = <span class="result">20</span></code></div>
-              <div class="formula-panel" style="margin-top:10px;"><div class="label">Excel</div><code><span class="fn">=FV(6%/4, 5*4, 0, <span class="neg">−25000</span>)</span><span class="comment">// Returns: $33,671.38</span></code></div>
-            </div>
-            <div class="xls-wrap">
-              <table class="xls-table">
-                <thead><tr><th class="row-num">#</th><th>A</th><th>B</th></tr></thead>
-                <tbody>
-                  <tr><td class="row-num">2</td><td>PV</td><td style="background:#fef9e7;color:#856404;">−25,000</td></tr>
-                  <tr><td class="row-num">3</td><td>Annual Rate</td><td style="background:#fef9e7;color:#856404;">0.06</td></tr>
-                  <tr><td class="row-num">4</td><td>Years</td><td style="background:#fef9e7;color:#856404;">5</td></tr>
-                  <tr><td class="row-num">5</td><td>Periods/Year</td><td style="background:#fef9e7;color:#856404;">4</td></tr>
-                  <tr><td class="row-num">6</td><td>Rate per Period</td><td class="formula-cell">=B3/B5</td></tr>
-                  <tr><td class="row-num">7</td><td>Total Periods</td><td class="formula-cell">=B4*B5</td></tr>
-                  <tr class="result-row"><td class="row-num">8</td><td>FV</td><td class="formula-cell">=FV(B6,B7,0,B2)</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- LIVE YOU TRY IT · Quarterly compounding pause -->
-      <section class="slide paper" data-section="3" data-slide="16" data-index="15">
-        <div class="slide-inner">
-          <div class="eyebrow terra anim-1">Live You Try It · 5 Minutes</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Quarterly Compounding: Rate, Periods, FV</h2></div>
-          <div class="title-rule terra"></div>
-          <div class="two-col anim-3">
-            <div class="card" style="border-left:3px solid var(--terra);">
-              <h4 class="terra">Use the exact worked example</h4>
-              <p class="body-text">PV = $25,000 · Annual Rate = 6% · Years = 5 · Periods/Year = 4</p>
-              <ul class="bullet-list terra" style="font-size:14px;">
-                <li>Row 8: rate per period</li>
-                <li>Row 9: total periods</li>
-                <li>Row 10: quarterly future value</li>
-              </ul>
-            </div>
-            <div class="formula-panel">
-              <div class="label">Build It from Inputs</div>
-              <code><span class="fn">=E8/G8</span><span class="comment">// annual rate / periods per year</span><span class="fn">=F9*G9</span><span class="comment">// years * periods per year</span><span class="fn">=FV(E10/G10,F10*G10,0,-D10)</span><span class="comment">// result should match $33,671.38</span></code>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 14 · COMMON MISTAKE -->
-      <section class="slide dark" data-section="3" style="background:#1a0a05;" data-slide="17" data-index="16">
-        <div class="slide-inner">
-          <div class="eyebrow terra anim-1">⚠ Common Mistake</div>
-          <h2 class="section-title anim-2" style="color:var(--terra);font-size:32px;margin-bottom:16px;">Adjusting nper but Forgetting to Adjust rate</h2>
-          <div class="two-col anim-3">
-            <div>
-              <div style="background:rgba(156,74,43,0.12);border:1px solid rgba(156,74,43,0.4);border-left:4px solid var(--terra);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;">❌ The Mistake</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Switching to quarterly, student updates nper to 20 but leaves rate at 6% instead of changing it to 1.5%.</p></div>
-              <div class="formula-panel"><div class="label">Wrong Formula</div><code>=FV(<span class="neg">6%</span>, <span class="val">20</span>, 0, −25000)<span class="comment">// rate=annual, nper=quarterly</span><span class="comment">// Returns: $80,178 ← wildly inflated</span></code></div>
-            </div>
-            <div>
-              <div style="background:rgba(74,124,94,0.1);border:1px solid rgba(74,124,94,0.3);border-left:4px solid var(--sage);border-radius:6px;padding:16px 18px;margin-bottom:12px;"><div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:8px;">✓ Correct — Adjust Both</div><p style="font-size:14px;color:rgba(250,248,243,0.8);line-height:1.6;">Rate and nper must always refer to the <strong style="color:var(--sage);">same unit of time.</strong></p></div>
-              <div class="formula-panel"><div class="label">Correct Formula</div><code>=FV(<span class="val">6%/4</span>, <span class="val">5*4</span>, 0, −25000)<span class="comment">// rate=quarterly, nper=quarters</span><span class="comment">// Returns: $33,671.38 ✓</span></code></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 15 · Student Practice -->
-      <section class="slide paper" data-section="4" data-slide="18" data-index="17">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Class Challenge · Set Up</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Class Challenge — Build the Recommendation Model</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
-            <div class="card" style="border-left:3px solid var(--sage);"><h4 class="sage">Rows 1-5 — Growth Comparison</h4><p class="body-text" style="font-size:14px;">Use the existing $1,000 at 5% and $25,000 at 6% slide examples to compare simple, annual, monthly, and daily compounding.</p></div>
-            <div class="card" style="border-left:3px solid var(--gold);"><h4 class="gold">Rows 6-11 — Frequency + Rule of 72</h4><p class="body-text" style="font-size:14px;">Build formulas for monthly/annual gaps, daily/monthly gaps, quarterly rate and periods, and the 7% Rule of 72 check.</p></div>
-            <div class="card" style="border-left:3px solid var(--terra);"><h4 class="terra">Rows 12-15 — Client Recommendation</h4><p class="body-text" style="font-size:14px;">Use the discussion numbers: Account A at 4% annually versus Account B at 3.8% monthly on $100,000 over 10 years.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 16 · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="19" data-index="18">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Discussion</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Three Questions · Think First, Then Share</h2></div>
-          <div class="title-rule"></div>
-          <div class="anim-3" style="display:flex;flex-direction:column;gap:12px;flex:1;">
-            <div class="card" style="border-left:4px solid var(--sage);"><h4 class="sage">Computational</h4><p class="body-text" style="font-size:14px;">For $25,000 at 6% over 5 years: what is the exact dollar difference between annual and monthly compounding? Is that difference meaningful to a client?</p></div>
-            <div class="card" style="border-left:4px solid var(--gold);"><h4 class="gold">Conceptual</h4><p class="body-text" style="font-size:14px;">In plain language, no formulas: why does compound interest grow exponentially while simple interest grows linearly?</p></div>
-            <div class="card" style="border-left:4px solid var(--terra);"><h4 class="terra">Applied</h4><p class="body-text" style="font-size:14px;">Account A: 4% annual compounding. Account B: 3.8% monthly compounding. $100,000 over 10 years. Which wins — and by how much?</p></div>
-          </div>
-        </div>
-      </section>
-<section class="slide paper" data-section="4" data-slide="20" data-index="19" data-label="20 Formula Reference Card" id="slide-20">
-  <div class="formula-reference-slide">
-    <div class="frc-eyebrow">Workbook Mirror</div>
-    <h2>Formula Reference Card</h2>
-    <p class="frc-note">Same rows as the starter workbook FormulaReferenceCard tab.</p>
-    <table class="formula-reference-table"><thead><tr><th>Concept</th><th>Excel Pattern</th><th>Plain-English Meaning</th><th>Watch Out For</th></tr></thead><tbody><tr><td>Compound FV manual</td><td class="pattern">=PV*(1+Rate)^Nper</td><td>Applies interest on interest over multiple periods.</td><td class="watch">Rate and periods must use the same timing.</td></tr><tr><td>FV function</td><td class="pattern">=FV(rate,nper,0,pv)</td><td>Lets Excel calculate future value for a lump sum.</td><td class="watch">Use a negative pv for money invested today.</td></tr><tr><td>Rate per period</td><td class="pattern">=AnnualRate/PeriodsPerYear</td><td>Converts an annual rate to the compounding period.</td><td class="watch">Adjust the rate when compounding is not annual.</td></tr><tr><td>Total periods</td><td class="pattern">=Years*PeriodsPerYear</td><td>Converts years into total compounding periods.</td><td class="watch">Adjust nper whenever you adjust the rate.</td></tr><tr><td>Rule of 72</td><td class="pattern">=72/RatePercent</td><td>Estimates how many years it takes money to double.</td><td class="watch">It is an estimate; verify with FV.</td></tr><tr><td>Sanity check</td><td class="pattern">=ABS(FVResult)&gt;ABS(PV)</td><td>Confirms future value is larger than the starting investment.</td><td class="watch">If it fails, check signs and timing.</td></tr></tbody></table>
-  </div>
-  <div class="slide-number" style="position:absolute;right:28px;top:24px;left:auto;bottom:auto;width:auto;">20 / 25</div>
-</section>
-
-      <!-- SLIDE 17 · Key Takeaways -->
-      <section class="slide paper" data-section="4" data-slide="21" data-index="20">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Key Takeaways</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Three Things That Last</h2></div>
-          <div class="title-rule"></div>
-          <div class="takeaway-grid anim-3">
-            <div class="takeaway-card"><div class="tc-label" style="color:var(--sage);">01 — The Exponent</div><div class="tc-formula">FV = PV × (1 + i)ⁿ</div><p>Interest earns interest. Same rate, exponentially more money the longer time passes.</p></div>
-            <div class="takeaway-card"><div class="tc-label" style="color:var(--gold);">02 — The Function</div><div class="tc-formula">=FV(rate, nper, 0, −pv)</div><p>pv is negative. pmt is zero for lump sums. rate and nper must match the compounding period.</p></div>
-            <div class="takeaway-card"><div class="tc-label" style="color:var(--terra);">03 — Rule of 72</div><div class="tc-formula">72 ÷ rate ≈ years to double</div><p>Quick planning estimate. At 6%: 12 years. At 9%: 8 years. Verify with =FV().</p></div>
-          </div>
-          <div class="highlight-box gold anim-4" style="margin-top:14px;"><p><strong>Next — MATH-M09-L02:</strong> PMT and annuities. The pmt argument we left at 0 today becomes the main event. Mortgages, retirement contributions, car loans.</p></div>
-        </div>
-      </section>
-
-      <!-- SLIDE 18 · Next lesson preview -->
-      <section class="slide paper" data-section="4" data-slide="22" data-index="21">
-        <div class="slide-inner">
-          <div class="eyebrow gold anim-1">Coming Up — MATH-M09-L02</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Next: PMT Function &amp; Annuities</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col anim-3">
-            <div class="card"><h4 class="gold">What's Coming</h4><ul class="bullet-list gold" style="font-size:14px;"><li><strong>Annuities</strong> — payments that repeat every period</li><li><strong>=PMT()</strong> — required payment for any loan or savings goal</li><li><strong>=PV() with pmt</strong> — valuing a stream of equal payments</li><li><strong>=FV() with pmt</strong> — projecting savings with contributions</li><li>Mortgage, car loan, retirement contribution scenarios</li></ul></div>
-            <div class="card tinted"><h4>Before Next Class</h4><ul class="bullet-list sage" style="font-size:13px;"><li>Complete the Meridian FV activity</li><li>Read the MATH-M09-L02 pre-reading</li><li>Think: =FV() with pmt=0. What changes when a payment repeats every month?</li></ul></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RETROFIT SLIDE · Discussion -->
-      <section class="slide paper" data-section="4" data-slide="23" data-index="22">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Discussion</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Which Assumption Changes the Client Recommendation?</h2></div>
-          <div class="title-rule sage"></div>
-          <div class="two-col anim-3">
-            <div class="card"><h4 class="sage">Question 1</h4><p class="body-text">If Meridian changes only the compounding frequency, when does the answer change enough to matter for a real client?</p></div>
-            <div class="card tinted"><h4 class="gold">Question 2</h4><p class="body-text">Which input should you stress-test first: rate, years, or present value? Explain the business reason before calculating.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- RETROFIT SLIDE · Interpretation Check -->
-      <section class="slide paper" data-section="4" data-slide="24" data-index="23">
-        <div class="slide-inner">
-          <div class="eyebrow anim-1">Interpretation Check</div>
-          <div class="header-row anim-2"><h2 class="slide-title">Turn the Formula Output Into Advice</h2></div>
-          <div class="title-rule gold"></div>
-          <div class="two-col anim-3">
-            <div class="formula-panel"><div class="label">Excel Syntax</div><code><span class="fn">=FV(rate, nper, pmt, pv)</span><span class="comment">Start with the function result.</span><span class="comment">Then explain what the sign and timing mean.</span></code></div>
-            <div class="card"><h4 class="terra">Client Language</h4><p class="body-text">Avoid saying “Excel says.” Say: “If the client invests this amount today at this rate, the expected balance is...”</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 19 · Close -->
-      <section class="slide dark" data-section="4" data-slide="25" data-index="24">
-        <div class="slide-inner" style="align-items:center;text-align:center;">
-          <div class="gradient-bar" style="width:120px;margin:0 auto 32px;"></div>
-          <div class="eyebrow" style="text-align:center;margin-bottom:16px;">MATH-M09-L01 · Meridian Advisory Group</div>
-          <h2 class="section-title" style="text-align:center;font-size:38px;">Questions?</h2>
-          <p class="body-text dark" style="margin-top:16px;text-align:center;">The key insight of compound interest:<br><strong style="color:var(--paper);">interest earns interest.</strong><br>=FV() handles the exponent. Signs matter. Periods must match rates.</p>
-          <div style="display:flex;gap:32px;justify-content:center;margin-top:32px;">
-            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Office Hours</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">Canvas · TBD</div></div>
-            <div style="text-align:center;"><div style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,248,243,0.4);margin-bottom:6px;">Email</div><div style="font-size:14px;color:rgba(250,248,243,0.8);">bevitts@endicott.edu</div></div>
-          </div>
-        </div>
-      </section>
-
+  <section class="slide dark title-slide has-gradient" data-section="0" data-slide="1">
+    <img class="title-photo" src="img/bus123-math-m09-l01-compounding-client-review.jpg" alt="Advisor and client reviewing two long-term savings projections.">
+    <div class="title-shade" aria-hidden="true"></div>
+    <div class="title-copy">
+      <p class="eyebrow">MATH-M09-L01 · MERIDIAN ADVISORY GROUP</p>
+      <h1>Compound Interest<br>& Future Value</h1>
+      <p class="title-subtitle">Build the model. Audit the evidence. Recommend the stronger account.</p>
+      <p class="photo-credit">Meridian compares how timing changes the client's ending balance.</p>
     </div>
+  </section>
+
+  <section class="slide " data-section="0" data-slide="2">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 02</p><h2>Today's path</h2></header>
+    <div class="slide-body">
+  <div class="agenda-path" aria-label="Lesson agenda">
+    <div class="agenda-step"><span>1</span><strong>Choose</strong><p>Recognize the growth structure</p></div><div class="agenda-step"><span>2</span><strong>Build</strong><p>Construct and audit the Excel model</p></div><div class="agenda-step"><span>3</span><strong>Compare</strong><p>Test frequency and estimation</p></div><div class="agenda-step"><span>4</span><strong>Decide</strong><p>Recommend with numerical evidence</p></div>
+  </div></div>
+  </section>
+
+  <section class="slide " data-section="0" data-slide="3">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 03</p><h2>By the end, I can</h2></header>
+    <div class="slide-body">
+  <div class="objective-stack">
+    <div class="objective"><span>01</span><p>Explain why compound growth changes the base each period.</p></div><div class="objective"><span>02</span><p>Construct an FV formula with cell references, cash-flow perspective, and matched periods.</p></div><div class="objective"><span>03</span><p>Reconcile an Excel result to an independent manual formula.</p></div><div class="objective"><span>04</span><p>Compare account alternatives and defend a recommendation with ending-balance evidence.</p></div>
+  </div></div>
+  </section>
+
+  <section class="slide " data-section="0" data-slide="4">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 04</p><h2>Bridge from simple interest</h2></header>
+    <div class="slide-body">
+      <div class="photo-question">
+
+  <figure class="photo-frame ">
+    <img src="img/bus123-math-m09-l01-growth-pattern-review.jpg" alt="Two colleagues comparing straight and curved growth patterns.">
+    <figcaption>Before calculating, identify what changes in the growth process.</figcaption>
+  </figure>
+        <div class="question-panel"><p class="eyebrow">RETRIEVAL · 3 MIN</p><h3>Which path bends upward?</h3><p>Individually choose a curve. Then tell a partner what changes in the calculation base.</p><p class="deliverable">Deliverable: one curve choice + one because statement</p></div>
+      </div></div>
+  </section>
+
+  <section class="slide dark section-break has-gradient" data-section="1">
+    <div class="break-number">1</div>
+    <div><p class="eyebrow">PART 1 OF 3</p><h2>Choose the growth model</h2><p class="lead on-dark">Structure before syntax: identify what earns interest and how time enters the model.</p></div>
+  </section>
+
+  <section class="slide " data-section="1" data-slide="6">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 06</p><h2>Same rate. Different structure</h2></header>
+    <div class="slide-body">
+      <div class="chart-table-layout">
+        <svg class="growth-chart" viewBox="0 0 920 390" role="img" aria-labelledby="growth-title growth-desc">
+          <title id="growth-title">Simple and compound growth on $1,000 at 5 percent</title>
+          <desc id="growth-desc">Simple interest reaches $2,500 after 30 years while compound interest reaches $4,321.94.</desc>
+          <line class="axis" x1="100" y1="340" x2="880" y2="340"/><line class="axis" x1="100" y1="340" x2="100" y2="65"/>
+          <polyline class="line simple" points="100,340 125,336 227,320 353,301 860,222"/>
+          <polyline class="line compound" points="100,340 125,336 227,318 353,291 860,79"/>
+          <text class="svg-label simple-label" x="695" y="239">Simple: $2,500</text>
+          <text class="svg-label compound-label" x="667" y="70">Compound: $4,321.94</text>
+          <text class="svg-small" x="88" y="365">0</text><text class="svg-small" x="213" y="365">5</text><text class="svg-small" x="338" y="365">10</text><text class="svg-small" x="845" y="365">30 years</text>
+          <text class="svg-small" x="30" y="345">$1,000</text><text class="svg-small" x="30" y="70">$4,500</text>
+        </svg>
+        <table class="evidence-table"><caption>Underlying numerical evidence</caption><thead><tr><th>Year</th><th>Simple</th><th>Compound</th></tr></thead><tbody><tr><td>1</td><td>$1,050.00</td><td>$1,050.00</td></tr><tr><td>5</td><td>$1,250.00</td><td>$1,276.28</td></tr><tr><td>10</td><td>$1,500.00</td><td>$1,628.89</td></tr><tr><td>30</td><td>$2,500.00</td><td>$4,321.94</td></tr></tbody></table>
+      </div></div>
+  </section>
+
+  <section class="slide " data-section="1" data-slide="7">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 07</p><h2>Four inputs form one dependency system</h2></header>
+    <div class="slide-body">
+      <svg class="dependency-map" viewBox="0 0 1080 390" role="img" aria-labelledby="dep-title dep-desc">
+        <title id="dep-title">Future-value dependency map</title><desc id="dep-desc">Principal, annual rate, years, and periods per year determine periodic rate and total periods, which determine future value.</desc>
+        <g class="node input-node"><rect x="35" y="50" width="220" height="90" rx="16"/><text x="145" y="88">PRESENT VALUE</text><text x="145" y="118">Starting principal</text></g>
+        <g class="node input-node"><rect x="35" y="245" width="220" height="90" rx="16"/><text x="145" y="283">ANNUAL RATE</text><text x="145" y="313">Nominal rate</text></g>
+        <g class="node timing-node"><rect x="425" y="50" width="230" height="90" rx="16"/><text x="540" y="88">RATE PER PERIOD</text><text x="540" y="118">annual ÷ frequency</text></g>
+        <g class="node timing-node"><rect x="425" y="245" width="230" height="90" rx="16"/><text x="540" y="283">TOTAL PERIODS</text><text x="540" y="313">years × frequency</text></g>
+        <g class="node result-node"><rect x="820" y="145" width="225" height="100" rx="20"/><text x="932" y="185">FUTURE VALUE</text><text x="932" y="218">Ending balance</text></g>
+        <path class="connector" d="M255 95 H425"/><path class="connector" d="M255 290 H425"/><path class="connector" d="M655 95 C740 95 745 178 820 185"/><path class="connector" d="M655 290 C740 290 745 212 820 205"/>
+      </svg>
+      <div class="rule-strip"><strong>Period lock:</strong><span>If rate is monthly, nper must be months.</span><span>If rate is quarterly, nper must be quarters.</span></div></div>
+  </section>
+
+  <section class="slide " data-section="1" data-slide="8">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 08</p><h2>Choose the model before the function</h2></header>
+    <div class="slide-body">
+      <div class="decision-route" role="img" aria-label="Method choice flow">
+        <div class="route-start"><span>START</span><strong>What changes over time?</strong></div>
+        <div class="route-arrow" aria-hidden="true">→</div>
+        <div class="route-option"><strong>Original principal only</strong><p>Build a simple-interest expression</p></div>
+        <div class="route-option featured"><strong>Accumulated balance</strong><p>Use a compound future-value model</p></div>
+      </div>
+      <div class="scenario-row"><div><span>A</span>$8,000 grows at a stated rate for 6 years.</div><div><span>B</span>A client adds $300 each month.</div><div><span>C</span>A balance earns interest only on its original principal.</div></div>
+      <p class="prompt-line">Prompt: classify each structure first. Function selection comes second.</p></div>
+  </section>
+
+  <section class="slide dark section-break has-gradient" data-section="2">
+    <div class="break-number">2</div>
+    <div><p class="eyebrow">PART 2 OF 3</p><h2>Build and audit in Excel</h2><p class="lead on-dark">The formula bar is evidence: inputs, references, timing, and signs must all agree.</p></div>
+  </section>
+
+  <section class="slide " data-section="2" data-slide="10">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 10</p><h2>Instructor model: build from cells</h2></header>
+    <div class="slide-body"><div class="excel-with-formula">
+    <figure class="excel-window" aria-label="Instructor model aligned to Live You Try It cells D5:J7; H6 is active.">
+      <div class="excel-titlebar"><span class="excel-app">Excel</span><strong>bus123-math-m09-l01-starter.xlsx</strong><span>Saved</span></div>
+      <div class="excel-ribbon"><span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span></div>
+      <div class="excel-formula"><span class="name-box" aria-label="Active cell">H6</span><span class="fx">fx</span><span class="formula-bar" aria-label="Formula bar content">=FV(E6/G6,F6*G6,0,-D6)</span></div>
+      <div class="excel-row excel-letters"><div class="excel-cell excel-corner"></div><div class="excel-cell excel-letter">D</div><div class="excel-cell excel-letter">E</div><div class="excel-cell excel-letter">F</div><div class="excel-cell excel-letter">G</div><div class="excel-cell excel-letter">H</div><div class="excel-cell excel-letter">I</div><div class="excel-cell excel-letter">J</div></div>
+
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">5</div>
+      <div class="excel-cell excel-header ">Principal / Rate (%)</div><div class="excel-cell excel-header ">Annual Rate</div><div class="excel-cell excel-header ">Years</div><div class="excel-cell excel-header ">Periods / Year</div><div class="excel-cell excel-header ">FORMULA / RESULT</div><div class="excel-cell excel-header ">Formula Hint</div><div class="excel-cell excel-header ">FEEDBACK</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">6</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result excel-active">$44,994.56</div><div class="excel-cell  ">Use FV with row inputs.</div><div class="excel-cell excel-ok ">Correct formula and value.</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">7</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result "></div><div class="excel-cell  ">Manual formula audit.</div><div class="excel-cell  ">Enter the manual formula.</div>
+    </div>
+      <div class="excel-tabs"><span>START HERE</span><span class="active-tab">Live You Try It</span><span>Class Challenge</span><span>FormulaReferenceCard</span></div>
+      <figcaption>Instructor model aligned to Live You Try It cells D5:J7; H6 is active.</figcaption>
+    </figure>
+  <div class="formula-panel" aria-label="Excel formula and verification">
+    <span class="formula-excel">=FV(E6/G6,F6*G6,0,-D6)</span>
+    <span class="formula-manual">Manual audit: =D6*(1+E6/G6)^(F6*G6)</span>
+    <span class="formula-result">Both produce $44,994.56</span>
+  </div></div></div>
+  </section>
+
+  <section class="slide activity-mode" data-section="2" data-slide="11">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 11</p><h2>Live You Try It: build, then audit</h2></header>
+    <div class="slide-body"><div class="activity-slide">
+    <figure class="excel-window" aria-label="Student state: D6:G7 are supplied inputs; H6:H7 remain for students to complete.">
+      <div class="excel-titlebar"><span class="excel-app">Excel</span><strong>bus123-math-m09-l01-starter.xlsx</strong><span>Saved</span></div>
+      <div class="excel-ribbon"><span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span></div>
+      <div class="excel-formula"><span class="name-box" aria-label="Active cell">H6</span><span class="fx">fx</span><span class="formula-bar" aria-label="Formula bar content">Ready for your formula</span></div>
+      <div class="excel-row excel-letters"><div class="excel-cell excel-corner"></div><div class="excel-cell excel-letter">D</div><div class="excel-cell excel-letter">E</div><div class="excel-cell excel-letter">F</div><div class="excel-cell excel-letter">G</div><div class="excel-cell excel-letter">H</div><div class="excel-cell excel-letter">I</div><div class="excel-cell excel-letter">J</div></div>
+
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">5</div>
+      <div class="excel-cell excel-header ">Principal / Rate (%)</div><div class="excel-cell excel-header ">Annual Rate</div><div class="excel-cell excel-header ">Years</div><div class="excel-cell excel-header ">Periods / Year</div><div class="excel-cell excel-header ">FORMULA / RESULT</div><div class="excel-cell excel-header ">Formula Hint</div><div class="excel-cell excel-header ">FEEDBACK</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">6</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result excel-active"></div><div class="excel-cell  ">Use FV with row inputs.</div><div class="excel-cell  ">Enter the FV formula.</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">7</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result "></div><div class="excel-cell  ">Manual formula audit.</div><div class="excel-cell  ">Enter the manual formula.</div>
+    </div>
+      <div class="excel-tabs"><span>START HERE</span><span class="active-tab">Live You Try It</span><span>Class Challenge</span><span>FormulaReferenceCard</span></div>
+      <figcaption>Student state: D6:G7 are supplied inputs; H6:H7 remain for students to complete.</figcaption>
+    </figure>
+  <div class="activity-brief" aria-label="Activity directions">
+    <div><span>WHAT</span><strong>Complete H6 with FV and H7 with the manual check.</strong></div>
+    <div><span>HOW</span><strong>Individual build, then pair formula-bar audit.</strong></div>
+    <div><span>TIME</span><strong>6 + 2 minutes</strong></div>
+    <div><span>DELIVERABLE</span><strong>Two formulas and one matching result.</strong></div>
+    <div><span>DEBRIEF</span><strong>Formula-bar reveal and one student explanation.</strong></div>
+    <div><span>MASTERY</span><strong>Both cells contain formulas, reference inputs, and reconcile.</strong></div>
+  </div></div></div>
+  </section>
+
+  <section class="slide " data-section="2" data-slide="12">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 12</p><h2>Convincing evidence: two routes reconcile</h2></header>
+    <div class="slide-body"><div class="audit-layout">
+    <figure class="excel-window" aria-label="Audit state: two different formulas reconcile to the same $44,994.56 result.">
+      <div class="excel-titlebar"><span class="excel-app">Excel</span><strong>bus123-math-m09-l01-starter.xlsx</strong><span>Saved</span></div>
+      <div class="excel-ribbon"><span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span></div>
+      <div class="excel-formula"><span class="name-box" aria-label="Active cell">H7</span><span class="fx">fx</span><span class="formula-bar" aria-label="Formula bar content">=D7*(1+E7)^F7</span></div>
+      <div class="excel-row excel-letters"><div class="excel-cell excel-corner"></div><div class="excel-cell excel-letter">D</div><div class="excel-cell excel-letter">E</div><div class="excel-cell excel-letter">F</div><div class="excel-cell excel-letter">G</div><div class="excel-cell excel-letter">H</div><div class="excel-cell excel-letter">I</div><div class="excel-cell excel-letter">J</div></div>
+
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">5</div>
+      <div class="excel-cell excel-header ">Principal / Rate (%)</div><div class="excel-cell excel-header ">Annual Rate</div><div class="excel-cell excel-header ">Years</div><div class="excel-cell excel-header ">Periods / Year</div><div class="excel-cell excel-header ">FORMULA / RESULT</div><div class="excel-cell excel-header ">Formula Hint</div><div class="excel-cell excel-header ">FEEDBACK</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">6</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result ">$44,994.56</div><div class="excel-cell  ">FV model</div><div class="excel-cell excel-ok ">Correct formula and value.</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">7</div>
+      <div class="excel-cell excel-input ">$40,000.00</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">3</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result excel-active">$44,994.56</div><div class="excel-cell  ">Manual formula</div><div class="excel-cell excel-ok ">Correct formula and value.</div>
+    </div>
+      <div class="excel-tabs"><span>START HERE</span><span class="active-tab">Live You Try It</span><span>Class Challenge</span><span>FormulaReferenceCard</span></div>
+      <figcaption>Audit state: two different formulas reconcile to the same $44,994.56 result.</figcaption>
+    </figure><div class="audit-stamp reveal" data-reveal><span>RECONCILED</span><strong>$44,994.56</strong><p>Same assumptions. Different formula path. Same result.</p></div></div></div>
+  </section>
+
+  <section class="slide " data-section="2" data-slide="13">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 13</p><h2>Frequency changes both rate and periods</h2></header>
+    <div class="slide-body">
+      <div class="frequency-layout">
+        <table class="evidence-table wide"><caption>$25,000 at 6% nominal annual rate for 5 years</caption><thead><tr><th>Frequency</th><th>Periodic rate</th><th>Periods</th><th>FV</th></tr></thead><tbody><tr><td>Annual</td><td>6.0000%</td><td>5</td><td>$33,455.64</td></tr><tr><td>Quarterly</td><td>1.5000%</td><td>20</td><td>$33,671.38</td></tr><tr><td>Monthly</td><td>0.5000%</td><td>60</td><td>$33,721.25</td></tr><tr><td>Daily</td><td>0.0164%</td><td>1,825</td><td>$33,745.64</td></tr></tbody></table>
+        <div class="bar-chart" role="img" aria-label="Future values by compounding frequency"><div><span>Annual</span><i style="--w:73%"></i><strong>$33,455.64</strong></div><div><span>Quarterly</span><i style="--w:82%"></i><strong>$33,671.38</strong></div><div><span>Monthly</span><i style="--w:90%"></i><strong>$33,721.25</strong></div><div><span>Daily</span><i style="--w:96%"></i><strong>$33,745.64</strong></div></div>
+      </div>
+      <p class="model-note">Controlled comparison: principal, nominal rate, and years are held constant.</p></div>
+  </section>
+
+  <section class="slide dark section-break has-gradient" data-section="3">
+    <div class="break-number">3</div>
+    <div><p class="eyebrow">PART 3 OF 3</p><h2>Compare and recommend</h2><p class="lead on-dark">Estimates support judgment; controlled Excel evidence decides between alternatives.</p></div>
+  </section>
+
+  <section class="slide " data-section="3" data-slide="15">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 15</p><h2>Estimate first. Verify exactly</h2></header>
+    <div class="slide-body">
+      <div class="rule72-visual">
+        <div class="estimate-card"><span>FAST ESTIMATE</span><strong>72 ÷ 7 = 10.286 years</strong><p>Useful for a quick client conversation</p></div>
+        <div class="timeline" role="img" aria-label="Rule of 72 estimate and exact NPER doubling time"><span class="start">$1</span><div class="track"><i class="exact" style="--x:88%"></i><i class="estimate" style="--x:91%"></i></div><span class="end">$2</span><p class="exact-label">Exact: 10.245</p><p class="estimate-label">Estimate: 10.286</p></div>
+
+  <div class="formula-panel" aria-label="Excel formula and verification">
+    <span class="formula-excel">=NPER(7%,0,-1,2)</span>
+    <span class="formula-manual">Exact periodic doubling time</span>
+    <span class="formula-result">10.245 years</span>
   </div>
-</div>
-<div class="nav-controls">
-  <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
-  <span class="slide-counter" id="counter">1 / 25</span>
-  <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
-  <button class="nav-btn" onclick="toggleNotes()" title="N" style="font-size:12px;">N</button>
-</div>
-<div class="notes-overlay" id="notes-overlay">
-  <div class="notes-label">Speaker Notes</div>
-  <p id="notes-text"></p>
-</div>
+      </div>
+      <a class="tool-link" href="../shared/bus123-tvm-toolkit.html#rule-72">Open the Rule of 72 toolkit mode</a></div>
+  </section>
+
+  <section class="slide activity-mode dominant-activity" data-section="3" data-slide="16">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 16</p><h2>Decision lab: which account wins</h2></header>
+    <div class="slide-body">
+      <div class="decision-photo-layout">
+
+  <figure class="photo-frame decision-photo">
+    <img src="img/bus123-math-m09-l01-account-choice-review.jpg" alt="Advisor comparing two account options with a client.">
+    <figcaption>A higher nominal rate and higher frequency do not point to the same option.</figcaption>
+  </figure>
+        <div class="decision-prompt"><p class="eyebrow">CLASS CHALLENGE</p><h3>$100,000 · 10 years</h3><div class="choice"><span>A</span><strong>4.0% annual</strong></div><div class="choice"><span>B</span><strong>3.8% monthly</strong></div></div>
+      </div>
+
+  <div class="activity-brief" aria-label="Activity directions">
+    <div><span>WHAT</span><strong>Calculate both ending balances and the dollar difference.</strong></div>
+    <div><span>HOW</span><strong>Pairs; one builder and one formula auditor, then switch.</strong></div>
+    <div><span>TIME</span><strong>10 minutes</strong></div>
+    <div><span>DELIVERABLE</span><strong>G6:G8 plus a two-sentence recommendation in G9.</strong></div>
+    <div><span>DEBRIEF</span><strong>Vote, reveal workbook evidence, defend the winner.</strong></div>
+    <div><span>MASTERY</span><strong>Matched timing, cell references, correct values, evidence-based choice.</strong></div>
+  </div></div>
+  </section>
+
+  <section class="slide " data-section="3" data-slide="17">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 17</p><h2>Debrief: frequency did not overcome rate</h2></header>
+    <div class="slide-body"><div class="debrief-layout">
+    <figure class="excel-window" aria-label="Class Challenge evidence: Account A finishes $1,883.74 above Account B.">
+      <div class="excel-titlebar"><span class="excel-app">Excel</span><strong>bus123-math-m09-l01-starter.xlsx</strong><span>Saved</span></div>
+      <div class="excel-ribbon"><span>Home</span><span>Insert</span><span>Formulas</span><span>Data</span><span>Review</span></div>
+      <div class="excel-formula"><span class="name-box" aria-label="Active cell">G6</span><span class="fx">fx</span><span class="formula-bar" aria-label="Formula bar content">=FV(D6/F6,E6*F6,0,-C6)</span></div>
+      <div class="excel-row excel-letters"><div class="excel-cell excel-corner"></div><div class="excel-cell excel-letter">B</div><div class="excel-cell excel-letter">C</div><div class="excel-cell excel-letter">D</div><div class="excel-cell excel-letter">E</div><div class="excel-cell excel-letter">F</div><div class="excel-cell excel-letter">G</div><div class="excel-cell excel-letter">H</div></div>
+
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">5</div>
+      <div class="excel-cell excel-header ">Scenario</div><div class="excel-cell excel-header ">Principal</div><div class="excel-cell excel-header ">Annual Rate</div><div class="excel-cell excel-header ">Years</div><div class="excel-cell excel-header ">Periods / Year</div><div class="excel-cell excel-header ">FORMULA / RESULT</div><div class="excel-cell excel-header ">Decision Evidence / Hint</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">6</div>
+      <div class="excel-cell  ">Account A</div><div class="excel-cell excel-input ">$100,000</div><div class="excel-cell excel-input ">4.00%</div><div class="excel-cell excel-input ">10</div><div class="excel-cell excel-input ">1</div><div class="excel-cell excel-result excel-active">$148,024.43</div><div class="excel-cell  ">Higher nominal rate</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">7</div>
+      <div class="excel-cell  ">Account B</div><div class="excel-cell excel-input ">$100,000</div><div class="excel-cell excel-input ">3.80%</div><div class="excel-cell excel-input ">10</div><div class="excel-cell excel-input ">12</div><div class="excel-cell excel-result ">$146,140.69</div><div class="excel-cell  ">More frequent compounding</div>
+    </div>
+    <div class="excel-row">
+      <div class="excel-cell excel-rownum">8</div>
+      <div class="excel-cell  ">A minus B</div><div class="excel-cell  "></div><div class="excel-cell  "></div><div class="excel-cell  "></div><div class="excel-cell  "></div><div class="excel-cell excel-result ">$1,883.74</div><div class="excel-cell excel-ok ">Account A wins</div>
+    </div>
+      <div class="excel-tabs"><span>START HERE</span><span class="active-tab">Class Challenge</span><span>Class Challenge</span><span>FormulaReferenceCard</span></div>
+      <figcaption>Class Challenge evidence: Account A finishes $1,883.74 above Account B.</figcaption>
+    </figure><div class="verdict-card reveal" data-reveal><span>RECOMMEND</span><strong>Account A</strong><p>$148,024.43 vs $146,140.69</p><em>Advantage: $1,883.74</em></div></div></div>
+  </section>
+
+  <section class="slide mistake-slide" data-section="3" data-slide="18">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 18</p><h2>Common mistake: annual rate with monthly periods</h2></header>
+    <div class="slide-body">
+      <div class="mistake-board">
+        <div class="wrong"><span>WRONG MODEL</span><code>=FV(6%,20,0,-25000)</code><strong>$80,178.38</strong><p>6% per quarter was accidentally modeled.</p></div>
+        <div class="correction"><span>CORRECT MODEL</span><code>=FV(6%/4,5*4,0,-25000)</code><strong>$33,671.38</strong><p>Quarterly rate and quarterly periods match.</p></div>
+      </div>
+      <p class="mistake-question">Excel calculated both formulas correctly. Which model did the business question require?</p></div>
+  </section>
+
+  <section class="slide " data-section="4" data-slide="19">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 19</p><h2>Discuss the model boundary</h2></header>
+    <div class="slide-body">
+      <div class="discussion-pair"><div><span>01</span><h3>When is a fixed-rate FV model useful?</h3><p>Name one decision it supports and one assumption that must be disclosed.</p></div><div><span>02</span><h3>What evidence makes a recommendation defensible?</h3><p>Is a larger ending balance enough, or must the inputs and perspective also be audited?</p></div></div></div>
+  </section>
+
+  <section class="slide " data-section="4" data-slide="20">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 20</p><h2>Three takeaways</h2></header>
+    <div class="slide-body"><div class="takeaway-list"><div><span>1</span><p>Compound growth changes the calculation base each period.</p></div><div><span>2</span><p>Rate and nper must use the same time unit, and signs must reflect a stated perspective.</p></div><div><span>3</span><p>A defensible decision combines formulas, reconciliation, and business interpretation.</p></div></div></div>
+  </section>
+
+  <section class="slide " data-section="4" data-slide="21">
+    <header class="slide-header"><p class="eyebrow">MATH M09 · SLIDE 21</p><h2>Up next: recurring cash flows</h2></header>
+    <div class="slide-body"><div class="up-next">
+  <figure class="photo-frame ">
+    <img src="img/bus123-math-m09-l01-recurring-payments-preview.jpg" alt="Household reviewing a recurring-payment schedule with an advisor.">
+    <figcaption>Next: model repeated payments for loans and savings goals.</figcaption>
+  </figure><div><p class="eyebrow">MATH-M09-L02</p><h3>From one deposit to a stream of payments</h3><p>PMT, annuities, loan terms, savings goals, and present-value decisions.</p></div></div></div>
+  </section>
+
+  <section class="slide dark close-slide" data-section="0" data-slide="22">
+
+    <div class="slide-body"><div class="close-copy"><p class="eyebrow">MATH-M09-L01 COMPLETE</p><h2>Questions</h2><p>Keep the workbook open. Your next model adds recurring payments.</p><span>BUS123 · Gerrish School of Business</span></div></div>
+  </section>
+    <aside class="notes-panel" aria-live="polite"><strong>Speaker notes</strong><div id="note-text"></div></aside>
+    <div class="keyboard-hint">← → navigate · SPACE reveals · N notes · HOME/END</div>
+    <div class="controls"><span class="counter" aria-live="polite">1 / 22</span><button id="prev" aria-label="Previous slide">←</button><button id="next" aria-label="Next slide or reveal">→</button><button id="notes" aria-label="Toggle speaker notes">N</button></div>
+  </div>
+</main>
+<script type="application/json" id="speaker-notes">["Welcome students and frame the lesson as a decision problem, not a formula recital. In about two minutes, point to the client scene and ask what evidence a client would need before choosing an account.","Preview the four-part path in one minute. Tell students the workbook will be used during the Build and Decide sections, so it should already be open.","Read the objectives as observable work products. Emphasize that a correct final value without a formula or interpretation will not satisfy the lesson standard.","Retrieval activity, three minutes. Students choose the line or curve individually, then explain to a partner that compound interest changes the base. Likely misconception: compound simply means a higher rate. Debrief by asking what earns interest in period two.","Section transition. State that structure comes before syntax; do not reveal the function students will need for later cases yet.","Use the selected reading data, not every row. Ask students to predict where the gap becomes material. Expected response: the curves separate slowly at first, then faster because prior interest remains in the base.","Trace the dependency map from assumptions to future value. Stress the period lock. Likely misconception: adjusting either rate or nper is enough. Response: require students to name both converted quantities.","Have students classify the three cases before naming any function. Case B is not a lump-sum-only structure. The goal is method choice, not rapid calculation.","Transition to Excel. Ask students to locate Live You Try It and keep H6:H7 blank until instructed.","Model H6 slowly. Narrate the name box, formula bar, active cell, inputs, and result. Explain the investor perspective for the negative present value. Then point to the manual audit row without completing it for students.","Activity: individual for six minutes, then pair audit for two. Deliverable is H6 and H7 with formulas. Mastery evidence: ISFORMULA, expected references, matching values. Likely misconceptions are hardcoding the answer or omitting the sign. Debrief by inspecting one formula bar rather than only the result.","Reveal the completed audit after students have attempted both cells. Expected result is $44,994.56 in each. Rationale: two independent paths provide stronger evidence than a clean formula-error scan.","Give students 45 seconds to rank the four results before reading the table. The chart and table use the same data. Emphasize that the comparison is controlled because principal, nominal rate, and years are held constant.","Transition to judgment. Tell students that estimates and frequency effects matter only when interpreted alongside the complete set of assumptions.","Compare Rule of 72 with exact NPER. Expected figures are 10.286 and 10.245 years. Likely misconception: the heuristic is guaranteed. Response: label it an estimate under a fixed-rate model.","Class Challenge: pairs for ten minutes. One student builds and one audits, then switch. Required deliverable is G6:G8 and a two-sentence recommendation in G9. Mastery requires correct timing and evidence. Likely misconception: monthly compounding always wins. Do not reveal the winner until the debrief.","Debrief by polling first, then reveal. Account A is $148,024.43; Account B is $146,140.69; A leads by $1,883.74. Ask which input overcame frequency and why.","Common mistake diagnosis, four minutes. Excel returns $80,178.38 for the wrong formula because it was asked to model 6 percent each quarter. Instructor response: ask students to state the unit attached to rate and nper before touching the formula.","Discussion, five minutes. Question one should surface fixed-rate, tax, fee, inflation, and volatility boundaries. Question two should produce formula references, reconciled values, and stated assumptions as evidence.","Close the concept loop. Ask students to point to one takeaway they used in the Account A/B decision.","Preview L02 with the image. The key shift is that pmt will no longer be zero. Do not begin teaching PMT here; keep this as a one-minute transfer preview.","Invite final questions and remind students to save the starter workbook. Total planned time is 75 minutes including transitions, troubleshooting, and activity debriefs."]</script>
 <script>
-  const slides=Array.from(document.querySelectorAll('.slide'));
-  const TOTAL=slides.length; let current=0,notesVisible=false; document.getElementById('counter').textContent=`1 / ${TOTAL}`;
-  const notesData=JSON.parse(document.getElementById('speaker-notes').textContent);
-  const W=1280,H=720;
-  function rescale(){const vw=document.getElementById('viewport').clientWidth,vh=document.getElementById('viewport').clientHeight,scale=Math.min(vw/W,vh/H)*0.96,s=document.getElementById('scaler');s.style.transform=`scale(${scale})`;s.style.marginLeft=`${(vw-W*scale)/2}px`;s.style.marginTop=`${(vh-H*scale)/2}px`;}
-  window.addEventListener('resize',rescale);rescale();
-  function goTo(n){slides[current].classList.remove('active');current=Math.max(0,Math.min(TOTAL-1,n));slides[current].classList.add('active');document.getElementById('counter').textContent=`${current+1} / ${TOTAL}`;updateTabs();if(notesVisible)showNotes();}
-  function nextSlide(){goTo(current+1);}function prevSlide(){goTo(current-1);}
-  function jumpSection(sec){const idx=slides.findIndex(s=>parseInt(s.dataset.section)===sec);if(idx!==-1)goTo(idx);}
-  const tabBtns=Array.from(document.querySelectorAll('.tab-btn'));
-  function updateTabs(){const sec=parseInt(slides[current].dataset.section);tabBtns.forEach(btn=>{btn.className='tab-btn';const bSec=parseInt(btn.dataset.section);if(bSec===sec){if(sec===1)btn.classList.add('active-sage');else if(sec===2)btn.classList.add('active-gold');else if(sec===3)btn.classList.add('active-terra');else btn.classList.add('active-neutral');}});}updateTabs();
-  function showNotes(){document.getElementById('notes-text').textContent=notesData[current]||'';}
-  function toggleNotes(){notesVisible=!notesVisible;document.getElementById('notes-overlay').classList.toggle('visible',notesVisible);if(notesVisible)showNotes();}
-  document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();nextSlide();}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prevSlide();}if(e.key==='Home')goTo(0);if(e.key==='End')goTo(TOTAL-1);if(e.key==='n'||e.key==='N')toggleNotes();});
-  document.getElementById('viewport').addEventListener('click',e=>{const vw=document.getElementById('viewport').clientWidth;if(e.clientX<48+vw/3)prevSlide();else if(e.clientX>vw-vw/3)nextSlide();});
+(function(){
+  var W=1280,H=720,deck=document.querySelector('.deck-shell');
+  function fit(){var s=Math.min(window.innerWidth/W,window.innerHeight/H);deck.style.transform='translate('+((innerWidth-W*s)/2)+'px,'+((innerHeight-H*s)/2)+'px) scale('+s+')'}
+  window.addEventListener('resize',fit);fit();
+  var slides=Array.from(document.querySelectorAll('.slide')),notes=JSON.parse(document.getElementById('speaker-notes').textContent),index=0;
+  var counter=document.querySelector('.counter'),notePanel=document.querySelector('.notes-panel'),noteText=document.getElementById('note-text');
+  function update(){slides.forEach(function(s,i){s.classList.toggle('active',i===index)});counter.textContent=(index+1)+' / '+slides.length;noteText.textContent=notes[index]||'';document.querySelectorAll('.section-tab').forEach(function(tab,i){tab.classList.toggle('active',slides[index].dataset.section===String(i+1))});}
+  function show(i){index=Math.max(0,Math.min(slides.length-1,i));update()}
+  function next(){var hidden=slides[index].querySelector('.reveal:not(.shown)');if(hidden){hidden.classList.add('shown');return}show(index+1)}
+  function prev(){var shown=Array.from(slides[index].querySelectorAll('.reveal.shown'));if(shown.length){shown[shown.length-1].classList.remove('shown');return}show(index-1)}
+  document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);document.getElementById('notes').addEventListener('click',function(){notePanel.classList.toggle('open')});
+  document.querySelectorAll('[data-jump]').forEach(function(btn){btn.addEventListener('click',function(){show(Number(btn.dataset.jump))})});
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();next()}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}else if(e.key==='Home'){show(0)}else if(e.key==='End'){show(slides.length-1)}else if(e.key.toLowerCase()==='n'){notePanel.classList.toggle('open')}else if(e.key==='Escape'){notePanel.classList.remove('open')}});update();
+})();
 </script>
 </body>
 </html>

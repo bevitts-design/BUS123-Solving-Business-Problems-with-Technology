@@ -451,7 +451,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M09",
       "displayOrder": 120,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m10-l01",

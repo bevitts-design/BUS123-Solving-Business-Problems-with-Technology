@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
   <title>Business Finance Toolkit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0E1116;
@@ -23,9 +24,9 @@
       --steel: #355773;
       --formula: #0F6A3B;
       --input: #164B73;
-      --font-serif: "Instrument Serif", Georgia, serif;
-      --font-sans: "Geist", system-ui, sans-serif;
-      --font-mono: "JetBrains Mono", "Courier New", monospace;
+      --font-serif: "Bodoni Moda", serif;
+      --font-sans: "DM Sans", sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
     }
 
     * { box-sizing: border-box; }
@@ -55,7 +56,7 @@
     button:focus-visible,
     input:focus-visible,
     .mode-btn:focus-visible {
-      outline: 3px solid rgba(74, 124, 94, .36);
+      outline: 3px solid var(--sage);
       outline-offset: 3px;
     }
 
@@ -116,15 +117,13 @@
     }
 
     .mode-scroll {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
-      overflow-x: auto;
       padding: 12px 0;
-      scrollbar-width: thin;
     }
 
     .mode-btn {
-      flex: 0 0 auto;
       min-height: 42px;
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -133,7 +132,8 @@
       padding: 9px 12px;
       text-decoration: none;
       font-weight: 650;
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
     }
 
     .mode-btn[aria-current="true"] {
@@ -522,6 +522,10 @@
     }
 
     @media (max-width: 940px) {
+      .mode-scroll {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .activity,
       .formula-panel {
         grid-template-columns: 1fr;
@@ -535,6 +539,10 @@
     @media (max-width: 640px) {
       .shell {
         width: min(100vw - 28px, 1240px);
+      }
+
+      .mode-scroll {
+        grid-template-columns: 1fr;
       }
 
       .metrics {

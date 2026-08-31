@@ -21,7 +21,7 @@ Read this briefing before class so the calculations in the live activity feel li
 
 Managers need a clean view of two different cost rhythms: **payroll costs** that repeat every pay period, and **asset costs** that are spread across years. Payroll helps Harborside staff patient care safely. Depreciation helps Harborside recognize that equipment wears out, becomes outdated, or loses value over time.
 
-![Comparison showing payroll repeating every pay period while depreciation spreads an asset cost across its useful life](../assets/math-m05-two-cost-rhythms.png)
+![Side-by-side comparison of two cost rhythms. Payroll repeats every pay period, depends on hours and staffing, uses current-period cash, and can change quickly with overtime. Depreciation is allocated across an asset's useful life, applies to long-lived equipment, and changes book value gradually.](../assets/math-m05-two-cost-rhythms.png)
 
 Payroll often involves current cash paid to employees. Depreciation is different: it allocates a prior asset purchase across accounting periods and usually does not represent new cash leaving the bank in the year it is recorded.
 
@@ -56,7 +56,7 @@ The pay cycle changes the size and timing of a paycheck — not the annual salar
 
 In Excel, place the annual salary and number of pay periods in separate labeled cells, then use `=AnnualSalary/PayPeriods`.
 
-![Excel pay-cycle model comparing weekly, biweekly, semimonthly, and monthly checks from a 52000 dollar annual salary](../assets/math-m05-pay-cycle-model.png)
+![Excel pay-cycle model using Annual Salary divided by Pay Periods for a 52,000 dollar salary. Weekly uses 52 periods and pays 1,000 dollars; biweekly uses 26 and pays 2,000 dollars; semimonthly uses 24 and pays 2,166 dollars and 67 cents; monthly uses 12 and pays 4,333 dollars and 33 cents. Each cycle totals 52,000 dollars annually, so biweekly and semimonthly must not be interchanged.](../assets/math-m05-pay-cycle-model.png)
 
 Biweekly and semimonthly are not interchangeable. Biweekly payroll normally has 26 periods per year; semimonthly payroll has 24. Both still distribute the same annual salary.
 
@@ -78,7 +78,7 @@ Use formulas that handle employees both above and below the overtime threshold:
 
 `MIN` caps regular hours at 40. `MAX` prevents a negative overtime result when an employee works fewer than 40 hours. Gross pay is earnings before deductions; it is not take-home pay.
 
-![Excel payroll model using MIN to cap regular hours and MAX to prevent negative overtime](../assets/math-m05-overtime-model.png)
+![Excel overtime model for a Harborside nurse who works 43 hours at 44 dollars per hour with a 1.5 overtime multiplier, producing 1,958 dollars in gross pay. The formula uses MIN of Hours and 40 times Rate for regular pay, plus MAX of Hours minus 40 and zero times Rate times 1.5 for overtime. MIN caps regular hours at 40, and MAX prevents negative overtime.](../assets/math-m05-overtime-model.png)
 
 For the eight-nurse team used in class, one nurse earns `$1,958`, so total weekly gross pay is `=8*1958`, or **$15,664**. Keep the employee count in its own input cell so a manager can test a different staffing level without rewriting the pay formula.
 
@@ -143,9 +143,9 @@ Use three connected formulas:
 
 For Year 3, the formulas return `$12,000` annual depreciation, `$36,000` accumulated depreciation, and `$48,000` book value.
 
-![Excel Year 3 depreciation model showing asset inputs, annual depreciation, accumulated depreciation, and book value](../assets/math-m05-depreciation-model.png)
+![Excel Year 3 straight-line depreciation model. Inputs are an 84,000 dollar asset cost, 12,000 dollar residual value, six-year useful life, and Year 3. Annual depreciation is 12,000 dollars using cost minus residual value divided by useful life; accumulated depreciation is 36,000 dollars using annual depreciation times year; book value is 48,000 dollars using asset cost minus accumulated depreciation. After Year 6, book value is the 12,000 dollar residual value, not zero.](../assets/math-m05-depreciation-model.png)
 
-![Straight-line timeline showing book value falling by 12000 dollars per year from asset cost to residual value](../assets/math-m05-book-value-timeline.png)
+![Line chart of straight-line book value from Year 0 through Year 6. Book value decreases evenly by 12,000 dollars per year: 84,000, 72,000, 60,000, 48,000, 36,000, 24,000, and 12,000 dollars. The final value is the 12,000 dollar residual value.](../assets/math-m05-book-value-timeline.png)
 
 Straight-line book value falls evenly and ends at residual value, not zero. Book value is an accounting amount and may differ from the equipment's current market price.
 

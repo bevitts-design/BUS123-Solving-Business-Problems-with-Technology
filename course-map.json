@@ -103,6 +103,11 @@
         {
           "type": "Company Profiles",
           "path": "INTRO/M01/bus123-intro-m01-company-profiles.html"
+        },
+        {
+          "label": "Team Handoff Starter Workbook",
+          "type": "Starter Workbook",
+          "path": "INTRO/M01/bus123-intro-m01-l03-starter.xlsx"
         }
       ],
       "moduleType": "Intro",

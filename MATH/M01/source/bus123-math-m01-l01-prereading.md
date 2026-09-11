@@ -42,7 +42,7 @@ Meridian begins Q3 with 48 client accounts, adds 12 new clients, and loses 3. Th
 
 - Quarter-end accounts: 48 + 12 − 3 = **57**
 - Total quarterly fees: 57 × $4,200 = **$239,400**
-- In Excel: `=B2+B3-B4` for the account count, then `=D5*C2` for total fees
+- In Excel: `=B2+B3-B4` for the account count, then `=B5*C2` for total fees (place the calculated count in B5)
 
 Always reference cells rather than typing numbers directly into the formula.
 
@@ -118,22 +118,34 @@ In Excel, always use cell references: `=(B5-B4)/B4`. Format the result cell as *
 
 ---
 
+## In-Class Practice · From Prediction to Excel
+
+The B/C addresses in worked examples are demonstration cells. In the starter workbook, use the actual input cells beside each yellow answer cell on **Live You Try It**.
+
+| Deck checkpoint | Excel deliverable | Format and reflection |
+|---|---|---|
+| Slide 9 · Whole numbers | E6:E8: updated accounts, quarterly fees, yes/no comparison | E6 whole number; E7 Currency. Explain the revenue change. |
+| Slide 14 · Fractions | E10:E12: use each row’s part and whole, then answer yes/no | E10 Fraction; E11 Percentage with 1 decimal. Explain why the denominator changed. |
+| Slide 20 · Growth | E14:E16: target fees, actual growth, yes/no decision | E14 Currency; E15 Percentage with 2 decimals. Compare actual fees with target fees. |
+
+At each pause: predict in the HTML check, complete the Excel task, read the workbook feedback, then inspect the formula bar and number formats with a partner. “Value OK” confirms the numerical result and formula presence; it does not verify every reference or the number format.
+
+The growth checkpoint is a separate case: return to the original **$239,400 quarterly base**. Do not carry forward the reduced revenue from the account-loss checkpoint. Use enough percentage decimals to see a small difference, and confirm the comparison in dollars.
+
+**Later reference practice:** copying a formula moves relative references. An absolute reference such as `$E$21` stays fixed when copied. After the main lesson, the Class Challenge workshop uses quarterly revenue and a shared client total to make that distinction concrete. Mixed references come later.
+
+---
+
 ## 4 · Check Your Understanding
 
 Answer each question before looking at the answer key below. Show your Excel formula approach, not just the arithmetic result.
 
 1. Meridian starts a quarter with 57 accounts and loses 4. What is the new account total? Write the Excel formula.
-
 2. Total quarterly fee revenue was $239,400. Tax services generated $85,000 of that. What fraction — and what percent — of total fees came from Tax?
-
 3. Meridian is targeting a 12% increase in total AUM fees from a base of $239,400/quarter. What is the quarterly fee target? Write the Excel formula.
-
 4. Actual fees came in at $268,200. The prior quarter was $239,400. What was the percent change? Which formula case does this represent?
-
 5. Meridian's Investment team of 2 advisors represents what fraction of a 9-person total team? Express as a decimal rounded to 4 places.
-
 6. True or False: the denominator in a percent change calculation should always be the newer (larger) number.
-
 7. Meridian runs 4 service lines. Two lines each have 15 clients, one has 18 clients, one has 9 clients. What percent of total clients does the line with 18 clients represent?
 
 ---

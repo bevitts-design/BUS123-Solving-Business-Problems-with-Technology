@@ -20,22 +20,22 @@
   "Part 1 starts here. Whole numbers are the building blocks. In business, whole numbers show up in quantities, headcounts, transaction counts, and budgets rounded to the dollar.",
   "The four operations applied to business. Addition: summing revenue across accounts. Subtraction: calculating net after expenses. Multiplication: scaling unit price by volume. Division: finding per-unit or per-person figures. Meridian uses all four in every client engagement.",
   "Here is how you enter this in Excel. =SUM for addition ranges, simple arithmetic operators for everything else. The key habit: always use cell references, never type numbers into formulas. That way, when one input changes, everything recalculates.",
-  "Use the advisory-office image to frame this as an operating decision, not an abstract arithmetic problem: client counts drive Meridian's quarterly fee revenue and its forecast. Meridian starts with 48 client accounts, adds 12, and loses 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. Then 57 \u00d7 $4,200 = $239,400 in quarterly fee revenue. In Excel, use one formula chain with cell references and no hardcoded values.",
-  "You Try It pause one. Have students open the Live You Try It tab and complete the whole-number block. They should use the 57 accounts from the worked example, subtract 4 lost accounts, then multiply by the $4,200 quarterly fee. Ask for formulas before answers.",
+  "Use the advisory-office image to frame this as an operating decision, not an abstract arithmetic problem: client counts drive Meridian's quarterly fee revenue and its forecast. Meridian starts with 48 client accounts, adds 12, and loses 3. Their average management fee is $4,200 per account. Walk through the math: 48 + 12 - 3 = 57 accounts. Then 57 \u00d7 $4,200 = $239,400 in quarterly fee revenue. In Excel, use one formula chain with cell references and no hardcoded values. These B/C addresses belong to a demonstration example, not the starter answer cells.",
+  "Allow four minutes: predict the operation, spend two minutes in Excel, then debrief. Complete Live You Try It E6 =C6-D6, E7 =C7*D7, E8 Yes. Expect 53 accounts and $222,600. Ask why revenue fell by $16,800: four lost accounts times $4,200 per quarter. Inspect cell references and formats even when feedback says Value OK. A typed answer is not a formula.",
   "Common mistake number one. Mixing units is the silent killer. Hours and minutes, dollars and cents, whole accounts and fractional shares \u2014 if you don't align units before calculating, your answer is guaranteed wrong. Always check your units before you write the formula.",
   "Part 2 now. Fractions in business show up more than students expect \u2014 mostly as ratios, allocations, and proportional splits.",
   "Start with the six advisor icons and ask: what group are we measuring? Students should identify the 2 Tax advisors as the part. Then ask: out of how many advisors altogether? The whole is all 6 advisors. Connect those answers to the fraction anatomy: 2 is the numerator and 6 is the denominator. Now direct attention to the Excel line: =2/6 returns 0.3333, and Percentage formatting displays that same value as 33.3%. Close by asking what must change if the team grows to 9; that question bridges directly to the next slide.",
   "Use the worksheet image to separate formula from formatting. Point to the formula column first: each row uses the same part-divided-by-whole pattern with cell references. Then point to the result column: Number shows 0.3333, Fraction shows 1/3, and Percentage shows 33.3%. Demonstrate the workflow verbally: select the result cell, open Home, use the Number Format dropdown, and choose Fraction or Percentage. Emphasize that formatting changes only what students see; the stored value and formula remain the same.",
-  "You Try It pause two. First establish the change: Meridian had 2 Tax advisors out of 6 total, then hired 3 Tax advisors, so the new part is 5 and the new whole is 9. Give students two minutes in the Live You Try It tab. They should enter the same cell-reference formula in E10 and E11, format E10 as Fraction, and format E11 as Percentage with one decimal place. The deliverable is two differently displayed cells built from the same calculation. Ask what changed in the denominator before moving on.",
+  "Allow four minutes including two minutes in Excel. Ask students to update both part and whole after three Tax hires: 5/9. Complete Live You Try It E10 =C10/D10, E11 =C11/D11, E12 Yes. Format E10 as Fraction (5/9), E11 as Percentage with one decimal (55.6%). Debrief: formatting changes display, not value. After success, briefly copy E10 to E11 and observe relative row references move; restore the percentage format. Formal reference practice comes in the later challenge workshop.",
   "Bridge from fraction formatting to percent calculations. Students have just seen one ratio displayed as a fraction and as a percentage. Explain that Part 3 expands from this ratio-as-percent case to three percent structures they will use in business.",
   "Part 3 \u2014 Percents. This is the most business-critical section of the day. Percent calculation errors in real finance have real dollar consequences.",
   "A percent is a fraction with denominator 100. The three cases you'll use constantly: percent of a whole, percent change, and expressing a ratio as a percent. Each has a distinct formula structure.",
   "Use the business question to choose the formula, then use number formatting to communicate the result. Read across each worksheet row from the question to the cell-reference formula and finally to the formatted result. Ask students which row should not be formatted as a percentage. Case 1 returns a dollar amount because it asks for part of a dollar whole. Cases 2 and 3 return ratios, so those result cells use Percentage formatting. Reinforce that Excel stores 0.15 and displays 15.0 percent; students should not multiply by 100 manually.",
   "Start with the management question: did Meridian hit its growth target? Both calculations use the same $1.2 million starting point, but they serve different purposes. Planning uses the 7.5 percent target to establish what should happen: $1.29 million. Evaluation uses the $1.255 million actual result to calculate what did happen: 4.58 percent growth. Compare the two outcomes. Meridian finished $35,000 below plan and 2.92 percentage points under its target. Ask what leadership should investigate before revising the next forecast. Remind students that percent change always divides by the older value, which is B2 in this example.",
-  "You Try It pause three. Students use the same percent cases with the quarterly fee base: a 12% growth target from $239,400 and an actual change check from $239,400 to $268,200. Listen for whether they choose growth-by-rate versus percent-change formulas.",
+  "Allow five minutes. Reset to a separate planning case using the original $239,400 quarterly base, not the $222,600 from slide 9 or the annual example on slide 19. Predict target total versus increase amount, then name the old denominator. Complete Live You Try It E14 =C14*(1+D14), E15 =(D15-C15)/C15, E16 Yes. Target $268,128; actual growth 12.03%; actual exceeds target by only $72, or approximately 0.0301 percentage points. Use two percentage decimals so rounding does not hide the comparison.",
   "Begin without a formula. Ask what the $230,000 is being compared with. If it is compared with the earlier $200,000 result, the question is about change over time, so the older value is the denominator. If the same $230,000 is compared with Meridian's $1.5 million total fee book, the question is about share of the business, so the whole is the denominator. Reveal the two Excel formulas after students name the comparison. Emphasize the business meaning: growth evaluates performance, while share of total describes business mix and can guide staffing or resource allocation. The denominator gives the percentage its meaning.",
-  "Use this synthesis slide to make the ladder explicit: today's live practice is the first layer, the workbook records the formulas, and the class challenge turns those pieces into a multi-step model. Students who are moving quickly can preview it if time allows.",
-  "Formula Reference Card review. Have students open the FormulaReferenceCard tab in the starter workbook and compare each row here to the matching row in their sheet. Emphasize that this is a syntax reminder, not a substitute for deciding which formula fits the business question.",
+  "Connect the completed live checks to the Class Challenge. In E8:E10, C contains starting accounts, D additions, and I losses; use references to all three. Later, fill =C11*D11 down through E13 to introduce relative references. Then use =C22/$E$21 in E22 and copy to E23 to keep the total fixed. Finally use =C11*$D$11 through E13 with the shared fee assumption. Change D11 temporarily and restore $4,200. Defer mixed references until a two-dimensional table needs them.",
+  "Use the FormulaReferenceCard tab for arithmetic, part divided by whole, growth target, and percent change patterns. The final two workbook rows preview relative and absolute references for the later workshop. Choose the business question before consulting syntax.",
   "Three things to carry out of today. Align your units before any calculation. Use cell references in Excel. Percent change and percent of total are different formulas - don't mix them. Next lesson we build on these formula habits by solving equations and working backward to find unknown business inputs.",
   "Next lesson is MATH-M02 L01: Solving Equations. Use the balanced-scale image to introduce the golden rule: whatever operation we apply to one side of an equation, we apply to the other. Connect the modules explicitly. Today, students used known inputs to calculate an output. Next, they will work backward from a known output to isolate an unknown input using inverse operations. Anchor and Oak Events will apply that skill to rates, costs, revenue, vendor comparisons, and break-even decisions.",
   "Questions? Office hours are Tuesday and Thursday 2\u20134 PM, or email me. Remind students that the Live You Try It tab should be complete before the class challenge."
@@ -930,6 +930,37 @@
 .percent-choice-rule strong{color:var(--gold);}
 
 </style>
+<style>
+/* Integrated checkpoints: existing slide numbers and authoring canvas retained. */
+.integrated-check.content{margin-top:16px;padding-bottom:32px;}
+.slide[data-slide="9"] .header-row,.slide[data-slide="14"] .header-row,.slide[data-slide="20"] .header-row{padding-top:74px;}
+.integrated-check h2{font-size:40px;line-height:1.08;}
+.check-context{font-size:20px;margin:12px 0;color:var(--text-soft);}
+.check-progress{display:flex;gap:18px;align-items:center;padding:10px 0;border-bottom:2px solid var(--sage);font-size:18px;}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:16px;align-items:start;}
+.check-question{border:0;margin:0 0 12px;padding:0;}
+.check-question legend{font-size:20px;font-weight:600;margin-bottom:8px;}
+.check-options{display:flex;gap:7px;flex-wrap:wrap;}
+.integrated-check button{font-family:var(--sans);font-size:16px;line-height:1.2;padding:9px 12px;border:1px solid var(--sage);border-radius:6px;background:var(--white);color:var(--ink);cursor:pointer;}
+.integrated-check button:focus-visible{outline:3px solid var(--steel);outline-offset:3px;}
+.integrated-check button[aria-pressed="true"]{background:var(--formula-bg);border-width:2px;}
+.check-feedback{font-size:16px;line-height:1.3;min-height:43px;margin-top:7px;color:var(--text-soft);}
+.check-feedback[data-result="wrong"]{color:var(--terra);}
+.check-feedback[data-result="correct"]{color:var(--sage);}
+.check-excel{background:var(--paper-2);border-radius:10px;padding:18px;}
+.check-excel h3{font-family:var(--sans);font-size:21px;margin-bottom:10px;}
+.check-excel p{font-size:18px;line-height:1.35;margin-bottom:10px;}
+.check-excel .check-format{font-weight:600;}
+.check-excel .check-limit{font-size:16px;}
+.check-grid{position:relative;}
+.check-grid:has(.check-solution:not([hidden])) .check-predict{visibility:hidden;}
+.check-solution{position:absolute;left:0;top:0;width:calc(50% - 13px);padding:18px;background:var(--paper-2);border-radius:10px;}
+.check-solution[hidden]{display:none;}
+.check-solution .formula-panel{padding:10px 12px;font-size:16px;line-height:1.5;margin-bottom:10px;}
+.check-solution code{font-family:var(--mono);color:var(--steel);font-weight:700;}
+.check-solution .formula-panel code:first-child{display:block;font-size:22px;margin-bottom:14px;}
+.check-solution p{font-size:20px;line-height:1.4;margin:18px 0;}
+</style>
 </head>
 <body>
 <deck-stage width="1280" height="720" class="deck-shell" no-rail>
@@ -1158,7 +1189,7 @@
             </p>
           </div>
           <div style="margin-top:32px;">
-            <div class="formula-label">Excel formulas, then manual math</div>
+            <div class="formula-label">Demonstration cells · not starter addresses</div>
             <div class="formula-panel">
               <span class="fn">=B2 + B3 - B4</span><span class="comment">← accounts Q-end</span><br>
               <span class="fn">=B5 * C2</span><span class="comment">← total fee revenue</span>
@@ -1177,33 +1208,14 @@
 
   <!-- ── 09 YOU TRY IT — WHOLE NUMBERS ── -->
   <section class="slide cream" data-label="09 You Try Whole Numbers" data-section="1" data-slide="9" data-index="8">
-    <div class="header-row">
-      <span class="eyebrow">You Try It · Live Excel Pause</span>
-      <div class="rule"></div>
-    </div>
-    <div class="content">
-      <h2>Update the Fee Revenue</h2>
-      <div class="try-layout">
-        <div class="try-panel">
-          <h3>Use the same numbers from the worked example.</h3>
-          <p>Meridian ended the quarter with <strong>57 accounts</strong>. Before the next quarter closes, they lose <strong>4 accounts</strong>. The quarterly fee is still <strong>$4,200 per account</strong>.</p>
-          <div class="try-formula">
-            Live workbook tab: <strong>Live You Try It</strong><br>
-            Enter formulas in the yellow cells for Whole Numbers.
-          </div>
-          <div class="try-meta">
-            <span class="pill">Use cell references</span>
-            <span class="pill">Do not hardcode the answer</span>
-          </div>
-        </div>
-        <div class="try-steps">
-          <div class="try-step"><strong>Step 1</strong><span>New account count = 57 − 4</span></div>
-          <div class="try-step"><strong>Step 2</strong><span>New fee revenue = new accounts × $4,200</span></div>
-          <div class="try-step"><strong>Step 3</strong><span>Check whether the result is lower than $239,400.</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <div class="header-row"><span class="eyebrow">You Try It · 4 minutes · Excel 2 min</span><div class="rule"></div></div>
+ <div class="content integrated-check" data-checkpoint="9">
+ <h2>Update the Fee Revenue</h2><p class="check-context">57 accounts → lose 4 · $4,200 per account per quarter</p>
+ <div class="check-progress"><strong>1 · Predict</strong><span>→</span><strong>2 · Build in Excel</strong><span>→</span><strong>3 · Explain</strong></div>
+ <div class="check-grid"><div class="check-predict"><fieldset class="check-question"><legend>1 · Which operation updates the account count?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. Removing accounts reduces the count." aria-pressed="false">Subtract lost accounts</button><button type="button" data-correct="false" data-feedback="Losses reduce the count; adding would reverse the change." aria-pressed="false">Add lost accounts</button><button type="button" data-correct="false" data-feedback="Both inputs count accounts. Multiplication does not describe losing four." aria-pressed="false">Multiply accounts by losses</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><fieldset class="check-question"><legend>2 · What produces quarterly fee revenue?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. Accounts × dollars/account/quarter gives dollars/quarter." aria-pressed="false">New accounts × quarterly fee</button><button type="button" data-correct="false" data-feedback="Counts and dollars cannot be added meaningfully." aria-pressed="false">New accounts + quarterly fee</button><button type="button" data-correct="false" data-feedback="Use the updated count after the four losses." aria-pressed="false">Old accounts × quarterly fee</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><button class="check-reset" type="button">Reset this check</button></div>
+ <div class="check-excel"><h3>Live You Try It · E6:E8</h3><p>E6: calculate the new count from C6 and D6. E7: use linked count C7 and fee D7. E8: answer yes/no — is revenue below $239,400?</p><p class="check-format">E6: whole number · E7: Currency</p><p class="check-limit">Use workbook feedback, then inspect the formula bar and number formats.</p>
+ <button class="check-reveal" type="button" aria-expanded="false">Reveal after Excel attempt</button>
+ <div class="check-solution" hidden><div class="formula-panel"><code>=C6-D6</code> → 53 accounts<br><code>=C7*D7</code> → $222,600<br>E8: Yes · $16,800 less than before</div><p>Explain the $16,800 decline using accounts and quarterly fees.</p></div></div></div></div></section>
 
   <!-- ── 09 COMMON MISTAKE 1 ── -->
   <section class="slide dark" data-label="10 Mistake 1 Units" data-section="2" data-slide="10" data-index="9">
@@ -1289,7 +1301,7 @@
   <!-- ── 12 MERIDIAN FRACTIONS ── -->
   <section class="slide cream" data-label="13 Meridian Fractions" data-section="2" data-slide="13" data-index="12">
     <div class="header-row">
-      <span class="eyebrow">Excel Skill · Number Formats</span>
+      <span class="eyebrow">Demonstration cells · Number Formats</span>
       <div class="rule"></div>
     </div>
     <div class="content format-demo-content">
@@ -1336,38 +1348,14 @@
 
   <!-- ── 15 YOU TRY IT — FRACTIONS ── -->
   <section class="slide cream" data-label="14 You Try Fractions" data-section="2" data-slide="14" data-index="13">
-    <div class="header-row">
-      <span class="eyebrow">You Try It · Live Excel Pause</span>
-      <div class="rule"></div>
-    </div>
-    <div class="content tax-format-content">
-      <h2>Recalculate the Tax Team Share</h2>
-      <div class="try-layout">
-        <div class="try-panel">
-          <h3>The whole changed from 6 to 9</h3>
-          <div class="tax-change-flow" aria-label="Before hiring Meridian had two Tax advisors out of six total. After hiring three Tax advisors, Meridian has five Tax advisors out of nine total.">
-            <div class="tax-team-state"><span>Before</span><strong>2 of 6</strong></div>
-            <div class="tax-change-arrow">+3 Tax<br>advisors →</div>
-            <div class="tax-team-state after"><span>After</span><strong>5 of 9</strong></div>
-          </div>
-          <div class="try-formula">
-            Use the same part ÷ whole formula in both yellow answer cells.<br>
-            Change only the number format.
-          </div>
-          <div class="try-meta">
-            <span class="pill">2 minutes</span>
-            <span class="pill">Deliverable · E10 and E11</span>
-            <span class="pill">Use cell references</span>
-          </div>
-        </div>
-        <div class="try-steps">
-          <div class="try-step"><strong>Step 1</strong><span>Use the new team counts already shown in rows 10–11: part = 5 and whole = 9.</span></div>
-          <div class="try-step"><strong>Step 2</strong><span>Enter the same cell-reference formula in both yellow answer cells.</span></div>
-          <div class="try-step"><strong>Step 3</strong><span>Format E10 as Fraction and E11 as Percentage with one decimal place.</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <div class="header-row"><span class="eyebrow">You Try It · 4 minutes · Excel 2 min</span><div class="rule"></div></div>
+ <div class="content integrated-check" data-checkpoint="14">
+ <h2>Recalculate the Tax Team Share</h2><p class="check-context">Before: 2 Tax advisors out of 6 total → hire 3 Tax advisors</p>
+ <div class="check-progress"><strong>1 · Predict</strong><span>→</span><strong>2 · Build in Excel</strong><span>→</span><strong>3 · Explain</strong></div>
+ <div class="check-grid"><div class="check-predict"><fieldset class="check-question"><legend>1 · What is the new Tax share?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. The three new Tax advisors increase both the part and the whole." aria-pressed="false">5 out of 9</button><button type="button" data-correct="false" data-feedback="The whole also grows when three advisors join." aria-pressed="false">5 out of 6</button><button type="button" data-correct="false" data-feedback="The Tax team itself also gains three advisors." aria-pressed="false">2 out of 9</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><fieldset class="check-question"><legend>2 · What changes when you choose Percentage format?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. The stored ratio and formula stay the same." aria-pressed="false">Only the display</button><button type="button" data-correct="false" data-feedback="Formatting changes appearance; it does not multiply the stored ratio." aria-pressed="false">The stored value</button><button type="button" data-correct="false" data-feedback="The team count determines the denominator, not the number format." aria-pressed="false">The denominator</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><button class="check-reset" type="button">Reset this check</button></div>
+ <div class="check-excel"><h3>Live You Try It · E10:E12</h3><p>Use C and D in each row. E10 and E11: same part ÷ whole pattern, with row-specific references. E12: did the whole change from 6 to 9?</p><p class="check-format">E10: Fraction · E11: Percentage, 1 decimal</p><p class="check-limit">Use workbook feedback, then inspect the formula bar and number formats.</p>
+ <button class="check-reveal" type="button" aria-expanded="false">Reveal after Excel attempt</button>
+ <div class="check-solution" hidden><div class="formula-panel"><code>=C10/D10</code> → 5/9<br><code>=C11/D11</code> → 55.6%<br>E12: Yes · both counts increased by 3</div><p>Why do 5/9 and 55.6% represent the same share? After success, predict what moves when E10 is copied to E11.</p></div></div></div></div></section>
 
   <!-- ── 13 STAT BRIDGE ── -->
   <section class="slide dark" data-label="15 Stat Bridge" data-section="2" data-slide="15" data-index="14">
@@ -1428,7 +1416,7 @@
   <!-- ── 16 EXCEL PERCENT SYNTAX ── -->
   <section class="slide cream" data-label="18 Excel Percents" data-section="3" data-slide="18" data-index="17">
     <div class="header-row">
-      <span class="eyebrow">Excel First · Choose the Formula</span>
+      <span class="eyebrow">Demonstration cells · Choose the Formula</span>
       <div class="rule"></div>
     </div>
     <div class="content percent-match-content">
@@ -1483,7 +1471,7 @@
   <!-- ── 17 MERIDIAN PERCENTS ── -->
   <section class="slide cream" data-label="19 Meridian Percents" data-section="3" data-slide="19" data-index="18">
     <div class="header-row">
-      <span class="eyebrow">Business Decision · Meridian Advisory Group</span>
+      <span class="eyebrow">Demonstration cells · Annual fee example</span>
       <div class="rule"></div>
     </div>
     <div class="content growth-decision-content">
@@ -1532,33 +1520,14 @@
 
   <!-- ── 20 YOU TRY IT — PERCENTS ── -->
   <section class="slide cream" data-label="20 You Try Percents" data-section="3" data-slide="20" data-index="19">
-    <div class="header-row">
-      <span class="eyebrow">You Try It · Live Excel Pause</span>
-      <div class="rule"></div>
-    </div>
-    <div class="content">
-      <h2>Target Growth, Then Check Actual Growth</h2>
-      <div class="try-layout">
-        <div class="try-panel">
-          <h3>Use the quarterly fee base from the deck.</h3>
-          <p>Meridian's current quarterly fee revenue is <strong>$239,400</strong>. They want a <strong>12%</strong> increase next quarter. Actual fees later came in at <strong>$268,200</strong>.</p>
-          <div class="try-formula">
-            Target formula: base × (1 + rate)<br>
-            Actual change formula: (new − old) ÷ old
-          </div>
-          <div class="try-meta">
-            <span class="pill">Format % change as Percentage</span>
-            <span class="pill">Base = older number</span>
-          </div>
-        </div>
-        <div class="try-steps">
-          <div class="try-step"><strong>Step 1</strong><span>Calculate the 12% target from $239,400.</span></div>
-          <div class="try-step"><strong>Step 2</strong><span>Calculate actual % change from $239,400 to $268,200.</span></div>
-          <div class="try-step"><strong>Step 3</strong><span>Decide whether actual performance beat the 12% target.</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <div class="header-row"><span class="eyebrow">You Try It · 5 minutes · Excel 3 min</span><div class="rule"></div></div>
+ <div class="content integrated-check" data-checkpoint="20">
+ <h2>Target Growth, Then Check Actual Growth</h2><p class="check-context">Separate case: return to $239,400 quarterly fees · target +12% · actual $268,200</p>
+ <div class="check-progress"><strong>1 · Predict</strong><span>→</span><strong>2 · Build in Excel</strong><span>→</span><strong>3 · Explain</strong></div>
+ <div class="check-grid"><div class="check-predict"><fieldset class="check-question"><legend>1 · Which formula finds total target fees?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. Keep the base and add its 12% increase." aria-pressed="false">=C14*(1+D14)</button><button type="button" data-correct="false" data-feedback="That gives only the increase amount, not the total target." aria-pressed="false">=C14*D14</button><button type="button" data-correct="false" data-feedback="Adding a dollar amount and a rate does not calculate growth." aria-pressed="false">=C14+D14</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><fieldset class="check-question"><legend>2 · Which value is the actual-growth denominator?</legend><div class="check-options"><button type="button" data-correct="true" data-feedback="Correct. Compare the change with the starting base." aria-pressed="false">C15 — older fees</button><button type="button" data-correct="false" data-feedback="Growth is measured against where you started." aria-pressed="false">D15 — newer fees</button><button type="button" data-correct="false" data-feedback="The denominator must be the older dollar value, not a rate." aria-pressed="false">D14 — target rate</button></div><p class="check-feedback" aria-live="polite">Choose an answer, then explain your choice.</p></fieldset><button class="check-reset" type="button">Reset this check</button></div>
+ <div class="check-excel"><h3>Live You Try It · E14:E16</h3><p>E14: find total target fees using C14 and D14. E15: find actual growth using C15 and D15. E16: did actual beat the target?</p><p class="check-format">E14: Currency · E15: Percentage, 2 decimals</p><p class="check-limit">Use workbook feedback, then inspect the formula bar and number formats.</p>
+ <button class="check-reveal" type="button" aria-expanded="false">Reveal after Excel attempt</button>
+ <div class="check-solution" hidden><div class="formula-panel"><code>=C14*(1+D14)</code> → $268,128<br><code>=(D15-C15)/C15</code> → 12.03%<br>E16: Yes · actual is only $72 above target</div><p>Was this a substantial beat? One decimal shows 12.0%; compare the dollar amounts before deciding.</p></div></div></div></div></section>
 
   <!-- ── 18 COMMON MISTAKE 2 ── -->
   <section class="slide dark" data-label="21 Mistake 2 Percent" data-section="3" data-slide="21" data-index="20">
@@ -1619,7 +1588,7 @@
         <h2>Today Was the First Layer</h2>
         <p style="margin-top:28px; max-width:720px;">The live practice tab captured the same formulas we used in the deck. The class challenge asks you to connect those formulas into a small business model.</p>
         <div style="margin-top:36px; display:flex; flex-direction:column; gap:18px;">
-          <div class="disc-q"><p><strong>Live You Try It:</strong> one formula at a time, matching the slide numbers.</p></div>
+          <div class="disc-q"><p><strong>Live You Try It:</strong> predict → Excel formula → feedback → explain.</p></div>
           <div class="disc-q"><p><strong>Class Challenge:</strong> multi-quarter revenue, service-line mix, and interpretation.</p></div>
         </div>
       </div>
@@ -1901,5 +1870,24 @@
 })();
 </script>
 
+<script>
+(function(){
+ document.addEventListener('keydown',function(e){if(e.target.closest('.integrated-check button,.integrated-check input,.integrated-check select,.integrated-check textarea'))e.stopImmediatePropagation();},true);
+ document.addEventListener('click',function(e){
+  var button=e.target.closest('.integrated-check button');if(!button)return;
+  e.stopImmediatePropagation();var box=button.closest('.integrated-check');
+  if(button.hasAttribute('data-correct')){
+   var q=button.closest('fieldset');q.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b===button));});
+   var f=q.querySelector('.check-feedback');f.textContent=button.dataset.feedback;f.dataset.result=button.dataset.correct==='true'?'correct':'wrong';
+  }else if(button.classList.contains('check-reveal')){
+   var solution=box.querySelector('.check-solution'),show=solution.hidden;solution.hidden=!show;button.setAttribute('aria-expanded',String(show));button.textContent=show?'Hide debrief':'Reveal after Excel attempt';
+  }else if(button.classList.contains('check-reset')){
+   box.querySelectorAll('[aria-pressed]').forEach(function(b){b.setAttribute('aria-pressed','false');});
+   box.querySelectorAll('.check-feedback').forEach(function(f){f.textContent='Choose an answer, then explain your choice.';delete f.dataset.result;});
+   box.querySelector('.check-solution').hidden=true;var reveal=box.querySelector('.check-reveal');reveal.setAttribute('aria-expanded','false');reveal.textContent='Reveal after Excel attempt';
+  }
+ },true);
+})();
+</script>
 </body>
 </html>

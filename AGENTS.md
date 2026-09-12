@@ -4,30 +4,22 @@ This file is for Codex sessions working in this repository. Other AI tools may i
 
 ## Collaboration Style
 
-- Use a warm, friendly, encouraging tone while remaining direct and accurate.
-- Explain coding, GitHub, and testing steps in plain language for someone who is actively learning.
 - When giving manual instructions, use small numbered steps and say where each action should be performed.
 - Use emojis sparingly when they improve navigation and friendliness.
-- For substantial work, include the relevant portions of this progress format:
-  - 📍 Current Objective
-  - ✅ Completed
-  - 🚧 In Progress
-  - ⚠️ Risks or Decisions
-  - 🎯 Next Suggested Action
-- End substantial updates with one clear, highest-value next suggested action.
 - Proactively recommend starting a new task when it would materially improve focus, context quality, or token efficiency.
-- Do not require approval for ordinary read-only inspection or safe implementation steps already within the user's request. Clearly announce repository changes before making them.
 
-Use these Drive files as the current source of truth for BUS123 work:
+## Course Material Guidance
+
+Use these Drive files as the current guidance for BUS123 course content and branding:
 
 - Brand template: https://drive.google.com/file/d/1xty2pm0baSDRKKT1ncCyrVWJrD29cDfm
 - Project instructions: https://docs.google.com/document/d/1OxAbv_Hpn7N8xT3Aw7YylfGPatpvmKLI4SZGk4_0m38/edit?usp=drivesdk
 
-For new or revised course materials, follow the brand template and project instructions above. If these Drive files conflict with older patterns in the repository, treat the Drive files as the current guidance.
+Consult these files when creating course materials or substantially revising their content, structure, or design. Their applicable guidance takes precedence over older repository patterns. Minor corrections, such as typos, links, or isolated wording changes, may preserve the existing format without a fresh Drive review unless the correction depends on that guidance.
 
-Existing HTML decks in this repository span multiple generations of the slide scaffold and should be treated as legacy deliverables, not as templates for new work. Do not copy an older deck's fonts, authored dimensions, navigation scripts, external scaffold imports, inline scaffold code, or Tweaks panel behavior into a new or revised deck unless the current Drive guidance explicitly requires that pattern. Do not bulk-migrate legacy decks unless Bethany explicitly asks for that work.
+Existing HTML decks span multiple generations of the slide scaffold. For new decks or substantial design revisions, use the current Drive guidance to select the scaffold; do not assume a legacy deck is the template or combine incompatible scaffold patterns. Minor corrections may retain the existing scaffold. Do not bulk-migrate legacy decks unless Bethany explicitly asks for that work.
 
-When the Drive brand template and project instructions are being revised, avoid filling gaps by combining incompatible scaffold patterns. If the current Drive files do not clearly resolve a deck-format decision, ask Bethany before building or substantially revising a slide deck.
+If a new deck or substantial design revision requires a material format decision that the current Drive guidance does not resolve, ask Bethany about that decision before proceeding with dependent work.
 
 ## Local Operating Rules
 
@@ -41,42 +33,36 @@ When creating or revising lesson files, follow the existing course naming patter
 
 Place lesson-level materials inside the matching track and module folder, such as `EXCEL/M01/` or `INTRO/M01/`. Keep reusable case-study company assets under `assets/case-study-companies/[company-slug]/`. If a new asset is lesson-specific rather than reusable, place it in an `assets/` folder inside that lesson's module folder.
 
-Expected public-facing lesson materials may include:
-
-- HTML slide decks
-- Student starter Excel workbooks
-- Pre-reading PDFs
-- Homework PDFs for students
-- Student-facing interactive HTML activities
-- Reusable or lesson-specific visual assets
-
 Pre-reading PDFs should be treated as generated student-facing outputs. Create and revise the editable source in a lesson/module `source/` folder as Markdown, using the matching public filename with a `.md` extension, such as `INTRO/M01/source/bus123-intro-m01-l02-prereading.md`. Regenerate one ready source with `python3 scripts/build-prereadings.py [source-file]`, or regenerate all ready sources with `python3 scripts/build-prereadings.py --all`. Existing PDFs may have bootstrapped Markdown files marked `status: "draft-from-pdf"`; clean those Markdown drafts and remove the draft status before including them in bulk builds. Do not hand-edit a pre-reading PDF for content changes; direct PDF edits should be limited to page surgery such as merging, splitting, deleting, or reordering pages.
 
 ## Public Course Map
 
 Treat `index.html` as the student-facing public course map, not just a decorative homepage. Its primary jobs are to help students know what to do next, find the right materials quickly, and trust that lesson titles, sequence, file paths, and links are accurate.
 
-When revising the course map, prefer a static, data-driven setup over hand-maintaining all lesson cards directly in `index.html`. A recommended structure is:
+The course map uses these maintained sources:
 
 - `course-map.json` for track, module, lesson, status, case-study company, skill focus, and student-facing material links
-- `scripts/build-index.mjs` or a similar lightweight build script to regenerate `index.html`
-- Separate cacheable assets such as `assets/index.css` and `assets/index.js` when the page becomes large enough to benefit from them
+- `scripts/build-index.mjs` to generate `index.html`
+- `assets/index.css` and `assets/index.js` for course-map styling and browser behavior
+
+Edit these sources rather than hand-editing generated `index.html`. Regenerate it with `node scripts/build-index.mjs` when map data or the generator changes, or when changes to referenced materials affect their map entries. Unrelated file changes do not require a course-map rebuild.
 
 The generated page should remain plain static HTML/CSS/JavaScript that works on GitHub Pages. Do not introduce a frontend framework, bundler, package install, or client-side rendering layer unless Bethany explicitly asks or there is a strong, documented reason.
 
-Prioritize student learning and navigation over visual novelty. A strong course map should include or support:
+Preserve accurate current-lesson information, material labels, release states, and working navigation when revising the map. Do not add dead placeholder links; if Canvas, syllabus, or other external links are unknown, label them as unavailable rather than pointing to `#`.
+
+For requested navigation or design improvements, consider these optional goals within the task's scope:
 
 - A clear "Current" or "Next Up" area near the top for the active lesson and the materials students need next
 - Browsing by week, module, and track
-- Material-type labels such as Slides, Reading, Starter Workbook, Interactive Practice, Homework, and Canvas
 - Search or filtering by lesson title, skill, track, module, material type, or case-study company when the lesson list grows
-- Clear release states such as Live, Coming Soon, In Progress, Canvas Only, or Not Released
-- No dead placeholder links; if Canvas, syllabus, or other external links are unknown, label them as unavailable rather than pointing to `#`
 
-Whenever lesson titles, lesson numbers, sequence, file paths, or student-facing links change, update the course-map source data and regenerate `index.html` before delivery. Verify that all public links in the generated index resolve to files that should be student-facing. Do not surface instructor-only materials, answer keys, solution files, private lesson plans, grading notes, Canvas QTI ZIP files, or retired case-study company names in the public course map.
+When rebuilding the map, verify that its local material links resolve to student-facing files and that changed external links lead to the intended destinations; report any access limitations. Do not surface instructor-only materials, answer keys, solution files, private lesson plans, grading notes, Canvas QTI ZIP files, or retired case-study company names in the public course map.
 
-Do not touch `.git/`, generated dependency folders, or unrelated course modules unless the user explicitly asks. Do not edit binary PDFs or workbooks directly unless the task is specifically to revise that deliverable; when possible, regenerate from the appropriate source workflow instead.
+## Scope and Delivery
 
-For delivery, create or modify the requested files and summarize the changed paths. Do not commit, push, or open a pull request unless the user explicitly asks for that workflow.
+Do not manually modify Git internals in `.git/`; read-only Git inspection, including status, diff, and history, is allowed. Do not modify generated dependency folders or unrelated course modules unless the user explicitly asks. Do not edit binary PDFs or workbooks directly unless the task is specifically to revise that deliverable; when possible, regenerate from the appropriate source workflow instead.
 
-For BUS123 student-facing materials, avoid “content-only” first passes. Whenever the lesson involves business decisions, percentages, Excel modeling, or scenario analysis, include at least one interactive or decision-based element and use varied instructional graphics throughout the deck. Repeated generic cards or diagrams should be treated as placeholders and replaced before delivery.
+For implementation requests, create or modify the requested files and summarize the changed paths. For read-only audits and reviews, deliver findings without editing files. Open a pull request only when Bethany explicitly requests that workflow.
+
+For new BUS123 student-facing decks and substantial instructional revisions to decks, deliver complete instructional design. When the lesson involves business decisions, percentages, Excel modeling, or scenario analysis, include at least one interactive or decision-based element and use varied instructional graphics throughout the deck. Replace repeated generic cards or diagrams before delivery. These requirements do not expand minor corrections or revisions to non-deck materials into deck-design work.

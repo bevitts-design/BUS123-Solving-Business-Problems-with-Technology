@@ -176,7 +176,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M02",
       "displayOrder": 50,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m03-l01",
@@ -212,7 +212,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M03",
       "displayOrder": 60,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m04-l01",

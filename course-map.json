@@ -145,7 +145,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M01",
       "displayOrder": 40,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m02-l01",

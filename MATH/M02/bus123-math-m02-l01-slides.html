@@ -11,6 +11,8 @@
 [
   "Welcome to Math Module 2. Today we use the reading as a launch point rather than starting over. Students will retrieve the Golden Rule, apply it to Anchor and Oak decisions, and explain what each answer means.",
   "Spend 60 seconds recalling order of operations. Students predict =12/3*2 and explain that division comes first here because multiplication and division have equal priority and run left to right; the result is 8. Open the infographic for details if needed. Distinguish evaluating an Excel formula from rearranging an equation: use inverse operations on both sides to isolate the unknown.",
+  "Students work in a blank Excel worksheet on five percent questions before starting equations. The displayed formulas are patterns, not literal Excel names: replace words with the supplied numbers. Ask students to use percentage or currency formatting as indicated and keep their work for comparison. No answers are shown on this slide.",
+  "Reveal each worked row after students explain their approach. Answers: $450 deposit, 25 percent vegetarian, $816 discounted price, 12.5 percent revenue increase, and negative 15 percent attendance change. Explain that the latter is a 15 percent decrease. Percentage change uses the old value as the denominator; percentage formatting displays the decimal result as a percent without an extra multiplication by 100. Connect the parentheses in discount and change formulas to the PEMDAS reminder.",
   "Today's three parts group four equation levels into a simpler path: one-step foundations, multi-step comparisons, and literal formulas for business decisions. The thread connecting every part is isolating the missing input.",
   "Read the objectives as the lesson contract. Students should be able to show the setup, solve accurately, and interpret the result in business terms by the end of class.",
   "Give students 90 seconds with the reading closed. They write the Golden Rule in their own words and identify the first move in 8x plus 120 equals 1240. Pair-check before revealing the ticket example.",
@@ -37,6 +39,18 @@
 </script>
 
   <style>
+    /* Percent reinforcement: readable worksheet-style rows. */
+    .percent-review-slide .header-row { padding-top:38px; }
+    .percent-review-slide h2.slide-title { padding-top:20px;font-size:42px; }
+    .percent-review-slide .body-area { padding-top:18px; }
+    .percent-review-table { width:100%;border-collapse:collapse;table-layout:fixed;font-size:18px;line-height:1.35; }
+    .percent-review-table th { text-align:left;padding:10px 14px;background:var(--steel);color:var(--white);font-size:16px; }
+    .percent-review-table td { padding:8px 14px;border-bottom:1px solid var(--border);vertical-align:middle; }
+    .percent-review-table tbody tr:nth-child(odd) { background:var(--white); }
+    .percent-review-table code { font-family:var(--mono);font-size:18px;color:var(--steel);font-weight:700; }
+    .percent-review-table .pattern { background:var(--formula-bg); }
+    .percent-review-table small { display:block;font-size:16px;color:var(--text-soft);margin-top:4px; }
+
     :root {
     --ink:#0E1116;
     --paper:#FAF8F3;
@@ -820,8 +834,47 @@
     </div>
   </section>
 
+  <!-- PERCENT REINFORCEMENT -->
+  <section class="slide cream percent-review-slide" data-label="03 Percent Practice" data-section="0" data-slide="3" data-index="2">
+    <div class="header-row"><span class="eyebrow">Before Today's Lesson · Excel Practice</span><div class="rule"></div></div>
+    <h2 class="slide-title">Five Percent Questions in Excel</h2>
+    <div class="body-area" style="justify-content:flex-start;gap:14px;padding-bottom:30px;">
+      <p style="font-size:20px;line-height:1.4;">Use a blank worksheet. Enter one formula per row and format each result.<br>The patterns below are guides: replace the words with the given numbers.</p>
+      <table class="percent-review-table" aria-label="Five percent questions and Excel formula patterns">
+        <colgroup><col style="width:5%;"><col style="width:55%;"><col style="width:40%;"></colgroup>
+        <thead><tr><th>#</th><th>Question</th><th>Excel pattern · no values filled in</th></tr></thead>
+        <tbody><tr><td style="color:var(--sage);font-weight:700;">1</td><td><strong>Percent of a total</strong><br>An event costs $2,500. What is the 18% deposit?</td><td class="pattern"><code>=total*percent</code><small>Format result: Currency</small></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">2</td><td><strong>Part as a percent</strong><br>45 of 180 meals are vegetarian. What percent is that?</td><td class="pattern"><code>=part/whole</code><small>Format result: Percentage</small></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">3</td><td><strong>Price after a discount</strong><br>Supplies cost $960, less 15%. What is the final price?</td><td class="pattern"><code>=price*(1-discount%)</code><small>Format result: Currency</small></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">4</td><td><strong>Percentage increase</strong><br>Revenue: $4,800 → $5,400. Find the percentage change.</td><td class="pattern"><code>=(new-old)/old</code><small>Format result: Percentage</small></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">5</td><td><strong>Percentage decrease</strong><br>Attendance: 240 → 204 guests. Find the percent change.</td><td class="pattern"><code>=(new-old)/old</code><small>Format result: Percentage</small></td></tr>
+</tbody>
+      </table>
+      <p style="font-size:18px;color:var(--text-soft);">Enter rates with the % sign. For percentage change, divide by the <strong>old</strong> value.</p>
+    </div>
+  </section>
+
+  <section class="slide cream percent-review-slide" data-label="04 Percent Answers" data-section="0" data-slide="4" data-index="3">
+    <div class="header-row"><span class="eyebrow">Check Your Work · Reveal One at a Time</span><div class="rule"></div></div>
+    <h2 class="slide-title">Percent Practice: Calculations and Answers</h2>
+    <div class="body-area" style="justify-content:flex-start;gap:18px;padding-bottom:32px;">
+      <p style="font-size:20px;line-height:1.4;">Compare your formula, result, and number format. Explain what each answer means.</p>
+      <table class="percent-review-table" aria-label="Worked percent practice answers">
+        <colgroup><col style="width:5%;"><col style="width:95%;"></colgroup>
+        <thead><tr><th>#</th><th>Excel formula and calculation → Answer and meaning</th></tr></thead>
+        <tbody><tr><td style="color:var(--sage);font-weight:700;">1</td><td><div class="reveal-step" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;"><div><code>=2500*18%</code><small>$2,500 × 0.18</small></div><strong style="color:var(--sage);font-size:20px;">$450 deposit</strong></div></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">2</td><td><div class="reveal-step" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;"><div><code>=45/180</code><small>45 ÷ 180 = 0.25</small></div><strong style="color:var(--sage);font-size:20px;">25% of guests</strong></div></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">3</td><td><div class="reveal-step" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;"><div><code>=960*(1-15%)</code><small>$960 × 0.85</small></div><strong style="color:var(--sage);font-size:20px;">$816 final price</strong></div></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">4</td><td><div class="reveal-step" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;"><div><code>=(5400-4800)/4800</code><small>600 ÷ 4,800 = 0.125</small></div><strong style="color:var(--sage);font-size:20px;">+12.5% increase</strong></div></td></tr>
+<tr><td style="color:var(--sage);font-weight:700;">5</td><td><div class="reveal-step" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;"><div><code>=(204-240)/240</code><small>−36 ÷ 240 = −0.15</small></div><strong style="color:var(--sage);font-size:20px;">−15% change (15% decrease)</strong></div></td></tr>
+</tbody>
+      </table>
+      <p style="font-size:20px;line-height:1.4;border-left:4px solid var(--sage);padding-left:18px;"><strong>Remember:</strong> Percentage format displays 0.25 as 25%. A negative percentage change means a decrease. Parentheses keep the change together before division.</p>
+    </div>
+  </section>
+
   <!-- ── 02 AGENDA ── -->
-  <section class="slide cream" data-label="03 Agenda" data-section="0" data-slide="3" data-index="2">
+  <section class="slide cream" data-label="05 Agenda" data-section="0" data-slide="5" data-index="4">
     <div class="header-row"><span class="eyebrow">Today's Plan</span><div class="rule"></div></div>
     <h2 class="slide-title">Three Parts, Four Equation Levels</h2>
     <div class="body-area" style="justify-content:flex-start; gap:30px;">
@@ -832,7 +885,7 @@
   </section>
 
   <!-- ── 03 LEARNING OBJECTIVES ── -->
-  <section class="slide cream" data-label="04 Objectives" data-section="0" data-slide="4" data-index="3">
+  <section class="slide cream" data-label="06 Objectives" data-section="0" data-slide="6" data-index="5">
     <div class="header-row"><span class="eyebrow">I Can…</span><div class="rule"></div></div>
     <h2 class="slide-title">Learning Objectives</h2>
     <div class="body-area" style="justify-content:flex-start; gap:28px;">
@@ -844,7 +897,7 @@
   </section>
 
   <!-- ── 04 READING RETRIEVAL ── -->
-  <section class="slide cream" data-label="05 Reading Retrieval" data-section="0" data-slide="5" data-index="4">
+  <section class="slide cream" data-label="07 Reading Retrieval" data-section="0" data-slide="7" data-index="6">
     <div class="header-row"><span class="eyebrow">Reading Retrieval</span><div class="rule"></div></div>
     <h2 class="slide-title">Start With What You Read</h2>
     <div class="body-area" style="flex-direction:row; align-items:center; gap:64px; padding-bottom:44px;">
@@ -879,7 +932,7 @@
   </section>
 
   <!-- ── 05 SECTION BREAK — PART 1 ── -->
-  <section class="slide dark" data-label="06 Part 1 Break" data-section="1" data-slide="6" data-index="5">
+  <section class="slide dark" data-label="08 Part 1 Break" data-section="1" data-slide="8" data-index="7">
     <div class="grad-bar"></div>
     <div class="section-label">Part 1 of 3</div>
     <div class="section-title-wrap">
@@ -891,7 +944,7 @@
   </section>
 
   <!-- ── 06 ONE-STEP CONCEPT ── -->
-  <section class="slide cream" data-label="07 One-Step Concept" data-section="1" data-slide="7" data-index="6">
+  <section class="slide cream" data-label="09 One-Step Concept" data-section="1" data-slide="9" data-index="8">
     <div class="header-row"><span class="eyebrow">One-Step Equations</span><div class="rule"></div></div>
     <h2 class="slide-title">Undo the Operation — On Both Sides</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center; padding-top:16px; padding-bottom:16px;">
@@ -925,7 +978,7 @@
   </section>
 
   <!-- ── 07 ONE-STEP EXAMPLE 1 ── -->
-  <section class="slide cream" data-label="08 One-Step Ex 1" data-section="1" data-slide="8" data-index="7">
+  <section class="slide cream" data-label="10 One-Step Ex 1" data-section="1" data-slide="10" data-index="9">
     <div class="header-row"><span class="eyebrow">From the Reading · Explain Why</span><div class="rule"></div></div>
     <h2 class="slide-title">Budget Remaining After Bookings</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -960,7 +1013,7 @@
   </section>
 
   <!-- ── 08 LIVE YOU TRY IT: ONE-STEP ── -->
-  <section class="slide cream" data-label="09 Live Try 1" data-section="1" data-slide="9" data-index="8">
+  <section class="slide cream" data-label="11 Live Try 1" data-section="1" data-slide="11" data-index="10">
     <div class="header-row"><span class="eyebrow">Reading Detail · Apply It</span><div class="rule"></div></div>
     <h2 class="slide-title">You Try It: Finding the Per-Person Catering Rate</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -990,7 +1043,7 @@
   </section>
 
   <!-- ── 09 SECTION BREAK — PART 2 ── -->
-  <section class="slide dark" data-label="10 Part 2 Break" data-section="2" data-slide="10" data-index="9">
+  <section class="slide dark" data-label="12 Part 2 Break" data-section="2" data-slide="12" data-index="11">
     <div class="grad-bar"></div>
     <div class="section-label">Part 2 of 3</div>
     <div class="section-title-wrap">
@@ -1002,7 +1055,7 @@
   </section>
 
   <!-- ── 10 TWO-STEP CONCEPT ── -->
-  <section class="slide cream" data-label="11 Two-Step Concept" data-section="2" data-slide="11" data-index="10">
+  <section class="slide cream" data-label="13 Two-Step Concept" data-section="2" data-slide="13" data-index="12">
     <div class="header-row"><span class="eyebrow">Two-Step Equations</span><div class="rule"></div></div>
     <h2 class="slide-title">Reverse the Order of Operations</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1025,7 +1078,7 @@
   </section>
 
   <!-- ── 11 TWO-STEP EXAMPLE ── -->
-  <section class="slide cream" data-label="12 Two-Step Ex" data-section="2" data-slide="12" data-index="11">
+  <section class="slide cream" data-label="14 Two-Step Ex" data-section="2" data-slide="14" data-index="13">
     <div class="header-row"><span class="eyebrow">From the Reading · Explain the First Move</span><div class="rule"></div></div>
     <h2 class="slide-title">Calculating the Overtime Hourly Rate</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1059,7 +1112,7 @@
   </section>
 
   <!-- ── 12 BOTH SIDES CONCEPT ── -->
-  <section class="slide cream" data-label="13 Both Sides Concept" data-section="2" data-slide="13" data-index="12">
+  <section class="slide cream" data-label="15 Both Sides Concept" data-section="2" data-slide="15" data-index="14">
     <div class="header-row"><span class="eyebrow">Variables on Both Sides</span><div class="rule"></div></div>
     <h2 class="slide-title">Move Variable Terms to One Side First</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1084,7 +1137,7 @@
   </section>
 
   <!-- ── 13 BOTH SIDES EXAMPLE ── -->
-  <section class="slide cream" data-label="14 Both Sides Ex" data-section="2" data-slide="14" data-index="13">
+  <section class="slide cream" data-label="16 Both Sides Ex" data-section="2" data-slide="16" data-index="15">
     <div class="header-row"><span class="eyebrow">From the Reading · Compare Options</span><div class="rule"></div></div>
     <h2 class="slide-title">Break-Even Guest Count Between Two Vendors</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1128,7 +1181,7 @@
   </section>
 
   <!-- ── 14 SECTION BREAK — PART 3 ── -->
-  <section class="slide dark" data-label="15 Part 3 Break" data-section="3" data-slide="15" data-index="14">
+  <section class="slide dark" data-label="17 Part 3 Break" data-section="3" data-slide="17" data-index="16">
     <div class="grad-bar"></div>
     <div class="section-label">Part 3 of 3</div>
     <div class="section-title-wrap">
@@ -1140,7 +1193,7 @@
   </section>
 
   <!-- ── 15 LITERAL CONCEPT ── -->
-  <section class="slide cream" data-label="16 Literal Concept" data-section="3" data-slide="16" data-index="15">
+  <section class="slide cream" data-label="18 Literal Concept" data-section="3" data-slide="18" data-index="17">
     <div class="header-row"><span class="eyebrow">Literal Equations</span><div class="rule"></div></div>
     <h2 class="slide-title">Treat Other Variables Like Numbers</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1165,7 +1218,7 @@
   </section>
 
   <!-- ── 16 LITERAL EXAMPLE ── -->
-  <section class="slide cream" data-label="17 Literal Ex" data-section="3" data-slide="17" data-index="16">
+  <section class="slide cream" data-label="19 Literal Ex" data-section="3" data-slide="19" data-index="18">
     <div class="header-row"><span class="eyebrow">From the Reading · Make the Decision</span><div class="rule"></div></div>
     <h2 class="slide-title">Maximum Allowable Fixed Cost for Break-Even</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center; padding-top:16px; padding-bottom:28px;">
@@ -1200,7 +1253,7 @@
   </section>
 
   <!-- ── 17 INTERPRET THE RESULT ── -->
-  <section class="slide cream" data-label="18 Reasonableness" data-section="3" data-slide="18" data-index="17">
+  <section class="slide cream" data-label="20 Reasonableness" data-section="3" data-slide="20" data-index="19">
     <div class="header-row"><span class="eyebrow">Interpret the Result</span><div class="rule"></div></div>
     <h2 class="slide-title">Solved Is Not the Same as Useful</h2>
     <div class="body-area" style="flex-direction:row; gap:64px; align-items:center;">
@@ -1227,7 +1280,7 @@
   </section>
 
   <!-- WORKED VALIDATION REMINDER -->
-  <section class="slide cream" data-label="19 Validate the Payroll Result" data-section="3" data-slide="19" data-index="18">
+  <section class="slide cream" data-label="21 Validate the Payroll Result" data-section="3" data-slide="21" data-index="20">
     <div class="header-row"><span class="eyebrow">Discussion Debrief · Model Response</span><div class="rule"></div></div>
     <h2 class="slide-title">Validate the $140-per-Hour Result</h2>
     <div class="body-area" style="gap:20px;padding-bottom:36px;">
@@ -1259,7 +1312,7 @@
   </section>
 
   <!-- ── 18 COMMON MISTAKE ── -->
-  <section class="slide dark" data-label="20 Common Mistake" data-section="3" data-slide="20" data-index="19">
+  <section class="slide dark" data-label="22 Common Mistake" data-section="3" data-slide="22" data-index="21">
     <div class="header-row"><span class="eyebrow" style="color:rgba(255,255,255,0.78);">Watch Out</span><div class="rule"></div></div>
     <h2 class="slide-title" style="color:#fff;">Correct Can Still Be Risky</h2>
     <div class="body-area" style="justify-content:center;">
@@ -1277,7 +1330,7 @@
   </section>
 
   <!-- ── 19 CLASS CHALLENGE ── -->
-  <section class="slide cream" data-label="21 Class Challenge" data-section="4" data-slide="21" data-index="20">
+  <section class="slide cream" data-label="23 Class Challenge" data-section="4" data-slide="23" data-index="22">
     <div class="header-row"><span class="eyebrow">Class Challenge</span><div class="rule"></div></div>
     <h2 class="slide-title">Boss Level: Equation Sprint</h2>
     <div class="body-area" style="justify-content:flex-start; gap:18px; padding-bottom:70px;">
@@ -1308,7 +1361,7 @@
     </div>
   </section>
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="22 Takeaways" data-section="4" data-slide="22" data-index="21">
+  <section class="slide cream" data-label="24 Takeaways" data-section="4" data-slide="24" data-index="23">
     <div class="header-row"><span class="eyebrow">Key Takeaways</span><div class="rule"></div></div>
     <h2 class="slide-title">Three Rules That Cover Everything</h2>
     <div class="body-area" style="justify-content:center; gap:40px;">
@@ -1319,7 +1372,7 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="23 Up Next" data-section="4" data-slide="23" data-index="22">
+  <section class="slide dark" data-label="25 Up Next" data-section="4" data-slide="25" data-index="24">
     <div class="grad-bar"></div>
     <div class="title-content">
       <div class="title-eyebrow">Next Lesson · MATH M03 · L01</div>
@@ -1332,7 +1385,7 @@
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="24 Close" data-section="4" data-slide="24" data-index="23">
+  <section class="slide dark" data-label="26 Close" data-section="4" data-slide="26" data-index="25">
     <div class="grad-bar"></div>
     <div class="title-content" style="align-items:center; text-align:center;">
       <div class="title-eyebrow">BUS123 · M02 · L01</div>

@@ -27,6 +27,7 @@
   "Use the profit and break-even formulas to show that rearranging a formula is not a new kind of math. Ask students to name the target variable before choosing an inverse operation.",
   "Students complete Problem 5 before the fixed-cost ceiling appears. Require the unit and interpretation: $7,300 is the maximum fixed cost that keeps projected profit at zero.",
   "A correct calculation is not automatically a useful business answer. Revisit the $140 per hour result. Students identify its unit, judge whether it is plausible, and name an input or assumption they would verify.",
+  "Debrief the preceding payroll discussion. Reveal the calculation and substitution check, then the unit check, then the source-data checks, and finally the model response. Substitution confirms internal mathematical consistency, not the accuracy of the supplied payroll inputs. Do not claim that $140 per hour is universally reasonable or unreasonable: verify hours, base pay, total pay, pay period, and other pay components before using the inferred rate. If the inputs change, recalculate and validate again.",
   "Common Mistake: subtracting the larger variable term is mathematically valid, but it creates negative coefficients and more arithmetic risk. Students should distinguish an incorrect step from a correct but messy path.",
   "Pairs have eight minutes to complete Class Challenge C1 through C3. The deliverable is an equation setup, Excel work, final answer, and a short interpretation for each problem. Debrief one setup choice before collecting work.",
   "Close with three rules: balance both sides, collect before solving, and interpret the business meaning. Point students to the FormulaReferenceCard tab for syntax support rather than projecting the entire table.",
@@ -1225,8 +1226,40 @@
     </div>
   </section>
 
+  <!-- WORKED VALIDATION REMINDER -->
+  <section class="slide cream" data-label="19 Validate the Payroll Result" data-section="3" data-slide="19" data-index="18">
+    <div class="header-row"><span class="eyebrow">Discussion Debrief · Model Response</span><div class="rule"></div></div>
+    <h2 class="slide-title">Validate the $140-per-Hour Result</h2>
+    <div class="body-area" style="gap:20px;padding-bottom:36px;">
+      <p style="font-size:22px;line-height:1.4;">Given: $1,240 total pay, $120 base pay, and 8 overtime hours.<br>What proves the math works—and what still needs checking?</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+        <div class="eq-panel reveal-step" style="padding:16px 22px;line-height:1.45;">
+          <span class="comment">01 · Solve in Excel</span>
+          <span class="fn" style="margin-bottom:8px;">=(1240-120)/8 → $140/hour</span>
+          <span>8x + 120 = 1240 → x = 140</span><br><br>
+          <span class="comment">02 · Substitute into the original equation</span>
+          <span class="fn" style="margin-bottom:8px;">=8*140+120 → $1,240</span>
+          <span class="result">$1,120 + $120 = $1,240 ✓</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <div class="reveal-step" style="border-left:4px solid var(--sage);padding-left:18px;">
+            <p style="font-size:22px;font-weight:700;margin-bottom:8px;">03 · Confirm the unit</p>
+            <p style="font-size:20px;line-height:1.45;">($1,240 − $120) ÷ 8 hours gives dollars per hour. The result is a rate, not total pay.</p>
+          </div>
+          <div class="reveal-step" style="border-left:4px solid var(--terra);padding-left:18px;">
+            <p style="font-size:22px;font-weight:700;margin-bottom:8px;">04 · Validate the business inputs</p>
+            <p style="font-size:20px;line-height:1.45;">Check the time record and pay agreement: 8 overtime hours? $120 base pay? $1,240 for the same pay period, with no other pay components?</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-step" style="background:var(--paper-2);border-left:4px solid var(--steel);padding:14px 20px;font-size:20px;line-height:1.4;">
+        <strong>A complete response:</strong> “$140/hour reproduces the total and has the correct unit. It is valid for these inputs; I would confirm the payroll records before using the rate. If an input changes, I would recalculate.”
+      </div>
+    </div>
+  </section>
+
   <!-- ── 18 COMMON MISTAKE ── -->
-  <section class="slide dark" data-label="19 Common Mistake" data-section="3" data-slide="19" data-index="18">
+  <section class="slide dark" data-label="20 Common Mistake" data-section="3" data-slide="20" data-index="19">
     <div class="header-row"><span class="eyebrow" style="color:rgba(255,255,255,0.78);">Watch Out</span><div class="rule"></div></div>
     <h2 class="slide-title" style="color:#fff;">Correct Can Still Be Risky</h2>
     <div class="body-area" style="justify-content:center;">
@@ -1244,7 +1277,7 @@
   </section>
 
   <!-- ── 19 CLASS CHALLENGE ── -->
-  <section class="slide cream" data-label="20 Class Challenge" data-section="4" data-slide="20" data-index="19">
+  <section class="slide cream" data-label="21 Class Challenge" data-section="4" data-slide="21" data-index="20">
     <div class="header-row"><span class="eyebrow">Class Challenge</span><div class="rule"></div></div>
     <h2 class="slide-title">Boss Level: Equation Sprint</h2>
     <div class="body-area" style="justify-content:flex-start; gap:18px; padding-bottom:70px;">
@@ -1275,7 +1308,7 @@
     </div>
   </section>
   <!-- ── 20 KEY TAKEAWAYS ── -->
-  <section class="slide cream" data-label="21 Takeaways" data-section="4" data-slide="21" data-index="20">
+  <section class="slide cream" data-label="22 Takeaways" data-section="4" data-slide="22" data-index="21">
     <div class="header-row"><span class="eyebrow">Key Takeaways</span><div class="rule"></div></div>
     <h2 class="slide-title">Three Rules That Cover Everything</h2>
     <div class="body-area" style="justify-content:center; gap:40px;">
@@ -1286,7 +1319,7 @@
   </section>
 
   <!-- ── 21 UP NEXT ── -->
-  <section class="slide dark" data-label="22 Up Next" data-section="4" data-slide="22" data-index="21">
+  <section class="slide dark" data-label="23 Up Next" data-section="4" data-slide="23" data-index="22">
     <div class="grad-bar"></div>
     <div class="title-content">
       <div class="title-eyebrow">Next Lesson · MATH M03 · L01</div>
@@ -1299,7 +1332,7 @@
   </section>
 
   <!-- ── 22 CLOSE ── -->
-  <section class="slide dark" data-label="23 Close" data-section="4" data-slide="23" data-index="22">
+  <section class="slide dark" data-label="24 Close" data-section="4" data-slide="24" data-index="23">
     <div class="grad-bar"></div>
     <div class="title-content" style="align-items:center; text-align:center;">
       <div class="title-eyebrow">BUS123 · M02 · L01</div>

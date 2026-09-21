@@ -673,7 +673,7 @@
       "moduleType": "Excel",
       "moduleLabel": "Excel M02",
       "displayOrder": 170,
-      "visible": false
+      "visible": true
     },
     {
       "id": "excel-m03-l01",

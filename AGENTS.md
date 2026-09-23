@@ -10,16 +10,18 @@ This file is for Codex sessions working in this repository. Other AI tools may i
 
 ## Course Material Guidance
 
-Use these Drive files as the current guidance for BUS123 course content and branding:
+Use these repository files as the current guidance for BUS123 course content and branding:
 
-- Brand template: https://drive.google.com/file/d/1xty2pm0baSDRKKT1ncCyrVWJrD29cDfm
-- Project instructions: https://docs.google.com/document/d/1OxAbv_Hpn7N8xT3Aw7YylfGPatpvmKLI4SZGk4_0m38/edit?usp=drivesdk
+- Brand template / design specification: `assets/brand/build-spec.md` (this public repository)
+- Project instructions: `../BUS123-instructor/guidance/BUS123-Project-Instructions-current.md` (private sibling repository; never copy its contents into public outputs)
 
-Consult these files when creating course materials or substantially revising their content, structure, or design. Their applicable guidance takes precedence over older repository patterns. Minor corrections, such as typos, links, or isolated wording changes, may preserve the existing format without a fresh Drive review unless the correction depends on that guidance.
+These repository files replace the former Drive sources. Google Drive access is not required. Locate the private checkout if it is stored elsewhere; if it is unavailable, report that limitation instead of retrieving the old Drive copy. The repository build spec takes precedence over a bundled skill snapshot.
 
-Existing HTML decks span multiple generations of the slide scaffold. For new decks or substantial design revisions, use the current Drive guidance to select the scaffold; do not assume a legacy deck is the template or combine incompatible scaffold patterns. Minor corrections may retain the existing scaffold. Do not bulk-migrate legacy decks unless Bethany explicitly asks for that work.
+Consult these files when creating course materials or substantially revising their content, structure, or design. Their applicable guidance takes precedence over older repository patterns. Minor corrections, such as typos, links, or isolated wording changes, may preserve the existing format without a fresh guidance review unless the correction depends on that guidance.
 
-If a new deck or substantial design revision requires a material format decision that the current Drive guidance does not resolve, ask Bethany about that decision before proceeding with dependent work.
+Existing HTML decks span multiple generations of the slide scaffold. For new decks or substantial design revisions, use the current repository guidance to select the scaffold; do not assume a legacy deck is the template or combine incompatible scaffold patterns. Minor corrections may retain the existing scaffold. Do not bulk-migrate legacy decks unless Bethany explicitly asks for that work.
+
+If a new deck or substantial design revision requires a material format decision that the current repository guidance does not resolve, ask Bethany about that decision before proceeding with dependent work.
 
 ## Local Operating Rules
 

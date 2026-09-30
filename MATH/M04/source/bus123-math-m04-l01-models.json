@@ -1,0 +1,117 @@
+{
+  "company": "Anchor & Oak Events",
+  "activities": [
+    {
+      "concept": "Markup",
+      "slide": 8,
+      "title": "Set the catering-package price",
+      "scenario": "Anchor & Oak is pricing a boxed catering package. Each package costs $24, and the company wants a 35% markup on cost. What selling price should it charge?",
+      "pattern": "=Cost*(1+MarkupRate)",
+      "rows": [
+        [
+          "B9",
+          "Cost per package",
+          "C9",
+          24
+        ],
+        [
+          "B10",
+          "Markup rate on cost",
+          "C10",
+          0.35
+        ],
+        [
+          "B11",
+          "Selling price",
+          "C11",
+          "=C9*(1+C10)",
+          32.4
+        ]
+      ],
+      "answer": "$32.40 per package",
+      "meaning": "The price includes $8.40 above the package cost.",
+      "factsRow": 5,
+      "headingRow": 4,
+      "workRange": "A8:F17"
+    },
+    {
+      "concept": "Markdown",
+      "slide": 12,
+      "title": "Price the late-ticket promotion",
+      "scenario": "Anchor & Oak has unsold seats for a tasting event. The original ticket price is $64, and the company offers a 25% markdown. What is the promotional ticket price?",
+      "pattern": "=OriginalPrice*(1-MarkdownRate)",
+      "rows": [
+        [
+          "B22",
+          "Original ticket price",
+          "C22",
+          64
+        ],
+        [
+          "B23",
+          "Markdown rate",
+          "C23",
+          0.25
+        ],
+        [
+          "B24",
+          "Sale ticket price",
+          "C24",
+          "=C22*(1-C23)",
+          48
+        ]
+      ],
+      "answer": "$48.00 per ticket",
+      "meaning": "The promotion reduces the original ticket price by $16.00.",
+      "factsRow": 19,
+      "headingRow": 18,
+      "workRange": "A21:F30"
+    },
+    {
+      "concept": "Break-even",
+      "slide": 17,
+      "title": "Find the minimum event attendance",
+      "scenario": "Anchor & Oak plans a community dinner. Venue, permits, and base staffing total $4,250. Tickets sell for $58 per guest; food and service cost $32 per guest. How many whole guests are needed to cover the event costs?",
+      "pattern": "=SellingPrice-VariableCost; =ROUNDUP(FixedCosts/ContributionMargin,0)",
+      "rows": [
+        [
+          "B35",
+          "Fixed event costs",
+          "C35",
+          4250
+        ],
+        [
+          "B36",
+          "Ticket price per guest",
+          "C36",
+          58
+        ],
+        [
+          "B37",
+          "Variable cost per guest",
+          "C37",
+          32
+        ],
+        [
+          "B38",
+          "Contribution per guest",
+          "C38",
+          "=C36-C37",
+          26
+        ],
+        [
+          "B39",
+          "Break-even guests",
+          "C39",
+          "=ROUNDUP(C35/C38,0)",
+          164
+        ]
+      ],
+      "answer": "164 guests",
+      "meaning": "163 guests contribute $4,238: $12 short. 164 contribute $4,264: $14 above fixed costs.",
+      "factsRow": 32,
+      "headingRow": 31,
+      "workRange": "A34:F46"
+    }
+  ]
+}

@@ -249,7 +249,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M04",
       "displayOrder": 70,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m05-l01",
@@ -286,7 +286,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M05",
       "displayOrder": 80,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m06-l01",

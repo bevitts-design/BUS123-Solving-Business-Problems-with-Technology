@@ -6,205 +6,141 @@ status: "published"
 output: "MATH/M05/bus123-math-m05-l01-prereading.pdf"
 ---
 
-
 # BUS 123 · MATH-M05-L01 · Payroll and Depreciation
 
 **Course:** Solving Business Problems with Technology · Fall 2026
-**Track:** MATH · **Module:** M05 · **Lesson:** L01
-**Case Study Company:** Harborside Medical Center
+**Case:** Harborside Medical Center
 
----
+## 1 · One Management Brief, Two Models
 
-## 1 · Connect to Prior Knowledge
+Harborside's director asks: **What changes this week's wages, and how do we recognize equipment cost across years of service?** You will build one payroll model and extend it from one nurse to a staffing comparison. Then you will build one equipment model. The final challenge changes assumptions in those same models instead of asking you to start over.
 
-Read this briefing before class so the calculations in the live activity feel like business decisions instead of isolated formulas. Harborside Medical Center is deciding how to manage weekly staffing costs while planning for long-lived medical equipment.
+Payroll creates current wage cash needs. Depreciation allocates an earlier equipment purchase across the periods benefiting from it. Depreciation is not a new cash payment each year, and a lower depreciation estimate does not itself save cash.
 
-Managers need a clean view of two different cost rhythms: **payroll costs** that repeat every pay period, and **asset costs** that are spread across years. Payroll helps Harborside staff patient care safely. Depreciation helps Harborside recognize that equipment wears out, becomes outdated, or loses value over time.
+| Model | Time horizon | What the result means |
+|---|---|---|
+| Payroll | This week's service hours | Recurring wages and current cash needs |
+| Equipment | Years of useful life | Allocation of an earlier purchase, not a new annual cash payment |
 
-![Side-by-side comparison of two cost rhythms. Payroll repeats every pay period, depends on hours and staffing, uses current-period cash, and can change quickly with overtime. Depreciation is allocated across an asset's useful life, applies to long-lived equipment, and changes book value gradually.](../assets/math-m05-two-cost-rhythms.png)
+Use the same routine each time:
 
-Payroll often involves current cash paid to employees. Depreciation is different: it allocates a prior asset purchase across accounting periods and usually does not represent new cash leaving the bank in the year it is recorded.
+1. **Identify inputs:** What values and units does the problem give you?
+2. **Label:** Choose clear input and output labels and your own cell locations.
+3. **Calculate intermediate amounts:** Make each relationship visible.
+4. **Calculate the result:** Link it to those intermediate amounts.
+5. **Change one input:** Predict the direction, then test your model.
+6. **Explain:** Connect the result to the business question and name a limitation.
 
----
+Excel expressions below use descriptive names to explain relationships. These are not automatically defined Excel names. Replace them with references to the cells you choose in your worksheet.
 
-## 2 · Core Concepts
+## 2 · Build One Nurse's Pay, Then Extend It
 
-### Part A — Payroll
+### Salary warm-up
 
-#### Key Payroll Vocabulary
+An employee earns $52,000 per year across 52 weekly pay periods. Use `=AnnualSalary/PayPeriods`. The weekly check is $1,000. Monthly pay uses 12 periods and gives $4,333.33 per check. Annual salary stays the same. Biweekly normally uses 26 periods; semimonthly uses 24.
 
-| Term             | Meaning for Harborside Medical              | Basic Formula                        |
-|------------------|---------------------------------------------|--------------------------------------|
-| **Hourly pay**   | Employees paid for hours worked, often with overtime eligibility | `Hours × Rate` |
-| **Overtime pay** | Extra pay for hours beyond the regular threshold (commonly 40 hrs/week) | `OT Hours × Rate × 1.5` |
-| **Salary**       | Fixed annual pay converted into periodic checks | `Annual Salary / Pay Periods` |
-| **Commission**   | Pay based on a percentage of sales or other clearly defined revenue | `Sales × Commission Rate` |
-| **Gross pay**    | Total earned before deductions              | `Regular + OT + Commission`          |
+### One nurse: three connected calculations
 
-#### Payroll Cycles
+One nurse works **43 hours at $44/hour**. The regular-hours cap is **40**, and overtime pays **1.5 times** the rate. Label those four inputs before calculating.
 
-The pay cycle changes the size and timing of a paycheck — not the annual salary. A $52,000 salary can be paid as:
+| Step | Excel relationship | Result |
+|---|---|---|
+| Regular pay | `=MIN(Hours,Cap)*Rate` | 40 × $44 = $1,760 |
+| Overtime pay | `=MAX(Hours-Cap,0)*Rate*Multiplier` | 3 × $44 × 1.5 = $198 |
+| Gross pay | `=RegularPay+OvertimePay` | $1,958 |
 
-| Cycle          | Periods/Year | Paycheck Amount  |
-|----------------|--------------|------------------|
-| Weekly         | 52           | $1,000.00        |
-| Biweekly       | 26           | $2,000.00        |
-| Semimonthly    | 24           | $2,166.67        |
-| Monthly        | 12           | $4,333.33        |
+`MIN` selects the smaller of hours worked and the regular cap. `MAX` prevents negative overtime. At **39 hours**, regular and gross pay are $1,716 and overtime is $0. Gross pay is earnings before deductions, not take-home pay.
 
-**Formula:** `Salary per Period = Annual Salary / Number of Pay Periods`
+Keep regular pay and overtime pay as separate intermediate results. A long combined formula is possible, but the separate steps make your model easier to inspect and explain.
 
-In Excel, place the annual salary and number of pay periods in separate labeled cells, then use `=AnnualSalary/PayPeriods`.
+### Extend to nine nurses
 
-![Excel pay-cycle model using Annual Salary divided by Pay Periods for a 52,000 dollar salary. Weekly uses 52 periods and pays 1,000 dollars; biweekly uses 26 and pays 2,000 dollars; semimonthly uses 24 and pays 2,166 dollars and 67 cents; monthly uses 12 and pays 4,333 dollars and 33 cents. Each cycle totals 52,000 dollars annually, so biweekly and semimonthly must not be interchanged.](../assets/math-m05-pay-cycle-model.png)
+Harborside schedules **nine nurses**, each working those same 43 hours. Keep using your one-nurse inputs and results. Add a team-size input rather than retyping the rate and overtime rules.
 
-Biweekly and semimonthly are not interchangeable. Biweekly payroll normally has 26 periods per year; semimonthly payroll has 24. Both still distribute the same annual salary.
+| Team output | Relationship | Result |
+|---|---|---|
+| Required service hours | Team size × hours per nurse | 387 hours |
+| Team regular pay | Team size × one-nurse regular pay | $15,840 |
+| Team overtime pay | Team size × one-nurse overtime pay | $1,782 |
+| Team gross payroll | Team regular pay + team overtime pay | $17,622 |
 
-#### Overtime Example — Harborside Medical Center
+### Extend the same model to ten nurses at equal coverage
 
-A Harborside nurse earns $44/hour and works 43 hours in one week. The first 40 hours are paid at the regular rate; the 3 overtime hours are paid at time-and-a-half.
+The question is now: **Can ten nurses provide those same 387 service hours at lower wage cost?** Assume the hours can be shared equally. Hold required hours, hourly rate, and overtime rules constant. Changing both headcount and total service hours would not answer the same question.
 
-- Regular pay: 40 × $44 = **$1,760**
-- Overtime pay: 3 × $44 × 1.5 = **$198**
-- Gross pay: **$1,958**
+- Average hours per nurse: `=RequiredHours/AlternativeTeam`
+- Regular team hours: `=MIN(RequiredHours,AlternativeTeam*Cap)`
+- Overtime team hours: `=MAX(RequiredHours-AlternativeTeam*Cap,0)`
+- Alternative wages: `=RegularHours*Rate+OvertimeHours*Rate*Multiplier`
 
-### Build Overtime Safely in Excel
+| Output | Nine nurses | Ten nurses |
+|---|---|---|
+| Required service hours | 387 | 387 |
+| Average hours per nurse | 43 | 38.7 |
+| Regular team hours | 360 | 387 |
+| Overtime team hours | 27 | 0 |
+| Weekly wages | $17,622 | $17,028 |
 
-Use formulas that handle employees both above and below the overtime threshold:
+The difference is **$594 per week**, or **$30,888 across 52 weeks**. This is the extra overtime premium avoided: `=27*44*(1.5-1)`. Both options still pay for all 387 service hours.
 
-- Regular pay: `=MIN(Hours,40)*Rate`
-- Overtime pay: `=MAX(Hours-40,0)*Rate*1.5`
-- Gross pay: `=RegularPay+OvertimePay`
+The model supports a wage-only comparison. Hiring, benefits, training, scheduling, and continuity of care could change the recommendation. Equal total hours also does not guarantee that every shift or role is covered appropriately.
 
-`MIN` caps regular hours at 40. `MAX` prevents a negative overtime result when an employee works fewer than 40 hours. Gross pay is earnings before deductions; it is not take-home pay.
+## 3 · Build One Equipment Cost Model
 
-![Excel overtime model for a Harborside nurse who works 43 hours at 44 dollars per hour with a 1.5 overtime multiplier, producing 1,958 dollars in gross pay. The formula uses MIN of Hours and 40 times Rate for regular pay, plus MAX of Hours minus 40 and zero times Rate times 1.5 for overtime. MIN caps regular hours at 40, and MAX prevents negative overtime.](../assets/math-m05-overtime-model.png)
+Return to the management brief. Payroll concerns current wages; the ultrasound model concerns recognizing an earlier purchase across years of service.
 
-For the eight-nurse team used in class, one nurse earns `$1,958`, so total weekly gross pay is `=8*1958`, or **$15,664**. Keep the employee count in its own input cell so a manager can test a different staffing level without rewriting the pay formula.
+Harborside purchased an ultrasound unit for **$84,000**. Its estimated **residual value is $12,000** after a **six-year useful life**.
 
-> 💡 **Manager Question**
->
-> If many employees are working overtime every week, is Harborside solving a temporary staffing issue — or hiding a permanent headcount problem?
+| Quantity | Meaning | Excel relationship |
+|---|---|---|
+| Annual depreciation expense | One year's allocation | `=(Cost-ResidualValue)/UsefulLife` |
+| Accumulated depreciation | All allocations through a selected year | `=AnnualExpense*Year` |
+| Book value | Recorded cost remaining | `=Cost-AccumulatedDepreciation` |
 
-#### Pay System Comparison
+Annual expense is ($84,000 − $12,000) ÷ 6 = **$12,000**. Build one schedule using the same input cells throughout:
 
-| Pay System              | Best Fit                                               | Risk to Watch                                      |
-|-------------------------|--------------------------------------------------------|----------------------------------------------------|
-| **Hourly**              | Patient-care shifts, front desk, variable schedules    | Overtime can rise quickly                          |
-| **Salary**              | Managers, billing leaders, ongoing responsibility      | Workload may become invisible                      |
-| **Piece rate / per visit** | Task-based work, contract coverage, repeatable services | Volume may be rewarded over quality             |
-| **Commission**          | Nonclinical sales or clearly defined growth roles      | Revenue incentive may need guardrails              |
-| **Salary + commission** | Stable role with a growth target                       | Formula must be transparent                        |
+| Year | Annual expense | Accumulated depreciation | Book value |
+|---|---|---|---|
+| 1 | $12,000 | $12,000 | $72,000 |
+| 2 | $12,000 | $24,000 | $60,000 |
+| 3 | $12,000 | $36,000 | $48,000 |
+| 4 | $12,000 | $48,000 | $36,000 |
+| 5 | $12,000 | $60,000 | $24,000 |
+| 6 | $12,000 | $72,000 | $12,000 |
 
----
+Expense stays constant; accumulated depreciation rises; book value falls to residual. Subtracting one year's expense gives book value only in the first year.
 
-### Part B — Depreciation
+**Copying formulas:** use `$` to keep shared input references fixed while the year changes. If your annual expense is in B68, `=$B$68` keeps that input fixed. A formula such as `=B72*A72` moves to the next year when copied down. Your own model may use different addresses.
 
-#### Key Depreciation Vocabulary
+Book value is an accounting amount, not necessarily market value. It cannot determine a replacement date by itself. A replacement decision needs evidence about condition, reliability, maintenance, service demand, and the costs of alternatives.
 
-| Term                       | Definition                                                                                     |
-|----------------------------|-----------------------------------------------------------------------------------------------|
-| **Asset cost**             | The purchase price plus costs needed to get the asset ready for use.                          |
-| **Residual value**         | Expected value at the end of useful life.                                                     |
-| **Useful life**            | How long the company expects to use the asset.                                                |
-| **Accumulated depreciation** | Total depreciation recorded so far.                                                        |
-| **Book value**             | Asset cost minus accumulated depreciation.                                                    |
+## 4 · Test Your Existing Models
 
-Depreciation is an accounting estimate of the cost of a long-lived asset used up during a period. It is **not** the same as cash leaving the bank this year — it helps Harborside match the cost of equipment to the years that benefit from that equipment.
+In class, record these tests in **Class Challenge**. Use the models already built on **Live You Try It**; do not rebuild them. Predict first, change one input, record the effect, and restore the original input.
 
-#### Straight-Line Depreciation
+### Payroll test
 
-Straight-line depreciation spreads the depreciable cost evenly across useful life. Managers like it because it is predictable, easy to explain, easy to audit, and useful when an asset provides steady service.
+Change the hourly rate from **$44 to $46**. Keep 387 service hours, nine versus ten nurses, the 40-hour cap, and the 1.5× multiplier unchanged. Observe nurse gross pay, both team wages, and weekly/annualized savings. Explain which staffing option has lower wages and one factor the model omits. Restore $44.
 
-**Annual Depreciation = (Asset Cost − Residual Value) / Useful Life**
+### Equipment test
 
-#### Worked Example — Harborside Medical Center
+Change the estimated useful life from **six to eight years**. Keep cost and residual unchanged. Observe annual depreciation and its difference from the original expense. Does the lower annual expense prove a cash saving or that the unit can safely operate longer? Restore six years before checking the original schedule's endpoint.
 
-Harborside buys a diagnostic ultrasound unit for $84,000. Expected residual value: $12,000 after 6 years.
+An eight-year estimate needs eight years for a complete revised schedule. Year 6 is not its endpoint. This test concerns annual expense; restore six years afterward.
 
-- Annual depreciation: ($84,000 − $12,000) / 6 = **$12,000/year**
+### Check your understanding before class
 
-| Year | Cost    | Depreciation Expense | Accumulated Depreciation | Book Value |
-|------|---------|----------------------|--------------------------|------------|
-| 1    | $84,000 | $12,000              | $12,000                  | $72,000    |
-| 2    | $84,000 | $12,000              | $24,000                  | $60,000    |
-| 3    | $84,000 | $12,000              | $36,000                  | $48,000    |
-| 4    | $84,000 | $12,000              | $48,000                  | $36,000    |
-| 5    | $84,000 | $12,000              | $60,000                  | $24,000    |
-| 6    | $84,000 | $12,000              | $72,000                  | $12,000    |
+1. Why do regular and overtime pay belong in separate intermediate calculations?
+2. What should the overtime result be when hours worked are below the cap?
+3. Why must both staffing options provide 387 hours?
+4. Why is the additional overtime premium smaller than all overtime-hours pay?
+5. How do annual expense, accumulated depreciation, and book value differ?
+6. What changes when estimated useful life increases, and what does that change fail to prove?
 
-### Build the Depreciation Schedule in Excel
+## 5 · Bring to Class
 
-Use three connected formulas:
+Be ready to label your own inputs and construct models in empty worksheet spaces. Keep one payroll model as the case grows from one nurse to nine nurses and then a ten-nurse comparison. Keep one equipment schedule for the useful-life test. Use slide reveals after your attempts; different correct layouts are welcome.
 
-- Annual depreciation: `=(Cost-ResidualValue)/UsefulLife`
-- Accumulated depreciation: `=AnnualDepreciation*Year`
-- Book value: `=Cost-AccumulatedDepreciation`
+The interactive decision lab is an **optional cross-check after Excel work**. Your models and final explanations stay in the workbook.
 
-For Year 3, the formulas return `$12,000` annual depreciation, `$36,000` accumulated depreciation, and `$48,000` book value.
-
-![Excel Year 3 straight-line depreciation model. Inputs are an 84,000 dollar asset cost, 12,000 dollar residual value, six-year useful life, and Year 3. Annual depreciation is 12,000 dollars using cost minus residual value divided by useful life; accumulated depreciation is 36,000 dollars using annual depreciation times year; book value is 48,000 dollars using asset cost minus accumulated depreciation. After Year 6, book value is the 12,000 dollar residual value, not zero.](../assets/math-m05-depreciation-model.png)
-
-![Line chart of straight-line book value from Year 0 through Year 6. Book value decreases evenly by 12,000 dollars per year: 84,000, 72,000, 60,000, 48,000, 36,000, 24,000, and 12,000 dollars. The final value is the 12,000 dollar residual value.](../assets/math-m05-book-value-timeline.png)
-
-Straight-line book value falls evenly and ends at residual value, not zero. Book value is an accounting amount and may differ from the equipment's current market price.
-
-## 3 · Predict Before You Calculate
-
-Use direction checks to catch formulas that return a number but do not make business sense:
-
-1. If hours rise above 40, total payroll should rise faster because overtime hours receive premium pay.
-2. If the hourly rate rises, both regular and overtime pay should rise.
-3. If useful life increases while cost and residual value stay fixed, annual depreciation should fall.
-4. If residual value increases while cost and useful life stay fixed, annual depreciation should fall.
-5. At the end of useful life, book value should equal residual value rather than zero.
-
----
-
-## 4 · Check Your Understanding
-
-Answer these questions before class. Be ready to discuss your reasoning — not just the number.
-
-1. Which payroll type gives Harborside the most flexibility when patient volume changes week to week?
-2. Why does overtime make total payroll rise faster than regular hours?
-3. If an employee earns a fixed annual salary, why do weekly and monthly paychecks have different dollar amounts?
-4. What is the difference between depreciation expense and accumulated depreciation?
-5. Why might straight-line depreciation be a good fit for a medical device used steadily throughout the year?
-6. What Excel formula calculates weekly pay for a `$52,000` annual salary?
-7. Using Excel logic, calculate regular pay, overtime pay, and gross pay for 43 hours at `$44` per hour.
-8. What is the total weekly gross pay for 8 nurses working those same hours?
-9. For the ultrasound unit, calculate Year 3 accumulated depreciation and book value.
-10. A six-year depreciation schedule ends at `$0`. What assumption or formula was probably omitted?
-
-### Self-Check
-
-| # | Expected result |
-|---|---|
-| 6 | `=52000/52` gives **$1,000 per week**. |
-| 7 | Regular pay is **$1,760**, overtime pay is **$198**, and gross pay is **$1,958**. |
-| 8 | `=8*1958` gives **$15,664** total weekly gross pay. |
-| 9 | Accumulated depreciation is **$36,000** and book value is **$48,000**. |
-| 10 | Residual value was probably omitted; ending book value should be **$12,000**. |
-
----
-
-## 5 · Key Vocabulary
-
-| Term                        | Definition                                                                                                                               |
-|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **Gross Pay**               | Total earnings before any deductions; includes regular pay, overtime, and commission.                                                    |
-| **Overtime Pay**            | Compensation for hours worked beyond the standard threshold (typically 40 hrs/week), calculated at 1.5× the regular hourly rate.         |
-| **Pay Period**              | The recurring interval at which employees are paid: weekly, biweekly, semimonthly, or monthly.                                           |
-| **Depreciation**            | An accounting allocation of an asset's cost over its useful life; not a cash outflow in the period it is recorded.                       |
-| **Straight-Line Depreciation** | A depreciation method that spreads the depreciable cost evenly across all years of useful life.                                       |
-| **Residual Value**          | The estimated value of an asset at the end of its useful life; subtracted from cost before computing depreciation.                       |
-| **Book Value**              | The remaining recorded value of an asset: Asset Cost − Accumulated Depreciation.                                                         |
-| **Accumulated Depreciation**| The running total of all depreciation expense recorded on an asset since it was placed in service.                                       |
-
----
-
-> 📝 **Bring to Class**
->
-> Be ready to use the starter workbook as a payroll and depreciation management system. The **Live You Try It** pauses will use the same salary, overtime, and ultrasound numbers from the slides. You will build three payroll checks and then complete a six-year depreciation schedule so the pattern is visible across the asset's full useful life.
->
-> The **Class Challenge** asks you to make two fair comparisons. First, hold required service hours constant while comparing staffing plans. Then compare the same asset under two useful-life assumptions. Your goal is not only to calculate the cost difference, but also to explain whether each decision is **operationally reasonable** for a medical practice.
+**Background vocabulary:** hourly pay varies with hours; salary distributes fixed annual compensation across periods. Per-visit pay and incentive pay reward different behaviors. In class, focus on salary conversion, hourly payroll, and depreciation.

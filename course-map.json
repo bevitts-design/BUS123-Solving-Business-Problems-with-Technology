@@ -262,8 +262,9 @@
       "skillFocus": [
         "Payroll cycles",
         "Overtime",
-        "Payroll mix",
-        "Straight-line depreciation"
+        "Fixed-coverage staffing",
+        "Straight-line depreciation",
+        "Model input tests"
       ],
       "materials": [
         {
@@ -280,7 +281,8 @@
         },
         {
           "type": "Interactive Practice",
-          "path": "MATH/M05/bus123-math-m05-l01-interactive.html"
+          "path": "MATH/M05/bus123-math-m05-l01-interactive.html",
+          "label": "Optional Model Check"
         }
       ],
       "moduleType": "Math",

@@ -37,14 +37,20 @@ for(const w of [student,key]){
     sheet.getRange(`A${v.headingRow}:K${last}`).clear({applyTo:'contents'});
     sheet.getRange(`A${first}:K${last}`).copyFrom(sheet.getRange('A6:K9'),'all');
     sheet.getRange(`A${first}:K${last}`).clear({applyTo:'contents'});
-    sheet.getRange(`A${first}:K${last}`).format.rowHeight=38;
+    sheet.getRange(`A${first}:K${last}`).format={
+      fill:'#FFFFFF',font:{name:'Aptos',size:11,color:'#1A1F2C'},
+      rowHeight:42,wrapText:true,verticalAlignment:'center',
+      borders:{preset:'all',style:'thin',color:'#E5E1D6'}
+    };
     sheet.getRange(`D${first}:H${last}`).format.fill='#F2EEE5';
+    sheet.getRange(`I${first}:I${last}`).format.fill='#EAF3EC';
     for(const row of [v.headingRow,v.factsRow])sheet.mergeCells(`A${row}:K${row}`);
     writeText(sheet,`A${v.headingRow}`,`Slide 6 - Reverse sales tax - Version ${v.version} (${v.version==='A'?'follow along':'try independently'})`);
     sheet.getRange(`A${v.headingRow}:K${v.headingRow}`).format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
     writeText(sheet,`A${v.factsRow}`,`Tidal register receipts of $${v.receipts.toLocaleString('en-US')} include ${(v.rate*100).toFixed(v.version==='A'?1:0)}% sales tax. Enter the givens, calculate pre-tax sales and tax held, and explain why they add back to receipts.`);
     sheet.getRange(`A${v.factsRow}:K${v.factsRow}`).format={fill:'#FAF8F3',wrapText:true,rowHeight:36,font:{name:'Aptos',size:11,color:'#1A1F2C'}};
     sheet.getRange(`A${v.headerRow}:K${v.headerRow}`).copyFrom(sheet.getRange('A5:K5'),'all');
+    sheet.getRange(`A${v.headerRow}:K${v.headerRow}`).format={fill:'#355773',font:{name:'Aptos',size:11,bold:true,color:'#FFFFFF'},rowHeight:28,wrapText:true,verticalAlignment:'center'};
     const tasks=[
       [v.receiptsRow,'Receipts',`Enter tax-inclusive receipts ${v.receipts.toLocaleString('en-US')} in ${v.receiptsCell}.`],
       [v.rateRow,'Tax rate',`Enter sales-tax rate ${(v.rate*100).toFixed(v.version==='A'?1:0)}% in ${v.rateCell}.`],

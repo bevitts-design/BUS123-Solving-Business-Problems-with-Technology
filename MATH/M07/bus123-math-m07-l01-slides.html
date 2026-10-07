@@ -241,6 +241,10 @@
     .prediction-view .decision{padding:18px;min-height:205px}.prediction-view .decision h3{font-size:26px;margin-top:6px}
     .prediction-answer{margin-top:16px;font-size:18px;line-height:1.35}.prediction-answer summary{color:var(--sage);font-weight:700;cursor:pointer}.prediction-answer p{margin-top:8px}
     .slide[data-slide="20"] .lead{font-size:20px;max-width:none}
+    #reverse-b-practice .solution-heading{margin-bottom:12px}
+    #reverse-b-practice .lead{font-size:20px;line-height:1.3}
+    #reverse-b-practice .model-table td{padding:7px 10px}
+    #reverse-b-practice .prediction-answer{margin-top:12px;line-height:1.25}
   </style>
 </head>
 <body>
@@ -322,7 +326,25 @@
     </section>
 
     <section class="slide" data-slide="6" data-section="1">
-<div class="eyebrow">Sales tax · reverse model</div><h2>Split receipts into revenue and tax held</h2><div class="sheet-and-notes"><div class="excel-window"><div class="excel-titlebar"><span>Tidal register model</span><span>Cell references build the model</span></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>B1</td><td>Receipts</td><td>$52,000</td><td>Input</td></tr><tr><td>B2</td><td>Tax rate</td><td>6.5%</td><td>Input</td></tr><tr><td>B3</td><td>Pre-tax sales</td><td>$48,826.29</td><td class="syntax-cell">=B1/(1+B2)</td></tr><tr><td>B4</td><td>Tax held</td><td>$3,173.71</td><td class="syntax-cell">=B1-B3</td></tr></tbody></table></div><div class="sheet-notes"><div class="formula-panel"><span class="syntax">=B1/(1+B2)</span>Receipts = sales × (1 + rate)<span class="result">$52,000 ÷ 1.065 = $48,826.29</span></div><div class="rule-banner"><div><strong>Who owns the cash?</strong><p>Pre-tax sales belong to the business. Collected tax is a liability owed to government.</p></div></div><div class="card sage"><div class="label">Check the split</div><p>$48,826.29 + $3,173.71 = $52,000.00. Pre-tax sales must be less than receipts.</p></div></div></div>
+      <div class="eyebrow">Live You Try It · reverse sales tax · A/B</div>
+      <h2>Split receipts into revenue and tax held</h2>
+      <div class="sheet-and-notes">
+        <div class="excel-window">
+          <div class="excel-titlebar"><span>Version A · follow along</span><span>Live You Try It · rows 22–25</span></div>
+          <table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>D22</td><td>Receipts</td><td>$52,000</td><td>Input</td></tr><tr><td>E23</td><td>Tax rate</td><td>6.5%</td><td>Input</td></tr><tr><td>H24</td><td>Pre-tax sales</td><td>$48,826.29</td><td class="syntax-cell">=D22/(1+E23)</td></tr><tr><td>H25</td><td>Tax held</td><td>$3,173.71</td><td class="syntax-cell">=D22-H24</td></tr></tbody></table>
+          <p class="reveal-explain" style="padding:0 18px">Enter the inputs and formulas in these exact workbook cells. Sales plus tax held must equal receipts.</p>
+        </div>
+        <div class="sheet-notes">
+          <div class="formula-panel"><span class="syntax">=D22/(1+E23)</span>Receipts = sales × (1 + rate)<span class="result">$52,000 ÷ 1.065 = $48,826.29</span></div>
+          <div class="rule-banner"><div><strong>Who owns the cash?</strong><p>Pre-tax sales belong to the business. Collected tax is a liability owed to government.</p></div></div>
+          <button class="reveal-toggle" type="button" aria-expanded="false" aria-controls="reverse-b-practice">Try Version B</button>
+          <div class="solution-overlay" id="reverse-b-practice" hidden>
+            <div class="solution-heading"><h3>Version B · try independently</h3><button class="close-reveal" type="button">Return to Version A</button></div>
+            <p class="lead" style="margin-bottom:18px"><strong>Live You Try It, rows 31–34</strong>: $43,200 receipts include 8% tax. Attempt before revealing.</p>
+            <table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>D31</td><td>Receipts</td><td>$43,200</td><td>Input</td></tr><tr><td>E32</td><td>Tax rate</td><td>8%</td><td>Input</td></tr><tr><td>H33</td><td>Pre-tax sales</td><td>Your formula</td><td>Attempt first</td></tr><tr><td>H34</td><td>Tax held</td><td>Your formula</td><td>Attempt first</td></tr></tbody></table><details class="prediction-answer"><summary>Reveal Version B formulas and checks</summary><p><code>H33: =D31/(1+E32)</code> → $40,000.00<br><code>H34: =D31-H33</code> → $3,200.00<br>$40,000 sales + $3,200 tax held = $43,200 receipts.</p></details>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="slide" data-slide="7" data-section="1">
@@ -512,7 +534,7 @@
   "Timing: 1 minutes. Read the objectives as choose, calculate, and defend. Formative check: ask which objective is more demanding than simply getting the right number. Answer: defending the base and formula.",
   "Timing: 2 minutes. Retrieval first: students point to the taxable base before any formula is shown. Answer: $400. Rationale: the supplied training rule says the qualifying $80 discount reduces the $480 base. Misconception: taxing the retail price because it appears first. Debrief with one student explanation.",
   "Timing: 0.5 minutes. Transition to sales tax. Remind students that the business role differs from the consumer role.",
-  "Timing: 4 minutes. Demonstrate B1:B4 in a separate blank Excel area. Inputs are $52,000 and 6.5%. Enter =B1/(1+B2) in B3 and =B1-B3 in B4. Explain receipts = sales times (1 + rate). Check $48,826.29 plus $3,173.71 equals receipts. These addresses belong to the demonstration, not the workbook practice.",
+  "Timing: 7 minutes. Slide 6 now has dedicated A/B spaces on Live You Try It. Version A uses sheet rows 22-25: D22 $52,000, E23 6.5%, H24 =D22/(1+E23), H25 =D22-H24. Students follow along while you model the formulas. Results $48,826.29 revenue and $3,173.71 tax held. Open Try Version B after A: use sheet rows 31-34, D31 $43,200, E32 8%, H33 =D31/(1+E32), H34 =D31-H33. Students attempt independently before expanding the formula check. Results $40,000 and $3,200. Both splits reconcile to receipts. Original tasks 1-11 remain at their existing addresses. Keep time guidance in notes only.",
   "Timing: 5 minutes. Build the Tidal model exactly as shown. Inputs and calculated values occupy column B; the rightmost column documents formulas entered in those B cells. Show =B2-B3 in B5, =B5*B4 in B6, and =B5+B6+B7 in B8. Final total $439. Ask students to trace the subtotal reference before copying.",
   "Timing: 7 minutes. Independently attempt Live You Try It tasks 1-5 (sheet rows 6-10). Budget five minutes for building and two for debrief. Ask students to explain references before clicking Reveal worked model. Answers: $640, $36.80, $698.80, $60,000, $4,200. Feedback checks values and required cell references, but is not a full formula audit. Reject constant-only formulas. Reconcile revenue plus tax to receipts.",
   "Timing: 0.5 minutes. Transition to excise tax. State that the scenario supplies the rule; students are not expected to infer real-world jurisdiction law.",

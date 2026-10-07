@@ -27,7 +27,7 @@ with zipfile.ZipFile(target) as archive:
         state = states.get(name, "visible")
         tag = re.sub(r'\sstate="[^"]*"', "", tag)
         return tag.replace("/>", f' state="{state}"/>')
-    workbook = re.sub(r'<sheet\s[^>]+/>', preserve, workbook)
+    workbook = re.sub(r'<(?:[A-Za-z_][\w.-]*:)?sheet\s[^>]+/>', preserve, workbook)
     members = [(item, archive.read(item.filename)) for item in archive.infolist()]
 temporary = target.with_suffix(".visibility.tmp.xlsx")
 with zipfile.ZipFile(temporary, "w") as archive:

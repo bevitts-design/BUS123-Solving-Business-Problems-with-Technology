@@ -189,6 +189,9 @@
     .slide[data-slide="18"] .mistake-card .wrong,.slide[data-slide="18"] .mistake-card .right{margin:8px 0}
     .slide[data-slide="19"] .activity-meta{margin-top:12px}
     .slide[data-slide="19"] .audit-layout{margin-top:14px}
+    .slide[data-slide="19"] .audit-panel .card p{font-size:17px;line-height:1.2}
+    .slide[data-slide="19"] .audit-panel .card{padding:10px 14px}
+    .slide[data-slide="19"] .audit-panel .prompt{padding:10px 14px}
     .tab-strip{position:absolute;z-index:20;left:0;top:0;bottom:0;width:84px;background:var(--ink);display:flex;flex-direction:column;align-items:center;padding:24px 10px;gap:13px;border-right:1px solid rgba(255,255,255,.12)}
     .home-dot{width:34px;height:34px;border:0;border-radius:50%;background:var(--gradient);cursor:pointer;margin-bottom:9px}
     .tab-btn{width:62px;min-height:90px;border:1px solid var(--text-soft);border-radius:10px;background:transparent;color:var(--border);font-family:var(--mono);font-size:13px;font-weight:700;writing-mode:vertical-rl;transform:rotate(180deg);cursor:pointer;padding:10px}
@@ -215,6 +218,29 @@
       .slide{position:relative;display:flex!important;page-break-after:always}
       .tab-strip,.controls,.notes-panel{display:none!important}
     }
+
+    .model-table{width:100%;border-collapse:collapse;font-size:18px;table-layout:fixed;background:var(--white)}
+    .model-table th{background:var(--ink);color:var(--white);text-align:left;font:700 16px/1.25 var(--sans);padding:10px;border:1px solid var(--border)}
+    .model-table td{padding:11px 10px;border:1px solid var(--border);line-height:1.3;overflow-wrap:anywhere}
+    .model-table th:first-child{width:10%}.model-table th:nth-child(2){width:29%}.model-table th:nth-child(3){width:23%}
+    .model-table .syntax-cell{font:700 17px/1.3 var(--mono);color:var(--steel);background:var(--formula-bg)}
+    .reveal-toggle,.close-reveal,.prediction-toggle{background:var(--sage);color:var(--white);border:0;border-radius:10px;padding:13px 18px;font:700 18px/1.2 var(--sans);cursor:pointer}
+    button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    [hidden]{display:none!important}
+    .solution-overlay{position:absolute;z-index:12;left:124px;right:70px;top:160px;bottom:65px;background:var(--paper);border:3px solid var(--sage);border-radius:18px;padding:24px;box-shadow:0 12px 35px rgba(14,17,22,.2);overflow:auto}
+    .solution-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+    .solution-heading h3{color:var(--text)}.close-reveal{background:var(--steel)}
+    .reveal-explain{font-size:20px;line-height:1.4;margin-top:20px}
+    .practice-footer{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-top:22px;font-size:20px}
+    .overview-view{margin-top:24px}.overview-view .model-table{font-size:17px}
+    .overview-view .model-table th:first-child{width:21%}.overview-view .model-table th:nth-child(2){width:17%}.overview-view .model-table th:nth-child(3){width:42%}
+    .overview-view .model-table td{padding:10px}.overview-view .syntax-cell{font-size:16px}
+    .overview-note,.prediction-note{font-size:17px;line-height:1.35;color:var(--text-soft);margin-top:14px}
+    .prediction-toggle{align-self:flex-start;margin-top:18px}.prediction-view{margin-top:20px}
+    .prediction-steps{display:flex;gap:22px;margin-bottom:20px;color:var(--steel);font:700 18px/1.3 var(--sans)}
+    .prediction-view .decision{padding:18px;min-height:205px}.prediction-view .decision h3{font-size:26px;margin-top:6px}
+    .prediction-answer{margin-top:16px;font-size:18px;line-height:1.35}.prediction-answer summary{color:var(--sage);font-weight:700;cursor:pointer}.prediction-answer p{margin-top:8px}
+    .slide[data-slide="20"] .lead{font-size:20px;max-width:none}
   </style>
 </head>
 <body>
@@ -282,7 +308,7 @@
           <div class="receipt-row total"><span>Customer total</span><strong>?</strong></div>
         </div>
         <div class="pricing-ladder">
-          <div class="prompt"><h3>Thirty-second choice</h3><p>Which amount becomes the tax base: <strong>$480</strong> or <strong>$400</strong>?</p></div>
+          <div class="prompt"><h3>Choose the base</h3><p>Which amount becomes the tax base: <strong>$480</strong> or <strong>$400</strong>?</p></div>
           <div class="ladder-step"><div class="step-no">1</div><strong>Price decision</strong><span>$480 − $80</span></div>
           <div class="ladder-step"><div class="step-no">2</div><strong>Tax rule</strong><span>base × rate</span></div>
           <div class="ladder-step"><div class="step-no">3</div><strong>Fulfillment</strong><span>+ shipping</span></div>
@@ -296,90 +322,15 @@
     </section>
 
     <section class="slide" data-slide="6" data-section="1">
-      <div class="eyebrow">Sales tax · business role</div>
-      <h2>The merchant holds the tax, not the revenue</h2>
-      <div class="body" style="align-items:center">
-        <div class="col" style="flex:1.25">
-          <svg viewBox="0 0 720 330" role="img" aria-labelledby="merchant-flow-title">
-            <title id="merchant-flow-title">Customer payment splits into business revenue and tax liability remitted to government</title>
-            <rect x="25" y="112" width="150" height="92" rx="20" fill="var(--white)" stroke="var(--steel)" stroke-width="3"></rect>
-            <text x="100" y="151" text-anchor="middle" class="svg-label">Customer</text><text x="100" y="179" text-anchor="middle" class="svg-small">pays total</text>
-            <path d="M180 158 H280" stroke="var(--gold)" stroke-width="6"></path><path d="M266 146 L286 158 L266 170" fill="none" stroke="var(--gold)" stroke-width="6"></path>
-            <rect x="295" y="86" width="160" height="144" rx="22" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect>
-            <text x="375" y="146" text-anchor="middle" class="svg-label">Merchant</text><text x="375" y="178" text-anchor="middle" class="svg-small">splits the cash</text>
-            <path d="M460 126 H548" stroke="var(--sage)" stroke-width="6"></path><path d="M534 114 L554 126 L534 138" fill="none" stroke="var(--sage)" stroke-width="6"></path>
-            <rect x="562" y="72" width="140" height="92" rx="18" fill="var(--white)" stroke="var(--sage)" stroke-width="3"></rect>
-            <text x="632" y="111" text-anchor="middle" class="svg-label">Revenue</text><text x="632" y="137" text-anchor="middle" class="svg-small">business keeps</text>
-            <path d="M460 192 H548" stroke="var(--terra)" stroke-width="6"></path><path d="M534 180 L554 192 L534 204" fill="none" stroke="var(--terra)" stroke-width="6"></path>
-            <rect x="562" y="178" width="140" height="92" rx="18" fill="var(--white)" stroke="var(--terra)" stroke-width="3"></rect>
-            <text x="632" y="217" text-anchor="middle" class="svg-label">Liability</text><text x="632" y="243" text-anchor="middle" class="svg-small">remit later</text>
-          </svg>
-        </div>
-        <div class="col" style="flex:.75">
-          <div class="card terra"><div class="label">Manager check</div><h3>$52,000 is not all revenue</h3><p style="margin-top:12px">If receipts include tax, isolate pre-tax sales before reporting revenue.</p></div>
-          <div class="formula-panel"><span class="syntax">=TotalReceipts/(1+TaxRate)</span>$52,000 ÷ 1.065 = $48,826.29<span class="result">Tax held: $3,173.71</span></div>
-        </div>
-      </div>
+<div class="eyebrow">Sales tax · reverse model</div><h2>Split receipts into revenue and tax held</h2><div class="sheet-and-notes"><div class="excel-window"><div class="excel-titlebar"><span>Tidal register model</span><span>Cell references build the model</span></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>B1</td><td>Receipts</td><td>$52,000</td><td>Input</td></tr><tr><td>B2</td><td>Tax rate</td><td>6.5%</td><td>Input</td></tr><tr><td>B3</td><td>Pre-tax sales</td><td>$48,826.29</td><td class="syntax-cell">=B1/(1+B2)</td></tr><tr><td>B4</td><td>Tax held</td><td>$3,173.71</td><td class="syntax-cell">=B1-B3</td></tr></tbody></table></div><div class="sheet-notes"><div class="formula-panel"><span class="syntax">=B1/(1+B2)</span>Receipts = sales × (1 + rate)<span class="result">$52,000 ÷ 1.065 = $48,826.29</span></div><div class="rule-banner"><div><strong>Who owns the cash?</strong><p>Pre-tax sales belong to the business. Collected tax is a liability owed to government.</p></div></div><div class="card sage"><div class="label">Check the split</div><p>$48,826.29 + $3,173.71 = $52,000.00. Pre-tax sales must be less than receipts.</p></div></div></div>
     </section>
 
     <section class="slide" data-slide="7" data-section="1">
-      <div class="eyebrow">Sales tax · reading table reinforced</div>
-      <h2>Use the supplied order of operations</h2>
-      <div class="sheet-and-notes">
-        <div class="excel-window" aria-label="Excel worksheet showing the sales-tax order of operations">
-          <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Insert</span><span>Formulas</span></div><span>Sales Tax Model</span></div>
-          <div class="excel-formula"><span>C5</span><span class="fx">fx</span><code>=B2-B3</code></div>
-          <table class="excel-sheet">
-            <colgroup><col style="width:42px"><col style="width:31%"><col style="width:19%"><col style="width:29%"><col></colgroup>
-            <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
-            <tbody>
-              <tr><td class="rowhead">1</td><td>Input</td><td>Value</td><td>Formula</td><td>Result</td></tr>
-              <tr><td class="rowhead">2</td><td>Retail price</td><td class="input-cell">$480.00</td><td></td><td></td></tr>
-              <tr><td class="rowhead">3</td><td>Trade discount</td><td class="input-cell">$80.00</td><td></td><td></td></tr>
-              <tr><td class="rowhead">4</td><td>Sales tax rate</td><td class="input-cell">6.00%</td><td></td><td></td></tr>
-              <tr><td class="rowhead">5</td><td>Taxable subtotal</td><td></td><td class="formula-cell active-cell">=B2-B3</td><td class="result-cell">$400.00</td></tr>
-              <tr><td class="rowhead">6</td><td>Sales tax</td><td></td><td class="formula-cell">=D5*B4</td><td class="result-cell">$24.00</td></tr>
-              <tr><td class="rowhead">7</td><td>Shipping</td><td class="input-cell">$15.00</td><td></td><td></td></tr>
-              <tr><td class="rowhead">8</td><td>Total price</td><td></td><td class="formula-cell">=D5+D6+B7</td><td class="result-cell">$439.00</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="sheet-notes">
-          <div class="rule-banner"><div><strong>1 · Discount</strong><p>Reduce the base before calculating tax.</p></div></div>
-          <div class="rule-banner"><div><strong>2 · Tax</strong><p>The formula points to the taxable subtotal.</p></div></div>
-          <div class="rule-banner"><div><strong>3 · Shipping</strong><p>Add shipping only after tax under the supplied rule.</p></div></div>
-          <p class="lead">The worksheet is an audit trail: each green result becomes evidence for the next formula.</p>
-        </div>
-      </div>
+<div class="eyebrow">Sales tax · full walkthrough</div><h2>Discount first, tax second, shipping last</h2><div class="sheet-and-notes"><div class="excel-window"><div class="excel-titlebar"><span>Tidal order model</span><span>Cell references build the model</span></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>B2</td><td>Retail price</td><td>$480</td><td>Input</td></tr><tr><td>B3</td><td>Trade discount</td><td>$80</td><td>Input</td></tr><tr><td>B4</td><td>Sales-tax rate</td><td>6%</td><td>Input</td></tr><tr><td>B5</td><td>Taxable subtotal</td><td>$400</td><td class="syntax-cell">=B2-B3</td></tr><tr><td>B6</td><td>Sales tax</td><td>$24</td><td class="syntax-cell">=B5*B4</td></tr><tr><td>B7</td><td>Shipping</td><td>$15</td><td>Input</td></tr><tr><td>B8</td><td>Customer total</td><td>$439</td><td class="syntax-cell">=B5+B6+B7</td></tr></tbody></table></div><div class="sheet-notes"><div class="rule-banner"><div><strong>Supplied rule</strong><p>The qualifying discount reduces the tax base. Shipping is added after tax.</p></div></div><div class="formula-panel"><span class="syntax">=B5+B6+B7</span>$400 + $24 + $15<span class="result">Customer pays $439</span></div><div class="card sage"><div class="label">Follow the references</div><p>B6 uses the subtotal in B5. B8 uses that subtotal, the calculated tax, and shipping.</p></div></div></div>
     </section>
 
     <section class="slide" data-slide="8" data-section="1">
-      <div class="eyebrow">Live You Try It · independent transfer</div>
-      <h2>Choose the sequence before you build</h2>
-      <div class="activity-meta"><span class="pill">What: workbook rows 1-5</span><span class="pill">How: independently</span><span class="pill">Time: 6 minutes</span></div>
-      <div class="sheet-and-notes" style="margin-top:18px">
-        <div class="excel-window" aria-label="Live You Try It worksheet with new sales-tax numbers and blank formula cells">
-          <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Formulas</span><span>Data</span></div><span>Live You Try It</span></div>
-          <div class="excel-formula"><span>H6</span><span class="fx">fx</span><code></code></div>
-          <table class="excel-sheet">
-            <colgroup><col style="width:42px"><col style="width:29%"><col style="width:17%"><col style="width:17%"><col style="width:18%"><col></colgroup>
-            <thead><tr><th></th><th>A · Task</th><th>D · Input</th><th>E · Rate</th><th>H · Formula</th><th>I · Feedback</th></tr></thead>
-            <tbody>
-              <tr><td class="rowhead">6</td><td>Taxable subtotal</td><td class="input-cell">$735 / $95</td><td></td><td class="formula-cell active-cell"></td><td>Waiting…</td></tr>
-              <tr><td class="rowhead">7</td><td>Sales tax</td><td></td><td class="input-cell">5.75%</td><td class="formula-cell"></td><td>Waiting…</td></tr>
-              <tr><td class="rowhead">8</td><td>Total price</td><td class="input-cell">$22 ship</td><td></td><td class="formula-cell"></td><td>Waiting…</td></tr>
-              <tr><td class="rowhead">9</td><td>Pre-tax sales</td><td class="input-cell">$64,200</td><td class="input-cell">7.00%</td><td class="formula-cell"></td><td>Waiting…</td></tr>
-              <tr><td class="rowhead">10</td><td>Tax held</td><td></td><td></td><td class="formula-cell"></td><td>Waiting…</td></tr>
-            </tbody>
-          </table>
-          <div class="excel-callout" style="right:18px;bottom:18px"><strong>Build in column H</strong>Use cell references—not typed answers.</div>
-        </div>
-        <div class="sheet-notes">
-          <div class="card steel"><div class="label">Two models</div><p><strong>Forward:</strong> base → tax → shipping<br><strong>Reverse:</strong> receipts → sales + tax held</p></div>
-          <div class="card sage"><div class="label">Deliverable</div><p>Five formulas with five green feedback confirmations.</p></div>
-          <div class="rule-banner"><div><strong>Debrief</strong><p>Name the base in row 7. Explain <strong>1 + rate</strong> in row 9.</p></div></div>
-        </div>
-      </div>
+<div class="eyebrow">Live You Try It · independent transfer</div><h2>Build both sales-tax models</h2><div class="activity-meta"><span class="pill">Live You Try It · tasks 1–5 · sheet rows 6–10</span><span class="pill">Work independently</span></div><div class="body"><div class="col"><div class="prompt"><h3>Tidal customer order</h3><p>Retail price $735; qualifying discount $95; tax rate 5.75%; shipping $22. Calculate taxable subtotal, tax, and customer total.</p></div><div class="prompt"><h3>Tidal register receipts</h3><p>Receipts of $64,200 include 7% tax. Calculate pre-tax sales and tax held for government.</p></div></div><div class="col" style="flex:.75"><div class="card sage"><div class="label">Build → check → explain</div><p>Enter the workbook inputs. Build five formulas in H6:H10 using cell references. Explain why reverse tax divides by 1 + rate.</p></div><div class="rule-banner"><div><strong>Check the model</strong><p>Feedback checks values and required references. Compare your logic after attempting every task.</p></div></div><button class="reveal-toggle" type="button" aria-expanded="false" aria-controls="sales-reveal">Reveal worked model</button><div class="solution-overlay" id="sales-reveal" hidden><div class="solution-heading"><h3>Compare your formulas</h3><button class="close-reveal" type="button">Return to your attempt</button></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>H6</td><td>Taxable subtotal</td><td>$640</td><td class="syntax-cell">=D6-E6</td></tr><tr><td>H7</td><td>Sales tax</td><td>$36.80</td><td class="syntax-cell">=H6*E7</td></tr><tr><td>H8</td><td>Customer total</td><td>$698.80</td><td class="syntax-cell">=H6+H7+D8</td></tr><tr><td>H9</td><td>Pre-tax sales</td><td>$60,000</td><td class="syntax-cell">=D9/(1+E9)</td></tr><tr><td>H10</td><td>Tax held</td><td>$4,200</td><td class="syntax-cell">=D9-H9</td></tr></tbody></table><p class="reveal-explain">The tax base is H6. Receipts equal sales × 1.07, so divide by 1.07 to recover sales. These are example formulas; equivalent valid formulas work.</p></div></div></div>
     </section>
 
     <section class="slide dark section-break" data-slide="9" data-section="2">
@@ -403,31 +354,7 @@
     </section>
 
     <section class="slide" data-slide="11" data-section="2">
-      <div class="eyebrow">Excise tax · reading table reinforced</div>
-      <h2>Two taxes, one supplied base</h2>
-      <div class="sheet-and-notes">
-        <div class="excel-window" aria-label="Excel worksheet calculating sales and excise tax independently from one base">
-          <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Formulas</span><span>Data</span></div><span>Same-Base Check</span></div>
-          <div class="excel-formula"><span>B6</span><span class="fx">fx</span><code>=B1+B4+B5</code></div>
-          <table class="excel-sheet">
-            <colgroup><col style="width:42px"><col style="width:36%"><col style="width:28%"><col></colgroup>
-            <thead><tr><th></th><th>A · Model line</th><th>B · Value / formula</th><th>C · Result</th></tr></thead>
-            <tbody>
-              <tr><td class="rowhead">1</td><td>Base cost</td><td class="input-cell">$6,200.00</td><td></td></tr>
-              <tr><td class="rowhead">2</td><td>Sales tax rate</td><td class="input-cell">7.00%</td><td></td></tr>
-              <tr><td class="rowhead">3</td><td>Excise tax rate</td><td class="input-cell">8.00%</td><td></td></tr>
-              <tr><td class="rowhead">4</td><td>Sales tax</td><td class="formula-cell">=B1*B2</td><td class="result-cell">$434.00</td></tr>
-              <tr><td class="rowhead">5</td><td>Excise tax</td><td class="formula-cell">=B1*B3</td><td class="result-cell">$496.00</td></tr>
-              <tr><td class="rowhead">6</td><td>Total cost</td><td class="formula-cell active-cell">=B1+B4+B5</td><td class="result-cell">$7,130.00</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="sheet-notes">
-          <div class="formula-panel"><span class="syntax">=B1*(1+B2+B3)</span>Combined-rate confirmation: $6,200 × 1.15<span class="result">Same answer: $7,130.00</span></div>
-          <div class="rule-banner"><div><strong>Trace it</strong><p>Both tax formulas point to B1. Neither formula points to the other tax.</p></div></div>
-          <div class="card sage"><div class="label">Manager check</div><p>Independent calculations and the combined-rate shortcut reconcile to the same total.</p></div>
-        </div>
-      </div>
+<div class="eyebrow">Excise tax · full walkthrough</div><h2>Both taxes use the same base cell</h2><div class="sheet-and-notes"><div class="excel-window"><div class="excel-titlebar"><span>Meridian appliance model</span><span>Cell references build the model</span></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>B1</td><td>Base cost</td><td>$6,200</td><td>Input</td></tr><tr><td>B2</td><td>Sales-tax rate</td><td>7%</td><td>Input</td></tr><tr><td>B3</td><td>Excise-tax rate</td><td>8%</td><td>Input</td></tr><tr><td>B4</td><td>Sales tax</td><td>$434</td><td class="syntax-cell">=B1*B2</td></tr><tr><td>B5</td><td>Excise tax</td><td>$496</td><td class="syntax-cell">=B1*B3</td></tr><tr><td>B6</td><td>Total cost</td><td>$7,130</td><td class="syntax-cell">=B1+B4+B5</td></tr></tbody></table></div><div class="sheet-notes"><div class="formula-panel"><span class="syntax">=B1*(1+B2+B3)</span>$6,200 × (1 + 7% + 8%)<span class="result">Same total: $7,130</span></div><div class="rule-banner"><div><strong>Trace it</strong><p>Both tax formulas reference B1. Neither uses a tax-included amount.</p></div></div><div class="card sage"><div class="label">When does the shortcut work?</div><p>Only when the supplied rule says both rates share the same base.</p></div></div></div>
     </section>
 
     <section class="slide" data-slide="12" data-section="2">
@@ -455,20 +382,7 @@
     </section>
 
     <section class="slide" data-slide="13" data-section="2">
-      <div class="eyebrow">Live You Try It · pair decision</div>
-      <h2>Prove which formula respects the base</h2>
-      <div class="activity-meta"><span class="pill">What: workbook rows 6-8</span><span class="pill">How: pairs</span><span class="pill">Time: 4 minutes</span></div>
-      <div class="body">
-        <div class="decision-grid" style="flex:1">
-          <div class="decision"><div class="letter">A</div><p>Calculate each tax from the supplied base, then add both amounts to the base.</p></div>
-          <div class="decision"><div class="letter">B</div><p>Calculate sales tax first, then apply excise tax to the tax-included amount.</p></div>
-          <div class="decision"><div class="letter">C</div><p>Add the two rates and multiply only the tax portion, without adding the base.</p></div>
-        </div>
-        <div class="col" style="flex:.55">
-          <div class="card sage"><div class="label">Deliverable</div><p>Three formulas plus one sentence: “Our formulas respect the base because…”</p></div>
-          <div class="card steel"><div class="label">Debrief</div><p>Point to the exact cell reference that proves your choice.</p></div>
-        </div>
-      </div>
+<div class="eyebrow">Live You Try It · pair decision</div><h2>Choose the base, then prove your choice</h2><div class="activity-meta"><span class="pill">Tasks 6–8 · sheet rows 11–13</span><span class="pill">Work in pairs</span></div><p class="lead" style="margin-top:16px">Meridian buys equipment for $7,250. Sales tax is 6%; excise tax is 4.5%. Both taxes share the original base.</p><div class="decision-grid" style="margin-top:20px"><div class="decision"><div class="letter">A</div><p>Calculate each tax from the original base, then add the base and both taxes.</p></div><div class="decision"><div class="letter">B</div><p>Calculate sales tax first, then apply excise tax to the tax-included cost.</p></div><div class="decision"><div class="letter">C</div><p>Add the rates and calculate only the taxes. Report that as total cost.</p></div></div><div class="practice-footer"><p>Build H11:H13. Finish: “Both tax formulas reference ___ because…”</p><button class="reveal-toggle" type="button" aria-expanded="false" aria-controls="excise-reveal">Reveal worked model</button><div class="solution-overlay" id="excise-reveal" hidden><div class="solution-heading"><h3>Compare your formulas</h3><button class="close-reveal" type="button">Return to your attempt</button></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>H11</td><td>Sales tax</td><td>$435</td><td class="syntax-cell">=D11*E11</td></tr><tr><td>H12</td><td>Excise tax</td><td>$326.25</td><td class="syntax-cell">=D11*E12</td></tr><tr><td>H13</td><td>Total cost</td><td>$8,011.25</td><td class="syntax-cell">=D11+H11+H12</td></tr></tbody></table><p class="reveal-explain">Choice A. D11 contains the original $7,250 base. Both tax formulas use D11; the total includes the base and both taxes.</p></div></div>
     </section>
 
     <section class="slide dark section-break" data-slide="14" data-section="3">
@@ -491,65 +405,11 @@
     </section>
 
     <section class="slide" data-slide="16" data-section="3">
-      <div class="eyebrow">Property tax · reading table reinforced</div>
-      <h2>Three steps, always in this supplied order</h2>
-      <div class="sheet-and-notes">
-        <div class="excel-window" aria-label="Excel property-tax model with three linked calculation steps">
-          <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Formulas</span><span>Data</span></div><span>Property Tax Chain</span></div>
-          <div class="excel-formula"><span>B8</span><span class="fx">fx</span><code>=B6*B7</code></div>
-          <table class="excel-sheet">
-            <colgroup><col style="width:42px"><col style="width:35%"><col style="width:41%"><col></colgroup>
-            <thead><tr><th></th><th>A · Step</th><th>B · Excel syntax</th><th>C · Output role</th></tr></thead>
-            <tbody>
-              <tr><td class="rowhead">6</td><td>1 · Assessed value</td><td class="formula-cell">=MarketValue*AssessmentRate</td><td class="result-cell">Taxable base</td></tr>
-              <tr><td class="rowhead">7</td><td>2 · Rounded rate</td><td class="formula-cell">=ROUND(Budget/TotalAV,4)</td><td class="result-cell">Four decimals</td></tr>
-              <tr><td class="rowhead">8</td><td>3 · Annual tax</td><td class="formula-cell active-cell">=B6*B7</td><td class="result-cell">Cash cost</td></tr>
-            </tbody>
-          </table>
-          <div class="model-strip" style="padding:20px 22px;margin-top:0;background:var(--paper-2)">
-            <div class="model-step"><div class="step">Output 1</div><h3>Base</h3><code>Assessed value</code></div>
-            <div class="model-arrow">→</div>
-            <div class="model-step"><div class="step">Output 2</div><h3>Rate</h3><code>Rounded rate</code></div>
-            <div class="model-arrow">→</div>
-            <div class="model-step"><div class="step">Output 3</div><h3>Tax</h3><code>Base × rate</code></div>
-          </div>
-        </div>
-        <div class="sheet-notes">
-          <div class="rule-banner"><div><strong>Manager check 1</strong><p>Did you use the supplied assessment rate?</p></div></div>
-          <div class="rule-banner"><div><strong>Manager check 2</strong><p>Did you round the rate before the next step?</p></div></div>
-          <div class="rule-banner"><div><strong>Manager check 3</strong><p>Did you use assessed value—not market value?</p></div></div>
-          <p class="lead">The third formula references outputs 1 and 2, making the model traceable.</p>
-        </div>
-      </div>
+<div class="eyebrow">Property tax · full walkthrough</div><h2>Build the base, round the rate, calculate tax</h2><div class="sheet-and-notes"><div class="excel-window"><div class="excel-titlebar"><span>Meridian property model</span><span>Cell references build the model</span></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>B2</td><td>Market value</td><td>$820,000</td><td>Input</td></tr><tr><td>B3</td><td>Assessment rate</td><td>40%</td><td>Input</td></tr><tr><td>B4</td><td>Town budget</td><td>$310,000</td><td>Input</td></tr><tr><td>B5</td><td>Town total assessed value</td><td>$4,750,000</td><td>Input</td></tr><tr><td>B6</td><td>Assessed value</td><td>$328,000</td><td class="syntax-cell">=B2*B3</td></tr><tr><td>B7</td><td>Rounded tax rate</td><td>0.0653</td><td class="syntax-cell">=ROUND(B4/B5,4)</td></tr><tr><td>B8</td><td>Annual tax</td><td>$21,418.40</td><td class="syntax-cell">=B6*B7</td></tr></tbody></table></div><div class="sheet-notes"><div class="formula-panel"><span class="syntax">=ROUND(B4/B5,4)</span>$310,000 ÷ $4,750,000<span class="result">0.065263… → 0.0653</span></div><div class="rule-banner"><div><strong>Two outputs feed the final tax</strong><p>B6 holds assessed value. B7 holds the rounded rate. B8 multiplies those two cells.</p></div></div><div class="card sage"><div class="label">Monthly planning</div><p><code>=B8/12</code><br>$21,418.40 ÷ 12 = $1,784.87. This reserve covers property tax only.</p></div></div></div>
     </section>
 
     <section class="slide" data-slide="17" data-section="3">
-      <div class="eyebrow">Property tax · full walkthrough</div>
-      <h2>Round the rate before applying it</h2>
-      <div class="sheet-and-notes">
-        <div class="excel-window" aria-label="Completed Excel property-tax worksheet for Meridian Advisory Group">
-          <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Formulas</span><span>Data</span></div><span>Meridian Property Model</span></div>
-          <div class="excel-formula"><span>B8</span><span class="fx">fx</span><code>=B6*B7</code></div>
-          <table class="excel-sheet">
-            <colgroup><col style="width:42px"><col style="width:34%"><col style="width:34%"><col></colgroup>
-            <thead><tr><th></th><th>A · Model line</th><th>B · Value / formula</th><th>C · Result</th></tr></thead>
-            <tbody>
-              <tr><td class="rowhead">2</td><td>Market value</td><td class="input-cell">$820,000</td><td></td></tr>
-              <tr><td class="rowhead">3</td><td>Assessment rate</td><td class="input-cell">40.00%</td><td></td></tr>
-              <tr><td class="rowhead">4</td><td>Town budget</td><td class="input-cell">$310,000</td><td></td></tr>
-              <tr><td class="rowhead">5</td><td>Total assessed value</td><td class="input-cell">$4,750,000</td><td></td></tr>
-              <tr><td class="rowhead">6</td><td>Assessed value</td><td class="formula-cell">=B2*B3</td><td class="result-cell">$328,000.00</td></tr>
-              <tr><td class="rowhead">7</td><td>Rounded tax rate</td><td class="formula-cell">=ROUND(B4/B5,4)</td><td class="result-cell">0.0653</td></tr>
-              <tr><td class="rowhead">8</td><td>Annual tax due</td><td class="formula-cell active-cell">=C6*C7</td><td class="result-cell">$21,418.40</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="sheet-notes">
-          <div><div class="stat" style="font-size:78px">4</div><h3>decimal places</h3><p class="lead" style="margin-top:8px">Round the rate first, then apply it to assessed value.</p></div>
-          <div class="formula-panel"><span class="syntax">=ROUND(B4/B5,4)</span>$310,000 ÷ $4,750,000<span class="result">Rounded rate: 0.0653</span></div>
-          <div class="card sage"><div class="label">Final manager check</div><p>The annual tax formula uses the two green outputs—not the raw inputs.</p></div>
-        </div>
-      </div>
+<div class="eyebrow">Live You Try It · property tax</div><h2>Build a new property-tax chain</h2><div class="activity-meta"><span class="pill">Tasks 9–11 · sheet rows 14–16</span><span class="pill">Attempt individually, then compare in pairs</span></div><div class="body"><div class="col"><div class="prompt"><h3>Meridian’s second office</h3><p>Market value $540,000; assessment rate 32%; town budget $234,500; total assessed value $3,450,000.</p></div><div class="model-strip"><div class="model-step"><div class="step">1</div><h3>Base</h3><p>Assessed value</p></div><div class="model-arrow">→</div><div class="model-step"><div class="step">2</div><h3>Rate</h3><p>Round to four decimals</p></div><div class="model-arrow">→</div><div class="model-step"><div class="step">3</div><h3>Tax</h3><p>Use both outputs</p></div></div></div><div class="col" style="flex:.7"><div class="card sage"><div class="label">Your deliverable</div><p>Enter inputs and build H14:H16. Explain which two cells your annual-tax formula uses.</p></div><div class="rule-banner"><div><strong>Before checking</strong><p>Display H15 with four decimal places. Formatting a raw rate is different from rounding its value.</p></div></div><button class="reveal-toggle" type="button" aria-expanded="false" aria-controls="property-reveal">Reveal worked model</button><div class="solution-overlay" id="property-reveal" hidden><div class="solution-heading"><h3>Compare your formulas</h3><button class="close-reveal" type="button">Return to your attempt</button></div><table class="model-table"><thead><tr><th>Cell</th><th>Model line</th><th>Value in Excel</th><th>Formula entered in that cell</th></tr></thead><tbody><tr><td>H14</td><td>Assessed value</td><td>$172,800</td><td class="syntax-cell">=D14*E14</td></tr><tr><td>H15</td><td>Rounded rate</td><td>0.0680</td><td class="syntax-cell">=ROUND(D15/E15,4)</td></tr><tr><td>H16</td><td>Annual tax</td><td>$11,750.40</td><td class="syntax-cell">=H14*H15</td></tr></tbody></table><p class="reveal-explain">H16 uses assessed value in H14 and the rounded rate in H15. ROUND changes the value used in the next step; number formatting only changes its appearance.</p></div></div></div>
     </section>
 
     <section class="slide mistake" data-slide="18" data-section="3">
@@ -584,7 +444,7 @@
     <section class="slide" data-slide="19" data-section="4">
       <div class="eyebrow">Class challenge · audit discussion</div>
       <h2>Audit the filings and defend the repair</h2>
-      <div class="activity-meta"><span class="pill">How: pairs</span><span class="pill">Time: 12 minutes</span><span class="pill">Debrief: 2 minutes</span></div>
+      <div class="activity-meta"><span class="pill">How: pairs</span></div>
       <div class="audit-layout">
         <div class="excel-window" aria-label="Class Challenge audit worksheet with six tax records and blank repair columns">
           <div class="excel-titlebar"><div class="excel-tabs"><span>Home</span><span>Formulas</span><span>Data</span></div><span>Class Challenge</span></div>
@@ -604,22 +464,16 @@
           </table>
         </div>
         <div class="audit-panel">
-          <div class="card steel"><div class="label">Work plan</div><p><strong>8 min:</strong> complete R01–R03.<br><strong>4 min:</strong> choose one of R04–R06.</p></div>
+          <div class="card steel"><div class="label">Work plan</div><p><strong>Start:</strong> complete R01–R03.<br><strong>Then:</strong> choose one of R04–R06.</p></div>
           <div class="prompt"><h3>Which error matters most?</h3><p>Name the business risk created by its dollar impact.</p></div>
           <div class="prompt"><h3>How do you know you are done?</h3><p>Point to the evidence that proves the repair reconciles.</p></div>
-          <div class="card sage"><div class="label">Deliverable</div><p>Reconciled workbook plus an 8+ word audit note.</p></div>
+          <div class="card sage"><div class="label">Deliverable</div><p>In class: four audited records. For submission: all six, a zero reconciliation difference, and an 8+ word audit note.</p></div>
         </div>
       </div>
     </section>
 
     <section class="slide" data-slide="20" data-section="4">
-      <div class="eyebrow">Key takeaways</div>
-      <h2>What to carry forward</h2>
-      <div class="takeaway-visual">
-        <div class="takeaway-rule"><div class="big">01</div><div class="icon-stage"><svg viewBox="0 0 120 120" role="img" aria-label="Target identifying the correct tax base"><circle cx="60" cy="60" r="45" fill="var(--paper-2)" stroke="var(--steel)" stroke-width="5"></circle><circle cx="60" cy="60" r="27" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="5"></circle><circle cx="60" cy="60" r="8" fill="var(--gold)"></circle><path d="M88 32 L108 12" stroke="var(--terra)" stroke-width="7"></path></svg></div><h3>Choose the base</h3><p>Discount, tax, and shipping follow the supplied sequence. Tax held is not revenue.</p></div>
-        <div class="takeaway-rule"><div class="big">02</div><div class="icon-stage"><svg viewBox="0 0 120 120" role="img" aria-label="Two arrows returning to one shared base"><rect x="38" y="10" width="44" height="30" rx="8" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect><path d="M50 42 L25 78" stroke="var(--steel)" stroke-width="6"></path><path d="M70 42 L95 78" stroke="var(--terra)" stroke-width="6"></path><rect x="5" y="78" width="42" height="30" rx="8" fill="var(--white)" stroke="var(--steel)" stroke-width="4"></rect><rect x="73" y="78" width="42" height="30" rx="8" fill="var(--white)" stroke="var(--terra)" stroke-width="4"></rect></svg></div><h3>Trace the arrows</h3><p>When two taxes share a base, both formulas return to the original base cell.</p></div>
-        <div class="takeaway-rule"><div class="big">03</div><div class="icon-stage"><svg viewBox="0 0 120 120" role="img" aria-label="Four decimal places feeding into a final property-tax result"><rect x="10" y="18" width="100" height="42" rx="10" fill="var(--formula-bg)" stroke="var(--sage)" stroke-width="4"></rect><text x="60" y="47" text-anchor="middle" class="svg-label">0.0653</text><path d="M60 64 V84" stroke="var(--gold)" stroke-width="6"></path><path d="M48 76 L60 90 L72 76" fill="none" stroke="var(--gold)" stroke-width="6"></path><rect x="26" y="88" width="68" height="24" rx="8" fill="var(--white)" stroke="var(--steel)" stroke-width="4"></rect></svg></div><h3>Round at the rule</h3><p>Build assessed value, round the rate, then calculate the annual tax due.</p></div>
-      </div>
+<div class="eyebrow">Formula overview · transfer check</div><h2>Choose the question, identify the base</h2><div class="overview-view"><table class="model-table"><thead><tr><th>Business question</th><th>Base</th><th>Excel pattern</th><th>Reasonableness check</th></tr></thead><tbody><tr><td>Customer total</td><td>Discounted price</td><td class="syntax-cell">=Price-Discount → Taxable*Rate → Taxable+Tax+Shipping</td><td>Total exceeds subtotal</td></tr><tr><td>Pre-tax sales / tax held</td><td>Tax-inclusive receipts</td><td class="syntax-cell">=Receipts/(1+Rate) → Receipts-PreTaxSales</td><td>Sales + tax = receipts</td></tr><tr><td>Sales + excise cost</td><td>One original base</td><td class="syntax-cell">=Base*SalesRate; =Base*ExciseRate; =Base*(1+SalesRate+ExciseRate)</td><td>Both taxes return to base</td></tr><tr><td>Assessed value</td><td>Market value</td><td class="syntax-cell">=MarketValue*AssessmentRate</td><td>Below market value at &lt;100%</td></tr><tr><td>Property-tax rate</td><td>Town assessed value</td><td class="syntax-cell">=ROUND(Budget/TotalAV,4)</td><td>Round the rate first</td></tr><tr><td>Annual / monthly tax</td><td>Assessed value</td><td class="syntax-cell">=AssessedValue*RoundedRate → AnnualTax/12</td><td>Use assessed value</td></tr></tbody></table><p class="overview-note">Names describe inputs and outputs. Replace them with your model’s cell references. Use the supplied training rules.</p></div><div class="prediction-view" hidden><div class="prediction-steps"><span>1 · Predict without calculating</span><span>2 · Change one input</span><span>3 · Explain the result</span></div><div class="decision-grid"><div class="decision"><div class="letter">01</div><h3>Discount</h3><p>Change E6 from $95 to $115. Predict subtotal, sales tax, and customer total.</p></div><div class="decision"><div class="letter">02</div><h3>Excise rate</h3><p>Change E12 from 4.5% to 5.5%. Predict both taxes and total cost.</p></div><div class="decision"><div class="letter">03</div><h3>Town budget</h3><p>Change D15 from $234,500 to $269,100. Hold total assessed value constant.</p></div></div><p class="lead" style="margin-top:18px">One partner predicts; the other changes the input. Switch roles. Restore the original inputs afterward.</p><details class="prediction-answer"><summary>Reveal predictions and checks</summary><p>Discount: subtotal $620, tax $35.65, total $677.65. Excise: sales tax stays $435; excise rises to $398.75; total $8,083.75. Budget: rate rises to 0.0780; annual tax rises to $13,478.40.</p></details><p class="prediction-note">Workbook feedback targets the original practice numbers. During this activity, judge whether linked outputs change correctly; restore the inputs to return to the baseline checks.</p></div><button class="prediction-toggle" type="button" aria-expanded="false">Open Predict → Change → Explain</button>
     </section>
 
     <section class="slide" data-slide="21" data-section="4">
@@ -653,28 +507,28 @@
 
 <script type="application/json" id="speaker-notes">
 [
-  "Timing: 1 minute. Welcome students and frame the lesson as business decision-making, not tax-law memorization. Emphasize that every problem uses one simplified training jurisdiction.",
-  "Timing: 1 minute. Preview the four-part sequence. Tell students that the class ends with an audit trail, so every calculation they build should be explainable and traceable.",
-  "Timing: 2 minutes. Read the objectives as choose, calculate, and defend. Formative check: ask which objective is more demanding than simply getting the right number. Answer: defending the base and formula.",
+  "Timing: 1 minutes. Welcome students and frame the lesson as business decision-making, not tax-law memorization. Emphasize that every problem uses one simplified training jurisdiction.",
+  "Timing: 1 minutes. Preview the four-part sequence. Tell students that the class ends with an audit trail, so every calculation they build should be explainable and traceable.",
+  "Timing: 1 minutes. Read the objectives as choose, calculate, and defend. Formative check: ask which objective is more demanding than simply getting the right number. Answer: defending the base and formula.",
   "Timing: 2 minutes. Retrieval first: students point to the taxable base before any formula is shown. Answer: $400. Rationale: the supplied training rule says the qualifying $80 discount reduces the $480 base. Misconception: taxing the retail price because it appears first. Debrief with one student explanation.",
-  "Timing: 30 seconds. Transition to sales tax. Remind students that the business role differs from the consumer role.",
-  "Timing: 4 minutes. Walk the cash flow from customer to merchant, then split it into revenue and liability. Excel syntax comes first in the panel. Answer: $52,000 divided by 1.065 gives $48,826.29 revenue and $3,173.71 tax held. Misconception: treating total receipts as revenue. Debrief by asking which amount belongs on the income statement.",
-  "Timing: 5 minutes. Reinforce the exact table from the reading. Move left to right and ask what each row uses from the row above. Rationale: the table is an audit trail, not a memorization device. Misconception: adding shipping before tax. Answer: $439 total under the supplied rule.",
-  "Timing: 6 minutes. Students work independently on Live You Try It rows 1-5 using new numbers. Do not reveal syntax. Answers for debrief: row 1 $640.00; row 2 $36.80; row 3 $698.80; row 4 $60,000.00; row 5 $4,200.00. Ask one student why the reverse formula divides by 1 plus the rate. Deliverable: five formulas and formula-aware confirmation.",
-  "Timing: 30 seconds. Transition to excise tax. State that the scenario supplies the rule; students are not expected to infer real-world jurisdiction law.",
-  "Timing: 4 minutes. Explain the simplified commercial-appliance scenario and the manager's margin concern. Rationale: the task is learning how to preserve the stated base. Misconception: assuming every excise tax works this way. Re-emphasize the training-jurisdiction banner.",
-  "Timing: 5 minutes. Read the table by following the repeated B1 reference. Excel syntax appears before the manual check. Answers: $434 sales tax, $496 excise tax, $7,130 total. Confirm the combined shortcut only because the scenario states that both rates share the same base.",
-  "Timing: 3 minutes. Use the two arrows as the proof. Ask students to point to the base cell in both formulas. Misconception: one tax arrow starting from the other tax box. Debrief: both formulas return to the original base.",
-  "Timing: 3.5 minutes. Pairs complete Live You Try It rows 6-8. Correct choice: A. Workbook answers: $435.00 sales tax, $326.25 excise tax, $8,011.25 total. Require the sentence to name the base cell. Misconception: choosing B because it looks sequential.",
-  "Timing: 30 seconds. Transition to property tax. Signal that the new challenge is not multiplication; it is using the correct intermediate value and rounding at the specified step.",
-  "Timing: 4 minutes. Use the office image to state the model boundary: this is a simple training municipality. Preview the sequence from market value to assessed value to tax; the next slide makes the chain explicit. NNN debrief: exact exposure depends on lease terms, but variable property tax can raise occupancy cost.",
-  "Timing: 5 minutes. Reinforce the three-step reading table. Ask students to circle the outputs that become later inputs. Misconceptions: using market value in step 3 and rounding only the final dollar answer. The manager checks are the audit criteria.",
-  "Timing: 4 minutes. Walk the Excel worksheet from the formula bar to the three green outputs. Answers: $328,000 assessed value, 0.0653 rounded rate, $21,418.40 annual tax. Rationale: separate helper cells make the model auditable. Ask why the raw rate should not feed step 3 under the supplied rule.",
-  "Timing: 3.5 minutes. Common Mistake reveal. Ask students to diagnose each formula before reading the correction. Answer 1: market value is the wrong base. Answer 2: the rate must be rounded first. Debrief by naming the exact prior-step cell that each correct formula should reference.",
-  "Timing: 14 minutes total. Pairs spend 8 minutes on R01-R03, 4 minutes on one record from R04-R06, and 2 minutes debriefing. Answers: R01 OK $63.75; R02 ERROR corrected $24.00 adjustment -$4.80; R03 OK $4,625.00; R04 OK $930.00; R05 ERROR corrected $1,344.00 adjustment -$52.92; R06 ERROR corrected $21,418.40 adjustment -$32,127.60. Corrected control total: $28,405.15. Most consequential error: R06 by dollar impact. Remaining records are homework.",
-  "Timing: 3 minutes. Students give one sentence for each takeaway without reading the card. Listen for base, arrows, and rounding point. Correct incomplete statements before moving on.",
-  "Timing: 1 minute. Preview payroll taxes as another role-and-reconciliation problem. No new computation today. Remind students to complete the next pre-reading.",
-  "Timing: 2 minutes. Take final questions. Restate the deliverable: completed audit workbook, reconciliation difference of zero, and an 8+ word audit note submitted through Canvas."
+  "Timing: 0.5 minutes. Transition to sales tax. Remind students that the business role differs from the consumer role.",
+  "Timing: 4 minutes. Demonstrate B1:B4 in a separate blank Excel area. Inputs are $52,000 and 6.5%. Enter =B1/(1+B2) in B3 and =B1-B3 in B4. Explain receipts = sales times (1 + rate). Check $48,826.29 plus $3,173.71 equals receipts. These addresses belong to the demonstration, not the workbook practice.",
+  "Timing: 5 minutes. Build the Tidal model exactly as shown. Inputs and calculated values occupy column B; the rightmost column documents formulas entered in those B cells. Show =B2-B3 in B5, =B5*B4 in B6, and =B5+B6+B7 in B8. Final total $439. Ask students to trace the subtotal reference before copying.",
+  "Timing: 7 minutes. Independently attempt Live You Try It tasks 1-5 (sheet rows 6-10). Budget five minutes for building and two for debrief. Ask students to explain references before clicking Reveal worked model. Answers: $640, $36.80, $698.80, $60,000, $4,200. Feedback checks values and required cell references, but is not a full formula audit. Reject constant-only formulas. Reconcile revenue plus tax to receipts.",
+  "Timing: 0.5 minutes. Transition to excise tax. State that the scenario supplies the rule; students are not expected to infer real-world jurisdiction law.",
+  "Timing: 2 minutes. Explain the simplified commercial-appliance scenario and the manager's margin concern. Rationale: the task is learning how to preserve the stated base. Misconception: assuming every excise tax works this way. Re-emphasize the training-jurisdiction banner.",
+  "Timing: 4 minutes. Build B1:B6 using $6,200, 7%, 8%. B4 and B5 both reference B1. Tax amounts $434 and $496; total $7,130. Show =B1*(1+B2+B3) as a second confirmation. Columns describe actual B-cell values and the formula entered in B; the formula annotation is not another worksheet column.",
+  "Timing: 2 minutes. Use the two arrows as the proof. Ask students to point to the base cell in both formulas. Misconception: one tax arrow starting from the other tax box. Debrief: both formulas return to the original base.",
+  "Timing: 5 minutes. Pairs choose A and complete tasks 6-8 (sheet rows 11-13). Use one base cell, D11, for both taxes. Results $435, $326.25, $8,011.25. Ask pairs to defend their references before revealing the worked model. An equivalent valid formula is acceptable.",
+  "Timing: 0.5 minutes. Transition to property tax. Signal that the new challenge is not multiplication; it is using the correct intermediate value and rounding at the specified step.",
+  "Timing: 2 minutes. Use the office image to state the model boundary: this is a simple training municipality. Preview the sequence from market value to assessed value to tax; the next slide makes the chain explicit. NNN debrief: exact exposure depends on lease terms, but variable property tax can raise occupancy cost.",
+  "Timing: 5 minutes. Build the property demonstration in B2:B8. B6 =B2*B3, B7 =ROUND(B4/B5,4), B8 =B6*B7. Answers $328,000, 0.0653, $21,418.40. Distinguish changing a number format from ROUND changing the value. Optional monthly reserve =B8/12 gives $1,784.87, covering property tax only.",
+  "Timing: 6 minutes. Explicit property-tax pause. Students complete tasks 9-11 (sheet rows 14-16) individually, then compare with a partner. Allow four minutes to build and two to explain and reveal. Inputs $540,000, 32%, $234,500, $3,450,000. Answers $172,800, 0.0680, $11,750.40. Require the annual formula to use H14 and H15. Show the reveal only after students attempt all three formulas.",
+  "Timing: 3 minutes. Common Mistake reveal. Ask students to diagnose each formula before reading the correction. Answer 1: market value is the wrong base. Answer 2: the rate must be rounded first. Debrief by naming the exact prior-step cell that each correct formula should reference.",
+  "Timing: 12 minutes. Pairs complete R01-R03, then choose one of R04-R06. Budget ten minutes for work and two for debrief. Completing four records does not yet reconcile all six: finish the remainder for homework before the final control check. Results: R01 OK $63.75; R02 ERROR $24, adjustment -$4.80; R03 OK $4,625; R04 OK $930; R05 ERROR $1,344, adjustment -$52.92; R06 ERROR $21,418.40, adjustment -$32,127.60. All-record corrected total $28,405.15. Most consequential error R06. Collect all six, zero difference, and audit note after homework.",
+  "Timing: 6 minutes. Spend one minute retrieving patterns from the overview, then open Predict → Change → Explain. One partner predicts; the other edits one input; switch roles. Discount E6 $95 to $115: subtotal $620, tax $35.65, total $677.65. Excise E12 4.5% to 5.5%: sales remains $435, excise $398.75, total $8,083.75. Budget D15 $234,500 to $269,100: rounded rate 0.0780, annual tax $13,478.40. Keep other inputs fixed. Feedback targets baseline numbers; evaluate changing outputs and restore the original inputs afterward. Reveal checks after predictions. Explain why a constant formula fails this test.",
+  "Timing: 1 minutes. Preview payroll taxes as another role-and-reconciliation problem. No new computation today. Remind students to complete the next pre-reading.",
+  "Timing: 0.5 minutes. Take final questions. Restate the deliverable: completed audit workbook, reconciliation difference of zero, and an 8+ word audit note submitted through Canvas."
 ]
 </script>
 <script>
@@ -711,11 +565,27 @@
     document.querySelectorAll('.tab-btn[data-jump]').forEach(function(btn){btn.addEventListener('click',function(){jump(btn.getAttribute('data-jump'))})});
     document.querySelector('.notes-btn').addEventListener('click',toggleNotes);
     window.addEventListener('keydown',function(event){
+      if(event.key==='Escape'){var panel=slides[index].querySelector('.solution-overlay:not([hidden])');if(panel){panel.querySelector('.close-reveal').click();return}}
+      if(event.target.closest('button,summary,input,select,textarea')){if(event.key===' '||event.key==='Enter')return;}
+      if(['ArrowRight','ArrowLeft','PageDown','PageUp','Home','End',' '].includes(event.key))event.preventDefault();
       if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){show(index+1)}
       if(event.key==='ArrowLeft'||event.key==='PageUp'){show(index-1)}
       if(event.key==='Home'){show(0)}
       if(event.key==='End'){show(slides.length-1)}
       if(event.key==='n'||event.key==='N'){toggleNotes()}
+    });
+
+    document.querySelectorAll('.reveal-toggle').forEach(function(btn){
+      var panel=document.getElementById(btn.getAttribute('aria-controls'));
+      btn.addEventListener('click',function(){panel.hidden=false;btn.setAttribute('aria-expanded','true');panel.querySelector('.close-reveal').focus()});
+      panel.querySelector('.close-reveal').addEventListener('click',function(){panel.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus()});
+    });
+    var predictionBtn=document.querySelector('.prediction-toggle');
+    predictionBtn.addEventListener('click',function(){
+      var view=document.querySelector('.prediction-view'),overview=document.querySelector('.overview-view');
+      view.hidden=!view.hidden;overview.hidden=!view.hidden;
+      predictionBtn.setAttribute('aria-expanded',String(!view.hidden));
+      predictionBtn.textContent=view.hidden?'Open Predict → Change → Explain':'Return to formula overview';
     });
     fit();show(0);
   })();

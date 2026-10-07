@@ -1,21 +1,208 @@
 {
   "lesson": "MATH-M07-L01",
   "livePractice": [
-    {"row": 6, "inputs": {"D6": 735, "E6": 95}, "formula": "=D6-E6", "value": 640, "references": ["D6", "E6"]},
-    {"row": 7, "inputs": {"E7": 0.0575}, "formula": "=H6*E7", "value": 36.8, "references": ["H6", "E7"]},
-    {"row": 8, "inputs": {"D8": 22}, "formula": "=H6+H7+D8", "value": 698.8, "references": ["H6", "H7", "D8"]},
-    {"row": 9, "inputs": {"D9": 64200, "E9": 0.07}, "formula": "=D9/(1+E9)", "value": 60000, "references": ["D9", "E9"]},
-    {"row": 10, "inputs": {}, "formula": "=D9-H9", "value": 4200, "references": ["D9", "H9"]},
-    {"row": 11, "inputs": {"D11": 7250, "E11": 0.06}, "formula": "=D11*E11", "value": 435, "references": ["D11", "E11"]},
-    {"row": 12, "inputs": {"E12": 0.045}, "formula": "=D11*E12", "value": 326.25, "references": ["D11", "E12"]},
-    {"row": 13, "inputs": {}, "formula": "=D11+H11+H12", "value": 8011.25, "references": ["D11", "H11", "H12"]},
-    {"row": 14, "inputs": {"D14": 540000, "E14": 0.32}, "formula": "=D14*E14", "value": 172800, "references": ["D14", "E14"]},
-    {"row": 15, "inputs": {"D15": 234500, "E15": 3450000}, "formula": "=ROUND(D15/E15,4)", "value": 0.068, "references": ["D15", "E15"]},
-    {"row": 16, "inputs": {}, "formula": "=H14*H15", "value": 11750.4, "references": ["H14", "H15"]}
+    {
+      "row": 6,
+      "inputs": {
+        "D6": 735,
+        "E6": 95
+      },
+      "formula": "=D6-E6",
+      "value": 640,
+      "references": [
+        "D6",
+        "E6"
+      ]
+    },
+    {
+      "row": 7,
+      "inputs": {
+        "E7": 0.0575
+      },
+      "formula": "=H6*E7",
+      "value": 36.8,
+      "references": [
+        "H6",
+        "E7"
+      ]
+    },
+    {
+      "row": 8,
+      "inputs": {
+        "D8": 22
+      },
+      "formula": "=H6+H7+D8",
+      "value": 698.8,
+      "references": [
+        "H6",
+        "H7",
+        "D8"
+      ]
+    },
+    {
+      "row": 9,
+      "inputs": {
+        "D9": 64200,
+        "E9": 0.07
+      },
+      "formula": "=D9/(1+E9)",
+      "value": 60000,
+      "references": [
+        "D9",
+        "E9"
+      ]
+    },
+    {
+      "row": 10,
+      "inputs": {},
+      "formula": "=D9-H9",
+      "value": 4200,
+      "references": [
+        "D9",
+        "H9"
+      ]
+    },
+    {
+      "row": 11,
+      "inputs": {
+        "D11": 7250,
+        "E11": 0.06
+      },
+      "formula": "=D11*E11",
+      "value": 435,
+      "references": [
+        "D11",
+        "E11"
+      ]
+    },
+    {
+      "row": 12,
+      "inputs": {
+        "E12": 0.045
+      },
+      "formula": "=D11*E12",
+      "value": 326.25,
+      "references": [
+        "D11",
+        "E12"
+      ]
+    },
+    {
+      "row": 13,
+      "inputs": {},
+      "formula": "=D11+H11+H12",
+      "value": 8011.25,
+      "references": [
+        "D11",
+        "H11",
+        "H12"
+      ]
+    },
+    {
+      "row": 14,
+      "inputs": {
+        "D14": 540000,
+        "E14": 0.32
+      },
+      "formula": "=D14*E14",
+      "value": 172800,
+      "references": [
+        "D14",
+        "E14"
+      ]
+    },
+    {
+      "row": 15,
+      "inputs": {
+        "D15": 234500,
+        "E15": 3450000
+      },
+      "formula": "=ROUND(D15/E15,4)",
+      "value": 0.068,
+      "references": [
+        "D15",
+        "E15"
+      ]
+    },
+    {
+      "row": 16,
+      "inputs": {},
+      "formula": "=H14*H15",
+      "value": 11750.4,
+      "references": [
+        "H14",
+        "H15"
+      ]
+    }
   ],
   "predictions": [
-    {"input": "E6", "value": 115, "outputs": {"H6": 620, "H7": 35.65, "H8": 677.65}},
-    {"input": "E12", "value": 0.055, "outputs": {"H11": 435, "H12": 398.75, "H13": 8083.75}},
-    {"input": "D15", "value": 269100, "outputs": {"H15": 0.078, "H16": 13478.4}}
+    {
+      "input": "E6",
+      "value": 115,
+      "outputs": {
+        "H6": 620,
+        "H7": 35.65,
+        "H8": 677.65
+      }
+    },
+    {
+      "input": "E12",
+      "value": 0.055,
+      "outputs": {
+        "H11": 435,
+        "H12": 398.75,
+        "H13": 8083.75
+      }
+    },
+    {
+      "input": "D15",
+      "value": 269100,
+      "outputs": {
+        "H15": 0.078,
+        "H16": 13478.4
+      }
+    }
+  ],
+  "reverseVersions": [
+    {
+      "version": "A",
+      "headingRow": 19,
+      "factsRow": 20,
+      "headerRow": 21,
+      "receiptsRow": 22,
+      "rateRow": 23,
+      "salesRow": 24,
+      "taxRow": 25,
+      "receipts": 52000,
+      "rate": 0.065,
+      "receiptsCell": "D22",
+      "rateCell": "E23",
+      "salesCell": "H24",
+      "taxCell": "H25",
+      "salesFormula": "=D22/(1+E23)",
+      "taxFormula": "=D22-H24",
+      "sales": 48826.29107981221,
+      "tax": 3173.7089201877898
+    },
+    {
+      "version": "B",
+      "headingRow": 28,
+      "factsRow": 29,
+      "headerRow": 30,
+      "receiptsRow": 31,
+      "rateRow": 32,
+      "salesRow": 33,
+      "taxRow": 34,
+      "receipts": 43200,
+      "rate": 0.08,
+      "receiptsCell": "D31",
+      "rateCell": "E32",
+      "salesCell": "H33",
+      "taxCell": "H34",
+      "salesFormula": "=D31/(1+E32)",
+      "taxFormula": "=D31-H33",
+      "sales": 40000,
+      "tax": 3200
+    }
   ]
 }

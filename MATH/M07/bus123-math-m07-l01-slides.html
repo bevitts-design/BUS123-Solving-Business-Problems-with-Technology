@@ -246,6 +246,12 @@
     #reverse-b-practice .lead{font-size:20px;line-height:1.3}
     #reverse-b-practice .model-table td{padding:7px 10px}
     #reverse-b-practice .prediction-answer{margin-top:12px;line-height:1.25}
+    #agenda-examples{top:145px;bottom:60px}
+    #agenda-examples .solution-heading{margin-bottom:10px}
+    .agenda-examples{font-size:20px;table-layout:fixed}
+    .agenda-examples th:first-child{width:18%}.agenda-examples th:nth-child(2){width:45%}
+    .agenda-examples td{padding:8px 12px;line-height:1.2}
+    .agenda-example-note{font-size:18px;line-height:1.3;margin-top:14px;color:var(--text-soft)}
   </style>
 </head>
 <body>
@@ -279,12 +285,27 @@
     <section class="slide" data-slide="2" data-section="0">
       <div class="eyebrow">Agenda</div>
       <h2>Three tax decisions, one audit trail</h2>
-      <div class="body" style="display:block;margin-top:26px">
+      <div class="body" style="display:block;margin-top:18px;flex:0">
         <div class="number-row"><div class="number">01</div><p>Choose the correct sales-tax base and separate receipts from revenue</p></div>
         <div class="number-row"><div class="number">02</div><p>Keep sales and excise taxes tied to the same supplied base</p></div>
         <div class="number-row"><div class="number">03</div><p>Build the property-tax chain and round at the required step</p></div>
         <div class="number-row"><div class="number">04</div><p>Audit filed formulas, repair errors, and reconcile the liability</p></div>
       </div>
+      <button class="reveal-toggle" type="button" aria-expanded="false" aria-controls="agenda-examples" style="align-self:flex-start;margin-top:20px">Show business examples</button>
+      <div class="solution-overlay" id="agenda-examples" hidden>
+        <div class="solution-heading"><h3>What these decisions look like at work</h3><button class="close-reveal" type="button">Return to the agenda</button></div>
+        <table class="data-table agenda-examples">
+          <thead><tr><th>Decision</th><th>Business example</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sales tax</strong></td><td>Tidal: $480 order − $80 discount = $400 base. At 6%, <strong>sales tax is $24</strong>.</td><td>The $24 is owed to government; record it as a liability.</td></tr>
+            <tr><td><strong>Sales + excise</strong></td><td>Meridian: $6,200 appliance + 7% sales tax + 8% excise = <strong>$7,130 total cost</strong>.</td><td>Both taxes use $6,200. Taxing a taxed amount overstates cost.</td></tr>
+            <tr><td><strong>Property tax</strong></td><td>Meridian: $820,000 office × 40% assessment = <strong>$328,000 taxable value</strong>.</td><td>Multiply assessed value by the supplied rounded rate.</td></tr>
+            <tr><td><strong>Audit the formula</strong></td><td>Tidal reports $28.80 tax instead of $24 after the discount: <strong>$4.80 too much</strong>.</td><td>Check the base and trace the formula before approving the filing.</td></tr>
+          </tbody>
+        </table>
+        <p class="agenda-example-note">Simplified training rules. Ask: “What is the base, and who collects or pays the tax?”</p>
+      </div>
+
     </section>
 
     <section class="slide" data-slide="3" data-section="0">
@@ -531,7 +552,7 @@
 <script type="application/json" id="speaker-notes">
 [
   "Welcome students and frame the lesson as business decision-making, not tax-law memorization. Emphasize that every problem uses one simplified training jurisdiction.",
-  "Preview the four-part sequence. Tell students that the class ends with an audit trail, so every calculation they build should be explainable and traceable.",
+  "Preview the four decisions and invite students to explain where a business might encounter each one. Then click Show business examples. Use the existing Tidal order to distinguish tax collected from revenue, the Meridian appliance to show two taxes sharing a base, and the Meridian office to distinguish market and assessed value. Finish with the $28.80 versus $24 Tidal filing: a believable number can still come from a wrong formula. These are simplified training scenarios. Close the examples and continue to the learning objectives.",
   "Read the objectives as choose, calculate, and defend. Formative check: ask which objective is more demanding than simply getting the right number. Answer: defending the base and formula.",
   "Retrieval first: students point to the taxable base before any formula is shown. Answer: $400. Rationale: the supplied training rule says the qualifying $80 discount reduces the $480 base. Misconception: taxing the retail price because it appears first. Debrief with one student explanation.",
   "Transition to sales tax. Remind students that the business role differs from the consumer role.",

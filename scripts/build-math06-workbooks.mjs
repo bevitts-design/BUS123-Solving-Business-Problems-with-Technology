@@ -18,6 +18,11 @@ const write=(s,c,v)=>s.getRange(c).values=[[v]];
 const formula=(s,c,v)=>s.getRange(c).formulas=[[v]];
 for(const kind of ['student','key']){
  const w=await SpreadsheetFile.importXlsx(await FileBlob.load(input));
+ const raw=w.worksheets.getItem('Raw Data');
+ for(let i=0;i<3;i++){const r=i+6,l=model.inventoryScenario.layers[i];write(raw,`A${r}`,l.label);write(raw,`B${r}`,l.quantity);write(raw,`C${r}`,l.unitCost);}
+ formula(raw,'B9','=SUM(B6:B8)');write(raw,'B12',model.inventoryScenario.sold);write(raw,'B13',model.inventoryScenario.sellingPrice);
+ write(raw,'A2','Hoodie extension: varying purchase costs; all batches available before sales. Later overhead data describes the expanded campus shop and online operation.');
+ for(const sheet of w.worksheets.items){const range=sheet.getRange('A1:K70');const vals=range.values;for(let r=0;r<vals.length;r++)for(let c=0;c<(vals[r]||[]).length;c++){const v=vals[r][c];if(typeof v==='string'&&!v.startsWith('=')){const changed=v.replaceAll('Paddleboard','Hoodie').replaceAll('paddleboard','hoodie').replaceAll('boards','hoodies').replaceAll('board','hoodie').replaceAll('Surf Shop','Campus Shop').replaceAll('Surf basis','Campus basis').replaceAll('Surf allocation','Campus allocation').replaceAll('Should equal 30','Should equal 50').replaceAll('Should equal $7,004','Should equal $1,000').replaceAll('March + April purchases','Second + third batch purchases');if(v!==changed)sheet.getRangeByIndexes(r,c,1,1).values=[[changed]];}}}
  const m=w.worksheets.getItem('Management Model');
  for(const c of Object.keys(model.managementFormulas)){
   m.getRange(c).clear({applyTo:'contents'});
@@ -28,9 +33,9 @@ for(const kind of ['student','key']){
   if(kind==='key')write(m,`C${r}`,r===40?'Direct labor hours':'Square footage');
  }
  write(m,'A2','Yellow: enter formulas or driver choices. PASS verifies model checks; justify driver fairness separately.');
- write(m,'A30','Paddleboard revenue');
+ write(m,'A30','Hoodie revenue');
  write(m,'A46','Total business revenue');
- write(m,'D46','Broader business revenue, separate from paddleboard sales above');
+ write(m,'D46','Broader business revenue, separate from hoodie sales above');
  write(m,'D48','Rate rises when the revenue denominator falls; spending is unchanged');
  for(let r=6;r<=8;r++){
   const prior=r===6?'':`-SUM(E6:E${r-1})`;
@@ -76,10 +81,10 @@ for(const kind of ['student','key']){
  for(const v of model.practiceVersions){
   const o=v.offset,R=n=>n+o,C=(col,n)=>`${col}${R(n)}`;
   const lifo=v.method==='LIFO';
-  band(R(4),lifo?`Stage 2 · LIFO comparison · ${v.sold} boards sold · start with the newest purchase`:`Stage 1 · ${v.version}: ${v.version==='A'?'guided':'independent'} FIFO · ${v.sold} boards sold`);
+  band(R(4),lifo?`Stage 2 · LIFO comparison · ${v.sold} hoodies sold · start with the newest purchase`:`Stage 1 · ${v.version}: ${v.version==='A'?'guided':'independent'} FIFO · ${v.sold} hoodies sold`);
   live.getRange(`A${R(5)}:H${R(5)}`).values=[['Oldest → newest','Available units','Cost per unit','Units sold','Cost of units sold','Units left','Ending value','Think / check']];
   live.getRange(`A${R(5)}:H${R(5)}`).format={fill:'#EAF3EC',rowHeight:42,font:{bold:true,size:11}};
-  const sold=lifo?[0,9,10]:v.version==='A'?[8,11,0]:[8,12,1];
+  const remaining={value:v.sold}; const sold=[0,0,0]; for(const i of (lifo?[2,1,0]:[0,1,2])){sold[i]=Math.min(model.inventoryScenario.layers[i].quantity,remaining.value);remaining.value-=sold[i];}
   for(let r=6;r<=8;r++){
    for(const col of ['A','B','C'])formula(live,C(col,r),`='Raw Data'!${col}${r}`);
    live.getRange(`B${R(r)}:C${R(r)}`).format.fill='#DDEBF7';
@@ -87,7 +92,7 @@ for(const kind of ['student','key']){
    response(C('E',r),`=${C('D',r)}*${C('C',r)}`);
    response(C('F',r),`=${C('B',r)}-${C('D',r)}`);
    response(C('G',r),`=${C('F',r)}*${C('C',r)}`);
-   write(live,C('H',r),lifo?['3 · Are any sales still unfilled?','2 · How many sales remain after April?','1 · Start here: newest purchase.'][r-6]:v.version==='A'?['Start with the oldest purchase.','How many sales remain after the first row?','Are any sales still unfilled?'][r-6]:'Use older units before newer units.');
+   write(live,C('H',r),lifo?['3 · Are any sales still unfilled?','2 · How many sales remain after the third batch?','1 · Start here: newest purchase.'][r-6]:v.version==='A'?['Start with the oldest purchase.','How many sales remain after the first row?','Are any sales still unfilled?'][r-6]:'Use older units before newer units.');
   }
   write(live,C('A',9),'Totals');formula(live,C('B',9),`=SUM(${C('B',6)}:${C('B',8)})`);
   for(const col of ['D','E','F','G'])response(C(col,9),`=SUM(${C(col,6)}:${C(col,8)})`);
@@ -103,24 +108,24 @@ for(const kind of ['student','key']){
   formula(live,C('H',9),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"TRY FIRST",IF(NOT(${expected}),"REVIEW: ${lifo?'newest':'oldest'} units first",IF(AND(${layerChecks},${totalChecks},${C('D',9)}=${C('B',11)},${C('D',9)}+${C('F',9)}=${C('B',9)},${C('E',9)}+${C('G',9)}=SUMPRODUCT(${C('B',6)}:${C('B',8)},${C('C',6)}:${C('C',8)})),"PASS: explain the units","REVIEW: units or costs")))`);
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},4)="PASS"`,{fill:'#EAF3EC',font:{color:'#355773'}});
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},6)="REVIEW"`,{fill:'#FCE4D6',font:{color:'#9C0006'}});
-  note(R(17),lifo?'Compare the same 19 sales: FIFO E14/E15, LIFO E46/E47. Next: weighted average E57/E58. Which method assigns more cost to sales when purchase costs rise?':v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more boards sold. Which purchases supply them? What happens to COGS and inventory left?');
+  note(R(17),lifo?'Compare the same 30 sales: FIFO E14/E15, LIFO E46/E47. Next: weighted average E57/E58. Which method assigns more cost to sales when purchase costs rise?':v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more hoodies sold. Which purchases supply them? What happens to COGS and inventory left?');
   live.getRange(`C${R(6)}:C${R(8)}`).setNumberFormat('"$"#,##0');
   for(const col of ['E','G'])live.getRange(`${col}${R(6)}:${col}${R(15)}`).setNumberFormat('"$"#,##0.00');
   for(const col of ['B','D','F'])live.getRange(`${col}${R(6)}:${col}${R(12)}`).setNumberFormat('0');
  }
  band(52,'Stage 2 · Weighted average: compare after both FIFO attempts');
- note(53,'Blend the cost of all 30 available boards. Calculate one average cost per board, then apply it to boards sold and boards left. Keep full precision.');
- live.getRange('A55:H55').values=[['Metric','Given / total','','','A: 19 sold','B: 21 sold','','Think / check']];live.getRange('A55:H55').format.fill='#EAF3EC';
- write(live,'A56','Average cost per board');formula(live,'B56',"=SUM('Raw Data'!D6:D8)");write(live,'H56','Total available cost ÷ total available units');
- write(live,'A57','Cost of boards sold');formula(live,'B57',"=SUM('Raw Data'!B6:B8)");write(live,'H57','Units sold × average cost per board');
- write(live,'A58','Ending inventory');write(live,'H58','Units left × average cost per board');
+ note(53,'Blend the cost of all 50 available hoodies. Calculate one average cost per hoodie, then apply it to hoodies sold and hoodies left. Keep full precision.');
+ live.getRange('A55:H55').values=[['Metric','Given / total','','','A: 30 sold','B: 32 sold','','Think / check']];live.getRange('A55:H55').format.fill='#EAF3EC';
+ write(live,'A56','Average cost per hoodie');formula(live,'B56',"=SUM('Raw Data'!D6:D8)");write(live,'H56','Total available cost ÷ total available units');
+ write(live,'A57','Cost of hoodies sold');formula(live,'B57',"=SUM('Raw Data'!B6:B8)");write(live,'H57','Units sold × average cost per hoodie');
+ write(live,'A58','Ending inventory');write(live,'H58','Units left × average cost per hoodie');
  write(live,'C56','Total cost');write(live,'C57','Total units');live.getRange('B56:B57').format.fill='#DDEBF7';live.getRange('B56').setNumberFormat('"$"#,##0.00');
  for(const [col,offset]of [['E',0],['F',16]]){
   response(`${col}56`,'=$B$56/$B$57');response(`${col}57`,`=B${11+offset}*${col}56`);response(`${col}58`,`=F${9+offset}*${col}56`);
   live.getRange(`${col}56:${col}58`).setNumberFormat('"$"#,##0.00');
  }
  note(61,'Compare each sale under FIFO and weighted average. Units and total available cost stay the same; the assigned cost per sold unit changes.');
- note(62,'Compare all three methods for the same 19 sales. Units sold and available cost stay the same; the assigned costs differ.');
+ note(62,'Compare all three methods for the same 30 sales. Units sold and available cost stay the same; the assigned costs differ.');
  note(68,'Stage 3: open Management Model. FIFO and weighted-average A results link automatically. Complete profit next; overhead and Decision Brief come later.');
  write(start,'C8','Stage 2: LIFO in rows 36–49, then weighted average last in rows 52–62. Compare the same sale under all three methods.');
  live.freezePanes.freezeRows(5);
@@ -137,7 +142,7 @@ for(const kind of ['student','key']){
  write(start,'A24','LINKS');write(start,'B24','Pale cream: supplied model links; no entry needed');start.getRange('A24:B24').format={wrapText:true,rowHeight:42};
  write(m,'A2','Stage 3 · A inventory results link from Live You Try It. Complete yellow profit cells next; overhead and Decision Brief come later when assigned.');
  write(m,'A4','1 · FIFO results linked from guided A');write(m,'A12','2 · Weighted-average results linked from A');write(m,'A35','4 · Later stage: overhead allocation');
- const ref=w.worksheets.getItem('Formula Reference');write(ref,'B7',"'=TotalAvailableCost/TotalAvailableUnits");write(ref,'C7','Divide the cost of all available boards by the number of available boards.');write(ref,'A24','PASS does not prove driver fairness');write(ref,'B24','Explain the driver and trace the source cells. Reconcile totals and confirm FIFO uses oldest costs first.');ref.mergeCells('B24:D24');ref.getRange('A24:D24').format={wrapText:true,rowHeight:48,font:{size:11}};
+ const ref=w.worksheets.getItem('Formula Reference');write(ref,'B7',"'=TotalAvailableCost/TotalAvailableUnits");write(ref,'C7','Divide the cost of all available hoodies by the number of available hoodies.');write(ref,'A24','PASS does not prove driver fairness');write(ref,'B24','Explain the driver and trace the source cells. Reconcile totals and confirm FIFO uses oldest costs first.');ref.mergeCells('B24:D24');ref.getRange('A24:D24').format={wrapText:true,rowHeight:48,font:{size:11}};
  w.recalculate();
  console.log(kind,(await w.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},maxChars:2000})).ndjson);
  const name=kind==='student'?'bus123-math-m06-l01-starter.xlsx':'bus123-math-m06-l01-activity-key.xlsx';

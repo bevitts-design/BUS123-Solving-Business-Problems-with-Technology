@@ -69,19 +69,42 @@
     {
       "version": "A",
       "offset": 0,
-      "sold": 19
+      "sold": 30
     },
     {
       "version": "B",
       "offset": 16,
-      "sold": 21
+      "sold": 32
     },
     {
       "version": "L",
       "method": "LIFO",
       "offset": 32,
-      "sold": 19
+      "sold": 30
     }
   ],
-  "fifoTeachingSequence": "Assign sold units oldest first; calculate each layer; sum; then compare weighted average. No nested FIFO formula required."
+  "fifoTeachingSequence": "Assign sold units oldest first; calculate each layer; sum; then compare weighted average. No nested FIFO formula required.",
+  "inventoryScenario": {
+    "product": "hoodies",
+    "layers": [
+      {
+        "label": "Beginning inventory (first batch)",
+        "quantity": 10,
+        "unitCost": 16
+      },
+      {
+        "label": "Second batch purchase",
+        "quantity": 20,
+        "unitCost": 20
+      },
+      {
+        "label": "Third batch purchase",
+        "quantity": 20,
+        "unitCost": 22
+      }
+    ],
+    "sold": 30,
+    "sellingPrice": 40,
+    "timing": "All batches available before sales; period-wide cost assignment. Separate extension of the simple opener."
+  }
 }

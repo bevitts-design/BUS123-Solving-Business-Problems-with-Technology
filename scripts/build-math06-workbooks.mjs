@@ -66,19 +66,20 @@ for(const kind of ['student','key']){
  write(start,'D19','Enter sold quantities, formulas, or choices as directed');
  const live=w.worksheets.getItem('Live You Try It');
  live.getRange('A1:K76').unmerge();live.getRange('A1:K76').clear({applyTo:'all'});
- live.getRange('A1:H52').format={font:{name:'Aptos',size:11,color:'#1A1F2C'},fill:'#FFFFFF',rowHeight:29,wrapText:true,verticalAlignment:'center',borders:{preset:'all',style:'thin',color:'#E5E1D6'}};
+ live.getRange('A1:H68').format={font:{name:'Aptos',size:11,color:'#1A1F2C'},fill:'#FFFFFF',rowHeight:29,wrapText:true,verticalAlignment:'center',borders:{preset:'all',style:'thin',color:'#E5E1D6'}};
  for(const [col,width]of Object.entries({A:205,B:90,C:105,D:105,E:140,F:105,G:145,H:290}))live.getRange(`${col}:${col}`).format.columnWidthPx=width;
  const band=(row,text)=>{live.mergeCells(`A${row}:H${row}`);write(live,`A${row}`,text);live.getRange(`A${row}:H${row}`).format={fill:'#355773',font:{size:14,bold:true,color:'#FFFFFF'},rowHeight:35};};
  const note=(row,text)=>{live.mergeCells(`A${row}:H${row}`);write(live,`A${row}`,text);live.getRange(`A${row}:H${row}`).format.rowHeight=36;};
  const response=(cell,f)=>{live.getRange(cell).format.fill='#FFF2B2';if(kind==='key')formula(live,cell,f);};
  band(1,'M06 · FIFO first: decide units, then calculate costs');
- note(2,'Blue = given facts. Yellow = your work. In column D enter how many units are sold from each purchase, oldest first. In E, F and G use formulas.');
+ note(2,'Blue = given facts. Yellow = your work. Enter sold quantities in D: oldest first for FIFO, newest first for LIFO. In E, F and G use formulas.');
  for(const v of model.practiceVersions){
   const o=v.offset,R=n=>n+o,C=(col,n)=>`${col}${R(n)}`;
-  band(R(4),`Stage 1 · ${v.version}: ${v.version==='A'?'guided':'independent'} FIFO · ${v.sold} boards sold`);
+  const lifo=v.method==='LIFO';
+  band(R(4),lifo?`Stage 2 · LIFO comparison · ${v.sold} boards sold · start with the newest purchase`:`Stage 1 · ${v.version}: ${v.version==='A'?'guided':'independent'} FIFO · ${v.sold} boards sold`);
   live.getRange(`A${R(5)}:H${R(5)}`).values=[['Oldest → newest','Available units','Cost per unit','Units sold','Cost of units sold','Units left','Ending value','Think / check']];
   live.getRange(`A${R(5)}:H${R(5)}`).format={fill:'#EAF3EC',rowHeight:42,font:{bold:true,size:11}};
-  const sold=v.version==='A'?[8,11,0]:[8,12,1];
+  const sold=lifo?[0,9,10]:v.version==='A'?[8,11,0]:[8,12,1];
   for(let r=6;r<=8;r++){
    for(const col of ['A','B','C'])formula(live,C(col,r),`='Raw Data'!${col}${r}`);
    live.getRange(`B${R(r)}:C${R(r)}`).format.fill='#DDEBF7';
@@ -86,23 +87,23 @@ for(const kind of ['student','key']){
    response(C('E',r),`=${C('D',r)}*${C('C',r)}`);
    response(C('F',r),`=${C('B',r)}-${C('D',r)}`);
    response(C('G',r),`=${C('F',r)}*${C('C',r)}`);
-   write(live,C('H',r),v.version==='A'?['Start with the oldest purchase.','How many sales remain after the first row?','Are any sales still unfilled?'][r-6]:'Use older units before newer units.');
+   write(live,C('H',r),lifo?['3 · Are any sales still unfilled?','2 · How many sales remain after April?','1 · Start here: newest purchase.'][r-6]:v.version==='A'?['Start with the oldest purchase.','How many sales remain after the first row?','Are any sales still unfilled?'][r-6]:'Use older units before newer units.');
   }
   write(live,C('A',9),'Totals');formula(live,C('B',9),`=SUM(${C('B',6)}:${C('B',8)})`);
   for(const col of ['D','E','F','G'])response(C(col,9),`=SUM(${C(col,6)}:${C(col,8)})`);
   live.getRange(`A${R(9)}:H${R(9)}`).format.font.bold=true;
   write(live,C('A',11),'Units sold (given)');write(live,C('B',11),v.sold);live.getRange(C('B',11)).format.fill='#DDEBF7';
-  if(v.version==='A')formula(live,C('B',11),"='Raw Data'!B12");
+  if(v.version==='A'||lifo)formula(live,C('B',11),"='Raw Data'!B12");
   write(live,C('A',12),'Units available');formula(live,C('B',12),`=${C('B',9)}`);
-  write(live,C('A',14),'FIFO COGS');formula(live,C('E',14),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"",${C('E',9)})`);
+  write(live,C('A',14),lifo?'LIFO COGS':'FIFO COGS');formula(live,C('E',14),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"",${C('E',9)})`);
   write(live,C('A',15),'Ending inventory');formula(live,C('E',15),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"",${C('G',9)})`);
-  const expected=`AND(${C('D',6)}=MIN(${C('B',6)},${C('B',11)}),${C('D',7)}=MIN(${C('B',7)},MAX(0,${C('B',11)}-${C('D',6)})),${C('D',8)}=MAX(0,${C('B',11)}-SUM(${C('D',6)}:${C('D',7)})))`;
+  const expected=lifo?`AND(${C('D',8)}=MIN(${C('B',8)},${C('B',11)}),${C('D',7)}=MIN(${C('B',7)},MAX(0,${C('B',11)}-${C('D',8)})),${C('D',6)}=MAX(0,${C('B',11)}-SUM(${C('D',7)}:${C('D',8)})))`:`AND(${C('D',6)}=MIN(${C('B',6)},${C('B',11)}),${C('D',7)}=MIN(${C('B',7)},MAX(0,${C('B',11)}-${C('D',6)})),${C('D',8)}=MAX(0,${C('B',11)}-SUM(${C('D',6)}:${C('D',7)})))`;
   const layerChecks=[6,7,8].map(r=>`${C('E',r)}=${C('D',r)}*${C('C',r)},${C('F',r)}=${C('B',r)}-${C('D',r)},${C('G',r)}=${C('F',r)}*${C('C',r)}`).join(',');
   const totalChecks=['D','E','F','G'].map(col=>`${C(col,9)}=SUM(${C(col,6)}:${C(col,8)})`).join(',');
-  formula(live,C('H',9),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"TRY FIRST",IF(NOT(${expected}),"REVIEW: oldest units first",IF(AND(${layerChecks},${totalChecks},${C('D',9)}=${C('B',11)},${C('D',9)}+${C('F',9)}=${C('B',9)},${C('E',9)}+${C('G',9)}=SUMPRODUCT(${C('B',6)}:${C('B',8)},${C('C',6)}:${C('C',8)})),"PASS: explain the units","REVIEW: units or costs")))`);
+  formula(live,C('H',9),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"TRY FIRST",IF(NOT(${expected}),"REVIEW: ${lifo?'newest':'oldest'} units first",IF(AND(${layerChecks},${totalChecks},${C('D',9)}=${C('B',11)},${C('D',9)}+${C('F',9)}=${C('B',9)},${C('E',9)}+${C('G',9)}=SUMPRODUCT(${C('B',6)}:${C('B',8)},${C('C',6)}:${C('C',8)})),"PASS: explain the units","REVIEW: units or costs")))`);
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},4)="PASS"`,{fill:'#EAF3EC',font:{color:'#355773'}});
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},6)="REVIEW"`,{fill:'#FCE4D6',font:{color:'#9C0006'}});
-  note(R(17),v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more boards sold. Which purchases supply them? What happens to COGS and inventory left?');
+  note(R(17),lifo?'Compare the same 19 sales: FIFO E14/E15, weighted average E41/E42, LIFO E62/E63. Which method assigns more cost to sales when purchase costs rise?':v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more boards sold. Which purchases supply them? What happens to COGS and inventory left?');
   live.getRange(`C${R(6)}:C${R(8)}`).setNumberFormat('"$"#,##0');
   for(const col of ['E','G'])live.getRange(`${col}${R(6)}:${col}${R(15)}`).setNumberFormat('"$"#,##0.00');
   for(const col of ['B','D','F'])live.getRange(`${col}${R(6)}:${col}${R(12)}`).setNumberFormat('0');
@@ -119,7 +120,9 @@ for(const kind of ['student','key']){
   live.getRange(`${col}40:${col}42`).setNumberFormat('"$"#,##0.00');
  }
  note(45,'Compare each sale under FIFO and weighted average. Units and total available cost stay the same; the assigned cost per sold unit changes.');
- note(46,'Stage 3: open Management Model. A results link automatically; complete the profit schedule next. Start overhead and Decision Brief only when assigned.');
+ note(46,'Next: compare LIFO in rows 52–65. Start with the bottom purchase row and work upward. The sale and total available cost stay the same.');
+ note(68,'Stage 3: open Management Model. FIFO and weighted-average A results link automatically. Complete profit next; overhead and Decision Brief come later.');
+ write(start,'C8','Stage 2: weighted average in rows 36–46 and LIFO in rows 52–65. Compare the same sale under all three methods.');
  live.freezePanes.freezeRows(5);
  // The model uses completed practice rather than asking students to repeat it.
  for(let r=6;r<=8;r++){
@@ -139,7 +142,7 @@ for(const kind of ['student','key']){
  console.log(kind,(await w.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},maxChars:2000})).ndjson);
  const name=kind==='student'?'bus123-math-m06-l01-starter.xlsx':'bus123-math-m06-l01-activity-key.xlsx';
  await(await SpreadsheetFile.exportXlsx(w)).save(path.join(stage,name));
- for(const [sheetName,range]of [['Live You Try It','A4:H17'],['Live You Try It','A20:H33'],['Live You Try It','A36:H46'],['Management Model','A4:I20']]){
+ for(const [sheetName,range]of [['Live You Try It','A4:H17'],['Live You Try It','A20:H33'],['Live You Try It','A36:H46'],['Live You Try It','A52:H65'],['Management Model','A4:I20']]){
   const blob=await w.render({sheetName,range,scale:1.2});await fs.writeFile(path.join(stage,`${kind}-${sheetName.replaceAll(' ','-')}-${range.replace(':','-')}.png`),new Uint8Array(await blob.arrayBuffer()));
  }
 }

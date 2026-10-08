@@ -75,6 +75,12 @@
       "version": "B",
       "offset": 16,
       "sold": 21
+    },
+    {
+      "version": "L",
+      "method": "LIFO",
+      "offset": 48,
+      "sold": 19
     }
   ],
   "fifoTeachingSequence": "Assign sold units oldest first; calculate each layer; sum; then compare weighted average. No nested FIFO formula required."

@@ -295,20 +295,14 @@
     .reveal-table{font-size:20px;table-layout:fixed;margin-bottom:12px}.reveal-table td,.reveal-table th{padding:8px 10px;line-height:1.2}.reveal-table code{font-size:18px}.reveal-note{font-size:20px;line-height:1.3;margin:12px 0 0}
     .lesson-reveal .formula-panel{margin-top:10px;padding:12px 16px}.lesson-reveal .fn{font-size:20px;margin-bottom:6px}
     .slide[aria-label="Slide 2"] .stat{padding:18px 24px}.slide[aria-label="Slide 2"] .activity{margin-top:14px!important;padding:16px 20px}.slide[aria-label="Slide 2"] .source{bottom:50px}
-    .slide[aria-label="Slide 7"] h2,.slide[aria-label="Slide 13"] h2{font-size:42px}
-    .slide[aria-label="Slide 12"] .flow{margin:20px 0}.slide[aria-label="Slide 12"] .node{min-height:100px}
-    .slide[aria-label="Slide 13"] .formula-panel{margin-bottom:14px}
-    .slide[aria-label="Slide 17"] .formula-panel .fn{font-size:20px}
-    .slide[aria-label="Slide 22"] td:nth-child(2){font-family:var(--mono);font-size:18px;color:var(--steel);overflow-wrap:anywhere}
+    .slide[aria-label="Slide 7"] h2,.slide[aria-label="Slide 14"] h2{font-size:42px}
+    .slide[aria-label="Slide 13"] .flow{margin:20px 0}.slide[aria-label="Slide 13"] .node{min-height:100px}
+    .slide[aria-label="Slide 14"] .formula-panel{margin-bottom:14px}
+    .slide[aria-label="Slide 18"] .formula-panel .fn{font-size:20px}
+    .slide[aria-label="Slide 23"] td:nth-child(2){font-family:var(--mono);font-size:18px;color:var(--steel);overflow-wrap:anywhere}
     .dark .activity{color:var(--text)}
     .lesson-reveal .card{background:var(--white);color:var(--text);border-color:var(--border)}
     .lesson-reveal .card p,.lesson-reveal .card h3{color:var(--text)}
-    #context-reveal .context-step[hidden]{display:none}
-    #context-reveal .context-step h3{font-size:28px;margin:12px 0 18px}
-    #context-reveal .context-step .callout{font-size:22px;line-height:1.3;margin:18px 0;padding:14px 18px}
-    #context-reveal .context-controls{position:absolute;bottom:20px;left:24px;right:24px;display:flex;justify-content:space-between}
-    #context-reveal .context-controls button{font-family:var(--sans);font-size:20px;padding:10px 18px;background:var(--steel);color:var(--white);border:0;border-radius:8px;cursor:pointer}
-    #context-reveal button:disabled{opacity:.45;cursor:default}
     #cost-methods h2{font-size:42px;margin-bottom:10px}
     #cost-methods .method-intro{font-size:24px;line-height:1.3;margin:0 0 12px}
     #cost-methods .method-comparison{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
@@ -321,6 +315,15 @@
     #cost-methods .method-column>p:not(.method-name){font-size:21px;line-height:1.3;margin:14px 0 0}
     #cost-methods .method-column .method-left{color:var(--text-soft)}
     #cost-methods .method-check{background:var(--paper-2);border-left:4px solid var(--gold);padding:12px 16px;font-size:21px;margin-top:10px}
+    .slide[aria-label="Slide 2"] h2{font-size:44px;margin-bottom:20px}
+    .opening-purchases{display:grid;grid-template-columns:1fr 35px 1fr 35px 1.2fr;align-items:center;gap:14px;margin:8px 0 20px}
+    .opening-purchases>div{border:2px solid var(--gold);border-radius:12px;padding:18px 20px;background:var(--paper);color:var(--text)}
+    .opening-purchases span{font-size:20px}.opening-purchases strong{display:block;font-size:32px;margin:12px 0;color:var(--steel)}
+    .opening-purchases p{font-size:19px;margin:0;color:var(--text-soft)}
+    .opening-purchases .opening-plus{font-size:30px;text-align:center;color:var(--gold)}
+    .opening-purchases .opening-sale{border-color:var(--sage)}
+    .slide[aria-label="Slide 2"] .opening-question{font-size:27px;line-height:1.35;margin:0 0 6px}
+    #context-reveal .callout{font-size:22px;line-height:1.3;padding:14px 18px;margin:16px 0}
   </style>
 </head>
 <body>
@@ -332,60 +335,36 @@
       <div class="accent-line"></div>
       <h1>Inventory, COGS &amp; Overhead</h1>
       <p class="lead">Build the cost story behind one management recommendation</p>
-      <div class="footer"><span>Professor Evitts</span><span>01 / 23</span></div>
+      <div class="footer"><span>Professor Evitts</span><span>01 / 24</span></div>
     </section>
 
     <section class="slide dark" data-part="Overview" aria-label="Slide 2">
-      <div class="tabs"><span class="tab current">Why it matters</span><span class="tab">Retail pressure</span><span class="tab">Decision context</span></div>
-      <p class="kicker">Opening prediction</p>
-      <h2>When costs rise, which number moves first</h2>
-      <div class="stat-row">
-        <div class="stat"><strong>95%</strong><span>of surveyed retail executives expect global trade policies to increase costs</span></div>
-        <div class="stat"><strong>66%</strong><span>plan to restructure supply chains if input costs rise in 2026</span></div>
+      <div class="tabs"><span class="tab current">Which cost?</span><span class="tab">Same product</span><span class="tab">Explain before calculating</span></div>
+      <p class="kicker">Tidal Goods Co. · Opening question</p>
+      <h2>One sale—but which purchase cost?</h2>
+      <div class="opening-purchases" aria-label="Identical bags purchased at two different costs">
+        <div><span>Earlier purchase</span><strong>$48 per bag</strong><p>Older purchase costs</p></div>
+        <span class="opening-plus" aria-hidden="true">+</span>
+        <div><span>Later purchase</span><strong>$52 per bag</strong><p>Newer purchase costs</p></div>
+        <span class="opening-plus" aria-hidden="true">→</span>
+        <div class="opening-sale"><span>One identical bag sells</span><strong>$80 revenue</strong><p>Which cost belongs to this sale?</p></div>
       </div>
-      <div class="activity" style="margin-top:22px">
-        <div class="activity-grid"><p><span class="activity-label">What</span>Predict which decision changes first: inventory, price, supplier, or overhead</p><p><span class="activity-label">How</span>Vote + pair</p><p><span class="activity-label">Deliverable</span>One reason</p></div>
-      </div>
-      <p class="source">Source: <a href="https://www.deloitte.com/global/en/Industries/consumer/perspectives/global-retail-industry-outlook.html">Deloitte, 2026 Global Retail Industry Outlook</a> · survey of 330 retail executives</p>
-      <button class="reveal-toggle" aria-controls="context-reveal" aria-expanded="false">Walk through the analysis and decision</button>
+      <p class="opening-question">Should we assign the <strong>older cost</strong>, the <strong>newer cost</strong>, or a <strong>blended cost</strong> to the sale?</p>
+      <div class="activity"><p><strong>Your task:</strong> choose a cost rule and explain your reason to a partner. No calculation needed. Which choice would leave more gross profit?</p></div>
+      <button class="reveal-toggle" aria-controls="context-reveal" aria-expanded="false">Connect your choice to the inventory methods</button>
       <div class="lesson-reveal" id="context-reveal" hidden>
-        <div class="reveal-head"><h3>From a cost increase to a decision</h3><button class="close-reveal">Return to the task</button></div>
-        <p id="context-progress" class="kicker" aria-live="polite">Step 1 of 5 · Confirm the facts</p>
-        <div class="context-step">
-          <h3>1 · What changed—and what stayed the same?</h3>
-          <table class="reveal-table"><thead><tr><th>For one bag sold</th><th>Before</th><th>New-cost case</th></tr></thead><tbody><tr><td>Selling price</td><td>$80</td><td>$80 · unchanged</td></tr><tr><td>Cost assigned to the sale</td><td>$48</td><td>$52 · up $4</td></tr></tbody></table>
-          <p class="reveal-note">For this comparison, assume the bag sold carries the new $52 cost. A new supplier quote does not automatically change the cost of older inventory.</p>
-          <p class="callout">First question: are we analyzing a new purchase, an actual sale, or inventory still on hand?</p>
-        </div>
-        <div class="context-step" hidden>
-          <h3>2 · Calculate profit dollars, then margin</h3>
-          <table class="reveal-table"><thead><tr><th>Calculation</th><th>Before</th><th>New-cost case</th></tr></thead><tbody><tr><td>Gross profit = price − cost</td><td>$80 − $48 = $32</td><td>$80 − $52 = $28</td></tr><tr><td>Gross margin = profit ÷ price</td><td>$32 ÷ $80 = 40%</td><td>$28 ÷ $80 = 35%</td></tr></tbody></table>
-          <p class="callout">Each bag now leaves $4 less to cover operating costs and contribute to profit.</p>
-          <p class="reveal-note">Revenue per bag remains $80. Gross profit falls; this example does not establish that sales volume or revenue has fallen.</p>
-        </div>
-        <div class="context-step" hidden>
-          <h3>3 · Name the problem before choosing a response</h3>
-          <div class="formula-panel"><span class="fn">=(32-28)/32</span><span>$4 ÷ $32 = 12.5% less gross profit per bag</span></div>
-          <p class="reveal-note">The margin falls by <strong>5 percentage points</strong>, from 40% to 35%. That differs from the 12.5% decline in profit dollars.</p>
-          <p class="callout">Problem: at the same selling price and units sold, the business earns less gross profit. We need to recover profit without losing too many sales or compromising supply.</p>
-          <p class="reveal-note">This is gross profit, before overhead. We have not calculated net profit.</p>
-        </div>
-        <div class="context-step" hidden>
-          <h3>4 · Compare concrete responses</h3>
-          <table class="reveal-table"><thead><tr><th>Response</th><th>Profit per bag</th><th>Evidence needed</th></tr></thead><tbody><tr><td>Keep the $80 price; cost $52</td><td>$80 − $52 = $28</td><td>Can the lower profit support the business?</td></tr><tr><td>Test an $84 price; cost $52</td><td>$84 − $52 = $32</td><td>Will customers still buy enough bags?</td></tr><tr><td>Seek a lower delivered cost</td><td>At $48 cost: $80 − $48 = $32</td><td>Actual quote, freight, quality and lead time</td></tr></tbody></table>
-          <p class="reveal-note">$84 restores the original <strong>$32 profit per bag</strong>, but margin is $32 ÷ $84 = <strong>38.1%</strong>. It does not restore the original 40% margin.</p>
-          <p class="reveal-note">The $48 supplier cost is a target to investigate, not an available quote.</p>
-        </div>
-        <div class="context-step" hidden>
-          <h3>5 · Recommend a test, then define the decision rule</h3>
-          <p class="callout"><strong>Recommendation:</strong> test the $84 price on a limited basis and request comparable delivered-cost quotes before committing to a broader change.</p>
-          <p class="reveal-note"><strong>Measure:</strong> compare units sold and total gross profit over comparable periods: units sold × gross profit per bag.</p>
-          <p class="reveal-note"><strong>Decide:</strong> expand the price change only if total gross profit improves. If lost sales outweigh the extra $4 per bag, reconsider the price and supplier options.</p>
-          <p class="reveal-note"><strong>Supplier rule:</strong> switch only if delivered cost improves and quality, availability and lead time meet the business’s needs.</p>
-          <p class="reveal-note"><strong>Why conditional?</strong> we know the unit economics; we still need demand and supplier evidence. Check overhead separately before concluding that net profit improves.</p>
-        </div>
-        <div class="context-controls"><button type="button" id="context-back" disabled>Previous step</button><button type="button" id="context-next">Next step</button></div>
-      </div><div class="footer"><span>Cost pressure creates measurement pressure</span><span>02 / 23</span></div>
+        <div class="reveal-head"><h3>Your choices have names</h3><button class="close-reveal">Return to the task</button></div>
+        <table class="reveal-table"><thead><tr><th>Your cost rule</th><th>Inventory method</th><th>For these rising purchase costs</th></tr></thead><tbody>
+          <tr><td>Older purchase cost first</td><td><strong>FIFO</strong><br>First In, First Out</td><td>Lower cost goes to the sale first → more gross profit</td></tr>
+          <tr><td>Newer purchase cost first</td><td><strong>LIFO</strong><br>Last In, First Out</td><td>Higher cost goes to the sale first → less gross profit</td></tr>
+          <tr><td>Blend costs by quantity</td><td><strong>Weighted average</strong></td><td>A shared average cost lies between the two purchase costs</td></tr>
+        </tbody></table>
+        <p class="reveal-note"><strong>What you were evaluating:</strong> the rule for assigning purchase costs to goods sold—not a pricing or supplier decision.</p>
+        <p class="reveal-note"><strong>Why it matters:</strong> the same $80 sale can have different assigned costs and gross profit. The costs not assigned to sales remain with the inventory still on hand.</p>
+        <p class="callout">These are cost-assignment rules. They do not necessarily describe which physical bag leaves the shelf.</p>
+        <p class="reveal-note"><strong>Next:</strong> learn the rules, then calculate FIFO, LIFO, and weighted average in that order. We need purchase quantities to calculate the weighted average.</p>
+      </div>
+      <div class="footer"><span>Choose a cost rule → learn its name → calculate its effect</span><span>02 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Overview" aria-label="Slide 3">
@@ -398,7 +377,7 @@
         <div class="card steel"><span class="number">3</span><h3>Build COGS</h3><p>Reconcile goods available, ending inventory, and gross profit</p></div>
         <div class="card terra"><span class="number">4</span><h3>Allocate &amp; advise</h3><p>Select overhead drivers and defend a response</p></div>
       </div>
-      <div class="footer"><span>Predict → model → reconcile → recommend</span><span>03 / 23</span></div>
+      <div class="footer"><span>Predict → model → reconcile → recommend</span><span>03 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Overview" aria-label="Slide 4">
@@ -410,7 +389,7 @@
         <div class="card"><div class="takeaway"><span class="number">3</span><p>Choose a defensible allocation driver for each overhead cost pool</p></div><div class="takeaway"><span class="number">4</span><p>Recommend an action and name the control that supports it</p></div></div>
       </div>
       <p class="callout"><strong>Prior-learning bridge:</strong> margin and markup return briefly after the COGS schedule. They are not a separate unit today.</p>
-      <div class="footer"><span>Accuracy + interpretation + judgment</span><span>04 / 23</span></div>
+      <div class="footer"><span>Accuracy + interpretation + judgment</span><span>04 / 24</span></div>
     </section>
 
     <section class="slide dark break" data-part="Inventory" aria-label="Slide 5">
@@ -419,7 +398,7 @@
       <h2>Which costs leave the shelf</h2>
       <p class="lead">The physical sale is the same. The cost-flow assumption changes COGS, profit, and ending inventory.</p>
       <span class="section-mark">01</span>
-      <div class="footer"><span>Inventory valuation</span><span>05 / 23</span></div>
+      <div class="footer"><span>Inventory valuation</span><span>05 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Inventory" aria-label="Slide 6" id="cost-methods">
@@ -442,7 +421,7 @@
         </div>
       </div>
       <p class="method-check"><strong>Say it before calculating:</strong> “Oldest first” = ___ · “Newest first” = ___ · “Blend by quantity” = ___</p>
-      <div class="footer"><span>Cost assignment—not necessarily the order goods physically leave the shelf</span><span>06 / 23</span></div>
+      <div class="footer"><span>Cost assignment—not necessarily the order goods physically leave the shelf</span><span>06 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Inventory" aria-label="Slide 7">
@@ -456,49 +435,66 @@
         </table>
         <div class="card gold"><h3>19 units sold at $420 each</h3><p>Before calculating costs:</p><ul><li>Start with the 8 oldest boards</li><li>How many of the 19 sales still need a cost?</li><li>Which purchase supplies those units?</li></ul><p class="small muted">Decide the units first; calculate dollars second.</p></div>
       </div>
-      <button class="reveal-toggle" aria-controls="inventory-walkthrough" aria-expanded="false">Show worked example</button><div class="lesson-reveal" id="inventory-walkthrough" hidden><div class="reveal-head"><h3>Follow the costs through the sale</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Cost layer</th><th>FIFO units sold</th><th>Cost assigned</th><th>Units left</th></tr></thead><tbody><tr><td>8 at $205</td><td>8</td><td>$1,640</td><td>0</td></tr><tr><td>12 at $232</td><td>11</td><td>$2,552</td><td>1</td></tr><tr><td>10 at $258</td><td>0</td><td>$0</td><td>10</td></tr><tr><td>Total</td><td>19</td><td>$4,192</td><td>11</td></tr></tbody></table><div class="formula-panel"><span class="fn">E6 = D6*C6 · F6 = B6-D6 · G6 = F6*C6</span><span>Cost sold = units sold × cost per unit. Units left = available − sold.</span></div><p class="reveal-note">Enter sold quantities in D6:D8: 8, then 11, then 0. Calculate E6:G8 and sum each column in row 9. We sold 19: all 8 oldest, then 11 from March. No April units are needed.</p></div><div class="footer"><span>Quantities differ · the sale crosses a layer</span><span>07 / 23</span></div>
+      <button class="reveal-toggle" aria-controls="inventory-walkthrough" aria-expanded="false">Show worked example</button><div class="lesson-reveal" id="inventory-walkthrough" hidden><div class="reveal-head"><h3>Follow the costs through the sale</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Cost layer</th><th>FIFO units sold</th><th>Cost assigned</th><th>Units left</th></tr></thead><tbody><tr><td>8 at $205</td><td>8</td><td>$1,640</td><td>0</td></tr><tr><td>12 at $232</td><td>11</td><td>$2,552</td><td>1</td></tr><tr><td>10 at $258</td><td>0</td><td>$0</td><td>10</td></tr><tr><td>Total</td><td>19</td><td>$4,192</td><td>11</td></tr></tbody></table><div class="formula-panel"><span class="fn">E6 = D6*C6 · F6 = B6-D6 · G6 = F6*C6</span><span>Cost sold = units sold × cost per unit. Units left = available − sold.</span></div><p class="reveal-note">Enter sold quantities in D6:D8: 8, then 11, then 0. Calculate E6:G8 and sum each column in row 9. We sold 19: all 8 oldest, then 11 from March. No April units are needed.</p></div><div class="footer"><span>Quantities differ · the sale crosses a layer</span><span>07 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Inventory" aria-label="Slide 8">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Build first</span><span class="tab">Reveal second</span></div>
+      <p class="kicker">Productive struggle</p>
+      <h2>FIFO first: guided A, then independent B</h2><table class="reveal-table"><thead><tr><th>Step</th><th>A · 19 sold</th><th>B · 21 sold</th></tr></thead><tbody><tr><td>Choose units sold, oldest first</td><td>D6:D8</td><td>D22:D24</td></tr><tr><td>Calculate cost sold, units left, ending value</td><td>E6:G8</td><td>E22:G24</td></tr><tr><td>Sum each column</td><td>D9:G9</td><td>D25:G25</td></tr></tbody></table><p class="callout">Finish both FIFO tables before moving to LIFO. Guided A flows into Management Model automatically.</p><button class="reveal-toggle" aria-controls="inventory-practice" aria-expanded="false">Reveal FIFO results</button><div class="lesson-reveal" id="inventory-practice" hidden><div class="reveal-head"><h3>Compare after your attempt</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>FIFO result</th><th>A · 19 sold</th><th>B · 21 sold</th></tr></thead><tbody><tr><td>Sold units: oldest → newest</td><td>8 / 11 / 0</td><td>8 / 12 / 1</td></tr><tr><td>COGS</td><td>$4,192</td><td>$4,682</td></tr><tr><td>Units left / ending value</td><td>11 / $2,812</td><td>9 / $2,322</td></tr></tbody></table><p class="reveal-note">Next compare LIFO: start with the newest purchase, using the same 19 sales as guided A.</p></div><div class="footer"><span>Attempt → compare → reconcile</span><span>08 / 24</span></div>
+    </section>
+
+    <section class="slide" data-part="Inventory" aria-label="Slide 9">
       <div class="tabs"><span class="tab current">Reading table</span><span class="tab">Four methods</span><span class="tab">Decision use</span></div>
       <p class="kicker">Reinforcement from the prereading</p>
-      <h2>Match the method to the business question</h2>
+      <h2>LIFO uses the newest costs first</h2>
       <table class="tight grow">
         <thead><tr><th>Method</th><th>Cost-flow logic</th><th>Best fit</th><th>Watch for</th></tr></thead>
         <tbody><tr><td><strong>Specific ID</strong></td><td>Trace the exact unit sold</td><td>Unique, high-value items</td><td>Tracking burden</td></tr><tr><td><strong>FIFO</strong></td><td>Oldest costs reach COGS first</td><td>Perishable or rotating stock</td><td>Higher profit when costs rise</td></tr><tr><td><strong>LIFO</strong></td><td>Newest costs reach COGS first</td><td>Permitted U.S. reporting situations</td><td>Not permitted under IFRS</td></tr><tr><td><strong>Weighted average</strong></td><td>Blend all available unit costs</td><td>Similar, interchangeable units</td><td>Use quantity-weighted—not simple—average</td></tr></tbody>
       </table>
-      <div class="activity"><p><strong>Inventory-layer sorting:</strong> label three layers: 8 at $205, 12 at $232, 10 at $258. Move 19 units into “sold,” oldest first. Explain which 11 remain. Then repeat with 21 sold. For LIFO, return to 19 sold and start with the newest purchase: Live You Try It D54:G57.</p></div>
-      <button class="reveal-toggle" aria-controls="lifo-practice-reveal" aria-expanded="false">Reveal LIFO after your attempt</button><div class="lesson-reveal" id="lifo-practice-reveal" hidden><div class="reveal-head"><h3>LIFO: newest costs first, same 19 sales</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Purchase</th><th>Units sold</th><th>Cost sold</th><th>Units left / value</th></tr></thead><tbody><tr><td>Beginning: 8 at $205</td><td>0</td><td>$0</td><td>8 / $1,640</td></tr><tr><td>March: 12 at $232</td><td>9</td><td>$2,088</td><td>3 / $696</td></tr><tr><td>April: 10 at $258</td><td>10</td><td>$2,580</td><td>0 / $0</td></tr><tr><td>Total</td><td>19</td><td>$4,668</td><td>11 / $2,336</td></tr></tbody></table><p class="reveal-note">Work upward: all 10 newest April units, then 9 March units. No beginning units are sold under LIFO.</p><div class="formula-panel"><span class="fn">E54 = D54*C54 · F54 = B54-D54 · G54 = F54*C54</span><span>Use the same simple formulas as FIFO; change which purchase units are assigned to sales.</span></div><p class="reveal-note">Compare the same 19 sales: FIFO COGS $4,192; weighted average $4,435.87; LIFO $4,668. With rising purchase costs, newest-first assigns more cost to sales.</p></div><div class="footer"><span>Table carried forward from the reading</span><span>08 / 23</span></div>
+      <div class="activity"><p><strong>Inventory-layer sorting:</strong> Use the same 19 sales as guided FIFO. Start with the newest April purchase, then work backward. Complete Live You Try It D38:G41 and explain which 11 units remain.</p></div>
+      <button class="reveal-toggle" aria-controls="lifo-practice-reveal" aria-expanded="false">Reveal LIFO after your attempt</button><div class="lesson-reveal" id="lifo-practice-reveal" hidden><div class="reveal-head"><h3>LIFO: newest costs first, same 19 sales</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Purchase</th><th>Units sold</th><th>Cost sold</th><th>Units left / value</th></tr></thead><tbody><tr><td>Beginning: 8 at $205</td><td>0</td><td>$0</td><td>8 / $1,640</td></tr><tr><td>March: 12 at $232</td><td>9</td><td>$2,088</td><td>3 / $696</td></tr><tr><td>April: 10 at $258</td><td>10</td><td>$2,580</td><td>0 / $0</td></tr><tr><td>Total</td><td>19</td><td>$4,668</td><td>11 / $2,336</td></tr></tbody></table><p class="reveal-note">Work upward: all 10 newest April units, then 9 March units. No beginning units are sold under LIFO.</p><div class="formula-panel"><span class="fn">E38 = D38*C38 · F38 = B38-D38 · G38 = F38*C38</span><span>Use the same simple formulas as FIFO; change which purchase units are assigned to sales.</span></div><p class="reveal-note">Compare the same 19 sales: FIFO COGS $4,192; LIFO $4,668. With rising purchase costs, newest-first assigns more cost to sales.</p></div><div class="footer"><span>Table carried forward from the reading</span><span>09 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Inventory" aria-label="Slide 9">
-      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Build first</span><span class="tab">Reveal second</span></div>
-      <p class="kicker">Productive struggle</p>
-      <h2>FIFO first: guided A, then independent B</h2><table class="reveal-table"><thead><tr><th>Step</th><th>A · 19 sold</th><th>B · 21 sold</th></tr></thead><tbody><tr><td>Choose units sold, oldest first</td><td>D6:D8</td><td>D22:D24</td></tr><tr><td>Calculate cost sold, units left, ending value</td><td>E6:G8</td><td>E22:G24</td></tr><tr><td>Sum each column</td><td>D9:G9</td><td>D25:G25</td></tr></tbody></table><p class="callout">Explain both FIFO tables before moving to weighted average. Guided A flows into Management Model automatically.</p><button class="reveal-toggle" aria-controls="inventory-practice" aria-expanded="false">Reveal FIFO, then compare weighted average</button><div class="lesson-reveal" id="inventory-practice" hidden><div class="reveal-head"><h3>Compare after your attempt</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>FIFO result</th><th>A · 19 sold</th><th>B · 21 sold</th></tr></thead><tbody><tr><td>Sold units: oldest → newest</td><td>8 / 11 / 0</td><td>8 / 12 / 1</td></tr><tr><td>COGS</td><td>$4,192</td><td>$4,682</td></tr><tr><td>Units left / ending value</td><td>11 / $2,812</td><td>9 / $2,322</td></tr></tbody></table><div class="formula-panel"><span class="fn">E40 = B40/B41 · E41 = B11*E40 · E42 = F9*E40</span><span>Stage 2: total cost ÷ total units; apply the average to sold and remaining units.</span></div><p class="reveal-note">Then complete weighted average A E40:E42 and B F40:F42. Average = $233.4666667; A sold cost = $4,435.87; B = $4,902.80. Keep full precision.</p></div><div class="footer"><span>Attempt → compare → reconcile</span><span>09 / 23</span></div>
+    <section class="slide" data-part="Inventory" aria-label="Slide 10">
+      <div class="tabs"><span class="tab current">Weighted average last</span><span class="tab">Blend costs</span><span class="tab">Compare all three</span></div>
+      <p class="kicker">After FIFO and LIFO</p><h2>Weighted average blends the available costs</h2>
+      <p class="lead">Live You Try It rows 52–62: find one average cost per board, then apply it to sold and remaining boards.</p>
+      <div class="formula-panel"><span class="fn">E56 = B56/B57 · E57 = B11*E56 · E58 = F9*E56</span><span>Total cost ÷ total units → average cost. Multiply by units sold or units left.</span></div>
+      <p class="callout">Complete A E56:E58, then B F56:F58. Keep full precision. Larger purchases carry more weight.</p>
+      <button class="reveal-toggle" aria-controls="weighted-last" aria-expanded="false">Reveal weighted average and compare</button>
+      <div class="lesson-reveal" id="weighted-last" hidden><div class="reveal-head"><h3>Same 19 sales, three cost assignments</h3><button class="close-reveal">Return to the task</button></div>
+      <div class="formula-panel"><span class="fn">=7004/30</span><span>$7,004 ÷ 30 = $233.4666667 per board. A: 19 sold and 11 left.</span></div>
+      <table class="reveal-table"><thead><tr><th>Method</th><th>COGS</th><th>Ending inventory</th></tr></thead><tbody><tr><td>FIFO · oldest first</td><td>$4,192</td><td>$2,812</td></tr><tr><td>LIFO · newest first</td><td>$4,668</td><td>$2,336</td></tr><tr><td>Weighted average · blended</td><td>$4,435.87</td><td>$2,568.13</td></tr></tbody></table>
+      <p class="reveal-note">A: 19 × average = $4,435.87; 11 × average = $2,568.13. B: 21 sold → $4,902.80; 9 left → $2,101.20.</p>
+      <p class="reveal-note">Each method assigns the same $7,004 total cost. With rising purchase costs, weighted average lies between FIFO and LIFO.</p></div>
+      <div class="footer"><span>FIFO → LIFO → weighted average</span><span>10 / 24</span></div>
     </section>
 
-    <section class="slide dark break" data-part="COGS" aria-label="Slide 10">
+    <section class="slide dark break" data-part="COGS" aria-label="Slide 11">
       <div class="tabs"><span class="tab">Inventory</span><span class="tab current">Part 2</span><span class="tab">COGS</span></div>
       <p class="kicker">Part 2</p><div class="accent-line"></div>
       <h2>Turn inventory into an income-statement story</h2>
       <p class="lead">A COGS schedule is not finished until goods available reconcile and the result connects to gross profit.</p>
       <span class="section-mark">02</span>
-      <div class="footer"><span>COGS and gross profit</span><span>10 / 23</span></div>
+      <div class="footer"><span>COGS and gross profit</span><span>11 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="COGS" aria-label="Slide 11">
+    <section class="slide" data-part="COGS" aria-label="Slide 12">
       <div class="tabs"><span class="tab current">COGS schedule</span><span class="tab">Reconcile</span><span class="tab">Interpret</span></div>
-      <p class="kicker">Same raw data · two valid cost flows</p>
-      <h2>Build the complete schedule—not a single answer cell</h2>
+      <p class="kicker">Same raw data · same completed practice</p>
+      <p class="lead">Use the results you already calculated in Live You Try It. Check the two totals below; this is not a new inventory exercise.</p>
+      <h2>Check your existing inventory results</h2>
       <div class="equation"><div class="term"><strong>Beginning inventory</strong><br>$1,640</div><div class="op">+</div><div class="term"><strong>Purchases</strong><br>$5,364</div><div class="op">−</div><div class="term"><strong>Ending inventory</strong><br>method dependent</div><div class="op">=</div><div class="term"><strong>COGS</strong><br>method dependent</div></div>
       <div class="grid-2 grow">
         <div class="card sage"><h3>Control 1 · Cost</h3><p>COGS + ending inventory must equal $7,004 of goods available.</p></div>
         <div class="card steel"><h3>Control 2 · Units</h3><p>Units sold + ending units must equal 30 units available.</p></div>
       </div>
-      <div class="footer"><span>Every method must reconcile to the same goods available</span><span>11 / 23</span></div>
+      <p class="callout">Next workbook task: on slide 14, use these results in Management Model rows 25–32 to calculate gross profit.</p>
+      <div class="footer"><span>Check existing results → calculate gross profit on slide 14</span><span>12 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="COGS" aria-label="Slide 12">
+    <section class="slide" data-part="COGS" aria-label="Slide 13">
       <div class="tabs"><span class="tab current">Error path</span><span class="tab">Two periods</span><span class="tab">Audit logic</span></div>
       <p class="kicker">Why the ending count matters</p>
       <h2>One inventory error travels through the statements</h2>
@@ -506,16 +502,16 @@
         <div class="node">Ending inventory overstated</div><div class="node">Current COGS understated</div><div class="node">Current profit overstated</div><div class="node">Next beginning inventory overstated</div>
       </div>
       <p class="callout warning"><strong>Audit task:</strong> a model assigns sold units 0 / 9 / 10, reports $4,668 COGS and $2,336 ending inventory, and reconciles to $7,004. Does this prove FIFO? Explain before opening the reveal.</p>
-      <button class="reveal-toggle" aria-controls="audit-reveal" aria-expanded="false">Reveal the audit explanation</button><div class="lesson-reveal" id="audit-reveal" hidden><div class="reveal-head"><h3>PASS totals can still hide a wrong method</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Model called FIFO</th><th>Units sold by layer</th><th>COGS / ending</th></tr></thead><tbody><tr><td>Correct FIFO</td><td>8 / 11 / 0</td><td>$4,192 / $2,812</td></tr><tr><td>Wrong cost order</td><td>0 / 9 / 10</td><td>$4,668 / $2,336</td></tr></tbody></table><p class="lead">Both assign 19 units and reconcile to $7,004. Only one follows FIFO.</p><p class="callout">Check oldest-layer exhaustion and unit × cost for every layer. A balanced total alone is insufficient.</p></div><div class="footer"><span>Balance sheet → income statement → next period</span><span>12 / 23</span></div>
-    </section>
-
-    <section class="slide" data-part="COGS" aria-label="Slide 13">
-      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">COGS schedule</span><span class="tab">Explain variance</span></div>
-      <p class="kicker">Model + interpretation</p>
-      <h2>Use inventory results to find gross profit</h2><div class="formula-panel"><span class="fn">B29 = B27-B28 · B31 = B30-B29 · B32 = B31/B30</span><span>Goods available − ending inventory → COGS; revenue − COGS → gross profit</span></div><p class="lead">Stage 3: complete Management Model rows 25–32 for the original 19-board sale. FIFO and weighted-average inventory results already link from your practice.</p><p class="callout">Explain why ending inventory is subtracted. Build the schedule once, then compare the two methods.</p><button class="reveal-toggle" aria-controls="schedule-reveal" aria-expanded="false">Reveal schedule and interpretation</button><div class="lesson-reveal" id="schedule-reveal" hidden><div class="reveal-head"><h3>The complete 19-board management schedule</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Schedule / outcome</th><th>FIFO</th><th>Weighted average</th></tr></thead><tbody><tr><td>Beginning + purchases</td><td>$1,640 + $5,364</td><td>$1,640 + $5,364</td></tr><tr><td>Goods available</td><td>$7,004.00</td><td>$7,004.00</td></tr><tr><td>Ending inventory</td><td>$2,812.00</td><td>$2,568.13</td></tr><tr><td>COGS</td><td>$4,192.00</td><td>$4,435.87</td></tr><tr><td>Paddleboard revenue</td><td>$7,980.00</td><td>$7,980.00</td></tr><tr><td>Gross profit / margin</td><td>$3,788 / 47.47%</td><td>$3,544.13 / 44.41%</td></tr></tbody></table><p class="reveal-note">B FIFO: revenue $8,820; COGS $4,682; gross profit $4,138; margin 46.92%.</p><p class="reveal-note">FIFO reports $243.87 less COGS and more gross profit because older costs are lower. Neither method changes the actual sale.</p></div><div class="footer"><span>Formula syntax follows business logic</span><span>13 / 23</span></div>
+      <button class="reveal-toggle" aria-controls="audit-reveal" aria-expanded="false">Reveal the audit explanation</button><div class="lesson-reveal" id="audit-reveal" hidden><div class="reveal-head"><h3>PASS totals can still hide a wrong method</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Model called FIFO</th><th>Units sold by layer</th><th>COGS / ending</th></tr></thead><tbody><tr><td>Correct FIFO</td><td>8 / 11 / 0</td><td>$4,192 / $2,812</td></tr><tr><td>Wrong cost order</td><td>0 / 9 / 10</td><td>$4,668 / $2,336</td></tr></tbody></table><p class="lead">Both assign 19 units and reconcile to $7,004. Only one follows FIFO.</p><p class="callout">Check oldest-layer exhaustion and unit × cost for every layer. A balanced total alone is insufficient.</p></div><div class="footer"><span>Balance sheet → income statement → next period</span><span>13 / 24</span></div>
     </section>
 
     <section class="slide" data-part="COGS" aria-label="Slide 14">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">COGS schedule</span><span class="tab">Explain variance</span></div>
+      <p class="kicker">Model + interpretation</p>
+      <h2>Use inventory results to find gross profit</h2><div class="formula-panel"><span class="fn">B29 = B27-B28 · B31 = B30-B29 · B32 = B31/B30</span><span>Goods available − ending inventory → COGS; revenue − COGS → gross profit</span></div><p class="lead">Stage 3: complete Management Model rows 25–32 for the original 19-board sale. FIFO and weighted-average inventory results already link from your practice.</p><p class="callout">Explain why ending inventory is subtracted. Build the schedule once, then compare the two methods.</p><button class="reveal-toggle" aria-controls="schedule-reveal" aria-expanded="false">Reveal schedule and interpretation</button><div class="lesson-reveal" id="schedule-reveal" hidden><div class="reveal-head"><h3>The complete 19-board management schedule</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Schedule / outcome</th><th>FIFO</th><th>Weighted average</th></tr></thead><tbody><tr><td>Beginning + purchases</td><td>$1,640 + $5,364</td><td>$1,640 + $5,364</td></tr><tr><td>Goods available</td><td>$7,004.00</td><td>$7,004.00</td></tr><tr><td>Ending inventory</td><td>$2,812.00</td><td>$2,568.13</td></tr><tr><td>COGS</td><td>$4,192.00</td><td>$4,435.87</td></tr><tr><td>Paddleboard revenue</td><td>$7,980.00</td><td>$7,980.00</td></tr><tr><td>Gross profit / margin</td><td>$3,788 / 47.47%</td><td>$3,544.13 / 44.41%</td></tr></tbody></table><p class="reveal-note">B FIFO: revenue $8,820; COGS $4,682; gross profit $4,138; margin 46.92%.</p><p class="reveal-note">FIFO reports $243.87 less COGS and more gross profit because older costs are lower. Neither method changes the actual sale.</p></div><div class="footer"><span>Formula syntax follows business logic</span><span>14 / 24</span></div>
+    </section>
+
+    <section class="slide" data-part="COGS" aria-label="Slide 15">
       <div class="tabs"><span class="tab current">Prior-learning bridge</span><span class="tab">Margin</span><span class="tab">Markup</span></div>
       <p class="kicker">Brief denominator check</p>
       <h2>Same dollars, different denominator</h2>
@@ -527,19 +523,19 @@
         <div class="card gold"><h3>Denominator check</h3><p>If price is $80 and cost is $48, which is larger: margin or markup?</p><p class="small muted">Name the denominator before calculating.</p></div>
       </div>
       <p class="callout">Today’s management model uses <strong>gross margin</strong> because it connects revenue to COGS.</p>
-      <div class="footer"><span>Reading table reinforced · prior concept, not a new unit</span><span>14 / 23</span></div>
+      <div class="footer"><span>Reading table reinforced · prior concept, not a new unit</span><span>15 / 24</span></div>
     </section>
 
-    <section class="slide dark break" data-part="Overhead" aria-label="Slide 15">
+    <section class="slide dark break" data-part="Overhead" aria-label="Slide 16">
       <div class="tabs"><span class="tab">COGS</span><span class="tab current">Part 3</span><span class="tab">Overhead</span></div>
       <p class="kicker">Part 3</p><div class="accent-line"></div>
       <h2>Allocate shared costs with evidence</h2>
       <p class="lead">A fair driver should reflect what causes—or meaningfully benefits from—the cost.</p>
       <span class="section-mark">03</span>
-      <div class="footer"><span>Cost pools and allocation drivers</span><span>15 / 23</span></div>
+      <div class="footer"><span>Cost pools and allocation drivers</span><span>16 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Overhead" aria-label="Slide 16">
+    <section class="slide" data-part="Overhead" aria-label="Slide 17">
       <div class="tabs"><span class="tab current">Reading table</span><span class="tab">Cost pools</span><span class="tab">Driver judgment</span></div>
       <p class="kicker">Reinforcement from the prereading</p>
       <h2>Different costs deserve different drivers</h2>
@@ -548,10 +544,10 @@
         <tbody><tr><td>Rent</td><td class="right">$9,000</td><td>Square footage</td><td>Space creates the cost</td></tr><tr><td>Utilities</td><td class="right">$4,200</td><td>Measured usage / sq. ft.</td><td>Usage or occupied space</td></tr><tr><td>Insurance</td><td class="right">$3,800</td><td>Insured value / sq. ft.</td><td>Exposure drives coverage</td></tr><tr><td>Indirect labor</td><td class="right">$3,500</td><td>Labor hours / headcount</td><td>People supported</td></tr><tr><td>Maintenance</td><td class="right">$1,500</td><td>Maintenance hours / sq. ft.</td><td>Service effort or space</td></tr></tbody>
       </table>
       <p class="callout warning"><strong>Accounting boundary:</strong> internal allocation supports management decisions. It does not automatically turn store rent, utilities, or insurance into externally reported inventory cost.</p>
-      <div class="footer"><span>Table carried forward from the reading</span><span>16 / 23</span></div>
+      <div class="footer"><span>Table carried forward from the reading</span><span>17 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Overhead" aria-label="Slide 17">
+    <section class="slide" data-part="Overhead" aria-label="Slide 18">
       <div class="tabs"><span class="tab current">Worked structure</span><span class="tab">Rent</span><span class="tab">Square footage</span></div>
       <p class="kicker">One pool · one defensible base</p>
       <h2>Rent follows the space each department occupies</h2>
@@ -566,16 +562,16 @@
           <div class="card sage"><h3>Control check</h3><p>Department allocations must sum to the entire cost pool.</p></div>
         </div>
       </div>
-      <div class="footer"><span>Cause-and-benefit logic → allocation</span><span>17 / 23</span></div>
-    </section>
-
-    <section class="slide" data-part="Overhead" aria-label="Slide 18">
-      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Driver choice</span><span class="tab">Downside case</span></div>
-      <p class="kicker">Build + challenge</p>
-      <h2>Later stage: overhead detective</h2><p class="lead">When assigned, choose drivers and complete Management Model rows 37–48. Then explain the results in Decision Brief.</p><p class="callout">Predict: if revenue falls 10% but overhead stays fixed, does a higher overhead rate mean spending increased?</p><button class="reveal-toggle" aria-controls="overhead-reveal" aria-expanded="false">Reveal the downside calculation</button><div class="lesson-reveal" id="overhead-reveal" hidden><div class="reveal-head"><h3>Same spending, less revenue</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Metric</th><th>Base</th><th>10% revenue decline</th></tr></thead><tbody><tr><td>Overhead</td><td>$22,000</td><td>$22,000</td></tr><tr><td>Total business revenue</td><td>$110,000</td><td>$99,000</td></tr><tr><td>Overhead rate</td><td>20%</td><td>22.22%</td></tr></tbody></table><div class="formula-panel"><span class="fn">C46 = B46*(1-10%) · C48 = C47/C46</span><span>$110,000 × 90% = $99,000; $22,000 ÷ $99,000 = 22.22%</span></div><p class="reveal-note">Optional discussion: a 20% decline gives $88,000 revenue and a 25% rate. Spending is unchanged. Use total business revenue, separate from paddleboard sales.</p></div><div class="footer"><span>Driver judgment + scenario analysis</span><span>18 / 23</span></div>
+      <div class="footer"><span>Cause-and-benefit logic → allocation</span><span>18 / 24</span></div>
     </section>
 
     <section class="slide" data-part="Overhead" aria-label="Slide 19">
+      <div class="tabs"><span class="tab current">Workbook</span><span class="tab">Driver choice</span><span class="tab">Downside case</span></div>
+      <p class="kicker">Build + challenge</p>
+      <h2>Later stage: overhead detective</h2><p class="lead">When assigned, choose drivers and complete Management Model rows 37–48. Then explain the results in Decision Brief.</p><p class="callout">Predict: if revenue falls 10% but overhead stays fixed, does a higher overhead rate mean spending increased?</p><button class="reveal-toggle" aria-controls="overhead-reveal" aria-expanded="false">Reveal the downside calculation</button><div class="lesson-reveal" id="overhead-reveal" hidden><div class="reveal-head"><h3>Same spending, less revenue</h3><button class="close-reveal">Return to the task</button></div><table class="reveal-table"><thead><tr><th>Metric</th><th>Base</th><th>10% revenue decline</th></tr></thead><tbody><tr><td>Overhead</td><td>$22,000</td><td>$22,000</td></tr><tr><td>Total business revenue</td><td>$110,000</td><td>$99,000</td></tr><tr><td>Overhead rate</td><td>20%</td><td>22.22%</td></tr></tbody></table><div class="formula-panel"><span class="fn">C46 = B46*(1-10%) · C48 = C47/C46</span><span>$110,000 × 90% = $99,000; $22,000 ÷ $99,000 = 22.22%</span></div><p class="reveal-note">Optional discussion: a 20% decline gives $88,000 revenue and a 25% rate. Spending is unchanged. Use total business revenue, separate from paddleboard sales.</p></div><div class="footer"><span>Driver judgment + scenario analysis</span><span>19 / 24</span></div>
+    </section>
+
+    <section class="slide" data-part="Overhead" aria-label="Slide 20">
       <div class="tabs"><span class="tab current">Common mistake</span><span class="tab">Internal</span><span class="tab">External</span></div>
       <p class="kicker">Common mistake</p>
       <h2>Allocation does not rewrite financial reporting</h2>
@@ -585,10 +581,10 @@
         <p class="correct">External view: classify costs under the applicable reporting rules.</p>
         <div class="grid-2" style="margin-top:24px"><div class="card"><h3>Often inventoriable</h3><p>Purchase price, freight-in, and other costs required to bring inventory to its present location and condition</p></div><div class="card"><h3>Often period expense</h3><p>Store rent, selling expenses, and general administrative costs</p></div></div>
       </div>
-      <div class="footer"><span>Management usefulness ≠ accounting classification</span><span>19 / 23</span></div>
+      <div class="footer"><span>Management usefulness ≠ accounting classification</span><span>20 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Decision" aria-label="Slide 20">
+    <section class="slide" data-part="Decision" aria-label="Slide 21">
       <div class="tabs"><span class="tab current">Management huddle</span><span class="tab">Recommend</span><span class="tab">Defend</span></div>
       <p class="kicker">Integrated recommendation</p>
       <h2>What should Tidal do next</h2>
@@ -599,10 +595,10 @@
         </div>
       </div>
       <div class="grid-4" style="margin-top:18px"><div class="card sage"><h3>Action</h3><p class="small">What should change?</p></div><div class="card gold"><h3>Evidence</h3><p class="small">Which two numbers matter?</p></div><div class="card terra"><h3>Risk</h3><p class="small">What could mislead?</p></div><div class="card steel"><h3>Control</h3><p class="small">How will you verify?</p></div></div>
-      <div class="footer"><span>From calculation to management judgment</span><span>20 / 23</span></div>
+      <div class="footer"><span>From calculation to management judgment</span><span>21 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Decision" aria-label="Slide 21">
+    <section class="slide" data-part="Decision" aria-label="Slide 22">
       <div class="tabs"><span class="tab current">Debrief</span><span class="tab">Three takeaways</span><span class="tab">Transfer</span></div>
       <p class="kicker">What strong managers remember</p>
       <h2>Three ideas travel beyond this case</h2>
@@ -612,16 +608,16 @@
         <div class="card steel"><span class="number">3</span><h3>Drivers require judgment</h3><p>Choose evidence that reflects cause or benefit.</p></div>
       </div>
       <p class="callout"><strong>Transfer question:</strong> Which idea would matter most in a service business with little physical inventory?</p>
-      <div class="footer"><span>Calculate · control · explain</span><span>21 / 23</span></div>
+      <div class="footer"><span>Calculate · control · explain</span><span>22 / 24</span></div>
     </section>
 
-    <section class="slide" data-part="Decision" aria-label="Slide 22">
+    <section class="slide" data-part="Decision" aria-label="Slide 23">
       <div class="tabs"><span class="tab current">Workbook flow</span><span class="tab">Raw data</span><span class="tab">Decision brief</span></div>
       <p class="kicker">Your reusable workflow</p>
-      <h2>Your formula overview</h2><table class="reveal-table"><thead><tr><th>Business question</th><th>Management Model formula</th><th>Meaning</th></tr></thead><tbody><tr><td>Cost in a layer</td><td>=B6*C6</td><td>Quantity × unit cost</td></tr><tr><td>Weighted cost</td><td>=SUMPRODUCT(B6:B8,C6:C8)/SUM(B6:B8)</td><td>Total cost ÷ total units</td></tr><tr><td>COGS</td><td>=B27-B28</td><td>Available − remaining</td></tr><tr><td>Gross profit / margin</td><td>=B30-B29 · =B31/B30</td><td>Profit dollars / revenue share</td></tr><tr><td>Allocate a cost pool</td><td>=B37*D37/F37</td><td>Pool × department share</td></tr><tr><td>Overhead rate</td><td>=B47/B46</td><td>Overhead ÷ total business revenue</td></tr></tbody></table><p class="callout">Name the question → choose the base → reference cells → reconcile → explain. Keep full precision; format the display.</p><div class="footer"><span>Raw data → model → controls → recommendation</span><span>22 / 23</span></div>
+      <h2>Your formula overview</h2><table class="reveal-table"><thead><tr><th>Business question</th><th>Management Model formula</th><th>Meaning</th></tr></thead><tbody><tr><td>Cost in a layer</td><td>=B6*C6</td><td>Quantity × unit cost</td></tr><tr><td>Weighted cost</td><td>=SUMPRODUCT(B6:B8,C6:C8)/SUM(B6:B8)</td><td>Total cost ÷ total units</td></tr><tr><td>COGS</td><td>=B27-B28</td><td>Available − remaining</td></tr><tr><td>Gross profit / margin</td><td>=B30-B29 · =B31/B30</td><td>Profit dollars / revenue share</td></tr><tr><td>Allocate a cost pool</td><td>=B37*D37/F37</td><td>Pool × department share</td></tr><tr><td>Overhead rate</td><td>=B47/B46</td><td>Overhead ÷ total business revenue</td></tr></tbody></table><p class="callout">Name the question → choose the base → reference cells → reconcile → explain. Keep full precision; format the display.</p><div class="footer"><span>Raw data → model → controls → recommendation</span><span>23 / 24</span></div>
     </section>
 
-    <section class="slide dark" data-part="Close" aria-label="Slide 23">
+    <section class="slide dark" data-part="Close" aria-label="Slide 24">
       <div class="tabs"><span class="tab current">Exit ticket</span><span class="tab">Reflect</span><span class="tab">Close</span></div>
       <p class="kicker">Exit ticket</p>
       <h2>If the physical inventory count is wrong, what decision becomes least trustworthy</h2>
@@ -630,7 +626,7 @@
         <div class="card"><h3>Self-check</h3><p>Did you connect inventory → COGS → profit → decision?</p><p class="muted">Submit before leaving.</p></div>
       </div>
       <div class="accent-line"></div>
-      <div class="footer"><span>BUS123 · MATH M06</span><span>23 / 23</span></div>
+      <div class="footer"><span>BUS123 · MATH M06</span><span>24 / 24</span></div>
     </section>
   </main>
 
@@ -640,14 +636,15 @@
   <script type="application/json" id="speaker-notes">
 [
   "Welcome students and frame the lesson as a management-modeling sequence rather than three disconnected formulas. Ask: What makes a cost number trustworthy? Listen for source data, formulas, and controls. Misconception: a spreadsheet output is automatically reliable.",
-  "Walk through the five-step reveal using Next step and Previous step. 1: confirm $80 price and $48 to $52 cost; explicitly assume the sold bag carries the new cost, since a supplier quote does not revalue older inventory. 2: calculate $32 to $28 gross profit and 40% to 35% margin. Price and revenue per bag are unchanged; sales volume is unknown. 3: distinguish a $4 or 12.5% profit decline from a 5-percentage-point margin decline; gross profit is before overhead. 4: compare keeping $80, testing $84, and seeking lower delivered supplier cost. $84 restores $32 profit per bag but gives 38.1% margin, not 40%. A $48 supplier quote is a target, not a fact. 5: recommend a limited $84 price test plus comparable supplier quotes. Compare units sold and total gross profit over comparable periods; roll out only if total gross profit improves. Check supplier quality, availability, freight and lead time before switching. Check overhead separately before claiming improved net profit. Ask students what evidence could reverse the recommendation. Deloitte statistics remain opening context, not evidence that this specific decision will work.",
+  "Opening task requires no inventory calculation. Show identical bags from an earlier $48 purchase and a later $52 purchase, with one sale at $80. Ask which purchase cost to assign: older, newer, or blended, and which choice leaves more gross profit. Students explain a cost-assignment rule, not a pricing, supplier, or overhead decision. Reveal older first as FIFO, newer first as LIFO, and quantity-weighted blending as weighted average. With the rising costs shown, FIFO assigns a lower cost first and leaves more gross profit; LIFO assigns a higher cost and leaves less. Costs not assigned to sold goods remain in ending inventory. Clarify that accounting cost flow need not match physical picking order. Do not calculate an average from two prices without purchase quantities. Transition to learning the rules, then FIFO, LIFO, and weighted-average practice in that order.",
   "Preview the sequence and point out that the integrated recommendation is the endpoint. Emphasize that the workbook will be used throughout\u2014not saved for the end. Formative check: ask which step must precede interpretation; expected answer is passing the controls.",
   "Read the four targets as observable performances. Stress unequal quantities, a complete schedule, driver judgment, and a defensible recommendation. Misconception: knowing a formula is equivalent to understanding the model. Briefly state that margin versus markup is prior learning and will appear only as a denominator check.",
   "Introduce the inventory question: which costs leave the balance sheet and enter COGS? Ask students to predict why a method matters even when the physical units sold do not change. Expected rationale: reported COGS, profit, and ending inventory can differ.",
   "Before any calculations, define COGS as the cost assigned to goods sold and ending inventory as the cost of units still on hand. FIFO means First In, First Out: assign oldest purchase costs first, leaving newer costs in inventory. LIFO means Last In, First Out: assign newest costs first, leaving older costs in inventory. Weighted average blends total available cost across available units; a larger purchase quantity has more weight. The same average applies to sold and remaining units. These are cost-flow assumptions, not necessarily physical picking rules. For this lesson, weighted average means the period-wide average of the available inventory; moving average is not part of this activity. Ask students to complete the three verbal prompts: FIFO, LIFO, weighted average. No arithmetic yet. Next, demonstrate FIFO with the existing three-layer example.",
   "Start with FIFO only. Use all 8 oldest units; 19 minus 8 leaves 11 sales to cost from March. No April units are needed. Students enter D6:D8, then multiply in E, subtract in F, and multiply in G. Do not introduce MIN/MAX automation. Reveal after an attempt.",
-  "Inventory-layer sorting: use paper labels or draw three boxes for 8 at $205, 12 at $232, and 10 at $258. Students assign 19 units oldest first, explain the 11 remaining, and then repeat for 21. Clarify that this models accounting costs, not necessarily physical picking. Then use the LIFO comparison in Live You Try It D54:G57. Work upward from April: 10 newest units, 9 March, zero beginning. LIFO COGS $4,668 and ending inventory $2,336; 19 sold plus 11 left equals 30. Compare FIFO and weighted average for the same 19 sales. Reveal only after an attempt. LIFO is formative and does not change the assessed model or grading points.",
-  "Students complete guided A D6:G9 and independent B D22:G25 before weighted average. A sold units 8/11/0 gives $4,192 COGS and $2,812 ending; B 8/12/1 gives $4,682 and $2,322. Then use E40:E42 and F40:F42 to compare weighted average. Guided A flows into Management Model automatically.",
+  "Finish guided FIFO A D6:G9 and independent FIFO B D22:G25. Reveal the FIFO results after attempts. Move to LIFO next, then weighted average last. A FIFO COGS $4,192 and ending $2,812; B $4,682 and $2,322.",
+  "After completing FIFO, use LIFO practice D38:G41 for the same 19 sales. Work upward from newest April purchase: 10 April units, 9 March, zero beginning. LIFO COGS $4,668 and ending inventory $2,336; 19 sold plus 11 left equals 30. Compare FIFO $4,192 COGS and $2,812 ending with LIFO. Reveal only after the attempt. Weighted average is next; do not reveal its calculations here. LIFO remains formative.",
+  "Weighted average comes last, after FIFO A/B and LIFO. Complete Live You Try It E56:E58 for A and F56:F58 for B. Total cost $7,004 divided by 30 units gives $233.4666667. Apply the unrounded average to sold and remaining units. A COGS $4,435.87 and ending $2,568.13; B $4,902.80 and $2,101.20. Compare FIFO $4,192/$2,812 and LIFO $4,668/$2,336 for the same 19-unit sale. The cost allocation changes; units and total available cost do not.",
   "Transition from cost-flow mechanics to the income statement. Ask: What must remain constant across FIFO and WAC? Expected answers: 30 units available, 19 units sold, 11 ending units, and $7,004 total goods available.",
   "Build the COGS schedule verbally from left to right. The ending-inventory amount changes by method, but each method must reconcile COGS plus ending inventory to goods available. Ask students to identify the two controls before they calculate. Misconception: revenue belongs inside the COGS identity.",
   "Trace current and next-period inventory error direction. Then open the PASS-but-wrong audit: both sets of allocations reconcile, but 0,9,10 units sold is not FIFO. Ask students to identify the missing method control before discussing the solution.",
@@ -704,19 +701,6 @@
     window.addEventListener('resize', fitDeck);
     fitDeck();
     show(Math.max(0, (Number(location.hash.slice(1)) || 1) - 1));
-  </script>
-<script>
-    (()=>{
-      const steps=[...document.querySelectorAll('#context-reveal .context-step')];
-      const labels=['Confirm the facts','Calculate profit and margin','Identify the problem','Compare responses','Decide and follow up'];
-      let current=0;
-      const back=document.getElementById('context-back'),next=document.getElementById('context-next');
-      function show(){steps.forEach((step,i)=>step.hidden=i!==current);document.getElementById('context-progress').textContent=`Step ${current+1} of 5 · ${labels[current]}`;back.disabled=current===0;next.disabled=current===steps.length-1;}
-      back.addEventListener('click',()=>{if(current>0){current--;show();}});
-      next.addEventListener('click',()=>{if(current<steps.length-1){current++;show();}});
-      document.querySelector('[aria-controls="context-reveal"]').addEventListener('click',()=>{current=0;show();});
-      show();
-    })();
   </script>
 </body>
 </html>

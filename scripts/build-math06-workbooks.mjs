@@ -53,7 +53,7 @@ for(const kind of ['student','key']){
  write(start,'C7','Stage 1: A with the instructor (rows 4–17), then B independently (rows 20–33). Decide units sold first; calculate costs second.');
  write(start,'D7','You can explain which purchases supplied the sold units and which units remain.');
  write(start,'B8','Live You Try It');
- write(start,'C8','Stage 2: compare weighted average in rows 36–46 after finishing both FIFO tables. Use Formula Reference when needed.');
+ write(start,'C8','Stage 2: compare LIFO in rows 36–49, then weighted average in rows 52–62. Use Formula Reference when needed.');
  write(start,'D8','You can explain why the same sale has different assigned costs.');
  write(start,'B9','Management Model');
  write(start,'C9','Stage 3: FIFO and weighted-average A results flow here automatically. Complete the profit schedule and, when assigned, the later overhead work and Decision Brief.');
@@ -103,26 +103,26 @@ for(const kind of ['student','key']){
   formula(live,C('H',9),`=IF(COUNT(${C('D',6)}:${C('G',9)})<16,"TRY FIRST",IF(NOT(${expected}),"REVIEW: ${lifo?'newest':'oldest'} units first",IF(AND(${layerChecks},${totalChecks},${C('D',9)}=${C('B',11)},${C('D',9)}+${C('F',9)}=${C('B',9)},${C('E',9)}+${C('G',9)}=SUMPRODUCT(${C('B',6)}:${C('B',8)},${C('C',6)}:${C('C',8)})),"PASS: explain the units","REVIEW: units or costs")))`);
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},4)="PASS"`,{fill:'#EAF3EC',font:{color:'#355773'}});
   live.getRange(C('H',9)).conditionalFormats.addCustom(`LEFT(${C('H',9)},6)="REVIEW"`,{fill:'#FCE4D6',font:{color:'#9C0006'}});
-  note(R(17),lifo?'Compare the same 19 sales: FIFO E14/E15, weighted average E41/E42, LIFO E62/E63. Which method assigns more cost to sales when purchase costs rise?':v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more boards sold. Which purchases supply them? What happens to COGS and inventory left?');
+  note(R(17),lifo?'Compare the same 19 sales: FIFO E14/E15, LIFO E46/E47. Next: weighted average E57/E58. Which method assigns more cost to sales when purchase costs rise?':v.version==='A'?'Before B: explain why FIFO starts with the oldest purchase. How many sales still need a cost after each row?':'Compare A and B: two more boards sold. Which purchases supply them? What happens to COGS and inventory left?');
   live.getRange(`C${R(6)}:C${R(8)}`).setNumberFormat('"$"#,##0');
   for(const col of ['E','G'])live.getRange(`${col}${R(6)}:${col}${R(15)}`).setNumberFormat('"$"#,##0.00');
   for(const col of ['B','D','F'])live.getRange(`${col}${R(6)}:${col}${R(12)}`).setNumberFormat('0');
  }
- band(36,'Stage 2 · Weighted average: compare after both FIFO attempts');
- note(37,'Blend the cost of all 30 available boards. Calculate one average cost per board, then apply it to boards sold and boards left. Keep full precision.');
- live.getRange('A39:H39').values=[['Metric','Given / total','','','A: 19 sold','B: 21 sold','','Think / check']];live.getRange('A39:H39').format.fill='#EAF3EC';
- write(live,'A40','Average cost per board');formula(live,'B40',"=SUM('Raw Data'!D6:D8)");write(live,'H40','Total available cost ÷ total available units');
- write(live,'A41','Cost of boards sold');formula(live,'B41',"=SUM('Raw Data'!B6:B8)");write(live,'H41','Units sold × average cost per board');
- write(live,'A42','Ending inventory');write(live,'H42','Units left × average cost per board');
- write(live,'C40','Total cost');write(live,'C41','Total units');live.getRange('B40:B41').format.fill='#DDEBF7';live.getRange('B40').setNumberFormat('"$"#,##0.00');
+ band(52,'Stage 2 · Weighted average: compare after both FIFO attempts');
+ note(53,'Blend the cost of all 30 available boards. Calculate one average cost per board, then apply it to boards sold and boards left. Keep full precision.');
+ live.getRange('A55:H55').values=[['Metric','Given / total','','','A: 19 sold','B: 21 sold','','Think / check']];live.getRange('A55:H55').format.fill='#EAF3EC';
+ write(live,'A56','Average cost per board');formula(live,'B56',"=SUM('Raw Data'!D6:D8)");write(live,'H56','Total available cost ÷ total available units');
+ write(live,'A57','Cost of boards sold');formula(live,'B57',"=SUM('Raw Data'!B6:B8)");write(live,'H57','Units sold × average cost per board');
+ write(live,'A58','Ending inventory');write(live,'H58','Units left × average cost per board');
+ write(live,'C56','Total cost');write(live,'C57','Total units');live.getRange('B56:B57').format.fill='#DDEBF7';live.getRange('B56').setNumberFormat('"$"#,##0.00');
  for(const [col,offset]of [['E',0],['F',16]]){
-  response(`${col}40`,'=$B$40/$B$41');response(`${col}41`,`=B${11+offset}*${col}40`);response(`${col}42`,`=F${9+offset}*${col}40`);
-  live.getRange(`${col}40:${col}42`).setNumberFormat('"$"#,##0.00');
+  response(`${col}56`,'=$B$56/$B$57');response(`${col}57`,`=B${11+offset}*${col}56`);response(`${col}58`,`=F${9+offset}*${col}56`);
+  live.getRange(`${col}56:${col}58`).setNumberFormat('"$"#,##0.00');
  }
- note(45,'Compare each sale under FIFO and weighted average. Units and total available cost stay the same; the assigned cost per sold unit changes.');
- note(46,'Next: compare LIFO in rows 52–65. Start with the bottom purchase row and work upward. The sale and total available cost stay the same.');
+ note(61,'Compare each sale under FIFO and weighted average. Units and total available cost stay the same; the assigned cost per sold unit changes.');
+ note(62,'Compare all three methods for the same 19 sales. Units sold and available cost stay the same; the assigned costs differ.');
  note(68,'Stage 3: open Management Model. FIFO and weighted-average A results link automatically. Complete profit next; overhead and Decision Brief come later.');
- write(start,'C8','Stage 2: weighted average in rows 36–46 and LIFO in rows 52–65. Compare the same sale under all three methods.');
+ write(start,'C8','Stage 2: LIFO in rows 36–49, then weighted average last in rows 52–62. Compare the same sale under all three methods.');
  live.freezePanes.freezeRows(5);
  // The model uses completed practice rather than asking students to repeat it.
  for(let r=6;r<=8;r++){
@@ -132,7 +132,7 @@ for(const kind of ['student','key']){
   }
  }
  for(const col of ['D','E','F','G','H'])formula(m,`${col}9`,col==='D'?'=SUM(D6:D8)':`=IF(COUNT('Live You Try It'!D6:G9)<16,"",SUM(${col}6:${col}8))`);
- for(const [cell,f]of Object.entries({B15:'=D9',B16:`=IF(COUNT('Live You Try It'!E40:E42)<3,"",'Live You Try It'!E40)`,B18:`=IF(COUNT('Live You Try It'!E40:E42)<3,"",'Live You Try It'!E41)`,B19:'=B14-B17',B20:`=IF(COUNT('Live You Try It'!E40:E42)<3,"",'Live You Try It'!E42)`}))formula(m,cell,f);
+ for(const [cell,f]of Object.entries({B15:'=D9',B16:`=IF(COUNT('Live You Try It'!E56:E58)<3,"",'Live You Try It'!E56)`,B18:`=IF(COUNT('Live You Try It'!E56:E58)<3,"",'Live You Try It'!E57)`,B19:'=B14-B17',B20:`=IF(COUNT('Live You Try It'!E56:E58)<3,"",'Live You Try It'!E58)`}))formula(m,cell,f);
  m.getRange('D6:H9').format.fill='#F2EEE5';for(const cell of ['B15','B16','B18','B19','B20'])m.getRange(cell).format.fill='#F2EEE5';
  write(start,'A24','LINKS');write(start,'B24','Pale cream: supplied model links; no entry needed');start.getRange('A24:B24').format={wrapText:true,rowHeight:42};
  write(m,'A2','Stage 3 · A inventory results link from Live You Try It. Complete yellow profit cells next; overhead and Decision Brief come later when assigned.');
@@ -142,7 +142,7 @@ for(const kind of ['student','key']){
  console.log(kind,(await w.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!',options:{useRegex:true,maxResults:20},maxChars:2000})).ndjson);
  const name=kind==='student'?'bus123-math-m06-l01-starter.xlsx':'bus123-math-m06-l01-activity-key.xlsx';
  await(await SpreadsheetFile.exportXlsx(w)).save(path.join(stage,name));
- for(const [sheetName,range]of [['Live You Try It','A4:H17'],['Live You Try It','A20:H33'],['Live You Try It','A36:H46'],['Live You Try It','A52:H65'],['Management Model','A4:I20']]){
+ for(const [sheetName,range]of [['Live You Try It','A4:H17'],['Live You Try It','A20:H33'],['Live You Try It','A36:H49'],['Live You Try It','A52:H62'],['Management Model','A4:I20']]){
   const blob=await w.render({sheetName,range,scale:1.2});await fs.writeFile(path.join(stage,`${kind}-${sheetName.replaceAll(' ','-')}-${range.replace(':','-')}.png`),new Uint8Array(await blob.arrayBuffer()));
  }
 }

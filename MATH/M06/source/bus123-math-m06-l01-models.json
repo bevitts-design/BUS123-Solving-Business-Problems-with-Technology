@@ -21,10 +21,10 @@
     "G9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(G6:G8))",
     "H9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(H6:H8))",
     "B15": "=D9",
-    "B16": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E40)",
-    "B18": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E41)",
+    "B16": "=IF(COUNT('Live You Try It'!E56:E58)<3,\"\",'Live You Try It'!E56)",
+    "B18": "=IF(COUNT('Live You Try It'!E56:E58)<3,\"\",'Live You Try It'!E57)",
     "B19": "=B14-B17",
-    "B20": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E42)",
+    "B20": "=IF(COUNT('Live You Try It'!E56:E58)<3,\"\",'Live You Try It'!E58)",
     "B27": "=SUM(B25:B26)",
     "B28": "=H9",
     "B29": "=B27-B28",
@@ -79,7 +79,7 @@
     {
       "version": "L",
       "method": "LIFO",
-      "offset": 48,
+      "offset": 32,
       "sold": 19
     }
   ],

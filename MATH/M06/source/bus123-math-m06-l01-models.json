@@ -1,30 +1,30 @@
 {
   "managementFormulas": {
     "D6": "=B6*C6",
-    "E6": "=MIN(B6,MAX(0,'Raw Data'!B12))",
-    "F6": "=E6*C6",
-    "G6": "=B6-E6",
-    "H6": "=G6*C6",
+    "E6": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!D6)",
+    "F6": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!E6)",
+    "G6": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!F6)",
+    "H6": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!G6)",
     "D7": "=B7*C7",
-    "E7": "=MIN(B7,MAX(0,'Raw Data'!B12-SUM(E6:E6)))",
-    "F7": "=E7*C7",
-    "G7": "=B7-E7",
-    "H7": "=G7*C7",
+    "E7": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!D7)",
+    "F7": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!E7)",
+    "G7": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!F7)",
+    "H7": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!G7)",
     "D8": "=B8*C8",
-    "E8": "=MIN(B8,MAX(0,'Raw Data'!B12-SUM(E6:E7)))",
-    "F8": "=E8*C8",
-    "G8": "=B8-E8",
-    "H8": "=G8*C8",
+    "E8": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!D8)",
+    "F8": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!E8)",
+    "G8": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!F8)",
+    "H8": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",'Live You Try It'!G8)",
     "D9": "=SUM(D6:D8)",
-    "E9": "=SUM(E6:E8)",
-    "F9": "=SUM(F6:F8)",
-    "G9": "=SUM(G6:G8)",
-    "H9": "=SUM(H6:H8)",
+    "E9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(E6:E8))",
+    "F9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(F6:F8))",
+    "G9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(G6:G8))",
+    "H9": "=IF(COUNT('Live You Try It'!D6:G9)<16,\"\",SUM(H6:H8))",
     "B15": "=D9",
-    "B16": "=B15/B14",
-    "B18": "=B17*B16",
+    "B16": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E40)",
+    "B18": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E41)",
     "B19": "=B14-B17",
-    "B20": "=B19*B16",
+    "B20": "=IF(COUNT('Live You Try It'!E40:E42)<3,\"\",'Live You Try It'!E42)",
     "B27": "=SUM(B25:B26)",
     "B28": "=H9",
     "B29": "=B27-B28",
@@ -69,14 +69,13 @@
     {
       "version": "A",
       "offset": 0,
-      "sold": 19,
-      "decline": 0.1
+      "sold": 19
     },
     {
       "version": "B",
-      "offset": 38,
-      "sold": 21,
-      "decline": 0.2
+      "offset": 16,
+      "sold": 21
     }
-  ]
+  ],
+  "fifoTeachingSequence": "Assign sold units oldest first; calculate each layer; sum; then compare weighted average. No nested FIFO formula required."
 }

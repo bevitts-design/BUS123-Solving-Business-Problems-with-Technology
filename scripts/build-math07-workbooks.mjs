@@ -32,7 +32,7 @@ const writeText=(sheet,cell,text)=>sheet.getRange(cell).values=[[text]];
 const live=student.worksheets.getItem('Live You Try It');
 writeText(live,'A3','Enter inputs and formulas in F. Feedback checks baseline values and required references. Attempt first, then compare with the slide reveal. Restore inputs after Predict → Change → Explain.');
 live.getRange('A3:I3').format.rowHeight=42;
-writeText(live,'C7','E: tax rate 5.75%; F: sales tax using subtotal F6.');
+writeText(live,'C7','E: tax rate 6.25%; F: sales tax using subtotal F6.');
 writeText(live,'C8','D: shipping 22; F: total price using F6, F7 and D8.');
 writeText(live,'C10','F: tax held using receipts D9 and pre-tax sales F9.');
 writeText(live,'C12','E: excise rate 4.5%; F: excise tax using the original base in D11.');
@@ -92,6 +92,17 @@ for(const w of [student,key]){
 for(const cell of ['D12','D13']){
   live.getRange(cell).clear({applyTo:'contents'});
   live.getRange(cell).format.fill='#F2EEE5';
+}
+for(const w of [student,key]){
+  const sh=w.worksheets.getItem('Live You Try It');
+  writeText(sh,'C9','D: receipts 64,200; E: tax rate 6.25%; F: pre-tax sales.');
+  writeText(sh,'C11','D: base cost 7,250; E: sales tax rate 6.25%; F: sales tax.');
+  for(const cell of ['E7','E9','E11'])sh.getRange(cell).setNumberFormat('0.00%');
+  const ch=w.worksheets.getItem('Class Challenge');
+  for(const row of [7,8,9,10,11]){ch.getRange(`F${row}`).values=[[0.0625]];ch.getRange(`F${row}`).setNumberFormat('0.00%');}
+  writeText(ch,'C10','Meridian appliance: 6.25% sales and 8% supplied excise tax share a $6,200 base');
+  writeText(ch,'C11','Meridian equipment: 6.25% sales and 9% supplied excise tax share an $8,400 base');
+  ch.getRange('H16').values=[[28296.65]];
 }
 const allInputs=Object.assign({},...model.livePractice.map(x=>x.inputs));
 for(const item of model.livePractice){
@@ -163,6 +174,43 @@ for(const item of model.predictions){
   keyLive.getRange(item.input).values=[[allInputs[item.input]]];
 }
 key.recalculate();
+const audit=key.worksheets.getItem('Class Challenge');
+// Rebuild audit formulas cell by cell so imported cached totals are refreshed.
+const filed={7:'=ROUND((D7-E7)*F7,2)',8:'=ROUND(D8*F8,2)',9:'=ROUND(D9-D9/(1+F9),2)',10:'=ROUND(D10*(F10+G10),2)',11:'=ROUND(D11*F11+(D11+D11*F11)*G11,2)',12:'=ROUND(D12*ROUND(F12/G12,4),2)'};
+const corrected=Object.fromEntries([7,8,9,10,11,12].map(r=>[r,audit.getRange(`K${r}`).formulas[0][0]]));
+for(const w of [student,key]){
+ const ch=w.worksheets.getItem('Class Challenge');
+ const formulas={'D16':'=SUM(I7:I12)'};
+ for(let r=7;r<=12;r++)formulas[`I${r}`]=filed[r];
+ if(w===key){
+  for(let r=7;r<=12;r++){formulas[`K${r}`]=corrected[r];formulas[`L${r}`]=`=ROUND(K${r}-I${r},2)`;}
+  Object.assign(formulas,{K16:'=SUM(K7:K12)',K17:'=SUM(L7:L12)',K18:'=D16+K17',K19:'=ROUND(K18-H16,2)'});
+ }
+ for(const [cell,formula] of Object.entries(formulas)){const range=ch.getRange(cell);range.clear({applyTo:'contents'});range.formulas=[[formula]];}
+ w.recalculate();
+}
+if(Math.abs(audit.getRange('K16').values[0][0]-28296.65)>0.001||Math.abs(audit.getRange('K19').values[0][0])>0.001)throw Error(`Audit mismatch: ${JSON.stringify(audit.getRange('K16:K19').values)} adjustments ${JSON.stringify(audit.getRange('L7:L12').values)}`);
+const grading=key.worksheets.getItem('INSTRUCTOR_GradingMap');
+for(let row=16;row<=21;row++)grading.getRange(`L${row}`).values=[[audit.getRange(`K${row-9}`).values[0][0]]];
+grading.getRange('L28').values=[[audit.getRange('K16').values[0][0]]];
+const instructor=key.worksheets.getItem('INSTRUCTOR_AnswerKey');
+const physicalRow=new Map(model.worksheetRowOrder.map((old,index)=>[old,index+1]));
+const remap=formula=>formula.replace(/([A-I])(\d+)/g,(_,col,row)=>col+physicalRow.get(Number(row)));
+for(const [i,item] of model.livePractice.entries()){
+  const r=i+5;
+  writeText(instructor,`C${r}`,live.getRange(`C${item.row}`).values[0][0]);
+  writeText(instructor,`D${r}`,Object.entries(item.inputs).map(([cell,value])=>`${remap(cell)}=${value}`).join('; ')||'Use prior results');
+  writeText(instructor,`E${r}`,"'"+remap(item.formula));
+  instructor.getRange(`F${r}`).values=[[item.value]];
+  writeText(instructor,`G${r}`,item.row<=10?'slide 9':item.row<=13?'slide 14':'slide 18');
+}
+for(let i=0;i<6;i++){
+ const r=19+i,a=7+i;
+ instructor.getRange(`D${r}`).values=[[audit.getRange(`K${a}`).values[0][0]]];
+ instructor.getRange(`E${r}`).values=[[audit.getRange(`L${a}`).values[0][0]]];
+ instructor.getRange(`G${r}`).values=[[audit.getRange(`I${a}`).values[0][0]]];
+}
+for(const [target,source] of [['B26','K16'],['D26','D16'],['F26','K17'],['H26','K19']])instructor.getRange(target).values=[[audit.getRange(source).values[0][0]]];
 // Demonstrate that a constant-only formula cannot satisfy the reference check.
 keyLive.getRange('F6').formulas=[['=640']];
 key.recalculate();

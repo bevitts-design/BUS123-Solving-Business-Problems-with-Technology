@@ -57,18 +57,18 @@ For this lesson's training jurisdiction, trade discounts reduce the taxable base
 
 #### Worked Example — Tidal Goods Co.
 
-Tidal Goods Co. sells a bulk supply order to a wholesale partner. Retail price: $480.00. Trade discount: $80.00. Sales tax: 6%. Flat shipping: $15.00.
+Tidal Goods Co. sells a bulk supply order to a business customer for its own use. Retail price: $480.00. Trade discount: $80.00. Sales tax: 6.25%. Flat shipping: $15.00.
 
 | Item                       | Amount    |
 |----------------------------|-----------|
 | Retail Price               | $480.00   |
 | Less: Trade Discount       | −$80.00   |
 | **Taxable Subtotal**       | **$400.00** |
-| × Sales Tax Rate (6%)      | × 0.06    |
-| Tax Owed                   | $24.00    |
-| Taxable Subtotal + Tax     | $424.00   |
+| × Sales Tax Rate (6.25%)      | × 0.0625  |
+| Tax Owed                   | $25.00    |
+| Taxable Subtotal + Tax     | $425.00   |
 | + Shipping                 | +$15.00   |
-| **Total Price**            | **$439.00** |
+| **Total Price**            | **$440.00** |
 
 #### Back-Calculating Actual Sales
 
@@ -76,9 +76,9 @@ When a retailer's register total includes both sales revenue and collected tax, 
 
 **`Actual Sales = Total Receipts / (1 + Tax Rate)`**
 
-**Example:** Tidal Goods Co.'s register shows $52,000 in total daily receipts at a 6.5% tax rate.
-- Actual sales = $52,000 ÷ 1.065 = **$48,826.29**
-- The remaining **$3,173.71** belongs to the state.
+**Example:** Tidal Goods Co.'s register shows $52,000 in total daily receipts at a 6.25% tax rate.
+- Actual sales = $52,000 ÷ 1.0625 = **$48,941.18**
+- The remaining **$3,058.82** belongs to the state.
 
 ---
 
@@ -98,18 +98,18 @@ When a lesson scenario states that sales tax and excise tax share one base, calc
 
 #### Worked Example — Meridian Advisory Group
 
-Meridian Advisory Group purchases a commercial appliance for $6,200. Sales tax: 7%. Excise tax: 8%.
+Meridian Advisory Group purchases a commercial appliance for $6,200. Sales tax: 6.25%. Excise tax: 8%.
 
 | Tax Type          | Calculation         | Amount      |
 |-------------------|---------------------|-------------|
 | Base Cost         | Given               | $6,200.00   |
-| Sales Tax (7%)    | $6,200 × 0.07       | $434.00     |
+| Sales Tax (6.25%)    | $6,200 × 0.0625       | $387.50     |
 | Excise Tax (8%)   | $6,200 × 0.08       | $496.00     |
-| **Total Cost**    | $6,200 + $434 + $496 | **$7,130.00** |
+| **Total Cost**    | $6,200 + $387.50 + $496 | **$7,083.50** |
 
 > ✅ **Shortcut**
 >
-> Add the two rates first (7% + 8% = 15%), then multiply: $6,200 × 1.15 = **$7,130**. This works because both rates apply to the same base — they can be combined before multiplying.
+> Add the two rates first (6.25% + 8% = 14.25%), then multiply: $6,200 × 1.1425 = **$7,083.50**. This works because both rates apply to the same base — they can be combined before multiplying.
 
 ---
 
@@ -156,7 +156,7 @@ Excel should mirror the order of the business calculation. Keep every assumption
 
 ### Format Dollar Amounts and Rates
 
-Use **Home → Number** to format prices, taxes, and totals as Accounting or Currency. Format tax and assessment rates as percentages. Enter `6%` or `0.06`—do not enter `6` and then click Percent Style, because Excel would display `600%`.
+Use **Home → Number** to format prices, taxes, and totals as Accounting or Currency. Format tax and assessment rates as percentages. Enter `6.25%` or `0.0625`—do not enter `6.25` and then click Percent Style, because Excel would display `625%`.
 
 ![Windows Excel Home tab showing the Number group controls used to format tax rates and dollar amounts](../assets/math-m07-excel-number-formats.png)
 
@@ -164,10 +164,10 @@ Use **Home → Number** to format prices, taxes, and totals as Accounting or Cur
 
 Set up this model in a blank area of Excel. The cell addresses below are an example; the important requirement is that your formulas reference the cells containing the inputs.
 
-1. **Set up:** In column A, enter the labels Retail Price, Trade Discount, Sales Tax Rate, Shipping, Taxable Subtotal, Sales Tax Owed, and Total Price. In cells B1:B4, enter `$480`, `$80`, `6%`, and `$15`.
+1. **Set up:** In column A, enter the labels Retail Price, Trade Discount, Sales Tax Rate, Shipping, Taxable Subtotal, Sales Tax Owed, and Total Price. In cells B1:B4, enter `$480`, `$80`, `6.25%`, and `$15`.
 2. **Select and type:** Select B5 and type `=B1-B2`. Select B6 and type `=B5*B3`. Select B7 and type `=B5+B6+B4`.
 3. **Format:** Format B1:B2 and B4:B7 as Accounting or Currency. Format B3 as Percentage.
-4. **Check:** B5 should equal **$400.00**, B6 should equal **$24.00**, and B7 should equal **$439.00**. The total must be greater than the taxable subtotal because tax and shipping were added.
+4. **Check:** B5 should equal **$400.00**, B6 should equal **$25.00**, and B7 should equal **$440.00**. The total must be greater than the taxable subtotal because tax and shipping were added.
 5. **Try:** Change the trade discount in B2 from `$80` to `$100`. The taxable subtotal, tax, and total should all update automatically.
 
 ![Excel sales tax worksheet showing labeled inputs, formula cells, and the required calculation order](../assets/math-m07-sales-tax-model.png)
@@ -178,10 +178,10 @@ Set up this model in a blank area of Excel. The cell addresses below are an exam
 
 ### Walkthrough 2 — Keep Sales and Excise Taxes on the Same Base
 
-1. **Set up:** Enter Base Cost in A1, Sales Tax Rate in A2, and Excise Tax Rate in A3. Enter `$6,200`, `7%`, and `8%` in B1:B3.
+1. **Set up:** Enter Base Cost in A1, Sales Tax Rate in A2, and Excise Tax Rate in A3. Enter `$6,200`, `6.25%`, and `8%` in B1:B3.
 2. **Select and type:** In B4, calculate sales tax with `=B1*B2`. In B5, calculate excise tax with `=B1*B3`. In B6, calculate total cost with `=B1+B4+B5`.
-3. **Check:** B4 should equal **$434.00**, B5 should equal **$496.00**, and B6 should equal **$7,130.00**.
-4. **Confirm with a second method:** In another cell, type `=B1*(1+B2+B3)`. It should also return **$7,130.00**.
+3. **Check:** B4 should equal **$387.50**, B5 should equal **$496.00**, and B6 should equal **$7,083.50**.
+4. **Confirm with a second method:** In another cell, type `=B1*(1+B2+B3)`. It should also return **$7,083.50**.
 5. **Try:** Change the excise tax rate to `9%`. Both the excise tax and total cost should rise, but the sales tax should remain unchanged.
 
 ![Excel formula bar showing sales tax and excise tax formulas that both reference the original base cost](../assets/math-m07-same-base-formulas.png)
@@ -224,13 +224,13 @@ If the excise formula begins with the sales-tax-inclusive total instead of B1, t
 
 Answer all seven questions before class. Answers appear at the end of this document.
 
-**1. [Calculation]** Tidal Goods Co. sells an order priced at $600. The buyer receives a $100 trade discount. Sales tax is 5.5%. Shipping is $18. What is the taxable subtotal and the total price?
+**1. [Calculation]** Tidal Goods Co. sells an order priced at $600. The buyer receives a $100 trade discount. Sales tax is 6.25%. Shipping is $18. What is the taxable subtotal and the total price?
 
 **2. [Concept]** A merchant collects $4,200 in sales tax over a week. Is that $4,200 the merchant's revenue? Explain why or why not.
 
-**3. [Calculation]** Register receipts total $78,000 for the day, inclusive of 7% sales tax. What were the actual pre-tax sales?
+**3. [Calculation]** Register receipts total $78,000 for the day, inclusive of 6.25% sales tax. What were the actual pre-tax sales?
 
-**4. [Calculation]** Meridian Advisory Group buys office equipment for $8,500. The training jurisdiction states that sales tax is 6.5%, excise tax is 9%, and both share the original base. Calculate the total cost using both methods.
+**4. [Calculation]** Meridian Advisory Group buys office equipment for $8,500. The training jurisdiction states that sales tax is 6.25%, excise tax is 9%, and both share the original base. Calculate the total cost using both methods.
 
 **5. [Concept]** Under the supplied same-base rule, why is it incorrect to apply excise tax to the sales-tax-inclusive amount?
 
@@ -244,10 +244,10 @@ Answer all seven questions before class. Answers appear at the end of this docum
 
 | # | Answer |
 |---|--------|
-| **1** | Taxable = $600 − $100 = $500. Tax = $500 × 0.055 = $27.50. Total = $500 + $27.50 + $18 = **$545.50** |
+| **1** | Taxable = $600 − $100 = $500. Tax = $500 × 0.0625 = $31.25. Total = $500 + $31.25 + $18 = **$549.25** |
 | **2** | No. Collected sales tax is a **liability held in trust** for the state government, not earned revenue. Recording it as revenue overstates income. |
-| **3** | $78,000 / 1.07 = **$72,897.20**. Collected tax = $78,000 − $72,897.20 = $5,102.80. |
-| **4** | Method 1: ST = $552.50; ET = $765.00. Total = **$9,817.50**. Method 2: $8,500 × 1.155 = **$9,817.50**. Both match. |
+| **3** | $78,000 / 1.0625 = **$73,411.76**. Collected tax = $78,000 − $73,411.76 = $4,588.24. |
+| **4** | Method 1: ST = $531.25; ET = $765.00. Total = **$9,796.25**. Method 2: $8,500 × 1.1525 = **$9,796.25**. Both match. |
 | **5** | Under the supplied same-base rule, both taxes use the **original base price**. Applying the second rate to an already-taxed amount violates the scenario rule and overstates total cost. |
 | **6** | Assessed Value = 0.35 × $450,000 = $157,500. Tax Rate = ROUND($198,000/$2,600,000, 4) = **0.0762**. Annual Tax = 0.0762 × $157,500 = **$12,001.50**. |
 | **7** | Under a typical NNN structure, the tenant pays property tax, insurance, and maintenance in addition to base rent. Tax changes can therefore turn occupancy cost into **variable overhead**; the exact exposure depends on the lease terms. |

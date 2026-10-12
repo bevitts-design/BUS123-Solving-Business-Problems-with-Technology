@@ -88,7 +88,7 @@ draw.rounded_rectangle((1190, 165, 1710, 610), radius=18, fill=YELLOW, outline=G
 draw.text((1450, 215), "Before formatting", anchor="ma", font=font(25, True), fill=NAVY)
 draw.multiline_text(
     (1450, 315),
-    "Enter 6% or 0.06\n\nDo not enter 6 and then\nclick Percent Style\n\nThat would display 600%",
+    "Enter 6.25% or 0.0625\n\nDo not enter 6.25 and then\nclick Percent Style\n\nThat would display 625%",
     anchor="ma",
     align="center",
     spacing=10,
@@ -103,7 +103,7 @@ image, draw = base("Build sales tax in the required order")
 rows = [
     ("Retail Price", "$480.00", "input"),
     ("Trade Discount", "$80.00", "input"),
-    ("Sales Tax Rate", "6%", "input"),
+    ("Sales Tax Rate", "6.25%", "input"),
     ("Shipping", "$15.00", "input"),
     ("Taxable Subtotal", "=B1-B2", "output"),
     ("Sales Tax Owed", "=B5*B3", "output"),
@@ -114,7 +114,7 @@ draw.rounded_rectangle((1120, 150, 1720, 615), radius=18, fill=PALE, outline=GRE
 draw.text((1420, 200), "Order check", anchor="ma", font=font(27, True), fill=NAVY)
 draw.multiline_text(
     (1420, 290),
-    "1  Subtract discount\n\n2  Calculate tax\n\n3  Add shipping last\n\nExpected total: $439.00",
+    "1  Subtract discount\n\n2  Calculate tax\n\n3  Add shipping last\n\nExpected total: $440.00",
     anchor="ma",
     align="center",
     spacing=9,
@@ -130,7 +130,7 @@ formula_bar(draw, 90, 125, "=B1*B3", "B5")
 draw.rounded_rectangle((90, 245, 770, 590), radius=18, fill=PALE, outline=GREEN, width=4)
 draw.text((430, 290), "Sales tax", anchor="ma", font=font(28, True), fill=NAVY)
 draw.text((430, 375), "=B1*B2", anchor="mm", font=font(35, True), fill=DARK_GREEN)
-draw.text((430, 460), "$6,200 × 7% = $434", anchor="ma", font=font(23), fill=TEXT)
+draw.text((430, 460), "$6,200 × 6.25% = $387.50", anchor="ma", font=font(23), fill=TEXT)
 draw.rounded_rectangle((820, 245, 1500, 590), radius=18, fill=PALE, outline=GREEN, width=4)
 draw.text((1160, 290), "Excise tax", anchor="ma", font=font(28, True), fill=NAVY)
 draw.text((1160, 375), "=B1*B3", anchor="mm", font=font(35, True), fill=DARK_GREEN)

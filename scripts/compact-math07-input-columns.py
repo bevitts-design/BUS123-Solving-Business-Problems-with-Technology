@@ -25,7 +25,9 @@ def compact(source,target):
     name=t.lstrip('/') if t.startswith('/') else 'xl/'+t
     sheet=ET.fromstring(data[name])
     head=sheet.find('.//m:c[@r="F5"]/m:v',n)
-    if head is None or texts[int(head.text)]!='Input 3':
+    headcell=sheet.find('.//m:c[@r="F5"]',n)
+    header=None if head is None else texts[int(head.text)] if headcell.get('t')=='s' else head.text
+    if header!='Input 3':
         Path(target).write_bytes(Path(source).read_bytes());return
     # Only live-sheet cells and explicit live-sheet references change. Other
     # sheets keep their own columns and unqualified formula references.

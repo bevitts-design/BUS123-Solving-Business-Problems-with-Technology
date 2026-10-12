@@ -22,7 +22,9 @@ const compactInputs=[];
 for(const [label,input] of [['student',studentPath],['key',keyPath]]){
   const output=path.join(stage,`${label}-compact-input.xlsx`);
   execFileSync(process.env.BUS123_PYTHON||'python3',[path.join(root,'scripts/compact-math07-input-columns.py'),input,output]);
-  compactInputs.push(output);
+  const normalized=path.join(stage,`${label}-normalized-input.xlsx`);
+  execFileSync(process.env.BUS123_PYTHON||'python3',[path.join(root,'scripts/reorder-math07-practice.py'),output,normalized,'inverse']);
+  compactInputs.push(normalized);
 }
 const student=await SpreadsheetFile.importXlsx(await FileBlob.load(compactInputs[0]));
 const key=await SpreadsheetFile.importXlsx(await FileBlob.load(compactInputs[1]));
@@ -30,6 +32,9 @@ const writeText=(sheet,cell,text)=>sheet.getRange(cell).values=[[text]];
 const live=student.worksheets.getItem('Live You Try It');
 writeText(live,'A3','Enter inputs and formulas in F. Feedback checks baseline values and required references. Attempt first, then compare with the slide reveal. Restore inputs after Predict → Change → Explain.');
 live.getRange('A3:I3').format.rowHeight=42;
+writeText(live,'C7','E: tax rate 5.75%; F: sales tax using subtotal F6.');
+writeText(live,'C8','D: shipping 22; F: total price using F6, F7 and D8.');
+writeText(live,'C10','F: tax held using receipts D9 and pre-tax sales F9.');
 writeText(live,'C12','E: excise rate 4.5%; F: excise tax using the original base in D11.');
 writeText(live,'C13','F: total cost using original base D11 and tax results F11 and F12.');
 writeText(live,'H12','Reference the same original base cell used for sales tax: D11.');
@@ -104,7 +109,7 @@ for(const item of model.livePractice){
 }
 live.getRange('F15').setNumberFormat('0.0000');
 const start=student.worksheets.getItem('START HERE');
-writeText(start,'C8','Slide 6: follow Version A in rows 22-25, then try Version B in rows 31-34. Later slides use tasks 1-11 above. Compare with the slide reveals.');
+writeText(start,'C8','Start with slide 6: Version A in rows 8-11, then Version B in rows 17-20. Continue downward: sales tax on slide 8 (rows 24-28), two taxes on slide 13 (rows 29-31), and property tax on slide 17 (rows 32-34).');
 writeText(start,'C9','In pairs, audit R01-R03 and one of R04-R06. Complete all six and reconcile for homework.');
 writeText(start,'C14','Yellow input cells and answer cells are blank for student work.');
 writeText(start,'C15','Feedback checks baseline values and required references; explain your logic and test changing inputs.');
@@ -166,6 +171,12 @@ const feedback=keyLive.getRange('G6').values[0][0];
 // these feedback functions after export; the numeric model is tested here.
 if(feedback!=='Use the required input/result references'&&feedback!=='#VALUE!')throw Error(`Constant formula check failed: ${feedback}`);
 keyLive.getRange('F6').formulas=[[model.livePractice[0].formula]];
+for(const w of [student,key]){
+  const sheet=w.worksheets.getItem('Live You Try It');
+  sheet.mergeCells('A18:I18');
+  writeText(sheet,'A18','Continue: sales tax (slide 8), two taxes (slide 13), then property tax (slide 17)');
+  sheet.getRange('A18:I18').format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
+}
 student.recalculate();key.recalculate();
 for(const item of model.livePractice){
   assertClose(`F${item.row}`,item.value);
@@ -183,7 +194,10 @@ for(const [label,w] of [['student',student],['key',key]]){
   await (await SpreadsheetFile.exportXlsx(w)).save(outputPath);
   execFileSync(process.env.BUS123_PYTHON||'python3',[
     path.join(root,'scripts/preserve-workbook-sheet-states.py'),
-    label==='student'?studentPath:keyPath,outputPath
+    compactInputs[label==='student'?0:1],outputPath
   ]);
+  const reordered=path.join(stage,`${label}-ordered.xlsx`);
+  execFileSync(process.env.BUS123_PYTHON||'python3',[path.join(root,'scripts/reorder-math07-practice.py'),outputPath,reordered,'forward']);
+  await fs.rename(reordered,outputPath);
 }
 console.log('Exported pair; 11 baseline calculations and 3 input changes passed. Reference feedback requires native Excel verification (ISFORMULA/FORMULATEXT unavailable in Artifact Tool).');

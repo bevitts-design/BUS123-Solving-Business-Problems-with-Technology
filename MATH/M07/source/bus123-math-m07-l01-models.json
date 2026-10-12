@@ -174,15 +174,15 @@
       "salesRow": 24,
       "taxRow": 25,
       "receipts": 52000,
-      "rate": 0.065,
+      "rate": 0.0625,
       "receiptsCell": "D22",
       "rateCell": "E23",
       "salesCell": "F24",
       "taxCell": "F25",
       "salesFormula": "=D22/(1+E23)",
       "taxFormula": "=D22-F24",
-      "sales": 48826.29107981221,
-      "tax": 3173.7089201877898
+      "sales": 48941.17647058824,
+      "tax": 3058.823529411762
     },
     {
       "version": "B",
@@ -194,15 +194,15 @@
       "salesRow": 33,
       "taxRow": 34,
       "receipts": 43200,
-      "rate": 0.08,
+      "rate": 0.0625,
       "receiptsCell": "D31",
       "rateCell": "E32",
       "salesCell": "F33",
       "taxCell": "F34",
       "salesFormula": "=D31/(1+E32)",
       "taxFormula": "=D31-F33",
-      "sales": 40000,
-      "tax": 3200
+      "sales": 40658.82352941176,
+      "tax": 2541.176470588238
     }
   ],
   "worksheetRowOrder": [

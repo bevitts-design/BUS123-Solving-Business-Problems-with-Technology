@@ -60,13 +60,13 @@ for(const w of [student,key]){
     for(const row of [v.headingRow,v.factsRow])sheet.mergeCells(`A${row}:I${row}`);
     writeText(sheet,`A${v.headingRow}`,`Slide 7 - Reverse sales tax - Version ${v.version} (${v.version==='A'?'follow along':'try independently'})`);
     sheet.getRange(`A${v.headingRow}:I${v.headingRow}`).format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
-    writeText(sheet,`A${v.factsRow}`,`Tidal register receipts of $${v.receipts.toLocaleString('en-US')} include ${(v.rate*100).toFixed(v.version==='A'?1:0)}% sales tax. Enter the givens, calculate pre-tax sales and tax held, and explain why they add back to receipts.`);
+    writeText(sheet,`A${v.factsRow}`,`Tidal register receipts of $${v.receipts.toLocaleString('en-US')} include ${(v.rate*100).toFixed(2)}% sales tax. Enter the givens, calculate pre-tax sales and tax held, and explain why they add back to receipts.`);
     sheet.getRange(`A${v.factsRow}:I${v.factsRow}`).format={fill:'#FAF8F3',wrapText:true,rowHeight:36,font:{name:'Aptos',size:11,color:'#1A1F2C'}};
     sheet.getRange(`A${v.headerRow}:I${v.headerRow}`).copyFrom(sheet.getRange('A5:I5'),'all');
     sheet.getRange(`A${v.headerRow}:I${v.headerRow}`).format={fill:'#355773',font:{name:'Aptos',size:11,bold:true,color:'#FFFFFF'},rowHeight:28,wrapText:true,verticalAlignment:'center'};
     const tasks=[
       [v.receiptsRow,'Receipts',`Enter tax-inclusive receipts ${v.receipts.toLocaleString('en-US')} in ${v.receiptsCell}.`],
-      [v.rateRow,'Tax rate',`Enter sales-tax rate ${(v.rate*100).toFixed(v.version==='A'?1:0)}% in ${v.rateCell}.`],
+      [v.rateRow,'Tax rate',`Enter sales-tax rate ${(v.rate*100).toFixed(2)}% in ${v.rateCell}.`],
       [v.salesRow,'Pre-tax sales',`Calculate sales before tax in ${v.salesCell} using the two inputs above.`],
       [v.taxRow,'Tax held',`Calculate tax held in ${v.taxCell} using receipts and your pre-tax sales result.`]
     ];
@@ -76,7 +76,7 @@ for(const w of [student,key]){
     }
     for(const cell of [v.receiptsCell,v.rateCell,v.salesCell,v.taxCell]){
       sheet.getRange(cell).format.fill='#FFD966';
-      sheet.getRange(cell).setNumberFormat(cell===v.rateCell?'0.0%':'"$"#,##0.00');
+      sheet.getRange(cell).setNumberFormat(cell===v.rateCell?'0.00%':'"$"#,##0.00');
     }
     writeText(sheet,`H${v.salesRow}`,'Explain why the divisor includes 1 plus the tax rate.');
     writeText(sheet,`H${v.taxRow}`,'Sales plus tax held must equal receipts.');

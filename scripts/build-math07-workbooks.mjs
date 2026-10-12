@@ -58,7 +58,7 @@ for(const w of [student,key]){
     sheet.getRange(`D${first}:F${last}`).format.fill='#F2EEE5';
     sheet.getRange(`G${first}:G${last}`).format.fill='#EAF3EC';
     for(const row of [v.headingRow,v.factsRow])sheet.mergeCells(`A${row}:I${row}`);
-    writeText(sheet,`A${v.headingRow}`,`Slide 6 - Reverse sales tax - Version ${v.version} (${v.version==='A'?'follow along':'try independently'})`);
+    writeText(sheet,`A${v.headingRow}`,`Slide 7 - Reverse sales tax - Version ${v.version} (${v.version==='A'?'follow along':'try independently'})`);
     sheet.getRange(`A${v.headingRow}:I${v.headingRow}`).format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
     writeText(sheet,`A${v.factsRow}`,`Tidal register receipts of $${v.receipts.toLocaleString('en-US')} include ${(v.rate*100).toFixed(v.version==='A'?1:0)}% sales tax. Enter the givens, calculate pre-tax sales and tax held, and explain why they add back to receipts.`);
     sheet.getRange(`A${v.factsRow}:I${v.factsRow}`).format={fill:'#FAF8F3',wrapText:true,rowHeight:36,font:{name:'Aptos',size:11,color:'#1A1F2C'}};
@@ -72,7 +72,7 @@ for(const w of [student,key]){
     ];
     for(const [row,topic,task] of tasks){
       writeText(sheet,`A${row}`,`${v.version}${row-first+1}`);
-      writeText(sheet,`B${row}`,topic);writeText(sheet,`C${row}`,task);writeText(sheet,`I${row}`,'slide 6');
+      writeText(sheet,`B${row}`,topic);writeText(sheet,`C${row}`,task);writeText(sheet,`I${row}`,'slide 7');
     }
     for(const cell of [v.receiptsCell,v.rateCell,v.salesCell,v.taxCell]){
       sheet.getRange(cell).format.fill='#FFD966';
@@ -105,11 +105,11 @@ for(const item of model.livePractice){
   const tolerance=r===15?'0.0000001':'0.01';
   const inputs=Object.entries(item.inputs).map(([cell,value])=>`ABS(${cell}-${value})<=${cell==='E15'?'0.01':value<1?'0.0000001':'0.01'}`).join(',');
   live.getRange(`G${r}`).formulas=[[`=IF(COUNT(${required.join(',')})<${required.length},"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${refs}),FALSE)),"Use the required input/result references",IF(AND(${inputs?inputs+',':''}ABS(${answer}-${item.value})<=${tolerance}),"Correct - explain and test your model","Check the baseline inputs and calculation"))))`]];
-  writeText(live,`I${r}`,r<=10?'slide 8':r<=13?'slide 13':'slide 17');
+  writeText(live,`I${r}`,r<=10?'slide 9':r<=13?'slide 14':'slide 18');
 }
 live.getRange('F15').setNumberFormat('0.0000');
 const start=student.worksheets.getItem('START HERE');
-writeText(start,'C8','Start with slide 6: Version A in rows 8-11, then Version B in rows 17-20. Continue downward: sales tax on slide 8 (rows 24-28), two taxes on slide 13 (rows 29-31), and property tax on slide 17 (rows 32-34).');
+writeText(start,'C8','Start with slide 7: Version A in rows 8-11, then Version B in rows 17-20. Continue downward: sales tax on slide 9 (rows 24-28), two taxes on slide 14 (rows 29-31), and property tax on slide 18 (rows 32-34).');
 writeText(start,'C9','In pairs, audit R01-R03 and one of R04-R06. Complete all six and reconcile for homework.');
 writeText(start,'C14','Yellow input cells and answer cells are blank for student work.');
 writeText(start,'C15','Feedback checks baseline values and required references; explain your logic and test changing inputs.');
@@ -174,7 +174,7 @@ keyLive.getRange('F6').formulas=[[model.livePractice[0].formula]];
 for(const w of [student,key]){
   const sheet=w.worksheets.getItem('Live You Try It');
   sheet.mergeCells('A18:I18');
-  writeText(sheet,'A18','Continue: sales tax (slide 8), two taxes (slide 13), then property tax (slide 17)');
+  writeText(sheet,'A18','Continue: sales tax (slide 9), two taxes (slide 14), then property tax (slide 18)');
   sheet.getRange('A18:I18').format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
 }
 student.recalculate();key.recalculate();

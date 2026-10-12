@@ -23,11 +23,11 @@ This lesson adds a critical layer: **government taxes.** Once a price is set, ta
 
 > 📘 **Training Jurisdiction Rules**
 >
-> Tax rules vary by location. To keep the lesson focused on business math, every example in this module uses one simplified training jurisdiction:
+> Tax rules vary by location. To keep the lesson focused on business math, sales examples use Massachusetts’s 6.25% rate, vehicle excise uses Massachusetts rules, and property tax uses Beverly’s published FY2026 rates:
 > - qualifying trade discounts reduce the sales-tax base;
 > - shipping is added after sales tax;
-> - when a scenario states that sales and excise taxes share a base, both use the original base cost;
-> - property is taxed using the supplied assessment rate, and the property-tax rate is rounded to four decimal places before use.
+> - motor vehicle excise is a separate annual city/town bill to the registered owner; use original manufacturer list price, the vehicle-year percentage, and $25 per $1,000;
+> - property uses the assessor’s full and fair cash value and the local dollar rate per $1,000; example building values are illustrative, with no exemptions assumed.
 >
 > Treat these as the supplied rules for the lesson, not as universal tax advice.
 
@@ -82,67 +82,63 @@ When a retailer's register total includes both sales revenue and collected tax, 
 
 ---
 
-### Part 2 — Excise Tax
+### Part 2 — Massachusetts Motor Vehicle Excise
 
-#### What Is Excise Tax?
+#### Who Pays?
 
-Excise tax is a targeted tax applied to specified products or activities. Depending on the rule, it may be paid upstream by a producer or seller and embedded in the price before the customer sees it. In this lesson's simplified scenario, a designated commercial appliance carries the supplied excise-tax rate.
+The registered vehicle owner — a person or a company — receives an annual excise bill from the city or town. The owner pays the local tax collector. This bill is separate from sales tax on the vehicle purchase.
 
-> 💡 **Strategic Impact**
->
-> Because excise tax raises the cost of acquiring inventory, it directly compresses gross margin. Managers must evaluate **demand elasticity** — whether the market will absorb a price increase — before passing the cost to customers.
+#### Which Value Do We Use?
 
-#### When Both Taxes Apply — Never Compound Them
+Use the **manufacturer’s original list price**, not purchase price or current resale value. Multiply it by the percentage for the vehicle’s year:
 
-When a lesson scenario states that sales tax and excise tax share one base, calculate each **independently from the original base cost**. Do not apply the second rate to an already-taxed amount.
+| Vehicle year | Percentage of original list price |
+|---|---|
+| Year of manufacture | 90% |
+| Second year | 60% |
+| Third year | 40% |
+| Fourth year | 25% |
+| Fifth year and later | 10% |
 
-#### Worked Example — Meridian Advisory Group
+The excise rate is **$25 per $1,000 of excise value**. These examples assume registration for the full calendar year, with no exemptions or abatements. Actual bills can be prorated; the DOR guide explains the rules.
 
-Meridian Advisory Group purchases a commercial appliance for $6,200. Sales tax: 6.25%. Excise tax: 8%.
+#### Worked Example — Meridian’s Company Car
 
-| Tax Type          | Calculation         | Amount      |
-|-------------------|---------------------|-------------|
-| Base Cost         | Given               | $6,200.00   |
-| Sales Tax (6.25%)    | $6,200 × 0.0625       | $387.50     |
-| Excise Tax (8%)   | $6,200 × 0.08       | $496.00     |
-| **Total Cost**    | $6,200 + $387.50 + $496 | **$7,083.50** |
+Meridian owns a car with an original manufacturer list price of **$32,000**, in its **second year**. It is registered for the full calendar year.
 
-> ✅ **Shortcut**
->
-> Add the two rates first (6.25% + 8% = 14.25%), then multiply: $6,200 × 1.1425 = **$7,083.50**. This works because both rates apply to the same base — they can be combined before multiplying.
+| Step | Excel formula | Calculation |
+|---|---|---|
+| Excise value | `=B1*B2` | $32,000 × 60% = **$19,200** |
+| Annual excise bill | `=B3/1000*B4` | $19,200 ÷ 1,000 × $25 = **$480** |
+| Monthly amount to set aside | `=B5/12` | $480 ÷ 12 = **$40** |
+
+B1 is original list price, B2 is the year percentage, B3 is excise value, B4 is dollars per $1,000, and B5 is the annual bill. The monthly amount is a budgeting choice; the tax bill is annual.
+
+[Source: Massachusetts DOR — Motor Vehicle Excise](https://www.mass.gov/guides/motor-vehicle-excise)
 
 ---
 
-### Part 3 — Property Tax
+### Part 3 — Massachusetts Property Tax: Beverly
 
-#### What Is Property Tax?
+The property owner pays the city or town. In Massachusetts, the local assessor determines **full and fair cash value**. Use that assessed value directly; do not multiply it by a 32% or 40% assessment fraction.
 
-Property tax is collected by local municipalities to fund community services: schools, roads, fire and police protection, public libraries, and infrastructure. It applies to both **real property** (land and buildings) and **business personal property** (movable assets such as computers, furniture, and machinery).
+Beverly’s **FY2026** rates are **$20.98 per $1,000 for commercial property** and **$10.81 per $1,000 for residential property**. Rates vary by municipality, property class, and fiscal year.
 
-Property-assessment systems vary. In this lesson's training municipality, an **assessment rate** converts market value into **assessed value**, which becomes the taxable base.
+#### Worked Example — Meridian’s Illustrative Beverly Office
 
-> ⚠️ **Triple Net Lease (NNN) Warning**
->
-> In a typical NNN lease, the **tenant** pays property taxes, building insurance, and maintenance in addition to base rent. This can make occupancy cost variable, so managers should review both the lease terms and the municipality's tax outlook before signing.
+Assume a commercial office assessed at **$820,000**, with no exemptions. This is an example value, not a claim about a specific parcel.
 
-#### The Three-Step Calculation
+| Step | Excel formula | Calculation |
+|---|---|---|
+| Thousands of assessed value | `=B2/1000` | $820,000 / 1,000 = **820** |
+| Annual property tax | `=B4*B3` | 820 × $20.98 = **$17,203.60** |
+| Monthly amount to set aside | `=B5/12` | $17,203.60 / 12 = **$1,433.63** |
 
-| Step | What You Calculate | Formula                                         |
-|------|--------------------|-------------------------------------------------|
-| 1    | Assessed Value     | `Assessment Rate × Market Value`               |
-| 2    | Tax Rate           | `ROUND(Town Budget / Total Assessed Value, 4)` |
-| 3    | Annual Tax Due     | `Tax Rate × Assessed Value`                    |
+B2 is assessed value, B3 is dollars per $1,000, B4 is thousands of value, and B5 is annual tax. The equivalent direct formula is `=B2/1000*B3`. Monthly savings are a budgeting choice, not the city’s billing schedule.
 
-#### Worked Example — Meridian Advisory Group
+**Check the units:** $20.98 is a dollar amount per $1,000, not a percentage. **Check the class:** Meridian’s office uses the commercial rate, not the residential rate.
 
-Given: Market Value $820,000 · Assessment Rate 40% · Town Budget $310,000 · Total Assessed Value in Town $4,750,000
-
-| Step                         | Calculation                     | Result        |
-|------------------------------|---------------------------------|---------------|
-| 1 — Assessed Value           | 0.40 × $820,000                 | $328,000.00   |
-| 2 — Tax Rate (raw)           | $310,000 / $4,750,000           | 0.0652631…    |
-| 2 — Tax Rate (rounded)       | `=ROUND(rate, 4)`               | **0.0653**    |
-| 3 — Annual Tax Due           | 0.0653 × $328,000               | **$21,418.40**|
+Sources: [Beverly City Assessors — FY2026 rates](https://www.beverlyma.gov/391/City-Assessors) and [Massachusetts DOR — Municipal Property Taxes](https://www.mass.gov/guides/massachusetts-municipal-property-taxes).
 
 ---
 
@@ -156,7 +152,7 @@ Excel should mirror the order of the business calculation. Keep every assumption
 
 ### Format Dollar Amounts and Rates
 
-Use **Home → Number** to format prices, taxes, and totals as Accounting or Currency. Format tax and assessment rates as percentages. Enter `6.25%` or `0.0625`—do not enter `6.25` and then click Percent Style, because Excel would display `625%`.
+Use **Home → Number** to format prices, taxes, and totals as Accounting or Currency. Format sales-tax rates and vehicle-year percentages as percentages. Keep property-tax rates per $1,000 as dollar amounts. Enter `6.25%` or `0.0625`—do not enter `6.25` and then click Percent Style, because Excel would display `625%`.
 
 ![Windows Excel Home tab showing the Number group controls used to format tax rates and dollar amounts](../assets/math-m07-excel-number-formats.png)
 
@@ -176,33 +172,25 @@ Set up this model in a blank area of Excel. The cell addresses below are an exam
 >
 > Subtract the trade discount first, calculate tax second, and add shipping last. Do not calculate tax from the original retail price when a trade discount reduces the taxable base.
 
-### Walkthrough 2 — Keep Sales and Excise Taxes on the Same Base
+### Walkthrough 2 — Calculate a Vehicle Owner’s Excise Bill
 
-1. **Set up:** Enter Base Cost in A1, Sales Tax Rate in A2, and Excise Tax Rate in A3. Enter `$6,200`, `6.25%`, and `8%` in B1:B3.
-2. **Select and type:** In B4, calculate sales tax with `=B1*B2`. In B5, calculate excise tax with `=B1*B3`. In B6, calculate total cost with `=B1+B4+B5`.
-3. **Check:** B4 should equal **$387.50**, B5 should equal **$496.00**, and B6 should equal **$7,083.50**.
-4. **Confirm with a second method:** In another cell, type `=B1*(1+B2+B3)`. It should also return **$7,083.50**.
-5. **Try:** Change the excise tax rate to `9%`. Both the excise tax and total cost should rise, but the sales tax should remain unchanged.
+1. Enter original list price `$32,000` in B1, second-year percentage `60%` in B2, and dollars per $1,000 `$25` in B4.
+2. In B3, enter `=B1*B2` to find the **$19,200 excise value**.
+3. In B5, enter `=B3/1000*B4` to find the **$480 annual bill**.
+4. In B6, enter `=B5/12` to find the **$40 monthly budgeting amount**.
+5. Change B2 to `40%` for the third year. Excise value falls to **$12,800**, annual excise to **$320**, and the monthly amount displays **$26.67**. The $25-per-$1,000 rate does not change.
 
-![Excel formula bar showing sales tax and excise tax formulas that both reference the original base cost](../assets/math-m07-same-base-formulas.png)
+![Excel vehicle-excise model using original list price, year percentage, and the $25-per-$1,000 rate](../assets/math-m07-vehicle-excise-model.png)
 
-If the excise formula begins with the sales-tax-inclusive total instead of B1, the taxes are being compounded incorrectly. Both tax formulas must point back to the original base cost.
+### Walkthrough 3 — Use Beverly’s Published Commercial Rate
 
-### Walkthrough 3 — Round the Property Tax Rate First
+1. Enter assessed value `$820,000` in B2 and the FY2026 commercial rate `$20.98` per $1,000 in B3.
+2. In B4, enter `=B2/1000`; the result is **820** thousands of value.
+3. In B5, enter `=B4*B3`; the annual tax is **$17,203.60**.
+4. In B6, enter `=B5/12`; the monthly amount to set aside displays **$1,433.63**.
+5. Change assessed value to `$900,000`, keeping the rate fixed. Annual tax becomes **$18,882** and monthly savings become **$1,573.50**.
 
-1. **Set up:** Enter Market Value, Assessment Rate, Town Budget, and Total Assessed Value in A1:A4. Enter `$820,000`, `40%`, `$310,000`, and `$4,750,000` in B1:B4.
-2. **Select and type:** In B5, type `=B1*B2` for assessed value. In B6, type `=ROUND(B3/B4,4)` for the tax rate. In B7, type `=B5*B6` for annual tax due.
-3. **Format:** Format B1, B3:B5, and B7 as Accounting or Currency. Format B2 as Percentage. Display B6 as a number with four decimal places so you can verify the required rounding.
-4. **Check:** B5 should equal **$328,000.00**, B6 should equal **0.0653**, and B7 should equal **$21,418.40**.
-5. **Try:** Calculate a monthly NNN planning reserve in B8 with `=B7/12`. The result should be **$1,784.87** when displayed to two decimal places.
-
-![Excel property tax worksheet and formula bar showing ROUND applied before annual tax is calculated](../assets/math-m07-property-tax-round.png)
-
-> ✅ **Workbook Connection**
->
-> In class, use the same modeling habits with **new numbers** on the **Live You Try It** tab of the starter workbook. Attempt each row before checking the **FormulaReferenceCard** tab. Then begin the graded **Class Challenge** tax compliance audit: diagnose each supplied filing, repair the liability formula, calculate the adjustment, and reconcile the corrected total to the control total.
-
----
+![Excel property-tax model dividing assessed value by 1,000 and applying Beverly’s FY2026 commercial rate](../assets/math-m07-property-tax-round.png)
 
 ## 4 · Formula Reference
 
@@ -212,11 +200,11 @@ If the excise formula begins with the sales-tax-inclusive total instead of B1, t
 | **Sales Tax — Tax Owed**        | `= Taxable × Tax Rate`                                 |
 | **Sales Tax — Total Price**     | `= Taxable + Tax + Shipping`                           |
 | **Back-Calculate Actual Sales** | `= Total Receipts / (1 + Tax Rate)`                   |
-| **Excise — Each tax separately**| `= Base × SalesRate` and `= Base × ExciseRate`        |
-| **Excise — Combined shortcut**  | `= Base × (1 + SalesRate + ExciseRate)`               |
-| **Property — Assessed Value**   | `= Assessment Rate × Market Value`                    |
-| **Property — Tax Rate**         | `= ROUND(Town Budget / Total Assessed Value, 4)`      |
-| **Property — Annual Tax Due**   | `= Tax Rate × Assessed Value`                         |
+| **Vehicle excise value** | `=ListPrice*YearPercent` |
+| **Annual vehicle excise** | `=ExciseValue/1000*25` |
+| **Property — Thousands of Value** | `=AssessedValue/1000` |
+| **Property — Annual Tax** | `=ThousandsOfValue*LocalRate` |
+| **Property — Monthly Savings** | `=AnnualTax/12` |
 
 ---
 
@@ -230,13 +218,13 @@ Answer all seven questions before class. Answers appear at the end of this docum
 
 **3. [Calculation]** Register receipts total $78,000 for the day, inclusive of 6.25% sales tax. What were the actual pre-tax sales?
 
-**4. [Calculation]** Meridian Advisory Group buys office equipment for $8,500. The training jurisdiction states that sales tax is 6.25%, excise tax is 9%, and both share the original base. Calculate the total cost using both methods.
+**4. [Calculation]** Meridian owns a car with an original list price of $36,000, in its third year. It is registered for the full calendar year. Calculate excise value, annual excise, and a monthly amount to set aside.
 
-**5. [Concept]** Under the supplied same-base rule, why is it incorrect to apply excise tax to the sales-tax-inclusive amount?
+**5. [Concept]** Why should the owner use the manufacturer’s original list price rather than the car’s purchase price to calculate Massachusetts motor vehicle excise? Who receives payment?
 
-**6. [Calculation]** In the training municipality, a property has a market value of $450,000. Assessment rate: 35%. Town budget: $198,000. Total assessed value in town: $2,600,000. Calculate assessed value, tax rate (to 4 decimal places), and annual tax due.
+**6. [Calculation]** Meridian’s illustrative Beverly commercial office has an assessed value of $450,000. Use the FY2026 rate of $20.98 per $1,000, assuming no exemptions. Find annual property tax and a monthly amount to set aside.
 
-**7. [Strategy]** Meridian Advisory Group is considering a Triple Net (NNN) lease for new office space. Why should managers review the municipality's tax outlook and the lease terms before signing? What financial risk can an NNN lease create?
+**7. [Strategy]** Why should a business verify the property class and fiscal year before using a published property-tax rate?
 
 ---
 
@@ -247,10 +235,10 @@ Answer all seven questions before class. Answers appear at the end of this docum
 | **1** | Taxable = $600 − $100 = $500. Tax = $500 × 0.0625 = $31.25. Total = $500 + $31.25 + $18 = **$549.25** |
 | **2** | No. Collected sales tax is a **liability held in trust** for the state government, not earned revenue. Recording it as revenue overstates income. |
 | **3** | $78,000 / 1.0625 = **$73,411.76**. Collected tax = $78,000 − $73,411.76 = $4,588.24. |
-| **4** | Method 1: ST = $531.25; ET = $765.00. Total = **$9,796.25**. Method 2: $8,500 × 1.1525 = **$9,796.25**. Both match. |
-| **5** | Under the supplied same-base rule, both taxes use the **original base price**. Applying the second rate to an already-taxed amount violates the scenario rule and overstates total cost. |
-| **6** | Assessed Value = 0.35 × $450,000 = $157,500. Tax Rate = ROUND($198,000/$2,600,000, 4) = **0.0762**. Annual Tax = 0.0762 × $157,500 = **$12,001.50**. |
-| **7** | Under a typical NNN structure, the tenant pays property tax, insurance, and maintenance in addition to base rent. Tax changes can therefore turn occupancy cost into **variable overhead**; the exact exposure depends on the lease terms. |
+| **4** | Excise value = $36,000 × 40% = $14,400. Annual excise = $14,400 / 1,000 × $25 = **$360**. Monthly amount = $360 / 12 = **$30**. |
+| **5** | Massachusetts uses original manufacturer list price and a statutory year percentage, not purchase price. The registered owner pays the city/town tax collector. |
+| **6** | Annual tax = $450,000 / 1,000 × $20.98 = **$9,441**. Monthly savings = $9,441 / 12 = **$786.75**. |
+| **7** | The applicable rate can differ by class and year. Applying a residential rate to a commercial office can understate tax and leave the business short of cash. |
 
 ---
 
@@ -261,10 +249,8 @@ Answer all seven questions before class. Answers appear at the end of this docum
 | **Sales Tax**                 | A state-imposed consumption tax on the retail sale of goods and services; collected by merchants on behalf of the government.                                       |
 | **Trade Discount**            | A reduction from the retail price given to a business buyer; subtracted **before** sales tax is applied.                                                           |
 | **Excise Tax**                | A targeted tax imposed on specified products or activities; the liable party and tax base depend on the governing rule.                                          |
-| **Assessed Value**            | The value used as the property-tax base; in this lesson's training municipality: `Assessment Rate × Market Value`.                                                |
-| **Assessment Rate**           | The percentage of a property's market value that a municipality designates as taxable.                                                                             |
-| **Tax Rate (Property)**       | The rate applied to assessed value to calculate tax due: `Town Budget ÷ Total Assessed Value`; rounded to four decimal places.                                    |
+| **Assessed Value** | The local assessor’s estimate of full and fair cash value in Massachusetts. |
+| **Local Property-Tax Rate** | Dollars charged per $1,000 of assessed value for the property’s class and fiscal year. |
 | **Nexus**                     | The legal connection (physical presence or economic activity) that requires a business to collect and remit sales tax in a given jurisdiction.                     |
-| **Triple Net Lease (NNN)**    | A lease structure in which the tenant typically pays property taxes, insurance, and maintenance in addition to base rent; exact obligations depend on the lease.  |
 | **Business Personal Property**| Movable, tangible operating assets (computers, furniture, machinery) subject to local property tax.                                                               |
-| **Demand Elasticity**         | The sensitivity of customer demand to price changes; relevant to excise tax when businesses must raise prices to maintain margin.                                   |
+| **Excise Value** | Original manufacturer list price multiplied by the percentage for the vehicle year. |

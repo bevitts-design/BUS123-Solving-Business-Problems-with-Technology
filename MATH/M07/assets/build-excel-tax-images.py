@@ -124,43 +124,22 @@ draw.multiline_text(
 image.save(OUT / "math-m07-sales-tax-model.png", quality=95)
 
 
-# 3. Formula-bar visual for keeping both taxes on the original base.
-image, draw = base("Keep sales and excise taxes tied to the same base cost")
-formula_bar(draw, 90, 125, "=B1*B3", "B5")
-draw.rounded_rectangle((90, 245, 770, 590), radius=18, fill=PALE, outline=GREEN, width=4)
-draw.text((430, 290), "Sales tax", anchor="ma", font=font(28, True), fill=NAVY)
-draw.text((430, 375), "=B1*B2", anchor="mm", font=font(35, True), fill=DARK_GREEN)
-draw.text((430, 460), "$6,200 × 6.25% = $387.50", anchor="ma", font=font(23), fill=TEXT)
-draw.rounded_rectangle((820, 245, 1500, 590), radius=18, fill=PALE, outline=GREEN, width=4)
-draw.text((1160, 290), "Excise tax", anchor="ma", font=font(28, True), fill=NAVY)
-draw.text((1160, 375), "=B1*B3", anchor="mm", font=font(35, True), fill=DARK_GREEN)
-draw.text((1160, 460), "$6,200 × 8% = $496", anchor="ma", font=font(23), fill=TEXT)
-draw.rounded_rectangle((1540, 245, 1730, 590), radius=14, fill=YELLOW, outline=GOLD, width=4)
-draw.multiline_text((1635, 315), "Both\nformulas\nstart with\nB1", anchor="ma", align="center", spacing=8, font=font(24, True), fill=RED)
-image.save(OUT / "math-m07-same-base-formulas.png", quality=95)
+# 3. Massachusetts motor vehicle excise calculation.
+image, draw = base("Massachusetts motor vehicle excise: original list price to annual bill")
+rows = [("Original List Price", "$32,000", "input"),("Second-Year Percentage", "60%", "input"),("Excise Value", "=B1*B2", "output"),("Dollars per $1,000", "$25", "input"),("Annual Excise", "=B3/1000*B4", "output"),("Monthly Budget Amount", "=B5/12", "output")]
+worksheet(draw, 70, 95, rows, "=B3/1000*B4", "B5")
+for y,title,value in [(185,"Original list price","$32,000"),(340,"Excise value at 60%","$19,200"),(495,"Annual excise bill","$480")]:
+    draw.rounded_rectangle((1120,y,1710,y+100),radius=16,fill=PALE,outline=GREEN,width=3)
+    draw.text((1415,y+20),title,anchor="ma",font=font(24,True),fill=NAVY)
+    draw.text((1415,y+58),value,anchor="ma",font=font(28,True),fill=DARK_GREEN)
+for y in [292,447]:draw.text((1415,y),"↓",anchor="ma",font=font(30,True),fill=GREEN)
+image.save(OUT / "math-m07-vehicle-excise-model.png", quality=95)
 
 
-# 4. Property-tax ROUND model.
-image, draw = base("Round the property-tax rate before calculating tax due")
-rows = [
-    ("Market Value", "$820,000", "input"),
-    ("Assessment Rate", "40%", "input"),
-    ("Town Budget", "$310,000", "input"),
-    ("Total Assessed Value", "$4,750,000", "input"),
-    ("Assessed Value", "=B1*B2", "output"),
-    ("Rounded Tax Rate", "=ROUND(B3/B4,4)", "output"),
-    ("Annual Tax Due", "=B5*B6", "output"),
-]
-worksheet(draw, 70, 95, rows, "=ROUND(B3/B4,4)", "B6")
-draw.rounded_rectangle((1120, 150, 1720, 615), radius=18, fill=YELLOW, outline=GOLD, width=4)
-draw.text((1420, 200), "Use the rounded rate", anchor="ma", font=font(27, True), fill=NAVY)
-draw.multiline_text(
-    (1420, 300),
-    "B6 stores 0.0653\n\nB7 uses =B5*B6\n\nExpected annual tax:\n$21,418.40\n\nOptional monthly reserve:\n=B7/12",
-    anchor="ma",
-    align="center",
-    spacing=8,
-    font=font(21, True),
-    fill=TEXT,
-)
-image.save(OUT / "math-m07-property-tax-round.png", quality=95)
+# 4. Beverly FY2026 commercial property-tax model.
+image, draw = base("Beverly property tax: dollars per $1,000 of assessed value")
+rows = [("Beverly FY2026", "Commercial", "input"),("Assessed Value", "$820,000", "input"),("Dollars per $1,000", "$20.98", "input"),("Thousands of Value", "=B2/1000", "output"),("Annual Property Tax", "=B4*B3", "output"),("Monthly Budget Amount", "=B5/12", "output")]
+worksheet(draw, 70, 95, rows, "=B4*B3", "B5")
+draw.rounded_rectangle((1120,150,1720,615),radius=18,fill=PALE,outline=GREEN,width=4)
+draw.multiline_text((1420,205),"FY2026 commercial rate\n$20.98 per $1,000\n\n$820,000 / 1,000 = 820\n820 x $20.98 = $17,203.60\n\nMonthly savings: $1,433.63",anchor="ma",align="center",spacing=14,font=font(24,True),fill=TEXT)
+image.save(OUT / "math-m07-property-tax-round.png",quality=95)

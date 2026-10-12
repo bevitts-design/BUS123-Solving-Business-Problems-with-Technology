@@ -35,12 +35,12 @@ live.getRange('A3:I3').format.rowHeight=42;
 writeText(live,'C7','E: tax rate 6.25%; F: sales tax using subtotal F6.');
 writeText(live,'C8','D: shipping 22; F: total price using F6, F7 and D8.');
 writeText(live,'C10','F: tax held using receipts D9 and pre-tax sales F9.');
-writeText(live,'C12','E: excise rate 4.5%; F: excise tax using the original base in D11.');
-writeText(live,'C13','F: total cost using original base D11 and tax results F11 and F12.');
-writeText(live,'H12','Reference the same original base cell used for sales tax: D11.');
-writeText(live,'H13','Add the original base and both separate tax results.');
-writeText(live,'H16','Reference assessed value F14 and rounded rate F15.');
-writeText(live,'C16','F: annual tax due using assessed value F14 and rounded rate F15.');
+writeText(live,'C12','D: $25 per $1,000; F: annual vehicle excise using excise value F11.');
+writeText(live,'C13','F: monthly amount to set aside using annual excise F12.');
+writeText(live,'H12','Divide excise value F11 by 1,000, then multiply by the dollar rate D12.');
+writeText(live,'H13','Divide the annual excise bill by 12. This is a budgeting amount, not a monthly tax bill.');
+writeText(live,'H16','Divide annual property tax F15 by 12 for monthly savings.');
+writeText(live,'C16','F: monthly savings using annual property tax F15.');
 // Add A/B blocks below the existing live tasks without shifting their addresses.
 for(const w of [student,key]){
   const sheet=w.worksheets.getItem('Live You Try It');
@@ -96,13 +96,44 @@ for(const cell of ['D12','D13']){
 for(const w of [student,key]){
   const sh=w.worksheets.getItem('Live You Try It');
   writeText(sh,'C9','D: receipts 64,200; E: tax rate 6.25%; F: pre-tax sales.');
-  writeText(sh,'C11','D: base cost 7,250; E: sales tax rate 6.25%; F: sales tax.');
+  writeText(sh,'C11','D: original list price 30,000; E: third-year value percentage 40%; F: excise value.');
+  writeText(sh,'H11','Use the manufacturer’s original list price, not purchase price.');
+  for(const row of [11,12,13])writeText(sh,`B${row}`,'Vehicle excise');
+  sh.getRange('E12').clear({applyTo:'contents'});sh.getRange('E12').format.fill='#F2EEE5';
+  sh.getRange('D12').format.fill='#FFD966';sh.getRange('D12').setNumberFormat('"$"0.00');
   for(const cell of ['E7','E9','E11'])sh.getRange(cell).setNumberFormat('0.00%');
   const ch=w.worksheets.getItem('Class Challenge');
-  for(const row of [7,8,9,10,11]){ch.getRange(`F${row}`).values=[[0.0625]];ch.getRange(`F${row}`).setNumberFormat('0.00%');}
-  writeText(ch,'C10','Meridian appliance: 6.25% sales and 8% supplied excise tax share a $6,200 base');
-  writeText(ch,'C11','Meridian equipment: 6.25% sales and 9% supplied excise tax share an $8,400 base');
-  ch.getRange('H16').values=[[28296.65]];
+  for(const row of [7,8,9]){ch.getRange(`F${row}`).values=[[0.0625]];ch.getRange(`F${row}`).setNumberFormat('0.00%');}
+  writeText(ch,'A4','Sales examples use Massachusetts 6.25%. Vehicle excise uses full-calendar-year registration and the supplied year percentage. Property tax uses the supplied town rules. Keep source cells unchanged; repair formulas in yellow cells.');
+  writeText(ch,'D6','Amount / original list price / assessed value');
+  writeText(ch,'E6','Discount / vehicle-year percentage');
+  writeText(ch,'F6','Sales rate / dollars per $1,000');
+  for(const [row,list,year] of [[10,32000,.6],[11,36000,.4]]){
+    writeText(ch,`B${row}`,'Vehicle excise');
+    ch.getRange(`D${row}`).values=[[list]];ch.getRange(`E${row}`).values=[[year]];ch.getRange(`E${row}`).setNumberFormat('0%');
+    ch.getRange(`F${row}`).values=[[25]];ch.getRange(`F${row}`).setNumberFormat('"$"0.00');ch.getRange(`G${row}`).clear({applyTo:'contents'});
+  }
+  writeText(ch,'C10','Meridian car: original list price $32,000; second year 60%; $25 per $1,000; full year');
+  writeText(ch,'C11','Meridian car: original list price $36,000; third year 40%; $25 per $1,000; full year');
+  writeText(sh,'C14','D: assessed value $540,000; F: thousands of assessed value (divide by 1,000).');
+  writeText(sh,'C15','D: Beverly FY2026 commercial rate $20.98 per $1,000; F: annual property tax using F14.');
+  writeText(sh,'H14','Massachusetts uses the assessor’s full and fair cash value. Divide by 1,000 to match rate units.');
+  writeText(sh,'H15','Multiply thousands of assessed value F14 by dollars per $1,000 D15.');
+  for(const cell of ['E14','E15']){sh.getRange(cell).clear({applyTo:'contents'});sh.getRange(cell).format.fill='#F2EEE5';}
+  sh.getRange('D15').setNumberFormat('"$"0.00');sh.getRange('F14').setNumberFormat('0.00');
+  writeText(ch,'A4','Sales tax and vehicle excise use Massachusetts rules. Property tax uses Beverly FY2026 commercial/residential rates. Example property values are illustrative. Source cells stay unchanged.');
+  writeText(ch,'C12','Beverly FY2026 commercial office: $820,000 assessed value; commercial $20.98 and residential $10.81 per $1,000');
+  ch.getRange('D12').values=[[820000]];ch.getRange('E12').clear({applyTo:'contents'});ch.getRange('F12').values=[[20.98]];ch.getRange('G12').values=[[10.81]];
+  ch.getRange('F12:G12').setNumberFormat('"$"0.00');
+  ch.getRange('H16').values=[[22757.35]];
+  const card=w.worksheets.getItem('FormulaReferenceCard');
+  writeText(card,'A9','Vehicle excise value');writeText(card,'B9',"'=ListPrice*YearPercent");writeText(card,'C9','Uses original manufacturer list price and the vehicle-year percentage.');writeText(card,'D9','Do not use purchase price or current resale value.');
+  writeText(card,'A10','Annual vehicle excise');writeText(card,'B10',"'=ExciseValue/1000*25");writeText(card,'C10','Charges $25 for each $1,000 of excise value.');writeText(card,'D10','Owner pays city/town; these examples assume full-year registration.');
+  writeText(card,'A11','Thousands of assessed value');writeText(card,'B11',"'=AssessedValue/1000");writeText(card,'C11','Converts the assessor’s value to the units used by the local rate.');writeText(card,'D11','Do not apply the former 32% or 40% assessment fraction.');
+  writeText(card,'A12','Annual property tax');writeText(card,'B12',"'=ThousandsOfValue*LocalRate");writeText(card,'C12','Uses the published dollar rate per $1,000.');writeText(card,'D12','Match municipality, property class, and fiscal year.');
+  writeText(card,'A13','Direct property-tax formula');writeText(card,'B13',"'=AssessedValue/1000*LocalRate");writeText(card,'C13','Equivalent one-step calculation.');writeText(card,'D13','The rate is dollars per $1,000, not a percentage.');
+  writeText(card,'A14','Monthly property-tax savings');writeText(card,'D14','Monthly budgeting amount; actual city billing can differ.');
+
 }
 const allInputs=Object.assign({},...model.livePractice.map(x=>x.inputs));
 for(const item of model.livePractice){
@@ -118,9 +149,9 @@ for(const item of model.livePractice){
   live.getRange(`G${r}`).formulas=[[`=IF(COUNT(${required.join(',')})<${required.length},"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${refs}),FALSE)),"Use the required input/result references",IF(AND(${inputs?inputs+',':''}ABS(${answer}-${item.value})<=${tolerance}),"Correct - explain and test your model","Check the baseline inputs and calculation"))))`]];
   writeText(live,`I${r}`,r<=10?'slide 9':r<=13?'slide 14':'slide 18');
 }
-live.getRange('F15').setNumberFormat('0.0000');
+live.getRange('F15').setNumberFormat('"$"#,##0.00');
 const start=student.worksheets.getItem('START HERE');
-writeText(start,'C8','Start with slide 7: Version A in rows 8-11, then Version B in rows 17-20. Continue downward: sales tax on slide 9 (rows 24-28), two taxes on slide 14 (rows 29-31), and property tax on slide 18 (rows 32-34).');
+writeText(start,'C8','Start with slide 7: Version A in rows 8-11, then Version B in rows 17-20. Continue downward: sales tax on slide 9 (rows 24-28), vehicle excise on slide 14 (rows 29-31), and property tax on slide 18 (rows 32-34).');
 writeText(start,'C9','In pairs, audit R01-R03 and one of R04-R06. Complete all six and reconcile for homework.');
 writeText(start,'C14','Yellow input cells and answer cells are blank for student work.');
 writeText(start,'C15','Feedback checks baseline values and required references; explain your logic and test changing inputs.');
@@ -150,13 +181,13 @@ for(const v of model.reverseVersions){
 }
 for(const cell of ['D12','D13']){
   keyLive.getRange(cell).clear({applyTo:'contents'});
-  keyLive.getRange(cell).format.fill='#F2EEE5';
+  keyLive.getRange(cell).format.fill=cell==='D12'?'#FFD966':'#F2EEE5';
 }
 for(const item of model.livePractice){
   for(const [cell,value] of Object.entries(item.inputs))keyLive.getRange(cell).values=[[value]];
   keyLive.getRange(`F${item.row}`).formulas=[[item.formula]];
 }
-keyLive.getRange('F15').setNumberFormat('0.0000');
+keyLive.getRange('F15').setNumberFormat('"$"#,##0.00');
 keyLive.getRange('A3:I3').format.rowHeight=42;
 key.worksheets.getItem('Class Challenge').getRange('A3:L3').format.rowHeight=42;
 // Verify calculations and input sensitivity in the private model, then restore baseline.
@@ -176,12 +207,12 @@ for(const item of model.predictions){
 key.recalculate();
 const audit=key.worksheets.getItem('Class Challenge');
 // Rebuild audit formulas cell by cell so imported cached totals are refreshed.
-const filed={7:'=ROUND((D7-E7)*F7,2)',8:'=ROUND(D8*F8,2)',9:'=ROUND(D9-D9/(1+F9),2)',10:'=ROUND(D10*(F10+G10),2)',11:'=ROUND(D11*F11+(D11+D11*F11)*G11,2)',12:'=ROUND(D12*ROUND(F12/G12,4),2)'};
-const corrected=Object.fromEntries([7,8,9,10,11,12].map(r=>[r,audit.getRange(`K${r}`).formulas[0][0]]));
+const filed={7:'=ROUND((D7-E7)*F7,2)',8:'=ROUND(D8*F8,2)',9:'=ROUND(D9-D9/(1+F9),2)',10:'=ROUND(D10*E10*F10/1000,2)',11:'=ROUND(D11*F11/1000,2)',12:'=ROUND(D12/1000*G12,2)'};
+const {corrected}=JSON.parse(await fs.readFile(path.join(path.dirname(keyPath),'source/bus123-math-m07-l01-audit-model.json'),'utf8'));
 for(const w of [student,key]){
  const ch=w.worksheets.getItem('Class Challenge');
  const formulas={'D16':'=SUM(I7:I12)'};
- for(let r=7;r<=12;r++)formulas[`I${r}`]=filed[r];
+ for(let r=7;r<=12;r++){formulas[`I${r}`]=filed[r];writeText(ch,`H${r}`,"'"+filed[r]);}
  if(w===key){
   for(let r=7;r<=12;r++){formulas[`K${r}`]=corrected[r];formulas[`L${r}`]=`=ROUND(K${r}-I${r},2)`;}
   Object.assign(formulas,{K16:'=SUM(K7:K12)',K17:'=SUM(L7:L12)',K18:'=D16+K17',K19:'=ROUND(K18-H16,2)'});
@@ -189,23 +220,31 @@ for(const w of [student,key]){
  for(const [cell,formula] of Object.entries(formulas)){const range=ch.getRange(cell);range.clear({applyTo:'contents'});range.formulas=[[formula]];}
  w.recalculate();
 }
-if(Math.abs(audit.getRange('K16').values[0][0]-28296.65)>0.001||Math.abs(audit.getRange('K19').values[0][0])>0.001)throw Error(`Audit mismatch: ${JSON.stringify(audit.getRange('K16:K19').values)} adjustments ${JSON.stringify(audit.getRange('L7:L12').values)}`);
+if(Math.abs(audit.getRange('K16').values[0][0]-22757.35)>0.001||Math.abs(audit.getRange('K19').values[0][0])>0.001)throw Error(`Audit mismatch: ${JSON.stringify(audit.getRange('K16:K19').values)} adjustments ${JSON.stringify(audit.getRange('L7:L12').values)}`);
 const grading=key.worksheets.getItem('INSTRUCTOR_GradingMap');
 for(let row=16;row<=21;row++)grading.getRange(`L${row}`).values=[[audit.getRange(`K${row-9}`).values[0][0]]];
+for(const row of [13,14,15])writeText(grading,`K${row}`,"'"+corrected[row-3]);
 grading.getRange('L28').values=[[audit.getRange('K16').values[0][0]]];
 const instructor=key.worksheets.getItem('INSTRUCTOR_AnswerKey');
 const physicalRow=new Map(model.worksheetRowOrder.map((old,index)=>[old,index+1]));
 const remap=formula=>formula.replace(/([A-I])(\d+)/g,(_,col,row)=>col+physicalRow.get(Number(row)));
 for(const [i,item] of model.livePractice.entries()){
   const r=i+5;
+  writeText(instructor,`B${r}`,live.getRange(`B${item.row}`).values[0][0]);
   writeText(instructor,`C${r}`,live.getRange(`C${item.row}`).values[0][0]);
   writeText(instructor,`D${r}`,Object.entries(item.inputs).map(([cell,value])=>`${remap(cell)}=${value}`).join('; ')||'Use prior results');
   writeText(instructor,`E${r}`,"'"+remap(item.formula));
+  writeText(instructor,`H${r}`,live.getRange(`H${item.row}`).values[0][0]);
   instructor.getRange(`F${r}`).values=[[item.value]];
   writeText(instructor,`G${r}`,item.row<=10?'slide 9':item.row<=13?'slide 14':'slide 18');
 }
+writeText(instructor,'H22','Correct: apply the second-year percentage, then $25 per $1,000.');
+writeText(instructor,'H23','Error: full list price was used without the third-year 40% valuation.');
+writeText(instructor,'H24','Error: Beverly residential rate was applied to a commercial office; use $20.98 per $1,000.');
+writeText(key.worksheets.getItem('Class Challenge'),'D21','R06 is most consequential: using the residential rate understates commercial property tax by $8,339.40.');
 for(let i=0;i<6;i++){
  const r=19+i,a=7+i;
+ writeText(instructor,`C${r}`,"'"+corrected[a]);writeText(instructor,`F${r}`,"'"+filed[a]);
  instructor.getRange(`D${r}`).values=[[audit.getRange(`K${a}`).values[0][0]]];
  instructor.getRange(`E${r}`).values=[[audit.getRange(`L${a}`).values[0][0]]];
  instructor.getRange(`G${r}`).values=[[audit.getRange(`I${a}`).values[0][0]]];
@@ -222,7 +261,7 @@ keyLive.getRange('F6').formulas=[[model.livePractice[0].formula]];
 for(const w of [student,key]){
   const sheet=w.worksheets.getItem('Live You Try It');
   sheet.mergeCells('A18:I18');
-  writeText(sheet,'A18','Continue: sales tax (slide 9), two taxes (slide 14), then property tax (slide 18)');
+  writeText(sheet,'A18','Continue: sales tax (slide 9), vehicle excise (slide 14), then property tax (slide 18)');
   sheet.getRange('A18:I18').format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
 }
 student.recalculate();key.recalculate();

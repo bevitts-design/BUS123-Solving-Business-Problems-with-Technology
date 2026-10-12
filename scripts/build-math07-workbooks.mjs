@@ -17,40 +17,48 @@ await fs.mkdir(stage,{recursive:true});
 const studentPath=path.join(root,'MATH/M07/bus123-math-m07-l01-starter.xlsx');
 const keyPath=path.resolve(root,'../BUS123-instructor/MATH/M07/bus123-math-m07-l01-activity-key.xlsx');
 const model=JSON.parse(await fs.readFile(path.join(root,'MATH/M07/source/bus123-math-m07-l01-models.json'),'utf8'));
-const student=await SpreadsheetFile.importXlsx(await FileBlob.load(studentPath));
-const key=await SpreadsheetFile.importXlsx(await FileBlob.load(keyPath));
+// Normalize legacy inputs once; repeated builds preserve the compact layout.
+const compactInputs=[];
+for(const [label,input] of [['student',studentPath],['key',keyPath]]){
+  const output=path.join(stage,`${label}-compact-input.xlsx`);
+  execFileSync(process.env.BUS123_PYTHON||'python3',[path.join(root,'scripts/compact-math07-input-columns.py'),input,output]);
+  compactInputs.push(output);
+}
+const student=await SpreadsheetFile.importXlsx(await FileBlob.load(compactInputs[0]));
+const key=await SpreadsheetFile.importXlsx(await FileBlob.load(compactInputs[1]));
 const writeText=(sheet,cell,text)=>sheet.getRange(cell).values=[[text]];
 const live=student.worksheets.getItem('Live You Try It');
-writeText(live,'A3','Enter inputs and formulas in H. Feedback checks baseline values and required references. Attempt first, then compare with the slide reveal. Restore inputs after Predict → Change → Explain.');
-live.getRange('A3:K3').format.rowHeight=42;
-writeText(live,'C12','E: excise rate 4.5%; H: excise tax using the original base in D11.');
-writeText(live,'C13','H: total cost using original base D11 and tax results H11 and H12.');
-writeText(live,'J12','Reference the same original base cell used for sales tax: D11.');
-writeText(live,'J13','Add the original base and both separate tax results.');
-writeText(live,'J16','Reference assessed value H14 and rounded rate H15.');
+writeText(live,'A3','Enter inputs and formulas in F. Feedback checks baseline values and required references. Attempt first, then compare with the slide reveal. Restore inputs after Predict → Change → Explain.');
+live.getRange('A3:I3').format.rowHeight=42;
+writeText(live,'C12','E: excise rate 4.5%; F: excise tax using the original base in D11.');
+writeText(live,'C13','F: total cost using original base D11 and tax results F11 and F12.');
+writeText(live,'H12','Reference the same original base cell used for sales tax: D11.');
+writeText(live,'H13','Add the original base and both separate tax results.');
+writeText(live,'H16','Reference assessed value F14 and rounded rate F15.');
+writeText(live,'C16','F: annual tax due using assessed value F14 and rounded rate F15.');
 // Add A/B blocks below the existing live tasks without shifting their addresses.
 for(const w of [student,key]){
   const sheet=w.worksheets.getItem('Live You Try It');
   for(const v of model.reverseVersions){
     const first=v.receiptsRow,last=v.taxRow;
-    sheet.getRange(`A${v.headingRow}:K${last}`).unmerge();
-    sheet.getRange(`A${v.headingRow}:K${last}`).clear({applyTo:'contents'});
-    sheet.getRange(`A${first}:K${last}`).copyFrom(sheet.getRange('A6:K9'),'all');
-    sheet.getRange(`A${first}:K${last}`).clear({applyTo:'contents'});
-    sheet.getRange(`A${first}:K${last}`).format={
+    sheet.getRange(`A${v.headingRow}:I${last}`).unmerge();
+    sheet.getRange(`A${v.headingRow}:I${last}`).clear({applyTo:'contents'});
+    sheet.getRange(`A${first}:I${last}`).copyFrom(sheet.getRange('A6:I9'),'all');
+    sheet.getRange(`A${first}:I${last}`).clear({applyTo:'contents'});
+    sheet.getRange(`A${first}:I${last}`).format={
       fill:'#FFFFFF',font:{name:'Aptos',size:11,color:'#1A1F2C'},
       rowHeight:42,wrapText:true,verticalAlignment:'center',
       borders:{preset:'all',style:'thin',color:'#E5E1D6'}
     };
-    sheet.getRange(`D${first}:H${last}`).format.fill='#F2EEE5';
-    sheet.getRange(`I${first}:I${last}`).format.fill='#EAF3EC';
-    for(const row of [v.headingRow,v.factsRow])sheet.mergeCells(`A${row}:K${row}`);
+    sheet.getRange(`D${first}:F${last}`).format.fill='#F2EEE5';
+    sheet.getRange(`G${first}:G${last}`).format.fill='#EAF3EC';
+    for(const row of [v.headingRow,v.factsRow])sheet.mergeCells(`A${row}:I${row}`);
     writeText(sheet,`A${v.headingRow}`,`Slide 6 - Reverse sales tax - Version ${v.version} (${v.version==='A'?'follow along':'try independently'})`);
-    sheet.getRange(`A${v.headingRow}:K${v.headingRow}`).format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
+    sheet.getRange(`A${v.headingRow}:I${v.headingRow}`).format={fill:'#4A7C5E',font:{name:'Aptos',size:13,bold:true,color:'#FFFFFF'},rowHeight:30};
     writeText(sheet,`A${v.factsRow}`,`Tidal register receipts of $${v.receipts.toLocaleString('en-US')} include ${(v.rate*100).toFixed(v.version==='A'?1:0)}% sales tax. Enter the givens, calculate pre-tax sales and tax held, and explain why they add back to receipts.`);
-    sheet.getRange(`A${v.factsRow}:K${v.factsRow}`).format={fill:'#FAF8F3',wrapText:true,rowHeight:36,font:{name:'Aptos',size:11,color:'#1A1F2C'}};
-    sheet.getRange(`A${v.headerRow}:K${v.headerRow}`).copyFrom(sheet.getRange('A5:K5'),'all');
-    sheet.getRange(`A${v.headerRow}:K${v.headerRow}`).format={fill:'#355773',font:{name:'Aptos',size:11,bold:true,color:'#FFFFFF'},rowHeight:28,wrapText:true,verticalAlignment:'center'};
+    sheet.getRange(`A${v.factsRow}:I${v.factsRow}`).format={fill:'#FAF8F3',wrapText:true,rowHeight:36,font:{name:'Aptos',size:11,color:'#1A1F2C'}};
+    sheet.getRange(`A${v.headerRow}:I${v.headerRow}`).copyFrom(sheet.getRange('A5:I5'),'all');
+    sheet.getRange(`A${v.headerRow}:I${v.headerRow}`).format={fill:'#355773',font:{name:'Aptos',size:11,bold:true,color:'#FFFFFF'},rowHeight:28,wrapText:true,verticalAlignment:'center'};
     const tasks=[
       [v.receiptsRow,'Receipts',`Enter tax-inclusive receipts ${v.receipts.toLocaleString('en-US')} in ${v.receiptsCell}.`],
       [v.rateRow,'Tax rate',`Enter sales-tax rate ${(v.rate*100).toFixed(v.version==='A'?1:0)}% in ${v.rateCell}.`],
@@ -59,20 +67,20 @@ for(const w of [student,key]){
     ];
     for(const [row,topic,task] of tasks){
       writeText(sheet,`A${row}`,`${v.version}${row-first+1}`);
-      writeText(sheet,`B${row}`,topic);writeText(sheet,`C${row}`,task);writeText(sheet,`K${row}`,'slide 6');
+      writeText(sheet,`B${row}`,topic);writeText(sheet,`C${row}`,task);writeText(sheet,`I${row}`,'slide 6');
     }
     for(const cell of [v.receiptsCell,v.rateCell,v.salesCell,v.taxCell]){
       sheet.getRange(cell).format.fill='#FFD966';
       sheet.getRange(cell).setNumberFormat(cell===v.rateCell?'0.0%':'"$"#,##0.00');
     }
-    writeText(sheet,`J${v.salesRow}`,'Explain why the divisor includes 1 plus the tax rate.');
-    writeText(sheet,`J${v.taxRow}`,'Sales plus tax held must equal receipts.');
+    writeText(sheet,`H${v.salesRow}`,'Explain why the divisor includes 1 plus the tax rate.');
+    writeText(sheet,`H${v.taxRow}`,'Sales plus tax held must equal receipts.');
     for(const [row,answer,expected,refs] of [
       [v.salesRow,v.salesCell,v.sales,[v.receiptsCell,v.rateCell]],
       [v.taxRow,v.taxCell,v.tax,[v.receiptsCell,v.salesCell]]
     ]){
       const checks=refs.map(c=>`ISNUMBER(SEARCH("${c}",SUBSTITUTE(UPPER(_xlfn.FORMULATEXT(${answer})),"$","")))`).join(',');
-      sheet.getRange(`I${row}`).formulas=[[`=IF(COUNT(${refs.join(',')},${answer})<3,"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${checks}),FALSE)),"Use the required input/result references",IF(ABS(${answer}-${expected})<=0.01,"Correct - explain your revenue/tax split","Check the inputs and reverse-tax calculation"))))`]];
+      sheet.getRange(`G${row}`).formulas=[[`=IF(COUNT(${refs.join(',')},${answer})<3,"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${checks}),FALSE)),"Use the required input/result references",IF(ABS(${answer}-${expected})<=0.01,"Correct - explain your revenue/tax split","Check the inputs and reverse-tax calculation"))))`]];
     }
   }
 }
@@ -82,7 +90,7 @@ for(const cell of ['D12','D13']){
 }
 const allInputs=Object.assign({},...model.livePractice.map(x=>x.inputs));
 for(const item of model.livePractice){
-  const r=item.row,answer=`H${r}`;
+  const r=item.row,answer=`F${r}`;
   for(const cell of Object.keys(item.inputs))live.getRange(cell).clear({applyTo:'contents'});
   live.getRange(answer).clear({applyTo:'contents'});
   const required=[...new Set([...item.references,answer])];
@@ -91,10 +99,10 @@ for(const item of model.livePractice){
   const refs=item.references.map(cell=>`ISNUMBER(SEARCH("${cell}",${normalized}))`).join(',');
   const tolerance=r===15?'0.0000001':'0.01';
   const inputs=Object.entries(item.inputs).map(([cell,value])=>`ABS(${cell}-${value})<=${cell==='E15'?'0.01':value<1?'0.0000001':'0.01'}`).join(',');
-  live.getRange(`I${r}`).formulas=[[`=IF(COUNT(${required.join(',')})<${required.length},"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${refs}),FALSE)),"Use the required input/result references",IF(AND(${inputs?inputs+',':''}ABS(${answer}-${item.value})<=${tolerance}),"Correct - explain and test your model","Check the baseline inputs and calculation"))))`]];
-  writeText(live,`K${r}`,r<=10?'slide 8':r<=13?'slide 13':'slide 17');
+  live.getRange(`G${r}`).formulas=[[`=IF(COUNT(${required.join(',')})<${required.length},"Enter inputs and a formula first",IF(NOT(_xlfn.ISFORMULA(${answer})),"Use a formula, not a typed answer",IF(NOT(IFERROR(AND(${refs}),FALSE)),"Use the required input/result references",IF(AND(${inputs?inputs+',':''}ABS(${answer}-${item.value})<=${tolerance}),"Correct - explain and test your model","Check the baseline inputs and calculation"))))`]];
+  writeText(live,`I${r}`,r<=10?'slide 8':r<=13?'slide 13':'slide 17');
 }
-live.getRange('H15').setNumberFormat('0.0000');
+live.getRange('F15').setNumberFormat('0.0000');
 const start=student.worksheets.getItem('START HERE');
 writeText(start,'C8','Slide 6: follow Version A in rows 22-25, then try Version B in rows 31-34. Later slides use tasks 1-11 above. Compare with the slide reveals.');
 writeText(start,'C9','In pairs, audit R01-R03 and one of R04-R06. Complete all six and reconcile for homework.');
@@ -108,7 +116,7 @@ challenge.getRange('A3:L3').format.rowHeight=42;
 for(const name of ['START HERE','Live You Try It','Class Challenge','FormulaReferenceCard']){
   const s=student.worksheets.getItem(name),k=key.worksheets.getItem(name);
   const rows=name==='Class Challenge'?24:name==='FormulaReferenceCard'?14:name==='Live You Try It'?34:16;
-  const cols=name==='Class Challenge'?12:name==='FormulaReferenceCard'?4:name==='START HERE'?6:11;
+  const cols=name==='Class Challenge'?12:name==='FormulaReferenceCard'?4:name==='START HERE'?6:9;
   const vals=s.getRangeByIndexes(0,0,rows,cols).values;
   const forms=s.getRangeByIndexes(0,0,rows,cols).formulas;
   for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
@@ -130,10 +138,10 @@ for(const cell of ['D12','D13']){
 }
 for(const item of model.livePractice){
   for(const [cell,value] of Object.entries(item.inputs))keyLive.getRange(cell).values=[[value]];
-  keyLive.getRange(`H${item.row}`).formulas=[[item.formula]];
+  keyLive.getRange(`F${item.row}`).formulas=[[item.formula]];
 }
-keyLive.getRange('H15').setNumberFormat('0.0000');
-keyLive.getRange('A3:K3').format.rowHeight=42;
+keyLive.getRange('F15').setNumberFormat('0.0000');
+keyLive.getRange('A3:I3').format.rowHeight=42;
 key.worksheets.getItem('Class Challenge').getRange('A3:L3').format.rowHeight=42;
 // Verify calculations and input sensitivity in the private model, then restore baseline.
 const assertClose=(cell,expected)=>{
@@ -142,7 +150,7 @@ const assertClose=(cell,expected)=>{
 };
 key.recalculate();
 for(const v of model.reverseVersions){assertClose(v.salesCell,v.sales);assertClose(v.taxCell,v.tax);}
-for(const item of model.livePractice)assertClose(`H${item.row}`,item.value);
+for(const item of model.livePractice)assertClose(`F${item.row}`,item.value);
 for(const item of model.predictions){
   keyLive.getRange(item.input).values=[[item.value]];
   key.recalculate();
@@ -151,25 +159,25 @@ for(const item of model.predictions){
 }
 key.recalculate();
 // Demonstrate that a constant-only formula cannot satisfy the reference check.
-keyLive.getRange('H6').formulas=[['=640']];
+keyLive.getRange('F6').formulas=[['=640']];
 key.recalculate();
-const feedback=keyLive.getRange('I6').values[0][0];
+const feedback=keyLive.getRange('G6').values[0][0];
 // Artifact Tool cannot evaluate ISFORMULA/FORMULATEXT. Native Excel verifies
 // these feedback functions after export; the numeric model is tested here.
 if(feedback!=='Use the required input/result references'&&feedback!=='#VALUE!')throw Error(`Constant formula check failed: ${feedback}`);
-keyLive.getRange('H6').formulas=[[model.livePractice[0].formula]];
+keyLive.getRange('F6').formulas=[[model.livePractice[0].formula]];
 student.recalculate();key.recalculate();
 for(const item of model.livePractice){
-  assertClose(`H${item.row}`,item.value);
-  const status=keyLive.getRange(`I${item.row}`).values[0][0];
-  if(status!=='Correct - explain and test your model'&&status!=='#VALUE!')throw Error(`Feedback H${item.row}: ${status}`);
+  assertClose(`F${item.row}`,item.value);
+  const status=keyLive.getRange(`G${item.row}`).values[0][0];
+  if(status!=='Correct - explain and test your model'&&status!=='#VALUE!')throw Error(`Feedback F${item.row}: ${status}`);
 }
 for(const [label,w] of [['student',student],['key',key]]){
   const scan=await w.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#NUM!|#N/A|#NULL!',options:{useRegex:true,maxResults:50},maxChars:1600});
   await fs.writeFile(path.join(stage,`${label}-errors.json`),scan.ndjson);
-  const blob=await w.render({sheetName:'Live You Try It',range:'C11:K16',scale:1.5});
+  const blob=await w.render({sheetName:'Live You Try It',range:'C11:I16',scale:1.5});
   await fs.writeFile(path.join(stage,`${label}-live.png`),new Uint8Array(await blob.arrayBuffer()));
-  const reversePreview=await w.render({sheetName:'Live You Try It',range:'A19:K34',scale:1});
+  const reversePreview=await w.render({sheetName:'Live You Try It',range:'A19:I34',scale:1});
   await fs.writeFile(path.join(stage,`${label}-reverse.png`),new Uint8Array(await reversePreview.arrayBuffer()));
   const outputPath=path.join(stage,label==='student'?'bus123-math-m07-l01-starter.xlsx':'bus123-math-m07-l01-activity-key.xlsx');
   await (await SpreadsheetFile.exportXlsx(w)).save(outputPath);

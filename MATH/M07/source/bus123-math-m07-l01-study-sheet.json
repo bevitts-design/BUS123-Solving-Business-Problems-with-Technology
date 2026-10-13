@@ -1,0 +1,300 @@
+{
+  "title": "Math M03-M07 | Test Study Sheet",
+  "intro": "",
+  "pages": [
+    {
+      "module": "M03",
+      "title": "Trade, chain & cash discounts",
+      "context": "Tidal Goods Co. | d = discount rate. The complement is the portion paid.",
+      "rows": [
+        {
+          "topic": "Complement / percent paid",
+          "formula": "=1-d",
+          "example": "30% off: 1 - 30% = 70% paid."
+        },
+        {
+          "topic": "Discount amount",
+          "formula": "=ListPrice*d",
+          "example": "$189.99 x 30% = $57.00 saved."
+        },
+        {
+          "topic": "Net price: one discount",
+          "formula": "=ListPrice*(1-d)",
+          "example": "$189.99 x 70% = $132.99 paid."
+        },
+        {
+          "topic": "Net price: chain discounts",
+          "formula": "=ListPrice*(1-d1)*(1-d2)*(1-d3)",
+          "example": "$64 x 80% x 90% x 95% = $43.78."
+        },
+        {
+          "topic": "Single equivalent discount",
+          "formula": "=1-(1-d1)*(1-d2)*(1-d3)",
+          "example": "20/10/5: 1 - 0.684 = 31.6%. Also =1-NetPrice/ListPrice."
+        },
+        {
+          "topic": "Cash discount savings",
+          "formula": "=Invoice*CashRate",
+          "example": "$4,200 x 2% = $84 saved if payment qualifies."
+        },
+        {
+          "topic": "Qualifying cash payment",
+          "formula": "=Invoice*(1-CashRate)",
+          "example": "$4,200 x 98% = $4,116 paid."
+        },
+        {
+          "topic": "Test eligibility with IF",
+          "formula": "=IF(PaymentDay<=DeadlineDay,1,0)",
+          "example": "Day 12, deadline 15: result 1 (Yes). Day 16: 0 (No)."
+        }
+      ],
+      "tips": [
+        "2/10 net 30 means 2% off within 10 days; full payment due by day 30.",
+        "Each chain discount applies to the reduced price. Never add the rates.",
+        "Savings and payment are different outputs. Outside the discount window, pay the full invoice."
+      ]
+    },
+    {
+      "module": "M04",
+      "title": "Markup, markdown & break-even",
+      "context": "Anchor & Oak Events | Name the base before applying a percentage.",
+      "rows": [
+        {
+          "topic": "Markup dollars",
+          "formula": "=SellingPrice-Cost",
+          "example": "$26.10 - $18 = $8.10."
+        },
+        {
+          "topic": "Markup on cost / on selling price",
+          "formula": "=MarkupAmount/Cost   |   =MarkupAmount/SellingPrice",
+          "example": "$8.10 / $18 = 45%; $8.10 / $26.10 = 31.03%."
+        },
+        {
+          "topic": "Selling price: markup on cost",
+          "formula": "=Cost*(1+MarkupRate)",
+          "example": "$18 x 1.45 = $26.10."
+        },
+        {
+          "topic": "Markdown price / markdown dollars",
+          "formula": "=OriginalPrice*(1-MarkdownRate)",
+          "example": "$52 x 80% = $41.60. Reduction: $52 x 20% = $10.40."
+        },
+        {
+          "topic": "Sellable units after waste",
+          "formula": "=ProducedUnits*(1-WasteRate)",
+          "example": "120 x 85% = 102 sellable boxes."
+        },
+        {
+          "topic": "Target revenue / required price",
+          "formula": "=ProducedUnits*CostPerUnit*(1+MarkupRate)\n=TargetRevenue/SellableUnits",
+          "example": "120 x $18 x 1.45 = $3,132; $3,132 / 102 = $30.71 per box."
+        },
+        {
+          "topic": "Contribution margin per unit",
+          "formula": "=SellingPrice-VariableCostPerUnit",
+          "example": "$48 - $27 = $21 toward fixed costs and then profit."
+        },
+        {
+          "topic": "Break-even whole units / revenue",
+          "formula": "=ROUNDUP(FixedCosts/ContributionMargin,0)\n=BreakEvenWholeUnits*SellingPrice",
+          "example": "$3,600 / $21 = 171.43: need 172 guests. Ticket revenue: 172 x $48 = $8,256."
+        },
+        {
+          "topic": "Reading extension: target-profit units",
+          "formula": "=ROUNDUP((FixedCosts+TargetProfit)/ContributionMargin,0)",
+          "example": "$3,600 fixed + $1,000 target, divided by $21: need 220 guests."
+        }
+      ],
+      "tips": [
+        "Divide fixed costs by contribution margin, not selling price. Round whole-unit requirements UP.",
+        "Break-even requires positive contribution margin. Contribution is not yet profit.",
+        "Waste leaves fewer units to recover the cost of all units produced. Keep precision until the final result."
+      ]
+    },
+    {
+      "module": "M05",
+      "title": "Payroll & straight-line depreciation",
+      "context": "Harborside Medical Center | Wage-only comparison; equipment model assumes full years.",
+      "rows": [
+        {
+          "topic": "Salary per pay period",
+          "formula": "=AnnualSalary/PayPeriods",
+          "example": "$52,000 / 52 = $1,000 weekly; / 12 = $4,333.33 monthly."
+        },
+        {
+          "topic": "Regular pay",
+          "formula": "=MIN(Hours,Cap)*Rate",
+          "example": "43 hours, 40-hour cap, $44/hour: 40 x $44 = $1,760."
+        },
+        {
+          "topic": "Overtime pay / gross pay",
+          "formula": "=MAX(Hours-Cap,0)*Rate*Multiplier\n=RegularPay+OvertimePay",
+          "example": "3 x $44 x 1.5 = $198 overtime; gross = $1,958 before deductions."
+        },
+        {
+          "topic": "Same-schedule team pay / service hours",
+          "formula": "=TeamSize*GrossPay   |   =TeamSize*Hours",
+          "example": "9 x $1,958 = $17,622; 9 x 43 = 387 service hours."
+        },
+        {
+          "topic": "Equal-share alternative: team hours",
+          "formula": "=MIN(RequiredHours,TeamSize*Cap)\n=MAX(RequiredHours-TeamSize*Cap,0)",
+          "example": "10 nurses, 387 hours, cap 40: regular = 387, overtime = 0. Average = 387 / 10 = 38.7 hours."
+        },
+        {
+          "topic": "Alternative wages / weekly savings",
+          "formula": "=RegularTeamHours*Rate+OTTeamHours*Rate*Multiplier\n=CurrentWages-AlternativeWages",
+          "example": "387 x $44 = $17,028; $17,622 - $17,028 = $594 saved weekly."
+        },
+        {
+          "topic": "Annual savings / avoided OT premium",
+          "formula": "=WeeklySavings*52\n=OTHours*Rate*(Multiplier-1)",
+          "example": "$594 x 52 = $30,888 yearly; 27 x $44 x 0.5 = $594 premium avoided."
+        },
+        {
+          "topic": "Annual straight-line depreciation",
+          "formula": "=(Cost-ResidualValue)/UsefulLife",
+          "example": "($84,000 - $12,000) / 6 = $12,000 per year."
+        },
+        {
+          "topic": "Accumulated depreciation / book value",
+          "formula": "=AnnualExpense*Year\n=Cost-AccumulatedDepreciation",
+          "example": "Year 3: $12,000 x 3 = $36,000 accumulated; $84,000 - $36,000 = $48,000 book value."
+        }
+      ],
+      "tips": [
+        "MIN caps regular hours. MAX prevents negative overtime. Apply the supplied cap and multiplier.",
+        "Team-hour formulas assume equal sharing under the lesson schedule. Benefits and hiring costs are excluded.",
+        "Book value uses accumulated depreciation. Year 6 ends at $12,000 residual; do not extend past useful life.",
+        "Depreciation is an expense allocation, not a new annual cash payment or market value."
+      ]
+    },
+    {
+      "module": "M06",
+      "title": "Inventory, COGS & overhead",
+      "context": "Tidal Goods Co. | Oldest to newest: 10 hoodies at $16, 20 at $20, 20 at $22. Sell 30 at $40.",
+      "rows": [
+        {
+          "topic": "Layer cost / units left / ending value",
+          "formula": "=UnitsSold*UnitCost\n=AvailableUnits-UnitsSold   |   =UnitsLeft*UnitCost",
+          "example": "First FIFO layer: 10 x $16 = $160 cost sold; 10 - 10 = 0 left."
+        },
+        {
+          "topic": "FIFO: assign oldest costs first",
+          "formula": "=10*16+20*20",
+          "example": "COGS = $560; ending inventory = 20 x $22 = $440."
+        },
+        {
+          "topic": "LIFO: assign newest costs first",
+          "formula": "=20*22+10*20",
+          "example": "COGS = $640; ending inventory = 10 x $16 + 10 x $20 = $360."
+        },
+        {
+          "topic": "Weighted-average unit cost",
+          "formula": "=TotalCostAvailable/TotalUnitsAvailable",
+          "example": "$1,000 / 50 = $20 per hoodie. Use quantities as weights."
+        },
+        {
+          "topic": "WAC COGS / ending inventory",
+          "formula": "=UnitsSold*WACUnitCost   |   =UnitsLeft*WACUnitCost",
+          "example": "30 x $20 = $600 COGS; 20 x $20 = $400 ending inventory."
+        },
+        {
+          "topic": "Goods available / COGS",
+          "formula": "=BeginningInventory+Purchases\n=GoodsAvailable-EndingInventory",
+          "example": "$160 + $840 = $1,000 available. FIFO: $1,000 - $440 = $560 COGS."
+        },
+        {
+          "topic": "Revenue / gross profit / gross margin",
+          "formula": "=UnitsSold*SellingPrice\n=Revenue-COGS   |   =GrossProfit/Revenue",
+          "example": "Revenue $1,200; FIFO gross profit $640; margin $640 / $1,200 = 53.33%."
+        },
+        {
+          "topic": "Margin versus markup / conversions",
+          "formula": "=(Price-Cost)/Price   |   =(Price-Cost)/Cost\n=Markup/(1+Markup)   |   =Margin/(1-Margin)",
+          "example": "$40 price, $20 cost: margin 50%, markup 100%. 100% / (1 + 100%) = 50%."
+        },
+        {
+          "topic": "Department share / allocated overhead",
+          "formula": "=DeptDriver/TotalDriver   |   =CostPool*DeptShare",
+          "example": "Rent $9,000: shop 2,400 / 4,000 = 60%; allocation = $5,400; warehouse = $3,600."
+        },
+        {
+          "topic": "Overhead rate",
+          "formula": "=TotalOverhead/Revenue",
+          "example": "$22,000 / $110,000 = 20%; revenue falls to $99,000: rate = 22.22%."
+        }
+      ],
+      "tips": [
+        "Reconcile units sold + units left = available; COGS + ending inventory = total available cost.",
+        "A balanced total does not prove FIFO or LIFO: check the layer order too.",
+        "Use a cost driver that explains the pool. Shares total 100%; allocations total the original pool.",
+        "Overstated ending inventory understates current COGS and overstates current profit."
+      ]
+    },
+    {
+      "module": "M07",
+      "title": "Sales, vehicle excise & property taxes",
+      "context": "Use the supplied M07 rules: sales tax 6.25%; shipping added after tax; Beverly FY2026 property rates.",
+      "rows": [
+        {
+          "topic": "Taxable subtotal",
+          "formula": "=Price-TradeDiscount",
+          "example": "Tidal order: $480 - $80 = $400 taxable."
+        },
+        {
+          "topic": "Sales tax owed",
+          "formula": "=TaxableSubtotal*TaxRate",
+          "example": "$400 x 6.25% = $25."
+        },
+        {
+          "topic": "Total customer payment",
+          "formula": "=TaxableSubtotal+Tax+Shipping",
+          "example": "$400 + $25 + $15 = $440."
+        },
+        {
+          "topic": "Back-calculate pre-tax sales",
+          "formula": "=TaxInclusiveReceipts/(1+TaxRate)",
+          "example": "$52,000 / 1.0625 = $48,941.18 pre-tax sales. Assumes all receipts subject to the same rate, no shipping."
+        },
+        {
+          "topic": "Collected tax in inclusive receipts",
+          "formula": "=TaxInclusiveReceipts-PreTaxSales",
+          "example": "$52,000 - $48,941.18 = $3,058.82 collected tax."
+        },
+        {
+          "topic": "Vehicle excise value",
+          "formula": "=OriginalListPrice*YearPercent",
+          "example": "Meridian car: $32,000 original list x 60% (second year) = $19,200."
+        },
+        {
+          "topic": "Annual vehicle excise",
+          "formula": "=ExciseValue/1000*25",
+          "example": "$19,200 / 1,000 x $25 = $480 annual excise; full-year example."
+        },
+        {
+          "topic": "Property: thousands of assessed value",
+          "formula": "=AssessedValue/1000",
+          "example": "Meridian illustrative office: $820,000 / 1,000 = 820."
+        },
+        {
+          "topic": "Annual property tax",
+          "formula": "=AssessedValue/1000*LocalRatePer1000",
+          "example": "Beverly FY2026 commercial example: 820 x $20.98 = $17,203.60."
+        },
+        {
+          "topic": "Monthly amount to set aside",
+          "formula": "=AnnualTax/12",
+          "example": "Property: $17,203.60 / 12 = $1,433.63. Vehicle: $480 / 12 = $40."
+        }
+      ],
+      "tips": [
+        "Vehicle-year percentages: manufacture 90%; second 60%; third 40%; fourth 25%; fifth and later 10%.",
+        "Property rates supplied in M07: commercial $20.98; residential $10.81 per $1,000, FY2026.",
+        "Use assessed value directly for property. Use original manufacturer list price for vehicle excise.",
+        "A rate per $1,000 is a dollar rate, not a percent. Monthly savings are budgeting amounts, not bill frequency.",
+        "Collected sales tax is a liability, not sales revenue. Examples assume no exemptions or abatements."
+      ]
+    }
+  ]
+}

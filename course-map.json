@@ -349,6 +349,10 @@
         {
           "type": "Starter Workbook",
           "path": "MATH/M07/bus123-math-m07-l01-starter.xlsx"
+        },
+        {
+          "type": "Cheat Sheet (Math M03-M07)",
+          "path": "MATH/M07/bus123-math-m07-l01-study-sheet.pdf"
         }
       ],
       "moduleType": "Math",

@@ -405,7 +405,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M08",
       "displayOrder": 110,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m09-l01",
@@ -462,7 +462,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M09",
       "displayOrder": 120,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m10-l01",
@@ -516,7 +516,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M10",
       "displayOrder": 130,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m11-l01",
@@ -564,7 +564,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M11",
       "displayOrder": 140,
-      "visible": false
+      "visible": true
     },
     {
       "id": "math-m12-l01",
@@ -612,7 +612,7 @@
       "moduleType": "Math",
       "moduleLabel": "Math M12",
       "displayOrder": 150,
-      "visible": false
+      "visible": true
     },
     {
       "id": "excel-m01-l01",
@@ -713,7 +713,7 @@
       "moduleType": "Excel",
       "moduleLabel": "Excel M03",
       "displayOrder": 180,
-      "visible": false
+      "visible": true
     },
     {
       "id": "excel-m04-l01",
@@ -751,7 +751,7 @@
       "moduleType": "Excel",
       "moduleLabel": "Excel M04",
       "displayOrder": 190,
-      "visible": false
+      "visible": true
     },
     {
       "id": "capstone-m01-l01",

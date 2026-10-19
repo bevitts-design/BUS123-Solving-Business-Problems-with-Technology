@@ -708,6 +708,11 @@
         {
           "type": "Starter Workbook",
           "path": "EXCEL/M03/bus123-excel-m03-l01-starter.xlsx"
+        },
+        {
+          "type": "Starter Workbook",
+          "label": "Follow-Along Data",
+          "path": "EXCEL/M03/bus123-excel-m03-l01-data.xlsx"
         }
       ],
       "moduleType": "Excel",

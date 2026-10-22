@@ -752,6 +752,11 @@
         {
           "type": "Interactive Practice",
           "path": "EXCEL/M04/bus123-excel-m04-l01-interactive.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "label": "Medical Cost Analysis — Independent Practice",
+          "path": "EXCEL/M04/bus123-excel-m04-l01-independent-practice.xlsx"
         }
       ],
       "moduleType": "Excel",

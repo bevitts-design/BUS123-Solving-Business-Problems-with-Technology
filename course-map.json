@@ -377,7 +377,7 @@
       "materials": [
         {
           "type": "Slides",
-          "path": "MATH/M08/bus123-math-m08-l01-slides.html"
+          "path": "https://canva.link/uqg51u7vaycyyi3"
         },
         {
           "type": "Reading",
@@ -412,12 +412,13 @@
       "track": "math",
       "module": "M09",
       "lesson": "L01-L02",
-      "title": "Compounding, Future Value, PMT, and Annuities",
+      "title": "Compounding, Future Value, Present Value, PMT, and Annuities",
       "status": "Live",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
         "Compound interest",
         "Future value",
+        "Present value",
         "PMT function",
         "Annuities",
         "Excel modeling"

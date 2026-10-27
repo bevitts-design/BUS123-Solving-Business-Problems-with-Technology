@@ -1,226 +1,254 @@
 [
   {
     "number": 9,
-    "title": "Growing money moves it forward in time",
-    "lead": "Keep Meridian\u2019s $1,000, 6%, one-year example.",
-    "prompt": "The $1,060 includes the original $1,000 and $60 interest.",
+    "title": "What will today\u2019s money become?",
+    "lead": "Meridian can set aside $1,000 for one year at 6% simple interest.",
+    "prompt": "Use future value to plan a future balance or a loan repayment.",
+    "kind": "photo",
     "location": "",
-    "kind": "concept"
+    "notes": "Explain the 1 before multiplying. It represents 100% of the original principal; rt is the additional fraction earned."
   },
   {
     "number": 10,
-    "title": "Which starting amount earned $60?",
-    "lead": "Now the interest is known. The starting principal is missing.",
-    "prompt": "We divided the interest earned, not the total ending balance.",
-    "location": "Simple interest \u00b7 C22",
-    "kind": "concept"
+    "title": "Work backward from the interest earned",
+    "lead": "Meridian earned $60 at 6% over one year. How much was originally invested?",
+    "prompt": "Use this when the interest is known but the original investment is missing.",
+    "kind": "machine",
+    "location": "",
+    "notes": "Distinguish interest I from total future value FV. Optional algebra: r=I/(P\u00d7t); t=I/(P\u00d7r)."
   },
   {
     "number": 11,
-    "title": "Discounting brings the total back to today",
-    "lead": "Now the known amount is the $1,060 future receipt.",
-    "prompt": "Recovering principal from interest and discounting a total are different questions.",
-    "location": "Simple interest \u00b7 C23",
-    "kind": "concept"
+    "title": "What would you pay today for $1,060 later?",
+    "lead": "Meridian is offered a $1,060 receipt in one year. Its comparable simple return is 6%.",
+    "prompt": "Discounting finds the starting money needed to produce a promised future amount.",
+    "kind": "timeline",
+    "location": "",
+    "notes": "Explain division as reversing multiplication. A higher future receipt is not automatically a better offer."
   },
   {
     "number": 12,
-    "title": "Build the interest and ending balance",
-    "lead": "Open Simple interest. Inputs: C17 = $1,000; C18 = 6%; C19 = 1 year.",
-    "prompt": "Build with cell references. What is included in the ending balance?",
+    "title": "Try it: separate the money from its earnings",
+    "lead": "Use the $1,000, 6%, one-year example in your follow-along.",
+    "prompt": "Calculate interest first, then the whole balance. Why are these different amounts?",
+    "kind": "activity",
     "location": "Simple interest \u00b7 C20:C21",
-    "kind": "build"
+    "notes": ""
   },
   {
     "number": 13,
-    "title": "Check the forward calculation",
-    "lead": "Compare your formulas before changing anything.",
-    "prompt": "Interest is only the addition. Future value is the whole balance.",
-    "location": "Simple interest \u00b7 C20:C21",
-    "kind": "reveal"
+    "title": "The original money does not disappear",
+    "lead": "A 6% return adds six cents for every dollar held for a full year.",
+    "prompt": "Future value = principal + interest. Quoting only $60 leaves out the original investment.",
+    "kind": "balance",
+    "location": "",
+    "notes": "The small interest segment is proportional to the original principal. Connect the 6% rate to the size of the addition."
   },
   {
     "number": 14,
-    "title": "Bring the same money back to its start",
-    "lead": "Use the same inputs and your completed C20:C21.",
-    "prompt": "Build both formulas. Predict whether the two answers should agree.",
+    "title": "Two questions can point to the same starting money",
+    "lead": "One starts with the earnings. The other starts with the entire future receipt.",
+    "prompt": "Try both backward calculations. Choose the formula from what the question gives you.",
+    "kind": "activity",
     "location": "Simple interest \u00b7 C22:C23",
-    "kind": "build"
+    "notes": ""
   },
   {
     "number": 15,
-    "title": "Two routes recover the same $1,000",
-    "lead": "Each formula reverses a different relationship.",
-    "prompt": "Both return C17 because they use the same simple-interest model, rate, and time.",
-    "location": "Simple interest \u00b7 C22:C23",
-    "kind": "reveal"
+    "title": "Same answer, different information",
+    "lead": "Both calculations describe the same investment under the same simple-interest assumptions.",
+    "prompt": "Never divide interest by the total growth factor, or divide the whole receipt by the interest rate alone.",
+    "kind": "routes",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 16,
-    "title": "Checkpoint B: what must Meridian repay?",
+    "title": "Could a short loan solve a cash shortage?",
     "lead": "Meridian borrows $18,500 for 8 months at 6.2% annual simple interest.",
-    "prompt": "Predict: will repayment exceed $18,500? Explain your result in B31:G33.",
-    "location": "Live You Try It \u00b7 G12:G14",
-    "kind": "build"
+    "prompt": "Build checkpoint B, then explain how much of the repayment is interest.",
+    "kind": "activity-photo",
+    "location": "Live You Try It \u00b7 G12:G14; explanation B31:G33",
+    "notes": ""
   },
   {
     "number": 17,
-    "title": "Debrief B: separate interest from principal",
-    "lead": "Eight months is 8/12 of a year.",
-    "prompt": "The repayment returns $18,500 principal and adds $764.67 interest.",
-    "location": "Live You Try It \u00b7 G12:G14",
-    "kind": "reveal"
+    "title": "Budget for the whole repayment",
+    "lead": "The annual rate applies to only eight months of borrowing.",
+    "prompt": "The borrowing cost is $764.67. The cash required at maturity is $19,264.67.",
+    "kind": "document",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 18,
-    "title": "A day-based note uses the same logic",
-    "lead": "Meridian\u2019s note: $32,000 principal, 4.5% annual rate, 80 exact-interest days.",
-    "prompt": "Build B6 on Note example. Then transfer the method to checkpoint A.",
+    "title": "Days are another way to describe the wait",
+    "lead": "Meridian\u2019s short-term note runs for 80 actual days.",
+    "prompt": "The contract\u2019s year basis tells you how to convert the days before calculating interest.",
+    "kind": "document",
     "location": "Note example \u00b7 B6",
-    "kind": "concept"
+    "notes": ""
   },
   {
     "number": 19,
-    "title": "Checkpoint A: which year basis costs more?",
-    "lead": "Same $42,000 principal, 4.8% annual rate, and 75 actual days.",
-    "prompt": "Only the year basis changes. Predict first; explain the difference in B26:G28.",
-    "location": "Live You Try It \u00b7 G6:G10",
-    "kind": "build"
+    "title": "Same loan. Same days. Two possible conventions.",
+    "lead": "Compare 75-day interest on $42,000 at a 4.8% annual rate.",
+    "prompt": "Predict which produces more interest. Then calculate checkpoint A and explain why.",
+    "kind": "activity",
+    "location": "Live You Try It \u00b7 G6:G10; explanation B26:G28",
+    "notes": ""
   },
   {
     "number": 20,
-    "title": "Debrief A: the smaller denominator matters",
-    "lead": "The prefilled F7 and F9 links carry each year fraction into its interest calculation.",
-    "prompt": "75/360 is larger than 75/365. Use the basis stated in the agreement.",
-    "location": "Live You Try It \u00b7 G6:G10",
-    "kind": "reveal"
+    "title": "A slightly larger year fraction means more interest",
+    "lead": "The annual rate, principal, and actual waiting period all stay the same.",
+    "prompt": "Use the agreed convention. The two calculations differ because their denominators differ.",
+    "kind": "comparison",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 21,
-    "title": "What earns interest in the second year?",
-    "lead": "So far, only the original principal earns interest. What if earned interest stays invested?",
-    "prompt": "Predict year 2 interest first. The prior $60 earns another $3.60 under compounding.",
-    "location": "Present value \u00b7 C10:C11",
-    "kind": "comparison"
+    "title": "Does the interest earn interest too?",
+    "lead": "Start with the same $1,000 and 6% annual rate. Now hold it for two years.",
+    "prompt": "The extra $3.60 is 6% earned on the prior $60 of interest.",
+    "kind": "growth",
+    "location": "",
+    "notes": "Predict the second-year interest before explaining the second lane. Growth formulas are simple FV=P(1+rt) and compound FV=P(1+r)^t."
   },
   {
     "number": 22,
-    "title": "Choose the model before discounting",
-    "lead": "Meridian will receive $1,120 after two years. Required annual return: 6%.",
-    "prompt": "Both are valid under their stated assumptions. Our payment-stream challenge uses annual compounding.",
-    "location": "Present value \u00b7 C13:C14",
-    "kind": "comparison"
+    "title": "The growth rule determines the discount rule",
+    "lead": "What is $1,120 received in two years worth today at 6%?",
+    "prompt": "Discounting reverses the stated growth process. It does not choose the process for you.",
+    "kind": "fork",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 23,
-    "title": "Excel\u2019s negative PV is a cash-flow direction",
-    "lead": "Investor viewpoint: pay today; receive $1,120 at the end of year 2.",
-    "prompt": "Use =-PV(C8,C9,0,C12) in C14 to show the positive magnitude for comparison.",
-    "location": "Present value \u00b7 C14:C15",
-    "kind": "concept"
+    "title": "A negative PV can describe a valuable investment",
+    "lead": "From the investor\u2019s viewpoint, money leaves today and comes back later.",
+    "prompt": "For comparing offers, show the positive magnitude with \u2212PV(\u2026). Keep the investor\u2019s direction clear.",
+    "kind": "cash",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 24,
-    "title": "Check by growing the payment forward",
-    "lead": "Use the signed PV already calculated in C15.",
-    "prompt": "A verification must use the same rate, time, and growth model.",
-    "location": "Present value \u00b7 C16",
-    "kind": "concept"
+    "title": "A good valuation makes the round trip",
+    "lead": "If today\u2019s value is correct, growing it forward should recover the promised receipt.",
+    "prompt": "Use the same rate, time, and model in both directions. Excel\u2019s FV function provides the same check.",
+    "kind": "roundtrip",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 25,
-    "title": "Checkpoint C: what is the receipt worth today?",
-    "lead": "Meridian expects $30,000 in 2 years. Use 6.5% annual compound discounting.",
-    "prompt": "Explain the sign and the verification in B36:G38. Use the inputs in rows 16\u201318.",
-    "location": "Live You Try It \u00b7 G16:G18",
-    "kind": "build"
+    "title": "What should Meridian pay for a future receipt?",
+    "lead": "A client offers $30,000 payable in two years. Meridian requires 6.5% annually.",
+    "prompt": "Build checkpoint C. Explain the cash-flow signs and what your verification confirms.",
+    "kind": "activity-photo",
+    "location": "Live You Try It \u00b7 G16:G18; explanation B36:G38",
+    "notes": ""
   },
   {
     "number": 26,
-    "title": "Debrief C: interpret both directions",
-    "lead": "A payment today and a receipt later have opposite signs.",
-    "prompt": "The negative PV is an outflow, not a negative investment value. The FV check recovers the receipt.",
-    "location": "Live You Try It \u00b7 G16:G18",
-    "kind": "reveal"
+    "title": "The discount creates room to earn the return",
+    "lead": "A smaller investment today can grow into the $30,000 future receipt.",
+    "prompt": "In Excel: the investment is a negative outflow; its comparison value is a positive magnitude.",
+    "kind": "timeline",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 27,
-    "title": "Extension: express a wait in annual periods",
+    "title": "A 15-month wait is more than one annual period",
     "lead": "Meridian expects $18,000 in 15 months at a 6% annual compound rate.",
-    "prompt": "This example assumes fractional-period annual compound discounting. It is not simple interest.",
+    "prompt": "The exponent uses annual periods. This example assumes fractional-year annual compound discounting.",
+    "kind": "ruler",
     "location": "Present value \u00b7 C23:C24",
-    "kind": "concept"
+    "notes": ""
   },
   {
     "number": 28,
-    "title": "Waiting longer lowers the value today",
-    "lead": "Keep the future receipt at $100 and the annual compound rate at 6%.",
-    "prompt": "Predict before comparing: why is the earliest receipt worth the most?",
-    "location": "Present value \u00b7 C31:E31",
-    "kind": "chart"
+    "title": "A longer wait means more discounting",
+    "lead": "At a fixed 6% annual rate, compare the same $100 received on three dates.",
+    "prompt": "Practical use: compare payment schedules. A later receipt must compensate you for waiting longer.",
+    "kind": "chart",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 29,
-    "title": "A higher required return lowers present value",
-    "lead": "Keep the future receipt at $100 and the wait at three years.",
-    "prompt": "Connect to the opening: what could make Meridian require a higher return?",
-    "location": "Present value \u00b7 D30:D32",
-    "kind": "chart"
+    "title": "What return would make waiting worthwhile?",
+    "lead": "For $100 received in three years, a higher required return means a lower value today.",
+    "prompt": "Practical use: ask whether the payment\u2019s timing and risk justify the price you pay today.",
+    "kind": "photo",
+    "location": "",
+    "notes": "Connect the required return to opportunity cost, purchasing power and payment risk without mechanically adding three percentages."
   },
   {
     "number": 30,
-    "title": "Use both effects to predict the extremes",
-    "lead": "Before calculating, identify the highest and lowest PV in the worksheet grid.",
-    "prompt": "Highest: shortest wait + lowest rate. Lowest: longest wait + highest rate.",
+    "title": "Find the most valuable corner",
+    "lead": "Value today of $100 received later. Across: change the wait. Down: change the required return.",
+    "prompt": "Shortest wait + lowest rate gives the highest PV. Explain the pattern, then recreate it in the workbook.",
+    "kind": "heatmap",
     "location": "Present value \u00b7 C30:E32",
-    "kind": "matrix"
+    "notes": ""
   },
   {
     "number": 31,
-    "title": "Diagnose the model before the challenge",
-    "lead": "Same $18,000 receipt after two years; same 6% annual rate.",
-    "prompt": "The challenge states annual compounding. Explain which denominator fits before building.",
+    "title": "Choose the model that matches the promise",
+    "lead": "Meridian expects $18,000 in two years at 6%. Which rule belongs in the denominator?",
+    "prompt": "The challenge specifies annual compounding. Use that model consistently for every payment.",
+    "kind": "choice",
     "location": "Present value \u00b7 C39:C40",
-    "kind": "comparison"
+    "notes": ""
   },
   {
     "number": 32,
-    "title": "Bring one payment back before combining many",
-    "lead": "Worked example: a separate $10,000 receipt at the end of year 2; 6% annual compound rate.",
-    "prompt": "For several payments: discount each to today, then add their present values.",
+    "title": "One future payment becomes one value today",
+    "lead": "Worked example: a $10,000 payment due at the end of year 2; required annual return 6%.",
+    "prompt": "Practical use: value an invoice, contract payment, or other future receipt on today\u2019s date.",
+    "kind": "receipt",
     "location": "",
-    "kind": "concept"
+    "notes": ""
   },
   {
     "number": 33,
-    "title": "Challenge: which offer would you choose?",
-    "lead": "Meridian can receive $75,000 today or the future payment stream below. Use 6% annual compounding.",
-    "prompt": "Confirm E6. Build E12:E18; then recommend an offer in B19:E23 with one assumption that could change it.",
-    "location": "Challenge \u00b7 E12:E18 and B19:E23",
-    "kind": "build"
+    "title": "Which offer would you accept?",
+    "lead": "Meridian can choose $75,000 today or five future receipts. Use a 6% annual compound rate.",
+    "prompt": "Value every receipt today before comparing. Build the challenge, then make and defend your choice.",
+    "kind": "activity-photo",
+    "location": "Challenge \u00b7 E12:E18; recommendation B19:E23",
+    "notes": ""
   },
   {
     "number": 34,
-    "title": "Every payment must end at the same date",
-    "lead": "Keep the annual discount rate fixed while each payment\u2019s year changes.",
-    "prompt": "Sum unrounded values: $84,602.28. E18 compares that total with E6.",
-    "location": "Challenge \u00b7 E12:E18",
-    "kind": "reveal"
+    "title": "Different payment dates, one comparison date",
+    "lead": "Each receipt is discounted for its own waiting period.",
+    "prompt": "Do not add future dollars first and discount them as if they all arrive together.",
+    "kind": "converge",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 35,
-    "title": "Recommend using value today and assumptions",
-    "lead": "Compare your evidence before revising your recommendation.",
-    "prompt": "At the stated rate, Offer B has the higher PV. How could payment risk or a higher required return reverse that choice?",
-    "location": "Challenge \u00b7 B19:E23",
-    "kind": "decision"
+    "title": "The payment stream has the higher value today",
+    "lead": "At the stated 6% rate, compare the two offers on the same date.",
+    "prompt": "A higher required return or less reliable future payments could reverse the recommendation.",
+    "kind": "decision",
+    "location": "",
+    "notes": ""
   },
   {
     "number": 36,
-    "title": "Defend the model, then defend the decision",
-    "lead": "Return to our opening question: why can money today be worth more?",
-    "prompt": "Opportunity cost, purchasing power, and payment risk inform the required return; do not add three percentages automatically.",
+    "title": "Use the formula to answer a business question",
+    "lead": "The model turns payment timing into a decision you can explain.",
+    "prompt": "Before calculating: identify the known amount, the unknown, the growth model, and the valuation date.",
+    "kind": "synthesis",
     "location": "",
-    "kind": "synthesis"
+    "notes": ""
   }
 ]

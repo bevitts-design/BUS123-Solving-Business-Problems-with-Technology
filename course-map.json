@@ -456,13 +456,13 @@
         },
         {
           "type": "Interactive Practice",
-          "label": "Business Finance Toolkit",
-          "path": "MATH/shared/bus123-tvm-toolkit.html"
+          "label": "Cash Quest: PV & FV Game",
+          "path": "MATH/M09/bus123-math-m09-l01-game.html"
         },
         {
           "type": "Interactive Practice",
-          "label": "Cash Quest: PV & FV Game",
-          "path": "MATH/M09/bus123-math-m09-l01-game.html"
+          "label": "Business Finance Toolkit",
+          "path": "MATH/shared/bus123-tvm-toolkit.html"
         }
       ],
       "moduleType": "Math",

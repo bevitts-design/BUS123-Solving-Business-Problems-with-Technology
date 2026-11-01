@@ -1,0 +1,112 @@
+[
+  {
+    "slide": 1,
+    "teaching_point": "What do you own?",
+    "visual": "Business illustration beside a fund basket"
+  },
+  {
+    "slide": 2,
+    "teaching_point": "One company, or a basket?",
+    "visual": "Side-by-side ownership comparison"
+  },
+  {
+    "slide": 3,
+    "teaching_point": "Three things to explain in plain English",
+    "visual": "Numbered learning path"
+  },
+  {
+    "slide": 4,
+    "teaching_point": "The future value is uncertain",
+    "visual": "Branching outcome diagram"
+  },
+  {
+    "slide": 5,
+    "teaching_point": "A stock is a pieceof a business.",
+    "visual": "Business illustration and sparse definition"
+  },
+  {
+    "slide": 6,
+    "teaching_point": "Shares divide the ownership",
+    "visual": "100-cell ownership mosaic"
+  },
+  {
+    "slide": 7,
+    "teaching_point": "Buying stock: who gets your money?",
+    "visual": "Two money-flow lanes"
+  },
+  {
+    "slide": 8,
+    "teaching_point": "A share price is a price per unit",
+    "visual": "Annotated simplified stock ticket"
+  },
+  {
+    "slide": 9,
+    "teaching_point": "A fund is a sharedinvestment portfolio.",
+    "visual": "Large portfolio basket"
+  },
+  {
+    "slide": 10,
+    "teaching_point": "What is a mutual fund?",
+    "visual": "Investors-to-fund pooling diagram"
+  },
+  {
+    "slide": 11,
+    "teaching_point": "Look inside the basket",
+    "visual": "Labeled basket cutaway with vocabulary"
+  },
+  {
+    "slide": 12,
+    "teaching_point": "Mutual funds use the next calculated NAV",
+    "visual": "Order-to-end-of-day pricing timeline"
+  },
+  {
+    "slide": 13,
+    "teaching_point": "ETF = exchange-traded fund",
+    "visual": "Acronym expanded into three meaning blocks"
+  },
+  {
+    "slide": 14,
+    "teaching_point": "An ETF combines a fund with exchange trading",
+    "visual": "Portfolio beside a two-time exchange quote tape"
+  },
+  {
+    "slide": 15,
+    "teaching_point": "“Index” tells you the strategy",
+    "visual": "Two-by-two structure and strategy matrix"
+  },
+  {
+    "slide": 16,
+    "teaching_point": "Three investments, three clear identities",
+    "visual": "Aligned ownership and trading comparison table"
+  },
+  {
+    "slide": 17,
+    "teaching_point": "What happens when one holding falls?",
+    "visual": "Interactive same-starting-value loss bars"
+  },
+  {
+    "slide": 18,
+    "teaching_point": "A basket does not guarantee safety",
+    "visual": "Misconception statement and contrasting correction"
+  },
+  {
+    "slide": 19,
+    "teaching_point": "Beginner detective: identify the evidence",
+    "visual": "Numbered evidence slips with delayed reveal"
+  },
+  {
+    "slide": 20,
+    "teaching_point": "Explain it without a stock-market app",
+    "visual": "Three succinct identity statements"
+  },
+  {
+    "slide": 21,
+    "teaching_point": "Next: put numbers on what you own",
+    "visual": "Learning handoff map and reference-route control"
+  },
+  {
+    "slide": 22,
+    "teaching_point": "What do I own?How does it trade?",
+    "visual": "Sparse closing question and direct source links"
+  }
+]

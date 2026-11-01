@@ -475,7 +475,7 @@
       "track": "math",
       "module": "M10",
       "lesson": "L01",
-      "title": "Stocks, Bonds and Mutual Funds",
+      "title": "Stocks, Bonds, Mutual Funds, and ETFs",
       "status": "Live",
       "caseStudy": "Meridian Advisory Group",
       "skillFocus": [
@@ -483,12 +483,16 @@
         "Bonds",
         "Mutual funds",
         "Investment vocabulary",
-        "Stock valuation"
+        "Stock valuation",
+        "Stock ownership",
+        "ETFs",
+        "Fund structure and pricing"
       ],
       "materials": [
         {
           "type": "Slides",
-          "path": "MATH/M10/bus123-math-m10-l01-slides.html"
+          "path": "MATH/M10/bus123-math-m10-l01-slides.html",
+          "label": "Slides: Start Here"
         },
         {
           "type": "Reading",

@@ -504,6 +504,11 @@
         },
         {
           "type": "Interactive Practice",
+          "label": "Stock Quest: Your First Trade",
+          "path": "MATH/M10/bus123-math-m10-l01-game.html"
+        },
+        {
+          "type": "Interactive Practice",
           "label": "IPO Investment Committee",
           "path": "MATH/M10/bus123-math-m10-l01-interactive.html"
         },

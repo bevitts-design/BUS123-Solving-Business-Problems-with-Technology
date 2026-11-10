@@ -495,6 +495,11 @@
           "label": "Slides: Start Here"
         },
         {
+          "type": "Slides",
+          "label": "Slides (Canva)",
+          "path": "https://canva.link/jir0wf2x2wsrq2n"
+        },
+        {
           "type": "Reading",
           "path": "MATH/M10/bus123-math-m10-l01-prereading.pdf"
         },

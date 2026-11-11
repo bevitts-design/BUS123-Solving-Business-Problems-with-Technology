@@ -562,6 +562,11 @@
         },
         {
           "type": "Interactive Practice",
+          "label": "Harborside Financial Statement Simulator",
+          "path": "MATH/M11/bus123-math-m11-l01-financial-statement-simulator.html"
+        },
+        {
+          "type": "Interactive Practice",
           "label": "Hospital Board Crisis Briefing",
           "path": "MATH/M11/bus123-math-m11-l01-interactive.html"
         },

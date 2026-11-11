@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harborside Medical | Financial Statement Simulator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef4f5;color:#172c40;font:16px/1.5 system-ui,sans-serif}main{max-width:1210px;margin:auto;padding:24px}header{background:#102d46;color:white;border-radius:18px;padding:26px 30px}h1{font-size:clamp(1.65rem,4vw,2.65rem);line-height:1.12;margin:5px 0 12px}h2{font-size:1.15rem;margin:0 0 12px}p{margin:0}.course{color:#b1ede2;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.box{background:white;border:1px solid #ccdade;border-radius:14px;padding:18px;min-width:0}.controls{margin:16px 0}.controls label{display:block;font-weight:700}.controls output{float:right;color:#086657;font-variant-numeric:tabular-nums}input[type=range],select{width:100%;accent-color:#087463;margin:10px 0}select,button{font:inherit;color:inherit;background:white;border:1px solid #77929d;border-radius:7px;padding:6px 9px}button{cursor:pointer}button:hover{background:#e0f4ee}:focus-visible{outline:3px solid #0d7668;outline-offset:3px}.hint{color:#445969;font-size:.86rem}.buttons{display:flex;flex-wrap:wrap;gap:6px}.status{margin:0 0 16px;padding:11px 15px;border-radius:9px;font-weight:700;background:#d9f2e9;color:#145446}.status.short{background:#fff0dd;color:#793b00}table{width:100%;border-collapse:collapse;font-size:.9rem}caption{text-align:left;color:#445969;margin-bottom:7px;font-size:.82rem}th,td{padding:7px 0;border-bottom:1px solid #e1eaec}th{text-align:left;font-weight:500;padding-right:6px}td{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}tr.total{background:#e5f4f0}tr.total th,tr.total td{font-weight:750}.note{margin-top:12px}.debrief{margin-top:16px}details{margin-top:12px}summary{cursor:pointer;font-weight:650}@media(max-width:930px){.grid{grid-template-columns:1fr}.box{padding:15px}}@media(max-width:480px){main{padding:12px}header{padding:18px}}
+.workspace{display:grid;grid-template-columns:minmax(245px,28%) minmax(0,1fr);gap:16px;align-items:start;margin-top:16px}
+.workspace .controls{display:grid;grid-template-columns:1fr;gap:10px;margin:0}
+.workspace .controls .box{padding:12px 14px}
+.workspace input[type=range]{display:block;margin:8px 0}
+.results{min-width:0}
+.statement-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.statement-picker [aria-pressed=true]{background:#102d46;border-color:#102d46;color:white}
+#statements .box{padding:12px 16px}
+#statements table{font-size:1rem}
+#statements th,#statements td{padding:5px 8px}
+.status{margin-bottom:8px}
+.debrief details{margin-top:0}
+.log-shortcut{display:inline-block;margin:8px 0 0;color:#086657;font-weight:650}
+.compact-record{width:100%;margin-top:10px}
+.scenario-log{margin-top:16px}
+.scenario-log .hint{margin-bottom:12px}
+.scenario-directions{margin:8px 0 14px;padding-left:24px}
+.scenario-directions li+li{margin-top:5px}
+.student-name{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.student-name input,.scenario-log textarea{font:inherit;color:inherit;border:1px solid #77929d;border-radius:6px;padding:5px 7px}
+.scenario-table-wrap{overflow-x:auto;margin-top:12px}
+.scenario-table{table-layout:fixed}
+.scenario-table th:first-child{width:17%}
+.scenario-table th:last-child{width:27%}
+.scenario-table th,.scenario-table td{padding:7px;vertical-align:top}
+.scenario-table thead{background:#e5f4f0}
+.scenario-table small{display:block;color:#445969}
+.scenario-table textarea{display:block;width:100%;min-width:0;resize:vertical}
+.scenario-table .empty{text-align:left}
+.scenario-table .remove{display:block;margin-top:6px;font-size:.8rem}
+.scenario-log .primary{background:#086657;color:white;border-color:#086657}
+.scenario-log button:disabled{opacity:.5;cursor:default}
+.print-only{display:none}
+@media screen and (min-width:701px){
+  main{padding:16px 22px}
+  header{padding:14px 20px}
+  h1{font-size:clamp(1.6rem,3vw,2.15rem);margin-bottom:6px}
+}
+@media screen and (max-width:700px){
+  .workspace{grid-template-columns:1fr}
+}
+@media screen and (max-width:900px){
+  .scenario-table,.scenario-table caption,.scenario-table tbody{display:block}
+  .scenario-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .scenario-table tbody tr:not([hidden]){
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+    border:1px solid #ccdade;border-radius:10px;padding:10px;margin-bottom:10px
+  }
+  .scenario-table tbody th:first-child,.scenario-table tbody td:last-child{width:auto;grid-column:1/-1}
+  .scenario-table tbody th,.scenario-table tbody td{border:0;padding:4px;text-align:left;white-space:normal}
+  .scenario-table tbody td[data-label]::before{
+    content:attr(data-label);display:block;font-size:.82rem;font-weight:650;margin-bottom:3px
+  }
+  .scenario-table tbody td[data-label]:not(:last-child){background:#eef4f5;border-radius:5px;padding:6px 8px}
+}
+@media screen and (min-width:540px) and (max-width:900px){
+  .scenario-table tbody tr:not([hidden]){grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media print{
+  @page{size:landscape;margin:12mm}
+  body{background:white;color:black}
+  main{max-width:none;padding:0}
+  header,.workspace,.debrief,.screen-only{display:none!important}
+  .scenario-log{margin:0;padding:0;border:0}
+  .scenario-directions{font-size:10pt;break-inside:avoid}
+  .print-only{display:block}
+  .scenario-table-wrap{overflow:visible}
+  .scenario-table{min-width:0;font-size:9pt}
+  .scenario-table th,.scenario-table td{padding:5px}
+  .scenario-table tr{break-inside:avoid}
+  .printed-note{text-align:left;white-space:pre-wrap;overflow-wrap:anywhere}
+}
+</style>
+<main>
+<header><div class="course">BUS123 · Module 11</div><h1>Harborside Medical Financial Statement Simulator</h1><p>Buy the $400,000 MRI and keep at least $150,000 in cash. How little can Harborside borrow?</p></header>
+<div class="workspace">
+<section class="controls" id="scenario-controls" aria-label="Scenario controls" tabindex="-1">
+<div class="box"><label for="loan">Amount borrowed <output id="loan-value" for="loan"></output></label><input id="loan" type="range" min="0" max="400000" step="1000" value="0"><div class="buttons"><button type="button" data-loan="0">All cash</button><button type="button" data-loan="400000">Full loan</button></div></div>
+<div class="box"><label for="dep">New MRI depreciation <output id="dep-value" for="dep"></output></label><input id="dep" type="range" min="0" max="40000" step="1000" value="0"><p class="hint">Additional depreciation recorded this period.</p></div>
+<div class="box"><label for="method">Medical supplies costing</label><select id="method"><option value="95000">Weighted average</option><option value="100000">FIFO</option><option value="90000">LIFO</option></select><p class="hint">5,000 units at $18, then 5,000 at $20. Harborside uses 5,000 units.</p></div>
+<div>
+<button type="button" class="compact-record" id="record-from-controls">Record current scenario</button>
+<p class="hint" id="record-feedback" role="status"></p>
+<a class="log-shortcut" href="#log-title">Jump to scenario log ↓</a>
+</div>
+</section>
+<section class="results" aria-label="Financial statements">
+<p class="status" id="status" role="status"></p>
+<div class="statement-picker" role="group" aria-label="Choose a financial statement">
+<button type="button" data-statement="0" aria-controls="statements" aria-pressed="true">Balance sheet</button>
+<button type="button" data-statement="1" aria-controls="statements" aria-pressed="false">Income statement</button>
+<button type="button" data-statement="2" aria-controls="statements" aria-pressed="false">Cash flow statement</button>
+</div>
+<div id="statements"></div>
+</section>
+</div>
+<section class="box debrief"><details><summary>Model assumptions</summary><p class="hint">The simulation adds the MRI purchase and any borrowing to the workbook’s reporting period. The loan proceeds arrive before the purchase. There are no new taxes, interest, or repayments. The same supplies are purchased and used under every costing method. The change in supplies expense flows through cost of services. The starting operating cash flow already reflects the cash paid for those supplies.</p></details></section>
+<section class="box scenario-log" aria-labelledby="log-title">
+<h2 id="log-title" tabindex="-1">Harborside Medical Scenario Log</h2>
+<p>Run these four scenarios in order. Click <strong>Record current scenario</strong> once per run, then answer its question in the Student explanation column.</p>
+<ol class="scenario-directions">
+<li><strong>Buy the MRI with cash.</strong> Set the loan and new depreciation to $0 and select weighted average. How far is ending cash below $150,000? Which cash flow line shows the purchase?</li>
+<li><strong>Find the minimum loan.</strong> Keep depreciation at $0 and use weighted average. Find the smallest loan that leaves at least $150,000 in ending cash. Confirm that borrowing $1,000 less misses the target, then restore and record the minimum loan. Which balance sheet and cash flow lines move when Harborside borrows?</li>
+<li><strong>Record $20,000 in depreciation.</strong> Keep the minimum loan and weighted average. How much do net equipment and net income change? Why does ending cash stay the same?</li>
+<li><strong>Switch to FIFO.</strong> Keep the minimum loan and $20,000 in depreciation. How much do ending inventory, cost of services, and net income change? Why does ending cash stay the same?</li>
+</ol>
+<label class="student-name screen-only">Student name <input id="student-name" type="text" autocomplete="name"></label>
+<p class="print-only" id="printed-name"></p>
+<div class="buttons screen-only">
+<button type="button" class="primary" id="record-scenario">Record current scenario</button>
+<button type="button" id="print-log" disabled>Print / Save as PDF</button>
+</div>
+<a class="log-shortcut screen-only" href="#scenario-controls">Back to scenario controls ↑</a>
+<p class="hint screen-only" id="log-status" role="status"></p>
+<div class="scenario-table-wrap" tabindex="0" role="region" aria-label="Recorded scenarios">
+<table class="scenario-table" role="table">
+<caption>Each result shows its dollar value and the change from the row above. The first scenario is compared with the workbook baseline.</caption>
+<thead role="rowgroup"><tr role="row">
+<th scope="col">Scenario and settings</th>
+<th scope="col">Ending cash</th>
+<th scope="col">Supplies inventory</th>
+<th scope="col">Net equipment</th>
+<th scope="col">Total liabilities</th>
+<th scope="col">Net income</th>
+<th scope="col">Student explanation</th>
+</tr></thead>
+<tbody id="scenario-rows" role="rowgroup"><tr id="empty-log" role="row"><td colspan="7" class="empty" role="cell">Record a scenario to start your log.</td></tr></tbody>
+</table>
+</div>
+</section>
+</main>
+<script>
+const money = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0});
+const dollars = value => value < 0 ? '(' + money.format(-value) + ')' : money.format(value);
+const loan = document.getElementById('loan');
+const dep = document.getElementById('dep');
+const method = document.getElementById('method');
+const status = document.getElementById('status');
+const statements = document.getElementById('statements');
+let selectedStatement = 0;
+const purchase = 400000;
+const cashFloor = 150000;
+
+function calculate(borrowing, depreciation, supplies) {
+  const suppliesChange = supplies - 95000;
+  const costOfServices = -2380000 + suppliesChange;
+  const operatingExpenses = -1420000 - depreciation;
+  const revenue = 4250000;
+  const netIncome = revenue + costOfServices + operatingExpenses;
+  const operating = 310000;
+  const investing = -580000 - purchase;
+  const financing = 220000 + borrowing;
+  const cashChange = operating + investing + financing;
+  const cash = 462000 + cashChange;
+  const receivables = 680000;
+  const equipment = 1840000 + purchase - depreciation;
+  const assets = cash + receivables + supplies + equipment;
+  const liabilities = 1305000 + borrowing;
+  const equity = 1722000 + netIncome - 450000;
+  return { revenue, costOfServices, operatingExpenses, netIncome, operating, investing, financing,
+    cashChange, cash, receivables, equipment, assets, liabilities, equity };
+}
+
+function statement(title, rows) {
+  return '<section class="box"><h2>' + title + '</h2><table><caption>Workbook baseline and scenario</caption><thead><tr><th scope="col">Line item</th><td><strong>Baseline</strong></td><td><strong>Scenario</strong></td></tr></thead><tbody>' +
+    rows.map(([label, amount, total, baseline]) =>
+      '<tr class="' + (total ? 'total' : '') + '"><th scope="row">' + label + '</th><td>' +
+      dollars(baseline) + '</td><td>' + dollars(amount) + '</td></tr>'
+    ).join('') + '</tbody></table></section>';
+}
+
+function render() {
+  const borrowing = Number(loan.value);
+  const depreciation = Number(dep.value);
+  const supplies = Number(method.value);
+  const result = calculate(borrowing, depreciation, supplies);
+  document.getElementById('loan-value').value = dollars(borrowing);
+  document.getElementById('dep-value').value = dollars(depreciation);
+  loan.setAttribute('aria-valuetext', dollars(borrowing));
+  dep.setAttribute('aria-valuetext', dollars(depreciation));
+  const margin = result.cash - cashFloor;
+  status.classList.toggle('short', margin < 0);
+  status.textContent = margin < 0 ? 'Cash is ' + dollars(-margin) + ' below the board’s minimum.'
+    : margin === 0 ? 'Cash meets the board’s $150,000 minimum exactly.'
+    : 'Cash is ' + dollars(margin) + ' above the board’s minimum.';
+  const statementViews = [statement('Balance sheet', [
+    ['Cash',result.cash,true,412000],['Accounts receivable',result.receivables,false,680000],
+    ['Medical supplies',supplies,false,95000],['Equipment, net',result.equipment,false,1840000],
+    ['Total assets',result.assets,true,3027000],['Liabilities',result.liabilities,false,1305000],
+    ['Owners’ equity',result.equity,false,1722000],['Liabilities + equity',result.liabilities+result.equity,true,3027000]
+  ]), statement('Income statement', [
+    ['Revenue',result.revenue,false,4250000],['Cost of services',result.costOfServices,false,-2380000],
+    ['Gross profit',result.revenue+result.costOfServices,false,1870000],
+    ['Operating expenses',result.operatingExpenses,false,-1420000],['Net income',result.netIncome,true,450000]
+  ]), statement('Cash flow statement', [
+    ['Opening cash',462000,false,462000],['Operating',result.operating,false,310000],
+    ['Investing',result.investing,false,-580000],['Financing',result.financing,false,220000],
+    ['Net cash change',result.cashChange,false,-50000],['Closing cash',result.cash,true,412000]
+  ])];
+  statements.innerHTML = statementViews[selectedStatement];
+}
+
+loan.addEventListener('input', render);
+dep.addEventListener('input', render);
+method.addEventListener('change', render);
+for (const button of document.querySelectorAll('[data-loan]')) {
+  button.addEventListener('click', () => { loan.value = button.dataset.loan; render(); });
+}
+const statementButtons = document.querySelectorAll('[data-statement]');
+for (const button of statementButtons) {
+  button.addEventListener('click', () => {
+    selectedStatement = Number(button.dataset.statement);
+    for (const choice of statementButtons) {
+      choice.setAttribute('aria-pressed', String(choice === button));
+    }
+    render();
+  });
+}
+render();
+
+const scenarioRows = document.getElementById('scenario-rows');
+const scenarioColumns = scenarioRows.closest('table').tHead.rows[0].cells;
+const emptyLog = document.getElementById('empty-log');
+const printLog = document.getElementById('print-log');
+const logStatus = document.getElementById('log-status');
+const workbookValues = [412000, 95000, 1840000, 1305000, 450000];
+const recordedScenarios = [];
+
+function updateScenarioComparisons() {
+  recordedScenarios.forEach((scenario, index) => {
+    const reference = index === 0 ? workbookValues : recordedScenarios[index - 1].values;
+    scenario.deltas.forEach((label, column) => {
+      const change = scenario.values[column] - reference[column];
+      label.textContent = change === 0 ? 'No change'
+        : (change > 0 ? '+' : '−') + money.format(Math.abs(change));
+    });
+  });
+  emptyLog.hidden = recordedScenarios.length > 0;
+  printLog.disabled = recordedScenarios.length === 0;
+}
+
+let nextScenarioNumber = 1;
+function recordScenario(feedback) {
+  const borrowing = Number(loan.value);
+  const depreciation = Number(dep.value);
+  const supplies = Number(method.value);
+  const result = calculate(borrowing, depreciation, supplies);
+  const label = 'Scenario ' + nextScenarioNumber++;
+  const row = scenarioRows.insertRow();
+  row.setAttribute('role', 'row');
+  const heading = document.createElement('th');
+  heading.scope = 'row';
+  heading.setAttribute('role', 'rowheader');
+  heading.textContent = label;
+  row.append(heading);
+  for (const setting of ['Loan ' + dollars(borrowing), 'Depreciation ' + dollars(depreciation),
+    method.selectedOptions[0].textContent]) {
+    const detail = document.createElement('small');
+    detail.textContent = setting;
+    heading.append(detail);
+  }
+
+  const values = [result.cash, supplies, result.equipment, result.liabilities, result.netIncome];
+  const deltas = values.map((value, index) => {
+    const cell = row.insertCell();
+    cell.setAttribute('role', 'cell');
+    cell.dataset.label = scenarioColumns[index + 1].textContent;
+    cell.textContent = dollars(value);
+    const delta = document.createElement('small');
+    cell.append(delta);
+    return delta;
+  });
+  const explanation = row.insertCell();
+  explanation.setAttribute('role', 'cell');
+  explanation.dataset.label = scenarioColumns[scenarioColumns.length - 1].textContent;
+  const notes = document.createElement('textarea');
+  notes.rows = 3;
+  notes.className = 'screen-only';
+  notes.setAttribute('aria-label', label + ' explanation');
+  const printedNote = document.createElement('p');
+  printedNote.className = 'print-only printed-note';
+  notes.addEventListener('input', () => { printedNote.textContent = notes.value; });
+  explanation.append(notes, printedNote);
+
+  const scenario = { values, deltas };
+  recordedScenarios.push(scenario);
+  const remove = document.createElement('button');
+  remove.type = 'button';
+  remove.className = 'screen-only remove';
+  remove.textContent = 'Remove';
+  remove.setAttribute('aria-label', 'Remove ' + label.toLowerCase());
+  heading.append(remove);
+  remove.addEventListener('click', () => {
+    recordedScenarios.splice(recordedScenarios.indexOf(scenario), 1);
+    row.remove();
+    updateScenarioComparisons();
+    logStatus.textContent = label + ' removed.';
+    document.getElementById('record-scenario').focus();
+  });
+  updateScenarioComparisons();
+  feedback.textContent = label + ' recorded.';
+}
+document.getElementById('record-scenario').addEventListener('click', () => recordScenario(logStatus));
+document.getElementById('record-from-controls').addEventListener('click', () => {
+  recordScenario(document.getElementById('record-feedback'));
+});
+
+const studentName = document.getElementById('student-name');
+function preparePrint() {
+  const name = studentName.value.trim();
+  document.getElementById('printed-name').textContent = name ? 'Student: ' + name : '';
+}
+window.addEventListener('beforeprint', preparePrint);
+printLog.addEventListener('click', () => {
+  preparePrint();
+  window.print();
+});
+</script>
+</html>

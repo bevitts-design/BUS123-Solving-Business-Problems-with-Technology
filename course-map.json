@@ -759,24 +759,13 @@
       "materials": [
         {
           "type": "Slides",
-          "path": "EXCEL/M04/bus123-excel-m04-l01-slides.html"
-        },
-        {
-          "type": "Reading",
-          "path": "EXCEL/M04/bus123-excel-m04-l01-prereading.pdf"
+          "label": "View lesson slides in Canva",
+          "path": "https://canva.link/scaqps3dvv20vyx"
         },
         {
           "type": "Starter Workbook",
-          "path": "EXCEL/M04/bus123-excel-m04-l01-starter.xlsx"
-        },
-        {
-          "type": "Interactive Practice",
-          "path": "EXCEL/M04/bus123-excel-m04-l01-interactive.html"
-        },
-        {
-          "type": "Starter Workbook",
-          "label": "Medical Cost Analysis — Independent Practice",
-          "path": "EXCEL/M04/bus123-excel-m04-l01-independent-practice.xlsx"
+          "label": "Intro to Charts — Student Workbook",
+          "path": "EXCEL/M04/bus123-excel-m04-l01-intro-to-charts-student.xlsx"
         }
       ],
       "moduleType": "Excel",

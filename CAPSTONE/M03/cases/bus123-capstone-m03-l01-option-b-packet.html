@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUS123 Capstone Case Packet | Harborside Medical Center</title>
+<style>
+:root{--ink:#1a1f2c;--blue:#355773;--sage:#4a7c5e;--line:#e5e1d6;--wash:#eaf3ec;--paper:#faf8f3}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:1rem/1.5 system-ui,sans-serif}header{background:#0e1116;color:white;border-bottom:5px solid var(--sage);padding:2rem 1rem}
+.wrap{width:min(100% - 2rem,64rem);margin:0 auto}header .wrap{width:min(100%,64rem)}
+main{padding:1.5rem 0 2.5rem}h1,h2{line-height:1.15;font-family:Georgia,serif}h1{font-size:clamp(2rem,6vw,3.4rem);margin:.3rem 0 .6rem}h2{font-size:1.5rem;color:var(--blue);margin:0 0 .65rem}p{margin:.5rem 0}section+section{margin-top:1.4rem}ul{padding-left:1.3rem;margin:.5rem 0}li+li{margin-top:.35rem}a{color:inherit;text-underline-offset:.2em}a:focus-visible{outline:3px solid #b8843d;outline-offset:3px}
+table{width:100%;border-collapse:collapse;background:white}th,td{border:1px solid var(--line);padding:.5rem;text-align:left;vertical-align:top}thead{background:var(--blue);color:white}tbody tr:nth-child(even){background:var(--wash)}.numeric{text-align:right;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto}.question{font-weight:700;font-size:1.1rem}.download{margin-top:.9rem}
+@media(max-width:30rem){th,td{padding:.35rem;overflow-wrap:anywhere}}
+@page{size:letter;margin:.55in}
+@media print{body,header,thead{background:white;color:black;font-size:9.75pt;line-height:1.24}header{padding:0 0 .5rem;border-bottom-width:2px}.wrap{width:100%}main{padding:.8rem 0 0}h1{font-size:24pt}h2{font-size:15pt;break-after:avoid}section+section{margin-top:.85rem}p{margin:.3rem 0}th,td{padding:.17rem .35rem}tr{break-inside:avoid}.download{display:none}.records{break-before:page}}
+</style></head>
+<body><header><div class="wrap">
+<p>BUS123 Capstone · Hospital</p><h1>Harborside Medical Center</h1>
+<p class="question">Should hospital leadership pay cash for a new MRI or finance part of the purchase?</p>
+<p class="download"><a href="bus123-capstone-m03-l01-option-b-starter.xlsx">Download the Excel starter</a> · <a href="../bus123-capstone-m03-l01-project.html#rubric">View the shared rubric</a></p>
+</div></header>
+<main class="wrap">
+<section><h2>Business context</h2><p>Harborside needs the same MRI under either option. Leadership wants to protect liquidity while limiting borrowing costs. Compare the immediate purchase and the following 12 months. Show total contractual interest separately over the full loan term.</p>
+<p><strong>Options.</strong> Pay cash and Partial loan.</p></section>
+<section><h2>Case data and assumptions</h2>
+<p>The 24 records are included in the workbook’s <strong>Inputs</strong> tab. The same records are linked to the <strong>CaseAnalysis</strong> table on the Analysis tab. Preserve the given option and row order.</p>
+<div class="table-wrap"><table aria-label="Case assumptions"><thead><tr><th scope="col">Assumption</th><th scope="col">Value</th><th scope="col">How to use it</th></tr></thead><tbody>
+<tr><th scope="row">Opening cash</th><td>$412,000</td><td>Cash available just before the purchase.</td></tr>
+<tr><th scope="row">MRI price</th><td>$400,000</td><td>Paid in full before Month 1 operations.</td></tr>
+<tr><th scope="row">Cash floor</th><td>$150,000</td><td>Applies immediately after purchase and at each month-end.</td></tr>
+<tr><th scope="row">Loan principal</th><td>$175,000</td><td>Loan proceeds arrive when the MRI is purchased. The cash option borrows zero.</td></tr>
+<tr><th scope="row">Loan APR</th><td>6.6%</td><td>Fixed APR. Convert to a monthly rate.</td></tr>
+<tr><th scope="row">Loan term in months</th><td>60</td><td>Level monthly payments at month-end, beginning in Month 1. No fees.</td></tr>
+<tr><th scope="row">Downside monthly cash reduction</th><td>$10,500</td><td>Subtract this amount from every month’s base operating cash flow for both options.</td></tr>
+</tbody></table></div></section>
+<section><h2>Build the model and verify it</h2><ul>
+<li>Opening cash plus borrowing less the MRI payment gives cash immediately after purchase. Roll cash forward monthly by adding operating cash flow and subtracting the loan payment.</li>
+<li>The monthly operating cash figures already reflect routine cash receipts and payments. Exclude depreciation, taxes on the financing choice, loan fees, and other borrowing.</li>
+<li>Calculate total loan interest as the sum of all contractual payments less principal. When testing the cash floor, include the immediate post-purchase balance and all 12 month-end balances.</li>
+<li>Complete the outputs on Analysis and Summary. Show an independent result for <strong>partial loan monthly payment</strong> and a check of <strong>partial loan downside minimum cash</strong>. Record your method, comparison and conclusion on Summary.</li>
+</ul></section>
+<section><h2>Summarize and visualize</h2><ul>
+<li>PivotTable 1 • Rows: Group (quarter). Columns: Option. Values: Sum of base operating cash after debt.</li><li>PivotTable 2 • Rows: Option. Values: Sum of base operating cash after debt and sum of downside operating cash after debt.</li>
+<li>Chart the base and downside minimum cash for both options. Build a second chart from PivotTable 1 that compares the options across quarters. Exclude grand totals from chart series.</li>
+<li>Format currency, percentages, and counts appropriately. Use clear headers, readable column widths, consistent precision, meaningful titles, and labels or legends that identify the cases or series.</li>
+</ul></section>
+<section class="records"><h2>Source data</h2>
+<p>The rows below match the Inputs worksheet. Use the starter workbook for the calculations.</p>
+<div class="table-wrap"><table aria-label="Case records"><thead><tr>
+<th scope="col">Option</th><th scope="col">Group</th><th scope="col">Month</th><th scope="col">Base operating cash</th>
+</tr></thead><tbody>
+<tr><td>Pay cash</td><td>Q1</td><td class="numeric">1</td><td class="numeric">$10,500</td></tr>
+<tr><td>Pay cash</td><td>Q1</td><td class="numeric">2</td><td class="numeric">$11,500</td></tr>
+<tr><td>Pay cash</td><td>Q1</td><td class="numeric">3</td><td class="numeric">$12,000</td></tr>
+<tr><td>Pay cash</td><td>Q2</td><td class="numeric">4</td><td class="numeric">$9,000</td></tr>
+<tr><td>Pay cash</td><td>Q2</td><td class="numeric">5</td><td class="numeric">$10,000</td></tr>
+<tr><td>Pay cash</td><td>Q2</td><td class="numeric">6</td><td class="numeric">$13,000</td></tr>
+<tr><td>Pay cash</td><td>Q3</td><td class="numeric">7</td><td class="numeric">$8,500</td></tr>
+<tr><td>Pay cash</td><td>Q3</td><td class="numeric">8</td><td class="numeric">$11,500</td></tr>
+<tr><td>Pay cash</td><td>Q3</td><td class="numeric">9</td><td class="numeric">$12,000</td></tr>
+<tr><td>Pay cash</td><td>Q4</td><td class="numeric">10</td><td class="numeric">$9,500</td></tr>
+<tr><td>Pay cash</td><td>Q4</td><td class="numeric">11</td><td class="numeric">$10,500</td></tr>
+<tr><td>Pay cash</td><td>Q4</td><td class="numeric">12</td><td class="numeric">$14,000</td></tr>
+<tr><td>Partial loan</td><td>Q1</td><td class="numeric">1</td><td class="numeric">$10,500</td></tr>
+<tr><td>Partial loan</td><td>Q1</td><td class="numeric">2</td><td class="numeric">$11,500</td></tr>
+<tr><td>Partial loan</td><td>Q1</td><td class="numeric">3</td><td class="numeric">$12,000</td></tr>
+<tr><td>Partial loan</td><td>Q2</td><td class="numeric">4</td><td class="numeric">$9,000</td></tr>
+<tr><td>Partial loan</td><td>Q2</td><td class="numeric">5</td><td class="numeric">$10,000</td></tr>
+<tr><td>Partial loan</td><td>Q2</td><td class="numeric">6</td><td class="numeric">$13,000</td></tr>
+<tr><td>Partial loan</td><td>Q3</td><td class="numeric">7</td><td class="numeric">$8,500</td></tr>
+<tr><td>Partial loan</td><td>Q3</td><td class="numeric">8</td><td class="numeric">$11,500</td></tr>
+<tr><td>Partial loan</td><td>Q3</td><td class="numeric">9</td><td class="numeric">$12,000</td></tr>
+<tr><td>Partial loan</td><td>Q4</td><td class="numeric">10</td><td class="numeric">$9,500</td></tr>
+<tr><td>Partial loan</td><td>Q4</td><td class="numeric">11</td><td class="numeric">$10,500</td></tr>
+<tr><td>Partial loan</td><td>Q4</td><td class="numeric">12</td><td class="numeric">$14,000</td></tr>
+</tbody></table></div></section>
+</main></body></html>

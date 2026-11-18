@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BUS123 Capstone Project and Rubric</title>
+  <style>
+    :root {
+      --ink: #0e1116;
+      --paper: #faf8f3;
+      --white: #ffffff;
+      --text: #1a1f2c;
+      --muted: #4a5567;
+      --line: #e5e1d6;
+      --sage: #4a7c5e;
+      --gold: #b8843d;
+      --steel: #355773;
+      --wash: #eaf3ec;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--text); font: 1rem/1.55 system-ui, sans-serif; }
+    .wrap { width: min(100% - 2.5rem, 66rem); margin-inline: auto; }
+    header { padding: 2.75rem 0 2.25rem; background: var(--ink); color: var(--white); border-bottom: 5px solid var(--sage); }
+    header p { max-width: 43rem; }
+    .course { margin: 0 0 .4rem; font-size: .875rem; font-weight: 650; }
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { margin: 0 0 .65rem; font: 700 clamp(2.2rem, 6vw, 3.6rem)/1.05 Georgia, serif; }
+    h2 { margin: 0 0 .85rem; color: var(--steel); font: 700 1.75rem/1.15 Georgia, serif; }
+    h3 { margin: 0 0 .3rem; font-size: 1.05rem; }
+    p { margin: 0 0 .65rem; }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--steel); text-underline-offset: .18em; }
+    header a { color: var(--white); }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    main { padding-block: 1.75rem 3rem; }
+    section + section { margin-top: 2rem; }
+    .cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; }
+    .case { padding: 1rem; background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--sage); }
+    .case:nth-child(2) { border-top-color: var(--steel); }
+    .case:nth-child(3) { border-top-color: var(--gold); }
+    .label { margin-bottom: .3rem; color: var(--muted); font-size: .85rem; font-weight: 650; }
+    .case-links { font-size: .9rem; }
+    ol, ul { padding-left: 1.4rem; margin: .5rem 0 .85rem; }
+    li + li { margin-top: .4rem; }
+    .policy { padding: .75rem 1rem; border-left: 4px solid var(--sage); background: var(--wash); }
+    table { width: 100%; border-collapse: collapse; background: var(--white); font-size: .95rem; }
+    th, td { padding: .6rem .7rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    thead { color: var(--white); background: var(--steel); }
+    tbody th { width: 24%; }
+    .points { width: 5rem; text-align: center; font-variant-numeric: tabular-nums; }
+    tfoot { background: var(--wash); font-weight: 700; }
+    @media (max-width: 46rem) {
+      .cases { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 28rem) {
+      .wrap { width: calc(100% - 1.5rem); }
+      th, td { padding: .4rem; overflow-wrap: anywhere; }
+      .points { width: auto; }
+    }
+    @page { size: letter; margin: .6in; }
+    @media print {
+      body, header { color: #000; background: #fff; font-size: 10.5pt; line-height: 1.35; }
+      .wrap { width: 100%; }
+      header { padding: 0 0 .6rem; border-bottom-width: 2px; }
+      header a { color: #000; }
+      h1 { font-size: 27pt; }
+      h2 { font-size: 16pt; break-after: avoid; }
+      h3 { font-size: 11pt; }
+      main { padding: .85rem 0 0; }
+      section + section { margin-top: 1rem; }
+      .cases { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+      .case { padding: .6rem; break-inside: avoid; }
+      .submission { break-before: page; }
+      table { font-size: 10pt; line-height: 1.27; }
+      th, td { padding: .28rem .42rem; }
+      thead { color: #000; background: #fff; }
+      tr { break-inside: avoid; }
+      .rubric-link, .case-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="course">BUS123 · Solving Business Problems with Technology</p>
+      <h1>Capstone Project</h1>
+      <p>Choose one case. Use Excel to compare two options, test a downside scenario, and recommend a course of action to someone who has to make the decision.</p>
+      <p><strong>15% of the course grade</strong> · <a href="https://endicott.instructure.com/courses/58218">See Canvas for deadlines</a><span class="rubric-link"> · <a href="#rubric">Jump to rubric</a></span></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="choose">
+      <h2 id="choose">Choose one case</h2>
+      <div class="cases">
+        <article class="case">
+          <p class="label">Retail</p>
+          <h3>Tidal Goods Co.</h3>
+          <p><strong>Decision.</strong> Which of two inventory orders should the owner place for an upcoming selling period?</p>
+          <p>Compare cash committed to inventory, projected gross profit, and gross margin. Test how lower unit sales affect both orders.</p>
+          <p class="case-links"><a href="cases/bus123-capstone-m03-l01-option-a-packet.html">Tidal Goods case packet</a><br><a href="cases/bus123-capstone-m03-l01-option-a-starter.xlsx">Tidal Goods Excel starter</a></p>
+        </article>
+        <article class="case">
+          <p class="label">Hospital</p>
+          <h3>Harborside Medical Center</h3>
+          <p><strong>Decision.</strong> Should the hospital pay cash for the MRI or finance part of the purchase?</p>
+          <p>Compare the cash remaining after purchase, monthly loan payments, and total interest. Test whether each option meets the hospital’s minimum cash target if operating cash falls short.</p>
+          <p class="case-links"><a href="cases/bus123-capstone-m03-l01-option-b-packet.html">Harborside case packet</a><br><a href="cases/bus123-capstone-m03-l01-option-b-starter.xlsx">Harborside Excel starter</a></p>
+        </article>
+        <article class="case">
+          <p class="label">Investment portfolio</p>
+          <h3>Meridian Advisory Group</h3>
+          <p><strong>Decision.</strong> Which of two proposed investment allocations better fits the same client?</p>
+          <p>Compare portfolio weights, modeled returns, and concentration using the case data. Apply the same downside market scenario to both allocations and compare the results against the client’s goals and risk tolerance.</p>
+          <p class="case-links"><a href="cases/bus123-capstone-m03-l01-option-c-packet.html">Meridian case packet</a><br><a href="cases/bus123-capstone-m03-l01-option-c-starter.xlsx">Meridian Excel starter</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="work">
+      <h2 id="work">Build and check your analysis</h2>
+      <ol>
+        <li><strong>Set up the comparison.</strong> Use the data and constraints in your case packet. Label your inputs, units, and assumptions. Compare both options over the same time period.</li>
+        <li><strong>Build the Excel model.</strong> Link your calculations to the inputs. Show the results for each option under the starting assumptions and under the same downside scenario. Explain whether your recommendation changes.</li>
+        <li><strong>Verify two results.</strong> In the workbook, recalculate one key result independently and check one case-specific total or constraint. Record what you checked, the result, and any correction. A constraint check can show that an option falls short.</li>
+        <li><strong>Format the workbook.</strong> Use clear headers, readable columns, consistent precision, and the correct formats for dollars, percentages, and counts. Make it easy to distinguish inputs from results.</li>
+        <li><strong>Build two Excel PivotTables.</strong> Use the workbook’s <code>CaseAnalysis</code> table and the fields in your case packet. Check the summaries against the source and refresh them after changes.</li>
+        <li><strong>Create two Excel charts.</strong> Chart the base and downside results for both options. Build a second chart from PivotTable 1 to compare the options by group. Use readable titles, units, and series labels. Exclude grand totals from the charts.</li>
+      </ol>
+    </section>
+
+    <section class="submission" aria-labelledby="submit">
+      <h2 id="submit">Submit in Canvas</h2>
+      <ul>
+        <li><strong>One Excel workbook (.xlsx)</strong> with the scenario comparison, verification checks, two PivotTables, and two charts.</li>
+        <li><strong>One recommendation memo, up to one page.</strong> Address it to the owner, hospital leadership, or client. State your decision, cite at least two specific workbook results, and explain the tradeoff and what could change your recommendation. Put the memo on a clearly labeled workbook tab or submit it as a separate file.</li>
+      </ul>
+      <p class="policy"><strong>AI use.</strong> Follow the course and Canvas instructions. If you use AI where permitted, disclose meaningful assistance and explain how you verified it. Be ready to explain your formulas and recommendation in your own words.</p>
+    </section>
+
+    <section id="rubric" aria-labelledby="rubric-title">
+      <h2 id="rubric-title">Shared rubric</h2>
+      <p>The same 100-point rubric applies to all three cases. More than one recommendation can earn full credit when it follows from accurate analysis and addresses the case constraints.</p>
+      <table aria-labelledby="rubric-title">
+        <thead>
+          <tr>
+            <th scope="col">Criterion</th>
+            <th scope="col" class="points">Points</th>
+            <th scope="col">What earns full credit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Decision and inputs</th>
+            <td class="points">10</td>
+            <td>States the decision and identifies both options. Uses the case data, labels inputs and units, and states the assumptions and constraints that affect the comparison.</td>
+          </tr>
+          <tr>
+            <th scope="row">Excel calculations</th>
+            <td class="points">25</td>
+            <td>Calculates the required measures accurately for both options. Uses linked formulas for calculated results and makes the inputs easy to trace.</td>
+          </tr>
+          <tr>
+            <th scope="row">Scenario analysis</th>
+            <td class="points">15</td>
+            <td>Compares both options over the same period, applies the same downside scenario to both, and explains what changed and why it matters to the decision.</td>
+          </tr>
+          <tr>
+            <th scope="row">Verification</th>
+            <td class="points">15</td>
+            <td>Independently recalculates one key result and checks one case-specific total or constraint. Records the outcomes and any corrections so someone else can follow the checks.</td>
+          </tr>
+          <tr>
+            <th scope="row">Workbook formatting</th>
+            <td class="points">5</td>
+            <td>Uses clear headers, readable columns, consistent precision, and appropriate currency, percentage, and count formats. Inputs and results are easy to distinguish.</td>
+          </tr>
+          <tr>
+            <th scope="row">PivotTables</th>
+            <td class="points">7</td>
+            <td>Builds two refreshable Excel PivotTables from CaseAnalysis with the required fields and correct aggregations. The summaries agree with the source.</td>
+          </tr>
+          <tr>
+            <th scope="row">Charts</th>
+            <td class="points">8</td>
+            <td>Builds one chart comparing scenarios and one chart based on PivotTable 1. Both use the correct data and have clear titles, units, and series labels.</td>
+          </tr>
+          <tr>
+            <th scope="row">Recommendation memo</th>
+            <td class="points">15</td>
+            <td>Makes a clear recommendation to the intended reader, cites at least two workbook results, and explains the tradeoff and the conditions that could change the decision.</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th scope="row">Total</th>
+            <td class="points">100</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

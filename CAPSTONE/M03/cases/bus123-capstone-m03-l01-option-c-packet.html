@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUS123 Capstone Case Packet | Meridian Advisory Group</title>
+<style>
+:root{--ink:#1a1f2c;--blue:#355773;--sage:#4a7c5e;--line:#e5e1d6;--wash:#eaf3ec;--paper:#faf8f3}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:1rem/1.5 system-ui,sans-serif}header{background:#0e1116;color:white;border-bottom:5px solid var(--sage);padding:2rem 1rem}
+.wrap{width:min(100% - 2rem,64rem);margin:0 auto}header .wrap{width:min(100%,64rem)}
+main{padding:1.5rem 0 2.5rem}h1,h2{line-height:1.15;font-family:Georgia,serif}h1{font-size:clamp(2rem,6vw,3.4rem);margin:.3rem 0 .6rem}h2{font-size:1.5rem;color:var(--blue);margin:0 0 .65rem}p{margin:.5rem 0}section+section{margin-top:1.4rem}ul{padding-left:1.3rem;margin:.5rem 0}li+li{margin-top:.35rem}a{color:inherit;text-underline-offset:.2em}a:focus-visible{outline:3px solid #b8843d;outline-offset:3px}
+table{width:100%;border-collapse:collapse;background:white}th,td{border:1px solid var(--line);padding:.5rem;text-align:left;vertical-align:top}thead{background:var(--blue);color:white}tbody tr:nth-child(even){background:var(--wash)}.numeric{text-align:right;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto}.question{font-weight:700;font-size:1.1rem}.download{margin-top:.9rem}
+@media(max-width:30rem){th,td{padding:.35rem;overflow-wrap:anywhere}}
+@page{size:letter;margin:.55in}
+@media print{body,header,thead{background:white;color:black;font-size:9.75pt;line-height:1.24}header{padding:0 0 .5rem;border-bottom-width:2px}.wrap{width:100%}main{padding:.8rem 0 0}h1{font-size:24pt}h2{font-size:15pt;break-after:avoid}section+section{margin-top:.85rem}p{margin:.3rem 0}th,td{padding:.17rem .35rem}tr{break-inside:avoid}.download{display:none}.records{break-before:page}}
+</style></head>
+<body><header><div class="wrap">
+<p>BUS123 Capstone · Investment portfolio</p><h1>Meridian Advisory Group</h1>
+<p class="question">Which proposed portfolio fits the client’s risk limits while giving the client an opportunity for growth?</p>
+<p class="download"><a href="bus123-capstone-m03-l01-option-c-starter.xlsx">Download the Excel starter</a> · <a href="../bus123-capstone-m03-l01-project.html#rubric">View the shared rubric</a></p>
+</div></header>
+<main class="wrap">
+<section><h2>Business context</h2><p>A client has $100,000 and wants a one-year comparison of two proposed allocations using the same 12 fictional investments. The client wants growth and has specific limits on concentration and downside loss.</p>
+<p><strong>Options.</strong> Growth mix and Balanced mix.</p></section>
+<section><h2>Case data and assumptions</h2>
+<p>The 24 records are included in the workbook’s <strong>Inputs</strong> tab. The same records are linked to the <strong>CaseAnalysis</strong> table on the Analysis tab. Preserve the given option and row order.</p>
+<div class="table-wrap"><table aria-label="Case assumptions"><thead><tr><th scope="col">Assumption</th><th scope="col">Value</th><th scope="col">How to use it</th></tr></thead><tbody>
+<tr><th scope="row">Amount to invest</th><td>$100,000</td><td>Both options should fully allocate this amount.</td></tr>
+<tr><th scope="row">Maximum asset-class weight</th><td>55%</td><td>No single asset class may exceed this share of the portfolio.</td></tr>
+<tr><th scope="row">Maximum modeled downside loss</th><td>8%</td><td>Modeled downside return should be at least −8%.</td></tr>
+</tbody></table></div></section>
+<section><h2>Build the model and verify it</h2><ul>
+<li>Base and downside returns are the supplied hypothetical one-year total returns, with income included. Apply each holding’s same scenario rates to both options. Use dollar allocations to calculate weights and return contributions.</li>
+<li>Assign each holding to its stated asset class and use the largest total class weight as the concentration measure. Do not estimate the holdings inside each fund.</li>
+<li>Assume no fees, taxes, trades, or rebalancing during the year. These scenarios are provided for comparison. They do not establish a probability or expected future outcome.</li>
+<li>Complete the outputs on Analysis and Summary. Show an independent result for <strong>growth mix base portfolio return</strong> and a check of <strong>balanced mix total portfolio weight</strong>. Record your method, comparison and conclusion on Summary.</li>
+</ul></section>
+<section><h2>Summarize and visualize</h2><ul>
+<li>PivotTable 1 • Rows: Group (asset class). Columns: Option. Values: Sum of portfolio weight.</li><li>PivotTable 2 • Rows: Option. Values: Sum of base return dollars and sum of downside return dollars.</li>
+<li>Chart the base and downside portfolio return for both options. Build a second chart from PivotTable 1 that compares the options across asset classes. Exclude grand totals from chart series.</li>
+<li>Format currency, percentages, and counts appropriately. Use clear headers, readable column widths, consistent precision, meaningful titles, and labels or legends that identify the cases or series.</li>
+</ul></section>
+<section class="records"><h2>Source data</h2>
+<p>The rows below match the Inputs worksheet. Use the starter workbook for the calculations.</p>
+<div class="table-wrap"><table aria-label="Case records"><thead><tr>
+<th scope="col">Option</th><th scope="col">Group</th><th scope="col">Holding</th><th scope="col">Allocation</th><th scope="col">Base return rate</th><th scope="col">Downside return rate</th>
+</tr></thead><tbody>
+<tr><td>Growth mix</td><td>Equity</td><td>Broad market ETF</td><td class="numeric">$24,000</td><td class="numeric">8%</td><td class="numeric">-16%</td></tr>
+<tr><td>Growth mix</td><td>Equity</td><td>Dividend stock</td><td class="numeric">$14,000</td><td class="numeric">7.5%</td><td class="numeric">-12%</td></tr>
+<tr><td>Growth mix</td><td>Equity</td><td>Growth stock</td><td class="numeric">$12,000</td><td class="numeric">13%</td><td class="numeric">-25%</td></tr>
+<tr><td>Growth mix</td><td>Equity</td><td>Small-cap ETF</td><td class="numeric">$10,000</td><td class="numeric">9%</td><td class="numeric">-20%</td></tr>
+<tr><td>Growth mix</td><td>Fixed income</td><td>Treasury bond</td><td class="numeric">$12,000</td><td class="numeric">4.5%</td><td class="numeric">3%</td></tr>
+<tr><td>Growth mix</td><td>Fixed income</td><td>Municipal bond</td><td class="numeric">$6,000</td><td class="numeric">4%</td><td class="numeric">-2%</td></tr>
+<tr><td>Growth mix</td><td>Fixed income</td><td>Corporate bond</td><td class="numeric">$8,000</td><td class="numeric">5.5%</td><td class="numeric">-6%</td></tr>
+<tr><td>Growth mix</td><td>Fixed income</td><td>Aggregate bond fund</td><td class="numeric">$7,000</td><td class="numeric">4.8%</td><td class="numeric">1%</td></tr>
+<tr><td>Growth mix</td><td>Cash and short term</td><td>Treasury bill</td><td class="numeric">$3,000</td><td class="numeric">3.8%</td><td class="numeric">3%</td></tr>
+<tr><td>Growth mix</td><td>Cash and short term</td><td>Money market fund</td><td class="numeric">$2,000</td><td class="numeric">3.5%</td><td class="numeric">3%</td></tr>
+<tr><td>Growth mix</td><td>Cash and short term</td><td>Short-term Treasury ETF</td><td class="numeric">$1,000</td><td class="numeric">3.4%</td><td class="numeric">2.5%</td></tr>
+<tr><td>Growth mix</td><td>Cash and short term</td><td>Insured CD</td><td class="numeric">$1,000</td><td class="numeric">3.6%</td><td class="numeric">3%</td></tr>
+<tr><td>Balanced mix</td><td>Equity</td><td>Broad market ETF</td><td class="numeric">$15,000</td><td class="numeric">8%</td><td class="numeric">-16%</td></tr>
+<tr><td>Balanced mix</td><td>Equity</td><td>Dividend stock</td><td class="numeric">$9,000</td><td class="numeric">7.5%</td><td class="numeric">-12%</td></tr>
+<tr><td>Balanced mix</td><td>Equity</td><td>Growth stock</td><td class="numeric">$8,000</td><td class="numeric">13%</td><td class="numeric">-25%</td></tr>
+<tr><td>Balanced mix</td><td>Equity</td><td>Small-cap ETF</td><td class="numeric">$6,000</td><td class="numeric">9%</td><td class="numeric">-20%</td></tr>
+<tr><td>Balanced mix</td><td>Fixed income</td><td>Treasury bond</td><td class="numeric">$14,000</td><td class="numeric">4.5%</td><td class="numeric">3%</td></tr>
+<tr><td>Balanced mix</td><td>Fixed income</td><td>Municipal bond</td><td class="numeric">$9,000</td><td class="numeric">4%</td><td class="numeric">-2%</td></tr>
+<tr><td>Balanced mix</td><td>Fixed income</td><td>Corporate bond</td><td class="numeric">$9,000</td><td class="numeric">5.5%</td><td class="numeric">-6%</td></tr>
+<tr><td>Balanced mix</td><td>Fixed income</td><td>Aggregate bond fund</td><td class="numeric">$10,000</td><td class="numeric">4.8%</td><td class="numeric">1%</td></tr>
+<tr><td>Balanced mix</td><td>Cash and short term</td><td>Treasury bill</td><td class="numeric">$6,000</td><td class="numeric">3.8%</td><td class="numeric">3%</td></tr>
+<tr><td>Balanced mix</td><td>Cash and short term</td><td>Money market fund</td><td class="numeric">$5,000</td><td class="numeric">3.5%</td><td class="numeric">3%</td></tr>
+<tr><td>Balanced mix</td><td>Cash and short term</td><td>Short-term Treasury ETF</td><td class="numeric">$5,000</td><td class="numeric">3.4%</td><td class="numeric">2.5%</td></tr>
+<tr><td>Balanced mix</td><td>Cash and short term</td><td>Insured CD</td><td class="numeric">$4,000</td><td class="numeric">3.6%</td><td class="numeric">3%</td></tr>
+</tbody></table></div></section>
+</main></body></html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUS123 Capstone Case Packet | Tidal Goods Co.</title>
+<style>
+:root{--ink:#1a1f2c;--blue:#355773;--sage:#4a7c5e;--line:#e5e1d6;--wash:#eaf3ec;--paper:#faf8f3}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:1rem/1.5 system-ui,sans-serif}header{background:#0e1116;color:white;border-bottom:5px solid var(--sage);padding:2rem 1rem}
+.wrap{width:min(100% - 2rem,64rem);margin:0 auto}header .wrap{width:min(100%,64rem)}
+main{padding:1.5rem 0 2.5rem}h1,h2{line-height:1.15;font-family:Georgia,serif}h1{font-size:clamp(2rem,6vw,3.4rem);margin:.3rem 0 .6rem}h2{font-size:1.5rem;color:var(--blue);margin:0 0 .65rem}p{margin:.5rem 0}section+section{margin-top:1.4rem}ul{padding-left:1.3rem;margin:.5rem 0}li+li{margin-top:.35rem}a{color:inherit;text-underline-offset:.2em}a:focus-visible{outline:3px solid #b8843d;outline-offset:3px}
+table{width:100%;border-collapse:collapse;background:white}th,td{border:1px solid var(--line);padding:.5rem;text-align:left;vertical-align:top}thead{background:var(--blue);color:white}tbody tr:nth-child(even){background:var(--wash)}.numeric{text-align:right;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto}.question{font-weight:700;font-size:1.1rem}.download{margin-top:.9rem}
+@media(max-width:30rem){th,td{padding:.35rem;overflow-wrap:anywhere}}
+@page{size:letter;margin:.55in}
+@media print{body,header,thead{background:white;color:black;font-size:9.75pt;line-height:1.24}header{padding:0 0 .5rem;border-bottom-width:2px}.wrap{width:100%}main{padding:.8rem 0 0}h1{font-size:24pt}h2{font-size:15pt;break-after:avoid}section+section{margin-top:.85rem}p{margin:.3rem 0}th,td{padding:.17rem .35rem}tr{break-inside:avoid}.download{display:none}.records{break-before:page}}
+</style></head>
+<body><header><div class="wrap">
+<p>BUS123 Capstone · Retail</p><h1>Tidal Goods Co.</h1>
+<p class="question">Which inventory order should the owner place for the upcoming eight-week selling period?</p>
+<p class="download"><a href="bus123-capstone-m03-l01-option-a-starter.xlsx">Download the Excel starter</a> · <a href="../bus123-capstone-m03-l01-project.html#rubric">View the shared rubric</a></p>
+</div></header>
+<main class="wrap">
+<section><h2>Business context</h2><p>Tidal Goods runs a coastal retail shop. The owner wants to capture seasonal sales without committing more cash than the store can spare. The two options cover the same 12 products, with different order quantities and the same unit costs.</p>
+<p><strong>Options.</strong> Lean order and Bulk order.</p></section>
+<section><h2>Case data and assumptions</h2>
+<p>The 24 records are included in the workbook’s <strong>Inputs</strong> tab. The same records are linked to the <strong>CaseAnalysis</strong> table on the Analysis tab. Preserve the given option and row order.</p>
+<div class="table-wrap"><table aria-label="Case assumptions"><thead><tr><th scope="col">Assumption</th><th scope="col">Value</th><th scope="col">How to use it</th></tr></thead><tbody>
+<tr><th scope="row">Inventory cash budget</th><td>$27,000</td><td>Maximum cash available for the order.</td></tr>
+<tr><th scope="row">Downside demand as a share of base</th><td>80%</td><td>Multiply expected demand by 80% and round down to whole units for each product.</td></tr>
+</tbody></table></div></section>
+<section><h2>Build the model and verify it</h2><ul>
+<li>Assume no beginning inventory. Units sold equal the lower of order quantity and demand. Unsold units remain in inventory, with no salvage revenue or write-off during the eight-week period.</li>
+<li>Cash committed is the cost of the full order. Cost of goods sold applies only to units sold. Gross profit is revenue less cost of goods sold. Calculate total gross margin from total gross profit divided by total revenue.</li>
+<li>Compare cash committed with the budget and weigh the sales opportunity against cash tied up in unsold inventory. Use the supplied costs and prices throughout both scenarios.</li>
+<li>Complete the outputs on Analysis and Summary. Show an independent result for <strong>lean order base gross profit</strong> and a check of <strong>bulk order budget headroom</strong>. Record your method, comparison and conclusion on Summary.</li>
+</ul></section>
+<section><h2>Summarize and visualize</h2><ul>
+<li>PivotTable 1 • Rows: Group (product category). Columns: Option. Values: Sum of cash committed.</li><li>PivotTable 2 • Rows: Option. Values: Sum of base gross profit and sum of downside gross profit.</li>
+<li>Chart the base and downside gross profit for both options. Build a second chart from PivotTable 1 that compares the options across product categories. Exclude grand totals from chart series.</li>
+<li>Format currency, percentages, and counts appropriately. Use clear headers, readable column widths, consistent precision, meaningful titles, and labels or legends that identify the cases or series.</li>
+</ul></section>
+<section class="records"><h2>Source data</h2>
+<p>The rows below match the Inputs worksheet. Use the starter workbook for the calculations.</p>
+<div class="table-wrap"><table aria-label="Case records"><thead><tr>
+<th scope="col">Option</th><th scope="col">Group</th><th scope="col">Product</th><th scope="col">Order units</th><th scope="col">Base demand</th><th scope="col">Unit price</th><th scope="col">Unit cost</th>
+</tr></thead><tbody>
+<tr><td>Lean order</td><td>Accessories</td><td>Canvas tote</td><td class="numeric">145</td><td class="numeric">170</td><td class="numeric">$19.00</td><td class="numeric">$8.00</td></tr>
+<tr><td>Lean order</td><td>Accessories</td><td>Key clip</td><td class="numeric">110</td><td class="numeric">130</td><td class="numeric">$12.00</td><td class="numeric">$4.00</td></tr>
+<tr><td>Lean order</td><td>Accessories</td><td>Cap</td><td class="numeric">94</td><td class="numeric">110</td><td class="numeric">$25.00</td><td class="numeric">$11.00</td></tr>
+<tr><td>Lean order</td><td>Accessories</td><td>Sunglasses</td><td class="numeric">72</td><td class="numeric">85</td><td class="numeric">$34.00</td><td class="numeric">$14.00</td></tr>
+<tr><td>Lean order</td><td>Apparel</td><td>Crew tee</td><td class="numeric">132</td><td class="numeric">155</td><td class="numeric">$29.00</td><td class="numeric">$12.00</td></tr>
+<tr><td>Lean order</td><td>Apparel</td><td>Long-sleeve tee</td><td class="numeric">85</td><td class="numeric">100</td><td class="numeric">$38.00</td><td class="numeric">$16.00</td></tr>
+<tr><td>Lean order</td><td>Apparel</td><td>Hoodie</td><td class="numeric">76</td><td class="numeric">90</td><td class="numeric">$54.00</td><td class="numeric">$24.00</td></tr>
+<tr><td>Lean order</td><td>Apparel</td><td>Windbreaker</td><td class="numeric">44</td><td class="numeric">52</td><td class="numeric">$65.00</td><td class="numeric">$29.00</td></tr>
+<tr><td>Lean order</td><td>Home goods</td><td>Camp mug</td><td class="numeric">119</td><td class="numeric">140</td><td class="numeric">$18.00</td><td class="numeric">$7.00</td></tr>
+<tr><td>Lean order</td><td>Home goods</td><td>Beach blanket</td><td class="numeric">72</td><td class="numeric">85</td><td class="numeric">$42.00</td><td class="numeric">$19.00</td></tr>
+<tr><td>Lean order</td><td>Home goods</td><td>Water bottle</td><td class="numeric">102</td><td class="numeric">120</td><td class="numeric">$28.00</td><td class="numeric">$12.00</td></tr>
+<tr><td>Lean order</td><td>Home goods</td><td>Market basket</td><td class="numeric">64</td><td class="numeric">75</td><td class="numeric">$36.00</td><td class="numeric">$16.00</td></tr>
+<tr><td>Bulk order</td><td>Accessories</td><td>Canvas tote</td><td class="numeric">280</td><td class="numeric">170</td><td class="numeric">$19.00</td><td class="numeric">$8.00</td></tr>
+<tr><td>Bulk order</td><td>Accessories</td><td>Key clip</td><td class="numeric">210</td><td class="numeric">130</td><td class="numeric">$12.00</td><td class="numeric">$4.00</td></tr>
+<tr><td>Bulk order</td><td>Accessories</td><td>Cap</td><td class="numeric">170</td><td class="numeric">110</td><td class="numeric">$25.00</td><td class="numeric">$11.00</td></tr>
+<tr><td>Bulk order</td><td>Accessories</td><td>Sunglasses</td><td class="numeric">135</td><td class="numeric">85</td><td class="numeric">$34.00</td><td class="numeric">$14.00</td></tr>
+<tr><td>Bulk order</td><td>Apparel</td><td>Crew tee</td><td class="numeric">235</td><td class="numeric">155</td><td class="numeric">$29.00</td><td class="numeric">$12.00</td></tr>
+<tr><td>Bulk order</td><td>Apparel</td><td>Long-sleeve tee</td><td class="numeric">155</td><td class="numeric">100</td><td class="numeric">$38.00</td><td class="numeric">$16.00</td></tr>
+<tr><td>Bulk order</td><td>Apparel</td><td>Hoodie</td><td class="numeric">150</td><td class="numeric">90</td><td class="numeric">$54.00</td><td class="numeric">$24.00</td></tr>
+<tr><td>Bulk order</td><td>Apparel</td><td>Windbreaker</td><td class="numeric">90</td><td class="numeric">52</td><td class="numeric">$65.00</td><td class="numeric">$29.00</td></tr>
+<tr><td>Bulk order</td><td>Home goods</td><td>Camp mug</td><td class="numeric">205</td><td class="numeric">140</td><td class="numeric">$18.00</td><td class="numeric">$7.00</td></tr>
+<tr><td>Bulk order</td><td>Home goods</td><td>Beach blanket</td><td class="numeric">140</td><td class="numeric">85</td><td class="numeric">$42.00</td><td class="numeric">$19.00</td></tr>
+<tr><td>Bulk order</td><td>Home goods</td><td>Water bottle</td><td class="numeric">185</td><td class="numeric">120</td><td class="numeric">$28.00</td><td class="numeric">$12.00</td></tr>
+<tr><td>Bulk order</td><td>Home goods</td><td>Market basket</td><td class="numeric">120</td><td class="numeric">75</td><td class="numeric">$36.00</td><td class="numeric">$16.00</td></tr>
+</tbody></table></div></section>
+</main></body></html>

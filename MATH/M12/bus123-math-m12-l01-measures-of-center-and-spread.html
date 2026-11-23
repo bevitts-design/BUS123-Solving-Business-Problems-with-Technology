@@ -150,7 +150,6 @@
       font-weight: 700;
       font-size: var(--label-size);
       letter-spacing: 0.08em;
-      text-transform: uppercase;
       color: var(--on-primary);
       background-color: var(--coastal-green);
       padding: var(--space-xs) var(--space-md);
@@ -617,6 +616,25 @@
       gap: var(--space-lg);
       align-items: start;
     }
+    .sim-question h3,
+    .sim-control-heading h3 {
+      font-size: 1.15rem;
+      margin: 0 0 var(--space-xs);
+    }
+    .sim-question p { margin: 0; }
+    .sim-question p + p { margin-top: var(--space-sm); }
+    .sim-control-heading {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+    }
+    .sim-results {
+      display: grid;
+      gap: var(--space-md);
+    }
     .slider-group {
       display: grid;
       gap: var(--space-md);
@@ -709,69 +727,7 @@
     }
     .data-table tr:last-child td { border-bottom: none; }
 
-    /* Section 4: Step-by-Step Standard Deviation */
-    .step-progress-bar {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--space-sm);
-    }
-    .step-btn {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      min-height: 44px;
-      padding: var(--space-sm) var(--space-md);
-      background-color: var(--surface-card);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--rounded);
-      font-family: var(--font-label);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--on-surface-variant);
-      cursor: pointer;
-      text-align: left;
-      transition: background-color var(--dur-micro) var(--ease-out),
-                  border-color var(--dur-micro) var(--ease-out);
-    }
-    .step-btn:hover {
-      background-color: var(--surface-container-high);
-      color: var(--on-surface);
-    }
-    .step-btn.is-active {
-      background-color: var(--primary);
-      border-color: var(--primary);
-      color: var(--on-primary);
-    }
-    .step-btn.is-done:not(.is-active) {
-      background-color: var(--surface-container-low);
-      border-color: var(--coastal-green);
-      color: var(--coastal-green-dark);
-    }
-    .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: var(--rounded-full);
-      font-size: 0.75rem;
-      font-weight: 800;
-      background-color: rgb(10 37 64 / 0.1);
-      flex-shrink: 0;
-    }
-    .step-btn.is-active .step-num {
-      background-color: var(--coastal-green);
-      color: var(--on-primary);
-    }
-
-    .divisor-toggle-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-      margin: var(--space-md) 0;
-    }
-
-    /* Section 5: Decision Challenge */
+    /* Section 4: Decision Challenge */
     .option-card-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -816,7 +772,7 @@
       background-color: var(--surface-error-tint);
     }
 
-    /* Section 6: Accordion Drawers */
+    /* Section 5: Accordion Drawers */
     .accordion-group {
       display: grid;
       gap: var(--space-sm);
@@ -900,11 +856,20 @@
       .prediction-context,
       .equal-two-col,
       .simulator-grid,
-      .option-card-grid,
-      .step-progress-bar {
+      .option-card-grid {
         grid-template-columns: 1fr;
       }
       .card { padding: var(--space-md); }
+      .slider-group { gap: var(--space-sm); }
+      .slider-row {
+        grid-template-columns: 72px minmax(0, 1fr) 62px;
+        gap: var(--space-sm);
+        align-items: center;
+      }
+      .slider-label-wrap { grid-column: auto; }
+      .slider-label-wrap .figure-note { display: none; }
+      .sim-results .svg-viz-box--tall { min-height: 0; }
+      .sim-results .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
   </style>
 </head>
@@ -914,10 +879,10 @@
   <header class="hero-band">
     <div class="hero-inner">
       <div>
-        <div class="brand-kicker">Endicott College · BUS 123 Business Statistics</div>
+        <div class="brand-kicker">BUS123 M12 Business Stats Unit</div>
         <h1 class="hero-title">Measures of Center and Spread: Making Business Decisions with Statistics</h1>
         <p class="hero-lede">
-          Two delivery branches can share the exact same 20-minute average wait time—yet one earns five-star reviews while the other misses half its deadlines. Learn how managers pair <strong>center</strong>, <strong>spread</strong>, and <strong>Excel analytics</strong> to see the full story behind the numbers.
+          Two hospital clinics both average <strong>20 minutes</strong> from check-in to being seen. At one clinic, no patient waits more than 25 minutes. At the other, two of six patients do. What does the average leave out?
         </p>
       </div>
       <div class="hero-context">
@@ -926,7 +891,7 @@
           <div class="hero-meta-label">What You Will Master</div>
           <ul class="hero-meta-list">
             <li>When outliers distort <span class="excel-pill">=AVERAGE()</span> vs. <span class="excel-pill">=MEDIAN()</span></li>
-            <li>How <span class="excel-pill">=MODE.SNGL()</span> spots common purchase behavior</li>
+            <li>How <span class="excel-pill">=MODE.SNGL()</span> returns a most frequent value</li>
             <li>How <span class="excel-pill">=STDEV.S()</span> &amp; <span class="excel-pill">=STDEV.P()</span> measure operational risk</li>
           </ul>
         </aside>
@@ -940,13 +905,12 @@
       <div class="roadmap-links">
         <a class="roadmap-link" href="#sec-hook">1. Identical Averages</a>
         <a class="roadmap-link" href="#sec-predict">2. Predict &amp; Reveal</a>
-        <a class="roadmap-link" href="#sec-simulator">3. Live Simulator</a>
-        <a class="roadmap-link" href="#sec-stdev">4. Step-by-Step SD</a>
-        <a class="roadmap-link" href="#sec-challenge">5. Decision Challenge</a>
-        <a class="roadmap-link" href="#sec-reference">6. Formulas &amp; Excel</a>
+        <a class="roadmap-link" href="#sec-simulator">3. Slider Challenges</a>
+        <a class="roadmap-link" href="#sec-challenge">4. Decision Challenge</a>
+        <a class="roadmap-link" href="#sec-reference">5. Formulas &amp; Excel</a>
       </div>
       <div class="progress-pill" id="overall-progress-pill">
-        <span>Activities completed: <strong id="progress-count">0</strong> of 4</span>
+        <span>Activities completed: <strong id="progress-count">0</strong> of 3</span>
       </div>
     </div>
   </nav>
@@ -956,29 +920,29 @@
     <!-- SECTION 1: HOOK & OPENING SCENARIO -->
     <section class="lesson-section" id="sec-hook">
       <div class="section-header">
-        <span class="section-eyebrow">1 · The Business Paradox</span>
-        <h2 class="section-title">Why identical averages hide completely different customer experiences</h2>
+        <span class="section-eyebrow">1 · Hospital Wait Times</span>
+        <h2 class="section-title">Same average wait, different patient experiences</h2>
         <p class="section-intro">
-          Imagine you manage regional fulfillment across two North Shore branches promising delivery within <strong>25 minutes</strong>. Both branches report an identical <strong>20.0-minute mean</strong> (<span class="excel-pill">=AVERAGE()</span>) across six sample orders. Before signing next quarter’s bonus, look beneath the average.
+          Imagine you manage two outpatient clinics at Harborside Medical Center. Both aim to see patients within <strong>25 minutes of check-in</strong>. You sampled six visits at each clinic. Both samples have a <strong>20.0-minute mean</strong> (<span class="excel-pill">=AVERAGE()</span>). Which clinic meets the wait-time target more consistently?
         </p>
       </div>
 
-      <div class="btn-row" role="group" aria-label="Branch comparison highlight controls">
+      <div class="btn-row" role="group" aria-label="Clinic wait-time comparison controls">
         <button type="button" class="btn btn--secondary" id="btn-hook-all" aria-pressed="true" onclick="setHookView(&#39;all&#39;)">
-          Compare Both Branches
+          Compare Both Clinics
         </button>
         <button type="button" class="btn btn--secondary" id="btn-hook-sla" aria-pressed="false" onclick="setHookView(&#39;sla&#39;)">
-          Highlight 25-Min SLA Breaches
+          Highlight Waits Over 25 Minutes
         </button>
       </div>
 
       <div class="equal-two-col">
-        <!-- Branch A Card -->
+        <!-- Clinic A Card -->
         <article class="status-card status-card--green">
           <div class="branch-header">
             <div>
-              <h3 class="branch-name">Branch A: Beverly Coastal Depot</h3>
-              <p class="figure-note" style="margin-top: 2px;">Orders (min): 18, 19, 20, 20, 21, 22</p>
+              <h3 class="branch-name">Outpatient Clinic A</h3>
+              <p class="figure-note" style="margin-top: 2px;">Patient waits (min): 18, 19, 20, 20, 21, 22</p>
             </div>
             <span class="chip chip--green">Low Spread · Consistent</span>
           </div>
@@ -996,20 +960,20 @@
               <div class="mini-stat-val">1.41 min</div>
             </div>
           </div>
-          <svg class="svg-viz-box" id="svg-branch-a" viewbox="0 0 420 155" role="img" aria-label="Dot plot for Branch A showing all six wait times tightly clustered between 18 and 22 minutes around the 20 minute mean"></svg>
+          <svg class="svg-viz-box" id="svg-branch-a" viewbox="0 0 420 155" role="img" aria-label="Dot plot for Clinic A showing six patient waits between 18 and 22 minutes around a 20-minute mean"></svg>
           <p class="figure-note" id="note-branch-a">
-            Every delivery finishes within 2 minutes of the average—<strong>0 of 6 orders</strong> breach the 25-minute SLA promise.
+            Every patient waited between 18 and 22 minutes. <strong>0 of 6 patients</strong> waited more than 25 minutes.
           </p>
         </article>
 
-        <!-- Branch B Card -->
+        <!-- Clinic B Card -->
         <article class="status-card status-card--error">
           <div class="branch-header">
             <div>
-              <h3 class="branch-name">Branch B: Harbor Express Hub</h3>
-              <p class="figure-note" style="margin-top: 2px;">Orders (min): 6, 8, 12, 22, 32, 40</p>
+              <h3 class="branch-name">Outpatient Clinic B</h3>
+              <p class="figure-note" style="margin-top: 2px;">Patient waits (min): 6, 8, 12, 22, 32, 40</p>
             </div>
-            <span class="chip chip--error">High Spread · Volatile</span>
+            <span class="chip chip--error">High Spread · Less Consistent</span>
           </div>
           <div class="branch-stats-mini">
             <div>
@@ -1022,12 +986,12 @@
             </div>
             <div>
               <div class="mini-stat-label">Sample SD</div>
-              <div class="mini-stat-val">13.62 min</div>
+              <div class="mini-stat-val">13.80 min</div>
             </div>
           </div>
-          <svg class="svg-viz-box" id="svg-branch-b" viewbox="0 0 420 155" role="img" aria-label="Dot plot for Branch B showing six wait times widely scattered from 6 to 40 minutes despite the same 20 minute mean"></svg>
+          <svg class="svg-viz-box" id="svg-branch-b" viewbox="0 0 420 155" role="img" aria-label="Dot plot for Clinic B showing six patient waits between 6 and 40 minutes around a 20-minute mean"></svg>
           <p class="figure-note" id="note-branch-b">
-            Same 20.0-minute mean, yet wait times swing from 6 to 40 minutes—<strong>2 of 6 orders (33%)</strong> arrive severely late.
+            The average is still 20 minutes. <strong>2 of 6 patients (33%)</strong> waited more than 25 minutes.
           </p>
         </article>
       </div>
@@ -1044,7 +1008,7 @@
         </div>
         <div class="status-card status-card--warning">
           <div class="figure-label">Mode · <span class="excel-pill">=MODE.SNGL(range)</span></div>
-          <p style="margin: 0;">The most frequent numeric value (e.g., most common 10% discount or order size). Returns <span class="excel-pill">#N/A</span> if no numbers repeat.</p>
+          <p style="margin: 0;">The most frequent numeric value. In Clinic A, the mode is 20 minutes. Excel returns <span class="excel-pill">#N/A</span> if no numbers repeat.</p>
         </div>
         <div class="status-card status-card--cobalt">
           <div class="figure-label">Standard Deviation · <span class="excel-pill">=STDEV.S(range)</span></div>
@@ -1072,7 +1036,7 @@
             Make Your Prediction First
           </h3>
           <p class="figure-note" style="margin-top: 0;">
-            Dataset shifts from <span class="excel-pill">[11, 12, 15, 18, 22]</span> to <span class="excel-pill">[11, 12, 15, 18, 42]</span>. How do <span class="excel-pill">=AVERAGE()</span> and <span class="excel-pill">=MEDIAN()</span> respond?
+            What happens to the mean and median when the wait goes from 22 to 42 minutes?
           </p>
 
           <div class="prediction-options" role="radiogroup" aria-label="Predict the impact of the 42-minute outlier">
@@ -1106,7 +1070,7 @@
           <div class="figure-label">Before vs. After Outlier Injection</div>
           <svg class="svg-viz-box svg-viz-box--tall" id="svg-predict-viz" viewbox="0 0 420 245" role="img" aria-label="Comparison chart showing wait time mean and median before and after adding a 42 minute outlier"></svg>
           <p class="figure-note" id="predict-caption">
-            Submit your prediction on the left to unlock the live comparison and Excel check.
+            Submit your prediction to see the before-and-after comparison.
           </p>
         </div>
       </div>
@@ -1124,100 +1088,108 @@
       </div>
     </section>
 
-    <!-- SECTION 3: INTERACTIVE LIVE SIMULATOR -->
+    <!-- SECTION 3: SLIDER CHALLENGES -->
     <section class="lesson-section" id="sec-simulator">
       <div class="section-header">
-        <span class="section-eyebrow">3 · Explore With Live Controls</span>
-        <h2 class="section-title">Business Analytics Playground: Test Outliers, Skew &amp; Spread</h2>
+        <span class="section-eyebrow">3 · Slider Challenges</span>
+        <h2 class="section-title">What can you change about five patients’ waits?</h2>
         <p class="section-intro">
-          Adjust any of the five cell inputs (<span class="excel-pill">C8:G8</span>) or load a real business preset below. Watch how the <strong>Mean line</strong>, <strong>Median marker</strong>, <strong>±1 Standard Deviation band</strong>, and Excel formula outputs respond instantaneously.
+          Choose a question, move the patient sliders, and use the plot and statistics to support your answer. Record your answers in the spreadsheet.
         </p>
       </div>
 
-      <div class="btn-row" role="group" aria-label="Dataset presets">
-        <button type="button" class="btn btn--secondary" id="preset-wait" aria-pressed="true" onclick="loadSimPreset(&#39;wait&#39;)">
-          Wait Times (Outlier Demo)
+      <div class="btn-row" role="group" aria-label="Choose a slider challenge">
+        <button type="button" class="btn btn--secondary" aria-pressed="true" aria-controls="sim-question-mean" data-sim-question="mean">
+          1. Change the mean
         </button>
-        <button type="button" class="btn btn--secondary" id="preset-hours" aria-pressed="false" onclick="loadSimPreset(&#39;hours&#39;)">
-          Shift Hours (Symmetric)
+        <button type="button" class="btn btn--secondary" aria-pressed="false" aria-controls="sim-question-mode" data-sim-question="mode">
+          2. Make a mode
         </button>
-        <button type="button" class="btn btn--secondary" id="preset-khelo" aria-pressed="false" onclick="loadSimPreset(&#39;khelo&#39;)">
-          Retail Orders (Mode Demo)
-        </button>
-        <button type="button" class="btn btn--primary" onclick="injectSimOutlier()">
-          Spike Cell G8 (+25)
-        </button>
-        <button type="button" class="btn btn--secondary" onclick="resetSimBaseline()">
-          Reset to Baseline
+        <button type="button" class="btn btn--secondary" aria-pressed="false" aria-controls="sim-question-spread" data-sim-question="spread">
+          3. Reduce the spread
         </button>
       </div>
 
-      <div class="simulator-grid">
-        <!-- Controls Panel -->
-        <div class="card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
-            <h3 style="font-family: var(--font-headline); margin: 0; font-size: 1.15rem; color: var(--on-surface);">
-              Input Cells (<span id="sim-unit-label">minutes</span>)
-            </h3>
-            <span class="chip chip--error" id="sim-shape-chip">Mean above median</span>
-          </div>
+      <div>
+        <div class="card sim-question" id="sim-question-mean">
+          <h3>Change the mean</h3>
+          <p>Reset the waits. Move only Patient 5’s slider until the mean reaches <strong>18 minutes</strong>.</p>
+          <p>What wait did you set for Patient 5? What happened to the median and sample standard deviation?</p>
+        </div>
+        <div class="card sim-question" hidden id="sim-question-mode">
+          <h3>Make a mode</h3>
+          <p>Reset the waits. Move exactly two sliders so <strong>15 minutes</strong> occurs three times.</p>
+          <p>Which two waits did you change? What do the mode and median show now?</p>
+        </div>
+        <div class="card sim-question" hidden id="sim-question-spread">
+          <h3>Reduce the spread</h3>
+          <p>Reset the waits. Keep the median at <strong>15 minutes</strong> and use at least three different waits. Move the sliders until the sample standard deviation is <strong>below 2 minutes</strong>.</p>
+          <p>Record your five waits and their sample standard deviation. Why did the spread shrink?</p>
+        </div>
+      </div>
 
+      <div class="simulator-grid">
+        <div class="card">
+          <div class="sim-control-heading">
+            <h3>Patient waits (minutes)</h3>
+            <button type="button" class="btn btn--secondary" onclick="resetSimBaseline()">Reset waits</button>
+          </div>
           <div class="slider-group" id="sim-sliders-container">
             <div class="slider-row">
               <div class="slider-label-wrap">
-                <label class="input-label" for="sim-slider-0">Cell C8 · Observation 1</label>
+                <label class="input-label" for="sim-slider-0">Patient 1</label>
                 <span class="figure-note" style="margin: 0;" id="sim-range-0">0–80</span>
               </div>
-              <input type="range" class="range-input" id="sim-slider-0" min="0" max="80" step="1" value="12" oninput="syncSimFromSlider(0, this.value)">
-              <input type="number" class="num-input" id="sim-num-0" min="0" max="100" step="1" value="12" aria-label="Cell C8 numeric value" oninput="syncSimFromNumber(0, this.value)">
+              <input type="range" class="range-input" id="sim-slider-0" min="0" max="80" step="1" value="11" oninput="setSimWait(0, this.valueAsNumber)">
+              <input type="number" class="num-input" id="sim-num-0" min="0" max="80" step="1" value="11" aria-label="Patient 1 wait in minutes" oninput="setSimWait(0, this.valueAsNumber)" onchange="updateSimControlsUI()">
             </div>
 
             <div class="slider-row">
               <div class="slider-label-wrap">
-                <label class="input-label" for="sim-slider-1">Cell D8 · Observation 2</label>
+                <label class="input-label" for="sim-slider-1">Patient 2</label>
                 <span class="figure-note" style="margin: 0;" id="sim-range-1">0–80</span>
               </div>
-              <input type="range" class="range-input" id="sim-slider-1" min="0" max="80" step="1" value="15" oninput="syncSimFromSlider(1, this.value)">
-              <input type="number" class="num-input" id="sim-num-1" min="0" max="100" step="1" value="15" aria-label="Cell D8 numeric value" oninput="syncSimFromNumber(1, this.value)">
+              <input type="range" class="range-input" id="sim-slider-1" min="0" max="80" step="1" value="12" oninput="setSimWait(1, this.valueAsNumber)">
+              <input type="number" class="num-input" id="sim-num-1" min="0" max="80" step="1" value="12" aria-label="Patient 2 wait in minutes" oninput="setSimWait(1, this.valueAsNumber)" onchange="updateSimControlsUI()">
             </div>
 
             <div class="slider-row">
               <div class="slider-label-wrap">
-                <label class="input-label" for="sim-slider-2">Cell E8 · Observation 3</label>
+                <label class="input-label" for="sim-slider-2">Patient 3</label>
                 <span class="figure-note" style="margin: 0;" id="sim-range-2">0–80</span>
               </div>
-              <input type="range" class="range-input" id="sim-slider-2" min="0" max="80" step="1" value="18" oninput="syncSimFromSlider(2, this.value)">
-              <input type="number" class="num-input" id="sim-num-2" min="0" max="100" step="1" value="18" aria-label="Cell E8 numeric value" oninput="syncSimFromNumber(2, this.value)">
+              <input type="range" class="range-input" id="sim-slider-2" min="0" max="80" step="1" value="15" oninput="setSimWait(2, this.valueAsNumber)">
+              <input type="number" class="num-input" id="sim-num-2" min="0" max="80" step="1" value="15" aria-label="Patient 3 wait in minutes" oninput="setSimWait(2, this.valueAsNumber)" onchange="updateSimControlsUI()">
             </div>
 
             <div class="slider-row">
               <div class="slider-label-wrap">
-                <label class="input-label" for="sim-slider-3">Cell F8 · Observation 4</label>
+                <label class="input-label" for="sim-slider-3">Patient 4</label>
                 <span class="figure-note" style="margin: 0;" id="sim-range-3">0–80</span>
               </div>
-              <input type="range" class="range-input" id="sim-slider-3" min="0" max="80" step="1" value="11" oninput="syncSimFromSlider(3, this.value)">
-              <input type="number" class="num-input" id="sim-num-3" min="0" max="100" step="1" value="11" aria-label="Cell F8 numeric value" oninput="syncSimFromNumber(3, this.value)">
+              <input type="range" class="range-input" id="sim-slider-3" min="0" max="80" step="1" value="18" oninput="setSimWait(3, this.valueAsNumber)">
+              <input type="number" class="num-input" id="sim-num-3" min="0" max="80" step="1" value="18" aria-label="Patient 4 wait in minutes" oninput="setSimWait(3, this.valueAsNumber)" onchange="updateSimControlsUI()">
             </div>
 
             <div class="slider-row">
               <div class="slider-label-wrap">
-                <label class="input-label" for="sim-slider-4">Cell G8 · Observation 5</label>
+                <label class="input-label" for="sim-slider-4">Patient 5</label>
                 <span class="figure-note" style="margin: 0;" id="sim-range-4">0–80</span>
               </div>
-              <input type="range" class="range-input" id="sim-slider-4" min="0" max="80" step="1" value="42" oninput="syncSimFromSlider(4, this.value)">
-              <input type="number" class="num-input" id="sim-num-4" min="0" max="100" step="1" value="42" aria-label="Cell G8 numeric value" oninput="syncSimFromNumber(4, this.value)">
+              <input type="range" class="range-input" id="sim-slider-4" min="0" max="80" step="1" value="22" oninput="setSimWait(4, this.valueAsNumber)">
+              <input type="number" class="num-input" id="sim-num-4" min="0" max="80" step="1" value="22" aria-label="Patient 5 wait in minutes" oninput="setSimWait(4, this.valueAsNumber)" onchange="updateSimControlsUI()">
             </div>
           </div>
         </div>
 
-        <!-- Live Chart + Excel Readout -->
-        <div style="display: grid; gap: var(--space-md);">
+        <div class="sim-results">
           <div class="card">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-sm);">
               <h3 style="font-family: var(--font-headline); margin: 0; font-size: 1.15rem; color: var(--on-surface);">
-                Distribution, Center &amp; ±1 SD Spread Band
+                Patient waits and spread
               </h3>
-              <span class="figure-note" style="margin: 0;" id="sim-sorted-text">Sorted: 11, 12, 15, 18, 42</span>
+              <span class="chip chip--error" id="sim-shape-chip">Mean above median</span>
+              <span class="figure-note" style="margin: 0;" id="sim-sorted-text">Sorted: 11, 12, 15, 18, 22</span>
             </div>
             <svg class="svg-viz-box svg-viz-box--tall" id="svg-simulator" viewbox="0 0 560 230" role="img" aria-label="Interactive distribution plot showing individual data points, vertical mean line, median diamond, and shaded standard deviation band"></svg>
             <p class="figure-note" id="sim-interpretation" style="margin-bottom: 0;"></p>
@@ -1227,222 +1199,30 @@
             <div class="stat-row">
               <div class="status-card">
                 <div class="figure-label">Mean</div>
-                <div class="figure-value" id="sim-out-mean">19.6</div>
-                <div class="figure-note"><span class="excel-pill">=AVERAGE()</span></div>
+                <div class="figure-value" id="sim-out-mean">15.6</div>
               </div>
               <div class="status-card status-card--green">
                 <div class="figure-label">Median</div>
                 <div class="figure-value" id="sim-out-median">15.0</div>
-                <div class="figure-note"><span class="excel-pill">=MEDIAN()</span></div>
               </div>
               <div class="status-card status-card--cobalt">
                 <div class="figure-label">Sample SD</div>
-                <div class="figure-value" id="sim-out-stdevs">12.82</div>
-                <div class="figure-note"><span class="excel-pill">=STDEV.S()</span></div>
+                <div class="figure-value" id="sim-out-stdevs">4.51</div>
               </div>
               <div class="status-card status-card--warning">
                 <div class="figure-label">Mode</div>
-                <div class="figure-value" id="sim-out-mode">#N/A</div>
-                <div class="figure-note"><span class="excel-pill">=MODE.SNGL()</span></div>
+                <div class="figure-value" id="sim-out-mode">None</div>
               </div>
             </div>
           </div>
-
-          <div class="excel-sheet-panel">
-            <div class="excel-sheet-head">
-              <span>Live Excel Output Table</span>
-              <span>Range: C8:G8</span>
-            </div>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Metric</th>
-                  <th>Excel Formula</th>
-                  <th class="num">Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Mean − Median Difference</td>
-                  <td><span class="excel-pill">=AVERAGE(C8:G8)-MEDIAN(C8:G8)</span></td>
-                  <td class="num" id="tbl-gap">+4.60</td>
-                </tr>
-                <tr>
-                  <td>Population Standard Deviation</td>
-                  <td><span class="excel-pill">=STDEV.P(C8:G8)</span></td>
-                  <td class="num" id="tbl-stdevp">11.46</td>
-                </tr>
-                <tr>
-                  <td>Min / Max Range</td>
-                  <td><span class="excel-pill">=MAX(C8:G8)-MIN(C8:G8)</span></td>
-                  <td class="num" id="tbl-range">31.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: INTERACTIVE STEP-BY-STEP CALCULATION -->
-    <section class="lesson-section" id="sec-stdev">
-      <div class="section-header">
-        <span class="section-eyebrow">4 · Inside Standard Deviation</span>
-        <h2 class="section-title">Build Standard Deviation Step-by-Step: Sample vs. Population</h2>
-        <p class="section-intro">
-          Why does Excel have both <span class="excel-pill">=STDEV.S()</span> and <span class="excel-pill">=STDEV.P()</span>? Walk through the four exact mathematical steps using five employee shift lengths (<strong>4, 6, 8, 10, 12 hours</strong>, Mean = <strong>8.00 hours</strong>) to see how each number is built.
-        </p>
-      </div>
-
-      <div class="card">
-        <!-- 4-Step Navigator -->
-        <div class="step-progress-bar" role="tablist" aria-label="Standard deviation calculation steps">
-          <button type="button" class="step-btn is-active" id="sd-step-btn-1" onclick="goSdStep(1)">
-            <span class="step-num">1</span>
-            <span>Find Deviations</span>
-          </button>
-          <button type="button" class="step-btn" id="sd-step-btn-2" onclick="goSdStep(2)">
-            <span class="step-num">2</span>
-            <span>Square Deviations</span>
-          </button>
-          <button type="button" class="step-btn" id="sd-step-btn-3" onclick="goSdStep(3)">
-            <span class="step-num">3</span>
-            <span>Divide (n−1 vs N)</span>
-          </button>
-          <button type="button" class="step-btn" id="sd-step-btn-4" onclick="goSdStep(4)">
-            <span class="step-num">4</span>
-            <span>Square Root</span>
-          </button>
-        </div>
-
-        <!-- Step Explanation Box -->
-        <div class="status-card status-card--cobalt" style="margin-top: var(--space-lg);" id="sd-step-explainer">
-          <div class="figure-label" id="sd-step-kicker">Step 1 of 4 · Measure Each Distance From the Mean</div>
-          <p id="sd-step-text" style="margin: 0;"></p>
-        </div>
-
-        <!-- Step 3 Interactive Divisor Toggle -->
-        <div id="sd-divisor-panel" style="display: none; margin-top: var(--space-md);">
-          <span class="input-label">Choose your business scope to set the divisor:</span>
-          <div class="divisor-toggle-row">
-            <button type="button" class="btn btn--secondary" id="btn-div-sample" aria-pressed="true" onclick="setSdScope(&#39;sample&#39;)">
-              Sample Scope: Divide by n − 1 = 4 (=STDEV.S)
-            </button>
-            <button type="button" class="btn btn--secondary" id="btn-div-pop" aria-pressed="false" onclick="setSdScope(&#39;population&#39;)">
-              Population Scope: Divide by N = 5 (=STDEV.P)
-            </button>
-          </div>
-        </div>
-
-        <!-- Interactive Calculation Table -->
-        <div class="excel-sheet-panel" style="margin-top: var(--space-md);">
-          <div class="excel-sheet-head">
-            <span>Shift Hours Worksheet (C17:G17)</span>
-            <span>Mean (x&#772; or &mu;) = 8.00 hours</span>
-          </div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Observation (x)</th>
-                <th class="num">Deviation (x − 8.00)</th>
-                <th class="num" id="col-head-sq">Squared Deviation (x − 8.00)&sup2;</th>
-              </tr>
-            </thead>
-            <tbody id="sd-calc-tbody">
-              <tr>
-                <td>4.00 hrs</td>
-                <td class="num" id="sd-dev-0">—</td>
-                <td class="num" id="sd-sq-0">—</td>
-              </tr>
-              <tr>
-                <td>6.00 hrs</td>
-                <td class="num" id="sd-dev-1">—</td>
-                <td class="num" id="sd-sq-1">—</td>
-              </tr>
-              <tr>
-                <td>8.00 hrs</td>
-                <td class="num" id="sd-dev-2">—</td>
-                <td class="num" id="sd-sq-2">—</td>
-              </tr>
-              <tr>
-                <td>10.00 hrs</td>
-                <td class="num" id="sd-dev-3">—</td>
-                <td class="num" id="sd-sq-3">—</td>
-              </tr>
-              <tr>
-                <td>12.00 hrs</td>
-                <td class="num" id="sd-dev-4">—</td>
-                <td class="num" id="sd-sq-4">—</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr style="background-color: var(--surface-container-high); font-weight: 700;">
-                <td>Column Sum (&Sigma;)</td>
-                <td class="num" id="sd-sum-dev">—</td>
-                <td class="num" id="sd-sum-sq">—</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-
-        <!-- Step Result Summary Row -->
-        <div class="stat-wrapper" style="margin-top: var(--space-md);">
-          <div class="stat-row">
-            <div class="status-card">
-              <div class="figure-label">Sum of Deviations</div>
-              <div class="figure-value" id="sd-card-sumdev">—</div>
-              <div class="figure-note">Positives &amp; negatives cancel</div>
-            </div>
-            <div class="status-card status-card--warning">
-              <div class="figure-label">Sum of Squares</div>
-              <div class="figure-value" id="sd-card-ss">—</div>
-              <div class="figure-note">Units: hours squared</div>
-            </div>
-            <div class="status-card status-card--cobalt">
-              <div class="figure-label" id="sd-card-var-label">Sample Variance (s&sup2;)</div>
-              <div class="figure-value" id="sd-card-var">—</div>
-              <div class="figure-note" id="sd-card-var-note">Divide by n − 1 = 4</div>
-            </div>
-            <div class="status-card status-card--green">
-              <div class="figure-label" id="sd-card-sd-label">Sample SD (s)</div>
-              <div class="figure-value" id="sd-card-sd">—</div>
-              <div class="figure-note" id="sd-card-sd-note"><span class="excel-pill">=STDEV.S(C17:G17)</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="btn-row" style="margin-top: var(--space-lg); justify-content: space-between;">
-          <button type="button" class="btn btn--secondary" id="sd-prev-btn" onclick="prevSdStep()" disabled="">
-            Previous Step
-          </button>
-          <button type="button" class="btn btn--primary" id="sd-next-btn" onclick="nextSdStep()">
-            Next: Square Deviations
-          </button>
-        </div>
-      </div>
-
-      <!-- Micro-Check: Choosing STDEV.S vs STDEV.P -->
-      <div class="status-card status-card--green">
-        <div class="figure-label">Quick Check · Business Question Rule</div>
-        <p style="margin: 0 0 var(--space-md) 0;">
-          <strong>Scenario:</strong> You download every single checkout transaction from October. Your manager asks: <em>“Based on October’s numbers, how consistent should we expect customer checkout times to be next spring?”</em> Which Excel formula belongs in your model?
-        </p>
-        <div class="btn-row">
-          <button type="button" class="btn btn--secondary" id="scope-btn-s" onclick="answerScopeCheck(&#39;S&#39;)">
-            <span class="excel-pill">=STDEV.S()</span> · Sample
-          </button>
-          <button type="button" class="btn btn--secondary" id="scope-btn-p" onclick="answerScopeCheck(&#39;P&#39;)">
-            <span class="excel-pill">=STDEV.P()</span> · Population
-          </button>
-        </div>
-        <div class="feedback-banner" id="scope-feedback" aria-live="polite"></div>
-      </div>
-    </section>
-
-    <!-- SECTION 5: MANAGERIAL DECISION CHALLENGE -->
+    <!-- SECTION 4: MANAGERIAL DECISION CHALLENGE -->
     <section class="lesson-section" id="sec-challenge">
       <div class="section-header">
-        <span class="section-eyebrow">5 · Managerial Decision Challenge</span>
+        <span class="section-eyebrow">4 · Managerial Decision Challenge</span>
         <h2 class="section-title">Put Statistics to Work: Recommend the Right Business Action</h2>
         <p class="section-intro">
           Evaluate each scenario by balancing central tendency against dispersion and risk. Low-stakes retries are built in—test your reasoning and review the tradeoff feedback.
@@ -1526,10 +1306,10 @@
       </article>
     </section>
 
-    <!-- SECTION 6: EXPANDABLE REFERENCE DRAWERS & SOURCES -->
+    <!-- SECTION 5: EXPANDABLE REFERENCE DRAWERS & SOURCES -->
     <section class="lesson-section" id="sec-reference">
       <div class="section-header">
-        <span class="section-eyebrow">6 · Reference &amp; Excel Toolkit</span>
+        <span class="section-eyebrow">5 · Reference &amp; Excel Toolkit</span>
         <h2 class="section-title">Formulas, Degrees of Freedom &amp; Excel Quick Checks</h2>
         <p class="section-intro">
           Expand any drawer below when studying for exams or building your Excel workbook.
@@ -1602,12 +1382,12 @@
                   </tr>
                   <tr>
                     <td>Sample SD</td>
-                    <td><span class="excel-pill">=STDEV.S(C17:G17)</span></td>
+                    <td><span class="excel-pill">=STDEV.S(range)</span></td>
                     <td>Default for business forecasting when inferring a broader ongoing process.</td>
                   </tr>
                   <tr>
                     <td>Population SD</td>
-                    <td><span class="excel-pill">=STDEV.P(C17:G17)</span></td>
+                    <td><span class="excel-pill">=STDEV.P(range)</span></td>
                     <td>Use only when data captures every single unit in the defined target group.</td>
                   </tr>
                   <tr>
@@ -1630,7 +1410,7 @@
             <li><em>Statistics for Business and Economics</em> — Anderson, Sweeney, Williams et al. (Sample vs. Population Statistics, Starting Salary &amp; Excel Functions)</li>
             <li><em>Business LibreTexts: 2.5 Statistical Functions</em> — Gabrielle Brixey, Coalinga College (Excel Descriptive Functions)</li>
             <li><em>10 Most Commonly Used Statistical Functions in Excel</em> — Analytics Vidhya (Khelo Sports Store Analytics)</li>
-            <li><em>BUS 123 Statistical Modeling Pre-Reading &amp; Course Notes</em> (Wait Times C8:G8 &amp; Shift Hours C17:G17 Live Exercises)</li>
+            <li><em>BUS 123 Statistical Modeling Pre-Reading &amp; Course Notes</em> (Wait-Time Slider Challenges)</li>
           </ul>
         </div>
         <div class="btn-row">
@@ -1651,42 +1431,15 @@
        ========================================================================= */
     const BRANCH_A = [18, 19, 20, 20, 21, 22];
     const BRANCH_B = [6, 8, 12, 22, 32, 40];
-    const SD_DATA = [4, 6, 8, 10, 12];
 
-    const PRESETS = {
-      wait: {
-        key: `wait`,
-        unit: `minutes`,
-        min: 0,
-        max: 80,
-        values: [12, 15, 18, 11, 42]
-      },
-      hours: {
-        key: `hours`,
-        unit: `hours`,
-        min: 0,
-        max: 24,
-        values: [4, 6, 8, 10, 12]
-      },
-      khelo: {
-        key: `khelo`,
-        unit: `units`,
-        min: 200,
-        max: 600,
-        values: [320, 320, 340, 380, 466]
-      }
-    };
+    const SIM_BASELINE = [11, 12, 15, 18, 22];
+    const MAX_PATIENT_WAIT = 80;
 
     const appState = {
       hookView: `all`,
       selectedPred: null,
       predSubmitted: false,
-      simPreset: `wait`,
-      simValues: [12, 15, 18, 11, 42],
-      sdStep: 1,
-      sdMaxStepReached: 1,
-      sdScope: `sample`,
-      scopeAnswer: null,
+      simValues: SIM_BASELINE.slice(),
       case1Answer: null,
       case2Answer: null
     };
@@ -1725,15 +1478,14 @@
       return modes;
     }
 
-    function calcStdev(arr, isSample) {
+    function calcSampleStdev(arr) {
       const m = calcMean(arr);
       let ss = 0;
       for (let i = 0; i < arr.length; i++) {
         const d = arr[i] - m;
         ss += d * d;
       }
-      const denom = isSample ? arr.length - 1 : arr.length;
-      return Math.sqrt(ss / denom);
+      return Math.sqrt(ss / (arr.length - 1));
     }
 
     /* =========================================================================
@@ -1746,12 +1498,7 @@
             hookView: appState.hookView,
             selectedPred: appState.selectedPred,
             predSubmitted: appState.predSubmitted,
-            simPreset: appState.simPreset,
             simValues: appState.simValues,
-            sdStep: appState.sdStep,
-            sdMaxStepReached: appState.sdMaxStepReached,
-            sdScope: appState.sdScope,
-            scopeAnswer: appState.scopeAnswer,
             case1Answer: appState.case1Answer,
             case2Answer: appState.case2Answer
           });
@@ -1765,7 +1512,6 @@
     function updateProgressPill() {
       let done = 0;
       if (appState.predSubmitted) done++;
-      if (appState.sdMaxStepReached >= 4 && appState.scopeAnswer === `S`) done++;
       if (appState.case1Answer === `A`) done++;
       if (appState.case2Answer === `B`) done++;
       const el = document.getElementById(`progress-count`);
@@ -1799,7 +1545,7 @@
       }
       const slaX = mapX(25);
       const meanX = mapX(20);
-      const sd = calcStdev(data, true);
+      const sd = calcSampleStdev(data);
       const bandLeft = mapX(Math.max(0, 20 - sd));
       const bandRight = mapX(Math.min(45, 20 + sd));
 
@@ -1808,14 +1554,14 @@
       html += `<rect x="${bandLeft.toFixed(1)}" y="24" width="${(bandRight - bandLeft).toFixed(1)}" height="82" rx="4" fill="var(--coastal-green)" fill-opacity="0.11"></rect>`;
       html += `<text x="${((bandLeft + bandRight) / 2).toFixed(1)}" y="18" text-anchor="middle" font-family="var(--font-label)" font-size="10.5" font-weight="600" fill="var(--coastal-green-dark)">±1 SD Band</text>`;
 
-      /* SLA cutoff line at 25 min */
+      /* Wait-time target at 25 min */
       if (highlightSla) {
         html += `<rect x="${slaX.toFixed(1)}" y="24" width="${(w - padR - slaX).toFixed(1)}" height="82" fill="var(--error)" fill-opacity="0.09"></rect>`;
         html += `<line x1="${slaX.toFixed(1)}" y1="22" x2="${slaX.toFixed(1)}" y2="108" stroke="var(--error)" stroke-width="2" stroke-dasharray="4 3"></line>`;
-        html += `<text x="${(slaX + 5).toFixed(1)}" y="36" font-family="var(--font-label)" font-size="10.5" font-weight="700" fill="var(--error)">25m SLA Breach Zone</text>`;
+        html += `<text x="${(slaX + 5).toFixed(1)}" y="36" font-family="var(--font-label)" font-size="10.5" font-weight="700" fill="var(--error)">Waits over 25 min</text>`;
       } else {
         html += `<line x1="${slaX.toFixed(1)}" y1="26" x2="${slaX.toFixed(1)}" y2="108" stroke="var(--outline)" stroke-width="1" stroke-dasharray="3 3"></line>`;
-        html += `<text x="${(slaX + 4).toFixed(1)}" y="36" font-family="var(--font-label)" font-size="10" fill="var(--on-surface-variant)">25m SLA</text>`;
+        html += `<text x="${(slaX + 4).toFixed(1)}" y="36" font-family="var(--font-label)" font-size="10" fill="var(--on-surface-variant)">25-min target</text>`;
       }
 
       /* Mean vertical line */
@@ -1915,14 +1661,14 @@
       if (title) {
         title.textContent = isCorrect
           ? `Spot on! The Mean jumped +4.0 minutes while the Median stayed anchored.`
-          : `Here is what actually happened inside Excel:`;
+          : `Here’s what changed.`;
       }
       if (badge) {
         badge.className = isCorrect ? `chip chip--green` : `chip chip--warning`;
         badge.textContent = `Mean 19.6m vs. Median 15.0m (+4.6m gap)`;
       }
       if (body) {
-        body.innerHTML = `Changing cell G8 from 22 to 42 adds 20 total minutes to the dataset. Because <span class="excel-pill">=AVERAGE()</span> divides the total across all 5 patients, the Mean rises by 20 / 5 = <strong>+4.0 minutes</strong> (from 15.6 to 19.6 min). Meanwhile, <span class="excel-pill">=MEDIAN()</span> only cares about the middle rank in <code>[11, 12, 15, 18, 42]</code>—so the 3rd value stays locked at <strong>15.0 minutes</strong>.`;
+        body.innerHTML = `One patient’s wait increased from 22 to 42 minutes, adding 20 minutes to the total. Dividing those extra minutes across all 5 patients raises the mean by <strong>4.0 minutes</strong>, from 15.6 to 19.6 minutes. The median stays at <strong>15.0 minutes</strong> because 15 is still the middle value in the ordered list (11, 12, 15, 18, 42).`;
       }
       if (caption) {
         caption.textContent = `Notice the visual shift: the blue Mean bar stretches right by 4.0 min, while the coastal-green Median stays identical.`;
@@ -1985,99 +1731,48 @@
     /* =========================================================================
        SECTION 3: LIVE INTERACTIVE SIMULATOR
        ========================================================================= */
-    function loadSimPreset(presetKey) {
-      const p = PRESETS[presetKey];
-      if (!p) return;
-      appState.simPreset = presetKey;
-      appState.simValues = p.values.slice();
-      applySimRangeBounds(p);
-      updateSimControlsUI();
-      updateSimVisuals();
-      persistState();
-    }
-
-    function applySimRangeBounds(p) {
-      const unitEl = document.getElementById(`sim-unit-label`);
-      if (unitEl) unitEl.textContent = p.unit;
-      const presetBtns = { wait: `preset-wait`, hours: `preset-hours`, khelo: `preset-khelo` };
-      const keys = Object.keys(presetBtns);
-      for (let i = 0; i < keys.length; i++) {
-        const b = document.getElementById(presetBtns[keys[i]]);
-        if (b) b.setAttribute(`aria-pressed`, keys[i] === p.key ? `true` : `false`);
-      }
-      for (let i = 0; i < 5; i++) {
-        const s = document.getElementById(`sim-slider-${i}`);
-        const n = document.getElementById(`sim-num-${i}`);
-        const r = document.getElementById(`sim-range-${i}`);
-        if (s) { s.min = p.min; s.max = p.max; }
-        if (n) { n.min = p.min; n.max = p.max + 100; }
-        if (r) r.textContent = `${p.min}–${p.max}`;
-      }
-    }
-
     function updateSimControlsUI() {
-      for (let i = 0; i < 5; i++) {
-        const s = document.getElementById(`sim-slider-${i}`);
-        const n = document.getElementById(`sim-num-${i}`);
-        if (s) s.value = appState.simValues[i];
-        if (n) n.value = appState.simValues[i];
-      }
+      appState.simValues.forEach((value, i) => {
+        document.getElementById(`sim-slider-${i}`).value = value;
+        document.getElementById(`sim-num-${i}`).value = value;
+      });
     }
 
-    function syncSimFromSlider(idx, rawVal) {
-      const val = Number(rawVal);
-      if (Number.isNaN(val)) return;
-      appState.simValues[idx] = val;
-      const numEl = document.getElementById(`sim-num-${idx}`);
-      if (numEl) numEl.value = val;
-      updateSimVisuals();
-      persistState();
-    }
-
-    function syncSimFromNumber(idx, rawVal) {
-      const p = PRESETS[appState.simPreset] || PRESETS.wait;
-      let val = Number(rawVal);
-      if (Number.isNaN(val)) return;
-      if (val < p.min) val = p.min;
-      if (val > p.max + 100) val = p.max + 100;
-      appState.simValues[idx] = val;
-      const sliderEl = document.getElementById(`sim-slider-${idx}`);
-      if (sliderEl) sliderEl.value = Math.min(val, p.max);
-      updateSimVisuals();
-      persistState();
-    }
-
-    function injectSimOutlier() {
-      const p = PRESETS[appState.simPreset] || PRESETS.wait;
-      const current = appState.simValues[4];
-      const next = Math.min(p.max, current + (p.key === `khelo` ? 120 : p.key === `hours` ? 10 : 25));
-      appState.simValues[4] = next;
+    function setSimWait(index, value) {
+      if (!Number.isInteger(value) || value < 0 || value > MAX_PATIENT_WAIT) return;
+      appState.simValues[index] = value;
       updateSimControlsUI();
       updateSimVisuals();
       persistState();
     }
 
     function resetSimBaseline() {
-      if (appState.simPreset === `wait`) {
-        appState.simValues = [11, 12, 15, 18, 22];
-      } else {
-        appState.simValues = (PRESETS[appState.simPreset] || PRESETS.wait).values.slice();
-      }
+      appState.simValues = SIM_BASELINE.slice();
       updateSimControlsUI();
       updateSimVisuals();
       persistState();
     }
 
+    function initSimQuestions() {
+      const buttons = document.querySelectorAll(`[data-sim-question]`);
+      buttons.forEach(button => {
+        button.addEventListener(`click`, () => {
+          buttons.forEach(choice => {
+            const active = choice === button;
+            choice.setAttribute(`aria-pressed`, String(active));
+            document.getElementById(choice.getAttribute(`aria-controls`)).hidden = !active;
+          });
+        });
+      });
+    }
+
     function updateSimVisuals() {
       const vals = appState.simValues;
-      const p = PRESETS[appState.simPreset] || PRESETS.wait;
       const mean = calcMean(vals);
       const median = calcMedian(vals);
       const modes = calcModes(vals);
-      const sdS = calcStdev(vals, true);
-      const sdP = calcStdev(vals, false);
+      const sdS = calcSampleStdev(vals);
       const sorted = vals.slice().sort(function(a, b) { return a - b; });
-      const rangeVal = sorted[sorted.length - 1] - sorted[0];
       const gap = mean - median;
 
       const sortedEl = document.getElementById(`sim-sorted-text`);
@@ -2090,14 +1785,7 @@
       const outSds = document.getElementById(`sim-out-stdevs`);
       if (outSds) outSds.textContent = sdS.toFixed(2);
       const outMode = document.getElementById(`sim-out-mode`);
-      if (outMode) outMode.textContent = modes.length > 0 ? modes.join(`, `) : `#N/A`;
-
-      const tblGap = document.getElementById(`tbl-gap`);
-      if (tblGap) tblGap.textContent = `${gap >= 0 ? '+' : ''}${gap.toFixed(2)}`;
-      const tblSdp = document.getElementById(`tbl-stdevp`);
-      if (tblSdp) tblSdp.textContent = sdP.toFixed(2);
-      const tblRange = document.getElementById(`tbl-range`);
-      if (tblRange) tblRange.textContent = rangeVal.toFixed(2);
+      if (outMode) outMode.textContent = modes.length > 0 ? modes.join(`, `) : `None`;
 
       const chip = document.getElementById(`sim-shape-chip`);
       const interp = document.getElementById(`sim-interpretation`);
@@ -2114,20 +1802,20 @@
         }
       }
       if (interp) {
-        interp.textContent = `The mean and median give a clue about shape. Use the dot plot to check whether one tail extends farther than the other. The sample standard deviation is ${sdS.toFixed(2)} ${p.unit}.`;
+        interp.textContent = `The mean and median give a clue about shape. Use the dot plot to check whether one tail extends farther than the other. The sample standard deviation is ${sdS.toFixed(2)} minutes.`;
       }
 
-      renderSimulatorSvg(vals, mean, median, sdS, p);
+      renderSimulatorSvg(vals, mean, median, sdS);
     }
 
-    function renderSimulatorSvg(vals, mean, median, sdS, p) {
+    function renderSimulatorSvg(vals, mean, median, sdS) {
       const svg = document.getElementById(`svg-simulator`);
       if (!svg) return;
       const w = 560;
       const padL = 32;
       const padR = 32;
-      const minX = p.min;
-      const maxX = Math.max(p.max, Math.max.apply(null, vals));
+      const minX = 0;
+      const maxX = MAX_PATIENT_WAIT;
 
       function mapX(v) {
         return padL + ((v - minX) / (maxX - minX || 1)) * (w - padL - padR);
@@ -2182,159 +1870,7 @@
     }
 
     /* =========================================================================
-       SECTION 4: STEP-BY-STEP STANDARD DEVIATION
-       ========================================================================= */
-    function goSdStep(stepNum) {
-      appState.sdStep = stepNum;
-      if (stepNum > appState.sdMaxStepReached) appState.sdMaxStepReached = stepNum;
-      renderSdStepper();
-      persistState();
-    }
-
-    function prevSdStep() {
-      if (appState.sdStep > 1) goSdStep(appState.sdStep - 1);
-    }
-
-    function nextSdStep() {
-      if (appState.sdStep < 4) goSdStep(appState.sdStep + 1);
-    }
-
-    function setSdScope(scope) {
-      appState.sdScope = scope;
-      renderSdStepper();
-      persistState();
-    }
-
-    function renderSdStepper() {
-      const step = appState.sdStep;
-      const isSample = appState.sdScope === `sample`;
-      const mean = 8;
-
-      for (let i = 1; i <= 4; i++) {
-        const btn = document.getElementById(`sd-step-btn-${i}`);
-        if (!btn) continue;
-        btn.classList.toggle(`is-active`, i === step);
-        btn.classList.toggle(`is-done`, i < step || (i <= appState.sdMaxStepReached && i !== step));
-      }
-
-      const prevBtn = document.getElementById(`sd-prev-btn`);
-      const nextBtn = document.getElementById(`sd-next-btn`);
-      if (prevBtn) prevBtn.disabled = step <= 1;
-      if (nextBtn) {
-        nextBtn.disabled = step >= 4;
-        const labels = {
-          1: `Next: Square Deviations`,
-          2: `Next: Choose Divisor (n−1 vs N)`,
-          3: `Next: Take Square Root`,
-          4: `Calculation Complete`
-        };
-        nextBtn.textContent = labels[step];
-      }
-
-      const divPanel = document.getElementById(`sd-divisor-panel`);
-      if (divPanel) divPanel.style.display = step >= 3 ? `block` : `none`;
-
-      const bSamp = document.getElementById(`btn-div-sample`);
-      const bPop = document.getElementById(`btn-div-pop`);
-      if (bSamp) bSamp.setAttribute(`aria-pressed`, isSample ? `true` : `false`);
-      if (bPop) bPop.setAttribute(`aria-pressed`, !isSample ? `true` : `false`);
-
-      const kicker = document.getElementById(`sd-step-kicker`);
-      const text = document.getElementById(`sd-step-text`);
-      const explainers = {
-        1: {
-          k: `Step 1 of 4 · Find Raw Deviations (x − 8.00)`,
-          t: `Subtract the mean (8.00 hrs) from each shift length. Notice the problem right away: (−4) + (−2) + 0 + (+2) + (+4) = 0.00! Because deviations below and above the mean always cancel to zero, we cannot simply average raw deviations.`
-        },
-        2: {
-          k: `Step 2 of 4 · Square Each Deviation`,
-          t: `Squaring removes negative signs so deviations add up instead of canceling: 16 + 4 + 0 + 4 + 16 = 40.00. However, our unit is now an awkward “hours squared.”`
-        },
-        3: {
-          k: `Step 3 of 4 · Divide for Variance (Sample n−1 vs. Population N)`,
-          t: `Toggle between Sample (divide 40 by n − 1 = 4 to get 10.00 hrs²) and Population (divide 40 by N = 5 to get 8.00 hrs²). For a random sample taken from a larger population, dividing by n − 1 corrects the downward bias in the variance estimate.`
-        },
-        4: {
-          k: `Step 4 of 4 · Take the Square Root to Return to Hours`,
-          t: `Taking the square root brings “hours squared” back to hours. For these same values, =STDEV.S(C17:G17) gives 3.16 hours and =STDEV.P(C17:G17) gives 2.83 hours. The sample result is larger here because the variance step used a smaller divisor.`
-        }
-      };
-      if (kicker) kicker.textContent = explainers[step].k;
-      if (text) text.textContent = explainers[step].t;
-
-      /* Populate Table */
-      for (let i = 0; i < SD_DATA.length; i++) {
-        const d = SD_DATA[i] - mean;
-        const sq = d * d;
-        const devEl = document.getElementById(`sd-dev-${i}`);
-        const sqEl = document.getElementById(`sd-sq-${i}`);
-        if (devEl) devEl.textContent = `${d >= 0 && d !== 0 ? '+' : ''}${d.toFixed(2)}`;
-        if (sqEl) sqEl.textContent = step >= 2 ? sq.toFixed(2) : `—`;
-      }
-
-      const sumDevEl = document.getElementById(`sd-sum-dev`);
-      const sumSqEl = document.getElementById(`sd-sum-sq`);
-      if (sumDevEl) sumDevEl.textContent = `0.00 (cancels!)`;
-      if (sumSqEl) sumSqEl.textContent = step >= 2 ? `40.00` : `—`;
-
-      /* Summary Cards */
-      const cSumDev = document.getElementById(`sd-card-sumdev`);
-      const cSs = document.getElementById(`sd-card-ss`);
-      const cVarLbl = document.getElementById(`sd-card-var-label`);
-      const cVar = document.getElementById(`sd-card-var`);
-      const cVarNote = document.getElementById(`sd-card-var-note`);
-      const cSdLbl = document.getElementById(`sd-card-sd-label`);
-      const cSd = document.getElementById(`sd-card-sd`);
-      const cSdNote = document.getElementById(`sd-card-sd-note`);
-
-      if (cSumDev) cSumDev.textContent = `0.00 hrs`;
-      if (cSs) cSs.textContent = step >= 2 ? `40.00 hrs²` : `—`;
-
-      if (cVarLbl) cVarLbl.textContent = isSample ? `Sample Variance (s²)` : `Population Variance (σ²)`;
-      if (cVarNote) cVarNote.textContent = isSample ? `40.00 ÷ (5 − 1) = 4` : `40.00 ÷ 5`;
-      if (cVar) cVar.textContent = step >= 3 ? (isSample ? `10.00 hrs²` : `8.00 hrs²`) : `—`;
-
-      if (cSdLbl) cSdLbl.textContent = isSample ? `Sample SD (s)` : `Population SD (σ)`;
-      if (cSd) cSd.textContent = step >= 4 ? (isSample ? `3.16 hrs` : `2.83 hrs`) : `—`;
-      if (cSdNote) {
-        cSdNote.innerHTML = isSample
-          ? `<span class="excel-pill">=STDEV.S(C17:G17)</span>`
-          : `<span class="excel-pill">=STDEV.P(C17:G17)</span>`;
-      }
-    }
-
-    function answerScopeCheck(choice) {
-      appState.scopeAnswer = choice;
-      renderScopeFeedback();
-      persistState();
-    }
-
-    function renderScopeFeedback() {
-      const fb = document.getElementById(`scope-feedback`);
-      const btnS = document.getElementById(`scope-btn-s`);
-      const btnP = document.getElementById(`scope-btn-p`);
-      if (!fb) return;
-      if (!appState.scopeAnswer) {
-        fb.classList.remove(`is-visible`, `is-error`);
-        if (btnS) btnS.setAttribute(`aria-pressed`, `false`);
-        if (btnP) btnP.setAttribute(`aria-pressed`, `false`);
-        return;
-      }
-      if (btnS) btnS.setAttribute(`aria-pressed`, appState.scopeAnswer === `S` ? `true` : `false`);
-      if (btnP) btnP.setAttribute(`aria-pressed`, appState.scopeAnswer === `P` ? `true` : `false`);
-
-      fb.classList.add(`is-visible`);
-      if (appState.scopeAnswer === `S`) {
-        fb.classList.remove(`is-error`);
-        fb.innerHTML = `<strong>Correct—use <span class="excel-pill">=STDEV.S()</span>.</strong> Even though you captured every transaction in October, your business question is about forecasting <em>future</em> spring staffing. October serves as a sample of the ongoing store process.`;
-      } else {
-        fb.classList.add(`is-error`);
-        fb.innerHTML = `<strong>Not quite—check the business question!</strong> You would use <span class="excel-pill">=STDEV.P()</span> only if your question stopped strictly at October’s historical audit. Because you are inferring future spring performance, October is a sample of an ongoing process—try <span class="excel-pill">=STDEV.S()</span>.`;
-      }
-    }
-
-    /* =========================================================================
-       SECTION 5: MANAGERIAL DECISION CHALLENGE
+       SECTION 4: MANAGERIAL DECISION CHALLENGE
        ========================================================================= */
     function submitCase(caseNum, choice) {
       if (caseNum === 1) appState.case1Answer = choice;
@@ -2421,20 +1957,12 @@
       appState.hookView = `all`;
       appState.selectedPred = null;
       appState.predSubmitted = false;
-      appState.simPreset = `wait`;
-      appState.simValues = [12, 15, 18, 11, 42];
-      appState.sdStep = 1;
-      appState.sdMaxStepReached = 1;
-      appState.sdScope = `sample`;
-      appState.scopeAnswer = null;
       appState.case1Answer = null;
       appState.case2Answer = null;
 
       setHookView(`all`);
       resetPrediction();
-      loadSimPreset(`wait`);
-      renderSdStepper();
-      renderScopeFeedback();
+      resetSimBaseline();
       renderCaseFeedback(1);
       renderCaseFeedback(2);
       persistState();
@@ -2451,12 +1979,11 @@
             if (saved.hookView) appState.hookView = saved.hookView;
             if (saved.selectedPred) appState.selectedPred = saved.selectedPred;
             if (typeof saved.predSubmitted === `boolean`) appState.predSubmitted = saved.predSubmitted;
-            if (saved.simPreset && PRESETS[saved.simPreset]) appState.simPreset = saved.simPreset;
-            if (Array.isArray(saved.simValues) && saved.simValues.length === 5) appState.simValues = saved.simValues.map(Number);
-            if (typeof saved.sdStep === `number`) appState.sdStep = saved.sdStep;
-            if (typeof saved.sdMaxStepReached === `number`) appState.sdMaxStepReached = saved.sdMaxStepReached;
-            if (saved.sdScope) appState.sdScope = saved.sdScope;
-            if (saved.scopeAnswer) appState.scopeAnswer = saved.scopeAnswer;
+            if ((!saved.simPreset || saved.simPreset === `wait`) && Array.isArray(saved.simValues)
+              && saved.simValues.length === SIM_BASELINE.length
+              && saved.simValues.every(value => Number.isInteger(value) && value >= 0 && value <= MAX_PATIENT_WAIT)) {
+              appState.simValues = saved.simValues.slice();
+            }
             if (saved.case1Answer) appState.case1Answer = saved.case1Answer;
             if (saved.case2Answer) appState.case2Answer = saved.case2Answer;
           }
@@ -2471,13 +1998,10 @@
       if (appState.selectedPred) selectPrediction(appState.selectedPred);
       renderPredictReveal();
 
-      const p = PRESETS[appState.simPreset] || PRESETS.wait;
-      applySimRangeBounds(p);
+      initSimQuestions();
       updateSimControlsUI();
       updateSimVisuals();
 
-      renderSdStepper();
-      renderScopeFeedback();
       renderCaseFeedback(1);
       renderCaseFeedback(2);
       updateProgressPill();

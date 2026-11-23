@@ -602,6 +602,11 @@
       ],
       "materials": [
         {
+          "type": "Slides",
+          "label": "Slides (Canva)",
+          "path": "https://canva.link/ojfibhqrt9dixqt"
+        },
+        {
           "type": "Interactive Practice",
           "label": "Measures of Center and Spread",
           "path": "MATH/M12/bus123-math-m12-l01-measures-of-center-and-spread.html"

@@ -173,6 +173,21 @@
       max-width: 60ch;
       margin: 0;
     }
+    .hero-context {
+      display: grid;
+      gap: var(--space-md);
+    }
+    .waiting-room-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: var(--rounded-lg);
+    }
+    .hero-context .waiting-room-image {
+      aspect-ratio: 2 / 1;
+    }
     .hero-meta-card {
       background-color: rgb(255 255 255 / 0.07);
       border: 1px solid rgb(255 255 255 / 0.18);
@@ -436,6 +451,12 @@
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: var(--space-lg);
       align-items: start;
+    }
+    .prediction-context {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+      gap: var(--space-lg);
+      align-items: center;
     }
     .equal-two-col {
       display: grid;
@@ -876,6 +897,7 @@
       .hero-inner { grid-template-columns: 1fr; gap: var(--space-lg); }
       .page-grid { padding: var(--space-lg) var(--space-md); gap: var(--space-xl); }
       .two-col-split,
+      .prediction-context,
       .equal-two-col,
       .simulator-grid,
       .option-card-grid,
@@ -898,14 +920,17 @@
           Two delivery branches can share the exact same 20-minute average wait time—yet one earns five-star reviews while the other misses half its deadlines. Learn how managers pair <strong>center</strong>, <strong>spread</strong>, and <strong>Excel analytics</strong> to see the full story behind the numbers.
         </p>
       </div>
-      <aside class="hero-meta-card" aria-label="Module Learning Objectives">
-        <div class="hero-meta-label">What You Will Master</div>
-        <ul class="hero-meta-list">
-          <li>When outliers distort <span class="excel-pill">=AVERAGE()</span> vs. <span class="excel-pill">=MEDIAN()</span></li>
-          <li>How <span class="excel-pill">=MODE.SNGL()</span> spots common purchase behavior</li>
-          <li>How <span class="excel-pill">=STDEV.S()</span> &amp; <span class="excel-pill">=STDEV.P()</span> measure operational risk</li>
-        </ul>
-      </aside>
+      <div class="hero-context">
+        <img class="waiting-room-image" src="assets/m12-hospital-waiting-room.jpg" width="1200" height="800" alt="Illustration of patients seated in a hospital waiting room near a check-in desk.">
+        <aside class="hero-meta-card" aria-label="Module Learning Objectives">
+          <div class="hero-meta-label">What You Will Master</div>
+          <ul class="hero-meta-list">
+            <li>When outliers distort <span class="excel-pill">=AVERAGE()</span> vs. <span class="excel-pill">=MEDIAN()</span></li>
+            <li>How <span class="excel-pill">=MODE.SNGL()</span> spots common purchase behavior</li>
+            <li>How <span class="excel-pill">=STDEV.S()</span> &amp; <span class="excel-pill">=STDEV.P()</span> measure operational risk</li>
+          </ul>
+        </aside>
+      </div>
     </div>
   </header>
 
@@ -1033,9 +1058,12 @@
       <div class="section-header">
         <span class="section-eyebrow">2 · Predict &amp; Reveal</span>
         <h2 class="section-title">What happens when one extreme delay hits your log?</h2>
-        <p class="section-intro">
-          In a standard five-customer check-in log, wait times are <strong>11, 12, 15, 18, and 22 minutes</strong>. Right now, the Mean is <strong>15.6 min</strong> and the Median is <strong>15.0 min</strong>—nearly identical. Suppose the fifth customer faces an unexpected system outage, jumping that single wait time from <strong>22 minutes to 42 minutes</strong>.
-        </p>
+        <div class="prediction-context">
+          <p class="section-intro">
+            Five patients at a hospital wait <strong>11, 12, 15, 18, and 22 minutes</strong> after check-in. The mean is <strong>15.6 min</strong> and the median is <strong>15.0 min</strong>. Suppose a check-in system outage increases the fifth patient’s wait from <strong>22 minutes to 42 minutes</strong>.
+          </p>
+          <img class="waiting-room-image" src="assets/m12-hospital-waiting-room-clock.jpg" width="960" height="640" loading="lazy" alt="Illustration of two patients waiting in hospital chairs, one watching the wall clock.">
+        </div>
       </div>
 
       <div class="two-col-split">
@@ -1894,7 +1922,7 @@
         badge.textContent = `Mean 19.6m vs. Median 15.0m (+4.6m gap)`;
       }
       if (body) {
-        body.innerHTML = `Changing cell G8 from 22 to 42 adds 20 total minutes to the dataset. Because <span class="excel-pill">=AVERAGE()</span> divides the total across all 5 customers, the Mean rises by 20 / 5 = <strong>+4.0 minutes</strong> (from 15.6 to 19.6 min). Meanwhile, <span class="excel-pill">=MEDIAN()</span> only cares about the middle rank in <code>[11, 12, 15, 18, 42]</code>—so the 3rd value stays locked at <strong>15.0 minutes</strong>.`;
+        body.innerHTML = `Changing cell G8 from 22 to 42 adds 20 total minutes to the dataset. Because <span class="excel-pill">=AVERAGE()</span> divides the total across all 5 patients, the Mean rises by 20 / 5 = <strong>+4.0 minutes</strong> (from 15.6 to 19.6 min). Meanwhile, <span class="excel-pill">=MEDIAN()</span> only cares about the middle rank in <code>[11, 12, 15, 18, 42]</code>—so the 3rd value stays locked at <strong>15.0 minutes</strong>.`;
       }
       if (caption) {
         caption.textContent = `Notice the visual shift: the blue Mean bar stretches right by 4.0 min, while the coastal-green Median stays identical.`;

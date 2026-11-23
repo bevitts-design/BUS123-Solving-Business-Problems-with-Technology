@@ -602,31 +602,14 @@
       ],
       "materials": [
         {
-          "type": "Slides",
-          "path": "MATH/M12/bus123-math-m12-l01-slides.html"
-        },
-        {
-          "type": "Reading",
-          "path": "MATH/M12/bus123-math-m12-l01-prereading.pdf"
+          "type": "Interactive Practice",
+          "label": "Measures of Center and Spread",
+          "path": "MATH/M12/bus123-math-m12-l01-measures-of-center-and-spread.html"
         },
         {
           "type": "Starter Workbook",
-          "path": "MATH/M12/bus123-math-m12-l01-starter.xlsx"
-        },
-        {
-          "type": "Interactive Practice",
-          "label": "Correlation Courtroom",
-          "path": "MATH/M12/bus123-math-m12-l01-interactive.html"
-        },
-        {
-          "type": "Interactive Practice",
-          "label": "Outlier Detective",
-          "path": "MATH/M12/bus123-math-m12-l01-outlier-detective.html"
-        },
-        {
-          "type": "Interactive Practice",
-          "label": "Staffing Shift Puzzle",
-          "path": "MATH/M12/bus123-math-m12-l01-staffing-shift-puzzle.html"
+          "label": "Class Size Standard Deviation (Excel)",
+          "path": "MATH/M12/bus123-math-m12-l01-class-size-standard-deviation.xlsx"
         }
       ],
       "moduleType": "Math",

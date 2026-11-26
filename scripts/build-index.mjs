@@ -271,7 +271,7 @@ const lessonCard = (lesson) => {
       <div class="choice-project-intro">
         <div>
           <h3>${esc(lesson.title)}</h3>
-          <p>Choose one case. All three use the same assignment and rubric.</p>
+          <p>${esc(lesson.choiceInstructions ?? "Choose one case. All three use the same assignment and rubric.")}</p>
         </div>
         <div class="materials">${(lesson.materials ?? []).map((material) => materialLink(material, { locked: previewOnly })).join("")}</div>
       </div>

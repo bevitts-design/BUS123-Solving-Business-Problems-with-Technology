@@ -767,6 +767,7 @@
       "module": "M03",
       "lesson": "L01",
       "title": "BUS123 Capstone Project",
+      "choiceInstructions": "Choose one case. All three use the same assignment and rubric. AI use is prohibited for every part of this project.",
       "status": "Live",
       "caseStudy": "Tidal Goods Co. · Harborside Medical Center · Meridian Advisory Group",
       "skillFocus": [

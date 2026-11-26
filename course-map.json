@@ -762,66 +762,63 @@
       "visible": true
     },
     {
-      "id": "capstone-m01-l01",
+      "id": "capstone-m03-l01",
       "track": "capstone",
-      "module": "M01",
+      "module": "M03",
       "lesson": "L01",
-      "title": "Finance Capstone: Northstar Athletic Studio",
+      "title": "BUS123 Capstone Project",
       "status": "Live",
-      "caseStudy": "Northstar Athletic Studio",
+      "caseStudy": "Tidal Goods Co. · Harborside Medical Center · Meridian Advisory Group",
       "skillFocus": [
-        "Financial modeling",
-        "PMT function",
-        "Break-even analysis",
-        "Revenue forecasting",
-        "Dashboard design"
+        "Excel modeling",
+        "Scenario analysis",
+        "Verification",
+        "Workbook formatting",
+        "PivotTables",
+        "Charts",
+        "Business recommendation"
       ],
       "materials": [
         {
           "type": "Homework",
-          "label": "Project Handout",
-          "path": "CAPSTONE/M01/bus123-capstone-m01-l01-project.html"
+          "label": "Assignment Brief and Rubric",
+          "path": "CAPSTONE/M03/bus123-capstone-m03-l01-project.html"
+        },
+        {
+          "type": "Activity Instructions",
+          "label": "Tidal Goods Case Packet",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-packet.html"
         },
         {
           "type": "Starter Workbook",
-          "path": "CAPSTONE/M01/bus123-capstone-m01-l01-starter.xlsx"
+          "label": "Tidal Goods Excel Starter",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-starter.xlsx"
+        },
+        {
+          "type": "Activity Instructions",
+          "label": "Harborside Case Packet",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-packet.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "label": "Harborside Excel Starter",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-starter.xlsx"
+        },
+        {
+          "type": "Activity Instructions",
+          "label": "Meridian Case Packet",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-packet.html"
+        },
+        {
+          "type": "Starter Workbook",
+          "label": "Meridian Excel Starter",
+          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-starter.xlsx"
         }
       ],
       "moduleType": "Capstone",
-      "moduleLabel": "Capstone M01",
+      "moduleLabel": "Final Project",
       "displayOrder": 200,
-      "visible": false
-    },
-    {
-      "id": "capstone-m02-l01",
-      "track": "capstone",
-      "module": "M02",
-      "lesson": "L01",
-      "title": "AI-Assisted Investment Model Audit",
-      "status": "Live",
-      "caseStudy": "Meridian Advisory Group",
-      "skillFocus": [
-        "AI verification",
-        "Investment analysis",
-        "Formula auditing",
-        "Dashboard repair",
-        "Client recommendation"
-      ],
-      "materials": [
-        {
-          "type": "Homework",
-          "label": "Project Handout",
-          "path": "CAPSTONE/M02/bus123-capstone-m02-l01-project.html"
-        },
-        {
-          "type": "Starter Workbook",
-          "path": "CAPSTONE/M02/bus123-capstone-m02-l01-starter.xlsx"
-        }
-      ],
-      "moduleType": "Capstone",
-      "moduleLabel": "Capstone M02",
-      "displayOrder": 210,
-      "visible": false
+      "visible": true
     }
   ]
 }

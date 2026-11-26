@@ -28,6 +28,13 @@ const trackById = new Map(data.tracks.map((track) => [track.id, track]));
 const materialFilters = ["Slides", "Reading", "Syllabus", "Infographic", "Starter Workbook", "Closer Workbook", "Interactive Practice", "Activity Instructions", "Homework"];
 const statusFilters = ["Current", "Live", "In Progress", "Coming Soon", "Preview Only"];
 
+const lessonMaterials = (lesson) => [
+  ...(lesson.materials ?? []),
+  ...(lesson.choices ?? []).flatMap((choice) => choice.materials ?? [])
+];
+const choiceImages = (lesson) =>
+  (lesson.choices ?? []).filter((choice) => choice.image).map((choice) => ({ type: "Image", path: choice.image }));
+
 function validateCourseMap() {
   const issues = [];
   const seen = new Set();
@@ -72,7 +79,7 @@ function validateCourseMap() {
       issues.push(`${lesson.id}.visible must be true or false when present.`);
     }
 
-    for (const material of lesson.materials ?? []) {
+    for (const material of [...lessonMaterials(lesson), ...choiceImages(lesson)]) {
       validatePublicLink(material, issues, `${lesson.id} material`);
     }
   }
@@ -118,7 +125,7 @@ function awaitFileExists(filePath) {
 const fileExistsCache = new Map();
 const publicLinks = [
   ...(data.course.resources ?? []),
-  ...(data.lessons ?? []).flatMap((lesson) => lesson.materials ?? [])
+  ...(data.lessons ?? []).flatMap((lesson) => [...lessonMaterials(lesson), ...choiceImages(lesson)])
 ];
 await Promise.all(publicLinks
   .filter((item) => item.path && item.path !== "#" && !/^https?:\/\//i.test(item.path))
@@ -209,7 +216,7 @@ const lessonIsPreviewOnly = (lesson) => lesson.visible === false;
 const studentStatus = (lesson) => lessonIsPreviewOnly(lesson) ? "Preview Only" : effectiveStatus(lesson);
 
 const searchText = (lesson, track) => {
-  const materialTerms = (lesson.materials ?? []).flatMap((item) =>
+  const materialTerms = lessonMaterials(lesson).flatMap((item) =>
     lessonIsPreviewOnly(lesson) ? [item.type, item.label] : [item.type, item.label, item.path]
   );
   return [
@@ -223,14 +230,34 @@ const searchText = (lesson, track) => {
     lesson.displayOrder,
     studentStatus(lesson),
     lesson.caseStudy,
+    ...(lesson.choices ?? []).flatMap(({ title, topic, decision }) => [title, topic, decision]),
     ...(lesson.skillFocus ?? []),
     ...materialTerms
   ].filter(Boolean).join(" ").toLowerCase();
 };
 
+const lessonFilterAttributes = (lesson, track) => {
+  const materialSlugs = lessonMaterials(lesson).map((item) => slug(item.type)).join(" ");
+  return `data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(studentStatus(lesson)))}" data-availability="${lessonIsPreviewOnly(lesson) ? "preview-only" : "available"}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}"`;
+};
+
+const choiceCard = (choice, locked) => {
+  const image = !locked && materialIsAvailable({ path: choice.image })
+    ? `<img class="case-choice-image" src="${esc(choice.image)}" alt="" loading="lazy">`
+    : "";
+  return `<article class="lesson case-choice">
+    ${image}
+    <div class="case-choice-content">
+      <div class="code">${esc(choice.topic)}</div>
+      <h4>${esc(choice.title)}</h4>
+      <p>${esc(choice.decision)}</p>
+      <div class="materials">${(choice.materials ?? []).map((material) => materialLink(material, { locked })).join("")}</div>
+    </div>
+  </article>`;
+};
+
 const lessonCard = (lesson) => {
   const track = trackById.get(lesson.track);
-  const materialSlugs = (lesson.materials ?? []).map((item) => slug(item.type)).join(" ");
   const previewOnly = lessonIsPreviewOnly(lesson);
   const status = studentStatus(lesson);
   const availabilityNote = previewOnly
@@ -239,7 +266,21 @@ const lessonCard = (lesson) => {
       </span><span><strong>Preview only.</strong> Materials will unlock when this lesson becomes available.</span></p>`
     : "";
 
-  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}${previewOnly ? " lesson-preview" : ""}" data-lesson data-track="${esc(lesson.track)}" data-track-label="${esc(track?.label ?? lesson.track)}" data-status="${esc(slug(status))}" data-availability="${previewOnly ? "preview-only" : "available"}" data-materials="${esc(materialSlugs)}" data-search="${esc(searchText(lesson, track))}">
+  if (lesson.choices?.length) {
+    return `<article id="${esc(lesson.id)}" class="choice-project" ${lessonFilterAttributes(lesson, track)}>
+      <div class="choice-project-intro">
+        <div>
+          <h3>${esc(lesson.title)}</h3>
+          <p>Choose one case. All three use the same assignment and rubric.</p>
+        </div>
+        <div class="materials">${(lesson.materials ?? []).map((material) => materialLink(material, { locked: previewOnly })).join("")}</div>
+      </div>
+      ${availabilityNote}
+      <div class="case-choice-grid">${lesson.choices.map((choice) => choiceCard(choice, previewOnly)).join("\n")}</div>
+    </article>`;
+  }
+
+  return `<article id="${esc(lesson.id)}" class="lesson track-${esc(slug(lesson.track))}${previewOnly ? " lesson-preview" : ""}" ${lessonFilterAttributes(lesson, track)}>
     <div class="lesson-header">
       <div>
         <div class="code">${esc(displayLabel(lesson, track))}</div>
@@ -272,7 +313,9 @@ const tracks = orderedTracks.map((track) => {
   const lessons = sortedLessons.filter((lesson) => lesson.track === track.id);
   const availableCount = lessons.filter((lesson) => !lessonIsPreviewOnly(lesson)).length;
   const previewCount = lessons.length - availableCount;
-  const countLabel = [
+  const countLabel = lessons.length === 1 && lessons[0].choices?.length
+    ? `1 project · ${lessons[0].choices.length} choices`
+    : [
     `${lessons.length} lesson${lessons.length === 1 ? "" : "s"}`,
     `${availableCount} available`,
     previewCount ? `${previewCount} preview only` : ""

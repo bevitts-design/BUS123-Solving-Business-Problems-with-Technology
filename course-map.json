@@ -783,42 +783,68 @@
           "type": "Homework",
           "label": "Assignment Brief and Rubric",
           "path": "CAPSTONE/M03/bus123-capstone-m03-l01-project.html"
-        },
-        {
-          "type": "Activity Instructions",
-          "label": "Tidal Goods Case Packet",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-packet.html"
-        },
-        {
-          "type": "Starter Workbook",
-          "label": "Tidal Goods Excel Starter",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-starter.xlsx"
-        },
-        {
-          "type": "Activity Instructions",
-          "label": "Harborside Case Packet",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-packet.html"
-        },
-        {
-          "type": "Starter Workbook",
-          "label": "Harborside Excel Starter",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-starter.xlsx"
-        },
-        {
-          "type": "Activity Instructions",
-          "label": "Meridian Case Packet",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-packet.html"
-        },
-        {
-          "type": "Starter Workbook",
-          "label": "Meridian Excel Starter",
-          "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-starter.xlsx"
         }
       ],
       "moduleType": "Capstone",
       "moduleLabel": "Final Project",
       "displayOrder": 200,
-      "visible": true
+      "visible": true,
+      "choices": [
+        {
+          "title": "Tidal Goods Co.",
+          "topic": "Retail",
+          "decision": "Which inventory order should a coastal shop place: lean or bulk?",
+          "image": "assets/case-study-companies/tidal-goods/tidal-goods-wide-simple.png",
+          "materials": [
+            {
+              "type": "Activity Instructions",
+              "label": "Case Packet",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-packet.html"
+            },
+            {
+              "type": "Starter Workbook",
+              "label": "Excel Starter",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-a-starter.xlsx"
+            }
+          ]
+        },
+        {
+          "title": "Harborside Medical Center",
+          "topic": "Healthcare",
+          "decision": "Should the hospital pay cash for a new MRI or finance part of the purchase?",
+          "image": "assets/case-study-companies/harborside-medical-center/harborside-medical-center-wide-simple.png",
+          "materials": [
+            {
+              "type": "Activity Instructions",
+              "label": "Case Packet",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-packet.html"
+            },
+            {
+              "type": "Starter Workbook",
+              "label": "Excel Starter",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-b-starter.xlsx"
+            }
+          ]
+        },
+        {
+          "title": "Meridian Advisory Group",
+          "topic": "Investing",
+          "decision": "Which portfolio better fits the client: growth or balanced?",
+          "image": "assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-wide-simple.png",
+          "materials": [
+            {
+              "type": "Activity Instructions",
+              "label": "Case Packet",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-packet.html"
+            },
+            {
+              "type": "Starter Workbook",
+              "label": "Excel Starter",
+              "path": "CAPSTONE/M03/cases/bus123-capstone-m03-l01-option-c-starter.xlsx"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Choose Your BUS123 Capstone Case</title>
+  <style>
+    :root {
+      --ink: #0e1116;
+      --paper: #faf8f3;
+      --white: #fff;
+      --text: #1a1f2c;
+      --muted: #4a5567;
+      --line: #e5e1d6;
+      --sage: #4a7c5e;
+      --gold: #b8843d;
+      --terra: #9c4a2b;
+      --steel: #355773;
+      --green-wash: #eaf3ec;
+      --blue-wash: #eaf0f5;
+      --gold-wash: #f6ede1;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--text); font: 1rem/1.5 system-ui, sans-serif; }
+    .wrap { width: min(74rem, 100% - 2.5rem); margin-inline: auto; }
+    .hero { padding: clamp(1.8rem, 4vw, 3.25rem) 0; background: var(--ink); color: var(--white); border-bottom: 5px solid var(--sage); }
+    .hero .wrap { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem 2rem; }
+    h1, h2 { margin: 0; font-family: Georgia, serif; line-height: 1.1; }
+    h1 { font-size: clamp(2.35rem, 5.4vw, 4.7rem); }
+    .course { margin: 0 0 .55rem; font-weight: 700; }
+    .intro { margin: .65rem 0 0; max-width: 43rem; }
+    .brief { color: inherit; font-weight: 700; text-underline-offset: .25em; }
+    main { padding-block: 1.5rem 3rem; }
+    .cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .case {
+      --accent: var(--sage);
+      --wash: var(--green-wash);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .hospital { --accent: var(--steel); --wash: var(--blue-wash); }
+    .portfolio { --accent: var(--terra); --wash: var(--gold-wash); }
+    .art { display: block; width: 100%; height: auto; aspect-ratio: 2.15; object-fit: cover; object-position: right bottom; border-bottom: 4px solid var(--accent); }
+    .content { display: flex; flex: 1; flex-direction: column; padding: 1rem; }
+    .sector { margin: 0 0 .25rem; color: var(--accent); font-size: .82rem; font-weight: 750; }
+    .case h2 { min-height: 2.2em; font-size: clamp(1.4rem, 2.25vw, 1.85rem); }
+    .question { margin: .55rem 0 .9rem; min-height: 3em; }
+    .options { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: .35rem; margin-bottom: .7rem; }
+    .option { display: grid; min-height: 3em; place-items: center; padding: .35rem; border-radius: .45rem; background: var(--wash); font-weight: 750; text-align: center; }
+    .versus { color: var(--muted); font-size: .8rem; }
+    .evidence { margin: 0 0 1rem; }
+    .evidence div { display: grid; grid-template-columns: 4.9rem minmax(0, 1fr); gap: .45rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+    .evidence dt { color: var(--accent); font-weight: 750; }
+    .evidence dd { margin: 0; color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .8rem; margin-top: auto; }
+    .links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; color: var(--steel); text-underline-offset: .2em; }
+    .links .packet { padding: .45rem .72rem; border-radius: .45rem; background: var(--ink); color: var(--white); text-decoration: none; }
+    .links .packet:hover { text-decoration: underline; }
+    a:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .shared { margin-top: 1.4rem; padding: clamp(1rem, 2vw, 1.45rem); background: var(--green-wash); border-radius: .8rem; }
+    .shared h2 { font-size: 1.55rem; }
+    .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; list-style: none; margin: .85rem 0 0; padding: 0; }
+    .steps li { border-top: 2px solid var(--sage); padding-top: .45rem; color: var(--muted); }
+    .steps strong { display: block; color: var(--text); }
+    @media (max-width: 58rem) {
+      .cases { grid-template-columns: 1fr; }
+      .case { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); }
+      .art { height: 100%; aspect-ratio: auto; border: 0; border-right: 4px solid var(--accent); }
+      .case h2, .question { min-height: 0; }
+    }
+    @media (max-width: 37rem) {
+      .wrap { width: calc(100% - 1.5rem); }
+      .case { display: flex; }
+      .art { height: auto; aspect-ratio: 2.15; border: 0; border-bottom: 4px solid var(--accent); }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <p class="course">BUS123 Capstone Project</p>
+        <h1>Choose your case</h1>
+        <p class="intro">Pick one of the three businesses below. Compare its two options in Excel and use your results to make a recommendation.</p>
+      </div>
+      <a class="brief" href="bus123-capstone-m03-l01-project.html">Assignment brief and rubric</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="cases">
+      <article class="case" aria-labelledby="tidal">
+        <img class="art" src="../../assets/case-study-companies/tidal-goods/tidal-goods-wide-simple.png" alt="" width="1672" height="941">
+        <div class="content">
+          <p class="sector">Retail · Inventory planning</p>
+          <h2 id="tidal">Tidal Goods Co.</h2>
+          <p class="question">How much stock should a coastal shop buy for an eight-week selling period?</p>
+          <div class="options"><span class="option">Lean order</span><span class="versus">vs.</span><span class="option">Bulk order</span></div>
+          <dl class="evidence">
+            <div><dt>Measure</dt><dd>Cash committed, gross profit, and gross margin.</dd></div>
+            <div><dt>Downside</dt><dd>Demand falls to 80% of the base forecast.</dd></div>
+            <div><dt>Limit</dt><dd>Stay within the $27,000 inventory budget.</dd></div>
+          </dl>
+          <div class="links">
+            <a class="packet" href="cases/bus123-capstone-m03-l01-option-a-packet.html">Tidal Goods packet</a>
+            <a href="cases/bus123-capstone-m03-l01-option-a-starter.xlsx" aria-label="Download Tidal Goods Excel starter">Excel starter</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case hospital" aria-labelledby="harborside">
+        <img class="art" src="../../assets/case-study-companies/harborside-medical-center/harborside-medical-center-wide-simple.png" alt="" width="1672" height="941">
+        <div class="content">
+          <p class="sector">Healthcare · Equipment financing</p>
+          <h2 id="harborside">Harborside Medical Center</h2>
+          <p class="question">How should the hospital pay for a $400,000 MRI?</p>
+          <div class="options"><span class="option">Pay cash</span><span class="versus">vs.</span><span class="option">Partial loan</span></div>
+          <dl class="evidence">
+            <div><dt>Measure</dt><dd>Cash balances, monthly payments, and total loan interest.</dd></div>
+            <div><dt>Downside</dt><dd>Operating cash flow drops by $10,500 each month.</dd></div>
+            <div><dt>Limit</dt><dd>Keep at least $150,000 in cash after purchase and at each month-end.</dd></div>
+          </dl>
+          <div class="links">
+            <a class="packet" href="cases/bus123-capstone-m03-l01-option-b-packet.html">Harborside packet</a>
+            <a href="cases/bus123-capstone-m03-l01-option-b-starter.xlsx" aria-label="Download Harborside Excel starter">Excel starter</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="case portfolio" aria-labelledby="meridian">
+        <img class="art" src="../../assets/case-study-companies/meridian-advisory-group/meridian-advisory-group-wide-simple.png" alt="" width="1672" height="941">
+        <div class="content">
+          <p class="sector">Investing · Portfolio allocation</p>
+          <h2 id="meridian">Meridian Advisory Group</h2>
+          <p class="question">Which $100,000 portfolio fits the client’s goals and risk limits?</p>
+          <div class="options"><span class="option">Growth mix</span><span class="versus">vs.</span><span class="option">Balanced mix</span></div>
+          <dl class="evidence">
+            <div><dt>Measure</dt><dd>Portfolio weights, modeled returns, and concentration.</dd></div>
+            <div><dt>Downside</dt><dd>Apply the same one-year downside returns to both mixes.</dd></div>
+            <div><dt>Limits</dt><dd>At most 55% in any asset class and 8% modeled downside loss.</dd></div>
+          </dl>
+          <div class="links">
+            <a class="packet" href="cases/bus123-capstone-m03-l01-option-c-packet.html">Meridian packet</a>
+            <a href="cases/bus123-capstone-m03-l01-option-c-starter.xlsx" aria-label="Download Meridian Excel starter">Excel starter</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="shared" aria-labelledby="shared">
+      <h2 id="shared">What you’ll build in any case</h2>
+      <ul class="steps">
+        <li><strong>Model both options</strong>Format the workbook and calculate the base and downside results.</li>
+        <li><strong>Check your work</strong>Recalculate one result and verify one total or limit.</li>
+        <li><strong>Summarize and visualize</strong>Build two PivotTables and two charts.</li>
+        <li><strong>Make a recommendation</strong>Use at least two workbook results in a memo of up to one page.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -361,6 +361,31 @@ h3 { font-size: 28px; }
   gap: 16px;
 }
 
+.choice-project { grid-column: 1 / -1; min-width: 0; }
+.choice-project-intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.choice-project-intro p { margin: 6px 0 0; color: var(--text-soft); }
+.case-choice-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.case-choice.lesson { display: flex; flex-direction: column; padding: 0; }
+.case-choice.lesson::before { display: none; }
+.case-choice-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.15;
+  object-fit: cover;
+  object-position: right bottom;
+  border-bottom: 4px solid var(--sage);
+}
+.case-choice-content { display: flex; flex: 1; flex-direction: column; padding: 16px; }
+.case-choice-content h4 { margin: 4px 0 0; font-size: 21px; line-height: 1.2; }
+.case-choice-content .materials { margin-top: auto; }
+
 .lesson {
   --track-accent: var(--sage);
   position: relative;
@@ -513,5 +538,6 @@ h3 { font-size: 28px; }
   .class-pack-step, .catch-up-action { min-height: auto; }
   .panel-heading { flex-direction: column; }
   .lesson-grid { grid-template-columns: 1fr; }
+  .case-choice-grid { grid-template-columns: 1fr; }
   .lesson-header { flex-direction: column; gap: 10px; }
 }
